@@ -1,0 +1,8 @@
+# Directories
+build/
+derived_data/
+
+#Engine Files
+
+# Mac Files
+.DS_Store
