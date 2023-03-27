@@ -6,8 +6,18 @@
 	objectVersion = 56;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B292C0E729D1CF7100B1E678 /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B292C0E529D1CF7100B1E678 /* logger.cpp */; };
+		B292C0E829D1CF7100B1E678 /* logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E629D1CF7100B1E678 /* logger.hpp */; };
+		B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E929D1D1BC00B1E678 /* prefix_headers.pch */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		B292BB8429D184EB00B1E678 /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B292C0E529D1CF7100B1E678 /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
+		B292C0E629D1CF7100B1E678 /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
+		B292C0E929D1D1BC00B1E678 /* prefix_headers.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_headers.pch; sourceTree = "<group>"; };
+		B292C0EB29D1D30500B1E678 /* ikan_common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ikan_common.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -24,6 +34,10 @@
 		B292BB7B29D184EB00B1E678 = {
 			isa = PBXGroup;
 			children = (
+				B292C0E929D1D1BC00B1E678 /* prefix_headers.pch */,
+				B292C0E229D1CF5A00B1E678 /* ikan */,
+				B292BB9329D19BBD00B1E678 /* core_assets */,
+				B292BEFE29D19BE700B1E678 /* vendors */,
 				B292BB8529D184EB00B1E678 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -36,6 +50,46 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B292BB9329D19BBD00B1E678 /* core_assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = core_assets;
+			sourceTree = "<group>";
+		};
+		B292BEFE29D19BE700B1E678 /* vendors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = vendors;
+			sourceTree = "<group>";
+		};
+		B292C0E229D1CF5A00B1E678 /* ikan */ = {
+			isa = PBXGroup;
+			children = (
+				B292C0EB29D1D30500B1E678 /* ikan_common.h */,
+				B292C0E329D1CF6200B1E678 /* core */,
+			);
+			path = ikan;
+			sourceTree = "<group>";
+		};
+		B292C0E329D1CF6200B1E678 /* core */ = {
+			isa = PBXGroup;
+			children = (
+				B292C0E429D1CF6600B1E678 /* debug */,
+			);
+			path = core;
+			sourceTree = "<group>";
+		};
+		B292C0E429D1CF6600B1E678 /* debug */ = {
+			isa = PBXGroup;
+			children = (
+				B292C0E529D1CF7100B1E678 /* logger.cpp */,
+				B292C0E629D1CF7100B1E678 /* logger.hpp */,
+			);
+			path = debug;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -43,6 +97,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */,
+				B292C0E829D1CF7100B1E678 /* logger.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B292C0E729D1CF7100B1E678 /* logger.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +283,9 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_headers.pch";
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/vendors/spdlog/include";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -239,6 +299,9 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_headers.pch";
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/vendors/spdlog/include";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
