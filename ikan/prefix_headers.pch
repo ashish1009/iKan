@@ -15,6 +15,7 @@
 
 // C++ Files
 #include <iostream>
+#include <map>
 
 // Engine Files
 #include "ikan_common.h"

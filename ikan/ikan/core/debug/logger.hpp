@@ -11,6 +11,11 @@
 
 namespace ikan {
   
+  /// This enum stores the moule names of ikan Logs (Holds only ikan engine log module names)
+  enum class LogModule {
+    None,
+  };
+  
   /// This class is the wrapper the wrapepr class for logging.
   /// - Note: This wrapper class is using submodule spd-log from "https://github.com/gabime/spdlog"
   class Logger {
@@ -18,6 +23,16 @@ namespace ikan {
     /// This enum hold the Log level of ikan engine
     enum class Level : uint8_t {
       Trace, Debug, Info, Warning, Error, Critical
+    };
+    /// This enum hold the Project module of log
+    enum class Type : uint8_t {
+      Core, Client
+    };
+
+    /// This stores the Log Module details. Logs can be filtered and passed based on the modules
+    struct TagDetails {
+      bool enabled = true; // Flag to enable the Module log
+      Level level_filter = Level::Trace; // Filter of log level for this module
     };
 
     /// This function initializes the spd logger. Create instance for both core and client. Sets the core and client log levels as 'core_level'
@@ -49,9 +64,123 @@ namespace ikan {
     /// This function returns the shared pointer of Client log instance
     static std::shared_ptr<spdlog::logger>& GetClientLogger();
 
+    /// Get the detail of a module tag
+    /// - Parameter - tag of log module:
+    static TagDetails& GetDetail(const std::string& tag);
+
+    template<typename... Args>
+    /// This function stores the log with tag of module
+    /// - Parameters:
+    ///   - type: of log project
+    ///   - level: of log
+    ///   - tag: of module
+    ///   - Log: string with argument
+    static void PrintMessage(Type type, Level level, LogModule tag, Args&&... args) {
+      PrintMessageImpl(type, level, GetModuleName(tag), std::forward<Args>(args)...);
+    }
+    
+    template<typename... Args>
+    /// This function stores the log with tag of module
+    /// - Parameters:
+    ///   - type: of log project
+    ///   - level: of log
+    ///   - tag: of module
+    ///   - Log: string with argument
+    static void PrintMessage(Type type, Level level, std::string_view tag, Args&&... args) {
+      PrintMessageImpl(type, level, GetModuleName(tag), std::forward<Args>(args)...);
+    }
+
   private:
     MAKE_PURE_STATIC(Logger);
     static std::shared_ptr<spdlog::logger> core_logger_, client_logger_;
+    inline static std::map<std::string, TagDetails> enabled_tags_;
+
+    /// this functun return the tag stored in logger
+    /// - Parameter - tag of log module:
+    static bool HasTag(const std::string& tag);
+
+    template<typename... Args>
+    /// This function stores the log with tag of module
+    /// - Parameters:
+    ///   - type: of log project
+    ///   - level: of log
+    ///   - tag: of module
+    ///   - Log: string with argument
+    static void PrintMessageImpl(Type type, Level level, std::string tag, Args&&... args) {
+      static const uint32_t MaxTagLegth = 20;
+      
+      const auto& detail = GetDetail(std::string(tag));
+      if (detail.enabled && detail.level_filter <= level) {
+        auto logger = (type == Type::Core) ? GetCoreLogger() : GetClientLogger();
+        std::string logString = std::string("[{0}" + std::string(size_t(MaxTagLegth - tag.size()), ' ') + std::string("] | {1}"));
+        switch (level) {
+          case Level::Debug:
+            logger->debug(logString, tag, fmt::format(std::forward<Args>(args)...));
+            break;
+          case Level::Trace:
+            logger->trace(logString, tag, fmt::format(std::forward<Args>(args)...));
+            break;
+          case Level::Info:
+            logger->info(logString, tag, fmt::format(std::forward<Args>(args)...));
+            break;
+          case Level::Warning:
+            logger->warn(logString, tag, fmt::format(std::forward<Args>(args)...));
+            break;
+          case Level::Error:
+            logger->error(logString, tag, fmt::format(std::forward<Args>(args)...));
+            break;
+          case Level::Critical:
+            logger->critical(logString, tag, fmt::format(std::forward<Args>(args)...));
+            break;
+        }
+      }
+    }
+    
+    /// This function returns the module name string from string view
+    /// - Parameter module_tag: module name as string view
+    static std::string GetModuleName(const std::string_view module_tag);
+    /// This function returns the module name string from 'LogModule'
+    /// - Parameter module_tag: module name as 'LogModule'
+    static std::string GetModuleName(LogModule module_tag);
+
   };
   
-}
+} // namespace ikan
+
+#ifdef IK_ENABLE_LOG
+
+// Core log macros
+#define IK_CORE_TRACE(tag, ...)    ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Core, ::ikan::Logger::Level::Trace, tag, __VA_ARGS__)
+#define IK_CORE_DEBUG(tag, ...)    ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Core, ::ikan::Logger::Level::Debug, tag, __VA_ARGS__)
+#define IK_CORE_INFO(tag, ...)     ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Core, ::ikan::Logger::Level::Info, tag, __VA_ARGS__)
+#define IK_CORE_WARN(tag, ...)     ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Core, ::ikan::Logger::Level::Warning, tag, __VA_ARGS__)
+#define IK_CORE_ERROR(tag, ...)    ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Core, ::ikan::Logger::Level::Error, tag, __VA_ARGS__)
+#define IK_CORE_CRITICAL(tag, ...) ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Core, ::ikan::Logger::Level::Critical, tag, __VA_ARGS__)
+
+// Client log macros
+#define IK_TRACE(tag, ...)    ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Client, ::ikan::Logger::Level::Trace, tag, __VA_ARGS__)
+#define IK_DEBUG(tag, ...)    ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Client, ::ikan::Logger::Level::Debug, tag, __VA_ARGS__)
+#define IK_INFO(tag, ...)     ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Client, ::ikan::Logger::Level::Info, tag, __VA_ARGS__)
+#define IK_WARN(tag, ...)     ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Client, ::ikan::Logger::Level::Warning, tag, __VA_ARGS__)
+#define IK_ERROR(tag, ...)    ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Client, ::ikan::Logger::Level::Error, tag, __VA_ARGS__)
+#define IK_CRITICAL(tag, ...) ::ikan::Logger::PrintMessage(::ikan::Logger::Type::Client, ::ikan::Logger::Level::Critical, tag, __VA_ARGS__)
+
+#else
+
+// Core log macros
+#define IK_CORE_TRACE(...)
+#define IK_CORE_DEBUG(...)
+#define IK_CORE_INFO(...)
+#define IK_CORE_WARN(...)
+#define IK_CORE_ERROR(...)
+#define IK_CORE_CRITICAL(...)
+
+// Client log macros
+#define IK_TRACE(...)
+#define IK_DEBUG(...)
+#define IK_INFO(...)
+#define IK_WARN(...)
+#define IK_ERROR(...)
+#define IK_CRITICAL(...)
+
+#endif

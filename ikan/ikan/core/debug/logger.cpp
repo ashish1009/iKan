@@ -93,4 +93,23 @@ namespace ikan {
   std::shared_ptr<spdlog::logger>& Logger::GetCoreLogger() { return core_logger_; }
   std::shared_ptr<spdlog::logger>& Logger::GetClientLogger() { return client_logger_; }
   
+  Logger::TagDetails& Logger::GetDetail(const std::string& tag) {
+    if (HasTag(tag))
+      return enabled_tags_.at(tag);
+    else
+      return enabled_tags_[std::string(tag)];
+  }
+
+  std::string Logger::GetModuleName(const std::string_view module_tag) { return std::string(module_tag); }
+  std::string Logger::GetModuleName(LogModule module_tag) {
+    switch (module_tag) {
+      case LogModule::None: return "";
+      default: assert(false);
+    }
+  }
+  
+  bool Logger::HasTag(const std::string& tag) {
+    return enabled_tags_.find(tag) != enabled_tags_.end();
+  }
+
 }

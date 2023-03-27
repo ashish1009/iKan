@@ -16,6 +16,7 @@
 
 // C++ Files
 #include <iostream>
+#include <map>
 
 // Common Files
 #include <ikan_common.h>
