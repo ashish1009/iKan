@@ -6,3 +6,6 @@ derived_data/
 
 # Mac Files
 .DS_Store
+*.xcuserstate
+ikan_ws.xcworkspace/xcuserdata/ashish..xcuserdatad/UserInterfaceState.xcuserstate
+*.xcuserstate

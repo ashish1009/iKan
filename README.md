@@ -8,7 +8,7 @@ XCode 13 is recommended
 
 You can clone the repository to a local destination using git:
 
-`git clone --recursive https://github.com/ashish1009/kreator`
+`git clone --recursive https://github.com/ashish1009/ikan`
 
 Make sure that you do a `--recursive` clone to fetch all of the submodules!
 
