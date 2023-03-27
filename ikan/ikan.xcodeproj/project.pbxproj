@@ -10,6 +10,7 @@
 		B292C0E729D1CF7100B1E678 /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B292C0E529D1CF7100B1E678 /* logger.cpp */; };
 		B292C0E829D1CF7100B1E678 /* logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E629D1CF7100B1E678 /* logger.hpp */; };
 		B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E929D1D1BC00B1E678 /* prefix_headers.pch */; };
+		B292C0EF29D1D47000B1E678 /* ikan_headers.h in Headers */ = {isa = PBXBuildFile; fileRef = B292C0EE29D1D47000B1E678 /* ikan_headers.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +19,7 @@
 		B292C0E629D1CF7100B1E678 /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
 		B292C0E929D1D1BC00B1E678 /* prefix_headers.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_headers.pch; sourceTree = "<group>"; };
 		B292C0EB29D1D30500B1E678 /* ikan_common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ikan_common.h; sourceTree = "<group>"; };
+		B292C0EE29D1D47000B1E678 /* ikan_headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ikan_headers.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				B292C0EB29D1D30500B1E678 /* ikan_common.h */,
+				B292C0EE29D1D47000B1E678 /* ikan_headers.h */,
 				B292C0E329D1CF6200B1E678 /* core */,
 			);
 			path = ikan;
@@ -97,6 +100,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B292C0EF29D1D47000B1E678 /* ikan_headers.h in Headers */,
 				B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */,
 				B292C0E829D1CF7100B1E678 /* logger.hpp in Headers */,
 			);

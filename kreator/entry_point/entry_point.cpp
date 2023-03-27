@@ -8,7 +8,6 @@
 #include <iostream>
 
 int main() {
-  // insert code here...
-  std::cout << "Hello, World!\n";
+  ikan::Logger::Init(ikan::Logger::Level::Trace, ikan::Logger::Level::Trace, "../../../log/kreator.log");
   return 0;
 }

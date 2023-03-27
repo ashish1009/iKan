@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B292BB7529D16F8F00B1E678 /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B292BB7429D16F8F00B1E678 /* entry_point.cpp */; };
+		B292C0F329D1D7C400B1E678 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B292C0F229D1D7C400B1E678 /* libikan.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		B292BB7129D16F8F00B1E678 /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B292BB7429D16F8F00B1E678 /* entry_point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entry_point.cpp; sourceTree = "<group>"; };
+		B292C0F029D1D58700B1E678 /* prefix_headers.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_headers.pch; sourceTree = "<group>"; };
+		B292C0F229D1D7C400B1E678 /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B292C0F329D1D7C400B1E678 /* libikan.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,8 +45,10 @@
 		B292BB6829D16F8F00B1E678 = {
 			isa = PBXGroup;
 			children = (
+				B292C0F029D1D58700B1E678 /* prefix_headers.pch */,
 				B292BB7329D16F8F00B1E678 /* entry_point */,
 				B292BB7229D16F8F00B1E678 /* Products */,
+				B292C0F129D1D7C400B1E678 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +66,14 @@
 				B292BB7429D16F8F00B1E678 /* entry_point.cpp */,
 			);
 			path = entry_point;
+			sourceTree = "<group>";
+		};
+		B292C0F129D1D7C400B1E678 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B292C0F229D1D7C400B1E678 /* libikan.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +256,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 78KTXZ99TW;
 				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_headers.pch";
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/../ikan/ikan",
+					"${PROJECT_DIR}/../ikan/vendors/spdlog/include",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -254,6 +274,12 @@
 				DEVELOPMENT_TEAM = 78KTXZ99TW;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_headers.pch";
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/../ikan/ikan",
+					"${PROJECT_DIR}/../ikan/vendors/spdlog/include",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -12,6 +12,10 @@
 
 namespace ikan {
   
+  // Static member initialisation
+  std::shared_ptr<spdlog::logger> Logger::core_logger_ = nullptr;
+  std::shared_ptr<spdlog::logger> Logger::client_logger_ = nullptr;
+
   void Logger::Init(Level core_level, Level client_level, const std::string& log_file_path) {
     std::cout << "Initialising SPD Logger ..." << std::endl;
     

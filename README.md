@@ -13,12 +13,17 @@ You can clone the repository to a local destination using git:
 Make sure that you do a `--recursive` clone to fetch all of the submodules!
 
 ## How to Use the library
-
 ### Library
+`{...} directory where ikan Engine is cloned`
+Link the libikan.a in your project... 
 
 ### Frameworks
 
 ### Header Search Paths
+Add the following header search paths 
+`{...} directory where ikan Engine is cloned`
+${PROJECT_DIR}/../ikan/ikan
+${PROJECT_DIR}/../ikan/vendors/spdlog/include
 
 ### Library Search Paths
 

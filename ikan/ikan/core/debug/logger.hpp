@@ -33,8 +33,8 @@ namespace ikan {
     /// - Parameters:
     ///   - core_level: Core log level
     ///   - client_level: Client log level
-    ///   - log_file_path: Path relative to executable binary (with file name and extenstion), where our log file to be saved
-    /// - Important: Add '\' in the end of 'log_file_path' and ''log_file_name' should be wiothout extension
+    ///   - log_file_path: Saved log file Path (relative to executable binary, with file name and extenstion), where our log file to be saved
+    /// - Note: Folders may or may not already existed. If any folder is missing from the path then new folder will be created in same hierarchy
     static void Init(Level core_level, Level client_level, const std::string& log_file_path);
     
     /// This function converts spd log level type to string for debug printing
