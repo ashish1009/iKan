@@ -12,5 +12,8 @@ int main() {
   
   IK_CORE_INFO(ikan::LogModule::None, "Testing Log");
   IK_INFO(ikan::LogModule::None, "Testing Log");
+  
+  IK_ASSERT(false);
+  
   return 0;
 }

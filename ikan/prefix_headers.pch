@@ -19,3 +19,8 @@
 
 // Engine Files
 #include "ikan_common.h"
+
+// Core file
+#include "core/debug/logger.hpp"
+
+#include "core/utils/asserts.h"
