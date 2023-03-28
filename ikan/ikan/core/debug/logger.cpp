@@ -33,7 +33,6 @@ namespace ikan {
     // Set up the logging patterns as below Current format is [%T:%e:%f] [%-8l] [%-4n] : %v where :
     //   - %T : Time stamp as hh:mm:ss
     //   - %e : Time stamp in milliseconds
-    //   - %f : Time stamp in microseconds
     //   - %l : Log lebel string (-8 measn width reserved for the same)
     //   - %n : Logger Type (core or client) (-4 is width reserved for the same)
     log_sinks[0]->set_pattern("[%T:%e | %-8l | %-4n] %v ");
@@ -76,7 +75,6 @@ namespace ikan {
         assert(false);
     }
   }
-  
   spdlog::level::level_enum Logger::GetSpdLevelFromIKanLevel(Logger::Level level) {
     switch (level) {
       case Logger::Level::Trace:    return spdlog::level::level_enum::trace;
@@ -92,15 +90,21 @@ namespace ikan {
   
   std::shared_ptr<spdlog::logger>& Logger::GetCoreLogger() { return core_logger_; }
   std::shared_ptr<spdlog::logger>& Logger::GetClientLogger() { return client_logger_; }
+  std::string Logger::GetModuleName(const std::string_view module_tag) { return std::string(module_tag); }
+  bool Logger::HasTag(const std::string& tag) { return enabled_tags_.find(tag) != enabled_tags_.end(); }
   
   Logger::TagDetails& Logger::GetDetail(const std::string& tag) {
-    if (HasTag(tag))
-      return enabled_tags_.at(tag);
-    else
-      return enabled_tags_[std::string(tag)];
+    return (HasTag(tag)) ? enabled_tags_.at(tag) : enabled_tags_[std::string(tag)];
   }
-
-  std::string Logger::GetModuleName(const std::string_view module_tag) { return std::string(module_tag); }
+  void Logger::DisableModule(LogModule tag) {
+    std::string tag_string = GetModuleName(tag);
+    (HasTag(tag_string)) ? enabled_tags_.at(tag_string).enabled = false : enabled_tags_[tag_string].enabled = false;
+  }
+  void Logger::EnableModule(LogModule tag) {
+    std::string tag_string = GetModuleName(tag);
+    (HasTag(tag_string)) ? enabled_tags_.at(tag_string).enabled = true : enabled_tags_[tag_string].enabled = true;
+  }
+  
   std::string Logger::GetModuleName(LogModule module_tag) {
     switch (module_tag) {
       case LogModule::None: return "";
@@ -108,8 +112,4 @@ namespace ikan {
     }
   }
   
-  bool Logger::HasTag(const std::string& tag) {
-    return enabled_tags_.find(tag) != enabled_tags_.end();
-  }
-
 }

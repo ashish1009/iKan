@@ -42,9 +42,7 @@ namespace ikan {
     ///   - %T : Time stamp as hh:mm:ss
     ///   - %e : Time stamp in milliseconds
     ///   - %f : Time stamp in microseconds
-    ///   - %l : Log lebel string (-8 measn width reserved for the same)
     ///   - %n : Logger Type (core or client) (-4 is width reserved for the same)
-    ///
     /// - Parameters:
     ///   - core_level: Core log level
     ///   - client_level: Client log level
@@ -67,6 +65,13 @@ namespace ikan {
     /// Get the detail of a module tag
     /// - Parameter - tag of log module:
     static TagDetails& GetDetail(const std::string& tag);
+
+    /// This functoin Disables the module log
+    /// - Parameter tag: tag name to be disabled:
+    static void DisableModule(LogModule tag);
+    /// This functoin Enables module log
+    /// - Parameter tag: tag name to be enabled:
+    static void EnableModule(LogModule tag);
 
     template<typename... Args>
     /// This function stores the log with tag of module

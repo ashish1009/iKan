@@ -28,6 +28,7 @@ ${PROJECT_DIR}/../ikan/vendors/spdlog/include
 ### Library Search Paths
 
 ### Preprocesor
+- Add `IK_DEBUG_FEATURE` to enable Kreator Debug features
 
 ## Basic APIs
 
