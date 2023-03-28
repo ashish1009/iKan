@@ -7,6 +7,16 @@
 
 #pragma once
 
+// --------------------------------------------------------
+// Macro Wrapper to define Enums and its String to print
+// --------------------------------------------------------
+#define VAL(name) name ,
+#define STRING(name) #name,
+
+#define CreateEnum(Name) \
+enum class Name { Name(VAL) }; \
+static const char* Name##String[] = { Name(STRING) }; \
+
 // -------------------------------------------
 // Copy and Move Constructors and Operators
 // -------------------------------------------

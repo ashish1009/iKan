@@ -11,10 +11,11 @@
 
 namespace ikan {
   
-  /// This enum stores the moule names of ikan Logs (Holds only ikan engine log module names)
-  enum class LogModule {
-    None,
-  };
+/// This enum stores the moule names of ikan Logs (Holds only ikan engine log module names)
+#define LogModule(f) \
+  f(None)
+  
+CreateEnum(LogModule);
   
   /// This class is the wrapper the wrapepr class for logging.
   /// - Note: This wrapper class is using submodule spd-log from "https://github.com/gabime/spdlog"

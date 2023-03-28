@@ -92,7 +92,8 @@ namespace ikan {
   std::shared_ptr<spdlog::logger>& Logger::GetClientLogger() { return client_logger_; }
   std::string Logger::GetModuleName(const std::string_view module_tag) { return std::string(module_tag); }
   bool Logger::HasTag(const std::string& tag) { return enabled_tags_.find(tag) != enabled_tags_.end(); }
-  
+  std::string Logger::GetModuleName(LogModule module_tag) { return LogModuleString[(uint32_t)module_tag]; }
+
   Logger::TagDetails& Logger::GetDetail(const std::string& tag) {
     return (HasTag(tag)) ? enabled_tags_.at(tag) : enabled_tags_[std::string(tag)];
   }
@@ -103,13 +104,6 @@ namespace ikan {
   void Logger::EnableModule(LogModule tag) {
     std::string tag_string = GetModuleName(tag);
     (HasTag(tag_string)) ? enabled_tags_.at(tag_string).enabled = true : enabled_tags_[tag_string].enabled = true;
-  }
-  
-  std::string Logger::GetModuleName(LogModule module_tag) {
-    switch (module_tag) {
-      case LogModule::None: return "";
-      default: assert(false);
-    }
-  }
+  }  
   
 }
