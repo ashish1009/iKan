@@ -58,11 +58,6 @@ CreateEnum(LogModule);
     /// - Parameter - ikan log level enum:
     static spdlog::level::level_enum GetSpdLevelFromIKanLevel(Logger::Level level);
     
-    /// This function returns the shared pointer of Core log instance
-    static std::shared_ptr<spdlog::logger>& GetCoreLogger();
-    /// This function returns the shared pointer of Client log instance
-    static std::shared_ptr<spdlog::logger>& GetClientLogger();
-
     /// Get the detail of a module tag
     /// - Parameter - tag of log module:
     static TagDetails& GetDetail(const std::string& tag);
@@ -74,6 +69,11 @@ CreateEnum(LogModule);
     /// - Parameter tag: tag name to be enabled:
     static void EnableModule(LogModule tag);
 
+    /// This function returns the shared pointer of Core log instance
+    static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return core_logger_; }
+    /// This function returns the shared pointer of Client log instance
+    static std::shared_ptr<spdlog::logger>& GetClientLogger() { return client_logger_; }
+    
     template<typename... Args>
     /// This function stores the log with tag of module
     /// - Parameters:
@@ -103,8 +103,15 @@ CreateEnum(LogModule);
 
     /// this functun return the tag stored in logger
     /// - Parameter - tag of log module:
-    static bool HasTag(const std::string& tag);
+    static bool HasTag(const std::string& tag) { return enabled_tags_.find(tag) != enabled_tags_.end(); }
 
+    /// This function returns the module name string from string view
+    /// - Parameter module_tag: module name as string view
+    static std::string GetModuleName(const std::string_view module_tag) { return std::string(module_tag); }
+    /// This function returns the module name string from 'LogModule'
+    /// - Parameter module_tag: module name as 'LogModule'
+    static std::string GetModuleName(LogModule module_tag) { return LogModuleString[(uint32_t)module_tag]; }
+    
     template<typename... Args>
     /// This function stores the log with tag of module
     /// - Parameters:
@@ -141,14 +148,6 @@ CreateEnum(LogModule);
         }
       }
     }
-    
-    /// This function returns the module name string from string view
-    /// - Parameter module_tag: module name as string view
-    static std::string GetModuleName(const std::string_view module_tag);
-    /// This function returns the module name string from 'LogModule'
-    /// - Parameter module_tag: module name as 'LogModule'
-    static std::string GetModuleName(LogModule module_tag);
-
   };
   
 } // namespace ikan
