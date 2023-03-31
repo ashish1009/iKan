@@ -13,7 +13,8 @@ namespace ikan {
   
 /// This enum stores the moule names of ikan Logs (Holds only ikan engine log module names)
 #define LogModule(f) \
-  f(None)
+  f(None) \
+  f(Renderer) \
   
 CreateEnum(LogModule);
   

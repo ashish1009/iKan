@@ -11,8 +11,8 @@
 		B292C0E829D1CF7100B1E678 /* logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E629D1CF7100B1E678 /* logger.hpp */; };
 		B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E929D1D1BC00B1E678 /* prefix_headers.pch */; };
 		B292C0EF29D1D47000B1E678 /* ikan_headers.h in Headers */ = {isa = PBXBuildFile; fileRef = B292C0EE29D1D47000B1E678 /* ikan_headers.h */; };
-		B2C26FD229D32CB900EC1078 /* ref.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2C26FD029D32CB900EC1078 /* ref.cpp */; };
-		B2C26FD329D32CB900EC1078 /* ref.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2C26FD129D32CB900EC1078 /* ref.hpp */; };
+		B2F91E0E29D70FA400860306 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F91E0C29D70FA400860306 /* renderer.cpp */; };
+		B2F91E0F29D70FA400860306 /* renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F91E0D29D70FA400860306 /* renderer.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,8 +23,8 @@
 		B292C0EB29D1D30500B1E678 /* ikan_common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ikan_common.h; sourceTree = "<group>"; };
 		B292C0EE29D1D47000B1E678 /* ikan_headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ikan_headers.h; sourceTree = "<group>"; };
 		B2C26FC029D2A32400EC1078 /* asserts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = asserts.h; sourceTree = "<group>"; };
-		B2C26FD029D32CB900EC1078 /* ref.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ref.cpp; sourceTree = "<group>"; };
-		B2C26FD129D32CB900EC1078 /* ref.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ref.hpp; sourceTree = "<group>"; };
+		B2F91E0C29D70FA400860306 /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
+		B2F91E0D29D70FA400860306 /* renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +77,7 @@
 				B292C0EB29D1D30500B1E678 /* ikan_common.h */,
 				B292C0EE29D1D47000B1E678 /* ikan_headers.h */,
 				B292C0E329D1CF6200B1E678 /* core */,
+				B2F91E0A29D70F9300860306 /* renderer */,
 			);
 			path = ikan;
 			sourceTree = "<group>";
@@ -103,8 +104,23 @@
 			isa = PBXGroup;
 			children = (
 				B2C26FC029D2A32400EC1078 /* asserts.h */,
-				B2C26FD029D32CB900EC1078 /* ref.cpp */,
-				B2C26FD129D32CB900EC1078 /* ref.hpp */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		B2F91E0A29D70F9300860306 /* renderer */ = {
+			isa = PBXGroup;
+			children = (
+				B2F91E0B29D70F9C00860306 /* utils */,
+			);
+			path = renderer;
+			sourceTree = "<group>";
+		};
+		B2F91E0B29D70F9C00860306 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				B2F91E0C29D70FA400860306 /* renderer.cpp */,
+				B2F91E0D29D70FA400860306 /* renderer.hpp */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -117,8 +133,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B292C0EF29D1D47000B1E678 /* ikan_headers.h in Headers */,
+				B2F91E0F29D70FA400860306 /* renderer.hpp in Headers */,
 				B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */,
-				B2C26FD329D32CB900EC1078 /* ref.hpp in Headers */,
 				B292C0E829D1CF7100B1E678 /* logger.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -180,8 +196,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2F91E0E29D70FA400860306 /* renderer.cpp in Sources */,
 				B292C0E729D1CF7100B1E678 /* logger.cpp in Sources */,
-				B2C26FD229D32CB900EC1078 /* ref.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +327,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 					IK_ENABLE_LOG,
+					IK_DEBUG_FEATURE,
 				);
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}/ikan",

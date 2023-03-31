@@ -100,4 +100,4 @@ namespace ikan {
     (HasTag(tag_string)) ? enabled_tags_.at(tag_string).enabled = true : enabled_tags_[tag_string].enabled = true;
   }  
   
-}
+} // namespace ikan

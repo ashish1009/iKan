@@ -29,6 +29,7 @@ ${PROJECT_DIR}/../ikan/vendors/spdlog/include
 
 ### Preprocesor
 - Add `IK_DEBUG_FEATURE` to enable Kreator Debug features
+- Add `IK_ENABLE_LOG` to enable Logging
 
 ## Basic APIs
 

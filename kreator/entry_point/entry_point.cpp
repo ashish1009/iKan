@@ -8,12 +8,24 @@
 #include <iostream>
 
 int main() {
-  ikan::Logger::Init(ikan::Logger::Level::Trace, ikan::Logger::Level::Trace, "../../../log/kreator.log");
+  // Initialize the ikan Logger
+  auto core_level   = ikan::Logger::Level::Trace;
+  auto client_level = ikan::Logger::Level::Trace;
   
-  IK_CORE_INFO(ikan::LogModule::None, "Testing Log");
-  IK_INFO(ikan::LogModule::None, "Testing Log");
+  ikan::Logger::Init(core_level, client_level, "../../../log/kreator.log");
   
-  IK_ASSERT(false);
+#ifdef IK_DEBUG_FEATURE
+  auto spd_core_log_level = ikan::Logger::GetSpdLevelFromIKanLevel(core_level);
+  auto spd_client_log_level = ikan::Logger::GetSpdLevelFromIKanLevel(client_level);
+  
+  IK_INFO("Core Entry Point", "Initialized the spd logger ");
+  IK_INFO("Core Entry Point", "  Core   | {0}", ikan::Logger::GetLogLevelStringFromSpdLevel(spd_core_log_level));
+  IK_INFO("Core Entry Point", "  Client | {0}", ikan::Logger::GetLogLevelStringFromSpdLevel(spd_client_log_level));
+#endif
+  
+  {
+    ikan::Renderer::Initialize(ikan::Renderer::Api::OpenGl);
+  }
   
   return 0;
 }
