@@ -24,7 +24,7 @@ int main() {
 #endif
   
   {
-    ikan::Renderer::Initialize(ikan::Renderer::Api::OpenGl);
+    ikan::Renderer::Initialise(ikan::Renderer::Api::OpenGl);
   }
   
   {

@@ -23,8 +23,24 @@ namespace ikan {
       // Add other supported API with time
     };
 
-    /// This function initializes all the renderers including user defined renderer and also setup the current Renderer API as 'api'.
-    static void Initialize(Api api);
+    /// Stores the capability of renderer
+    struct Capabilities {
+      std::string vendor;
+      std::string renderer;
+      std::string version;
+      
+      void Log();
+      static Capabilities& Get();
+      
+    private:
+      ~Capabilities() = default;
+      Capabilities() = default;
+      
+      DELETE_COPY_MOVE_CONSTRUCTORS(Capabilities);
+    };
+
+    /// This function Initialises all the renderers including user defined renderer and also setup the current Renderer API as 'api'.
+    static void Initialise(Api api);
     /// This function shut down all the renderers including user defined renderer. Also destroy the instance created for any Graphics API.
     static void Shutdown();
     

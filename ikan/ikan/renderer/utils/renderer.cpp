@@ -34,7 +34,7 @@ namespace ikan {
   };
   static std::unique_ptr<RendererData> renderer_data;
   
-  void Renderer::Initialize(Api api) {
+  void Renderer::Initialise(Api api) {
     renderer_data = std::make_unique<RendererData>(api);
     renderer_data->renderer_api_instance = RendererAPI::Create();
   }
@@ -43,5 +43,17 @@ namespace ikan {
   }
   
   Renderer::Api Renderer::GetApi() { return renderer_data->api; }
+
+  Renderer::Capabilities& Renderer::Capabilities::Get() {
+    static Capabilities capabilities;
+    return capabilities;
+  }
+  
+  void Renderer::Capabilities::Log() {
+    IK_CORE_INFO(LogModule::Renderer, "  Renderer Capability ");
+    IK_CORE_INFO(LogModule::Renderer, "    Vendor   | {0} ", vendor);
+    IK_CORE_INFO(LogModule::Renderer, "    Renderer | {0} ", renderer);
+    IK_CORE_INFO(LogModule::Renderer, "    Version  | {0} ", version);
+  }
   
 } // namespace ikan
