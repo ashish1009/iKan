@@ -6,6 +6,7 @@
 //
 
 #include "renderer.hpp"
+#include "renderer/graphics/renderer_api.hpp"
 
 namespace ikan {
   
@@ -26,23 +27,21 @@ namespace ikan {
 
   struct RendererData {
     Renderer::Api api = Renderer::Api::None;
-    
-    RendererData(Renderer::Api new_api) : api(new_api) {
-      IK_CORE_TRACE(LogModule::Renderer, "Creating Renderer Data Instance with {0} API ...", renderer_utils::GetRendererApiName(api));
-    }
-    
+    std::unique_ptr<RendererAPI> renderer_api_instance;
+
+    RendererData(Renderer::Api new_api) : api(new_api) { }
     DELETE_COPY_MOVE_CONSTRUCTORS(RendererData);
   };
   static std::unique_ptr<RendererData> renderer_data;
   
-  // -------------
-  // Fundamentals
-  // -------------
   void Renderer::Initialize(Api api) {
     renderer_data = std::make_unique<RendererData>(api);
+    renderer_data->renderer_api_instance = RendererAPI::Create();
   }
   void Renderer::Shutdown() {
-    
+    renderer_data.reset();
   }
+  
+  Renderer::Api Renderer::GetApi() { return renderer_data->api; }
   
 } // namespace ikan

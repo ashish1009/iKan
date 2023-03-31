@@ -27,5 +27,9 @@ int main() {
     ikan::Renderer::Initialize(ikan::Renderer::Api::OpenGl);
   }
   
+  {
+    ikan::Renderer::Shutdown();
+  }
+  
   return 0;
 }
