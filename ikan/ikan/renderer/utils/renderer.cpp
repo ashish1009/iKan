@@ -29,17 +29,20 @@ namespace ikan {
     Renderer::Api api = Renderer::Api::None;
     std::unique_ptr<RendererAPI> renderer_api_instance;
 
-    RendererData(Renderer::Api new_api) : api(new_api) { }
+    RendererData(Renderer::Api new_api) : api(new_api) {
+      IK_CORE_INFO(LogModule::Renderer, "Setting the Renderer API as {0} ...", renderer_utils::GetRendererApiName(api));
+    }
     DELETE_COPY_MOVE_CONSTRUCTORS(RendererData);
   };
   static std::unique_ptr<RendererData> renderer_data;
   
-  void Renderer::Initialise(Api api) {
+  void Renderer::CreateRendererData(Api api) {
     renderer_data = std::make_unique<RendererData>(api);
-    renderer_data->renderer_api_instance = RendererAPI::Create();
+  }
+  void Renderer::Initialize() {
+    
   }
   void Renderer::Shutdown() {
-    renderer_data.reset();
   }
   
   Renderer::Api Renderer::GetApi() { return renderer_data->api; }

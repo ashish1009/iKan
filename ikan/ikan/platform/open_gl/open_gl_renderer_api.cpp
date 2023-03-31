@@ -23,7 +23,7 @@ namespace ikan {
 
   void OpenGLRendererAPI::Initialise() const {
     IK_CORE_INFO(LogModule::Renderer, "Initializeing Open GL Renderer API");
-w  }
+  }
   
   void OpenGLRendererAPI::Shutdown() const {
     IK_CORE_WARN(LogModule::Renderer, "Shutting down Open GL Renderer API");
