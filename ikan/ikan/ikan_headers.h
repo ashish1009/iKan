@@ -17,7 +17,6 @@
 // C++ Files
 #include <iostream>
 #include <map>
-#include <unordered_set>
 
 // Common Files
 #include <ikan_common.h>
