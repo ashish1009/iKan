@@ -40,9 +40,10 @@ namespace ikan {
     renderer_data = std::make_unique<RendererData>(api);
   }
   void Renderer::Initialize() {
-    
+    renderer_data->renderer_api_instance = RendererAPI::Create();
   }
   void Renderer::Shutdown() {
+    renderer_data.reset();
   }
   
   Renderer::Api Renderer::GetApi() { return renderer_data->api; }

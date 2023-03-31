@@ -25,6 +25,8 @@ int main() {
   
   {
     ikan::Renderer::CreateRendererData(ikan::Renderer::Api::OpenGl);
+    // Create Window
+    ikan::Renderer::Initialize();
   }
   
   {
