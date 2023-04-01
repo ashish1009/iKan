@@ -7,6 +7,12 @@
 
 #pragma once
 
+// ----------------------------------
+// Common Macros
+// ----------------------------------
+/// This MACRO Shifts the LSB bit of number 1 at position x
+#define BIT(x)          (1 << x)
+
 // --------------------------------------------------------
 // Macro Wrapper to define Enums and its String to print
 // --------------------------------------------------------
