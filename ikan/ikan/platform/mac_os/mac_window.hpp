@@ -8,6 +8,7 @@
 #pragma once
 
 #include "core/window.hpp"
+#include <GLFW/glfw3.h>
 
 namespace ikan {
   
@@ -27,6 +28,10 @@ namespace ikan {
     ~MacWindow();
     
   private:
+    /// This function sets the event callback fucntions to window data
+    void SetEventCallbacks();
+
+    GLFWwindow* window_;
     Data mac_window_data_;
   };
   

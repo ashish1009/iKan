@@ -6,6 +6,9 @@
 //
 
 #include "mac_window.hpp"
+#include "core/events/application_event.h"
+#include "core/events/mouse_event.h"
+#include "core/events/key_event.h"
 
 namespace ikan {
   
@@ -15,8 +18,174 @@ namespace ikan {
     // Move the specificaion to MacWindow data
     mac_window_data_.specification = window_spec;
     mac_window_data_.specification.Log();
+    
+    // Initialize the library
+    IK_ASSERT(GLFW_TRUE == glfwInit(), "Can not Initialize GLFW Window");
+    
+    // Configure GLFW Context Version
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    
+    // This removes titlebar on all platforms and all of the native window effects on non-Windows platforms
+    glfwWindowHint(GLFW_DECORATED, mac_window_data_.specification.hide_titlebar);
+    
+    // Params to create GLFW window
+    int32_t width = (int32_t)mac_window_data_.specification.width;
+    int32_t height = (int32_t)mac_window_data_.specification.height;
+    GLFWmonitor* primary_monitor = nullptr;
+    GLFWwindow* share_monitor = nullptr;
+    
+    // Overwrite the data to create full screen window
+    if (mac_window_data_.specification.fullscreen) {
+      const GLFWvidmode* mode = glfwGetVideoMode(primary_monitor);
+      width = mode->width;
+      height = mode->height;
+      primary_monitor = glfwGetPrimaryMonitor();
+    }
+    window_ = glfwCreateWindow(width, height, mac_window_data_.specification.title.c_str(), primary_monitor, share_monitor);
+
+    // If Window is not created successfully then terminate...
+    if (window_ == NULL) {
+      glfwTerminate();
+      IK_CORE_ASSERT(false, "Unable to create Window!!!!");
+    }
+    
+    // Setting VSync as True
+    glfwSwapInterval(mac_window_data_.specification.v_sync);
+
+    // Set the User defined pointer to GLFW Window, this pointer will be retrieved when an interrupt will be triggered
+    glfwSetWindowUserPointer(window_, &mac_window_data_);
+
+    // Set GLFW Callbacks
+    SetEventCallbacks();
   }
   MacWindow::~MacWindow() {
+    
+  }
+  
+  void MacWindow::SetEventCallbacks() {
+    // -------------- Call back for Window Resize Event
+    glfwSetWindowSizeCallback( window_,
+[](
+   [[maybe_unused]] GLFWwindow* window,
+   [[maybe_unused]] int32_t width,
+   [[maybe_unused]] int32_t height
+   ) {
+     MacWindow::Data& data = *(MacWindow::Data*)glfwGetWindowUserPointer(window);
+     data.specification.width  = (uint32_t)width;
+     data.specification.height = (uint32_t)height;
+     
+     WindowResizeEvent event(data.specification.width, data.specification.height);
+     data.event_callback_function(event);
+   });
+    
+    // -------------- Call back for Window Close Event
+    glfwSetWindowCloseCallback( window_,
+[](
+   [[maybe_unused]] GLFWwindow* window
+   ) {
+     MacWindow::Data& data = *(MacWindow::Data*)glfwGetWindowUserPointer(window);
+     WindowCloseEvent event;
+     data.event_callback_function(event);
+   });
+    
+    // -------------- Call back for Window Focused Event
+    glfwSetWindowFocusCallback( window_,
+[](
+   [[maybe_unused]] GLFWwindow* window,
+   [[maybe_unused]] int32_t icontified) {
+   });
+    
+    // -------------- Call back for Set the Key Event
+    glfwSetKeyCallback( window_,
+[](
+   [[maybe_unused]] GLFWwindow* window,
+   [[maybe_unused]] int32_t key,
+   [[maybe_unused]] int32_t scan_code,
+   [[maybe_unused]] int32_t action,
+   [[maybe_unused]] int32_t mods
+   ) {
+     MacWindow::Data& data = *(MacWindow::Data*)glfwGetWindowUserPointer(window);
+     
+     switch (action) {
+       case GLFW_PRESS: {
+         KeyPressedEvent event(static_cast<Key>(key), 0);
+         data.event_callback_function(event);
+         break;
+       }
+       case GLFW_RELEASE: {
+         KeyReleasedEvent event(static_cast<Key>(key));
+         data.event_callback_function(event);
+         break;
+       }
+       case GLFW_REPEAT: {
+         KeyPressedEvent event(static_cast<Key>(key), 1);
+         data.event_callback_function(event);
+         break;
+       }
+     }
+   });
+    
+    // -------------- Call back for Character pressed Event
+    glfwSetCharCallback( window_,
+[](
+   [[maybe_unused]] GLFWwindow* window,
+   [[maybe_unused]] uint32_t key_code
+   ) {
+     MacWindow::Data& data = *(MacWindow::Data*)glfwGetWindowUserPointer(window);
+     KeyTypedEvent event(static_cast<Key>(key_code));
+     data.event_callback_function(event);
+   });
+    
+    // -------------- Call back for Mouse button pressed Event
+    glfwSetMouseButtonCallback( window_,
+[](
+   [[maybe_unused]] GLFWwindow* window,
+   [[maybe_unused]] int32_t button,
+   [[maybe_unused]] int32_t action,
+   [[maybe_unused]] int32_t mods
+   ) {
+     MacWindow::Data& data = *(MacWindow::Data*)glfwGetWindowUserPointer(window);
+     
+     switch (action) {
+       case GLFW_PRESS: {
+         MouseButtonPressedEvent event(static_cast<MouseButton>(button));
+         data.event_callback_function(event);
+         break;
+       }
+       case GLFW_RELEASE: {
+         MouseButtonReleasedEvent event(static_cast<MouseButton>(button));
+         data.event_callback_function(event);
+         break;
+       }
+     }
+   });
+    
+    // -------------- Call back for Mouse Scrolled Event
+    glfwSetScrollCallback( window_,
+[](
+   [[maybe_unused]] GLFWwindow* window,
+   [[maybe_unused]] double x_offset,
+   [[maybe_unused]] double y_offset
+   ) {
+     MacWindow::Data& data = *(MacWindow::Data*)glfwGetWindowUserPointer(window);
+     MouseScrolledEvent event((float)x_offset, (float)y_offset);
+     data.event_callback_function(event);
+   });
+    
+    // -------------- Call back for Mouse Cursor Event
+    glfwSetCursorPosCallback( window_,
+[](
+   [[maybe_unused]] GLFWwindow* window,
+   [[maybe_unused]] double x_position,
+   [[maybe_unused]] double y_position
+   ) {
+     MacWindow::Data& data = *(MacWindow::Data*)glfwGetWindowUserPointer(window);
+     MouseMovedEvent event((float)x_position, (float)y_position);
+     data.event_callback_function(event);
+   });
     
   }
   
