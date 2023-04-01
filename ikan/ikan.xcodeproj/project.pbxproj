@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B2394A1D29D8107A00D782E5 /* key_codes.h in Headers */ = {isa = PBXBuildFile; fileRef = B2394A1C29D8107A00D782E5 /* key_codes.h */; };
 		B292C0E729D1CF7100B1E678 /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B292C0E529D1CF7100B1E678 /* logger.cpp */; };
 		B292C0E829D1CF7100B1E678 /* logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E629D1CF7100B1E678 /* logger.hpp */; };
 		B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E929D1D1BC00B1E678 /* prefix_headers.pch */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B2394A1C29D8107A00D782E5 /* key_codes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = key_codes.h; sourceTree = "<group>"; };
 		B292BB8429D184EB00B1E678 /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B292C0E529D1CF7100B1E678 /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		B292C0E629D1CF7100B1E678 /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 			children = (
 				B2C26FBF29D2A31400EC1078 /* utils */,
 				B292C0E429D1CF6600B1E678 /* debug */,
+				B2394A1C29D8107A00D782E5 /* key_codes.h */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 				B292C0EF29D1D47000B1E678 /* ikan_headers.h in Headers */,
 				B2F91E0F29D70FA400860306 /* renderer.hpp in Headers */,
 				B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */,
+				B2394A1D29D8107A00D782E5 /* key_codes.h in Headers */,
 				B292C0E829D1CF7100B1E678 /* logger.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
