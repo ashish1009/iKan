@@ -43,6 +43,7 @@
 		B2394A2029D810CB00D782E5 /* mouse_codes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mouse_codes.h; sourceTree = "<group>"; };
 		B2394A2229D8116200D782E5 /* event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
 		B2394A2329D8184B00D782E5 /* application_event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = application_event.h; sourceTree = "<group>"; };
+		B2394A2429D8192100D782E5 /* key_event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = key_event.h; sourceTree = "<group>"; };
 		B292BB8429D184EB00B1E678 /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B292C0E529D1CF7100B1E678 /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		B292C0E629D1CF7100B1E678 /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
@@ -77,6 +78,7 @@
 			children = (
 				B2394A2229D8116200D782E5 /* event.h */,
 				B2394A2329D8184B00D782E5 /* application_event.h */,
+				B2394A2429D8192100D782E5 /* key_event.h */,
 			);
 			path = events;
 			sourceTree = "<group>";

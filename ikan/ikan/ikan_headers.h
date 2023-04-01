@@ -28,6 +28,7 @@
 
 #include <core/events/event.h>
 #include <core/events/application_event.h>
+#include <core/events/key_event.h>
 
 // Renderer Files
 #include <renderer/utils/renderer.hpp>

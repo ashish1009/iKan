@@ -57,4 +57,4 @@ namespace ikan {
     EVENT_CLASS_CATEGORY(EventCategoryApplication);
   };
   
-}
+} // namespace ikan
