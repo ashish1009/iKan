@@ -144,4 +144,4 @@ namespace ikan {
     Menu                = 348
   };
   
-}
+} // nemespace ikan

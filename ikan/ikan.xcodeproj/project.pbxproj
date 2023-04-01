@@ -40,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		B2394A1C29D8107A00D782E5 /* key_codes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = key_codes.h; sourceTree = "<group>"; };
+		B2394A2029D810CB00D782E5 /* mouse_codes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mouse_codes.h; sourceTree = "<group>"; };
 		B292BB8429D184EB00B1E678 /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B292C0E529D1CF7100B1E678 /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		B292C0E629D1CF7100B1E678 /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
@@ -123,6 +124,7 @@
 				B2C26FBF29D2A31400EC1078 /* utils */,
 				B292C0E429D1CF6600B1E678 /* debug */,
 				B2394A1C29D8107A00D782E5 /* key_codes.h */,
+				B2394A2029D810CB00D782E5 /* mouse_codes.h */,
 			);
 			path = core;
 			sourceTree = "<group>";
