@@ -8,7 +8,26 @@
 #pragma once
 
 namespace ikan {
+
+#define EVENT_CLASS_TYPE(type) \
+  static Event::Type GetStaticType() { \
+    return Event::Type::type; \
+  } \
+  virtual Event::Type GetEventType() const override { \
+    return GetStaticType(); \
+  } \
+  virtual const char* GetName() const override { \
+    return #type; \
+  }
   
+#define EVENT_CLASS_CATEGORY(category) \
+  virtual int32_t GetCategoryFlags() const override { \
+    return category; \
+  }
+  
+  // API to bind class member function to std function pointer
+#define IK_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
+
   /// This is the base class of all type of events.
   /// - Event is registered in window event callback so any event type should be deriived from this base class.
   /// - Event can be dispatchjed using even Dispatcher

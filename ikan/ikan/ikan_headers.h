@@ -27,6 +27,7 @@
 #include <core/utils/asserts.h>
 
 #include <core/events/event.h>
+#include <core/events/application_event.h>
 
 // Renderer Files
 #include <renderer/utils/renderer.hpp>
