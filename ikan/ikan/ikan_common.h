@@ -7,6 +7,16 @@
 
 #pragma once
 
+namespace ikan {
+  
+  /// This Emum defines the supported Operating system for ikan Engine
+  enum class OperatingSystem : uint8_t {
+    None = 0, Mac = 1
+    // Add More supported OS
+  };
+  
+}
+
 // ----------------------------------
 // Common Macros
 // ----------------------------------

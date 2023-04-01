@@ -31,5 +31,7 @@
 #include <core/events/key_event.h>
 #include <core/events/mouse_event.h>
 
+#include <core/window.hpp>
+
 // Renderer Files
 #include <renderer/utils/renderer.hpp>

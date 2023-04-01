@@ -23,10 +23,13 @@ int main() {
   IK_INFO("Core Entry Point", "  Client | {0}", ikan::Logger::GetLogLevelStringFromSpdLevel(spd_client_log_level));
 #endif
   
+  std::unique_ptr<ikan::Window> window;
   {
     ikan::Renderer::CreateRendererData(ikan::Renderer::Api::OpenGl);
-    // Create Window
-    ikan::Renderer::Initialize();
+    
+    window = ikan::Window::Create(ikan::OperatingSystem::Mac, ikan::Window::Specification());
+    
+//    ikan::Renderer::Initialize();
   }
   
   {

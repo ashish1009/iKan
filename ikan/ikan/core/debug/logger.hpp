@@ -15,6 +15,7 @@ namespace ikan {
 #define LogModule(f)          \
   f(None)                     \
   f(Event)                    \
+  f(Window)                   \
   f(Renderer)                 \
   
 CreateEnum(LogModule);
