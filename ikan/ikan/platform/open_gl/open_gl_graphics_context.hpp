@@ -18,7 +18,7 @@ namespace ikan {
     /// - Parameter window: GLFW window for which context need to be created
     OpenGLGraphicsContext(GLFWwindow* window);
     /// This destructor destroy the context mapped to window
-    virtual ~OpenGLGraphicsContext() noexcept;
+    virtual ~OpenGLGraphicsContext();
     
     /// This function initialize the the Renderer context
     void Init() override;

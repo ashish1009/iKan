@@ -19,7 +19,7 @@ namespace ikan {
     Init();
   }
   
-  OpenGLGraphicsContext::~OpenGLGraphicsContext() noexcept {
+  OpenGLGraphicsContext::~OpenGLGraphicsContext() {
     IK_CORE_WARN(LogModule::GraphicsContext, "Destroying Open GL Renderer Context !!! ");
   }
   

@@ -65,7 +65,8 @@ namespace ikan {
   }
   
   MacWindow::~MacWindow() {
-    
+    IK_CORE_WARN(LogModule::Window, "Destroying MAC OS Window instacne !!! ");
+    Shutdown();
   }
   
   void MacWindow::SetEventCallbacks() {
@@ -192,4 +193,54 @@ namespace ikan {
     
   }
   
+  void MacWindow::Shutdown() {
+    IK_CORE_WARN(LogModule::Window, "Shutting down the MAC OS Window");
+    glfwTerminate();
+    glfwDestroyWindow(window_);
+  }
+  
+  void MacWindow::Update() {
+    graphics_context_->SwapBuffers();
+    glfwPollEvents();
+    
+    float current_frame_time = static_cast<float>(glfwGetTime());
+    time_step_ = current_frame_time - last_frame_time_;
+    last_frame_time_ = current_frame_time;
+  }
+
+  void MacWindow::Maximize() {
+    IK_CORE_INFO(LogModule::Window, "Maximising the window");
+    glfwMaximizeWindow(window_);
+  }
+  
+  void MacWindow::CenterWindow() {
+    IK_CORE_INFO(LogModule::Window, "Placing the window at the center");
+    const GLFWvidmode* videmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+    
+    const Window::Specification& spec = mac_window_data_.specification;
+    int32_t x = (videmode->width / 2) - ((int32_t)spec.width / 2);
+    int32_t y = (videmode->height / 2) - ((int32_t)spec.height / 2);
+    glfwSetWindowPos(window_, x, y);
+  }
+  
+  void MacWindow::SetVSync(bool enabled) {
+    IK_CORE_INFO(LogModule::Window, "Setting VSynch : {0}", enabled);
+    (true == enabled) ? glfwSwapInterval(1) : glfwSwapInterval(0);
+    mac_window_data_.specification.v_sync = enabled;
+  }
+  
+  void MacWindow::SetResizable(bool resizable) const {
+    std::string can_cannot_string = resizable ? "can" : "cannot";
+    IK_CORE_INFO(LogModule::Window, "Window {0} be resized", can_cannot_string.c_str());
+    glfwSetWindowAttrib(window_, GLFW_RESIZABLE, resizable ? GLFW_TRUE : GLFW_FALSE );
+  }
+  
+  void MacWindow::SetTitle(const std::string& title) {
+    IK_CORE_INFO(LogModule::Window, "New MAC Window Title is : {0}", title.c_str());
+    IK_CORE_WARN(LogModule::Window, "(WARNING: Window specificaiton instance in Application Spceification might have older Window name..)");
+    
+    mac_window_data_.specification.title = title;
+    glfwSetWindowTitle(window_, mac_window_data_.specification.title.c_str());
+  }
+
 } // namespace ikan
