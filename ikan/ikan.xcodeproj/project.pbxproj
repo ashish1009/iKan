@@ -31,6 +31,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B228FC9129DB133100455666 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B228FC8D29DB133000455666 /* imgui.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B228FC7F29DB133000455666;
+			remoteInfo = imgui;
+		};
 		B2F91E3629D71A8900860306 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B2F91E3229D71A8800860306 /* open_gl.xcodeproj */;
@@ -52,6 +59,7 @@
 		B228FC6729DB070500455666 /* open_gl_graphics_context.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_graphics_context.hpp; sourceTree = "<group>"; };
 		B228FC6C29DB071300455666 /* graphics_context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = graphics_context.cpp; sourceTree = "<group>"; };
 		B228FC6D29DB071300455666 /* graphics_context.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = graphics_context.hpp; sourceTree = "<group>"; };
+		B228FC8D29DB133000455666 /* imgui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imgui.xcodeproj; path = imgui/imgui.xcodeproj; sourceTree = "<group>"; };
 		B2394A1C29D8107A00D782E5 /* key_codes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = key_codes.h; sourceTree = "<group>"; };
 		B2394A2029D810CB00D782E5 /* mouse_codes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mouse_codes.h; sourceTree = "<group>"; };
 		B2394A2229D8116200D782E5 /* event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
@@ -93,6 +101,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B228FC8E29DB133000455666 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B228FC9229DB133100455666 /* libimgui.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B2394A2129D8114800D782E5 /* events */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,6 +159,7 @@
 		B292BEFE29D19BE700B1E678 /* vendors */ = {
 			isa = PBXGroup;
 			children = (
+				B228FC8D29DB133000455666 /* imgui.xcodeproj */,
 				B2F91E5F29D721AA00860306 /* glfw.xcodeproj */,
 				B2F91E3229D71A8800860306 /* open_gl.xcodeproj */,
 			);
@@ -337,6 +354,10 @@
 					ProjectRef = B2F91E5F29D721AA00860306 /* glfw.xcodeproj */;
 				},
 				{
+					ProductGroup = B228FC8E29DB133000455666 /* Products */;
+					ProjectRef = B228FC8D29DB133000455666 /* imgui.xcodeproj */;
+				},
+				{
 					ProductGroup = B2F91E3329D71A8800860306 /* Products */;
 					ProjectRef = B2F91E3229D71A8800860306 /* open_gl.xcodeproj */;
 				},
@@ -349,6 +370,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		B228FC9229DB133100455666 /* libimgui.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libimgui.a;
+			remoteRef = B228FC9129DB133100455666 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		B2F91E3729D71A8900860306 /* libopen_gl.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
