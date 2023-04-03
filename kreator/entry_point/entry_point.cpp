@@ -23,15 +23,32 @@ int main() {
   IK_INFO("Core Entry Point", "  Client | {0}", ikan::Logger::GetLogLevelStringFromSpdLevel(spd_client_log_level));
 #endif
   
-  std::unique_ptr<ikan::Window> window;
+  std::unique_ptr<ikan::Window> window_;
   {
     ikan::Renderer::CreateRendererData(ikan::Renderer::Api::OpenGl);
     
-    window = ikan::Window::Create(ikan::OperatingSystem::Mac, ikan::Window::Specification());
+    window_ = ikan::Window::Create(ikan::OperatingSystem::Mac, ikan::Window::Specification());
     
     ikan::Renderer::Initialize();
+
+    IK_CORE_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
+    IK_CORE_INFO(ikan::LogModule::None, "                     Core Application Initialized                         ");
+    IK_CORE_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
   }
-  
+
+  {
+    IK_CORE_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
+    IK_CORE_INFO(ikan::LogModule::None, "                          Starting Game Loop                              ");
+    IK_CORE_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
+
+    while (1) {
+      window_->Update();
+    }
+    
+    IK_CORE_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
+    IK_CORE_INFO(ikan::LogModule::None, "                            Ending Game Loop                              ");
+    IK_CORE_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
+  }
   {
     ikan::Renderer::Shutdown();
   }
