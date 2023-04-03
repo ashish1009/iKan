@@ -242,5 +242,9 @@ namespace ikan {
     mac_window_data_.specification.title = title;
     glfwSetWindowTitle(window_, mac_window_data_.specification.title.c_str());
   }
+  
+  bool MacWindow::IsActive() const {
+    return !glfwWindowShouldClose(window_);
+  }
 
 } // namespace ikan

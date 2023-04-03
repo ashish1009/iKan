@@ -51,6 +51,8 @@ namespace ikan {
     /// - Parameter new_title: new title of the window
     void SetTitle(const std::string& new_title) override;
     
+    /// This function returns is window is active
+    bool IsActive() const override;
     /// This function returns is window is v synched
     bool IsVSync() const override { return mac_window_data_.specification.v_sync; }
     /// This function returns is window is decoarated. When decorated then removes titlebar from the window

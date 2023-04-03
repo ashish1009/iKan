@@ -7,6 +7,10 @@
 
 #include <iostream>
 
+void EventHandler(ikan::Event& event) {
+  
+}
+
 int main() {
   // Initialize the ikan Logger
   auto core_level   = ikan::Logger::Level::Trace;
@@ -28,6 +32,7 @@ int main() {
     ikan::Renderer::CreateRendererData(ikan::Renderer::Api::OpenGl);
     
     window_ = ikan::Window::Create(ikan::OperatingSystem::Mac, ikan::Window::Specification());
+    window_->SetEventFunction(std::bind(EventHandler, std::placeholders::_1));
     
     ikan::Renderer::Initialize();
 
@@ -41,7 +46,7 @@ int main() {
     IK_CORE_INFO(ikan::LogModule::None, "                          Starting Game Loop                              ");
     IK_CORE_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
 
-    while (1) {
+    while (window_->IsActive()) {
       window_->Update();
     }
     

@@ -63,6 +63,8 @@ namespace ikan {
     /// - Parameter new_title: new title of the window
     virtual void SetTitle(const std::string& new_title) = 0;
     
+    /// This function returns is window is active
+    virtual bool IsActive() const = 0;
     /// This function returns is window is v synched
     virtual bool IsVSync() const = 0;
     /// This function returns is window is decoarated. When decorated then removes titlebar from the window
