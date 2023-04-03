@@ -13,7 +13,7 @@
 namespace ikan {
   
   OpenGLRendererAPI::OpenGLRendererAPI() {
-    IK_CORE_TRACE(LogModule::Renderer, "Creating Open GL Renderer API ...");
+    IK_CORE_INFO(LogModule::Renderer, "Creating Open GL Renderer API ...");
     Initialise();
   }
   

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B228FC6829DB070500455666 /* open_gl_graphics_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B228FC6629DB070500455666 /* open_gl_graphics_context.cpp */; };
+		B228FC6929DB070500455666 /* open_gl_graphics_context.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B228FC6729DB070500455666 /* open_gl_graphics_context.hpp */; };
+		B228FC6E29DB071300455666 /* graphics_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B228FC6C29DB071300455666 /* graphics_context.cpp */; };
+		B228FC6F29DB071300455666 /* graphics_context.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B228FC6D29DB071300455666 /* graphics_context.hpp */; };
 		B2394A1D29D8107A00D782E5 /* key_codes.h in Headers */ = {isa = PBXBuildFile; fileRef = B2394A1C29D8107A00D782E5 /* key_codes.h */; };
 		B2394A2829D81BDD00D782E5 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2394A2629D81BDD00D782E5 /* window.cpp */; };
 		B2394A2929D81BDD00D782E5 /* window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2394A2729D81BDD00D782E5 /* window.hpp */; };
@@ -44,6 +48,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B228FC6629DB070500455666 /* open_gl_graphics_context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_graphics_context.cpp; sourceTree = "<group>"; };
+		B228FC6729DB070500455666 /* open_gl_graphics_context.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_graphics_context.hpp; sourceTree = "<group>"; };
+		B228FC6C29DB071300455666 /* graphics_context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = graphics_context.cpp; sourceTree = "<group>"; };
+		B228FC6D29DB071300455666 /* graphics_context.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = graphics_context.hpp; sourceTree = "<group>"; };
 		B2394A1C29D8107A00D782E5 /* key_codes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = key_codes.h; sourceTree = "<group>"; };
 		B2394A2029D810CB00D782E5 /* mouse_codes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mouse_codes.h; sourceTree = "<group>"; };
 		B2394A2229D8116200D782E5 /* event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = event.h; sourceTree = "<group>"; };
@@ -208,6 +216,8 @@
 			children = (
 				B2F91E1729D713FA00860306 /* renderer_api.cpp */,
 				B2F91E1829D713FA00860306 /* renderer_api.hpp */,
+				B228FC6C29DB071300455666 /* graphics_context.cpp */,
+				B228FC6D29DB071300455666 /* graphics_context.hpp */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -226,6 +236,8 @@
 			children = (
 				B2F91E1329D713EF00860306 /* open_gl_renderer_api.cpp */,
 				B2F91E1429D713EF00860306 /* open_gl_renderer_api.hpp */,
+				B228FC6629DB070500455666 /* open_gl_graphics_context.cpp */,
+				B228FC6729DB070500455666 /* open_gl_graphics_context.hpp */,
 			);
 			path = open_gl;
 			sourceTree = "<group>";
@@ -264,8 +276,10 @@
 				B2F91E1A29D713FA00860306 /* renderer_api.hpp in Headers */,
 				B2F91E1629D713EF00860306 /* open_gl_renderer_api.hpp in Headers */,
 				B292C0EF29D1D47000B1E678 /* ikan_headers.h in Headers */,
+				B228FC6929DB070500455666 /* open_gl_graphics_context.hpp in Headers */,
 				B2F91E0F29D70FA400860306 /* renderer.hpp in Headers */,
 				B2394A3229D8733500D782E5 /* mac_window.hpp in Headers */,
+				B228FC6F29DB071300455666 /* graphics_context.hpp in Headers */,
 				B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */,
 				B2394A1D29D8107A00D782E5 /* key_codes.h in Headers */,
 				B292C0E829D1CF7100B1E678 /* logger.hpp in Headers */,
@@ -356,7 +370,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B228FC6829DB070500455666 /* open_gl_graphics_context.cpp in Sources */,
 				B2F91E0E29D70FA400860306 /* renderer.cpp in Sources */,
+				B228FC6E29DB071300455666 /* graphics_context.cpp in Sources */,
 				B2394A3129D8733500D782E5 /* mac_window.cpp in Sources */,
 				B2F91E1929D713FA00860306 /* renderer_api.cpp in Sources */,
 				B2394A2829D81BDD00D782E5 /* window.cpp in Sources */,

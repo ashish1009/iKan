@@ -60,7 +60,10 @@ namespace ikan {
 
     // Set GLFW Callbacks
     SetEventCallbacks();
+    
+    graphics_context_ = GraphicsContext::Create(window_);
   }
+  
   MacWindow::~MacWindow() {
     
   }

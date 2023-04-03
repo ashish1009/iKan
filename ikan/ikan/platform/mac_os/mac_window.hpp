@@ -8,7 +8,7 @@
 #pragma once
 
 #include "core/window.hpp"
-#include <GLFW/glfw3.h>
+#include "renderer/graphics/graphics_context.hpp"
 
 namespace ikan {
   
@@ -33,6 +33,7 @@ namespace ikan {
 
     GLFWwindow* window_;
     Data mac_window_data_;
+    std::unique_ptr<GraphicsContext> graphics_context_;
   };
   
 } // namespace ikan

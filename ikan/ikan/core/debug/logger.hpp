@@ -16,7 +16,7 @@ namespace ikan {
   f(None)                     \
   f(Event)                    \
   f(Window)                   \
-  f(Renderer)                 \
+  f(Renderer) f(GraphicsContext) \
   
 CreateEnum(LogModule);
   

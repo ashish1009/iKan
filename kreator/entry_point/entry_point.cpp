@@ -29,7 +29,7 @@ int main() {
     
     window = ikan::Window::Create(ikan::OperatingSystem::Mac, ikan::Window::Specification());
     
-//    ikan::Renderer::Initialize();
+    ikan::Renderer::Initialize();
   }
   
   {

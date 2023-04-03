@@ -24,6 +24,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B228FC7029DB093D00455666 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		B228FC7229DB094700455666 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B228FC7429DB094C00455666 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		B292BB7129D16F8F00B1E678 /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B292BB7429D16F8F00B1E678 /* entry_point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entry_point.cpp; sourceTree = "<group>"; };
 		B292C0F029D1D58700B1E678 /* prefix_headers.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_headers.pch; sourceTree = "<group>"; };
@@ -71,6 +74,9 @@
 		B292C0F129D1D7C400B1E678 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B228FC7429DB094C00455666 /* IOKit.framework */,
+				B228FC7229DB094700455666 /* Cocoa.framework */,
+				B228FC7029DB093D00455666 /* OpenGL.framework */,
 				B292C0F229D1D7C400B1E678 /* libikan.a */,
 			);
 			name = Frameworks;
