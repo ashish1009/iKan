@@ -27,11 +27,20 @@ int main() {
   IK_INFO("Core Entry Point", "  Client | {0}", ikan::Logger::GetLogLevelStringFromSpdLevel(spd_client_log_level));
 #endif
   
+  ikan::Window::Specification window_specification;
+  
+  window_specification.title = "Untitled Window";
+  window_specification.width = 2100;
+  window_specification.height = 900;
+  window_specification.v_sync = true;
+  window_specification.fullscreen = false;
+  window_specification.hide_titlebar = false;
+  
   std::unique_ptr<ikan::Window> window_;
   {
     ikan::Renderer::CreateRendererData(ikan::Renderer::Api::OpenGl);
     
-    window_ = ikan::Window::Create(ikan::OperatingSystem::Mac, ikan::Window::Specification());
+    window_ = ikan::Window::Create(ikan::OperatingSystem::Mac, window_specification);
     window_->SetEventFunction(std::bind(EventHandler, std::placeholders::_1));
     
     ikan::Renderer::Initialize();

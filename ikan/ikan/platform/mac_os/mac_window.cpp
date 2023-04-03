@@ -29,7 +29,7 @@ namespace ikan {
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     
     // This removes titlebar on all platforms and all of the native window effects on non-Windows platforms
-    glfwWindowHint(GLFW_DECORATED, mac_window_data_.specification.hide_titlebar);
+    glfwWindowHint(GLFW_DECORATED, !mac_window_data_.specification.hide_titlebar);
     
     // Params to create GLFW window
     int32_t width = (int32_t)mac_window_data_.specification.width;
