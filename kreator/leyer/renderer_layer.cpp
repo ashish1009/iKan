@@ -52,6 +52,8 @@ namespace kreator {
       ShowMenu();
       ShowSettings();
       
+      ImguiAPI::Framerate(&setting_.frame_rate.flag);
+
       ImguiAPI::EndDcocking();
     }
   }

@@ -17,6 +17,10 @@ namespace ikan {
     /// This function Disable the docking in Imgui. To be called each frame after every imgui rendering;
     static void EndDcocking();
 
+    /// This function renders a widgit that shows the frame rate of the application
+    /// - Parameter is_open: flag to show or hide the widget
+    static void Framerate(bool *is_open);
+
     template<typename UIFunction>
     /// This function wraps the Imgui Begin Menu
     /// - Parameters:

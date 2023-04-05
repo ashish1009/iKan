@@ -14,6 +14,19 @@ namespace ikan {
   /// This class stores the Wrapper API for showing Data in Imgui window
   class PropertyGrid {
   public:
+    /// This function render a hint message when hovered last imgui item
+    /// - Parameters:
+    ///   - description: String to be used as hint
+    ///   - error: flag to render text in red
+    static void HoveredMsg(const char* description, bool error = false);
+    /// This function render a hint icon (?) and on hovered A hint string will be shown in subwindow
+    /// on hovering the mouse
+    /// - Parameters:
+    ///   - description: String to be used as hint
+    ///   - icon_char: Icon to be printed as Help Marker (By default (?) will be rendered)
+    ///   - same_line: check for same line icon or in new line
+    static void HelpMarker(const char* description, const char* icon_char = "?", bool same_line = true);
+
     /// This fucntion renders the CheckBox to select item
     /// - Parameters:
     ///   - label: Lable for Variable
