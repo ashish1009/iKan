@@ -13,10 +13,10 @@ extern std::unique_ptr<ikan::Application> CreateApplication();
 
 class KreatorApp : public ikan::Application {
 public:
-  KreatorApp(const ikan::Application::Specification& application_spec):
+  KreatorApp(const ikan::Application::Specification& application_spec, kreator::GameType game_type):
   ikan::Application(application_spec) {
     IK_TRACE("Kreator Application", "Creating Kreator Application Instance ...");
-    PushLayer(std::make_shared<kreator::RendererLayer>());
+    PushLayer(std::make_shared<kreator::RendererLayer>(game_type));
   }
   ~KreatorApp() {
     IK_TRACE("Kreator Application", "Destroying Kreator Application Instance !!!");
@@ -25,6 +25,10 @@ public:
 
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
+  // Type of game to be run on application
+  kreator::GameType game_type = kreator::GameType::Editor;
+
+  // Set up all the applicaiton specification
   ikan::Application::Specification application_spec;
   
   // Platform
@@ -48,7 +52,7 @@ std::unique_ptr<ikan::Application> CreateApplication() {
   application_spec.resizable = true;
   application_spec.start_maximized = false;
   
-  return std::make_unique<KreatorApp>(application_spec);
+  return std::make_unique<KreatorApp>(application_spec, game_type);
 }
 
 int main() {
