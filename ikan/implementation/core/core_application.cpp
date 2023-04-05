@@ -18,7 +18,7 @@ namespace ikan {
     IK_CORE_ASSERT(!instance_, "Application already exists !!!");
     instance_ = this;
     
-    IK_CORE_TRACE(LogModule::Application, "Creating Core Application Instance ...");
+    IK_CORE_INFO(LogModule::Application, "Creating Core Application Instance ...");
     specification_.Log();
 
     // Create Memroy for Renderer Data
@@ -46,10 +46,6 @@ namespace ikan {
     
     // Create Memroy for Renderer Data
     Renderer::Initialize();
-    
-    IK_CORE_INFO(LogModule::None, "--------------------------------------------------------------------------");
-    IK_CORE_INFO(LogModule::None, "                     Core Application Initialized                         ");
-    IK_CORE_INFO(LogModule::None, "--------------------------------------------------------------------------");
   }
 
   Application::~Application() {
@@ -72,10 +68,8 @@ namespace ikan {
   }
 
   void Application::Run() {
-    IK_CORE_INFO(LogModule::None, "--------------------------------------------------------------------------");
-    IK_CORE_INFO(LogModule::None, "                          Starting Game Loop                              ");
-    IK_CORE_INFO(LogModule::None, "--------------------------------------------------------------------------");
-    while(is_running_) {
+    LogConfig();
+    while(!is_running_) {
       // Store the frame time difference
       time_step_ = window_->GetTimestep();
       
@@ -88,10 +82,6 @@ namespace ikan {
       
       RenderGui();
     }
-    
-    IK_CORE_INFO(LogModule::None, "--------------------------------------------------------------------------");
-    IK_CORE_INFO(LogModule::None, "                            Ending Game Loop                              ");
-    IK_CORE_INFO(LogModule::None, "--------------------------------------------------------------------------");
   }
   
   void Application::RenderGui() {
@@ -102,6 +92,10 @@ namespace ikan {
       layer->RenderGui();
     
     imgui_layer_->End();
+  }
+  
+  void Application::LogConfig() {
+    IK_CORE_INFO(LogModule::Application, "Loading the {0} application ...", specification_.name);
   }
 
   namespace applicaiton_utils {

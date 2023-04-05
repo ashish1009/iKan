@@ -96,6 +96,8 @@ namespace ikan {
     bool WindowClose([[maybe_unused]] WindowCloseEvent& window_close_event);
     /// This function begin the Imgui Renderer and render IMGUI for all the layers and finally ends the imgui rendering
     void RenderGui();
+    /// This function logs the application configurations
+    void LogConfig();
 
     Application::Specification specification_;
     LayerStack layer_stack_;

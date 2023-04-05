@@ -11,8 +11,8 @@ extern std::unique_ptr<ikan::Application> CreateApplication();
 
 int main() {
   // Initialize the ikan Logger
-  auto core_level   = ikan::Logger::Level::Info;
-  auto client_level = ikan::Logger::Level::Info;
+  auto core_level   = ikan::Logger::Level::Trace;
+  auto client_level = ikan::Logger::Level::Trace;
   
   ikan::Logger::Init(core_level, client_level, "../../../log/kreator.log");
   

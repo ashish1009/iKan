@@ -31,12 +31,10 @@ namespace ikan {
     log_sinks.emplace_back(std::make_shared<file_log_sink>(log_file_path.c_str(), true /* File */));
 
     // Set up the logging patterns as below Current format is [%T:%e:%f] [%-8l] [%-4n] : %v where :
-    //   - %T : Time stamp as hh:mm:ss
-    //   - %e : Time stamp in milliseconds
     //   - %l : Log lebel string (-8 measn width reserved for the same)
     //   - %n : Logger Type (core or client) (-4 is width reserved for the same)
-    log_sinks[0]->set_pattern("[%T:%e | %-8l | %-4n] %v ");
-    log_sinks[1]->set_pattern("[%T:%e | %-8l | %-4n] %v ");
+    log_sinks[0]->set_pattern("[%-8l | %-4n | %v ");
+    log_sinks[1]->set_pattern("[%-8l | %-4n | %v ");
 
     // Create the Core Logger
     core_logger_ = std::make_shared<spdlog::logger>("IKAN ", begin(log_sinks), end(log_sinks));

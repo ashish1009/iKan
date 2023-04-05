@@ -42,10 +42,8 @@ CreateEnum(LogModule);
 
     /// This function initializes the spd logger. Create instance for both core and client. Sets the core and client log levels as 'core_level'
     /// and 'client_level'. Create a file at path 'log_file_path' to save the logs in a file. Also set the format for the logger
-    /// - Current format is [%T:%e:%f] [%-8l] [%-4n] : %v
-    ///   where :
-    ///   - %T : Time stamp as hh:mm:ss
-    ///   - %e : Time stamp in milliseconds
+    /// - Current format is [%-8l | %-4n | %v
+    ///   - %l : Log lebel string (-8 measn width reserved for the same)
     ///   - %n : Logger Type (core or client) (-4 is width reserved for the same)
     /// - Parameters:
     ///   - core_level: Core log level
@@ -128,7 +126,7 @@ CreateEnum(LogModule);
       const auto& detail = GetDetail(std::string(tag));
       if (detail.enabled && detail.level_filter <= level) {
         auto logger = (type == Type::Core) ? GetCoreLogger() : GetClientLogger();
-        std::string logString = std::string("[{0}" + std::string(size_t(MaxTagLegth - tag.size()), ' ') + std::string("] | {1}"));
+        std::string logString = std::string("{0}" + std::string(size_t(MaxTagLegth - tag.size()), ' ') + std::string("] | {1}"));
         switch (level) {
           case Level::Debug:
             logger->debug(logString, tag, fmt::format(std::forward<Args>(args)...));
