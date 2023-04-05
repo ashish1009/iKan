@@ -75,6 +75,11 @@ CreateEnum(LogModule);
     /// This function returns the shared pointer of Client log instance
     static std::shared_ptr<spdlog::logger>& GetClientLogger() { return client_logger_; }
     
+    /// This function returns the shared pointer of Core log instance
+    static Level GetCoreLevel() { return core_level_; }
+    /// This function returns the shared pointer of Client log instance
+    static Level GetClientLevel() { return client_level_; }
+    
     template<typename... Args>
     /// This function stores the log with tag of module
     /// - Parameters:
@@ -101,6 +106,7 @@ CreateEnum(LogModule);
     MAKE_PURE_STATIC(Logger);
     static std::shared_ptr<spdlog::logger> core_logger_, client_logger_;
     inline static std::map<std::string, TagDetails> enabled_tags_;
+    inline static Level core_level_, client_level_;
 
     /// this functun return the tag stored in logger
     /// - Parameter - tag of log module:

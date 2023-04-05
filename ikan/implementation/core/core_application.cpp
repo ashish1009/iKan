@@ -13,8 +13,7 @@ namespace ikan {
   
   Application::Application(const Specification& spec)
   : specification_(spec) {
-    // If instance already created then abort the application as multiple
-    // instacnes should not be therer
+    // If instance already created then abort the application as multiple instacnes should not be therer
     IK_CORE_ASSERT(!instance_, "Application already exists !!!");
     instance_ = this;
     
@@ -25,7 +24,7 @@ namespace ikan {
     // NOTE: Creating the Renderer Data Memory in very begining as this will setup the Renderer API to be used to create any Renderer Implementation
     Renderer::CreateRendererData(specification_.rendering_api);
 
-    // Set the client asset path
+    // Set the Common direcotry paths
     DirectoryManager::client_asset_path_ = specification_.client_asset_path;
     DirectoryManager::workspace_path_ = specification_.workspace_path;
 

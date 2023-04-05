@@ -19,6 +19,9 @@ namespace ikan {
   void Logger::Init(Level core_level, Level client_level, const std::string& log_file_path) {
     std::cout << "Initialising SPD Logger ..." << std::endl;
     
+    core_level_ = core_level;
+    client_level_ = client_level;
+    
     // Sink pointers to store logs at different places (terminal and file)
     std::vector<spdlog::sink_ptr> log_sinks;
     typedef spdlog::sinks::stdout_color_sink_mt terminal_log_sink;
