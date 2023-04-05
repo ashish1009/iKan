@@ -22,7 +22,7 @@ Link the libikan.a in your project...
 ### Header Search Paths
 Add the following header search paths 
 `{...} directory where ikan Engine is cloned`
-${PROJECT_DIR}/../ikan/ikan
+${PROJECT_DIR}/../ikan/interface
 ${PROJECT_DIR}/../ikan/vendors/spdlog/include
 
 ### Library Search Paths

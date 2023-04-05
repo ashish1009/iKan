@@ -8,9 +8,7 @@
 #pragma once
 
 namespace ikan {
-  
-  class Pipeline;
-  
+    
   /// This class is the interface for Renderer APIs
   class RendererAPI {
   public:
@@ -19,11 +17,6 @@ namespace ikan {
 
     /// This is the default virtual destrutctor
     virtual ~RendererAPI() = default;
-    
-    /// This function initialize the respective renderer api
-    virtual void Initialise() const = 0;
-    /// This function shutdowns the respectiev renderer api
-    virtual void Shutdown() const = 0;
   };
   
 } // namespace ikan

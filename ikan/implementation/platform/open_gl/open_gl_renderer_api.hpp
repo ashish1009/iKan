@@ -19,12 +19,7 @@ namespace ikan {
     /// This is the default constructor of Rendere API
     OpenGLRendererAPI();
     /// This is the default destructor ot Renderer API
-    virtual ~OpenGLRendererAPI() noexcept;
-    
-    /// This function initialize the respective renderer api
-    void Initialise() const override;
-    /// This function shutdowns the respectiev renderer api
-    void Shutdown() const override;
+    virtual ~OpenGLRendererAPI();
 
     DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLRendererAPI);
   };

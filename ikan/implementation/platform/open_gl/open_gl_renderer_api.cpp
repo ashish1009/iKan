@@ -14,16 +14,7 @@ namespace ikan {
   
   OpenGLRendererAPI::OpenGLRendererAPI() {
     IK_CORE_INFO(LogModule::Renderer, "Creating Open GL Renderer API ...");
-    Initialise();
-  }
-  
-  OpenGLRendererAPI::~OpenGLRendererAPI() noexcept {
-    IK_CORE_WARN(LogModule::Renderer, "Destroying Open GL Renderer API !!!");
-  }
 
-  void OpenGLRendererAPI::Initialise() const {
-    IK_CORE_INFO(LogModule::Renderer, "Initializeing Open GL Renderer API");
-    
     // API for Text enable
     IK_CORE_INFO(LogModule::Renderer, "  Asignment           | {0} (Unpacked)", true);
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -48,8 +39,8 @@ namespace ikan {
     caps.version  = (const char*)glGetString(GL_VERSION);
   }
   
-  void OpenGLRendererAPI::Shutdown() const {
-    IK_CORE_WARN(LogModule::Renderer, "Shutting down Open GL Renderer API");
+  OpenGLRendererAPI::~OpenGLRendererAPI() {
+    IK_CORE_WARN(LogModule::Renderer, "Destroying Open GL Renderer API !!!");
   }
-
+  
 } // namespace ikan

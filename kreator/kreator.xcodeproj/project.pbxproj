@@ -274,7 +274,7 @@
 					IK_DEBUG_FEATURE,
 				);
 				HEADER_SEARCH_PATHS = (
-					"${PROJECT_DIR}/../ikan/ikan",
+					"${PROJECT_DIR}/../ikan/interface",
 					"${PROJECT_DIR}/../ikan/vendors/spdlog/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -293,7 +293,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "${PROJECT_DIR}/prefix_headers.pch";
 				HEADER_SEARCH_PATHS = (
-					"${PROJECT_DIR}/../ikan/ikan",
+					"${PROJECT_DIR}/../ikan/interface",
 					"${PROJECT_DIR}/../ikan/vendors/spdlog/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
