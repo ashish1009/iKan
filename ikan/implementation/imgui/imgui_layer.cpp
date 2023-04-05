@@ -12,10 +12,12 @@
 #include <examples/imgui_impl_opengl3.h>
 #include <examples/imgui_impl_glfw.h>
 
+#include <GLFW/glfw3.h>
+
 namespace ikan {
 
-  ImguiLayer::ImguiLayer(void* window_pointer) : Layer("Imgui Layer"),
-  window_pointer_(window_pointer) {
+  ImguiLayer::ImguiLayer(std::shared_ptr<Window> window) : Layer("Imgui Layer"),
+  window_(window) {
     IK_CORE_TRACE(LogModule::Imgui, "Creating Imgui Layer instance ...");
   }
 
@@ -44,7 +46,7 @@ namespace ikan {
       style.Colors[ImGuiCol_WindowBg].w = 1.0f;
     }
     
-    GLFWwindow* window = static_cast<GLFWwindow*>(window_pointer_);
+    GLFWwindow* window = static_cast<GLFWwindow*>(window_->GetNativeWindow());
     
     // Setup Platform/Renderer bindings
     ImGui_ImplGlfw_InitForOpenGL(window, true);
@@ -79,8 +81,7 @@ namespace ikan {
   
   void ImguiLayer::End() {
     ImGuiIO& io      = ImGui::GetIO();
-    const Application& app = Application::Get();
-    io.DisplaySize   = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
+    io.DisplaySize   = ImVec2((float)window_->GetWidth(), (float)window_->GetHeight());
     
     ImGui::Render();
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

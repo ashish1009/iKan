@@ -10,6 +10,8 @@
 #include "core/layer.hpp"
 
 namespace ikan {
+  
+  class Window;
     
   /// This class creates and manages the Imgui Layer in application
   /// - Note: If Not using iKan Application then create instance of Imgui Layer in Client Application and manage API Accordingly, by default
@@ -18,7 +20,7 @@ namespace ikan {
   public:
     /// This constructor creates the Imgui layer instance.
     /// - Parameter window_pointer: application window pointer
-    ImguiLayer(void* window_pointer);
+    ImguiLayer(std::shared_ptr<Window> window);
     /// This destrictor destroy the Imgui layer instance
     ~ImguiLayer() noexcept;
     
@@ -51,7 +53,7 @@ namespace ikan {
     
   private:
     bool block_events_ = true;
-    void* window_pointer_ = nullptr;
+    std::shared_ptr<Window> window_ = nullptr;
   };
   
 } // namespace ikan
