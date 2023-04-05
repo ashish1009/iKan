@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B292BB7529D16F8F00B1E678 /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B292BB7429D16F8F00B1E678 /* entry_point.cpp */; };
 		B292C0F329D1D7C400B1E678 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B292C0F229D1D7C400B1E678 /* libikan.a */; };
+		B2BEC7CF29DDBBFF008D3DCB /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC7CD29DDBBFF008D3DCB /* renderer_layer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		B292BB7429D16F8F00B1E678 /* entry_point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entry_point.cpp; sourceTree = "<group>"; };
 		B292C0F029D1D58700B1E678 /* prefix_headers.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_headers.pch; sourceTree = "<group>"; };
 		B292C0F229D1D7C400B1E678 /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2BEC7CD29DDBBFF008D3DCB /* renderer_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_layer.cpp; sourceTree = "<group>"; };
+		B2BEC7CE29DDBBFF008D3DCB /* renderer_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_layer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +53,7 @@
 			children = (
 				B292C0F029D1D58700B1E678 /* prefix_headers.pch */,
 				B292BB7329D16F8F00B1E678 /* entry_point */,
+				B2BEC7CC29DDBBF3008D3DCB /* leyer */,
 				B2BEC78529DD7A92008D3DCB /* editor */,
 				B292BB7229D16F8F00B1E678 /* Products */,
 				B292C0F129D1D7C400B1E678 /* Frameworks */,
@@ -104,6 +108,15 @@
 			children = (
 			);
 			path = ini;
+			sourceTree = "<group>";
+		};
+		B2BEC7CC29DDBBF3008D3DCB /* leyer */ = {
+			isa = PBXGroup;
+			children = (
+				B2BEC7CD29DDBBFF008D3DCB /* renderer_layer.cpp */,
+				B2BEC7CE29DDBBFF008D3DCB /* renderer_layer.hpp */,
+			);
+			path = leyer;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2BEC7CF29DDBBFF008D3DCB /* renderer_layer.cpp in Sources */,
 				B292BB7529D16F8F00B1E678 /* entry_point.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

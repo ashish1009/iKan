@@ -5,9 +5,23 @@
 //  Created by Ashish . on 27/03/23.
 //
 
+#include "renderer_layer.hpp"
+
 /// This Function should be defined in client side for creating client application derived from base ikan::Application
 /// - Returns: Shared pointer of created application
 extern std::unique_ptr<ikan::Application> CreateApplication();
+
+class KreatorApp : public ikan::Application {
+public:
+  KreatorApp(const ikan::Application::Specification& application_spec):
+  ikan::Application(application_spec) {
+    IK_TRACE("Kreator Application", "Creating Kreator Application Instance ...");
+    PushLayer(std::make_shared<kreator::RendererLayer>());
+  }
+  ~KreatorApp() {
+    IK_TRACE("Kreator Application", "Destroying Kreator Application Instance !!!");
+  }
+};
 
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
@@ -34,7 +48,7 @@ std::unique_ptr<ikan::Application> CreateApplication() {
   application_spec.resizable = true;
   application_spec.start_maximized = false;
   
-  return std::make_unique<ikan::Application>(application_spec);
+  return std::make_unique<KreatorApp>(application_spec);
 }
 
 int main() {
