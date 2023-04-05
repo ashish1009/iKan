@@ -1,5 +1,5 @@
 //
-//  open_gl_renderer_api.hpp
+//  renderer_api.hpp
 //  ikan
 //
 //  Created by Ashish . on 31/03/23.
@@ -7,55 +7,56 @@
 
 #pragma once
 
-// This file includes the implenentation of Renderer API Class
-
-#include "renderer/utils/renderer_api.hpp"
-
 namespace ikan {
-  
-  /// This class the implementation of Renderer API
-  class OpenGLRendererAPI : public RendererAPI {
+    
+  /// This class is the interface for Renderer APIs
+  class RendererAPI {
   public:
-    /// This is the default constructor of Rendere API
-    OpenGLRendererAPI();
-    /// This is the default destructor ot Renderer API
-    virtual ~OpenGLRendererAPI();
+    enum class GlFunc {
+      Always, Never, Less, Equal, LEqual, Greater, LGreater, NotEqual
+    };
 
+    /// This function creates the instance of renderer API based on the supported API
+    static std::unique_ptr<RendererAPI> Create();
+
+    /// This is the default virtual destrutctor
+    virtual ~RendererAPI() = default;
+    
     /// This function changes the bit value for depth bit
     /// - Parameter state: new depth state
-    void Depth(bool state) const override;
+    virtual void Depth(bool state) const = 0;
     /// This functin changes the bit value for Blend bit
     /// - Parameter state: new Blend state
-    void Blend(bool state) const override;
+    virtual void Blend(bool state) const = 0;
     /// This function changes the bit value of multisample
     /// - Parameter state: new Multi sample state
-    void MultiSample(bool state) const override;
+    virtual void MultiSample(bool state) const = 0;
     /// This function change depth function
     /// - Parameter func: depth function type
-    void DepthFunc(GlFunc func) const override;
+    virtual void DepthFunc(GlFunc func) const = 0;
     
     /// This function begins the wireframe renderer
-    void BeginWireframe() const override;
+    virtual void BeginWireframe() const = 0;
     /// This function ends the wireframe renderer
-    void EndWireframe() const override;
+    virtual void EndWireframe() const = 0;
     
     /// This function clear all the renderer bits and set the clear color as 'color'
     /// - Parameter color: new clear color of screen
-    void SetClearColor(const glm::vec4& color) const override;
+    virtual void SetClearColor(const glm::vec4& color) const = 0;
     /// This function clear all the bits of renderer screen
-    void ClearBits() const override;
+    virtual void ClearBits() const = 0;
     /// This function Clears Depth Bit
-    void ClearDepthBit() const override;
+    virtual void ClearDepthBit() const = 0;
     /// This function Clears Color Biut
-    void ClearColorBit() const override;
+    virtual void ClearColorBit() const = 0;
     /// This function Clears Stensil Bit
-    void ClearStencilBit() const override;
+    virtual void ClearStencilBit() const = 0;
     
     /// This function update the renderer viewport size
     /// - Parameters:
     ///   - width: new width of renderer viewport
     ///   - height: new height of renderer viewport
-    void SetViewport(uint32_t width, uint32_t height) const override;
+    virtual void SetViewport(uint32_t width, uint32_t height) const = 0;
     
     /// This funciton returns the Pixel ID from Frame buffer
     /// - Parameters:
@@ -63,9 +64,8 @@ namespace ikan {
     ///   - my: y pixel
     ///   - pixel_data: pixel value
     ///   - pixel_id_index: pixel index
-    void GetEntityIdFromPixels(int32_t mx, int32_t my, uint32_t pixel_id_index, int32_t& pixelData) const override;
+    virtual void GetEntityIdFromPixels(int32_t mx, int32_t my, uint32_t pixel_id_index, int32_t& pixel_data) const = 0;
     
-    DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLRendererAPI);
   };
   
-} // namesapce ikan
+} // namespace ikan

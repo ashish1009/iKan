@@ -6,7 +6,6 @@
 //
 
 #include "renderer.hpp"
-#include "renderer/graphics/renderer_api.hpp"
 
 namespace ikan {
   
@@ -34,25 +33,78 @@ namespace ikan {
     }
     DELETE_COPY_MOVE_CONSTRUCTORS(RendererData);
   };
-  static std::unique_ptr<RendererData> renderer_data;
+  static std::unique_ptr<RendererData> renderer_data_;
   
+  // -------------------------------------------------------------------------
+  // Fundamentals
+  // -------------------------------------------------------------------------
   void Renderer::CreateRendererData(Api api) {
-    renderer_data = std::make_unique<RendererData>(api);
+    renderer_data_ = std::make_unique<RendererData>(api);
   }
   void Renderer::Initialize() {
-    renderer_data->renderer_api_instance = RendererAPI::Create();
+    renderer_data_->renderer_api_instance = RendererAPI::Create();
   }
   void Renderer::Shutdown() {
-    renderer_data.reset();
+    renderer_data_.reset();
   }
   
-  Renderer::Api Renderer::GetApi() { return renderer_data->api; }
+  // -------------------------------------------------------------------------
+  // Fundamental Renderer API
+  // -------------------------------------------------------------------------
+  Renderer::Api Renderer::GetApi() { return renderer_data_->api; }
+  void Renderer::Clear(const glm::vec4& color) {
+    renderer_data_->renderer_api_instance->SetClearColor(color);
+    renderer_data_->renderer_api_instance->ClearBits();
+  }
+  void Renderer::SetClearColor(const glm::vec4& color) {
+    renderer_data_->renderer_api_instance->SetClearColor(color);
+  }
+  void Renderer::ClearBits() {
+    renderer_data_->renderer_api_instance->ClearBits();
+  }
+  void Renderer::ClearDepthBit() {
+    renderer_data_->renderer_api_instance->ClearDepthBit();
+  }
+  void Renderer::ClearColorBit() {
+    renderer_data_->renderer_api_instance->ClearColorBit();
+  }
+  void Renderer::ClearStencilBit() {
+    renderer_data_->renderer_api_instance->ClearStencilBit();
+  }
+  void Renderer::Depth(bool state) {
+    renderer_data_->renderer_api_instance->Depth(state);
+  }
+  void Renderer::Blend(bool state) {
+    renderer_data_->renderer_api_instance->Blend(state);
+  }
+  void Renderer::MultiSample(bool state) {
+    renderer_data_->renderer_api_instance->MultiSample(state);
+  }
+  void Renderer::DepthFunc(RendererAPI::GlFunc func) {
+    renderer_data_->renderer_api_instance->DepthFunc(func);
+  }
+  void Renderer::BeginWireframe() {
+    renderer_data_->renderer_api_instance->BeginWireframe();
+  }
+  void Renderer::EndWireframe() {
+    renderer_data_->renderer_api_instance->EndWireframe();
+  }
+  
+  void Renderer::SetViewport(uint32_t width, uint32_t height) {
+    renderer_data_->renderer_api_instance->SetViewport(width, height);
+  }
+  void Renderer::GetEntityIdFromPixels(int32_t mx, int32_t my, uint32_t pixel_id_index, int32_t& pixel_data) {
+    renderer_data_->renderer_api_instance->GetEntityIdFromPixels(mx, my, pixel_id_index, pixel_data);
+  }
 
   Renderer::Capabilities& Renderer::Capabilities::Get() {
     static Capabilities capabilities;
     return capabilities;
   }
   
+  // -------------------------------------------------------------------------
+  // Renderer Capabilities
+  // -------------------------------------------------------------------------
   void Renderer::Capabilities::Log() {
     IK_CORE_TRACE(LogModule::Renderer, "  Renderer Capability ");
     IK_CORE_TRACE(LogModule::Renderer, "    Vendor   | {0} ", vendor);

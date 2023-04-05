@@ -18,6 +18,18 @@
 #include <iostream>
 #include <map>
 
+// Imgui files
+#include <imgui.h>
+
+// glm math library
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/matrix_decompose.hpp>
+
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/gtx/quaternion.hpp>
+
 // Common Files
 #include <ikan_common.h>
 
@@ -37,16 +49,3 @@
 
 // Renderer Files
 #include <renderer/utils/renderer.hpp>
-
-// Imgui files
-#include <imgui.h>
-
-// glm math library
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/matrix_decompose.hpp>
-
-#define GLM_ENABLE_EXPERIMENTAL
-#include <glm/gtx/quaternion.hpp>
-

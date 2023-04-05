@@ -276,7 +276,6 @@
 		B2BEC4E729DD65E1008D3DCB /* graphics */ = {
 			isa = PBXGroup;
 			children = (
-				B2F91E1829D713FA00860306 /* renderer_api.hpp */,
 				B2F91E1729D713FA00860306 /* renderer_api.cpp */,
 				B228FC6C29DB071300455666 /* graphics_context.cpp */,
 			);
@@ -340,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				B2F91E0D29D70FA400860306 /* renderer.hpp */,
+				B2F91E1829D713FA00860306 /* renderer_api.hpp */,
 				B2BEC7C029DDAA04008D3DCB /* renderer_stats.hpp */,
 				B2BEC7C929DDACAD008D3DCB /* batch_2d_renderer.hpp */,
 			);
