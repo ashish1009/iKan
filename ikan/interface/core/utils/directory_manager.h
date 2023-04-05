@@ -46,6 +46,8 @@ namespace ikan {
     inline static std::string client_asset_path_;
     inline static const std::string core_asset_path_ = "../../../ikan/core_assets/";
     inline static const std::string project_path_ = "../../../";
+    
+    friend class Application;
   };
   
 } // namespace ikan

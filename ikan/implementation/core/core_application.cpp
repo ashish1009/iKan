@@ -18,15 +18,15 @@ namespace ikan {
     IK_CORE_ASSERT(!instance_, "Application already exists !!!");
     instance_ = this;
     
-    IK_CORE_INFO(LogModule::Application, "Creating Core Application Instance ...");
+    IK_CORE_TRACE(LogModule::Application, "Creating Core Application Instance ...");
     specification_.Log();
-    
-    DirectoryManager::SetClientAssetPath(specification_.client_asset_path);
-    
+
     // Create Memroy for Renderer Data
-    // NOTE: Creating the Renderer Data Memory in very begining as this will
-    // setup the Renderer API to be used to create any Renderer Implementation
+    // NOTE: Creating the Renderer Data Memory in very begining as this will setup the Renderer API to be used to create any Renderer Implementation
     Renderer::CreateRendererData(specification_.rendering_api);
+
+    // Set the client asset path
+    DirectoryManager::client_asset_path_ = specification_.client_asset_path;
     
     // Create window instance
     window_ = Window::Create(specification_.os, specification_.window_specification);
