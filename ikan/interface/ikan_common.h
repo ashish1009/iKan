@@ -23,6 +23,12 @@ namespace ikan {
 /// This MACRO Shifts the LSB bit of number 1 at position x
 #define BIT(x)          (1 << x)
 
+/// This MACRO return the function if condition x is true
+#define RETURN_IF(condition) \
+  if(condition) \
+    return;
+
+
 // --------------------------------------------------------
 // Macro Wrapper to define Enums and its String to print
 // --------------------------------------------------------

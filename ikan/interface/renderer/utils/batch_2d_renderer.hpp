@@ -20,6 +20,16 @@ namespace ikan {
     /// This functio dhutdown the batch renderer and destoy all the buffer reserved on initialize
     static void Shutdown();
     
+    /// This funcition Adds the quads renderer data to prev allocaged data
+    /// - Parameter max_quads: max quad to be renderered in single batch
+    static void AddQuadData(uint32_t max_quads);
+    /// This funcition Adds the circle renderer data to prev allocaged data
+    /// - Parameter max_circles: max circle to be renderered in single batch
+    static void AddCircleData(uint32_t max_circles);
+    /// This funcition Adds the lines renderer data to prev allocaged data
+    /// - Parameter max_lines: max circle to be renderered in single batch
+    static void AddLineData(uint32_t max_lines);
+
     MAKE_PURE_STATIC(Batch2DRenderer);
   };
   

@@ -49,6 +49,7 @@
 
 // Renderer Files
 #include <renderer/utils/renderer.hpp>
+#include <renderer/utils/batch_2d_renderer.hpp>
 
 // Imgui API
 #include <imgui/imgui_api.hpp>

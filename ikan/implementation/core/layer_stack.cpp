@@ -28,9 +28,7 @@ namespace ikan {
   }
 
   void LayerStack::PushLayer(const std::shared_ptr<Layer>& layer) {
-    if (std::find(layers_.begin(), layers_.end(), layer) != layers_.end())
-      return;
-    
+    RETURN_IF(std::find(layers_.begin(), layers_.end(), layer) != layers_.end());
     IK_CORE_TRACE(LogModule::LayerStack, "Pushing the {0} Layer in the stack at position {1}. Total Layers added {2}",
                   layer->GetName().c_str(), layer_insert_index_, ++number_of_layers_);
     
@@ -52,9 +50,7 @@ namespace ikan {
   }
 
   void LayerStack::PushOverlay(const std::shared_ptr<Layer>& layer) {
-    if (std::find(layers_.begin(), layers_.end(), layer) != layers_.end())
-      return;
-    
+    RETURN_IF(std::find(layers_.begin(), layers_.end(), layer) != layers_.end());
     IK_CORE_TRACE(LogModule::LayerStack, "Pushing the {0} Layer in the stack at the end. Total Layers added {1}",
                   layer->GetName().c_str(), ++number_of_layers_);
 
