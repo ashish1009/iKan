@@ -37,7 +37,7 @@ namespace ikan {
     /// This function handles all the events triggered for the layer. To be whenever an event is  triggered in the window
     /// - Parameter event: Event (Base class) intance. Dispatch event from Dispatcher
     /// - Important: Core ikan::Application is taking care to call the EventHandler(event) API for all Layers
-    virtual void EventHandler(Event& event) = 0;
+    virtual void HandleEvents(Event& event) = 0;
     
     /// This function returns the name of layer
     const std::string& GetName() const { return name_; };
