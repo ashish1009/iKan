@@ -19,9 +19,7 @@ namespace ikan {
     
     // Delete and deteach all the layers from stack
     for (auto& layer : layers_) {
-      IK_CORE_TRACE(LogModule::LayerStack, "Poping the Layer in the stack");
-      IK_CORE_TRACE(LogModule::LayerStack, "  Name                            | {0}", layer->GetName().c_str());
-      IK_CORE_TRACE(LogModule::LayerStack, "  Number of Layers                | {0}", --number_of_layers_);
+      IK_CORE_TRACE(LogModule::LayerStack, "Destroying the {0} Layer from the stack", layer->GetName().c_str());
       
       layer->Detach();
     }
@@ -33,9 +31,8 @@ namespace ikan {
     if (std::find(layers_.begin(), layers_.end(), layer) != layers_.end())
       return;
     
-    IK_CORE_TRACE(LogModule::LayerStack, "Pushing the Layer in the stack at position {0}", layer_insert_index_);
-    IK_CORE_TRACE(LogModule::LayerStack, "  Name             | {0}", layer->GetName().c_str());
-    IK_CORE_TRACE(LogModule::LayerStack, "  Number of Layers | {0}", ++number_of_layers_);
+    IK_CORE_TRACE(LogModule::LayerStack, "Pushing the {0} Layer in the stack at position {1}. Total Layers added {2}",
+                  layer->GetName().c_str(), layer_insert_index_, ++number_of_layers_);
     
     layers_.emplace(layers_.begin() + layer_insert_index_, layer);
     layer_insert_index_++;
@@ -43,9 +40,8 @@ namespace ikan {
   }
   
   void LayerStack::PopLayer(const std::shared_ptr<Layer>& layer) {
-    IK_CORE_TRACE(LogModule::LayerStack, "Poping the Layer in the stack from the index {0}", layer_insert_index_);
-    IK_CORE_TRACE(LogModule::LayerStack, "  Name                            | {0}", layer->GetName().c_str());
-    IK_CORE_TRACE(LogModule::LayerStack, "  Number of Layers                | {0}", --number_of_layers_);
+    IK_CORE_TRACE(LogModule::LayerStack, "Poping the {0} Layer in the stack from the index {1}. Total Layers left {2}",
+                  layer->GetName().c_str(), layer_insert_index_, --number_of_layers_);
     
     auto it = std::find(layers_.begin(), layers_.begin() + layer_insert_index_, layer);
     if (it != layers_.begin() + layer_insert_index_) {
@@ -59,19 +55,17 @@ namespace ikan {
     if (std::find(layers_.begin(), layers_.end(), layer) != layers_.end())
       return;
     
-    IK_CORE_TRACE(LogModule::LayerStack, "Pushing the Layer in the stack");
-    IK_CORE_TRACE(LogModule::LayerStack, "  Name             | {0}", layer->GetName().c_str());
-    IK_CORE_TRACE(LogModule::LayerStack, "  Number of Layers | {0}", ++number_of_layers_);
-    
+    IK_CORE_TRACE(LogModule::LayerStack, "Pushing the {0} Layer in the stack at the end. Total Layers added {1}",
+                  layer->GetName().c_str(), ++number_of_layers_);
+
     layers_.emplace_back(layer);
     layer->Attach();
   }
   
   void LayerStack::PopOverlay(const std::shared_ptr<Layer>& layer) {
-    IK_CORE_TRACE(LogModule::LayerStack, "Poping the Layer in the stack");
-    IK_CORE_TRACE(LogModule::LayerStack, "  Name                            | {0}", layer->GetName().c_str());
-    IK_CORE_TRACE(LogModule::LayerStack, "  Number of Layers                | {0}", --number_of_layers_);
-    
+    IK_CORE_TRACE(LogModule::LayerStack, "Poping the {0} Layer in the stack from the end. Total Layers left {1}",
+                  layer->GetName().c_str(), --number_of_layers_);
+
     // Search the layer from the stack the detach/delete it
     if (auto it = std::find(layers_.begin(), layers_.end(), layer);
         it != layers_.end()) {

@@ -9,6 +9,25 @@
 
 namespace ikan {
   
+#define APP_INFO(...) IK_CORE_INFO(LogModule::Application, __VA_ARGS__)
+  
+  namespace applicaiton_utils {
+    
+#ifdef IK_DEBUG_FEATURE
+    /// This function returns the Operating System Type as string
+    /// - Parameter os: OS Type in iKan Enum
+    static std::string GetOsNameAsString(OperatingSystem os) {
+      switch (os) {
+        case OperatingSystem::Mac : return "MAC OS";
+        case OperatingSystem::None :
+        default:
+          IK_ASSERT(false, "Invalid OS Type");
+      }
+    }
+#endif
+    
+  } // namespace applicaiton_utils
+
   Application *Application::instance_ = nullptr;
   
   Application::Application(const Specification& spec)
@@ -17,8 +36,7 @@ namespace ikan {
     IK_CORE_ASSERT(!instance_, "Application already exists !!!");
     instance_ = this;
     
-    IK_CORE_INFO(LogModule::Application, "Creating Core Application Instance ...");
-    specification_.Log();
+    IK_CORE_TRACE(LogModule::Application, "Creating Core Application Instance ...");
 
     // Create Memroy for Renderer Data
     // NOTE: Creating the Renderer Data Memory in very begining as this will setup the Renderer API to be used to create any Renderer Implementation
@@ -69,6 +87,10 @@ namespace ikan {
 
   void Application::Run() {
     LogConfig();
+
+    IK_CORE_INFO("", "--------------------------------------------------------------------------");
+    IK_CORE_INFO("", "                          Starting Game Loop                              ");
+    IK_CORE_INFO("", "--------------------------------------------------------------------------");
     while(!is_running_) {
       // Store the frame time difference
       time_step_ = window_->GetTimestep();
@@ -82,6 +104,9 @@ namespace ikan {
       
       RenderGui();
     }
+    IK_CORE_INFO("", "--------------------------------------------------------------------------");
+    IK_CORE_INFO("", "                            Ending Game Loop                              ");
+    IK_CORE_INFO("", "--------------------------------------------------------------------------");
   }
   
   void Application::RenderGui() {
@@ -95,37 +120,31 @@ namespace ikan {
   }
   
   void Application::LogConfig() {
-    IK_CORE_INFO(LogModule::Application, "Loading the {0} application ...", specification_.name);
-  }
-
-  namespace applicaiton_utils {
+    APP_INFO("Loading the {0} application ...", specification_.name);
     
-#ifdef IK_DEBUG_FEATURE
-    /// This function returns the Operating System Type as string
-    /// - Parameter os: OS Type in iKan Enum
-    static std::string GetOsNameAsString(OperatingSystem os) {
-      switch (os) {
-        case OperatingSystem::Mac : return "MAC OS";
-        case OperatingSystem::None :
-        default:
-          IK_ASSERT(false, "Invalid OS Type");
-      }
-    }
-#endif
-    
-  } // namespace applicaiton_utils
+    APP_INFO("    Application                           | {0}", specification_.name);
+    APP_INFO("        Operating System                  | {0}", applicaiton_utils::GetOsNameAsString(specification_.os));
+    APP_INFO("        Rewndering API                    | {0}", renderer_utils::GetRendererApiName(specification_.rendering_api));
+    APP_INFO("            Vendor                        | {0} ", Renderer::Capabilities::Get().vendor);
+    APP_INFO("            Renderer                      | {0} ", Renderer::Capabilities::Get().renderer);
+    APP_INFO("            Version                       | {0} ", Renderer::Capabilities::Get().version);
+    APP_INFO("            Asignment                     | Unpacked");
+    APP_INFO("            Multi Sample Feild            | true");
+    APP_INFO("            Blending Test Feild           | true");
+    APP_INFO("            Depth Test Feild              | true");
 
-  void Application::Specification::Log() {
-    IK_CORE_TRACE(LogModule::Application, "  Application Property ");
-    IK_CORE_TRACE(LogModule::Application, "  ---------------------------------------------------------");
-    IK_CORE_TRACE(LogModule::Application, "    Name                 | {0}", name);
-    IK_CORE_TRACE(LogModule::Application, "    Client Asset Path    | {0}", client_asset_path.c_str());
-    IK_CORE_TRACE(LogModule::Application, "    Save INI File Path   | {0}", save_ini_file_path.c_str());
-    IK_CORE_TRACE(LogModule::Application, "    Rewndering API       | {0}", renderer_utils::GetRendererApiName(rendering_api));
-    IK_CORE_TRACE(LogModule::Application, "    Operating System     | {0}", applicaiton_utils::GetOsNameAsString(os));
-    IK_CORE_TRACE(LogModule::Application, "    Window Maximized     | {0}", start_maximized);
-    IK_CORE_TRACE(LogModule::Application, "    Window Resizable     | {0}", resizable);
-    IK_CORE_TRACE(LogModule::Application, "  ---------------------------------------------------------");
+    APP_INFO("        Window                            | {0}", specification_.window_specification.title);
+    APP_INFO("            Width                         | {0}", specification_.window_specification.width);
+    APP_INFO("            Height                        | {0}", specification_.window_specification.height);
+    APP_INFO("            Video Synced                  | {0}", specification_.window_specification.v_sync);
+    APP_INFO("            FullScreen                    | {0}", specification_.window_specification.fullscreen);
+    APP_INFO("            Title Hidden                  | {0}", specification_.window_specification.hide_titlebar);
+    APP_INFO("            Maximized                     | {0}", specification_.start_maximized);
+    APP_INFO("            Resizable                     | {0}", specification_.resizable);
+    APP_INFO("        Directories                       | {0}", specification_.resizable);
+    APP_INFO("            Workspace Path                | {0}", specification_.workspace_path.c_str());
+    APP_INFO("            Client Asset Path             | {0}", specification_.client_asset_path.c_str());
+    APP_INFO("            Save Gui ini File Path        | {0}", specification_.save_ini_file_path.c_str());
   }
 
 } // namespace ikan

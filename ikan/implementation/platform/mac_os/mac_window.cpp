@@ -17,7 +17,6 @@ namespace ikan {
     
     // Move the specificaion to MacWindow data
     mac_window_data_.specification = window_spec;
-    mac_window_data_.specification.Log();
     
     // Initialize the library
     IK_ASSERT(GLFW_TRUE == glfwInit(), "Can not Initialize GLFW Window");

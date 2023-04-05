@@ -24,8 +24,6 @@ namespace ikan {
       bool v_sync = true;
       bool fullscreen = false;
       bool hide_titlebar = false;
-
-      void Log();
     };
 
     /// This function create instance of to create a window based on the Operating system supported by the sytem / Engine. This is resposible to create

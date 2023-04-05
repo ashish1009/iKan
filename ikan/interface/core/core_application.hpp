@@ -42,8 +42,6 @@ namespace ikan {
       Window::Specification window_specification;
       bool start_maximized = true;
       bool resizable = true;
-      
-      void Log();
     };
     
     /// This constructs the core application instance
