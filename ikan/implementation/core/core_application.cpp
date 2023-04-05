@@ -27,7 +27,8 @@ namespace ikan {
 
     // Set the client asset path
     DirectoryManager::client_asset_path_ = specification_.client_asset_path;
-    
+    DirectoryManager::workspace_path_ = specification_.workspace_path;
+
     // Create window instance
     window_ = Window::Create(specification_.os, specification_.window_specification);
     

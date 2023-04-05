@@ -15,6 +15,7 @@ std::unique_ptr<ikan::Application> CreateApplication() {
   
   // Utils
   application_spec.name = "Kreator Application";
+  application_spec.workspace_path = "../../../";
   application_spec.client_asset_path = "../../../kreator/assets/";
   application_spec.save_ini_file_path = "../../../kreator/editor/ini/editor.ini";
   

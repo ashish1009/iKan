@@ -34,6 +34,7 @@ namespace ikan {
     /// This structure holds the specification of application provided by client
     struct Specification {
       std::string name = "iKan";
+      std::string workspace_path;
       std::string client_asset_path;
       std::string save_ini_file_path;
       Renderer::Api rendering_api = Renderer::Api::None;
