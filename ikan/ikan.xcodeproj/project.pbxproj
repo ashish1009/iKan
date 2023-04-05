@@ -206,6 +206,7 @@
 			children = (
 				B2BEC4E429DD65C9008D3DCB /* core */,
 				B2BEC4E529DD65D6008D3DCB /* renderer */,
+				B2BEC76929DD68FF008D3DCB /* imgui */,
 				B2F91E1129D713B900860306 /* platform */,
 			);
 			path = implementation;
@@ -253,6 +254,13 @@
 				B292C0E529D1CF7100B1E678 /* logger.cpp */,
 			);
 			path = debug;
+			sourceTree = "<group>";
+		};
+		B2BEC76929DD68FF008D3DCB /* imgui */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = imgui;
 			sourceTree = "<group>";
 		};
 		B2C26FBF29D2A31400EC1078 /* utils */ = {
@@ -596,6 +604,7 @@
 					"${PROJECT_DIR}/vendors/spdlog/include",
 					"${PROJECT_DIR}/vendors/open_gl/include",
 					"${PROJECT_DIR}/vendors/glfw/glfw/include",
+					"${PROJECT_DIR}/vendors/imgui/imgui",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -619,6 +628,7 @@
 					"${PROJECT_DIR}/vendors/spdlog/include",
 					"${PROJECT_DIR}/vendors/open_gl/include",
 					"${PROJECT_DIR}/vendors/glfw/glfw/include",
+					"${PROJECT_DIR}/vendors/imgui/imgui",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

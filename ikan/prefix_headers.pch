@@ -24,3 +24,6 @@
 #include "core/debug/logger.hpp"
 
 #include "core/utils/asserts.h"
+
+// Imgui files
+#include <imgui.h>

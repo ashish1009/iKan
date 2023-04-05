@@ -36,11 +36,7 @@ namespace ikan {
     void Maximize() override;
     /// This function places the window at the center of the screen
     void CenterWindow() override;
-    /// This function Updates the callback funtion pointer to the mac_window_data_. This function pointer to be triggered for every event interrupt
-    /// - Parameter event_callback_fn: function pointer to be registered
-    /// - Important: EventCallbackFn to be called every time any even triggered to window
-    void SetEventFunction(const EventCallbackFn& event_callback_fn) override { mac_window_data_.event_callback_function = event_callback_fn; }
-
+  
     /// This funtions changes the VSync flag by argiument flag
     /// - Parameter vSync: new flag to be set as v sync
     void SetVSync(bool vSync) override;
@@ -50,7 +46,11 @@ namespace ikan {
     /// This function chnages the title of the window as 'new_title'
     /// - Parameter new_title: new title of the window
     void SetTitle(const std::string& new_title) override;
-    
+    /// This function Updates the callback funtion pointer to the mac_window_data_. This function pointer to be triggered for every event interrupt
+    /// - Parameter event_callback_fn: function pointer to be registered
+    /// - Important: EventCallbackFn to be called every time any even triggered to window
+    void SetEventFunction(const EventCallbackFn& event_callback_fn) override { mac_window_data_.event_callback_function = event_callback_fn; }
+
     /// This function returns is window is active
     bool IsActive() const override;
     /// This function returns is window is v synched

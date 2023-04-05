@@ -24,6 +24,7 @@ Add the following header search paths
 `{...} directory where ikan Engine is cloned`
 ${PROJECT_DIR}/../ikan/interface
 ${PROJECT_DIR}/../ikan/vendors/spdlog/include
+${PROJECT_DIR}/../ikan/vendors/imgui/imgui
 
 ### Library Search Paths
 

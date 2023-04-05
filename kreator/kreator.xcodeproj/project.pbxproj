@@ -276,7 +276,11 @@
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../ikan/interface",
 					"${PROJECT_DIR}/../ikan/vendors/spdlog/include",
+					"${PROJECT_DIR}/../ikan/vendors/imgui/imgui",
+					"${PROJECT_DIR}/../ikan/vendors/glfw/glfw/include",
+					"${PROJECT_DIR}/../ikan/vendors/open_gl/include",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -295,7 +299,9 @@
 				HEADER_SEARCH_PATHS = (
 					"${PROJECT_DIR}/../ikan/interface",
 					"${PROJECT_DIR}/../ikan/vendors/spdlog/include",
+					"${PROJECT_DIR}/../ikan/vendors/imgui/imgui",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
