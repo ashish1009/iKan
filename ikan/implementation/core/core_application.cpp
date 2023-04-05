@@ -92,7 +92,7 @@ namespace ikan {
     IK_CORE_INFO("", "--------------------------------------------------------------------------");
     IK_CORE_INFO("", "                          Starting Game Loop                              ");
     IK_CORE_INFO("", "--------------------------------------------------------------------------");
-    while(!is_running_) {
+    while(is_running_) {
       // Store the frame time difference
       time_step_ = window_->GetTimestep();
       

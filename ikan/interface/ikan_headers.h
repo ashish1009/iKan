@@ -49,3 +49,6 @@
 
 // Renderer Files
 #include <renderer/utils/renderer.hpp>
+
+// Imgui API
+#include <imgui/imgui_api.hpp>

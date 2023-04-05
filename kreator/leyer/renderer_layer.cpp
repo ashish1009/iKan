@@ -34,6 +34,8 @@ namespace kreator {
   }
     
   void RendererLayer::RenderGui() {
+    ImguiAPI::StartDcocking();
+    ImguiAPI::EndDcocking();
   }
   
 } // namespace kreator
