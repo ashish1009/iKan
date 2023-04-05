@@ -53,7 +53,7 @@ namespace ikan {
   }
 
   Application::~Application() {
-    IK_CORE_WARN(LogModule::Application, "Destroying Core Application Instance !!!");
+    IK_CORE_TRACE(LogModule::Application, "Destroying Core Application Instance !!!");
     Renderer::Shutdown();
   }
 

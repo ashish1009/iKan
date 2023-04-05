@@ -40,7 +40,7 @@ namespace ikan {
   }
   
   OpenGLRendererAPI::~OpenGLRendererAPI() {
-    IK_CORE_WARN(LogModule::Renderer, "Destroying Open GL Renderer API !!!");
+    IK_CORE_TRACE(LogModule::Renderer, "Destroying Open GL Renderer API !!!");
   }
   
 } // namespace ikan

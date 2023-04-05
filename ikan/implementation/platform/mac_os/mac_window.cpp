@@ -65,7 +65,7 @@ namespace ikan {
   }
   
   MacWindow::~MacWindow() {
-    IK_CORE_WARN(LogModule::Window, "Destroying MAC OS Window instacne !!! ");
+    IK_CORE_TRACE(LogModule::Window, "Destroying MAC OS Window instacne !!! ");
     Shutdown();
   }
   
@@ -194,7 +194,7 @@ namespace ikan {
   }
   
   void MacWindow::Shutdown() {
-    IK_CORE_WARN(LogModule::Window, "Shutting down the MAC OS Window");
+    IK_CORE_TRACE(LogModule::Window, "Shutting down the MAC OS Window");
     glfwTerminate();
     glfwDestroyWindow(window_);
   }
@@ -237,7 +237,7 @@ namespace ikan {
   
   void MacWindow::SetTitle(const std::string& title) {
     IK_CORE_TRACE(LogModule::Window, "New MAC Window Title is : {0}", title.c_str());
-    IK_CORE_WARN(LogModule::Window, "(WARNING: Window specificaiton instance in Application Spceification might have older Window name..)");
+    IK_CORE_TRACE(LogModule::Window, "(WARNING: Window specificaiton instance in Application Spceification might have older Window name..)");
     
     mac_window_data_.specification.title = title;
     glfwSetWindowTitle(window_, mac_window_data_.specification.title.c_str());

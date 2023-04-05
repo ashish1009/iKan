@@ -22,7 +22,7 @@ namespace ikan {
   }
 
   ImguiLayer::~ImguiLayer() noexcept {
-    IK_CORE_WARN(LogModule::Imgui, "Destroying Imgui Layer instance !!!");
+    IK_CORE_TRACE(LogModule::Imgui, "Destroying Imgui Layer instance !!!");
   }
 
   void ImguiLayer::Attach() {
@@ -54,7 +54,7 @@ namespace ikan {
   }
 
   void ImguiLayer::Detach() {
-    IK_CORE_WARN(LogModule::Imgui, "'{0}' is detached to application", GetName());
+    IK_CORE_TRACE(LogModule::Imgui, "'{0}' is detached to application", GetName());
     
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();

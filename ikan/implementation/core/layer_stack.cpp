@@ -14,14 +14,14 @@ namespace ikan {
   }
   
   LayerStack::~LayerStack() {
-    IK_CORE_WARN(LogModule::LayerStack, "Destroying Layerstack !!!");
-    IK_CORE_WARN(LogModule::LayerStack, "Deleting all Layers from Layerstack");
+    IK_CORE_TRACE(LogModule::LayerStack, "Destroying Layerstack !!!");
+    IK_CORE_TRACE(LogModule::LayerStack, "Deleting all Layers from Layerstack");
     
     // Delete and deteach all the layers from stack
     for (auto& layer : layers_) {
-      IK_CORE_WARN(LogModule::LayerStack, "Poping the Layer in the stack");
-      IK_CORE_WARN(LogModule::LayerStack, "  Name                            | {0}", layer->GetName().c_str());
-      IK_CORE_WARN(LogModule::LayerStack, "  Number of Layers                | {0}", --number_of_layers_);
+      IK_CORE_TRACE(LogModule::LayerStack, "Poping the Layer in the stack");
+      IK_CORE_TRACE(LogModule::LayerStack, "  Name                            | {0}", layer->GetName().c_str());
+      IK_CORE_TRACE(LogModule::LayerStack, "  Number of Layers                | {0}", --number_of_layers_);
       
       layer->Detach();
     }

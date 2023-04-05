@@ -20,7 +20,7 @@ namespace ikan {
   }
   
   OpenGLGraphicsContext::~OpenGLGraphicsContext() {
-    IK_CORE_WARN(LogModule::GraphicsContext, "Destroying Open GL Renderer Context !!! ");
+    IK_CORE_TRACE(LogModule::GraphicsContext, "Destroying Open GL Renderer Context !!! ");
   }
   
   void OpenGLGraphicsContext::Init() {
