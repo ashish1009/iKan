@@ -24,6 +24,16 @@ namespace ikan {
 
   /// This structure holds the common batch renderer data for Quads and circle
   struct Shape2DCommonData : CommonBatchData {
+    /// Single vertex for a Quad or Circle
+    struct CommonVertex {
+      glm::vec3 position;
+      glm::vec4 color;
+      glm::vec2 texture_coords;
+      
+      float texture_index;
+      float tiling_factor;
+    };
+
     // Constants
     static constexpr uint32_t VertexForSingleElement = 4;
     static constexpr uint32_t IndicesForSingleElement = 6;
@@ -36,21 +46,71 @@ namespace ikan {
       max_vertices = max_elements * VertexForSingleElement;
       max_indices = max_elements * IndicesForSingleElement;
     }
+    
+    virtual ~Shape2DCommonData() = default;
   };
   
   /// Batch Data to Rendering Quads
   struct QuadData : Shape2DCommonData {
+    /// Single vertex of a Quad
+    struct Vertex : CommonVertex {
+      int32_t pixel_id;
+    };
+    
+    /// Base pointer of Vertex Data. This is start of Batch data for single draw call
+    Vertex* vertex_buffer_base_ptr = nullptr;
+    /// Incrememntal Vetrtex Data Pointer to store all the batch data in Buffer
+    Vertex* vertex_buffer_ptr = nullptr;
+    
+    virtual ~QuadData() {
+      delete [] vertex_buffer_base_ptr;
+      vertex_buffer_base_ptr = nullptr;
+    }
   };
   static std::unique_ptr<QuadData> quad_data_;
   
   /// Batch Data to Rendering Circles
   struct CircleData : Shape2DCommonData {
+    /// Single vertex of a Circle
+    struct Vertex : CommonVertex {
+      glm::vec3 local_position;
+      float thickness;
+      float fade;
+      
+      int32_t pixel_id;
+    };
+    
+    /// Base pointer of Vertex Data. This is start of Batch data for single draw call
+    Vertex* vertex_buffer_base_ptr = nullptr;
+    /// Incrememntal Vetrtex Data Pointer to store all the batch data in Buffer
+    Vertex* vertex_buffer_ptr = nullptr;
+    
+    virtual ~CircleData() {
+      delete [] vertex_buffer_base_ptr;
+      vertex_buffer_base_ptr = nullptr;
+    }
   };
   static std::unique_ptr<CircleData> circle_data_;
   
   /// Batch Data to Rendering Lines
   struct LineData : CommonBatchData {
     static constexpr uint32_t VertexForSingleLine = 2;
+
+    /// Single vertex of a Circle
+    struct Vertex {
+      glm::vec3 position;       // Position of a Quad
+      glm::vec4 color;          // Color of a Quad
+    };
+
+    /// Base pointer of Vertex Data. This is start of Batch data for single draw call
+    Vertex* vertex_buffer_base_ptr = nullptr;
+    /// Incrememntal Vetrtex Data Pointer to store all the batch data in Buffer
+    Vertex* vertex_buffer_ptr = nullptr;
+
+    virtual ~LineData() {
+      delete [] vertex_buffer_base_ptr;
+      vertex_buffer_base_ptr = nullptr;
+    }
 
     void SetMaxElements(uint32_t max_elements) {
       max_element = max_elements;
@@ -73,55 +133,55 @@ namespace ikan {
   void Batch2DRenderer::AddQuadData(uint32_t max_quads) {
     RETURN_IF(max_quads == 0);
     
-    // We will append the max quad data. so we store the previous one
+    // If data have already created then append the data to previous one else create new memory
     if (quad_data_) {
       max_quads += quad_data_->max_element;
-      
-      // If we already allocated memory then delete the older one first.
-      quad_data_.reset();
     }
-  
-    // Allocate memory for Quad Data
-    quad_data_ = std::make_unique<QuadData>();
+    else {
+      quad_data_ = std::make_unique<QuadData>();
+    }
     
-    // Set all max element, vertices and indices
+    // Set the max element, max vertices and max indices
     quad_data_->SetMaxElements(max_quads);
+    
+    // Allocating the memory for vertex Buffer Pointer
+    quad_data_->vertex_buffer_base_ptr = new QuadData::Vertex[quad_data_->max_vertices];
   }
   
   void Batch2DRenderer::AddCircleData(uint32_t max_circles) {
     RETURN_IF(max_circles == 0);
     
-    // We will append the max quad data. so we store the previous one
+    // If data have already created then append the data to previous one else create new memory
     if (circle_data_) {
       max_circles += circle_data_->max_element;
-      
-      // If we already allocated memory then delete the older one first.
-      circle_data_.reset();
+    }
+    else {
+      circle_data_ = std::make_unique<CircleData>();
     }
     
-    // Allocate memory for Circle Data
-    circle_data_ = std::make_unique<CircleData>();
-    
-    // Set all max element, vertices and indices
+    // Set the max element, max vertices and max indices
     circle_data_->SetMaxElements(max_circles);
+    
+    // Allocating the memory for vertex Buffer Pointer
+    circle_data_->vertex_buffer_base_ptr = new CircleData::Vertex[circle_data_->max_vertices];
   }
   
   void Batch2DRenderer::AddLineData(uint32_t max_lines) {
     RETURN_IF(max_lines == 0);
 
-    // We will append the max quad data. so we store the previous one
+    // If data have already created then append the data to previous one else create new memory
     if (line_data_) {
       max_lines += line_data_->max_element;
-      
-      // If we already allocated memory then delete the older one first.
-      line_data_.reset();
     }
-    
-    // Allocate memory for Line Data
-    line_data_ = std::make_unique<LineData>();
+    else {
+      line_data_ = std::make_unique<LineData>();
+    }
 
-    // Set all max element, vertices and indices
+    // Set the max element and max vertices
     line_data_->SetMaxElements(max_lines);
+    
+    // Allocating the memory for vertex Buffer Pointer
+    line_data_->vertex_buffer_base_ptr = new LineData::Vertex[line_data_->max_vertices];
   }
   
 } // namespace ikan
