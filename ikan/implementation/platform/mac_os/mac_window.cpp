@@ -13,7 +13,7 @@
 namespace ikan {
   
   MacWindow::MacWindow(const Specification& window_spec) {
-    IK_CORE_INFO(LogModule::Window, "Creating MAC OS Window instacne ... ");
+    IK_CORE_TRACE(LogModule::Window, "Creating MAC OS Window instacne ... ");
     
     // Move the specificaion to MacWindow data
     mac_window_data_.specification = window_spec;
@@ -209,12 +209,12 @@ namespace ikan {
   }
 
   void MacWindow::Maximize() {
-    IK_CORE_INFO(LogModule::Window, "Maximising the window");
+    IK_CORE_TRACE(LogModule::Window, "Maximising the window");
     glfwMaximizeWindow(window_);
   }
   
   void MacWindow::CenterWindow() {
-    IK_CORE_INFO(LogModule::Window, "Placing the window at the center");
+    IK_CORE_TRACE(LogModule::Window, "Placing the window at the center");
     const GLFWvidmode* videmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
     
     const Window::Specification& spec = mac_window_data_.specification;
@@ -224,19 +224,19 @@ namespace ikan {
   }
   
   void MacWindow::SetVSync(bool enabled) {
-    IK_CORE_INFO(LogModule::Window, "Setting VSynch : {0}", enabled);
+    IK_CORE_TRACE(LogModule::Window, "Setting VSynch : {0}", enabled);
     (true == enabled) ? glfwSwapInterval(1) : glfwSwapInterval(0);
     mac_window_data_.specification.v_sync = enabled;
   }
   
   void MacWindow::SetResizable(bool resizable) const {
     std::string can_cannot_string = resizable ? "can" : "cannot";
-    IK_CORE_INFO(LogModule::Window, "Window {0} be resized", can_cannot_string.c_str());
+    IK_CORE_TRACE(LogModule::Window, "Window {0} be resized", can_cannot_string.c_str());
     glfwSetWindowAttrib(window_, GLFW_RESIZABLE, resizable ? GLFW_TRUE : GLFW_FALSE );
   }
   
   void MacWindow::SetTitle(const std::string& title) {
-    IK_CORE_INFO(LogModule::Window, "New MAC Window Title is : {0}", title.c_str());
+    IK_CORE_TRACE(LogModule::Window, "New MAC Window Title is : {0}", title.c_str());
     IK_CORE_WARN(LogModule::Window, "(WARNING: Window specificaiton instance in Application Spceification might have older Window name..)");
     
     mac_window_data_.specification.title = title;

@@ -21,8 +21,8 @@ void EventHandler(ikan::Event& event) {
 
 int main() {
   // Initialize the ikan Logger
-  auto core_level   = ikan::Logger::Level::Trace;
-  auto client_level = ikan::Logger::Level::Trace;
+  auto core_level   = ikan::Logger::Level::Info;
+  auto client_level = ikan::Logger::Level::Info;
   
   ikan::Logger::Init(core_level, client_level, "../../../log/kreator.log");
   
@@ -30,9 +30,9 @@ int main() {
   auto spd_core_log_level = ikan::Logger::GetSpdLevelFromIKanLevel(core_level);
   auto spd_client_log_level = ikan::Logger::GetSpdLevelFromIKanLevel(client_level);
   
-  IK_INFO("Core Entry Point", "Initialized the spd logger ");
-  IK_INFO("Core Entry Point", "  Core   | {0}", ikan::Logger::GetLogLevelStringFromSpdLevel(spd_core_log_level));
-  IK_INFO("Core Entry Point", "  Client | {0}", ikan::Logger::GetLogLevelStringFromSpdLevel(spd_client_log_level));
+  IK_TRACE("Core Entry Point", "Initialized the spd logger ");
+  IK_TRACE("Core Entry Point", "  Core   | {0}", ikan::Logger::GetLogLevelStringFromSpdLevel(spd_core_log_level));
+  IK_TRACE("Core Entry Point", "  Client | {0}", ikan::Logger::GetLogLevelStringFromSpdLevel(spd_client_log_level));
 #endif
   
   ikan::Application::Specification application_spec;
@@ -103,10 +103,6 @@ int main() {
     }
     
     ikan::Renderer::Initialize();
-
-    IK_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
-    IK_INFO(ikan::LogModule::None, "                     Core Application Initialized                         ");
-    IK_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
   }
 
   {

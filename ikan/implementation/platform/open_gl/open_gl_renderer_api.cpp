@@ -13,23 +13,23 @@
 namespace ikan {
   
   OpenGLRendererAPI::OpenGLRendererAPI() {
-    IK_CORE_INFO(LogModule::Renderer, "Creating Open GL Renderer API ...");
+    IK_CORE_TRACE(LogModule::Renderer, "Creating Open GL Renderer API ...");
 
     // API for Text enable
-    IK_CORE_INFO(LogModule::Renderer, "  Asignment           | {0} (Unpacked)", true);
+    IK_CORE_TRACE(LogModule::Renderer, "  Asignment           | {0} (Unpacked)", true);
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     
     // Multi Sample
-    IK_CORE_INFO(LogModule::Renderer, "  Multi Sample Feild  | {0}", true);
+    IK_CORE_TRACE(LogModule::Renderer, "  Multi Sample Feild  | {0}", true);
     glEnable(GL_MULTISAMPLE);
     
     // Blending Teting
-    IK_CORE_INFO(LogModule::Renderer, "  Blending Test Feild | {0}", true);
+    IK_CORE_TRACE(LogModule::Renderer, "  Blending Test Feild | {0}", true);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     // Depth Testing
-    IK_CORE_INFO(LogModule::Renderer, "  Depth Test Feild    | {0}", true);
+    IK_CORE_TRACE(LogModule::Renderer, "  Depth Test Feild    | {0}", true);
     glEnable(GL_DEPTH_TEST);
     
     auto& caps = Renderer::Capabilities::Get();

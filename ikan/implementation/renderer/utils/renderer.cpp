@@ -30,7 +30,7 @@ namespace ikan {
     std::unique_ptr<RendererAPI> renderer_api_instance;
 
     RendererData(Renderer::Api new_api) : api(new_api) {
-      IK_CORE_INFO(LogModule::Renderer, "Setting the Renderer API as {0} ...", renderer_utils::GetRendererApiName(api));
+      IK_CORE_TRACE(LogModule::Renderer, "Setting the Renderer API as {0} ...", renderer_utils::GetRendererApiName(api));
     }
     DELETE_COPY_MOVE_CONSTRUCTORS(RendererData);
   };
@@ -54,10 +54,10 @@ namespace ikan {
   }
   
   void Renderer::Capabilities::Log() {
-    IK_CORE_INFO(LogModule::Renderer, "  Renderer Capability ");
-    IK_CORE_INFO(LogModule::Renderer, "    Vendor   | {0} ", vendor);
-    IK_CORE_INFO(LogModule::Renderer, "    Renderer | {0} ", renderer);
-    IK_CORE_INFO(LogModule::Renderer, "    Version  | {0} ", version);
+    IK_CORE_TRACE(LogModule::Renderer, "  Renderer Capability ");
+    IK_CORE_TRACE(LogModule::Renderer, "    Vendor   | {0} ", vendor);
+    IK_CORE_TRACE(LogModule::Renderer, "    Renderer | {0} ", renderer);
+    IK_CORE_TRACE(LogModule::Renderer, "    Version  | {0} ", version);
   }
   
 } // namespace ikan

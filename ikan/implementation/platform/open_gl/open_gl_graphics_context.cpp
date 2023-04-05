@@ -15,7 +15,7 @@ namespace ikan {
   OpenGLGraphicsContext::OpenGLGraphicsContext(GLFWwindow* window)
   : window_(window) {
     IK_CORE_ASSERT(window, "Window pointer is NULL !!!");
-    IK_CORE_INFO(LogModule::GraphicsContext, "Creating Open GL Renderer Context ... ");
+    IK_CORE_TRACE(LogModule::GraphicsContext, "Creating Open GL Renderer Context ... ");
     Init();
   }
   
