@@ -15,6 +15,10 @@ namespace ikan {
     struct Renderer2DStats {
       uint32_t max_quads = 0, max_circles = 0, max_lines = 0;
       uint32_t quads = 0, circles = 0, lines = 0;
+      
+      /// This function shows the stats in gui widget
+      /// - Parameter is_open: flag to show or hide the widget
+      void RenderGui(bool *is_open = nullptr);
     };
     
     RendererStatistics() = default;
@@ -31,6 +35,10 @@ namespace ikan {
     void ResetEachFrame();
     /// This function resets all stats
     void ResetAll();
+
+    /// This function shows the stats in gui widget
+    /// - Parameter is_open: flag to show or hide the widget
+    void RenderGui(bool *is_open = nullptr);
 
     /// This function returns the static singleton instance of RendererStatistics
     static RendererStatistics& Get();

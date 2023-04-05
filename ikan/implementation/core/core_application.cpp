@@ -100,7 +100,7 @@ namespace ikan {
       window_->Update();
       
       // Reset Statistics each frame
-      RendererStatistics::Get().ResetEachFrame();
+      Renderer::ResetStatsEachFrame();
       
       // Updating all the attached layer
       for (auto& layer : layer_stack_)

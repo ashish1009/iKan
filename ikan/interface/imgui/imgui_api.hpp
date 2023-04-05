@@ -9,6 +9,8 @@
 
 namespace ikan {
   
+#define CHECK_WIDGET_FLAG(x) RETURN_IF(x and *x == false);
+  
   /// Imgui Wrapper class
   class ImguiAPI {
   public:

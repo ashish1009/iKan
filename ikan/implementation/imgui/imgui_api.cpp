@@ -61,7 +61,7 @@ namespace ikan {
   }
   
   void ImguiAPI::Framerate(bool *is_open) {
-    if (is_open and *is_open == false) return;
+    CHECK_WIDGET_FLAG(is_open);
     
     ImGui::Begin("Frame Rate", is_open);
     ImGui::PushID("Frame Rate");

@@ -53,6 +53,8 @@ namespace kreator {
       ShowSettings();
       
       ImguiAPI::Framerate(&setting_.frame_rate.flag);
+      Renderer::RenderStatsGui(&setting_.common_renderer_stats.flag);
+      Renderer::Render2DStatsGui(&setting_.renderer_stats_2d.flag);
 
       ImguiAPI::EndDcocking();
     }

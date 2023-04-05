@@ -26,12 +26,14 @@ namespace kreator {
         });
       }
       void CheckBox() {
-        PropertyGrid::CheckBox(name.c_str(), flag);
+        PropertyGrid::CheckBox(name.c_str(), flag, 3 * ImGui::GetWindowContentRegionMax().x / 4);
       }
     };
 
     struct Setting {
       SettingWrapper frame_rate{"Frame Rate", true};
+      SettingWrapper common_renderer_stats{"Common Renderer Stats", true};
+      SettingWrapper renderer_stats_2d{"2D Renderer Stats", true};
     };
     
     /// Layer Default Constructor to store the name of layer

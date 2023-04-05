@@ -109,6 +109,18 @@ namespace ikan {
     ///   - pixeld_data: piixel value
     static void GetEntityIdFromPixels(int32_t mx, int32_t my, uint32_t pixel_id_index, int32_t& pixeld_data);
 
+    /// This function resets the renderer Stats each frame
+    /// - Note: Only those stats will be reset that need to be reset each frame
+    static void ResetStatsEachFrame();
+    /// This function resets all the renderer stats
+    static void ResetStats();
+    /// This function renderers Imgui to show renderer stats
+    /// - Parameter is_open: flag to show or hide the widget
+    static void RenderStatsGui(bool *is_open = nullptr);
+    /// This function renderers Imgui to show renderer stats
+    /// - Parameter is_open: flag to show or hide the widget
+    static void Render2DStatsGui(bool *is_open = nullptr);
+
     MAKE_PURE_STATIC(Renderer);
   };
   

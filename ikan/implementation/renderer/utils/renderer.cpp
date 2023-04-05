@@ -8,6 +8,7 @@
 #include "renderer.hpp"
 #include "batch_2d_renderer.hpp"
 #include "text_renderer.hpp"
+#include "renderer_stats.hpp"
 
 namespace ikan {
   
@@ -105,14 +106,30 @@ namespace ikan {
     renderer_data_->renderer_api_instance->GetEntityIdFromPixels(mx, my, pixel_id_index, pixel_data);
   }
 
+  // -------------------------------------------------------------------------
+  // Renderer Stats API
+  // -------------------------------------------------------------------------
+  void Renderer::ResetStatsEachFrame() {
+    RendererStatistics::Get().ResetEachFrame();
+  }
+  void Renderer::ResetStats() {
+    RendererStatistics::Get().ResetAll();
+  }
+  void Renderer::RenderStatsGui(bool *is_open) {
+    RendererStatistics::Get().RenderGui(is_open);
+  }
+  void Renderer::Render2DStatsGui(bool *is_open) {
+    RendererStatistics::Get().stats_2d_.RenderGui(is_open);
+  }
+
+  // -------------------------------------------------------------------------
+  // Renderer Capabilities
+  // -------------------------------------------------------------------------
   Renderer::Capabilities& Renderer::Capabilities::Get() {
     static Capabilities capabilities;
     return capabilities;
   }
   
-  // -------------------------------------------------------------------------
-  // Renderer Capabilities
-  // -------------------------------------------------------------------------
   void Renderer::Capabilities::Log() {
     IK_CORE_TRACE(LogModule::Renderer, "  Renderer Capability ");
     IK_CORE_TRACE(LogModule::Renderer, "    Vendor   | {0} ", vendor);

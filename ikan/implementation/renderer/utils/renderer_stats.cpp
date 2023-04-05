@@ -6,8 +6,30 @@
 //
 
 #include "renderer_stats.hpp"
+#include "imgui/imgui_api.hpp"
+#include "editor/property_grid.hpp"
 
 namespace ikan {
+  
+  void RendererStatistics::Renderer2DStats::RenderGui(bool* is_open) {
+    CHECK_WIDGET_FLAG(is_open);
+    
+    ImGui::Begin("Renderer 2D Stats", is_open);
+    ImGui::PushID("Renderer 2D Stats");
+
+    ImGui::PopID();
+    ImGui::End();
+  }
+  
+  void RendererStatistics::RenderGui(bool* is_open) {
+    CHECK_WIDGET_FLAG(is_open);
+
+    ImGui::Begin("Renderer Stats", is_open);
+    ImGui::PushID("Renderer Stats");
+
+    ImGui::PopID();
+    ImGui::End();
+  }
   
   void RendererStatistics::ResetEachFrame() {
     draw_calls = 0;
