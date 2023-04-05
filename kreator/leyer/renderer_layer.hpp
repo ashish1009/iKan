@@ -39,6 +39,10 @@ namespace kreator {
     void HandleEvents(Event& event) override;
     
   private:
+    /// This function render the menue bar
+    void ShowMenu();
+
+    bool is_playing_ = false;
     std::unique_ptr<GameData> game_data_;
   };
   

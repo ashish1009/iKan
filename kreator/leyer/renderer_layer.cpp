@@ -31,12 +31,45 @@ namespace kreator {
   }
   
   void RendererLayer::Update(Timestep ts) {
+    Renderer::Clear(game_data_->GetBgColor());
   }
   
   void RendererLayer::HandleEvents(Event& event) {
   }
     
   void RendererLayer::RenderGui() {
+    if (is_playing_) {
+    }
+    else {
+      ImguiAPI::StartDcocking();
+
+      ShowMenu();
+
+      ImguiAPI::EndDcocking();
+    }
+  }
+  
+  void RendererLayer::ShowMenu() {
+    if (ImGui::BeginMenuBar()) {
+      ImguiAPI::Menu("File", true, []() {
+        ImguiAPI::Menu("Scene", false, []() {
+          
+        }); // Scene
+        ImGui::Separator();
+        ImguiAPI::MenuItem("Exit", "Cmd + Q", false, true, []() {
+          Application::Get().Close();
+        }); // Exit
+      }); // File
+      ImguiAPI::Menu("Property", true, []() {
+        ImguiAPI::Menu("Theme", false, []() {
+          
+        }); // Theme
+      }); // Property
+      
+      ImguiAPI::Menu("Settings", false, []() {
+      }); // Settings
+      ImGui::EndMenuBar(); // ImGui::BeginMenuBar()
+    } // if (ImGui::BeginMenuBar())
   }
   
 } // namespace kreator

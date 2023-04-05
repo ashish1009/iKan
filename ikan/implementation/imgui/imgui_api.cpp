@@ -58,5 +58,5 @@ namespace ikan {
   void ImguiAPI::EndDcocking() {
     ImGui::End();
   }
-  
+
 } // namespace ikan
