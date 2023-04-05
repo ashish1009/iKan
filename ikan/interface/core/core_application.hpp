@@ -12,6 +12,12 @@
 
 namespace ikan {
   
+  class Application;
+  
+  /// Defination API for creating application instance.
+  /// - Note: only defination is defined in core. Declaration should be at client side based on the application they want to create
+  std::unique_ptr<Application> CreateApplication();
+  
   /// This class is the base class of any application that will be running in the client side. This class is responsible for
   ///   - Creating Window for the current supported OS
   ///   - Initialize the renderer for the current renderer API
@@ -36,5 +42,5 @@ namespace ikan {
     };
     
   };
-  
+    
 } // namespace ikan

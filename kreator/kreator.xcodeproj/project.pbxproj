@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B292BB7529D16F8F00B1E678 /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B292BB7429D16F8F00B1E678 /* entry_point.cpp */; };
 		B292C0F329D1D7C400B1E678 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B292C0F229D1D7C400B1E678 /* libikan.a */; };
+		B2BEC79729DD81D4008D3DCB /* kreator_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC79529DD81D4008D3DCB /* kreator_application.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,7 @@
 		B292BB7429D16F8F00B1E678 /* entry_point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entry_point.cpp; sourceTree = "<group>"; };
 		B292C0F029D1D58700B1E678 /* prefix_headers.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_headers.pch; sourceTree = "<group>"; };
 		B292C0F229D1D7C400B1E678 /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2BEC79529DD81D4008D3DCB /* kreator_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = kreator_application.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +52,7 @@
 			children = (
 				B292C0F029D1D58700B1E678 /* prefix_headers.pch */,
 				B292BB7329D16F8F00B1E678 /* entry_point */,
+				B2BEC79429DD81C2008D3DCB /* application */,
 				B2BEC78529DD7A92008D3DCB /* editor */,
 				B292BB7229D16F8F00B1E678 /* Products */,
 				B292C0F129D1D7C400B1E678 /* Frameworks */,
@@ -104,6 +107,14 @@
 			children = (
 			);
 			path = ini;
+			sourceTree = "<group>";
+		};
+		B2BEC79429DD81C2008D3DCB /* application */ = {
+			isa = PBXGroup;
+			children = (
+				B2BEC79529DD81D4008D3DCB /* kreator_application.cpp */,
+			);
+			path = application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B292BB7529D16F8F00B1E678 /* entry_point.cpp in Sources */,
+				B2BEC79729DD81D4008D3DCB /* kreator_application.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,6 +24,7 @@
 		B2BEC76129DD6802008D3DCB /* libimgui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B228FC9229DB133100455666 /* libimgui.a */; };
 		B2BEC78A29DD7C50008D3DCB /* core_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC78829DD7C50008D3DCB /* core_application.cpp */; };
 		B2BEC78B29DD7C50008D3DCB /* core_application.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BEC78929DD7C50008D3DCB /* core_application.hpp */; };
+		B2BEC79B29DD83DC008D3DCB /* layer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BEC79929DD83DC008D3DCB /* layer.hpp */; };
 		B2F91E0E29D70FA400860306 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F91E0C29D70FA400860306 /* renderer.cpp */; };
 		B2F91E0F29D70FA400860306 /* renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F91E0D29D70FA400860306 /* renderer.hpp */; };
 		B2F91E1529D713EF00860306 /* open_gl_renderer_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F91E1329D713EF00860306 /* open_gl_renderer_api.cpp */; };
@@ -85,6 +86,7 @@
 		B2BEC78929DD7C50008D3DCB /* core_application.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = core_application.hpp; sourceTree = "<group>"; };
 		B2BEC78F29DD7F73008D3DCB /* core_logger_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_logger_api.h; sourceTree = "<group>"; };
 		B2BEC79329DD800E008D3DCB /* core_asserts_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_asserts_api.h; sourceTree = "<group>"; };
+		B2BEC79929DD83DC008D3DCB /* layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = layer.hpp; sourceTree = "<group>"; };
 		B2C26FC029D2A32400EC1078 /* asserts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = asserts.h; sourceTree = "<group>"; };
 		B2F91E0C29D70FA400860306 /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
 		B2F91E0D29D70FA400860306 /* renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				B2394A1C29D8107A00D782E5 /* key_codes.h */,
 				B2394A2029D810CB00D782E5 /* mouse_codes.h */,
 				B2394A2729D81BDD00D782E5 /* window.hpp */,
+				B2BEC79929DD83DC008D3DCB /* layer.hpp */,
 			);
 			path = core;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2394A2929D81BDD00D782E5 /* window.hpp in Headers */,
+				B2BEC79B29DD83DC008D3DCB /* layer.hpp in Headers */,
 				B2F91E1A29D713FA00860306 /* renderer_api.hpp in Headers */,
 				B2BEC78B29DD7C50008D3DCB /* core_application.hpp in Headers */,
 				B2F91E1629D713EF00860306 /* open_gl_renderer_api.hpp in Headers */,
