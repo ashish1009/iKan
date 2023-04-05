@@ -273,6 +273,7 @@
 				B2F91E0C29D70FA400860306 /* renderer.cpp */,
 				B2BEC7C429DDAA49008D3DCB /* renderer_stats.cpp */,
 				B2BEC7C829DDACAD008D3DCB /* batch_2d_renderer.cpp */,
+				B2BEC7D329DDC301008D3DCB /* text_renderer.cpp */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -346,7 +347,6 @@
 				B2F91E1829D713FA00860306 /* renderer_api.hpp */,
 				B2BEC7C029DDAA04008D3DCB /* renderer_stats.hpp */,
 				B2BEC7C929DDACAD008D3DCB /* batch_2d_renderer.hpp */,
-				B2BEC7D329DDC301008D3DCB /* text_renderer.cpp */,
 				B2BEC7D429DDC301008D3DCB /* text_renderer.hpp */,
 			);
 			path = utils;

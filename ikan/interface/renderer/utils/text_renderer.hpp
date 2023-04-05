@@ -11,6 +11,10 @@ namespace ikan {
   
   class TextRenderer {
   public:
+    /// This function initializes the Text renderer. Create All buffers needed to store Data (Both Renderer and CPU)
+    static void Initialise();
+    /// This function Shuts down on Text the Batch Renderer. Delete all the allocated Data
+    static void Shutdown();
   };
   
 } // namespace ikan

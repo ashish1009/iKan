@@ -9,4 +9,12 @@
 
 namespace ikan {
   
+  void TextRenderer::Initialise() {
+    
+  }
+  
+  void TextRenderer::Shutdown() {
+    
+  }
+  
 } // namespace ikan

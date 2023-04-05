@@ -9,4 +9,12 @@
 
 namespace ikan {
   
+  void Batch2DRenderer::Initialise(uint32_t max_quads, uint32_t max_cirlces, uint32_t max_lines) {
+    
+  }
+  
+  void Batch2DRenderer::Shutdown() {
+    
+  }
+  
 } // namespace ikan

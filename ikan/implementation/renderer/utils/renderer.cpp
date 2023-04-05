@@ -6,6 +6,8 @@
 //
 
 #include "renderer.hpp"
+#include "batch_2d_renderer.hpp"
+#include "text_renderer.hpp"
 
 namespace ikan {
   
@@ -43,9 +45,15 @@ namespace ikan {
   }
   void Renderer::Initialize() {
     renderer_data_->renderer_api_instance = RendererAPI::Create();
+    
+    Batch2DRenderer::Initialise(100, 100, 100);
+    TextRenderer::Initialise();
   }
   void Renderer::Shutdown() {
     renderer_data_.reset();
+    
+    Batch2DRenderer::Shutdown();
+    TextRenderer::Shutdown();
   }
   
   // -------------------------------------------------------------------------
