@@ -89,6 +89,35 @@ int main() {
 
     while (window_->IsActive()) {
       window_->Update();
+      
+      {
+        {
+          ImGui_ImplOpenGL3_NewFrame();
+          ImGui_ImplGlfw_NewFrame();
+          
+          ImGui::SaveIniSettingsToDisk("testing.ini");
+          
+          ImGui::NewFrame();
+        }
+        
+        {
+          ImGui::ShowDemoWindow();
+        }
+        
+        {
+          ImGuiIO& io      = ImGui::GetIO();
+          io.DisplaySize   = ImVec2((float)window_->GetWidth(), (float)window_->GetHeight());
+          
+          ImGui::Render();
+          ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+          if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
+            GLFWwindow* backup_current_context = glfwGetCurrentContext();
+            ImGui::UpdatePlatformWindows();
+            ImGui::RenderPlatformWindowsDefault();
+            glfwMakeContextCurrent(backup_current_context);
+          }
+        }
+      }
     }
     
     IK_CORE_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
