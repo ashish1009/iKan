@@ -62,4 +62,14 @@ namespace ikan {
     MAKE_PURE_STATIC(Renderer);
   };
   
+  namespace renderer_utils {
+    
+#ifdef IK_DEBUG_FEATURE
+    /// This function returns the Renderer API name in string
+    /// - Parameter api: renderer API in enum format
+    std::string GetRendererApiName(Renderer::Api api);
+#endif
+    
+  } // namespace renderer_utils
+
 } // namespace ikan

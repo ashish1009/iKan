@@ -35,23 +35,43 @@ int main() {
   IK_INFO("Core Entry Point", "  Client | {0}", ikan::Logger::GetLogLevelStringFromSpdLevel(spd_client_log_level));
 #endif
   
-  ikan::Window::Specification window_specification;
+  ikan::Application::Specification application_spec;
   
-  window_specification.title = "Untitled Window";
-  window_specification.width = 2100;
-  window_specification.height = 900;
-  window_specification.v_sync = true;
-  window_specification.fullscreen = false;
-  window_specification.hide_titlebar = false;
+  // Platform
+  application_spec.rendering_api = ikan::Renderer::Api::OpenGl;
+  application_spec.os = ikan::OperatingSystem::Mac;
+
+  // Utils
+  application_spec.name = "Kreator Application";
+  application_spec.client_asset_path = "../../../kreator/assets/";
+  application_spec.save_ini_file_path = "../../../kreator/editor/ini/editor.ini";
+
+  // Window Specification
+  application_spec.window_specification.title = "Untitled Window";
+  application_spec.window_specification.width = 2100;
+  application_spec.window_specification.height = 900;
+  application_spec.window_specification.v_sync = true;
+  application_spec.window_specification.fullscreen = false;
+  application_spec.window_specification.hide_titlebar = false;
+
+  application_spec.resizable = true;
+  application_spec.start_maximized = false;
   
+  application_spec.Log();
+
   std::unique_ptr<ikan::Window> window_;
   {
     ikan::Renderer::CreateRendererData(ikan::Renderer::Api::OpenGl);
     
-    window_ = ikan::Window::Create(ikan::OperatingSystem::Mac, window_specification);
+    window_ = ikan::Window::Create(ikan::OperatingSystem::Mac, application_spec.window_specification);
     window_->SetEventFunction(std::bind(EventHandler, std::placeholders::_1));
     
-    ikan::DirectoryManager::SetClientAssetPath("../../../kreator/editor/assets");
+    // Decorate Window
+    window_->SetResizable(application_spec.resizable);
+    if (application_spec.start_maximized)
+      window_->Maximize();
+
+    ikan::DirectoryManager::SetClientAssetPath(application_spec.client_asset_path);
     
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
@@ -79,7 +99,7 @@ int main() {
     
     {
       ImGuiIO& io = ImGui::GetIO(); (void)io;
-      io.IniFilename = "../../../kreator/editor/ini/editor.ini";
+      io.IniFilename = application_spec.save_ini_file_path.c_str();
     }
     
     ikan::Renderer::Initialize();

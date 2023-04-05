@@ -32,6 +32,7 @@
 #include <core/events/key_event.h>
 #include <core/events/mouse_event.h>
 
+#include <core/core_application.hpp>
 #include <core/window.hpp>
 
 // Renderer Files
