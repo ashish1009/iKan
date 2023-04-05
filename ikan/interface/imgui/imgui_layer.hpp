@@ -8,6 +8,7 @@
 #pragma once
 
 #include "core/layer.hpp"
+#include "core/utils/time_step.h"
 
 namespace ikan {
   
@@ -31,7 +32,7 @@ namespace ikan {
     /// This function do nothing for now
     void RenderGui() override {}
     /// This function do nothing for now
-    void Update([[maybe_unused]] Timestep ts) override;
+    void Update([[maybe_unused]] Timestep ts) override {}
     /// This function handles all the events triggered for the imgui layer. To be called whenever an event is triggered in the window
     /// - Note: Core ikan::Application is taking care to call the HandleEvents(event) API for all Layers
     /// - Parameter event: Event (Base class) intance. Dispatch event from Event Dispatcher

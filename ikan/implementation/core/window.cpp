@@ -10,9 +10,9 @@
 
 namespace ikan {
   
-  std::unique_ptr<Window> Window::Create(OperatingSystem os, const Specification& specificaiton) {
+  std::shared_ptr<Window> Window::Create(OperatingSystem os, const Specification& specificaiton) {
     switch (os) {
-      case OperatingSystem::Mac: return std::make_unique<MacWindow>(specificaiton);
+      case OperatingSystem::Mac: return std::make_shared<MacWindow>(specificaiton);
       case OperatingSystem::None:
       default:
         IK_CORE_ASSERT(false, "Provided OS Not Suported !!!");

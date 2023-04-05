@@ -34,7 +34,7 @@ namespace ikan {
     ///   - os: Current operating system
     ///   - specificaiton: window specification
     /// - Important: Set the renderer API befiore creating the Widnow, as it is needed to creaste the Contexrt
-    static std::unique_ptr<Window> Create(OperatingSystem os, const Specification& spec);
+    static std::shared_ptr<Window> Create(OperatingSystem os, const Specification& spec);
 
     /// Default virtual destructor
     virtual ~Window() noexcept = default;
