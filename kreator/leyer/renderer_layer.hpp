@@ -15,6 +15,25 @@ namespace kreator {
   
   class RendererLayer : public Layer {
   public:
+    struct SettingWrapper {
+      std::string name;
+      bool flag = true;
+      SettingWrapper(const std::string& name, bool flag) : name(name), flag(flag) {}
+      
+      void ShowInMenu() {
+        ImguiAPI::MenuItem(name.c_str(), nullptr, flag, true, [this]() {
+          flag = (flag) ? false : true;
+        });
+      }
+      void CheckBox() {
+        PropertyGrid::CheckBox(name.c_str(), flag);
+      }
+    };
+
+    struct Setting {
+      SettingWrapper frame_rate{"Frame Rate", true};
+    };
+    
     /// Layer Default Constructor to store the name of layer
     /// - Parameter game_type: Type of game to render using this layer
     RendererLayer(GameType game_type);
@@ -41,9 +60,13 @@ namespace kreator {
   private:
     /// This function render the menue bar
     void ShowMenu();
+    /// This function renders the setting Widget
+    void ShowSettings();
 
+    // Member variables
     bool is_playing_ = false;
     std::unique_ptr<GameData> game_data_;
+    Setting setting_;
   };
   
 } // namespace kreator

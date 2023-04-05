@@ -51,5 +51,8 @@
 #include <renderer/utils/renderer.hpp>
 #include <renderer/utils/batch_2d_renderer.hpp>
 
+// Editor Files
+#include <editor/property_grid.hpp>
+
 // Imgui API
 #include <imgui/imgui_api.hpp>

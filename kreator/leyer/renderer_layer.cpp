@@ -11,6 +11,12 @@ namespace kreator {
   
 #define KREATOR_LOG(...) IK_TRACE(game_data_->GameName(), __VA_ARGS__)
   
+#define FOR_EACH_SETTING \
+  SettingWrapper* setting_data = ((SettingWrapper*)&setting_); \
+  static uint32_t loop_limit = sizeof(Setting) / sizeof(SettingWrapper); \
+  for (uint32_t setting_idx = 0; setting_idx < loop_limit; setting_idx++) \
+
+  
   RendererLayer::RendererLayer(GameType game_type) : Layer("Kreator"), game_data_(CreateGameData(game_type)) {
     KREATOR_LOG("Creating {0} Layer instance ... ", game_data_->GameName().c_str());
     
@@ -44,7 +50,8 @@ namespace kreator {
       ImguiAPI::StartDcocking();
 
       ShowMenu();
-
+      ShowSettings();
+      
       ImguiAPI::EndDcocking();
     }
   }
@@ -55,21 +62,37 @@ namespace kreator {
         ImguiAPI::Menu("Scene", false, []() {
           
         }); // Scene
+        
         ImGui::Separator();
         ImguiAPI::MenuItem("Exit", "Cmd + Q", false, true, []() {
           Application::Get().Close();
         }); // Exit
       }); // File
+      
       ImguiAPI::Menu("Property", true, []() {
         ImguiAPI::Menu("Theme", false, []() {
           
         }); // Theme
       }); // Property
       
-      ImguiAPI::Menu("Settings", false, []() {
+      ImguiAPI::Menu("Settings", true, [this]() {
+        FOR_EACH_SETTING {
+          (setting_data + setting_idx)->ShowInMenu();
+        }
       }); // Settings
+      
       ImGui::EndMenuBar(); // ImGui::BeginMenuBar()
     } // if (ImGui::BeginMenuBar())
+  }
+  
+  void RendererLayer::ShowSettings() {
+    ImGui::Begin("Settings");
+
+    FOR_EACH_SETTING {
+      (setting_data + setting_idx)->CheckBox();
+    }
+
+    ImGui::End();
   }
   
 } // namespace kreator
