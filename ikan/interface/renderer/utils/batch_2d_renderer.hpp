@@ -7,8 +7,6 @@
 
 #pragma once
 
-#include "core/math/aabb.hpp"
-
 namespace ikan {
   
   class BatchRenderer {

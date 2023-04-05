@@ -25,6 +25,7 @@ Add the following header search paths
 ${PROJECT_DIR}/../ikan/interface
 ${PROJECT_DIR}/../ikan/vendors/spdlog/include
 ${PROJECT_DIR}/../ikan/vendors/imgui/imgui
+${PROJECT_DIR}/../ikan/vendors/glm
 
 ### Library Search Paths
 
