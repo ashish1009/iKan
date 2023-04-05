@@ -30,9 +30,9 @@ namespace ikan {
     
     /// This function prints the event detail
     void Log() const override {
-      IK_CORE_TRACE(LogModule::Event, "Window Resize Event tiggered ");
-      IK_CORE_TRACE(LogModule::Event, "  Height | {0}", height_);
-      IK_CORE_TRACE(LogModule::Event, "  Width  | {0}", width_);
+      IK_TRACE(LogModule::Event, "Window Resize Event tiggered ");
+      IK_TRACE(LogModule::Event, "  Height | {0}", height_);
+      IK_TRACE(LogModule::Event, "  Width  | {0}", width_);
     }
     
     EVENT_CLASS_TYPE(WindowResize);
@@ -50,7 +50,7 @@ namespace ikan {
     
     /// This function prints the event detail
     void Log() const override {
-      IK_CORE_TRACE(LogModule::Event, "Window Close Event triggered ");
+      IK_TRACE(LogModule::Event, "Window Close Event triggered ");
     }
     
     EVENT_CLASS_TYPE(WindowClose);

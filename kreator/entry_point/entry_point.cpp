@@ -104,15 +104,15 @@ int main() {
     
     ikan::Renderer::Initialize();
 
-    IK_CORE_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
-    IK_CORE_INFO(ikan::LogModule::None, "                     Core Application Initialized                         ");
-    IK_CORE_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
+    IK_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
+    IK_INFO(ikan::LogModule::None, "                     Core Application Initialized                         ");
+    IK_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
   }
 
   {
-    IK_CORE_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
-    IK_CORE_INFO(ikan::LogModule::None, "                          Starting Game Loop                              ");
-    IK_CORE_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
+    IK_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
+    IK_INFO(ikan::LogModule::None, "                          Starting Game Loop                              ");
+    IK_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
 
     while (window_->IsActive()) {
       window_->Update();
@@ -147,9 +147,9 @@ int main() {
       }
     }
     
-    IK_CORE_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
-    IK_CORE_INFO(ikan::LogModule::None, "                            Ending Game Loop                              ");
-    IK_CORE_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
+    IK_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
+    IK_INFO(ikan::LogModule::None, "                            Ending Game Loop                              ");
+    IK_INFO(ikan::LogModule::None, "--------------------------------------------------------------------------");
   }
   {
     ikan::Renderer::Shutdown();

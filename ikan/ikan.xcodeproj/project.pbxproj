@@ -83,6 +83,8 @@
 		B2BEC77E29DD7590008D3DCB /* directory_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = directory_manager.h; sourceTree = "<group>"; };
 		B2BEC78829DD7C50008D3DCB /* core_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = core_application.cpp; sourceTree = "<group>"; };
 		B2BEC78929DD7C50008D3DCB /* core_application.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = core_application.hpp; sourceTree = "<group>"; };
+		B2BEC78F29DD7F73008D3DCB /* core_logger_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_logger_api.h; sourceTree = "<group>"; };
+		B2BEC79329DD800E008D3DCB /* core_asserts_api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = core_asserts_api.h; sourceTree = "<group>"; };
 		B2C26FC029D2A32400EC1078 /* asserts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = asserts.h; sourceTree = "<group>"; };
 		B2F91E0C29D70FA400860306 /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
 		B2F91E0D29D70FA400860306 /* renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 		B2BEC4E829DD6609008D3DCB /* debug */ = {
 			isa = PBXGroup;
 			children = (
+				B2BEC78F29DD7F73008D3DCB /* core_logger_api.h */,
 				B292C0E529D1CF7100B1E678 /* logger.cpp */,
 			);
 			path = debug;
@@ -274,6 +277,7 @@
 		B2BEC77A29DD751F008D3DCB /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				B2BEC79329DD800E008D3DCB /* core_asserts_api.h */,
 			);
 			path = utils;
 			sourceTree = "<group>";

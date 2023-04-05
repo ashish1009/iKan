@@ -28,9 +28,9 @@ namespace ikan {
     float GetY() const { return mouse_y_; }
     /// This function prints the event detail
     void Log() const override {
-      IK_CORE_TRACE(LogModule::Event, "Mouse Move Event tiggered ");
-      IK_CORE_TRACE(LogModule::Event, "  X | {0}", mouse_x_);
-      IK_CORE_TRACE(LogModule::Event, "  Y | {0}", mouse_y_);
+      IK_TRACE(LogModule::Event, "Mouse Move Event tiggered ");
+      IK_TRACE(LogModule::Event, "  X | {0}", mouse_x_);
+      IK_TRACE(LogModule::Event, "  Y | {0}", mouse_y_);
     }
     EVENT_CLASS_TYPE(MouseMoved);
     EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
@@ -57,9 +57,9 @@ namespace ikan {
     
     /// This function prints the event detail
     void Log() const override {
-      IK_CORE_TRACE(LogModule::Event, "Mouse Scroll Event tiggered ");
-      IK_CORE_TRACE(LogModule::Event, "  X Offset | {0}", x_offset_);
-      IK_CORE_TRACE(LogModule::Event, "  Y Offset | {0}", y_offset_);
+      IK_TRACE(LogModule::Event, "Mouse Scroll Event tiggered ");
+      IK_TRACE(LogModule::Event, "  X Offset | {0}", x_offset_);
+      IK_TRACE(LogModule::Event, "  Y Offset | {0}", y_offset_);
     }
     EVENT_CLASS_TYPE(MouseScrolled);
     EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
@@ -92,8 +92,8 @@ namespace ikan {
     MouseButtonPressedEvent(MouseButton button) : MouseButtonEvent(button) {}
     /// This function prints the event detail
     void Log() const override {
-      IK_CORE_TRACE(LogModule::Event, "Mosue Buttom Press Event tiggered ");
-      IK_CORE_TRACE(LogModule::Event, "  Button code | {0}", (uint32_t)button_);
+      IK_TRACE(LogModule::Event, "Mosue Buttom Press Event tiggered ");
+      IK_TRACE(LogModule::Event, "  Button code | {0}", (uint32_t)button_);
     }
     EVENT_CLASS_TYPE(MouseButtonPressed);
   };
@@ -108,8 +108,8 @@ namespace ikan {
     MouseButtonReleasedEvent(MouseButton button) : MouseButtonEvent(button) {}
     /// This function prints the event detail
     void Log() const override {
-      IK_CORE_TRACE(LogModule::Event, "Mouse Button Release Event tiggered ");
-      IK_CORE_TRACE(LogModule::Event, "  Button code | {0}", (uint32_t)button_);
+      IK_TRACE(LogModule::Event, "Mouse Button Release Event tiggered ");
+      IK_TRACE(LogModule::Event, "  Button code | {0}", (uint32_t)button_);
     }
     EVENT_CLASS_TYPE(MouseButtonReleased);
   };

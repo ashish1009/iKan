@@ -22,8 +22,10 @@
 
 // Core file
 #include "core/debug/logger.hpp"
+#include "core/debug/core_logger_api.h"
 
 #include "core/utils/asserts.h"
+#include "core/utils/core_asserts_api.h"
 #include "core/utils/directory_manager.h"
 
 // Imgui files

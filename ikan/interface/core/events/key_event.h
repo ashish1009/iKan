@@ -43,9 +43,9 @@ namespace ikan {
     
     /// This function prints the event detail
     void Log() const override {
-      IK_CORE_TRACE(LogModule::Event, "Key Press Event tiggered ");
-      IK_CORE_TRACE(LogModule::Event, "  Key code | {0}", (uint32_t)key_code_);
-      IK_CORE_TRACE(LogModule::Event, "  Repeated | {0}", repeated_count);
+      IK_TRACE(LogModule::Event, "Key Press Event tiggered ");
+      IK_TRACE(LogModule::Event, "  Key code | {0}", (uint32_t)key_code_);
+      IK_TRACE(LogModule::Event, "  Repeated | {0}", repeated_count);
     }
     EVENT_CLASS_TYPE(KeyPressed);
     
@@ -65,8 +65,8 @@ namespace ikan {
     
     /// This function prints the event detail
     void Log() const override {
-      IK_CORE_TRACE(LogModule::Event, "Key Release Event tiggered ");
-      IK_CORE_TRACE(LogModule::Event, "  Key code | {0}", (uint32_t)key_code_);
+      IK_TRACE(LogModule::Event, "Key Release Event tiggered ");
+      IK_TRACE(LogModule::Event, "  Key code | {0}", (uint32_t)key_code_);
     }
     
     EVENT_CLASS_TYPE(KeyReleased);
@@ -84,8 +84,8 @@ namespace ikan {
     
     /// This function prints the event detail
     void Log() const override {
-      IK_CORE_TRACE(LogModule::Event, "Key Type Event tiggered ");
-      IK_CORE_TRACE(LogModule::Event, "  Key code | {0}", (uint32_t)key_code_);
+      IK_TRACE(LogModule::Event, "Key Type Event tiggered ");
+      IK_TRACE(LogModule::Event, "  Key code | {0}", (uint32_t)key_code_);
     }
     EVENT_CLASS_TYPE(KeyTyped);
   };
