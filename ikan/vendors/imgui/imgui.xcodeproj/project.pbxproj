@@ -6,8 +6,32 @@
 	objectVersion = 56;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B2BEC68829DD67BC008D3DCB /* imgui.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BEC50129DD67BC008D3DCB /* imgui.h */; };
+		B2BEC68929DD67BC008D3DCB /* imstb_textedit.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BEC50229DD67BC008D3DCB /* imstb_textedit.h */; };
+		B2BEC68A29DD67BC008D3DCB /* imconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BEC50329DD67BC008D3DCB /* imconfig.h */; };
+		B2BEC68B29DD67BC008D3DCB /* imgui_widgets.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC50429DD67BC008D3DCB /* imgui_widgets.cpp */; };
+		B2BEC68C29DD67BC008D3DCB /* imstb_truetype.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BEC50529DD67BC008D3DCB /* imstb_truetype.h */; };
+		B2BEC6C229DD67BC008D3DCB /* imgui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC55829DD67BC008D3DCB /* imgui.cpp */; };
+		B2BEC75D29DD67BC008D3DCB /* imgui_internal.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BEC66E29DD67BC008D3DCB /* imgui_internal.h */; };
+		B2BEC75E29DD67BC008D3DCB /* imstb_rectpack.h in Headers */ = {isa = PBXBuildFile; fileRef = B2BEC67529DD67BC008D3DCB /* imstb_rectpack.h */; };
+		B2BEC75F29DD67BC008D3DCB /* imgui_demo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC67729DD67BC008D3DCB /* imgui_demo.cpp */; };
+		B2BEC76029DD67BC008D3DCB /* imgui_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC67829DD67BC008D3DCB /* imgui_draw.cpp */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		B228FC7F29DB133000455666 /* libimgui.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libimgui.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2BEC50129DD67BC008D3DCB /* imgui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui.h; sourceTree = "<group>"; };
+		B2BEC50229DD67BC008D3DCB /* imstb_textedit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imstb_textedit.h; sourceTree = "<group>"; };
+		B2BEC50329DD67BC008D3DCB /* imconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imconfig.h; sourceTree = "<group>"; };
+		B2BEC50429DD67BC008D3DCB /* imgui_widgets.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_widgets.cpp; sourceTree = "<group>"; };
+		B2BEC50529DD67BC008D3DCB /* imstb_truetype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imstb_truetype.h; sourceTree = "<group>"; };
+		B2BEC55829DD67BC008D3DCB /* imgui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui.cpp; sourceTree = "<group>"; };
+		B2BEC66E29DD67BC008D3DCB /* imgui_internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imgui_internal.h; sourceTree = "<group>"; };
+		B2BEC67529DD67BC008D3DCB /* imstb_rectpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imstb_rectpack.h; sourceTree = "<group>"; };
+		B2BEC67629DD67BC008D3DCB /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		B2BEC67729DD67BC008D3DCB /* imgui_demo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_demo.cpp; sourceTree = "<group>"; };
+		B2BEC67829DD67BC008D3DCB /* imgui_draw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_draw.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -24,6 +48,7 @@
 		B228FC7629DB133000455666 = {
 			isa = PBXGroup;
 			children = (
+				B2BEC4E929DD67BC008D3DCB /* imgui */,
 				B228FC8029DB133000455666 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -36,6 +61,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		B2BEC4E929DD67BC008D3DCB /* imgui */ = {
+			isa = PBXGroup;
+			children = (
+				B2BEC67629DD67BC008D3DCB /* LICENSE.txt */,
+				B2BEC50129DD67BC008D3DCB /* imgui.h */,
+				B2BEC50229DD67BC008D3DCB /* imstb_textedit.h */,
+				B2BEC50329DD67BC008D3DCB /* imconfig.h */,
+				B2BEC50429DD67BC008D3DCB /* imgui_widgets.cpp */,
+				B2BEC50529DD67BC008D3DCB /* imstb_truetype.h */,
+				B2BEC55829DD67BC008D3DCB /* imgui.cpp */,
+				B2BEC66E29DD67BC008D3DCB /* imgui_internal.h */,
+				B2BEC67529DD67BC008D3DCB /* imstb_rectpack.h */,
+				B2BEC67729DD67BC008D3DCB /* imgui_demo.cpp */,
+				B2BEC67829DD67BC008D3DCB /* imgui_draw.cpp */,
+			);
+			path = imgui;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -43,6 +86,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2BEC68829DD67BC008D3DCB /* imgui.h in Headers */,
+				B2BEC75D29DD67BC008D3DCB /* imgui_internal.h in Headers */,
+				B2BEC68929DD67BC008D3DCB /* imstb_textedit.h in Headers */,
+				B2BEC75E29DD67BC008D3DCB /* imstb_rectpack.h in Headers */,
+				B2BEC68A29DD67BC008D3DCB /* imconfig.h in Headers */,
+				B2BEC68C29DD67BC008D3DCB /* imstb_truetype.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +152,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2BEC76029DD67BC008D3DCB /* imgui_draw.cpp in Sources */,
+				B2BEC68B29DD67BC008D3DCB /* imgui_widgets.cpp in Sources */,
+				B2BEC75F29DD67BC008D3DCB /* imgui_demo.cpp in Sources */,
+				B2BEC6C229DD67BC008D3DCB /* imgui.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +279,13 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/imgui/freetype/lib",
+					"$(PROJECT_DIR)/imgui/SDL/lib",
+					"$(PROJECT_DIR)/imgui/examples/libs/glfw/lib-vc2010-64",
+					"$(PROJECT_DIR)/imgui/examples/libs/glfw/lib-vc2010-32",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -239,6 +299,13 @@
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/imgui/freetype/lib",
+					"$(PROJECT_DIR)/imgui/SDL/lib",
+					"$(PROJECT_DIR)/imgui/examples/libs/glfw/lib-vc2010-64",
+					"$(PROJECT_DIR)/imgui/examples/libs/glfw/lib-vc2010-32",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

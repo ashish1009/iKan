@@ -21,6 +21,7 @@
 		B292C0E829D1CF7100B1E678 /* logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E629D1CF7100B1E678 /* logger.hpp */; };
 		B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E929D1D1BC00B1E678 /* prefix_headers.pch */; };
 		B292C0EF29D1D47000B1E678 /* ikan_headers.h in Headers */ = {isa = PBXBuildFile; fileRef = B292C0EE29D1D47000B1E678 /* ikan_headers.h */; };
+		B2BEC76129DD6802008D3DCB /* libimgui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B228FC9229DB133100455666 /* libimgui.a */; };
 		B2F91E0E29D70FA400860306 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F91E0C29D70FA400860306 /* renderer.cpp */; };
 		B2F91E0F29D70FA400860306 /* renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F91E0D29D70FA400860306 /* renderer.hpp */; };
 		B2F91E1529D713EF00860306 /* open_gl_renderer_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F91E1329D713EF00860306 /* open_gl_renderer_api.cpp */; };
@@ -93,6 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2BEC76129DD6802008D3DCB /* libimgui.a in Frameworks */,
 				B2394A3429D879B200D782E5 /* libglfw.a in Frameworks */,
 				B2F91E4629D71AC100860306 /* libopen_gl.a in Frameworks */,
 			);
