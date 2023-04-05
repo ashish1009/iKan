@@ -51,6 +51,8 @@ int main() {
     window_ = ikan::Window::Create(ikan::OperatingSystem::Mac, window_specification);
     window_->SetEventFunction(std::bind(EventHandler, std::placeholders::_1));
     
+    ikan::DirectoryManager::SetClientAssetPath("../../../kreator/editor/assets");
+    
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
     ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -74,6 +76,11 @@ int main() {
     // Setup Platform/Renderer bindings
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 410");
+    
+    {
+      ImGuiIO& io = ImGui::GetIO(); (void)io;
+      io.IniFilename = "../../../kreator/editor/ini/editor.ini";
+    }
     
     ikan::Renderer::Initialize();
 

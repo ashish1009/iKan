@@ -12,10 +12,10 @@
 namespace ikan {
   
 /// This enum stores the moule names of ikan Logs (Holds only ikan engine log module names)
-#define LogModule(f)          \
-  f(None)                     \
-  f(Event)                    \
-  f(Window)                   \
+#define LogModule(f) \
+  f(None) \
+  f(Event) \
+  f(Window) f(DirectoryManager) \
   f(Renderer) f(GraphicsContext) \
   
 CreateEnum(LogModule);
@@ -45,7 +45,6 @@ CreateEnum(LogModule);
     ///   where :
     ///   - %T : Time stamp as hh:mm:ss
     ///   - %e : Time stamp in milliseconds
-    ///   - %f : Time stamp in microseconds
     ///   - %n : Logger Type (core or client) (-4 is width reserved for the same)
     /// - Parameters:
     ///   - core_level: Core log level

@@ -25,6 +25,7 @@
 #include <core/debug/logger.hpp>
 
 #include <core/utils/asserts.h>
+#include <core/utils/directory_manager.h>
 
 #include <core/events/event.h>
 #include <core/events/application_event.h>

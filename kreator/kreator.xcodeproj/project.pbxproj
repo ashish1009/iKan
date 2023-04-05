@@ -50,6 +50,7 @@
 			children = (
 				B292C0F029D1D58700B1E678 /* prefix_headers.pch */,
 				B292BB7329D16F8F00B1E678 /* entry_point */,
+				B2BEC78529DD7A92008D3DCB /* editor */,
 				B292BB7229D16F8F00B1E678 /* Products */,
 				B292C0F129D1D7C400B1E678 /* Frameworks */,
 			);
@@ -80,6 +81,29 @@
 				B292C0F229D1D7C400B1E678 /* libikan.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B2BEC78529DD7A92008D3DCB /* editor */ = {
+			isa = PBXGroup;
+			children = (
+				B2BEC78729DD7AA9008D3DCB /* ini */,
+				B2BEC78629DD7AA0008D3DCB /* assets */,
+			);
+			path = editor;
+			sourceTree = "<group>";
+		};
+		B2BEC78629DD7AA0008D3DCB /* assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		B2BEC78729DD7AA9008D3DCB /* ini */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ini;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
