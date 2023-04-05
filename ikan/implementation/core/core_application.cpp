@@ -6,6 +6,7 @@
 //
 
 #include "core_application.hpp"
+#include "renderer_stats.hpp"
 
 namespace ikan {
   
@@ -97,6 +98,9 @@ namespace ikan {
       
       // Window update each frame
       window_->Update();
+      
+      // Reset Statistics each frame
+      RendererStatistics::Get().ResetEachFrame();
       
       // Updating all the attached layer
       for (auto& layer : layer_stack_)
