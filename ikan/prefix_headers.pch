@@ -29,6 +29,7 @@
 #include "core/utils/core_asserts_api.h"
 #include "core/utils/directory_manager.h"
 #include "core/utils/buffers.hpp"
+#include "core/utils/string_utils.hpp"
 
 // Imgui files
 #include <imgui.h>
