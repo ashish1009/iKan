@@ -14,8 +14,8 @@
             filePath = "ikan/implementation/core/debug/dump_table.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "Table::AddColumn(cols)"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,9 +30,9 @@
             filePath = "ikan/implementation/core/debug/dump_table.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "Table::Dump(module_name)"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "Table::Dump(level, module_name)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -46,25 +46,9 @@
             filePath = "ikan/implementation/core/debug/dump_table.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "Table::Dump(module_name)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E91011F7-EEE8-47DF-B39A-E85DBCBE8FEC"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "207"
-            endingLineNumber = "207"
-            landmarkName = "Batch2DRenderer::AddQuadData(max_element)"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "Table::Dump(level, module_name)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -26,7 +26,7 @@ namespace ikan {
 
     void AddRow(const std::vector<std::string>& rows);
     void AddColumn(const std::vector<std::string>& cols);
-    void Dump(const std::string& module_name = "");
+    void Dump(Logger::Level level, const std::string& module_name = "");
     
     std::vector<TableColumn> table_entries;
     uint32_t num_cols = 0;

@@ -95,9 +95,13 @@ namespace ikan {
                  vertex_buffers->GetRendererID(), renderer_id_, vertex_buffers_.size());
     PIPELINE_LOG("  Vertex Attributes attched to Pipeline (ID: {0}) with Stride | {1} ", renderer_id_, layout.GetStride());
     
+    Table table(4);
+    table.AddRow({"Name", "Type", "Offset", "Size"});
+    
     for (const auto& element : layout.GetElements()) {
-      IK_CORE_DEBUG(LogModule::Pipeline, "    {0} {1} at offset {2}, size {3}",
-                    ShaderDataTypeToString(element.type), element.name, element.offset, element.size);
+      table.AddRow({element.name, ShaderDataTypeToString(element.type), std::to_string(element.offset), std::to_string(element.size)});
+//      IK_CORE_DEBUG(LogModule::Pipeline, "    {0} {1} at offset {2}, size {3}",
+//                    ShaderDataTypeToString(element.type), element.name, element.offset, element.size);
 
       switch (element.type) {
         case ShaderDataType::Int:
@@ -139,6 +143,8 @@ namespace ikan {
         }
       } // switch (element.Type)
     } // for (const auto& element : layout.GetElements())
+    
+    table.Dump(Logger::Level::Trace, "Pipeline");
   }
   
 } // namespace ikan
