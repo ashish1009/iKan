@@ -6,6 +6,7 @@
 //
 
 #include "batch_2d_renderer.hpp"
+#include "renderer/utils/renderer_stats.hpp"
 #include "renderer/graphics/pipeline.hpp"
 #include "renderer/graphics/renderer_buffer.hpp"
 #include "renderer/graphics/shader.hpp"
@@ -71,6 +72,9 @@ namespace ikan {
     /// Slot 0 is reserved for white texture (No Image only color)
     uint32_t texture_slot_index = 1; // 0 = white texture
 
+    /// Basic vertex of quad (Vertex of circle is taken as Quad only)
+    glm::vec4 vertex_base_position[4];
+
     void Initialise(uint32_t max_elements) {
       CommonInit(max_elements, VertexForSingleElement);
       max_indices = max_elements * IndicesForSingleElement;
@@ -80,6 +84,12 @@ namespace ikan {
         uint32_t whiteTextureData = 0xffffffff;
         texture_slots[0] = Texture::Create(1, 1, &whiteTextureData, sizeof(uint32_t));
       }
+      
+      // Setting basic Vertex point of quad
+      vertex_base_position[0] = { -0.5f, -0.5f, 0.0f, 1.0f };
+      vertex_base_position[1] = {  0.5f, -0.5f, 0.0f, 1.0f };
+      vertex_base_position[2] = {  0.5f,  0.5f, 0.0f, 1.0f };
+      vertex_base_position[3] = { -0.5f,  0.5f, 0.0f, 1.0f };
     }
     
     virtual ~Shape2DCommonData() {
@@ -225,6 +235,8 @@ namespace ikan {
     
     // Setup the Quad Shader
     data->shader = Renderer::GetShader(DM::CoreAsset("shaders/batch_quad_shader.glsl"));
+    
+    RendererStatistics::Get().stats_2d_.max_quads = data->max_element;
   }
   
   void Batch2DRenderer::AddCircleData(uint32_t max_element) {
@@ -283,6 +295,8 @@ namespace ikan {
     
     // Setup the Quad Shader
     data->shader = Renderer::GetShader(DM::CoreAsset("shaders/batch_circle_shader.glsl"));
+    
+    RendererStatistics::Get().stats_2d_.max_circles = data->max_element;
   }
   
   void Batch2DRenderer::AddLineData(uint32_t max_element) {
@@ -314,6 +328,8 @@ namespace ikan {
     
     // Setup the Quad Shader
     data->shader = Renderer::GetShader(DM::CoreAsset("shaders/batch_line_shader.glsl"));
+    
+    RendererStatistics::Get().stats_2d_.max_lines = data->max_element;
   }
   
 } // namespace ikan

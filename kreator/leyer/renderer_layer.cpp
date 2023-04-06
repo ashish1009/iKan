@@ -19,9 +19,6 @@ namespace kreator {
   
   RendererLayer::RendererLayer(GameType game_type) : Layer("Kreator"), game_data_(CreateGameData(game_type)) {
     KREATOR_LOG("Creating {0} Layer instance ... ", game_data_->GameName().c_str());
-    
-    Batch2DRenderer::AddQuadData(100);
-    Batch2DRenderer::AddQuadData(100);
   }
   
   RendererLayer::~RendererLayer() {
