@@ -99,7 +99,18 @@ namespace ikan {
   }
   
   OpenGLShader::~OpenGLShader() {
+    IK_CORE_WARN(LogModule::Shader, "Destroying Open GL Shader ...");
+    IK_CORE_WARN(LogModule::Shader, "  Renderer ID {0} ", renderer_id_);
+    IK_CORE_WARN(LogModule::Shader, "  Name        {0} ", name_);
+    IK_CORE_WARN(LogModule::Shader, "  File Path   {0} ", asset_path_);
     
+    for (auto& structure : structs_)
+      delete structure;
+    
+    for (auto& resource : resources_)
+      delete resource;
+    
+    IDManager::RemoveShaderId(renderer_id_);
   }
   
   void OpenGLShader::PreprocessFile(const std::string &source_string) {

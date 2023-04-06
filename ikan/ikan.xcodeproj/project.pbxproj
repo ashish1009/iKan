@@ -153,7 +153,6 @@
 		B2F70CD629DEE4FD003163BA /* shader_uniforms.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader_uniforms.hpp; sourceTree = "<group>"; };
 		B2F70CD929DEE5B6003163BA /* open_gl_shader_uniforms.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_shader_uniforms.cpp; sourceTree = "<group>"; };
 		B2F70CDA29DEE5B6003163BA /* open_gl_shader_uniforms.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_shader_uniforms.hpp; sourceTree = "<group>"; };
-		B2F70CDF29DEE7C1003163BA /* pbr_static_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = pbr_static_shader.glsl; sourceTree = "<group>"; };
 		B2F70CE029DEE841003163BA /* shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
 		B2F70CE129DEE841003163BA /* shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
 		B2F70CE529DEE94A003163BA /* buffers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = buffers.hpp; sourceTree = "<group>"; };
@@ -161,6 +160,9 @@
 		B2F70CE929DEEBAD003163BA /* string_utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = string_utils.hpp; sourceTree = "<group>"; };
 		B2F70CEC29DEEC46003163BA /* open_gl_shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_shader.cpp; sourceTree = "<group>"; wrapsLines = 1; };
 		B2F70CED29DEEC46003163BA /* open_gl_shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_shader.hpp; sourceTree = "<group>"; };
+		B2F70CF729DF0A24003163BA /* batch_circle_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = batch_circle_shader.glsl; sourceTree = "<group>"; };
+		B2F70CF829DF0A24003163BA /* batch_line_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = batch_line_shader.glsl; sourceTree = "<group>"; };
+		B2F70CF929DF0A24003163BA /* batch_quad_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = batch_quad_shader.glsl; sourceTree = "<group>"; };
 		B2F91E0C29D70FA400860306 /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
 		B2F91E0D29D70FA400860306 /* renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
 		B2F91E1329D713EF00860306 /* open_gl_renderer_api.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_renderer_api.cpp; sourceTree = "<group>"; };
@@ -423,7 +425,9 @@
 		B2F70CDE29DEE7C1003163BA /* shaders */ = {
 			isa = PBXGroup;
 			children = (
-				B2F70CDF29DEE7C1003163BA /* pbr_static_shader.glsl */,
+				B2F70CF729DF0A24003163BA /* batch_circle_shader.glsl */,
+				B2F70CF829DF0A24003163BA /* batch_line_shader.glsl */,
+				B2F70CF929DF0A24003163BA /* batch_quad_shader.glsl */,
 			);
 			path = shaders;
 			sourceTree = "<group>";

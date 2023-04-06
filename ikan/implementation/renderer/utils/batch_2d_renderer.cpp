@@ -204,7 +204,7 @@ namespace ikan {
     delete[] quad_indices;
     
     // Setup the Quad Shader
-    quad_data_->shader = Renderer::GetShader(DM::CoreAsset("shaders/pbr_static_shader.glsl"));
+    data->shader = Renderer::GetShader(DM::CoreAsset("shaders/batch_quad_shader.glsl"));
   }
   
   void Batch2DRenderer::AddCircleData(uint32_t max_element) {
@@ -260,6 +260,9 @@ namespace ikan {
     std::shared_ptr<IndexBuffer> ib = IndexBuffer::CreateWithCount(quad_indices, data->max_indices);
     data->pipeline->SetIndexBuffer(ib);
     delete[] quad_indices;
+    
+    // Setup the Quad Shader
+    data->shader = Renderer::GetShader(DM::CoreAsset("shaders/batch_circle_shader.glsl"));
   }
   
   void Batch2DRenderer::AddLineData(uint32_t max_element) {
@@ -288,6 +291,9 @@ namespace ikan {
       { "a_Color",        ShaderDataType::Float4 },
     });
     data->pipeline->AddVertexBuffer(data->vertex_buffer);
+    
+    // Setup the Quad Shader
+    data->shader = Renderer::GetShader(DM::CoreAsset("shaders/batch_line_shader.glsl"));
   }
   
 } // namespace ikan
