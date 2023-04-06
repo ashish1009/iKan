@@ -11,12 +11,20 @@ namespace ikan {
   
 #define TABLE_LOG(...) IK_CORE_INFO(module_name.c_str(), __VA_ARGS__);
   
-  void Table::AddRow(const std::vector<std::string>& row) {
-    for(uint32_t row_idx = 0; row_idx < (uint32_t)row.size(); row_idx++) {
-      table_entries[row_idx].AddEntry(row[row_idx]);
+  void Table::AddRow(const std::vector<std::string>& rows) {
+    for(uint32_t col_idx = 0; col_idx < (uint32_t)rows.size(); col_idx++) {
+      table_entries[col_idx].AddEntry(rows[col_idx]);
     }
   }
-  
+
+  void Table::AddColumn(const std::vector<std::string>& cols) {
+    IK_CORE_ASSERT(num_cols_added < num_cols, "Table Overfloa (Add Functionality to resize table)");
+    for(uint32_t row_idx = 0; row_idx < (uint32_t)cols.size(); row_idx++) {
+      table_entries[num_cols_added].AddEntry(cols[row_idx]);
+    }
+    num_cols_added++;
+  }
+
   void Table::Dump(const std::string& module_name) {
     std::vector<std::string> rows;
     for (int col_idx = 0; col_idx < num_cols; col_idx++) {
