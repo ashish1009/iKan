@@ -6,6 +6,7 @@
 //
 
 #include "batch_2d_renderer.hpp"
+#include "renderer/graphics/pipeline.hpp"
 
 namespace ikan {
   
@@ -14,6 +15,8 @@ namespace ikan {
     /// Max element to be rendered in single batch
     uint32_t max_element = 0;
     uint32_t max_vertices = 0;
+    
+    std::shared_ptr<Pipeline> pipeline;
     
     friend struct Shape2DCommonData;
     friend struct LineData;
@@ -132,20 +135,24 @@ namespace ikan {
   
   void Batch2DRenderer::AddQuadData(uint32_t max_quads) {
     RETURN_IF(max_quads == 0);
+    std::unique_ptr<QuadData>& data = quad_data_;
     
     // If data have already created then append the data to previous one else create new memory
-    if (quad_data_) {
-      max_quads += quad_data_->max_element;
+    if (data) {
+      max_quads += data->max_element;
     }
     else {
-      quad_data_ = std::make_unique<QuadData>();
+      data = std::make_unique<QuadData>();
     }
     
     // Set the max element, max vertices and max indices
-    quad_data_->SetMaxElements(max_quads);
+    data->SetMaxElements(max_quads);
     
     // Allocating the memory for vertex Buffer Pointer
-    quad_data_->vertex_buffer_base_ptr = new QuadData::Vertex[quad_data_->max_vertices];
+    data->vertex_buffer_base_ptr = new QuadData::Vertex[data->max_vertices];
+    
+    // Create Pipeline instance
+    data->pipeline = Pipeline::Create();
   }
   
   void Batch2DRenderer::AddCircleData(uint32_t max_circles) {
@@ -164,6 +171,9 @@ namespace ikan {
     
     // Allocating the memory for vertex Buffer Pointer
     circle_data_->vertex_buffer_base_ptr = new CircleData::Vertex[circle_data_->max_vertices];
+    
+    // Create Pipeline instance
+    quad_data_->pipeline = Pipeline::Create();
   }
   
   void Batch2DRenderer::AddLineData(uint32_t max_lines) {
@@ -182,6 +192,9 @@ namespace ikan {
     
     // Allocating the memory for vertex Buffer Pointer
     line_data_->vertex_buffer_base_ptr = new LineData::Vertex[line_data_->max_vertices];
+    
+    // Create Pipeline instance
+    quad_data_->pipeline = Pipeline::Create();
   }
   
 } // namespace ikan
