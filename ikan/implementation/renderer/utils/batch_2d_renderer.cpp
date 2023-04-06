@@ -9,6 +9,7 @@
 #include "renderer/graphics/pipeline.hpp"
 #include "renderer/graphics/renderer_buffer.hpp"
 #include "renderer/graphics/shader.hpp"
+#include "renderer/graphics/texture.hpp"
 
 namespace ikan {
   
@@ -60,9 +61,21 @@ namespace ikan {
     /// Store the Vertex and Indices size
     uint32_t max_indices = 0;
     
+    /// Stores all the 16 Texture in array so that there is no need to load texture each frame
+    /// NOTE: Load only if new texture is added or older replaced with new
+    std::array<std::shared_ptr<Texture>, kMaxTextureSlotsInShader> texture_slots;
+    
+    /// Texture Slot index sent to Shader to render a specific Texture from slots
+    /// Slot 0 is reserved for white texture (No Image only color)
+    uint32_t texture_slot_index = 1; // 0 = white texture
+
     void Initialise(uint32_t max_elements) {
       CommonInit(max_elements, VertexForSingleElement);
       max_indices = max_elements * IndicesForSingleElement;
+      
+      // Creating white texture for colorful quads witout any texture or sprite
+      uint32_t whiteTextureData = 0xffffffff;
+//      texture_slots[0] = Texture::Create(1, 1, &whiteTextureData, sizeof(uint32_t));
     }
     
     virtual ~Shape2DCommonData() = default;
