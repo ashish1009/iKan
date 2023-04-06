@@ -19,6 +19,8 @@ namespace ikan {
     static void Initialise(uint32_t max_quads, uint32_t max_cirlces, uint32_t max_lines);
     /// This functio dhutdown the batch renderer and destoy all the buffer reserved on initialize
     static void Shutdown();
+    /// This function Dump the data in logs
+    static void LogData();
     
     /// This funcition Adds the quads renderer data to prev allocaged data
     /// - Parameter max_quads: max quad to be renderered in single batch

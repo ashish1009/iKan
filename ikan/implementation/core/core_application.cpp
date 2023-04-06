@@ -7,6 +7,7 @@
 
 #include "core_application.hpp"
 #include "renderer_stats.hpp"
+#include "batch_2d_renderer.hpp"
 
 namespace ikan {
   
@@ -87,8 +88,10 @@ namespace ikan {
   }
 
   void Application::Run() {
+    // Log the Configuration of the Engine
     LogConfig();
-
+    Batch2DRenderer::LogData();
+    
     IK_CORE_INFO("", "--------------------------------------------------------------------------");
     IK_CORE_INFO("", "                          Starting Game Loop                              ");
     IK_CORE_INFO("", "--------------------------------------------------------------------------");

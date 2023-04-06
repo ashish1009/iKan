@@ -175,17 +175,17 @@ namespace ikan {
   
   OpenGLTexture::~OpenGLTexture() {
     if (uploaded_) {
-      IK_CORE_WARN(LogModule::Texture, "Destroying Open GL Texture: !!! ");
+      IK_CORE_DEBUG(LogModule::Texture, "Destroying Open GL Texture: !!! ");
       if (file_path_ != "")
-        IK_CORE_WARN(LogModule::Texture, "  File Path          {0}", file_path_);
+        IK_CORE_DEBUG(LogModule::Texture, "  File Path          {0}", file_path_);
       
-      IK_CORE_WARN(LogModule::Texture, "  Renderer ID        {0}", renderer_id_);
-      IK_CORE_WARN(LogModule::Texture, "  Width              {0}", width_);
-      IK_CORE_WARN(LogModule::Texture, "  Height             {0}", height_);
-      IK_CORE_WARN(LogModule::Texture, "  Size               {0} B", size_);
-      IK_CORE_WARN(LogModule::Texture, "  Number of Channel  {0}", channel_);
-      IK_CORE_WARN(LogModule::Texture, "  InternalFormat     {0}", texture_utils::GetFormatNameFromEnum(internal_format_));
-      IK_CORE_WARN(LogModule::Texture, "  DataFormat         {0}", texture_utils::GetFormatNameFromEnum(data_format_));
+      IK_CORE_DEBUG(LogModule::Texture, "  Renderer ID        {0}", renderer_id_);
+      IK_CORE_DEBUG(LogModule::Texture, "  Width              {0}", width_);
+      IK_CORE_DEBUG(LogModule::Texture, "  Height             {0}", height_);
+      IK_CORE_DEBUG(LogModule::Texture, "  Size               {0} B", size_);
+      IK_CORE_DEBUG(LogModule::Texture, "  Number of Channel  {0}", channel_);
+      IK_CORE_DEBUG(LogModule::Texture, "  InternalFormat     {0}", texture_utils::GetFormatNameFromEnum(internal_format_));
+      IK_CORE_DEBUG(LogModule::Texture, "  DataFormat         {0}", texture_utils::GetFormatNameFromEnum(data_format_));
       
       IDManager::RemoveTextureId(&renderer_id_);
       RendererStatistics::Get().texture_buffer_size -= size_;

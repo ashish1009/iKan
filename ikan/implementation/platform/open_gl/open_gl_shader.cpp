@@ -99,10 +99,10 @@ namespace ikan {
   }
   
   OpenGLShader::~OpenGLShader() {
-    IK_CORE_WARN(LogModule::Shader, "Destroying Open GL Shader ...");
-    IK_CORE_WARN(LogModule::Shader, "  Renderer ID {0} ", renderer_id_);
-    IK_CORE_WARN(LogModule::Shader, "  Name        {0} ", name_);
-    IK_CORE_WARN(LogModule::Shader, "  File Path   {0} ", asset_path_);
+    IK_CORE_DEBUG(LogModule::Shader, "Destroying Open GL Shader ...");
+    IK_CORE_DEBUG(LogModule::Shader, "  Renderer ID {0} ", renderer_id_);
+    IK_CORE_DEBUG(LogModule::Shader, "  Name        {0} ", name_);
+    IK_CORE_DEBUG(LogModule::Shader, "  File Path   {0} ", asset_path_);
     
     for (auto& structure : structs_)
       delete structure;
@@ -482,7 +482,7 @@ namespace ikan {
     
     int32_t location = glGetUniformLocation(renderer_id_, name.c_str());
     if (-1 == location)
-      IK_CORE_WARN(LogModule::Shader, "Warning: uniform '{0}' doesnt exist", name);
+      IK_CORE_DEBUG(LogModule::Shader, "Warning: uniform '{0}' doesnt exist", name);
     
     location_map_[name] = location;
     return location;

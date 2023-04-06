@@ -13,7 +13,10 @@
 #include "renderer/graphics/texture.hpp"
 
 namespace ikan {
-  
+
+#define BATCH_INFO(...) IK_CORE_INFO(LogModule::Batch2DRenderer, __VA_ARGS__)
+#define BATCH_TRACE(...) IK_CORE_TRACE(LogModule::Batch2DRenderer, __VA_ARGS__)
+
   /// This structure holds the common batch renderer data for Quads, circle and lines
   struct CommonBatchData {
     /// Max element to be rendered in single batch
@@ -198,29 +201,29 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::Batch2DRenderer, "Shutting Down the Batch Renderer 2D !!!");
         
     if (quad_data_) {
-      IK_CORE_TRACE(LogModule::Batch2DRenderer, "Destroying the Batch Renderer Quad Data");
-      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Quads per Batch            {0}", quad_data_->max_element);
-      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Texture Slots per Batch    {0}", kMaxTextureSlotsInShader);
-      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Vertex Buffer used             {0} B", quad_data_->max_vertices * sizeof(QuadData::Vertex));
-      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Index Buffer used              {0} B", quad_data_->max_indices * sizeof(uint32_t));
-      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Shader Used                    {0}", quad_data_->shader->GetName());
+      BATCH_TRACE("Destroying the Batch Renderer Quad Data");
+      BATCH_TRACE("  Max Quads per Batch            {0}", quad_data_->max_element);
+      BATCH_TRACE("  Max Texture Slots per Batch    {0}", kMaxTextureSlotsInShader);
+      BATCH_TRACE("  Vertex Buffer used             {0} B", quad_data_->max_vertices * sizeof(QuadData::Vertex));
+      BATCH_TRACE("  Index Buffer used              {0} B", quad_data_->max_indices * sizeof(uint32_t));
+      BATCH_TRACE("  Shader Used                    {0}", quad_data_->shader->GetName());
       quad_data_.reset();
     }
     
     if (circle_data_) {
-      IK_CORE_TRACE(LogModule::Batch2DRenderer, "Destroying the Batch Renderer Circle Data");
-      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Circles per Batch          {0}", circle_data_->max_element);
-      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Texture Slots per Batch    {0}", kMaxTextureSlotsInShader);
-      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Vertex Buffer used             {0}", circle_data_->max_vertices * sizeof(CircleData::Vertex));
-      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Vertex Buffer used             {0}", circle_data_->max_indices * sizeof(uint32_t));
-      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Shader used                    {0}", circle_data_->shader->GetName());
+      BATCH_TRACE("Destroying the Batch Renderer Circle Data");
+      BATCH_TRACE("  Max Circles per Batch          {0}", circle_data_->max_element);
+      BATCH_TRACE("  Max Texture Slots per Batch    {0}", kMaxTextureSlotsInShader);
+      BATCH_TRACE("  Vertex Buffer used             {0}", circle_data_->max_vertices * sizeof(CircleData::Vertex));
+      BATCH_TRACE("  Vertex Buffer used             {0}", circle_data_->max_indices * sizeof(uint32_t));
+      BATCH_TRACE("  Shader used                    {0}", circle_data_->shader->GetName());
       circle_data_.reset();
     }
     if (line_data_) {
-      IK_CORE_TRACE(LogModule::Batch2DRenderer, "Destroying the Batch Renderer Line Data");
-      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Lines per Batch            {0}", line_data_->max_element);
-      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Vertex Buffer used             {0} B", line_data_->max_vertices * sizeof(LineData::Vertex));
-      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Shader used                    {0}", line_data_->shader->GetName());
+      BATCH_TRACE("Destroying the Batch Renderer Line Data");
+      BATCH_TRACE("  Max Lines per Batch            {0}", line_data_->max_element);
+      BATCH_TRACE("  Vertex Buffer used             {0} B", line_data_->max_vertices * sizeof(LineData::Vertex));
+      BATCH_TRACE("  Shader used                    {0}", line_data_->shader->GetName());
       line_data_.reset();
     }
   }
@@ -261,12 +264,12 @@ namespace ikan {
     
     RendererStatistics::Get().stats_2d_.max_quads = data->max_element;
     
-    IK_CORE_TRACE(LogModule::Batch2DRenderer, "Initialized Batch Renderer for Quad Data");
-    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Quads per Batch              {0}", data->max_element);
-    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Texture Slots per Batch      {0}", kMaxTextureSlotsInShader);
-    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Vertex Buffer used               {0} B", data->max_vertices * sizeof(QuadData::Vertex));
-    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Index Buffer used                {0} B", data->max_indices * sizeof(uint32_t));
-    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Shader Used                      {0}", data->shader->GetName());
+    BATCH_TRACE("Initialized Batch Renderer for Quad Data");
+    BATCH_TRACE("  Max Quads per Batch              {0}", data->max_element);
+    BATCH_TRACE("  Max Texture Slots per Batch      {0}", kMaxTextureSlotsInShader);
+    BATCH_TRACE("  Vertex Buffer used               {0} B", data->max_vertices * sizeof(QuadData::Vertex));
+    BATCH_TRACE("  Index Buffer used                {0} B", data->max_indices * sizeof(uint32_t));
+    BATCH_TRACE("  Shader Used                      {0}", data->shader->GetName());
   }
   
   void Batch2DRenderer::AddCircleData(uint32_t max_element) {
@@ -308,12 +311,12 @@ namespace ikan {
     
     RendererStatistics::Get().stats_2d_.max_circles = data->max_element;
     
-    IK_CORE_TRACE(LogModule::Batch2DRenderer, "Initialized Batch Renderer for Circle Data");
-    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Circles per Batch            {0}", data->max_element);
-    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Texture Slots per Batch      {0}", kMaxTextureSlotsInShader);
-    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Vertex Buffer used               {0} B", data->max_vertices * sizeof(CircleData::Vertex));
-    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Index Buffer used                {0} B", data->max_indices * sizeof(uint32_t));
-    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Shader Used                      {0}", data->shader->GetName());
+    BATCH_TRACE("Initialized Batch Renderer for Circle Data");
+    BATCH_TRACE("  Max Circles per Batch            {0}", data->max_element);
+    BATCH_TRACE("  Max Texture Slots per Batch      {0}", kMaxTextureSlotsInShader);
+    BATCH_TRACE("  Vertex Buffer used               {0} B", data->max_vertices * sizeof(CircleData::Vertex));
+    BATCH_TRACE("  Index Buffer used                {0} B", data->max_indices * sizeof(uint32_t));
+    BATCH_TRACE("  Shader Used                      {0}", data->shader->GetName());
   }
   
   void Batch2DRenderer::AddLineData(uint32_t max_element) {
@@ -348,10 +351,35 @@ namespace ikan {
     
     RendererStatistics::Get().stats_2d_.max_lines = data->max_element;
     
-    IK_CORE_TRACE(LogModule::Batch2DRenderer, "Initialized Batch Renderer for Line Data");
-    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Lines per Batch              {0}", data->max_element);
-    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Vertex Buffer used               {0} B", data->max_vertices * sizeof(LineData::Vertex));
-    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Shader Used                      {0}", data->shader->GetName());
+    BATCH_TRACE("Initialized Batch Renderer for Line Data");
+    BATCH_TRACE("  Max Lines per Batch              {0}", data->max_element);
+    BATCH_TRACE("  Vertex Buffer used               {0} B", data->max_vertices * sizeof(LineData::Vertex));
+    BATCH_TRACE("  Shader Used                      {0}", data->shader->GetName());
+  }
+  
+  void Batch2DRenderer::LogData() {
+    BATCH_INFO("Batch Renderer Data ...");
+
+    BATCH_INFO("    Per Batch");
+
+    BATCH_INFO("        Max Texture slots                 | {0}", kMaxTextureSlotsInShader);
+    BATCH_INFO("        Max Quads                         | {0}", quad_data_->max_element);
+    BATCH_INFO("        Max Circles                       | {0}", circle_data_->max_element);
+    BATCH_INFO("        Max Lines                         | {0}", line_data_->max_element);
+    
+    BATCH_INFO("    GPU Memory");
+    uint32_t vertex_buffer_size = quad_data_->max_vertices * sizeof(QuadData::Vertex);
+    vertex_buffer_size += circle_data_->max_vertices * sizeof(CircleData::Vertex);
+    vertex_buffer_size += line_data_->max_vertices * sizeof(LineData::Vertex);
+    BATCH_INFO("        Vertex Buffer used                | {0} Bytes", vertex_buffer_size);
+
+    uint32_t index_buffer_size = (quad_data_->max_indices + circle_data_->max_indices) * sizeof(uint32_t);
+    BATCH_INFO("        Index Buffer used                 | {0} Bytes", index_buffer_size);
+    
+    BATCH_INFO("    Shaders");
+    BATCH_INFO("        Quad                              | {0}", quad_data_->shader->GetName());
+    BATCH_INFO("        Circle                            | {0}", circle_data_->shader->GetName());
+    BATCH_INFO("        Line                              | {0}", line_data_->shader->GetName());
   }
   
 } // namespace ikan

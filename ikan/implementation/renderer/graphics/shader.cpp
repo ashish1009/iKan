@@ -32,7 +32,7 @@ namespace ikan {
   
   void ShaderLibrary::ResetShaders() {
     for (auto it = shader_library_.begin(); it != shader_library_.end(); it++) {
-      IK_CORE_WARN(LogModule::Shader, "Removing Shader '{0}' from Shdaer Library", StringUtils::GetNameFromFilePath(it->first));
+      IK_CORE_DEBUG(LogModule::Shader, "Removing Shader '{0}' from Shdaer Library", StringUtils::GetNameFromFilePath(it->first));
       it->second.reset();
     }
   }

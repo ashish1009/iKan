@@ -80,7 +80,7 @@ namespace ikan {
   }
   
   OpenGLShaderUniformDeclaration::~OpenGLShaderUniformDeclaration() {
-    IK_CORE_WARN(LogModule::Shader, "      Destroying : {0} {1}[{2}] (Size : {3}) ", TypeToString(type_), name_, count_, size_);
+    IK_CORE_DEBUG(LogModule::Shader, "      Destroying : {0} {1}[{2}] (Size : {3}) ", TypeToString(type_), name_, count_, size_);
   }
   
   void OpenGLShaderUniformDeclaration::SetOffset(uint32_t offset) {
@@ -116,7 +116,7 @@ namespace ikan {
   }
   
   OpenGLShaderResourceDeclaration::~OpenGLShaderResourceDeclaration() {
-    IK_CORE_WARN(LogModule::Shader, "      Destroying : {0} {1}[{2}]", TypeToString(type_), name_, count_);
+    IK_CORE_DEBUG(LogModule::Shader, "      Destroying : {0} {1}[{2}]", TypeToString(type_), name_, count_);
   }
   
   // --------------------------------------------------------------------------
