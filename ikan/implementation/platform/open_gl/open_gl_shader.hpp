@@ -52,6 +52,23 @@ namespace ikan {
     /// - Parameter name: Name of structure
     ShaderStruct* FindStruct(const std::string& name);
 
+    /// This function returns the location of attribute in the shader
+    /// - Parameter name: attribute name
+    int32_t GetUniformLocation(const std::string& name);
+
+    // Attributes
+    /// This functions uploads the Int value to shader
+    /// - Parameters:
+    ///   - name: Name of Uniform
+    ///   - value: Value of Uniform
+    void SetUniformInt1(const std::string& name, int32_t value);
+    /// This functions uploads the Int Array value to shader
+    /// - Parameters:
+    ///   - name: Name of Uniform
+    ///   - values: Values of Uniform
+    ///   - count: Size of array
+    void SetIntArray(const std::string& name, int32_t* values, uint32_t count);
+
     RendererID renderer_id_ = 0;
     std::string asset_path_ = "", name_ = "";
     std::unordered_map<GLenum, std::string> shader_source_code_map_;

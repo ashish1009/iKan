@@ -364,6 +364,98 @@ namespace ikan {
   }
   
   void OpenGLShader::ResolveUniforms() {
+    IK_CORE_DEBUG(LogModule::Shader, "  Resolving Uniform locations for '{0}'", name_);
+    
+    // Uniform samplers for textures, cubemaps etc
+    IK_CORE_DEBUG(LogModule::Shader, "    Resolving Uniforms for Samplers...");
+    // Setting location of sampler uniform
+    uint32_t sampler = 0;
+    for (size_t i = 0; i < resources_.size(); i++) {
+      OpenGLShaderResourceDeclaration* resource = (OpenGLShaderResourceDeclaration*)resources_[i];
+      int32_t location = GetUniformLocation(resource->name_);
+      
+      // For single samplers
+      if (resource->GetCount() == 1) {
+        resource->register_ = sampler;
+        if (location != -1) {
+          IK_CORE_DEBUG(LogModule::Shader, "      Location : {0} for {1}[{2}]",
+                        sampler, resource->name_, resource->GetCount());
+          SetUniformInt1(resource->name_, (int32_t)sampler);
+        }
+        sampler++;
+      }
+      // For arrya of samplers
+      else if (resource->GetCount() > 1) {
+        resource->register_ = 0;
+        
+        uint32_t count = resource->GetCount();
+        int32_t* samplers = new int32_t[count];
+        
+        for (uint32_t s = 0; s < count; s++)
+          samplers[s] = (int32_t)s;
+        IK_CORE_DEBUG(LogModule::Shader, "      Location : {0} to {1} for {2}[{3}]", 0,
+                      count, resource->GetName(), resource->GetCount());
+        SetIntArray(resource->GetName(), samplers, count);
+        delete[] samplers;
+      }
+    } // for (size_t i = 0; i < resources_.size(); i++)
+    
+    // Unifrom resources of structors or fundamentals
+    std::shared_ptr<OpenGLShaderUniformBufferDeclaration> decls[3] = {
+      vs_material_uniform_buffer_,
+      fs_material_uniform_buffer_,
+      gs_material_uniform_buffer_
+    };
+    
+    for (uint8_t shaderIdx = 0; shaderIdx < MaxShaderSupported; shaderIdx++) {
+      auto decl = decls[shaderIdx];
+      if (!decl) {
+        continue;
+      }
+      
+      IK_CORE_DEBUG(LogModule::Shader, "    Resolving Uniforms for Datatypes of '{0}' Shader...",
+                    shader_utils::ShaderNameFromInternalType((ShaderDomain)(shaderIdx + 1)));
+      
+      const std::vector<ShaderUniformDeclaration*>& uniforms = decl->GetUniformDeclarations();
+      for (size_t j = 0; j < uniforms.size(); j++) {
+        OpenGLShaderUniformDeclaration* uniform = (OpenGLShaderUniformDeclaration*)uniforms[j];
+        
+        // Uniform Structures
+        if (uniform->GetType() == OpenGLShaderUniformDeclaration::Type::Struct) {
+          const ShaderStruct& s = uniform->GetShaderUniformStruct();
+          const auto& fields = s.GetFields();
+          
+          // If Array of Structure
+          if (uniform->GetCount() > 1) {
+            for (size_t l = 0; l < uniform->GetCount(); l++) {
+              for (size_t k = 0; k < fields.size(); k++) {
+                OpenGLShaderUniformDeclaration* field = (OpenGLShaderUniformDeclaration*)fields[k];
+                std::string uniform_name = uniform->name_ + "[" + std::to_string(l) + "]." + field->name_;
+                uint32_t location = (uint32_t)GetUniformLocation(uniform_name);
+                field->location_.emplace_back(location);
+                IK_CORE_DEBUG(LogModule::Shader, "      Location : {0} for {1}[{3}].{2}",
+                              location, s.GetName(), field->GetName(), l);
+              } // for (size_t k = 0; k < fields.size(); k++)
+            } // for (size_t l = 0; l < uniform->GetCount(); l++)
+          } else { // if (uniform->GetCount() > 1)
+            // Single struct uniform
+            for (size_t k = 0; k < fields.size(); k++) {
+              OpenGLShaderUniformDeclaration* field = (OpenGLShaderUniformDeclaration*)fields[k];
+              uint32_t location = (uint32_t)GetUniformLocation(uniform->name_ + "." + field->name_);
+              field->location_.emplace_back(location);
+              IK_CORE_DEBUG(LogModule::Shader, "      Location : {0} for {1}.{2} [{3}]",
+                            location, s.GetName(), field->GetName(), field->GetCount());
+            }
+          } // else : if (uniform->GetCount() > 1)
+        } else { // if (uniform->GetType() == OpenGLShaderUniformDeclaration::Type::kStruct)
+          // Fundamental uniforms
+          uint32_t location = (uint32_t)GetUniformLocation(uniform->name_);
+          uniform->location_.emplace_back(location);
+          IK_CORE_DEBUG(LogModule::Shader, "      Location : {0} for {1}[{2}]",
+                        location, uniform->GetName(), uniform->GetCount());
+        }
+      } // for (size_t j = 0; j < uniforms.size(); j++)
+    } // for (uint8_t shaderIdx = 0; shaderIdx < MaxShaderSupported; shaderIdx++)
   }
   
   ShaderStruct* OpenGLShader::FindStruct(const std::string& name) {
@@ -372,5 +464,35 @@ namespace ikan {
         return s;
     return nullptr;
   }
+
+  int32_t OpenGLShader::GetUniformLocation(const std::string& name) {
+    if (location_map_.find(name) != location_map_.end())
+      return location_map_[name];
+    
+    int32_t location = glGetUniformLocation(renderer_id_, name.c_str());
+    if (-1 == location)
+      IK_CORE_WARN(LogModule::Shader, "Warning: uniform '{0}' doesnt exist", name);
+    
+    location_map_[name] = location;
+    return location;
+  }
+
+  /// No need to Submit these API in Renderer command queue as they are taken
+  /// care in Resolving Uniform API
+  void OpenGLShader::SetUniformInt1(const std::string& name, int32_t value) {
+    glUseProgram(renderer_id_);
+    glUniform1i(GetUniformLocation(name), value);
+  }
   
+  /// No need to Submit these API in Renderer command queue as they are taken
+  /// care in Resolving Uniform API
+  void OpenGLShader::SetIntArray(const std::string& name, int32_t* values, uint32_t count) {
+    glUseProgram(renderer_id_);
+    int32_t* textureArraySlotData = new int32_t[count];
+    memcpy(textureArraySlotData, values, count * sizeof(int32_t));
+    
+    glUniform1iv(GetUniformLocation(name), (GLsizei)count, textureArraySlotData);
+    delete[] textureArraySlotData;
+  }
+
 } // namespace ikan
