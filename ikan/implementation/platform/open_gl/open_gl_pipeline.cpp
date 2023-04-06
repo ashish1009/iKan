@@ -84,15 +84,15 @@ namespace ikan {
       vb->Unbind();
   }
 
-  void OpenGLPipeline::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer) {
+  void OpenGLPipeline::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertex_buffers) {
     glBindVertexArray(renderer_id_);
-    vertex_buffers_.push_back(vertexBuffer);
+    vertex_buffers_.push_back(vertex_buffers);
 
     uint32_t index = 0;
-    const auto& layout = vertexBuffer->GetLayout();
+    const auto& layout = vertex_buffers->GetLayout();
     
     PIPELINE_LOG("  Storing the Vertex Buffer (ID: {0}) into Pipeline (ID: {1}). Total ({2})",
-                 vertexBuffer->GetRendererID(), renderer_id_, vertex_buffers_.size());
+                 vertex_buffers->GetRendererID(), renderer_id_, vertex_buffers_.size());
     PIPELINE_LOG("  Vertex Attributes attched to Pipeline (ID: {0}) with Stride | {1} ", renderer_id_, layout.GetStride());
     
     for (const auto& element : layout.GetElements()) {

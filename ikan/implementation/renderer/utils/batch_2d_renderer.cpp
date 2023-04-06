@@ -180,6 +180,26 @@ namespace ikan {
       { "a_ObjectID",     ShaderDataType::Int },
     });
     data->pipeline->AddVertexBuffer(data->vertex_buffer);
+    
+    // Create Index Buffer
+    uint32_t* quad_indices = new uint32_t[data->max_indices];
+    uint32_t offset = 0;
+    for (size_t i = 0; i < data->max_indices; i += Shape2DCommonData::IndicesForSingleElement) {
+      quad_indices[i + 0] = offset + 0;
+      quad_indices[i + 1] = offset + 1;
+      quad_indices[i + 2] = offset + 2;
+      
+      quad_indices[i + 3] = offset + 2;
+      quad_indices[i + 4] = offset + 3;
+      quad_indices[i + 5] = offset + 0;
+      
+      offset += 4;
+    }
+    
+    // Create Index Buffer in GPU for storing Indices
+    std::shared_ptr<IndexBuffer> ib = IndexBuffer::CreateWithCount(quad_indices, data->max_indices);
+    data->pipeline->SetIndexBuffer(ib);
+    delete[] quad_indices;
   }
   
   void Batch2DRenderer::AddCircleData(uint32_t max_element) {
@@ -216,6 +236,25 @@ namespace ikan {
     });
     data->pipeline->AddVertexBuffer(data->vertex_buffer);
 
+    // Create Index Buffer
+    uint32_t* quad_indices = new uint32_t[data->max_indices];
+    uint32_t offset = 0;
+    for (size_t i = 0; i < data->max_indices; i += Shape2DCommonData::IndicesForSingleElement) {
+      quad_indices[i + 0] = offset + 0;
+      quad_indices[i + 1] = offset + 1;
+      quad_indices[i + 2] = offset + 2;
+      
+      quad_indices[i + 3] = offset + 2;
+      quad_indices[i + 4] = offset + 3;
+      quad_indices[i + 5] = offset + 0;
+      
+      offset += 4;
+    }
+    
+    // Create Index Buffer in GPU for storing Indices
+    std::shared_ptr<IndexBuffer> ib = IndexBuffer::CreateWithCount(quad_indices, data->max_indices);
+    data->pipeline->SetIndexBuffer(ib);
+    delete[] quad_indices;
   }
   
   void Batch2DRenderer::AddLineData(uint32_t max_element) {

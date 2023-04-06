@@ -24,10 +24,15 @@ namespace ikan {
     void Unbind() const override;
     /// This function add the Vertex Buffer inside Pipeline and set attribute of each vertices in GPU
     /// - Parameter vertexBuffer: Ref type of Vertex Buffer
-    void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer) override;
+    void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertex_buffers) override;
+    /// This function updates the current Index Buffer inside the Pipeline
+    /// - Parameter indexBuffer Ref type of Index Buffer
+    void SetIndexBuffer(const std::shared_ptr<IndexBuffer>& index_buffer) override { index_buffer_ = index_buffer; }
 
     /// This function returns all the Vertex Buffer Stored in Pipeline
     const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const override { return vertex_buffers_; }
+    /// This function returns the Current Index Buffer Stored in Pipeline
+    const std::shared_ptr<IndexBuffer>& GetIndexBuffer() const override { return index_buffer_; }
     /// This function returns the renderer ID of Vertex Buffer
     RendererID GetRendererID() const override { return renderer_id_; }
 
@@ -36,6 +41,7 @@ namespace ikan {
   private:
     RendererID renderer_id_ = 0;
     std::vector<std::shared_ptr<VertexBuffer>> vertex_buffers_;
+    std::shared_ptr<IndexBuffer> index_buffer_;
   };
   
 } // namespace ikan
