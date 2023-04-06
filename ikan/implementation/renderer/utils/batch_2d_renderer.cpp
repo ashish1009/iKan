@@ -18,6 +18,14 @@ namespace ikan {
     
     std::shared_ptr<Pipeline> pipeline;
     
+    void CommonInit(uint32_t max_elem, uint32_t max_vertices_single_elem) {
+      max_element = max_elem;
+      max_vertices = max_elem * max_vertices_single_elem;
+      
+      // Create Pipeline instance
+      pipeline = Pipeline::Create();
+    }
+    
     friend struct Shape2DCommonData;
     friend struct LineData;
 
@@ -44,9 +52,9 @@ namespace ikan {
     /// Store the Vertex and Indices size
     uint32_t max_indices = 0;
     
-    void SetMaxElements(uint32_t max_elements) {
-      max_element = max_elements;
-      max_vertices = max_elements * VertexForSingleElement;
+    void Initialise(uint32_t max_elements) {
+      CommonInit(max_elements, VertexForSingleElement);
+
       max_indices = max_elements * IndicesForSingleElement;
     }
     
@@ -115,9 +123,8 @@ namespace ikan {
       vertex_buffer_base_ptr = nullptr;
     }
 
-    void SetMaxElements(uint32_t max_elements) {
-      max_element = max_elements;
-      max_vertices = max_elements * VertexForSingleLine;
+    void Initialise(uint32_t max_elements) {
+      CommonInit(max_elements, VertexForSingleLine);
     }
   };
   static std::unique_ptr<LineData> line_data_;
@@ -133,68 +140,61 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::Batch2DRenderer, "Shutting Down the Batch Renderer 2D !!!");
   }
   
-  void Batch2DRenderer::AddQuadData(uint32_t max_quads) {
-    RETURN_IF(max_quads == 0);
+  void Batch2DRenderer::AddQuadData(uint32_t max_element) {
+    RETURN_IF(max_element == 0);
     std::unique_ptr<QuadData>& data = quad_data_;
     
     // If data have already created then append the data to previous one else create new memory
     if (data) {
-      max_quads += data->max_element;
+      max_element += data->max_element;
     }
     else {
       data = std::make_unique<QuadData>();
     }
     
-    // Set the max element, max vertices and max indices
-    data->SetMaxElements(max_quads);
-    
     // Allocating the memory for vertex Buffer Pointer
     data->vertex_buffer_base_ptr = new QuadData::Vertex[data->max_vertices];
     
-    // Create Pipeline instance
-    data->pipeline = Pipeline::Create();
+    // Initialize the data for Common shape
+    data->Initialise(max_element);
   }
   
-  void Batch2DRenderer::AddCircleData(uint32_t max_circles) {
-    RETURN_IF(max_circles == 0);
+  void Batch2DRenderer::AddCircleData(uint32_t max_element) {
+    RETURN_IF(max_element == 0);
+    std::unique_ptr<CircleData>& data = circle_data_;
     
     // If data have already created then append the data to previous one else create new memory
-    if (circle_data_) {
-      max_circles += circle_data_->max_element;
+    if (data) {
+      max_element += data->max_element;
     }
     else {
-      circle_data_ = std::make_unique<CircleData>();
+      data = std::make_unique<CircleData>();
     }
-    
-    // Set the max element, max vertices and max indices
-    circle_data_->SetMaxElements(max_circles);
-    
+
     // Allocating the memory for vertex Buffer Pointer
-    circle_data_->vertex_buffer_base_ptr = new CircleData::Vertex[circle_data_->max_vertices];
+    data->vertex_buffer_base_ptr = new CircleData::Vertex[data->max_vertices];
     
-    // Create Pipeline instance
-    quad_data_->pipeline = Pipeline::Create();
+    // Initialize the data for Common shape
+    data->Initialise(max_element);
   }
   
-  void Batch2DRenderer::AddLineData(uint32_t max_lines) {
-    RETURN_IF(max_lines == 0);
-
+  void Batch2DRenderer::AddLineData(uint32_t max_element) {
+    RETURN_IF(max_element == 0);
+    std::unique_ptr<LineData>& data = line_data_;
+    
     // If data have already created then append the data to previous one else create new memory
-    if (line_data_) {
-      max_lines += line_data_->max_element;
+    if (data) {
+      max_element += data->max_element;
     }
     else {
-      line_data_ = std::make_unique<LineData>();
+      data = std::make_unique<LineData>();
     }
 
-    // Set the max element and max vertices
-    line_data_->SetMaxElements(max_lines);
-    
     // Allocating the memory for vertex Buffer Pointer
-    line_data_->vertex_buffer_base_ptr = new LineData::Vertex[line_data_->max_vertices];
-    
-    // Create Pipeline instance
-    quad_data_->pipeline = Pipeline::Create();
+    data->vertex_buffer_base_ptr = new LineData::Vertex[data->max_vertices];
+
+    // Initialize the data for Common shape
+    data->Initialise(max_element);
   }
   
 } // namespace ikan

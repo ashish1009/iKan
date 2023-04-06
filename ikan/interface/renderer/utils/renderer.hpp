@@ -11,6 +11,9 @@
 
 namespace ikan {
   
+  /// All renderer ID type
+  using RendererID = uint32_t;
+
   /// This class is the wrapper class to interact with all the module that will be needed to render any object or control any renderer API
   ///   - Create instance of renderer API
   ///   - Initialize any user defined rednerer

@@ -27,6 +27,8 @@
 		B29C830B29DE9A5C0061D182 /* pipeline.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B29C830929DE9A5C0061D182 /* pipeline.hpp */; };
 		B29C830E29DE9B8C0061D182 /* open_gl_pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B29C830C29DE9B8C0061D182 /* open_gl_pipeline.cpp */; };
 		B29C830F29DE9B8C0061D182 /* open_gl_pipeline.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B29C830D29DE9B8C0061D182 /* open_gl_pipeline.hpp */; };
+		B29C831229DE9EB90061D182 /* open_gl_renderer_id_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B29C831029DE9EB90061D182 /* open_gl_renderer_id_manager.cpp */; };
+		B29C831329DE9EB90061D182 /* open_gl_renderer_id_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B29C831129DE9EB90061D182 /* open_gl_renderer_id_manager.hpp */; };
 		B2BEC76129DD6802008D3DCB /* libimgui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B228FC9229DB133100455666 /* libimgui.a */; };
 		B2BEC78A29DD7C50008D3DCB /* core_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC78829DD7C50008D3DCB /* core_application.cpp */; };
 		B2BEC78B29DD7C50008D3DCB /* core_application.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BEC78929DD7C50008D3DCB /* core_application.hpp */; };
@@ -105,6 +107,8 @@
 		B29C830929DE9A5C0061D182 /* pipeline.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pipeline.hpp; sourceTree = "<group>"; };
 		B29C830C29DE9B8C0061D182 /* open_gl_pipeline.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_pipeline.cpp; sourceTree = "<group>"; };
 		B29C830D29DE9B8C0061D182 /* open_gl_pipeline.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_pipeline.hpp; sourceTree = "<group>"; };
+		B29C831029DE9EB90061D182 /* open_gl_renderer_id_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_renderer_id_manager.cpp; sourceTree = "<group>"; };
+		B29C831129DE9EB90061D182 /* open_gl_renderer_id_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_renderer_id_manager.hpp; sourceTree = "<group>"; };
 		B2BEC77E29DD7590008D3DCB /* directory_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = directory_manager.h; sourceTree = "<group>"; };
 		B2BEC78829DD7C50008D3DCB /* core_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = core_application.cpp; sourceTree = "<group>"; };
 		B2BEC78929DD7C50008D3DCB /* core_application.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = core_application.hpp; sourceTree = "<group>"; };
@@ -414,6 +418,8 @@
 				B2F91E1429D713EF00860306 /* open_gl_renderer_api.hpp */,
 				B228FC6629DB070500455666 /* open_gl_graphics_context.cpp */,
 				B228FC6729DB070500455666 /* open_gl_graphics_context.hpp */,
+				B29C831029DE9EB90061D182 /* open_gl_renderer_id_manager.cpp */,
+				B29C831129DE9EB90061D182 /* open_gl_renderer_id_manager.hpp */,
 				B29C830C29DE9B8C0061D182 /* open_gl_pipeline.cpp */,
 				B29C830D29DE9B8C0061D182 /* open_gl_pipeline.hpp */,
 			);
@@ -457,6 +463,7 @@
 				B2BEC78B29DD7C50008D3DCB /* core_application.hpp in Headers */,
 				B2F91E1629D713EF00860306 /* open_gl_renderer_api.hpp in Headers */,
 				B292C0EF29D1D47000B1E678 /* ikan_headers.h in Headers */,
+				B29C831329DE9EB90061D182 /* open_gl_renderer_id_manager.hpp in Headers */,
 				B228FC6929DB070500455666 /* open_gl_graphics_context.hpp in Headers */,
 				B2BEC79F29DD8479008D3DCB /* layer_stack.hpp in Headers */,
 				B2BEC7CB29DDACAD008D3DCB /* batch_2d_renderer.hpp in Headers */,
@@ -585,6 +592,7 @@
 				B2394A2829D81BDD00D782E5 /* window.cpp in Sources */,
 				B2BEC7B129DD8703008D3DCB /* imgui_layer.cpp in Sources */,
 				B292C0E729D1CF7100B1E678 /* logger.cpp in Sources */,
+				B29C831229DE9EB90061D182 /* open_gl_renderer_id_manager.cpp in Sources */,
 				B2F91E1529D713EF00860306 /* open_gl_renderer_api.cpp in Sources */,
 				B2BEC7D529DDC301008D3DCB /* text_renderer.cpp in Sources */,
 				B29C830E29DE9B8C0061D182 /* open_gl_pipeline.cpp in Sources */,
