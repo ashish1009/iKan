@@ -64,11 +64,13 @@ namespace ikan {
   OpenGLPipeline::OpenGLPipeline() {
     IDManager::GetPipelineId(renderer_id_);
     glBindVertexArray(renderer_id_);
-    PIPELINE_LOG("Creating Open GL Pipeline with ID {0} ...", renderer_id_);
+    PIPELINE_LOG("Creating Open GL Pipeline ...");
+    PIPELINE_LOG("  Renderer ID {0} ", renderer_id_);
   }
   
   OpenGLPipeline::~OpenGLPipeline() {
-    PIPELINE_LOG("Destroying Open GL Pipeline with ID {0} !!!", renderer_id_);
+    PIPELINE_LOG("Destroying Open GL Pipeline ...");
+    PIPELINE_LOG("  Renderer ID {0} ", renderer_id_);
     IDManager::RemovePipelineId(renderer_id_);
   }
   
@@ -91,11 +93,9 @@ namespace ikan {
     uint32_t index = 0;
     const auto& layout = vertex_buffers->GetLayout();
     
-    PIPELINE_LOG("  Storing the Vertex Buffer (ID: {0}) into Pipeline (ID: {1}). Total ({2})",
+    PIPELINE_LOG("  Storing the Vertex Buffer (ID: {0}) into Pipeline (ID: {1}). Total vertrd buffers in pipeline are {2}",
                  vertex_buffers->GetRendererID(), renderer_id_, vertex_buffers_.size());
-    PIPELINE_LOG("  Vertex Attributes attched to Pipeline (ID: {0}) with Stride | {1} ", renderer_id_, layout.GetStride());
-    
-    Table table("Vertex Attributes", 4, false);
+    Table table("Vertex Attributes (Stride " + std::to_string(layout.GetStride()) + ")" , 4, false);
     
     for (const auto& element : layout.GetElements()) {
       table.AddRow({element.name, ShaderDataTypeToString(element.type), std::to_string(element.offset), std::to_string(element.size)});
@@ -143,5 +143,10 @@ namespace ikan {
     
     table.Dump(Logger::Level::Trace, "Pipeline");
   }
-  
+
+  void OpenGLPipeline::SetIndexBuffer(const std::shared_ptr<IndexBuffer>& index_buffer) {
+    PIPELINE_LOG("  Setting the Index Buffer (ID: {0}) into Pipeline (ID: {1})", index_buffer->GetRendererID(), renderer_id_);
+    index_buffer_ = index_buffer;
+  }
+
 } // namespace ikan

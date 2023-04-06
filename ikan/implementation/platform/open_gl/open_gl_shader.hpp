@@ -23,6 +23,10 @@ namespace ikan {
     ~OpenGLShader();
     
     DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLShader);
+    
+  private:
+    RendererID renderer_id_ = 0;
+    std::string asset_path_ = "", name_ = "";
   };
   
 } // namespace ikan

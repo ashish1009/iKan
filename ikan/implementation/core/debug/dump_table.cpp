@@ -62,7 +62,7 @@ namespace ikan {
     
     TABLE_LOG(title);
     for (int row_idx = 0; row_idx < rows.size(); row_idx++) {
-      if (row_idx == 0)
+      if (row_idx == 0 and header)
         TABLE_LOG(std::string(size_t(rows[row_idx].size()), '-').c_str());
       
       TABLE_LOG(rows[row_idx].c_str());
@@ -70,7 +70,7 @@ namespace ikan {
       if (row_idx == 0 and header)
         TABLE_LOG(std::string(size_t(rows[row_idx].size()), '-').c_str());
       
-      if (row_idx == rows.size() - 1)
+      if (row_idx == rows.size() - 1 and header)
         TABLE_LOG(std::string(size_t(rows[row_idx].size()), '-').c_str());
     }
   }

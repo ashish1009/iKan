@@ -27,7 +27,7 @@ namespace ikan {
     void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertex_buffers) override;
     /// This function updates the current Index Buffer inside the Pipeline
     /// - Parameter indexBuffer Ref type of Index Buffer
-    void SetIndexBuffer(const std::shared_ptr<IndexBuffer>& index_buffer) override { index_buffer_ = index_buffer; }
+    void SetIndexBuffer(const std::shared_ptr<IndexBuffer>& index_buffer) override;
 
     /// This function returns all the Vertex Buffer Stored in Pipeline
     const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const override { return vertex_buffers_; }
