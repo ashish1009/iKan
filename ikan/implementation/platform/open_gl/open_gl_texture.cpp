@@ -192,4 +192,13 @@ namespace ikan {
     }
   }
   
+  void OpenGLTexture::Bind(uint32_t slot) const {
+    glActiveTexture(GL_TEXTURE0 + slot);
+    glBindTexture(GL_TEXTURE_2D, renderer_id_);
+  }
+  
+  void OpenGLTexture::Unbind() const {
+    glBindTexture(GL_TEXTURE_2D, 0);
+  }
+
 } // namespace ikan
