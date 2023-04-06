@@ -48,6 +48,10 @@ namespace ikan {
     ///   - domain domain of shader
     void ParseUniform(const std::string& statement, ShaderDomain domain);
 
+    /// This function finds the structure stored in shader
+    /// - Parameter name: Name of structure
+    ShaderStruct* FindStruct(const std::string& name);
+
     RendererID renderer_id_ = 0;
     std::string asset_path_ = "", name_ = "";
     std::unordered_map<GLenum, std::string> shader_source_code_map_;
