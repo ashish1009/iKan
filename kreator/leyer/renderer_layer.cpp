@@ -30,6 +30,14 @@ namespace kreator {
   
   void RendererLayer::Attach() {
     KREATOR_LOG("Attaching {0} Layer instance", game_data_->GameName().c_str());
+  
+    Table tt(5);
+    tt.AddRow({"Name", "Type", "Normalized", "Size", "Offset"});
+    tt.AddRow({"Positiom", "Float3", "true", "10", "100"});
+    tt.AddRow({"Normal", "Float2", "false", "20", "90"});
+    tt.AddRow({"TexCoords", "Float2", "true", "30", "0"});
+    
+    tt.Dump();
   }
   
   void RendererLayer::Detach() {

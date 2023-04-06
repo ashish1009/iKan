@@ -35,6 +35,7 @@
 
 // Core Files
 #include <core/debug/logger.hpp>
+#include <core/debug/dump_table.hpp>
 
 #include <core/utils/asserts.h>
 #include <core/utils/directory_manager.h>

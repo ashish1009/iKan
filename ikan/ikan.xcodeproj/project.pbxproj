@@ -49,6 +49,7 @@
 		B2BEC7D629DDC301008D3DCB /* text_renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BEC7D429DDC301008D3DCB /* text_renderer.hpp */; };
 		B2BEC7DC29DDC475008D3DCB /* imgui_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC7DA29DDC475008D3DCB /* imgui_api.cpp */; };
 		B2BEC7DD29DDC475008D3DCB /* imgui_api.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BEC7DB29DDC475008D3DCB /* imgui_api.hpp */; };
+		B2F70CD429DED19B003163BA /* dump_table.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F70CD329DED19B003163BA /* dump_table.cpp */; };
 		B2F91E0E29D70FA400860306 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F91E0C29D70FA400860306 /* renderer.cpp */; };
 		B2F91E0F29D70FA400860306 /* renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F91E0D29D70FA400860306 /* renderer.hpp */; };
 		B2F91E1529D713EF00860306 /* open_gl_renderer_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F91E1329D713EF00860306 /* open_gl_renderer_api.cpp */; };
@@ -137,6 +138,8 @@
 		B2BEC7DA29DDC475008D3DCB /* imgui_api.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_api.cpp; sourceTree = "<group>"; };
 		B2BEC7DB29DDC475008D3DCB /* imgui_api.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imgui_api.hpp; sourceTree = "<group>"; };
 		B2C26FC029D2A32400EC1078 /* asserts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = asserts.h; sourceTree = "<group>"; };
+		B2F70CCF29DED0B2003163BA /* dump_table.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = dump_table.hpp; sourceTree = "<group>"; };
+		B2F70CD329DED19B003163BA /* dump_table.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dump_table.cpp; sourceTree = "<group>"; };
 		B2F91E0C29D70FA400860306 /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
 		B2F91E0D29D70FA400860306 /* renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
 		B2F91E1329D713EF00860306 /* open_gl_renderer_api.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_renderer_api.cpp; sourceTree = "<group>"; };
@@ -276,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				B292C0E629D1CF7100B1E678 /* logger.hpp */,
+				B2F70CCF29DED0B2003163BA /* dump_table.hpp */,
 			);
 			path = debug;
 			sourceTree = "<group>";
@@ -340,6 +344,7 @@
 			children = (
 				B2BEC78F29DD7F73008D3DCB /* core_logger_api.h */,
 				B292C0E529D1CF7100B1E678 /* logger.cpp */,
+				B2F70CD329DED19B003163BA /* dump_table.cpp */,
 			);
 			path = debug;
 			sourceTree = "<group>";
@@ -590,6 +595,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2F70CD429DED19B003163BA /* dump_table.cpp in Sources */,
 				B2BEC79E29DD8479008D3DCB /* layer_stack.cpp in Sources */,
 				B29C832029DEB7140061D182 /* open_gl_renderer_buffer.cpp in Sources */,
 				B2BEC7C629DDAA49008D3DCB /* renderer_stats.cpp in Sources */,
