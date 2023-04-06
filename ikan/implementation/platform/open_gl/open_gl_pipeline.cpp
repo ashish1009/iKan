@@ -95,7 +95,7 @@ namespace ikan {
                  vertex_buffers->GetRendererID(), renderer_id_, vertex_buffers_.size());
     PIPELINE_LOG("  Vertex Attributes attched to Pipeline (ID: {0}) with Stride | {1} ", renderer_id_, layout.GetStride());
     
-    Table table(4, false);
+    Table table("Vertex Attributes", 4, false);
     
     for (const auto& element : layout.GetElements()) {
       table.AddRow({element.name, ShaderDataTypeToString(element.type), std::to_string(element.offset), std::to_string(element.size)});

@@ -16,6 +16,8 @@ namespace ikan {
 #define TABLE_ERROR(...)    IK_CORE_ERROR(module_name.c_str(), __VA_ARGS__);
 #define TABLE_CRITICAL(...) IK_CORE_CRITICAL(module_name.c_str(), __VA_ARGS__);
   
+#define TABLE_LOG(x) LogTable(level, module_name, x);
+  
   static void LogTable(Logger::Level level, const std::string& module_name, const std::string& data) {
     switch (level) {
       case Logger::Level::Trace:    TABLE_TRACE("{0}", data); break;
@@ -58,21 +60,23 @@ namespace ikan {
       }
     }
     
+    TABLE_LOG(title);
     for (int row_idx = 0; row_idx < rows.size(); row_idx++) {
       if (row_idx == 0)
-        LogTable(level, module_name, std::string(size_t(rows[row_idx].size()), '-').c_str());
+        TABLE_LOG(std::string(size_t(rows[row_idx].size()), '-').c_str());
       
-      LogTable(level, module_name, rows[row_idx].c_str());
+      TABLE_LOG(rows[row_idx].c_str());
       
       if (row_idx == 0 and header)
-        LogTable(level, module_name, std::string(size_t(rows[row_idx].size()), '-').c_str());
+        TABLE_LOG(std::string(size_t(rows[row_idx].size()), '-').c_str());
       
       if (row_idx == rows.size() - 1)
-        LogTable(level, module_name, std::string(size_t(rows[row_idx].size()), '-').c_str());
+        TABLE_LOG(std::string(size_t(rows[row_idx].size()), '-').c_str());
     }
   }
   
-  Table::Table(uint32_t num_col, bool header) : num_cols(num_col), header(header) {
+  Table::Table(const std::string& title, uint32_t num_col, bool header)
+  : title(title), num_cols(num_col), header(header) {
     table_entries.resize(num_col);
   }
   
