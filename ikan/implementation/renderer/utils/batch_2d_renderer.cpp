@@ -171,6 +171,14 @@ namespace ikan {
     
     // Create vertes Buffer
     data->vertex_buffer = VertexBuffer::Create(data->max_vertices * sizeof(QuadData::Vertex));
+    data->vertex_buffer->AddLayout({
+      { "a_Position",     ShaderDataType::Float3 },
+      { "a_Color",        ShaderDataType::Float4 },
+      { "a_TexCoords",    ShaderDataType::Float2 },
+      { "a_TexIndex",     ShaderDataType::Float },
+      { "a_TilingFactor", ShaderDataType::Float },
+      { "a_ObjectID",     ShaderDataType::Int },
+    });
   }
   
   void Batch2DRenderer::AddCircleData(uint32_t max_element) {
@@ -194,6 +202,18 @@ namespace ikan {
     
     // Create vertes Buffer
     data->vertex_buffer = VertexBuffer::Create(data->max_vertices * sizeof(CircleData::Vertex));
+    data->vertex_buffer->AddLayout({
+      { "a_Position",     ShaderDataType::Float3 },
+      { "a_Color",        ShaderDataType::Float4 },
+      { "a_TexCoords",    ShaderDataType::Float2 },
+      { "a_TexIndex",     ShaderDataType::Float },
+      { "a_TilingFactor", ShaderDataType::Float },
+      { "a_LocalPosition",ShaderDataType::Float3 },
+      { "a_Thickness",    ShaderDataType::Float },
+      { "a_Fade",         ShaderDataType::Float },
+      { "a_ObjectID",     ShaderDataType::Int },
+    });
+
   }
   
   void Batch2DRenderer::AddLineData(uint32_t max_element) {
@@ -217,6 +237,10 @@ namespace ikan {
     
     // Create vertes Buffer
     data->vertex_buffer = VertexBuffer::Create(data->max_vertices * sizeof(LineData::Vertex));
+    data->vertex_buffer->AddLayout({
+      { "a_Position",     ShaderDataType::Float3 },
+      { "a_Color",        ShaderDataType::Float4 },
+    });
   }
   
 } // namespace ikan
