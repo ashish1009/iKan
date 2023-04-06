@@ -854,6 +854,7 @@
 					"${PROJECT_DIR}/vendors/glfw/glfw/include",
 					"${PROJECT_DIR}/vendors/imgui/imgui",
 					"${PROJECT_DIR}/vendors/glm",
+					"${PROJECT_DIR}/vendors/stb_image",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -879,6 +880,7 @@
 					"${PROJECT_DIR}/vendors/glfw/glfw/include",
 					"${PROJECT_DIR}/vendors/imgui/imgui",
 					"${PROJECT_DIR}/vendors/glm",
+					"${PROJECT_DIR}/vendors/stb_image",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

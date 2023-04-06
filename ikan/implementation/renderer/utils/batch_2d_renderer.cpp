@@ -33,6 +33,8 @@ namespace ikan {
     
     virtual ~CommonBatchData() {
       pipeline.reset();
+      vertex_buffer.reset();
+      shader.reset();
     }
     
     friend struct Shape2DCommonData;
@@ -74,11 +76,16 @@ namespace ikan {
       max_indices = max_elements * IndicesForSingleElement;
       
       // Creating white texture for colorful quads witout any texture or sprite
-      uint32_t whiteTextureData = 0xffffffff;
-//      texture_slots[0] = Texture::Create(1, 1, &whiteTextureData, sizeof(uint32_t));
+      if (!texture_slots[0]) {
+        uint32_t whiteTextureData = 0xffffffff;
+        texture_slots[0] = Texture::Create(1, 1, &whiteTextureData, sizeof(uint32_t));
+      }
     }
     
-    virtual ~Shape2DCommonData() = default;
+    virtual ~Shape2DCommonData() {
+      for(auto texture : texture_slots)
+        texture.reset();
+    }
   };
   
   /// Batch Data to Rendering Quads
