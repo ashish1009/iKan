@@ -159,7 +159,7 @@
 		B2F70CE529DEE94A003163BA /* buffers.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = buffers.hpp; sourceTree = "<group>"; };
 		B2F70CE829DEEBAD003163BA /* string_utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = string_utils.cpp; sourceTree = "<group>"; };
 		B2F70CE929DEEBAD003163BA /* string_utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = string_utils.hpp; sourceTree = "<group>"; };
-		B2F70CEC29DEEC46003163BA /* open_gl_shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_shader.cpp; sourceTree = "<group>"; };
+		B2F70CEC29DEEC46003163BA /* open_gl_shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_shader.cpp; sourceTree = "<group>"; wrapsLines = 1; };
 		B2F70CED29DEEC46003163BA /* open_gl_shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_shader.hpp; sourceTree = "<group>"; };
 		B2F91E0C29D70FA400860306 /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
 		B2F91E0D29D70FA400860306 /* renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };

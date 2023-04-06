@@ -16,6 +16,11 @@ namespace ikan {
     /// - Important: e.g. : "folder1/folder2/file_name.extention" return "file_name"
     static std::string GetNameFromFilePath(const std::string& file_path);
 
+    /// This function read the file from path given in 'file_path' and store all the date in the file in a string.
+    /// Return the content of this give file as string
+    /// - Parameter file_path: File path to be read:
+    static std::string ReadFromFile(const std::string& file_path);
+
     MAKE_PURE_STATIC(StringUtils);
   };
   

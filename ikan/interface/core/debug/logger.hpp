@@ -14,7 +14,7 @@ namespace ikan {
 /// This enum stores the moule names of ikan Logs (Holds only ikan engine log module names)
 #define LogModule(f) \
   f(None) \
-  f(Event) \
+  f(Event) f(StringUtils) \
   f(Application) f(Window) f(DirectoryManager) f(LayerStack) \
   f(Renderer) f(GraphicsContext) f(Batch2DRenderer) \
   f(Pipeline) f(VertexBuffer) f(IndexBuffer) f(Shader) \

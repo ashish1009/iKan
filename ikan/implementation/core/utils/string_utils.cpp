@@ -24,4 +24,25 @@ namespace ikan {
     return file_path.substr(last_slash, count);
   }
   
+  std::string StringUtils::ReadFromFile(const std::string& file_path) {
+    std::string result = "";
+    std::ifstream in(file_path, std::ios::in | std::ios::binary);
+    if (in) {
+      in.seekg(0, std::ios::end);
+      size_t size = (size_t)in.tellg();
+      if (-1 != (int32_t)size) {
+        result.resize(size);
+        in.seekg(0, std::ios::beg);
+        in.read(&result[0], (long)size);
+        in.close();
+      } else {
+        IK_CORE_ERROR(LogModule::StringUtils, "Could not read from file '{0}'", file_path);
+      }
+    } else {
+      IK_CORE_ERROR(LogModule::StringUtils, "Could not open file '{0}'", file_path);
+    }
+    return result;
+  }
+
+  
 } // namespace ikan

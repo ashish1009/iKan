@@ -96,6 +96,7 @@ namespace ikan {
     PIPELINE_LOG("  Storing the Vertex Buffer (ID: {0}) into Pipeline (ID: {1}). Total vertrd buffers in pipeline are {2}",
                  vertex_buffers->GetRendererID(), renderer_id_, vertex_buffers_.size());
     Table table("Vertex Attributes (Stride " + std::to_string(layout.GetStride()) + ")" , 4, false);
+    table.AddRow({"Name", "Type", "Offset", "Size"});
     
     for (const auto& element : layout.GetElements()) {
       table.AddRow({element.name, ShaderDataTypeToString(element.type), std::to_string(element.offset), std::to_string(element.size)});
