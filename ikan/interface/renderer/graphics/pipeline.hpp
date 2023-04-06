@@ -8,6 +8,7 @@
 #pragma once
 
 #include "renderer/utils/renderer.hpp"
+#include "renderer/graphics/renderer_buffer.hpp"
 
 namespace ikan {
   
@@ -23,6 +24,15 @@ namespace ikan {
     virtual void Bind() const = 0;
     /// Unbind the current pipeline to the GPU
     virtual void Unbind() const = 0;
+
+    /// This function add the Vertex Buffer inside Pipeline and set attribute of each vertices in GPU
+    /// - Parameter vertexBuffer: Ref type of Vertex Buffer
+    virtual void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer) = 0;
+
+    /// This function returns all the Vertex Buffer Stored in Pipeline
+    virtual const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const = 0;
+    /// This function returns the renderer ID of Vertex Buffer
+    virtual RendererID GetRendererID() const = 0;
   };
   
 } // namespace ikan

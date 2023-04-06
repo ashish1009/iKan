@@ -179,6 +179,7 @@ namespace ikan {
       { "a_TilingFactor", ShaderDataType::Float },
       { "a_ObjectID",     ShaderDataType::Int },
     });
+    data->pipeline->AddVertexBuffer(data->vertex_buffer);
   }
   
   void Batch2DRenderer::AddCircleData(uint32_t max_element) {
@@ -213,6 +214,7 @@ namespace ikan {
       { "a_Fade",         ShaderDataType::Float },
       { "a_ObjectID",     ShaderDataType::Int },
     });
+    data->pipeline->AddVertexBuffer(data->vertex_buffer);
 
   }
   
@@ -241,6 +243,7 @@ namespace ikan {
       { "a_Position",     ShaderDataType::Float3 },
       { "a_Color",        ShaderDataType::Float4 },
     });
+    data->pipeline->AddVertexBuffer(data->vertex_buffer);
   }
   
 } // namespace ikan

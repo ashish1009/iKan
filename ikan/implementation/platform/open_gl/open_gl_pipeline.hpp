@@ -22,11 +22,20 @@ namespace ikan {
     void Bind() const override;
     /// Unbind the current pipeline to the GPU
     void Unbind() const override;
+    /// This function add the Vertex Buffer inside Pipeline and set attribute of each vertices in GPU
+    /// - Parameter vertexBuffer: Ref type of Vertex Buffer
+    void AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertexBuffer) override;
+
+    /// This function returns all the Vertex Buffer Stored in Pipeline
+    const std::vector<std::shared_ptr<VertexBuffer>>& GetVertexBuffers() const override { return vertex_buffers_; }
+    /// This function returns the renderer ID of Vertex Buffer
+    RendererID GetRendererID() const override { return renderer_id_; }
 
     DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLPipeline);
     
   private:
     RendererID renderer_id_ = 0;
+    std::vector<std::shared_ptr<VertexBuffer>> vertex_buffers_;
   };
   
 } // namespace ikan
