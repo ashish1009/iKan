@@ -8,6 +8,7 @@
 #include "batch_2d_renderer.hpp"
 #include "renderer/graphics/pipeline.hpp"
 #include "renderer/graphics/renderer_buffer.hpp"
+#include "renderer/graphics/shader.hpp"
 
 namespace ikan {
   
@@ -19,6 +20,7 @@ namespace ikan {
     
     std::shared_ptr<Pipeline> pipeline;
     std::shared_ptr<VertexBuffer> vertex_buffer;
+    std::shared_ptr<Shader> shader;
 
     void CommonInit(uint32_t max_elem, uint32_t max_vertices_single_elem) {
       max_element = max_elem;
@@ -200,6 +202,9 @@ namespace ikan {
     std::shared_ptr<IndexBuffer> ib = IndexBuffer::CreateWithCount(quad_indices, data->max_indices);
     data->pipeline->SetIndexBuffer(ib);
     delete[] quad_indices;
+    
+    // Setup the Quad Shader
+//    quad_data_->shader = Renderer::GetShader(AM::CoreAsset("shaders/pbr_static_shader.glsl"));
   }
   
   void Batch2DRenderer::AddCircleData(uint32_t max_element) {

@@ -53,6 +53,8 @@
 		B2F70CD829DEE4FD003163BA /* shader_uniforms.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F70CD629DEE4FD003163BA /* shader_uniforms.hpp */; };
 		B2F70CDB29DEE5B6003163BA /* open_gl_shader_uniforms.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F70CD929DEE5B6003163BA /* open_gl_shader_uniforms.cpp */; };
 		B2F70CDC29DEE5B6003163BA /* open_gl_shader_uniforms.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F70CDA29DEE5B6003163BA /* open_gl_shader_uniforms.hpp */; };
+		B2F70CE229DEE841003163BA /* shader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F70CE029DEE841003163BA /* shader.cpp */; };
+		B2F70CE329DEE841003163BA /* shader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F70CE129DEE841003163BA /* shader.hpp */; };
 		B2F91E0E29D70FA400860306 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F91E0C29D70FA400860306 /* renderer.cpp */; };
 		B2F91E0F29D70FA400860306 /* renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F91E0D29D70FA400860306 /* renderer.hpp */; };
 		B2F91E1529D713EF00860306 /* open_gl_renderer_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F91E1329D713EF00860306 /* open_gl_renderer_api.cpp */; };
@@ -146,6 +148,9 @@
 		B2F70CD629DEE4FD003163BA /* shader_uniforms.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader_uniforms.hpp; sourceTree = "<group>"; };
 		B2F70CD929DEE5B6003163BA /* open_gl_shader_uniforms.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_shader_uniforms.cpp; sourceTree = "<group>"; };
 		B2F70CDA29DEE5B6003163BA /* open_gl_shader_uniforms.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_shader_uniforms.hpp; sourceTree = "<group>"; };
+		B2F70CDF29DEE7C1003163BA /* pbr_static_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = pbr_static_shader.glsl; sourceTree = "<group>"; };
+		B2F70CE029DEE841003163BA /* shader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = shader.cpp; sourceTree = "<group>"; };
+		B2F70CE129DEE841003163BA /* shader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader.hpp; sourceTree = "<group>"; };
 		B2F91E0C29D70FA400860306 /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
 		B2F91E0D29D70FA400860306 /* renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
 		B2F91E1329D713EF00860306 /* open_gl_renderer_api.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_renderer_api.cpp; sourceTree = "<group>"; };
@@ -218,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				B292C0E929D1D1BC00B1E678 /* prefix_headers.pch */,
+				B2F70CDD29DEE7C1003163BA /* core_assets */,
 				B292C0E229D1CF5A00B1E678 /* interface */,
 				B2BEC4E329DD6598008D3DCB /* implementation */,
 				B292BB9329D19BBD00B1E678 /* core_assets */,
@@ -317,8 +323,8 @@
 		B2BEC4E529DD65D6008D3DCB /* renderer */ = {
 			isa = PBXGroup;
 			children = (
-				B2BEC4E729DD65E1008D3DCB /* graphics */,
 				B2BEC4E629DD65DB008D3DCB /* utils */,
+				B2BEC4E729DD65E1008D3DCB /* graphics */,
 			);
 			path = renderer;
 			sourceTree = "<group>";
@@ -341,6 +347,7 @@
 				B228FC6C29DB071300455666 /* graphics_context.cpp */,
 				B29C830829DE9A5C0061D182 /* pipeline.cpp */,
 				B29C831729DEB1BC0061D182 /* renderer_buffer.cpp */,
+				B2F70CE029DEE841003163BA /* shader.cpp */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -392,6 +399,22 @@
 			path = utils;
 			sourceTree = "<group>";
 		};
+		B2F70CDD29DEE7C1003163BA /* core_assets */ = {
+			isa = PBXGroup;
+			children = (
+				B2F70CDE29DEE7C1003163BA /* shaders */,
+			);
+			path = core_assets;
+			sourceTree = "<group>";
+		};
+		B2F70CDE29DEE7C1003163BA /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				B2F70CDF29DEE7C1003163BA /* pbr_static_shader.glsl */,
+			);
+			path = shaders;
+			sourceTree = "<group>";
+		};
 		B2F91E0A29D70F9300860306 /* renderer */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,6 +443,7 @@
 				B228FC6D29DB071300455666 /* graphics_context.hpp */,
 				B29C830929DE9A5C0061D182 /* pipeline.hpp */,
 				B29C831829DEB1BC0061D182 /* renderer_buffer.hpp */,
+				B2F70CE129DEE841003163BA /* shader.hpp */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -495,6 +519,7 @@
 				B228FC6929DB070500455666 /* open_gl_graphics_context.hpp in Headers */,
 				B2BEC79F29DD8479008D3DCB /* layer_stack.hpp in Headers */,
 				B29C831A29DEB1BC0061D182 /* renderer_buffer.hpp in Headers */,
+				B2F70CE329DEE841003163BA /* shader.hpp in Headers */,
 				B2BEC7CB29DDACAD008D3DCB /* batch_2d_renderer.hpp in Headers */,
 				B2BEC7B229DD8703008D3DCB /* imgui_layer.hpp in Headers */,
 				B2F91E0F29D70FA400860306 /* renderer.hpp in Headers */,
@@ -611,6 +636,7 @@
 				B29C832029DEB7140061D182 /* open_gl_renderer_buffer.cpp in Sources */,
 				B2BEC7C629DDAA49008D3DCB /* renderer_stats.cpp in Sources */,
 				B20FF40D29DDE99500FB3DB7 /* property_grid.cpp in Sources */,
+				B2F70CE229DEE841003163BA /* shader.cpp in Sources */,
 				B2BEC7DC29DDC475008D3DCB /* imgui_api.cpp in Sources */,
 				B228FC6829DB070500455666 /* open_gl_graphics_context.cpp in Sources */,
 				B2BEC7CA29DDACAD008D3DCB /* batch_2d_renderer.cpp in Sources */,
