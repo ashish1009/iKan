@@ -44,6 +44,7 @@ namespace ikan {
       if (row_idx == 0) TABLE_LOG("{0}", std::string(size_t(rows[row_idx].size()), '-').c_str());
       TABLE_LOG("{0} ", rows[row_idx].c_str());
       if (row_idx == 0) TABLE_LOG("{0}", std::string(size_t(rows[row_idx].size()), '-').c_str());
+      if (row_idx == rows.size() - 1) TABLE_LOG("{0}", std::string(size_t(rows[row_idx].size()), '-').c_str());
     }
   }
   

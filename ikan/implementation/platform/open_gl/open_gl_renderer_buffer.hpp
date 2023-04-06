@@ -53,4 +53,35 @@ namespace ikan {
     BufferLayout layout_;
   };
   
-}
+  /// This class is the implementation of Open GL of Renderer Index Buffer, to store the indices of the objects.
+  class OpenGLIndexBuffer : public IndexBuffer {
+  public:
+    /// This constructor creates the Buffer to store the indices. This api takes the date buffer and size of buffer
+    /// - Parameters:
+    ///   - data: Data pointer to be stored in GPU
+    ///   - size: size of index buffer
+    OpenGLIndexBuffer(void* data, uint32_t size);
+    /// This destructor destroy the Renderer Index Buffer
+    ~OpenGLIndexBuffer() noexcept;
+        
+    /// This function binds the Vertex Buffer before rendering
+    void Bind() const override;
+    /// This function unbinds the Vertex Buffer after rendering
+    void Unbind() const override;
+    
+    /// This function returns the Number of Indices used by this Index Buffer
+    uint32_t GetCount() const override { return count_; }
+    /// This function returns the size of Index Buffer in GPU
+    uint32_t GetSize() const override { return size_; }
+    /// This function return the renderer ID of Index Buffer
+    RendererID GetRendererID() const override { return renderer_id_; }
+
+    DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLIndexBuffer);
+    
+  private:
+    RendererID renderer_id_ = 0;
+    uint32_t size_ = 0;
+    uint32_t count_ = 0;
+  };
+
+} // namespace ikan

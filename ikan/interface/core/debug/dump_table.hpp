@@ -30,6 +30,7 @@ namespace ikan {
     
     std::vector<TableColumn> table_entries;
     uint32_t num_cols = 0;
+    uint32_t num_rows = 0;
     uint32_t num_cols_added = 0;
   };
   

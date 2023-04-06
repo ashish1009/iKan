@@ -96,6 +96,9 @@ namespace ikan {
     PIPELINE_LOG("  Vertex Attributes attched to Pipeline (ID: {0}) with Stride | {1} ", renderer_id_, layout.GetStride());
     
     for (const auto& element : layout.GetElements()) {
+      IK_CORE_DEBUG(LogModule::Pipeline, "    {0} {1} at offset {2}, size {3}",
+                    ShaderDataTypeToString(element.type), element.name, element.offset, element.size);
+
       switch (element.type) {
         case ShaderDataType::Int:
         case ShaderDataType::Int2:

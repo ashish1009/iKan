@@ -28,6 +28,23 @@ namespace ikan {
     }
   }
   
+  std::shared_ptr<IndexBuffer> IndexBuffer::CreateWithCount(void* data, uint32_t count) {
+    switch (Renderer::GetApi()) {
+      case Renderer::Api::OpenGl: return std::make_shared<OpenGLIndexBuffer>(data, count * sizeof(uint32_t));
+      case Renderer::Api::None:
+      default:
+        IK_CORE_ASSERT(false, "Invalid Renderer API (None)"); break;
+    }
+  }
+  std::shared_ptr<IndexBuffer> IndexBuffer::CreateWithSize(void* data, uint32_t size) {
+    switch (Renderer::GetApi()) {
+      case Renderer::Api::OpenGl: return std::make_shared<OpenGLIndexBuffer>(data, size);
+      case Renderer::Api::None:
+      default:
+        IK_CORE_ASSERT(false, "Invalid Renderer API (None)"); break;
+    }
+  }
+
   /// This function returns the number of bytes in Shader data types. (Size)
   /// - Parameter type: Shader data type
   static uint32_t ShaderDataTypeSize(ShaderDataType type) {

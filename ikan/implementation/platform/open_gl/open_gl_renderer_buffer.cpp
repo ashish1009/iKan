@@ -55,4 +55,32 @@ namespace ikan {
     glBindBuffer(GL_ARRAY_BUFFER, 0);
   }
 
+  OpenGLIndexBuffer::OpenGLIndexBuffer(void* data, uint32_t size)
+  : size_(size), count_(size_ / sizeof(uint32_t)) {
+    IDManager::GetBufferId(renderer_id_);
+    RendererStatistics::Get().index_buffer_size += size_;
+    
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, renderer_id_);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, size_, data, GL_STATIC_DRAW);
+        
+    IK_CORE_DEBUG(LogModule::IndexBuffer, "Creating Open GL Index Buffer ID {0} with count {1} and size {2} B ...",
+                  renderer_id_, count_, size_);
+  }
+  
+  OpenGLIndexBuffer::~OpenGLIndexBuffer() noexcept {
+    RendererStatistics::Get().index_buffer_size -= size_;
+    IDManager::RemoveBufferId(renderer_id_);
+    
+    IK_CORE_DEBUG(LogModule::IndexBuffer, "Destroying Open GL Index Buffer ID {0} with count {1} and size {2} B ...",
+                  renderer_id_, count_, size_);
+  }
+  
+  void OpenGLIndexBuffer::Bind() const {
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, renderer_id_);
+  }
+  
+  void OpenGLIndexBuffer::Unbind() const {
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+  }
+  
 } // namespace ikan

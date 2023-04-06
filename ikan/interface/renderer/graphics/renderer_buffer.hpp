@@ -103,4 +103,34 @@ namespace ikan {
     virtual RendererID GetRendererID() const = 0;
   };
   
+  /// This class is the interface of Renderer Vertex Buffer, to store the vertices of the objects.
+  class IndexBuffer {
+  public:
+    /// This static function creates the instance of Index Buffer based on the supported API. This api takes the data buffer and number of indices
+    /// - Parameters:
+    ///   - data: Data pointer to be stored in GPU
+    ///   - count: count of indiced
+    /// - Note: Single indices is taken as uint32_t)
+    static std::shared_ptr<IndexBuffer> CreateWithCount(void* data, uint32_t count);
+    /// This static function creates the instance of Index Buffer based on the supported API. This api takes the data buffer and number of indices
+    /// - Parameters:
+    ///   - data: Data pointer to be stored in GPU
+    ///   - size: size of indiced
+    static std::shared_ptr<IndexBuffer> CreateWithSize(void* data, uint32_t size);
+    
+    virtual ~IndexBuffer() = default;
+    
+    /// This function binds the Index Buffer before rendering
+    virtual void Bind() const = 0;
+    /// This function unbinds the Index Buffer after rendering
+    virtual void Unbind() const = 0;
+    
+    /// This function returns the Number of Indices used by this Index Buffer
+    virtual uint32_t GetCount() const = 0;
+    /// This function returns the size of Index Buffer in GPU
+    virtual uint32_t GetSize() const = 0;
+    /// This function return the renderer ID of Index Buffer
+    virtual RendererID GetRendererID() const = 0;
+  };
+
 } // namespace ikan

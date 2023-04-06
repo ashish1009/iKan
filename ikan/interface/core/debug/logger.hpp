@@ -17,7 +17,7 @@ namespace ikan {
   f(Event) \
   f(Application) f(Window) f(DirectoryManager) f(LayerStack) \
   f(Renderer) f(GraphicsContext) f(Batch2DRenderer) \
-  f(Pipeline) f(VertexBuffer) \
+  f(Pipeline) f(VertexBuffer) f(IndexBuffer) \
   f(Imgui) \
   
 CreateEnum(LogModule);
