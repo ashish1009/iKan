@@ -64,6 +64,8 @@
 		B2F70D0029DF0FE7003163BA /* texture.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F70CFE29DF0FE7003163BA /* texture.hpp */; };
 		B2F70D0629DF0FF0003163BA /* open_gl_texture.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F70D0429DF0FF0003163BA /* open_gl_texture.cpp */; };
 		B2F70D0729DF0FF0003163BA /* open_gl_texture.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F70D0529DF0FF0003163BA /* open_gl_texture.hpp */; };
+		B2F70D0B29DF11D9003163BA /* stb_image.h in Headers */ = {isa = PBXBuildFile; fileRef = B2F70D0929DF11D9003163BA /* stb_image.h */; };
+		B2F70D0C29DF11D9003163BA /* stb_image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F70D0A29DF11D9003163BA /* stb_image.cpp */; };
 		B2F91E0E29D70FA400860306 /* renderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F91E0C29D70FA400860306 /* renderer.cpp */; };
 		B2F91E0F29D70FA400860306 /* renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2F91E0D29D70FA400860306 /* renderer.hpp */; };
 		B2F91E1529D713EF00860306 /* open_gl_renderer_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2F91E1329D713EF00860306 /* open_gl_renderer_api.cpp */; };
@@ -171,6 +173,8 @@
 		B2F70CFE29DF0FE7003163BA /* texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = texture.hpp; sourceTree = "<group>"; };
 		B2F70D0429DF0FF0003163BA /* open_gl_texture.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_texture.cpp; sourceTree = "<group>"; };
 		B2F70D0529DF0FF0003163BA /* open_gl_texture.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_texture.hpp; sourceTree = "<group>"; };
+		B2F70D0929DF11D9003163BA /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		B2F70D0A29DF11D9003163BA /* stb_image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = stb_image.cpp; sourceTree = "<group>"; };
 		B2F91E0C29D70FA400860306 /* renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer.cpp; sourceTree = "<group>"; };
 		B2F91E0D29D70FA400860306 /* renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer.hpp; sourceTree = "<group>"; };
 		B2F91E1329D713EF00860306 /* open_gl_renderer_api.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_renderer_api.cpp; sourceTree = "<group>"; };
@@ -271,6 +275,7 @@
 		B292BEFE29D19BE700B1E678 /* vendors */ = {
 			isa = PBXGroup;
 			children = (
+				B2F70D0829DF11D9003163BA /* stb_image */,
 				B228FC8D29DB133000455666 /* imgui.xcodeproj */,
 				B2F91E5F29D721AA00860306 /* glfw.xcodeproj */,
 				B2F91E3229D71A8800860306 /* open_gl.xcodeproj */,
@@ -441,6 +446,15 @@
 			path = shaders;
 			sourceTree = "<group>";
 		};
+		B2F70D0829DF11D9003163BA /* stb_image */ = {
+			isa = PBXGroup;
+			children = (
+				B2F70D0929DF11D9003163BA /* stb_image.h */,
+				B2F70D0A29DF11D9003163BA /* stb_image.cpp */,
+			);
+			path = stb_image;
+			sourceTree = "<group>";
+		};
 		B2F91E0A29D70F9300860306 /* renderer */ = {
 			isa = PBXGroup;
 			children = (
@@ -560,6 +574,7 @@
 				B2F91E0F29D70FA400860306 /* renderer.hpp in Headers */,
 				B20FF40E29DDE99500FB3DB7 /* property_grid.hpp in Headers */,
 				B29C830B29DE9A5C0061D182 /* pipeline.hpp in Headers */,
+				B2F70D0B29DF11D9003163BA /* stb_image.h in Headers */,
 				B2BEC7DD29DDC475008D3DCB /* imgui_api.hpp in Headers */,
 				B2394A3229D8733500D782E5 /* mac_window.hpp in Headers */,
 				B2BEC7D629DDC301008D3DCB /* text_renderer.hpp in Headers */,
@@ -694,6 +709,7 @@
 				B29C831229DE9EB90061D182 /* open_gl_renderer_id_manager.cpp in Sources */,
 				B2F91E1529D713EF00860306 /* open_gl_renderer_api.cpp in Sources */,
 				B2F70CFF29DF0FE7003163BA /* texture.cpp in Sources */,
+				B2F70D0C29DF11D9003163BA /* stb_image.cpp in Sources */,
 				B2BEC7D529DDC301008D3DCB /* text_renderer.cpp in Sources */,
 				B29C830E29DE9B8C0061D182 /* open_gl_pipeline.cpp in Sources */,
 			);
