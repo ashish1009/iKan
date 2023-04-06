@@ -92,6 +92,10 @@ namespace ikan {
     
     PreprocessFile(file_string);
     Compile();
+    
+    // Parse and Store all the Uniform in Shader
+    Parse();
+    ResolveUniforms();
   }
   
   OpenGLShader::~OpenGLShader() {
@@ -99,7 +103,7 @@ namespace ikan {
   }
   
   void OpenGLShader::PreprocessFile(const std::string &source_string) {
-    IK_CORE_DEBUG(LogModule::Shader, "  Processing the '{0}' shader", name_.c_str());
+    IK_CORE_DEBUG(LogModule::Shader, "  Processing the '{0}'", name_.c_str());
     
     // All type (Fragment, Vertex, Geomatry etc...) of shader code should started by this token (e.g. '#type vertex' for vertex shader)
     const char* token = "#type";
@@ -136,7 +140,7 @@ namespace ikan {
   }
 
   void OpenGLShader::Compile() {
-    IK_CORE_DEBUG(LogModule::Shader, "  Compiling the '{0}' shader ", name_.c_str());
+    IK_CORE_DEBUG(LogModule::Shader, "  Compiling the '{0}' ", name_.c_str());
     
     // Check Mendatory Shaders : Vertex and Fragment
     IK_CORE_ASSERT(shader_source_code_map_.find(GL_VERTEX_SHADER) != shader_source_code_map_.end(), "Vertex Shader not loaded in file");
@@ -204,6 +208,95 @@ namespace ikan {
     // Delete all shader as we have already linked them to our shader program
     for (auto id : shader_ids)
       glDeleteShader(id);
+  }
+
+  void OpenGLShader::Parse() {
+    // Clear all the data before parse (if parsing again)
+    structs_.clear();
+    resources_.clear();
+    
+    vs_material_uniform_buffer_.reset();
+    fs_material_uniform_buffer_.reset();
+    gs_material_uniform_buffer_.reset();
+    
+    const char* token;
+    for (auto& [domain, string] : shader_source_code_map_) {
+      auto& shader_source_code = string;
+      
+      // Parsing Structures
+      const char* vstr = shader_source_code.c_str();
+      while ((token = StringUtils::FindToken(vstr, "struct"))) {
+        ParseUniformStruct(StringUtils::GetBlock(token, &vstr), shader_utils::GlDomainToShaderDomain((GLint)domain));
+      }
+      
+      // Parsing uniforms
+      vstr = shader_source_code.c_str();
+      IK_CORE_DEBUG(LogModule::Shader, "  Parsing the '{0}' to extracts all the Uniforms for '{1}' Shader",
+                    name_, shader_utils::ShaderNameFromType(domain));
+      
+      IK_CORE_DEBUG(LogModule::Shader, "    Parsing the Uniforms: ");
+      while ((token = StringUtils::FindToken(vstr, "uniform"))) {
+        ParseUniform(StringUtils::GetStatement(token, &vstr), shader_utils::GlDomainToShaderDomain((GLint)domain));
+      }
+    } // for (auto& [domain, string] : shader_source_code_map_)
+  }
+  
+  void OpenGLShader::ParseUniformStruct(const std::string& block, ShaderDomain domain) {
+    if (structs_.size() == 0) {
+      IK_CORE_DEBUG(LogModule::Shader, "  Parsing the '{0}' to extracts all the structures for '{1}' shader",
+                    name_, shader_utils::ShaderNameFromType(domain));
+    }
+    
+    // get each word from the block and store them in vector
+    std::vector<std::string> tokens = StringUtils::Tokenize(block);
+    uint32_t index = 1; // 0 is for keyword "struct"
+    
+    // get the name of structure
+    std::string struct_name = tokens[index++];
+    ShaderStruct* uniform_struct = new ShaderStruct(struct_name);
+    index++;  // 1 is for Name (stored)
+    
+    IK_CORE_DEBUG(LogModule::Shader, "    struct {0} ", struct_name);
+    
+    // Parse the strcuture
+    while (index < tokens.size()) {
+      if (tokens[index] == "}")
+        break;
+      
+      std::string field_type = tokens[index++]; // Type of element
+      std::string field_name = tokens[index++]; // Name of element
+      
+      // Strip ';' from name if present
+      if (const char* s = strstr(field_name.c_str(), ";")) {
+        size_t size_ot_field_name = (size_t)(s - field_name.c_str());
+        field_name = std::string(field_name.c_str(), size_ot_field_name);
+      }
+      
+      // Check is it array if yes the extract count
+      uint32_t count = 1;
+      const char* name_str = field_name.c_str();
+      if (const char* count_with_brackets = strstr(name_str, "[")) {
+        auto name_without_count = std::string(name_str, (size_t)(count_with_brackets - name_str));
+        const char* end = strstr(name_str, "]");
+        std::string count_with_last_bracket(count_with_brackets + 1, (size_t)(end - count_with_brackets));
+        
+        count = (uint32_t)atoi(count_with_last_bracket.c_str());
+        field_name = name_without_count;
+      } // if (const char* count_with_brackets = strstr(name_str, "["))
+      
+      // Stores the content of structure in struct
+      ShaderUniformDeclaration*
+      field = new OpenGLShaderUniformDeclaration(domain, OpenGLShaderUniformDeclaration::StringToType(field_type),
+                                                 field_name, count);
+      uniform_struct->AddField(field);
+    }    
+    structs_.emplace_back(uniform_struct);
+  }
+  
+  void OpenGLShader::ParseUniform(const std::string& statement, ShaderDomain domain) {
+  }
+  
+  void OpenGLShader::ResolveUniforms() {
   }
   
 } // namespace ikan
