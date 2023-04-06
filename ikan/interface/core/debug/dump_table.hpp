@@ -22,7 +22,7 @@ namespace ikan {
       }
     };
     
-    Table(uint32_t num_col);
+    Table(uint32_t num_col, bool header = true);
 
     void AddRow(const std::vector<std::string>& rows);
     void AddColumn(const std::vector<std::string>& cols);
@@ -32,6 +32,8 @@ namespace ikan {
     uint32_t num_cols = 0;
     uint32_t num_rows = 0;
     uint32_t num_cols_added = 0;
+    
+    bool header = true;
   };
   
 } // namespace ikan

@@ -64,7 +64,7 @@ namespace ikan {
       
       LogTable(level, module_name, rows[row_idx].c_str());
       
-      if (row_idx == 0)
+      if (row_idx == 0 and header)
         LogTable(level, module_name, std::string(size_t(rows[row_idx].size()), '-').c_str());
       
       if (row_idx == rows.size() - 1)
@@ -72,7 +72,7 @@ namespace ikan {
     }
   }
   
-  Table::Table(uint32_t num_col) : num_cols(num_col) {
+  Table::Table(uint32_t num_col, bool header) : num_cols(num_col), header(header) {
     table_entries.resize(num_col);
   }
   
