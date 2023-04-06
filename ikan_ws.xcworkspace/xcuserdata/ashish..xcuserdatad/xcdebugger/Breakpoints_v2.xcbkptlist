@@ -14,8 +14,8 @@
             filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "Batch2DRenderer::AddQuadData(max_element)"
             landmarkType = "7">
             <Locations>
@@ -49,7 +49,38 @@
                   endingLineNumber = "145"
                   offsetFromSymbolStart = "48">
                </Location>
+               <Location
+                  uuid = "EAB20BA6-2FDD-479A-8401-0EA98BE406E2 - 8f1d39921a89d18f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ikan::Batch2DRenderer::AddQuadData(unsigned int)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "152"
+                  endingLineNumber = "152"
+                  offsetFromSymbolStart = "48">
+               </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FFA3E670-5BDD-42C1-A03A-FD721820F5C9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "Batch2DRenderer::Initialise(max_quads, max_cirlces, max_lines)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

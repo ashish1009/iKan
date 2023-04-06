@@ -15,8 +15,9 @@ namespace ikan {
 #define LogModule(f) \
   f(None) \
   f(Event) \
-  f(Application) f(Window) f(DirectoryManager) f(LayerStack)\
-  f(Renderer) f(GraphicsContext) f(Batch2DRenderer)\
+  f(Application) f(Window) f(DirectoryManager) f(LayerStack) \
+  f(Renderer) f(GraphicsContext) f(Batch2DRenderer) \
+  f(Pipeline) \
   f(Imgui) \
   
 CreateEnum(LogModule);

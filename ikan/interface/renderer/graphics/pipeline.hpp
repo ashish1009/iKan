@@ -18,6 +18,11 @@ namespace ikan {
     static std::shared_ptr<Pipeline> Create();
 
     virtual ~Pipeline() noexcept = default;
+    
+    /// Bind the current pipeline to the GPU
+    virtual void Bind() const = 0;
+    /// Unbind the current pipeline to the GPU
+    virtual void Unbind() const = 0;
   };
   
 } // namespace ikan

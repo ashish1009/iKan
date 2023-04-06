@@ -26,6 +26,10 @@ namespace ikan {
       pipeline = Pipeline::Create();
     }
     
+    virtual ~CommonBatchData() {
+      pipeline.reset();
+    }
+    
     friend struct Shape2DCommonData;
     friend struct LineData;
 
@@ -54,7 +58,6 @@ namespace ikan {
     
     void Initialise(uint32_t max_elements) {
       CommonInit(max_elements, VertexForSingleElement);
-
       max_indices = max_elements * IndicesForSingleElement;
     }
     
@@ -131,6 +134,7 @@ namespace ikan {
   
   void Batch2DRenderer::Initialise(uint32_t max_quads, uint32_t max_cirlces, uint32_t max_lines) {
     IK_CORE_TRACE(LogModule::Batch2DRenderer, "Initialising the Batch Renderer 2D ...");
+    
     AddQuadData(max_quads);
     AddCircleData(max_cirlces);
     AddLineData(max_lines);
@@ -138,19 +142,24 @@ namespace ikan {
   
   void Batch2DRenderer::Shutdown() {
     IK_CORE_TRACE(LogModule::Batch2DRenderer, "Shutting Down the Batch Renderer 2D !!!");
+    
+    quad_data_.reset();
+    circle_data_.reset();
+    line_data_.reset();
   }
   
   void Batch2DRenderer::AddQuadData(uint32_t max_element) {
     RETURN_IF(max_element == 0);
     std::unique_ptr<QuadData>& data = quad_data_;
     
-    // If data have already created then append the data to previous one else create new memory
+    // If data have already created then append the data to previous one
     if (data) {
       max_element += data->max_element;
+      data.reset();
     }
-    else {
-      data = std::make_unique<QuadData>();
-    }
+  
+    // Allocate memory for Quad Data
+    data = std::make_unique<QuadData>();
     
     // Allocating the memory for vertex Buffer Pointer
     data->vertex_buffer_base_ptr = new QuadData::Vertex[data->max_vertices];
@@ -163,14 +172,15 @@ namespace ikan {
     RETURN_IF(max_element == 0);
     std::unique_ptr<CircleData>& data = circle_data_;
     
-    // If data have already created then append the data to previous one else create new memory
+    // If data have already created then append the data to previous one
     if (data) {
       max_element += data->max_element;
-    }
-    else {
-      data = std::make_unique<CircleData>();
+      data.reset();
     }
 
+    // Allocate memory for Circle Data
+    data = std::make_unique<CircleData>();
+    
     // Allocating the memory for vertex Buffer Pointer
     data->vertex_buffer_base_ptr = new CircleData::Vertex[data->max_vertices];
     
@@ -182,13 +192,14 @@ namespace ikan {
     RETURN_IF(max_element == 0);
     std::unique_ptr<LineData>& data = line_data_;
     
-    // If data have already created then append the data to previous one else create new memory
+    // If data have already created then append the data to previous one
     if (data) {
       max_element += data->max_element;
+      data.reset();
     }
-    else {
-      data = std::make_unique<LineData>();
-    }
+
+    // Allocate memory for Line Data
+    data = std::make_unique<LineData>();
 
     // Allocating the memory for vertex Buffer Pointer
     data->vertex_buffer_base_ptr = new LineData::Vertex[data->max_vertices];
