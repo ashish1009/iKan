@@ -14,8 +14,8 @@
             filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "Batch2DRenderer::AddQuadData(max_element)"
             landmarkType = "7">
             <Locations>
@@ -64,6 +64,21 @@
                   endingLineNumber = "152"
                   offsetFromSymbolStart = "48">
                </Location>
+               <Location
+                  uuid = "EAB20BA6-2FDD-479A-8401-0EA98BE406E2 - 8f1d39921a89d1ea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ikan::Batch2DRenderer::AddQuadData(unsigned int)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "155"
+                  endingLineNumber = "155"
+                  offsetFromSymbolStart = "48">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -77,8 +92,8 @@
             filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "Batch2DRenderer::Initialise(max_quads, max_cirlces, max_lines)"
             landmarkType = "7">
          </BreakpointContent>

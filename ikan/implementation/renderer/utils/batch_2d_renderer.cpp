@@ -7,6 +7,7 @@
 
 #include "batch_2d_renderer.hpp"
 #include "renderer/graphics/pipeline.hpp"
+#include "renderer/graphics/renderer_buffer.hpp"
 
 namespace ikan {
   
@@ -17,7 +18,8 @@ namespace ikan {
     uint32_t max_vertices = 0;
     
     std::shared_ptr<Pipeline> pipeline;
-    
+    std::shared_ptr<VertexBuffer> vertex_buffer;
+
     void CommonInit(uint32_t max_elem, uint32_t max_vertices_single_elem) {
       max_element = max_elem;
       max_vertices = max_elem * max_vertices_single_elem;
@@ -166,6 +168,9 @@ namespace ikan {
     
     // Initialize the data for Common shape
     data->Initialise(max_element);
+    
+    // Create vertes Buffer
+    data->vertex_buffer = VertexBuffer::Create(data->max_vertices * sizeof(QuadData::Vertex));
   }
   
   void Batch2DRenderer::AddCircleData(uint32_t max_element) {
@@ -186,6 +191,9 @@ namespace ikan {
     
     // Initialize the data for Common shape
     data->Initialise(max_element);
+    
+    // Create vertes Buffer
+    data->vertex_buffer = VertexBuffer::Create(data->max_vertices * sizeof(CircleData::Vertex));
   }
   
   void Batch2DRenderer::AddLineData(uint32_t max_element) {
@@ -206,6 +214,9 @@ namespace ikan {
 
     // Initialize the data for Common shape
     data->Initialise(max_element);
+    
+    // Create vertes Buffer
+    data->vertex_buffer = VertexBuffer::Create(data->max_vertices * sizeof(LineData::Vertex));
   }
   
 } // namespace ikan
