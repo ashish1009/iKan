@@ -76,19 +76,11 @@ namespace ikan {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
     
     uint16_t bpp = data_format_ == GL_RGBA ? 4 : 3;
-    IK_CORE_ASSERT((size_ == (uint32_t)width_ * (uint32_t)height_ * bpp),
-                   "Data must be entire texture");
+    IK_CORE_ASSERT((size_ == (uint32_t)width_ * (uint32_t)height_ * bpp), "Data must be entire texture");
     
     // Create texture in the renderer Buffer
-    glTexImage2D(GL_TEXTURE_2D,
-                 0, // level
-                 (GLint)internal_format_,
-                 (GLsizei)width_,
-                 (GLsizei)height_,
-                 0, // Border
-                 data_format_,
-                 texture_utils::GetTextureType(internal_format_),
-                 (stbi_uc*)(texture_data_));
+    glTexImage2D(GL_TEXTURE_2D, 0, /* level */ (GLint)internal_format_, (GLsizei)width_, (GLsizei)height_,
+                 0, /* Border */ data_format_, texture_utils::GetTextureType(internal_format_), (stbi_uc*)(texture_data_));
     
     // Set the flag if uploaded
     uploaded_ = true;
@@ -108,7 +100,96 @@ namespace ikan {
     delete (uint32_t*)texture_data_;
   }
   
+  OpenGLTexture::OpenGLTexture(const std::string& file_path, bool linear)
+  : file_path_(file_path), name_(StringUtils::GetNameFromFilePath(file_path)),
+  internal_format_(GL_RGBA8), data_format_(GL_RGBA) {
+    if (renderer_id_)
+      IDManager::RemoveTextureId(&renderer_id_);
+
+    // Invert the texture. as by default open gl load inverted vertically
+    stbi_set_flip_vertically_on_load(1);
+    
+    // Load the file with stb image API
+    texture_data_ = stbi_load(file_path_.c_str(), &width_, &height_, &channel_, 0 /* desired_channels */ );
+    
+    // If file loaded successfullt
+    if (texture_data_) {
+      uploaded_ = true;
+      switch (channel_) {
+        case 4 :
+          internal_format_ = GL_RGBA8;
+          data_format_     = GL_RGBA;
+          break;
+        case 3 :
+          internal_format_ = GL_RGB8;
+          data_format_     = GL_RGB;
+          break;
+        case 2 :
+        case 1 :
+          internal_format_ = GL_RED;
+          data_format_     = GL_RED;
+          break;
+          
+        default:
+          IK_CORE_ASSERT(false, "Invalid Format ");
+      }
+      
+      IDManager::GetTextureId(&renderer_id_);
+      glBindTexture(GL_TEXTURE_2D, renderer_id_);
+      
+      // Setup min and Mag filter
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, (linear ? GL_LINEAR : GL_NEAREST));
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, (linear ? GL_LINEAR : GL_NEAREST));
+      
+      // Texuter Flags
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+      
+      // Create texture in the renderer Buffer
+      glTexImage2D(GL_TEXTURE_2D, 0, /* Level */ (GLint)internal_format_, width_, height_,
+                   0, /* Border */ data_format_, texture_utils::GetTextureType(internal_format_), texture_data_);
+      
+      size_ = (uint32_t)width_ * (uint32_t)height_ * (uint32_t)channel_;
+      
+      // Increment the size in stats
+      RendererStatistics::Get().texture_buffer_size += size_;
+      
+      // Delete the data as we have already loaded in graphics
+      delete (stbi_uc*)texture_data_;
+    }
+    
+    if (uploaded_) {
+      IK_CORE_DEBUG(LogModule::Texture, "Creating Open GL Texture from File ... ");
+      IK_CORE_DEBUG(LogModule::Texture, "  File Path          {0}", file_path_);
+      IK_CORE_DEBUG(LogModule::Texture, "  Renderer ID        {0}", renderer_id_);
+      IK_CORE_DEBUG(LogModule::Texture, "  Width              {0}", width_);
+      IK_CORE_DEBUG(LogModule::Texture, "  Height             {0}", height_);
+      IK_CORE_DEBUG(LogModule::Texture, "  Size               {0} B", size_);
+      IK_CORE_DEBUG(LogModule::Texture, "  Number of Channel  {0}", channel_);
+      IK_CORE_DEBUG(LogModule::Texture, "  InternalFormat     {0}", texture_utils::GetFormatNameFromEnum(internal_format_));
+      IK_CORE_DEBUG(LogModule::Texture, "  DataFormat         {0}", texture_utils::GetFormatNameFromEnum(data_format_));
+    } else {
+      IK_CORE_CRITICAL(LogModule::Texture, "Failed to load stbi Image {0}", file_path_.c_str());
+    }
+  }
+  
   OpenGLTexture::~OpenGLTexture() {
+    if (uploaded_) {
+      IK_CORE_WARN(LogModule::Texture, "Destroying Open GL Texture: !!! ");
+      if (file_path_ != "")
+        IK_CORE_WARN(LogModule::Texture, "  File Path          {0}", file_path_);
+      
+      IK_CORE_WARN(LogModule::Texture, "  Renderer ID        {0}", renderer_id_);
+      IK_CORE_WARN(LogModule::Texture, "  Width              {0}", width_);
+      IK_CORE_WARN(LogModule::Texture, "  Height             {0}", height_);
+      IK_CORE_WARN(LogModule::Texture, "  Size               {0} B", size_);
+      IK_CORE_WARN(LogModule::Texture, "  Number of Channel  {0}", channel_);
+      IK_CORE_WARN(LogModule::Texture, "  InternalFormat     {0}", texture_utils::GetFormatNameFromEnum(internal_format_));
+      IK_CORE_WARN(LogModule::Texture, "  DataFormat         {0}", texture_utils::GetFormatNameFromEnum(data_format_));
+      
+      IDManager::RemoveTextureId(&renderer_id_);
+      RendererStatistics::Get().texture_buffer_size -= size_;
+    }
   }
   
 } // namespace ikan

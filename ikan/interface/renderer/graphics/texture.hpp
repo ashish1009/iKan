@@ -24,7 +24,12 @@ namespace ikan {
     ///   - data: Data to be stored in Empty Texture
     ///   - size: Size of type of data stored in Texture
     static std::shared_ptr<Texture> Create(uint32_t width, uint32_t height, void* data, uint32_t size);
-    
+    /// This static functions creates the Texture from image file
+    /// - Parameters:
+    ///   - file_path: path of texture file
+    ///   - linear: min linear flag
+    static std::shared_ptr<Texture> Create(const std::string& file_path, bool linear = true);
+
     virtual ~Texture() = default;
   };
   

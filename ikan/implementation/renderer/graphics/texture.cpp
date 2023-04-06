@@ -19,4 +19,13 @@ namespace ikan {
     }
   }
   
+  std::shared_ptr<Texture> Texture::Create(const std::string& file_path, bool linear) {
+    switch (Renderer::GetApi()) {
+      case Renderer::Api::OpenGl: return std::make_shared<OpenGLTexture>(file_path, linear);
+      case Renderer::Api::None:
+      default:
+        IK_CORE_ASSERT(false, "Invalid Renderer API (None)"); break;
+    }
+  }
+
 } // namespace ikan

@@ -21,7 +21,12 @@ namespace ikan {
     ///   - data: user data to fill in texture
     ///   - size: size of texture
     OpenGLTexture(uint32_t width, uint32_t height, void* data, uint32_t size);
-    
+    /// This constructor creates the texture using image file path
+    /// - Parameters:
+    ///   - file_path: Texture image file path (absolute)
+    ///   - linear: min linear filter
+    OpenGLTexture(const std::string& file_path, bool linear);
+
     /// Default destructor that delete the texture
     virtual ~OpenGLTexture();
     
