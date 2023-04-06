@@ -204,7 +204,7 @@ namespace ikan {
     delete[] quad_indices;
     
     // Setup the Quad Shader
-//    quad_data_->shader = Renderer::GetShader(AM::CoreAsset("shaders/pbr_static_shader.glsl"));
+    quad_data_->shader = Renderer::GetShader(DM::CoreAsset("shaders/pbr_static_shader.glsl"));
   }
   
   void Batch2DRenderer::AddCircleData(uint32_t max_element) {

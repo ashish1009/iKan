@@ -9,6 +9,7 @@
 #include "batch_2d_renderer.hpp"
 #include "text_renderer.hpp"
 #include "renderer_stats.hpp"
+#include "shader.hpp"
 
 namespace ikan {
   
@@ -55,6 +56,8 @@ namespace ikan {
     
     Batch2DRenderer::Shutdown();
     TextRenderer::Shutdown();
+    
+    ShaderLibrary::ResetShaders();
   }
   
   // -------------------------------------------------------------------------
@@ -109,18 +112,15 @@ namespace ikan {
   // -------------------------------------------------------------------------
   // Renderer Stats API
   // -------------------------------------------------------------------------
-  void Renderer::ResetStatsEachFrame() {
-    RendererStatistics::Get().ResetEachFrame();
-  }
-  void Renderer::ResetStats() {
-    RendererStatistics::Get().ResetAll();
-  }
-  void Renderer::RenderStatsGui(bool *is_open) {
-    RendererStatistics::Get().RenderGui(is_open);
-  }
-  void Renderer::Render2DStatsGui(bool *is_open) {
-    RendererStatistics::Get().stats_2d_.RenderGui(is_open);
-  }
+  void Renderer::ResetStatsEachFrame() { RendererStatistics::Get().ResetEachFrame(); }
+  void Renderer::ResetStats() { RendererStatistics::Get().ResetAll(); }
+  void Renderer::RenderStatsGui(bool *is_open) { RendererStatistics::Get().RenderGui(is_open); }
+  void Renderer::Render2DStatsGui(bool *is_open) { RendererStatistics::Get().stats_2d_.RenderGui(is_open); }
+
+  // -------------------------------------------------------------------------
+  // Library
+  // -------------------------------------------------------------------------
+  std::shared_ptr<Shader> Renderer::GetShader(const std::string& path) { return ShaderLibrary::GetShader(path); }
 
   // -------------------------------------------------------------------------
   // Renderer Capabilities

@@ -57,4 +57,6 @@ namespace ikan {
     friend class Application;
   };
   
+  using DM = DirectoryManager;
+
 } // namespace ikan

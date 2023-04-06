@@ -11,6 +11,8 @@
 
 namespace ikan {
   
+  class Shader;
+  
   /// All renderer ID type
   using RendererID = uint32_t;
 
@@ -123,6 +125,10 @@ namespace ikan {
     /// This function renderers Imgui to show renderer stats
     /// - Parameter is_open: flag to show or hide the widget
     static void Render2DStatsGui(bool *is_open = nullptr);
+
+    /// This function returns the shader pointer from the library. If not present then  create new shader and store in the library
+    /// - Parameter path: path of shader
+    [[nodiscard]] static std::shared_ptr<Shader> GetShader(const std::string& path);
 
     MAKE_PURE_STATIC(Renderer);
   };
