@@ -26,6 +26,17 @@ namespace ikan {
     static std::shared_ptr<VertexBuffer> Create(uint32_t size);
 
     virtual ~VertexBuffer() = default;
+    
+    /// This function update the date in buffer dynamically
+    /// - Parameters:
+    ///   - data: Data pointer to be stored in GPU
+    ///   - size: size of data
+    virtual void SetData(void* data, uint32_t size) = 0;
+    /// This function binds the Vertex Buffer before rendering
+    virtual void Bind() const = 0;
+    /// This function unbinds the Vertex Buffer after rendering
+    virtual void Unbind() const = 0;
+
   };
   
 } // namespace ikan

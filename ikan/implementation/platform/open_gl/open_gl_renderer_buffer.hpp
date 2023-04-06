@@ -25,6 +25,16 @@ namespace ikan {
     /// This destructor destroy the Renderer Index Buffer
     ~OpenGLVertexBuffer();
     
+    /// This function update the date in buffer dynamically
+    /// - Parameters:
+    ///   - data: Data pointer to be stored in GPU
+    ///   - size: size of data
+    void SetData(void* data, uint32_t size) override;
+    /// This function binds the Vertex Buffer before rendering
+    void Bind() const override;
+    /// This function unbinds the Vertex Buffer after rendering
+    void Unbind() const override;
+
     DELETE_COPY_MOVE_CONSTRUCTORS(OpenGLVertexBuffer);
 
   public:
