@@ -39,6 +39,7 @@
 
 #include <core/utils/asserts.h>
 #include <core/utils/directory_manager.h>
+#include <core/utils/buffers.hpp>
 
 #include <core/events/event.h>
 #include <core/events/application_event.h>
