@@ -85,6 +85,26 @@ namespace ikan {
         texture_slots[0] = Texture::Create(1, 1, &whiteTextureData, sizeof(uint32_t));
       }
       
+      // Create Index Buffer
+      uint32_t* indices = new uint32_t[max_indices];
+      uint32_t offset = 0;
+      for (size_t i = 0; i < max_indices; i += Shape2DCommonData::IndicesForSingleElement) {
+        indices[i + 0] = offset + 0;
+        indices[i + 1] = offset + 1;
+        indices[i + 2] = offset + 2;
+        
+        indices[i + 3] = offset + 2;
+        indices[i + 4] = offset + 3;
+        indices[i + 5] = offset + 0;
+        
+        offset += 4;
+      }
+      
+      // Create Index Buffer in GPU for storing Indices
+      std::shared_ptr<IndexBuffer> ib = IndexBuffer::CreateWithCount(indices, max_indices);
+      pipeline->SetIndexBuffer(ib);
+      delete[] indices;
+      
       // Setting basic Vertex point of quad
       vertex_base_position[0] = { -0.5f, -0.5f, 0.0f, 1.0f };
       vertex_base_position[1] = {  0.5f, -0.5f, 0.0f, 1.0f };
@@ -176,10 +196,33 @@ namespace ikan {
   
   void Batch2DRenderer::Shutdown() {
     IK_CORE_TRACE(LogModule::Batch2DRenderer, "Shutting Down the Batch Renderer 2D !!!");
+        
+    if (quad_data_) {
+      IK_CORE_TRACE(LogModule::Batch2DRenderer, "Destroying the Batch Renderer Quad Data");
+      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Quads per Batch            {0}", quad_data_->max_element);
+      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Texture Slots per Batch    {0}", kMaxTextureSlotsInShader);
+      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Vertex Buffer used             {0} B", quad_data_->max_vertices * sizeof(QuadData::Vertex));
+      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Index Buffer used              {0} B", quad_data_->max_indices * sizeof(uint32_t));
+      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Shader Used                    {0}", quad_data_->shader->GetName());
+      quad_data_.reset();
+    }
     
-    quad_data_.reset();
-    circle_data_.reset();
-    line_data_.reset();
+    if (circle_data_) {
+      IK_CORE_TRACE(LogModule::Batch2DRenderer, "Destroying the Batch Renderer Circle Data");
+      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Circles per Batch          {0}", circle_data_->max_element);
+      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Texture Slots per Batch    {0}", kMaxTextureSlotsInShader);
+      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Vertex Buffer used             {0}", circle_data_->max_vertices * sizeof(CircleData::Vertex));
+      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Vertex Buffer used             {0}", circle_data_->max_indices * sizeof(uint32_t));
+      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Shader used                    {0}", circle_data_->shader->GetName());
+      circle_data_.reset();
+    }
+    if (line_data_) {
+      IK_CORE_TRACE(LogModule::Batch2DRenderer, "Destroying the Batch Renderer Line Data");
+      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Lines per Batch            {0}", line_data_->max_element);
+      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Vertex Buffer used             {0} B", line_data_->max_vertices * sizeof(LineData::Vertex));
+      IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Shader used                    {0}", line_data_->shader->GetName());
+      line_data_.reset();
+    }
   }
   
   void Batch2DRenderer::AddQuadData(uint32_t max_element) {
@@ -212,31 +255,18 @@ namespace ikan {
       { "a_ObjectID",     ShaderDataType::Int },
     });
     data->pipeline->AddVertexBuffer(data->vertex_buffer);
-    
-    // Create Index Buffer
-    uint32_t* quad_indices = new uint32_t[data->max_indices];
-    uint32_t offset = 0;
-    for (size_t i = 0; i < data->max_indices; i += Shape2DCommonData::IndicesForSingleElement) {
-      quad_indices[i + 0] = offset + 0;
-      quad_indices[i + 1] = offset + 1;
-      quad_indices[i + 2] = offset + 2;
-      
-      quad_indices[i + 3] = offset + 2;
-      quad_indices[i + 4] = offset + 3;
-      quad_indices[i + 5] = offset + 0;
-      
-      offset += 4;
-    }
-    
-    // Create Index Buffer in GPU for storing Indices
-    std::shared_ptr<IndexBuffer> ib = IndexBuffer::CreateWithCount(quad_indices, data->max_indices);
-    data->pipeline->SetIndexBuffer(ib);
-    delete[] quad_indices;
-    
+        
     // Setup the Quad Shader
     data->shader = Renderer::GetShader(DM::CoreAsset("shaders/batch_quad_shader.glsl"));
     
     RendererStatistics::Get().stats_2d_.max_quads = data->max_element;
+    
+    IK_CORE_TRACE(LogModule::Batch2DRenderer, "Initialized Batch Renderer for Quad Data");
+    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Quads per Batch              {0}", data->max_element);
+    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Texture Slots per Batch      {0}", kMaxTextureSlotsInShader);
+    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Vertex Buffer used               {0} B", data->max_vertices * sizeof(QuadData::Vertex));
+    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Index Buffer used                {0} B", data->max_indices * sizeof(uint32_t));
+    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Shader Used                      {0}", data->shader->GetName());
   }
   
   void Batch2DRenderer::AddCircleData(uint32_t max_element) {
@@ -272,31 +302,18 @@ namespace ikan {
       { "a_ObjectID",     ShaderDataType::Int },
     });
     data->pipeline->AddVertexBuffer(data->vertex_buffer);
-
-    // Create Index Buffer
-    uint32_t* quad_indices = new uint32_t[data->max_indices];
-    uint32_t offset = 0;
-    for (size_t i = 0; i < data->max_indices; i += Shape2DCommonData::IndicesForSingleElement) {
-      quad_indices[i + 0] = offset + 0;
-      quad_indices[i + 1] = offset + 1;
-      quad_indices[i + 2] = offset + 2;
-      
-      quad_indices[i + 3] = offset + 2;
-      quad_indices[i + 4] = offset + 3;
-      quad_indices[i + 5] = offset + 0;
-      
-      offset += 4;
-    }
-    
-    // Create Index Buffer in GPU for storing Indices
-    std::shared_ptr<IndexBuffer> ib = IndexBuffer::CreateWithCount(quad_indices, data->max_indices);
-    data->pipeline->SetIndexBuffer(ib);
-    delete[] quad_indices;
     
     // Setup the Quad Shader
     data->shader = Renderer::GetShader(DM::CoreAsset("shaders/batch_circle_shader.glsl"));
     
     RendererStatistics::Get().stats_2d_.max_circles = data->max_element;
+    
+    IK_CORE_TRACE(LogModule::Batch2DRenderer, "Initialized Batch Renderer for Circle Data");
+    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Circles per Batch            {0}", data->max_element);
+    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Texture Slots per Batch      {0}", kMaxTextureSlotsInShader);
+    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Vertex Buffer used               {0} B", data->max_vertices * sizeof(CircleData::Vertex));
+    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Index Buffer used                {0} B", data->max_indices * sizeof(uint32_t));
+    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Shader Used                      {0}", data->shader->GetName());
   }
   
   void Batch2DRenderer::AddLineData(uint32_t max_element) {
@@ -330,6 +347,11 @@ namespace ikan {
     data->shader = Renderer::GetShader(DM::CoreAsset("shaders/batch_line_shader.glsl"));
     
     RendererStatistics::Get().stats_2d_.max_lines = data->max_element;
+    
+    IK_CORE_TRACE(LogModule::Batch2DRenderer, "Initialized Batch Renderer for Line Data");
+    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Max Lines per Batch              {0}", data->max_element);
+    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Vertex Buffer used               {0} B", data->max_vertices * sizeof(LineData::Vertex));
+    IK_CORE_TRACE(LogModule::Batch2DRenderer, "  Shader Used                      {0}", data->shader->GetName());
   }
   
 } // namespace ikan
