@@ -60,6 +60,13 @@ namespace kreator {
     void HandleEvents(Event& event) override;
     
   private:
+    /// This function renders the scene data
+    void RenderScene(Timestep ts);
+
+    /// This function handles the key button press event
+    /// - Parameter e key button pressed event
+    bool KeyPressed(KeyPressedEvent& event);
+
     /// This function render the menue bar
     void ShowMenu();
     /// This function renders the setting Widget

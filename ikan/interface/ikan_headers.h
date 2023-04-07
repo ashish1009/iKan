@@ -51,6 +51,7 @@
 
 #include <core/core_application.hpp>
 #include <core/window.hpp>
+#include <core/input.hpp>
 
 // Renderer Files
 #include <renderer/utils/renderer.hpp>

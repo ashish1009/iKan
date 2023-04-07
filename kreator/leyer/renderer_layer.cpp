@@ -34,12 +34,43 @@ namespace kreator {
   }
   
   void RendererLayer::Update(Timestep ts) {
-    Renderer::Clear(game_data_->GetBgColor());
+    if (is_playing_) {
+      RenderScene(ts);
+    }
+    else {
+      RenderScene(ts);
+    }
   }
   
-  void RendererLayer::HandleEvents(Event& event) {
+  void RendererLayer::RenderScene(Timestep ts) {
+    Renderer::Clear(game_data_->GetBgColor());
   }
+
+  void RendererLayer::HandleEvents(Event& event) {
+    EventDispatcher dispatcher(event);
+    dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::KeyPressed));
+  }
+
+  bool RendererLayer::KeyPressed(KeyPressedEvent& event) {
+    if (event.GetRepeatCount() > 0)
+      return false;
     
+    bool cmd = Input::IsKeyPressed(Key::LeftSuper) or Input::IsKeyPressed(Key::RightSuper);
+    
+    if (cmd) {
+      switch (event.GetKeyCode()) {
+        case Key::R: SetPlay(true); break;
+        default: break;
+      };
+    }
+
+    switch (event.GetKeyCode()) {
+      case Key::Escape: SetPlay(false); break;
+      default: break;
+    }
+    return false;
+  }
+  
   void RendererLayer::RenderGui() {
     if (is_playing_) {
     }
