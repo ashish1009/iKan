@@ -29,7 +29,8 @@ namespace kreator {
   void RendererLayer::Attach() {
     KREATOR_LOG("Attaching {0} Layer instance", game_data_->GameName().c_str());
     
-    TextRenderer::LoadFreetype(DM::ClientAsset("fonts/Opensans/Regular.ttf"));
+    // Loading the Default Font for Text rendering
+    TextRenderer::LoadFreetype(game_data_->RegularFontData().path);
   }
   
   void RendererLayer::Detach() {

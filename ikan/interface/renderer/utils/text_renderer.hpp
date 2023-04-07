@@ -9,6 +9,12 @@
 
 namespace ikan {
   
+  struct Font {
+    std::string path;
+    float size;
+    Font(const std::string& path, float size) : path(path), size(size) {}
+  };
+  
   class TextRenderer {
   public:
     /// This function initializes the Text renderer. Create All buffers needed to store Data (Both Renderer and CPU)
