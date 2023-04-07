@@ -45,7 +45,7 @@ namespace ikan {
 
     /// This function returns the path relative to the executable form the path relative to workspace
     /// - Parameter path: Aasset path relative to workspace folder:
-    static std::string ProjectPath(const std::string& path) { return workspace_path_ + path; }
+    static std::string WorkspacePath(const std::string& path) { return workspace_path_ + path; }
     /// This function returns the path relative to the executable form the path relative to Core asset path
     /// - Parameter asset_path: Aasset path relative to asset folder:
     static std::string CoreAsset(const std::string& asset_path) { return core_asset_path_ + asset_path; }

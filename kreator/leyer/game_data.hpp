@@ -29,6 +29,8 @@ namespace kreator {
     virtual Font BoldFontData() const = 0;
     /// This function returns the paths of directory you want in content browser panel
     virtual std::string CbpRootDir() const = 0;
+    /// This function returns the paths of directory you want in content browser panel
+    virtual std::vector<std::filesystem::path> FavDirecotries() const = 0;
   };
   
   class GameDataImpl : public GameData {
@@ -36,6 +38,12 @@ namespace kreator {
     std::string GameName() const override { return "Kreator Editor"; }
     glm::vec4 GetBgColor() const override { return {0.5f, 0.2f, 0.2f, 1.0f}; }
     std::string CbpRootDir() const override { return "../../../kreator/editor/assets/scenes"; };
+    std::vector<std::filesystem::path> FavDirecotries() const override {
+      return {
+        DM::ClientAsset("scenes"),
+        DM::ClientAsset("texture"),
+      };
+    };
     Font RegularFontData() const override {
       return {DM::ClientAsset("fonts/Opensans/Regular.ttf"), 14};
     };

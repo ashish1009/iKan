@@ -20,7 +20,6 @@ namespace kreator {
   
   RendererLayer::RendererLayer(GameType game_type)
   : Layer("Kreator"), game_data_(CreateGameData(game_type)), cbp_(DM::GetWorkspaceBasePath()) {
-    cbp_.SetRootPath(game_data_->CbpRootDir());
     KREATOR_LOG("Creating {0} Layer instance ... ", game_data_->GameName().c_str());
   }
   
@@ -31,6 +30,10 @@ namespace kreator {
   void RendererLayer::Attach() {
     KREATOR_LOG("Attaching {0} Layer instance", game_data_->GameName().c_str());
     
+    // Add paths in content browser panel
+    cbp_.SetRootPath(game_data_->CbpRootDir());
+    cbp_.AddFavouritPaths(game_data_->FavDirecotries());
+
     // Loading the Default Font for Text rendering
     TextRenderer::LoadFreetype(game_data_->RegularFontData().path);
 

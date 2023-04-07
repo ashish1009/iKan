@@ -56,6 +56,8 @@ namespace ikan {
     /// This fucntion prints the path history
     void PathHistory();
     
+    float side_child_width_ = 0.15f;
+    
     std::filesystem::path root_path_, current_directory_;
     std::vector<std::filesystem::path> favourite_paths_;
     ImGuiTextFilter search_filter_;
