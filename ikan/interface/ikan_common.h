@@ -18,6 +18,11 @@ namespace ikan {
 }
 
 // ----------------------------------
+// Multi thread Dispatcher queue
+// ----------------------------------
+static dispatch_queue_t loop_dispactch_queue_ = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+// ----------------------------------
 // Common Macros
 // ----------------------------------
 /// This MACRO Shifts the LSB bit of number 1 at position x
