@@ -20,6 +20,7 @@ namespace kreator {
   
   RendererLayer::RendererLayer(GameType game_type)
   : Layer("Kreator"), game_data_(CreateGameData(game_type)), cbp_(DM::GetWorkspaceBasePath()) {
+    cbp_.SetRootData(game_data_->CbpRootDir());
     KREATOR_LOG("Creating {0} Layer instance ... ", game_data_->GameName().c_str());
   }
   

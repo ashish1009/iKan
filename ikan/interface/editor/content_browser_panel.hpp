@@ -19,9 +19,17 @@ namespace ikan {
     ContentBrowserPanel(const std::string& root_path, const std::vector<std::filesystem::path>& favourite_paths = {});
     /// This destructor destroy Content browser panel instance
     ~ContentBrowserPanel();
-    
+
+    /// This function update the root path of CBP
+    /// - Parameter root_path: root path
+    void SetRootPath(const std::string& root_path);
+    /// This funcfion add the favourit paths to the pannel
+    /// - Parameter favourite_paths: paths
+    void AddFavouritPaths(const std::vector<std::filesystem::path>& favourite_paths);
+
   private:
     std::filesystem::path root_path_, current_directory_;
+    std::vector<std::filesystem::path> favourite_paths_;
   };
   
 } // namespace ikan
