@@ -27,6 +27,8 @@ namespace ikan {
     // Fixed Constants
     static constexpr uint32_t VertexForSingleChar = 6;
     
+    std::string font;
+    
     /// Renderer Data storage
     std::shared_ptr<Pipeline> pipeline;
     std::shared_ptr<VertexBuffer> vertex_buffer;
@@ -88,11 +90,55 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::TextRenderer, "Initialised the Text Renderer");
     IK_CORE_TRACE(LogModule::TextRenderer, "  Vertex Buffer Used  {0} B",
                   TextData::VertexForSingleChar * sizeof(TextData::Vertex) * MaxTextureSlotsInShader);
-    IK_CORE_TRACE(LogModule::TextRenderer, "  Shader used        | {0}", text_data_->shader->GetName());
+    IK_CORE_TRACE(LogModule::TextRenderer, "  Shader used         {0}", text_data_->shader->GetName());
   }
   
   void TextRenderer::Shutdown() {
+    IK_CORE_TRACE(LogModule::TextRenderer, "Shutting down the Text Renderer !!!");
+    IK_CORE_TRACE(LogModule::TextRenderer, "  Vertex Buffer Used  {0} B",
+                  TextData::VertexForSingleChar * sizeof(TextData::Vertex) * MaxTextureSlotsInShader);
+    IK_CORE_TRACE(LogModule::TextRenderer, "  Shader used         {0}", text_data_->shader->GetName());
     
+    text_data_.reset();
+  }
+  
+  void TextRenderer::LoadFreetype(const std::string& font_file_path) {
+    IK_CORE_TRACE(LogModule::TextRenderer, "Loading the Font for Text renderer '{0}'", font_file_path.c_str());
+    
+    FT_Library ft;
+    IK_CORE_ASSERT(!FT_Init_FreeType(&ft), "Not able to load Freetype");
+    
+    // find path to font
+    IK_CORE_ASSERT(!font_file_path.empty(), "Not able to load Font");
+    
+    // load font as face
+    FT_Face face;
+    IK_CORE_ASSERT(!FT_New_Face(ft, font_file_path.c_str(), 0, &face),
+                   "Unavle to load tha font to freetype");
+    // set size to load glyphs as
+    FT_Set_Pixel_Sizes(face, 0, 48);
+    
+    // load first 128 characters of ASCII set
+    for (unsigned char c = 0; c < 128; c++) {
+      // Load character glyph
+      if (FT_Load_Char(face, c, FT_LOAD_RENDER)){
+        IK_CORE_CRITICAL(LogModule::TextRenderer, "ERROR::FREETYTPE: Failed to load Glyph");
+        continue;
+      }
+      // now store character for later use
+      std::shared_ptr<CharTexture> char_texture = CharTexture::Create(face,
+                                                                      glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
+                                                                      glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
+                                                                      static_cast<uint32_t>(face->glyph->advance.x),
+                                                                      char(c));
+      text_data_->char_texture_map.insert(std::pair<char, std::shared_ptr<CharTexture>>(c, char_texture));
+    }
+    
+    // destroy FreeType once we're finished
+    FT_Done_Face(face);
+    FT_Done_FreeType(ft);
+    
+    text_data_->font = font_file_path;
   }
   
   void TextRenderer::LogData() {
@@ -102,6 +148,7 @@ namespace ikan {
     IK_CORE_INFO(LogModule::TextRenderer,"        Vertex Buffer Used                | {0} B",
                 TextData::VertexForSingleChar * sizeof(TextData::Vertex) * MaxTextureSlotsInShader);
     IK_CORE_INFO(LogModule::TextRenderer,"        Shader used                       | {0}", text_data_->shader->GetName());
+    IK_CORE_INFO(LogModule::TextRenderer,"        Font used                         | {0}", text_data_->font.c_str());
   }
 
 } // namespace ikan

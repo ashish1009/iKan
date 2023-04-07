@@ -18,6 +18,11 @@ namespace ikan {
     /// This function Dump the data in logs
     static void LogData();
 
+    /// This function loads the font for freetype
+    /// - Parameter font_file_path: path of font
+    /// - Note: Load the Font before using any other API In client
+    static void LoadFreetype(const std::string& font_file_path);
+
     MAKE_PURE_STATIC(TextRenderer);
   };
   
