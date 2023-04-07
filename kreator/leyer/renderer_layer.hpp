@@ -82,7 +82,7 @@ namespace kreator {
     void SetPlay(bool is_play);
 
     // Member variables
-    bool is_playing_ = true;
+    bool is_playing_ = false;
     std::unique_ptr<GameData> game_data_;
     Setting setting_;
     Viewport viewport_;
