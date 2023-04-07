@@ -34,6 +34,8 @@ namespace ikan {
     void UpdateMousePos();
     /// This function updates the porition of Viewport bound. Should be called each frame to get mouse position precisely
     void UpdateBound();
+    /// This function returns true if viewport size is not same as framebuffer
+    bool IsFramebufferResized();
 
     DELETE_COPY_MOVE_CONSTRUCTORS(Viewport);
   };

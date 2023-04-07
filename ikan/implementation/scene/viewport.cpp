@@ -45,6 +45,11 @@ namespace ikan {
     bounds[1] = { max_bound.x, max_bound.y };
   }
   
+  bool Viewport::IsFramebufferResized() {
+    const FrameBuffer::Specification& spec = framebuffer->GetSpecification();
+    return width > 0 and height > 0 and (spec.width != width or spec.height != height);
+  }
+
   void Viewport::RenderGui(bool *is_open) {
     CHECK_WIDGET_FLAG(is_open);
 

@@ -41,9 +41,15 @@ namespace kreator {
       RenderScene(ts);
     }
     else {
+      if (viewport_.IsFramebufferResized()) {
+        viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
+      }
+
       viewport_.framebuffer->Bind();
+      
       Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
       RenderScene(ts);
+      
       viewport_.framebuffer->Unbind();
     }
   }
