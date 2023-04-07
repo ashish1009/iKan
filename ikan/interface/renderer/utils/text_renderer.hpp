@@ -23,7 +23,19 @@ namespace ikan {
     /// - Note: Load the Font before using any other API In client
     static void LoadFreetype(const std::string& font_file_path);
 
+    /// This function begins the Batch for 2D Rendere (to be called each frame)
+    /// - Parameter cam_view_proj_mat: Camera View projection Matrix
+    static void BeginBatch(const glm::mat4& cam_view_proj_mat);
+    /// This function Ends the current batch by rendering all the vertex
+    static void EndBatch();
+
     MAKE_PURE_STATIC(TextRenderer);
+    
+  private:
+    /// This function flsh a single batch
+    static void Flush();
+    /// This function moves to next batch in single frame
+    static void NextBatch();
   };
   
 } // namespace ikan

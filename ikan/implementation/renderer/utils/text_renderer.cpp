@@ -150,4 +150,32 @@ namespace ikan {
     IK_CORE_INFO(LogModule::TextRenderer,"        Font used                         | {0}", text_data_->font.c_str());
   }
 
+  void TextRenderer::BeginBatch(const glm::mat4& camera_view_projection_matrix) {
+    // Update camera to shader
+    text_data_->shader->Bind();
+    text_data_->shader->SetUniformMat4("v_Projection", camera_view_projection_matrix);
+    
+    NextBatch();
+  }
+  void TextRenderer::EndBatch() {
+    uint32_t dataSize = (uint32_t)((uint8_t*)text_data_->vertex_buffer_ptr - (uint8_t*)text_data_->vertex_buffer_base_ptr);
+    text_data_->vertex_buffer->SetData(text_data_->vertex_buffer_base_ptr, dataSize);
+    
+    // Render the Scene
+    text_data_->shader->Bind();
+    for (int j = 0; j < text_data_->num_slots_used; j ++)
+      text_data_->char_textures[j]->Bind(j);
+    Renderer::DrawArrays(text_data_->pipeline, 6 * text_data_->num_slots_used);
+  }
+
+  void TextRenderer::Flush() {
+    EndBatch();
+    NextBatch();
+  }
+  
+  void TextRenderer::NextBatch() {
+    text_data_->vertex_buffer_ptr = text_data_->vertex_buffer_base_ptr;
+    text_data_->num_slots_used = 0;
+  }
+
 } // namespace ikan

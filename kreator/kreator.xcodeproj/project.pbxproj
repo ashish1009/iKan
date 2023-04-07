@@ -341,7 +341,7 @@
 					"${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2",
 				);
 				LIBRARY_SEARCH_PATHS = "${PROJECT_DIR}/../ikan/vendors/freetype/lib";
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -365,7 +365,7 @@
 					"${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2",
 				);
 				LIBRARY_SEARCH_PATHS = "${PROJECT_DIR}/../ikan/vendors/freetype/lib";
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

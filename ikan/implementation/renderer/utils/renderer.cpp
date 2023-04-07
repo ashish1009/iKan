@@ -131,6 +131,9 @@ namespace ikan {
   void Renderer::DrawLines(const std::shared_ptr<Pipeline>& pipeline, uint32_t vertex_count) {
     renderer_data_->renderer_api_instance->DrawLines(pipeline, vertex_count);
   }
+  void Renderer::DrawArrays(const std::shared_ptr<Pipeline>& pipeline, uint32_t count) {
+    renderer_data_->renderer_api_instance->DrawArrays(pipeline, count);
+  }
 
   // -------------------------------------------------------------------------
   // Renderer Capabilities

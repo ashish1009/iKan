@@ -78,6 +78,11 @@ namespace ikan {
     ///   - pipeline: pipeline having vertex buffer and index buffer
     ///   - vertex_count: number of Indices (if 0 then use index buffer of Vertex array)
     virtual void DrawLines(const std::shared_ptr<Pipeline>& pipeline, uint32_t vertex_count) const = 0;
+    /// This API draws Indexed Vertex Array
+    /// - Parameters:
+    ///   - pipeline: pipeline having vertex buffer and index buffer
+    ///   - count: number of Indices (if 0 then use index buffer of Vertex array)
+    virtual void DrawArrays(const std::shared_ptr<Pipeline>& pipeline, uint32_t count) const = 0;
   };
   
 } // namespace ikan
