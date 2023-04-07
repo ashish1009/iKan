@@ -23,6 +23,7 @@
 		B281E85E29DFDA170038A9EE /* framebuffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B281E85C29DFDA170038A9EE /* framebuffer.hpp */; };
 		B281E86429DFDA240038A9EE /* open_gl_framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B281E86229DFDA240038A9EE /* open_gl_framebuffer.cpp */; };
 		B281E86529DFDA240038A9EE /* open_gl_framebuffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B281E86329DFDA240038A9EE /* open_gl_framebuffer.hpp */; };
+		B281E86B29DFE07C0038A9EE /* camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B281E86929DFE07C0038A9EE /* camera.hpp */; };
 		B292C0E729D1CF7100B1E678 /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B292C0E529D1CF7100B1E678 /* logger.cpp */; };
 		B292C0E829D1CF7100B1E678 /* logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E629D1CF7100B1E678 /* logger.hpp */; };
 		B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E929D1D1BC00B1E678 /* prefix_headers.pch */; };
@@ -126,6 +127,7 @@
 		B281E85C29DFDA170038A9EE /* framebuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = framebuffer.hpp; sourceTree = "<group>"; };
 		B281E86229DFDA240038A9EE /* open_gl_framebuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_framebuffer.cpp; sourceTree = "<group>"; };
 		B281E86329DFDA240038A9EE /* open_gl_framebuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_framebuffer.hpp; sourceTree = "<group>"; };
+		B281E86929DFE07C0038A9EE /* camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = camera.hpp; sourceTree = "<group>"; };
 		B292BB8429D184EB00B1E678 /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B292C0E529D1CF7100B1E678 /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		B292C0E629D1CF7100B1E678 /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
@@ -251,6 +253,21 @@
 			path = mac_os;
 			sourceTree = "<group>";
 		};
+		B281E86629DFE05C0038A9EE /* camera */ = {
+			isa = PBXGroup;
+			children = (
+				B281E86929DFE07C0038A9EE /* camera.hpp */,
+			);
+			path = camera;
+			sourceTree = "<group>";
+		};
+		B281E86729DFE0640038A9EE /* camera */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = camera;
+			sourceTree = "<group>";
+		};
 		B292BB7B29D184EB00B1E678 = {
 			isa = PBXGroup;
 			children = (
@@ -299,6 +316,7 @@
 				B292C0E329D1CF6200B1E678 /* core */,
 				B2F91E0A29D70F9300860306 /* renderer */,
 				B20FF40629DDE97900FB3DB7 /* editor */,
+				B281E86629DFE05C0038A9EE /* camera */,
 				B2BEC7AB29DD86EE008D3DCB /* imgui */,
 			);
 			path = interface;
@@ -335,6 +353,7 @@
 				B2BEC4E429DD65C9008D3DCB /* core */,
 				B2BEC4E529DD65D6008D3DCB /* renderer */,
 				B20FF40A29DDE98500FB3DB7 /* editor */,
+				B281E86729DFE0640038A9EE /* camera */,
 				B2BEC76929DD68FF008D3DCB /* imgui */,
 				B2F91E1129D713B900860306 /* platform */,
 			);
@@ -568,6 +587,7 @@
 				B2F70CE729DEE94A003163BA /* buffers.hpp in Headers */,
 				B2BEC79B29DD83DC008D3DCB /* layer.hpp in Headers */,
 				B2F91E1A29D713FA00860306 /* renderer_api.hpp in Headers */,
+				B281E86B29DFE07C0038A9EE /* camera.hpp in Headers */,
 				B2BEC78B29DD7C50008D3DCB /* core_application.hpp in Headers */,
 				B2F70CD829DEE4FD003163BA /* shader_uniforms.hpp in Headers */,
 				B2F91E1629D713EF00860306 /* open_gl_renderer_api.hpp in Headers */,
