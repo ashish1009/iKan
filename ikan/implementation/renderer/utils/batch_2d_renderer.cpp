@@ -134,6 +134,16 @@ namespace ikan {
       index_count = 0;
       texture_slot_index = 1;
     }
+    
+    void Flush() {
+      shader->Bind();
+      
+      for (uint32_t i = 0; i < texture_slot_index; i++)
+        texture_slots[i]->Bind(i);
+      
+      // Render the Scene
+//      Renderer::DrawIndexed(quad_data_->pipeline, quad_data_->index_count);
+    }
 
     virtual ~Shape2DCommonData() {
       for(auto texture : texture_slots)
@@ -438,13 +448,36 @@ namespace ikan {
   }
   
   void Batch2DRenderer::EndBatch() {
-    
+    Flush();
   }
 
   void Batch2DRenderer::NextBatch() {
     if (quad_data_) quad_data_->StartBatch();
     if (circle_data_) circle_data_->StartBatch();
     if (line_data_) line_data_->StartBatch();
+  }
+  
+  void Batch2DRenderer::Flush() {
+    if (quad_data_ and quad_data_->index_count) {
+      uint32_t data_size = (uint32_t)((uint8_t*)quad_data_->vertex_buffer_ptr - (uint8_t*)quad_data_->vertex_buffer_base_ptr);
+      quad_data_->vertex_buffer->SetData(quad_data_->vertex_buffer_base_ptr, data_size);
+      quad_data_->Flush();
+    }
+    
+    if (circle_data_ and circle_data_->index_count) {
+      uint32_t dataSize = (uint32_t)((uint8_t*)circle_data_->vertex_buffer_ptr - (uint8_t*)circle_data_->vertex_buffer_base_ptr);
+      circle_data_->vertex_buffer->SetData(circle_data_->vertex_buffer_base_ptr, dataSize);
+      circle_data_->Flush();
+    }
+    
+    if (line_data_ and line_data_->vertex_count) {
+      uint32_t dataSize = (uint32_t)((uint8_t*)line_data_->vertex_buffer_ptr - (uint8_t*)line_data_->vertex_buffer_base_ptr);
+      line_data_->vertex_buffer->SetData(line_data_->vertex_buffer_base_ptr, dataSize);
+      
+      line_data_->shader->Bind();      
+      // Render the Scene
+//      Renderer::DrawLines(line_data_->pipeline, line_data_->vertex_count);
+    }
   }
   
 } // namespace ikan

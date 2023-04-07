@@ -43,6 +43,9 @@ namespace ikan {
   private:
     /// This function moves to next batch in single frame
     static void NextBatch();
+    /// This function flsh a single batch
+    static void Flush();
+
   };
   
 } // namespace ikan
