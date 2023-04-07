@@ -69,7 +69,16 @@ namespace kreator {
     /// This function handles the key button press event
     /// - Parameter e key button pressed event
     bool KeyPressed(KeyPressedEvent& event);
-
+    /// This function handles the Window resize event
+    /// - Parameter e window resize event
+    bool WindowResized(WindowResizeEvent& event);
+    
+    /// This function update the size of all member present in application
+    /// - Parameters:
+    ///   - width: new width of viewport
+    ///   - height: new height of viewport
+    void ResizeLayer(uint32_t width, uint32_t height);
+    
     /// This function render the menue bar
     void ShowMenu();
     /// This function renders the setting Widget

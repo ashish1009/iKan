@@ -46,8 +46,7 @@ namespace kreator {
     else {
       if (viewport_.IsFramebufferResized()) {
         viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
-        
-        still_camera_projection = glm::ortho( 0.0f, (float)viewport_.width, 0.0f, (float)viewport_.height);
+        ResizeLayer(viewport_.width, viewport_.height);
       }
 
       viewport_.framebuffer->Bind();
@@ -73,6 +72,7 @@ namespace kreator {
   void RendererLayer::HandleEvents(Event& event) {
     EventDispatcher dispatcher(event);
     dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::KeyPressed));
+    dispatcher.Dispatch<WindowResizeEvent>(IK_BIND_EVENT_FN(RendererLayer::WindowResized));
   }
 
   bool RendererLayer::KeyPressed(KeyPressedEvent& event) {
@@ -95,6 +95,15 @@ namespace kreator {
     return false;
   }
   
+  bool RendererLayer::WindowResized(WindowResizeEvent& event) {
+    ResizeLayer(event.GetWidth(), event.GetHeight());
+    return false;
+  }
+  
+  void RendererLayer::ResizeLayer(uint32_t width, uint32_t height) {
+    still_camera_projection = glm::ortho( 0.0f, (float)width, 0.0f, (float)height);
+  }
+
   void RendererLayer::RenderGui() {
     if (is_playing_) {
     }
@@ -196,6 +205,10 @@ namespace kreator {
   
   void RendererLayer::SetPlay(bool is_play) {
     is_playing_ = is_play;
+    
+    if (is_playing_) {
+      ResizeLayer(Application::Get().GetWindowWidth(), Application::Get().GetWindowHeight());
+    }
   }
 
 } // namespace kreator

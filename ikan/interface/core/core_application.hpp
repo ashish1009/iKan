@@ -50,8 +50,9 @@ namespace ikan {
     /// This destroys the core application instance
     virtual ~Application();
     
-    // NOTE: Override these virtual Methods in client Application only if you want to create complete fresh application and add some specialisation
-    // functionality. If these methods will be overriden in client side then functionality will be completely based on overriden methods
+    // NOTE: Override these virtual Methods in client Application only if you want to create complete fresh application and add
+    // some specialisation functionality. If these methods will be overriden in client side then functionality will be completely
+    // based on overriden methods
     /// This function runs the game loop of the application. This function is responsible for:
     ///   - Updating the Application.:
     ///   - Updating each Layer frame.:
@@ -83,6 +84,11 @@ namespace ikan {
     /// This function returns the specification of application
     const Specification& GetSpecification() const { return specification_; }
     
+    /// This function returns the window width
+    uint32_t GetWindowWidth() const { return window_->GetWidth(); };
+    /// This function returns the window height
+    uint32_t GetWindowHeight() const { return window_->GetHeight(); };
+    
     /// This fuinction returns the reference instance of application
     static Application& Get() { return *instance_; }
     
@@ -103,6 +109,7 @@ namespace ikan {
     Timestep time_step_;
     std::shared_ptr<Window> window_;
     std::shared_ptr<ImguiLayer> imgui_layer_;
+    
     bool is_running_ = true;
     
     /// Static instance of singleton Application
