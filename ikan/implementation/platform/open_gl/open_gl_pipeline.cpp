@@ -34,9 +34,7 @@ namespace ikan {
     IK_CORE_ASSERT(false, "Unknown ShaderDataType!");
     return 0;
   }
-  
-#ifdef IK_DEBUG_FEATURE
-  
+    
   /// This function returns the Open GL Data type from user defined Shader data type
   /// - Parameter type: Shader data type
   static std::string ShaderDataTypeToString(ShaderDataType type) {
@@ -58,9 +56,7 @@ namespace ikan {
     IK_CORE_ASSERT(false, "Unknown ShaderDataType!");
     return 0;
   }
-  
-#endif
-  
+    
   OpenGLPipeline::OpenGLPipeline() {
     IDManager::GetPipelineId(renderer_id_);
     glBindVertexArray(renderer_id_);

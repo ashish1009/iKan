@@ -368,12 +368,12 @@ namespace ikan {
     BATCH_INFO("            Max Lines                     | {0}", line_data_->max_element);
     
     BATCH_INFO("        GPU Memory");
-    uint32_t vertex_buffer_size = quad_data_->max_vertices * sizeof(QuadData::Vertex);
+    [[maybe_unused]] uint32_t vertex_buffer_size = quad_data_->max_vertices * sizeof(QuadData::Vertex);
     vertex_buffer_size += circle_data_->max_vertices * sizeof(CircleData::Vertex);
     vertex_buffer_size += line_data_->max_vertices * sizeof(LineData::Vertex);
     BATCH_INFO("            Vertex Buffer used            | {0} Bytes", vertex_buffer_size);
 
-    uint32_t index_buffer_size = (quad_data_->max_indices + circle_data_->max_indices) * sizeof(uint32_t);
+    [[maybe_unused]] uint32_t index_buffer_size = (quad_data_->max_indices + circle_data_->max_indices) * sizeof(uint32_t);
     BATCH_INFO("            Index Buffer used             | {0} Bytes", index_buffer_size);
     
     BATCH_INFO("        Shaders");

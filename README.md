@@ -16,6 +16,7 @@ Make sure that you do a `--recursive` clone to fetch all of the submodules!
 ### Library
 `{...} directory where ikan Engine is cloned`
 Link the libikan.a in your project... 
+Link the libglfw.a in your project... 
 
 ### Frameworks
 
