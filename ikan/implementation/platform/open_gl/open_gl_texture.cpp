@@ -201,5 +201,47 @@ namespace ikan {
   void OpenGLTexture::Unbind() const {
     glBindTexture(GL_TEXTURE_2D, 0);
   }
+  
+  OpenGLCharTexture::OpenGLCharTexture(const FT_Face& face, const glm::ivec2& size, const glm::ivec2& bearing, uint32_t advance,
+                                       [[maybe_unused]] char char_val)
+  : size_(size), bearing_(bearing), advance_(advance) {
+    // Generate the renderer IF if not exist in map already
+    IDManager::GetTextureId(&renderer_id_);
+    
+    glBindTexture(GL_TEXTURE_2D, renderer_id_);
+    
+    // Create texture in the renderer Buffer
+    glTexImage2D(GL_TEXTURE_2D, 0, /* Level */ GL_RED, (GLsizei)face->glyph->bitmap.width, (GLsizei)face->glyph->bitmap.rows,
+                 0, /* Border */ GL_RED, texture_utils::GetTextureType(GL_RED), face->glyph->bitmap.buffer );
+    
+    width_ = (uint32_t)face->glyph->bitmap.width;
+    height_ = (uint32_t)face->glyph->bitmap.rows;
+    
+    // set texture options
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    
+    IK_CORE_TRACE(LogModule::Texture, "Creating Open GL Char Texture to store Char {0} ( Renderer ID {1} )", char_val, renderer_id_);
+    
+    // Increment the size in stats
+    data_size_ = face->glyph->bitmap.width * face->glyph->bitmap.rows;
+    RendererStatistics::Get().texture_buffer_size += data_size_;
+  }
+  
+  /// Open GL Texture Destructor
+  OpenGLCharTexture::~OpenGLCharTexture() {
+    IDManager::RemoveTextureId(&renderer_id_);
+    RendererStatistics::Get().texture_buffer_size -= data_size_;
+  }
+  
+  void OpenGLCharTexture::Bind(uint32_t slot) const {
+    glActiveTexture(GL_TEXTURE0 + slot);
+    glBindTexture(GL_TEXTURE_2D, renderer_id_);
+  }
+  void OpenGLCharTexture::Unbind() const {
+    glBindTexture(GL_TEXTURE_2D, 0);
+  }
 
 } // namespace ikan
