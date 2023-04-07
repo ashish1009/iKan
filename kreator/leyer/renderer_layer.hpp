@@ -31,6 +31,7 @@ namespace kreator {
     };
 
     struct Setting {
+      SettingWrapper content_browser_panel{"Content Browser Panel", true};
       SettingWrapper viewport_data{"Viewport Data", true};
       SettingWrapper frame_rate{"Frame Rate", false};
       SettingWrapper common_renderer_stats{"Common Renderer Stats", true};

@@ -33,6 +33,8 @@ static dispatch_queue_t loop_dispactch_queue_ = dispatch_get_global_queue(DISPAT
   if(condition) \
     return;
 
+/// This MACRO check the widget flag
+#define CHECK_WIDGET_FLAG(x) RETURN_IF(x and *x == false);
 
 // --------------------------------------------------------
 // Macro Wrapper to define Enums and its String to print

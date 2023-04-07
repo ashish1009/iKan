@@ -27,6 +27,15 @@ namespace ikan {
     /// - Parameter favourite_paths: paths
     void AddFavouritPaths(const std::vector<std::filesystem::path>& favourite_paths);
 
+    /// This function returns the Current directory
+    const std::filesystem::path& GetCurrentDir() const { return current_directory_; }
+    /// This function returns the Root directory
+    const std::filesystem::path& GetRootDir() const { return root_path_; }
+    
+    /// This function renders Imgui for Contenct browser panel
+    /// - Parameter is_open: flag to show or hide widget
+    void RenderGui(bool* is_open = nullptr);
+
   private:
     std::filesystem::path root_path_, current_directory_;
     std::vector<std::filesystem::path> favourite_paths_;

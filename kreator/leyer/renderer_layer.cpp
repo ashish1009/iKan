@@ -20,7 +20,7 @@ namespace kreator {
   
   RendererLayer::RendererLayer(GameType game_type)
   : Layer("Kreator"), game_data_(CreateGameData(game_type)), cbp_(DM::GetWorkspaceBasePath()) {
-    cbp_.SetRootData(game_data_->CbpRootDir());
+    cbp_.SetRootPath(game_data_->CbpRootDir());
     KREATOR_LOG("Creating {0} Layer instance ... ", game_data_->GameName().c_str());
   }
   
@@ -45,6 +45,7 @@ namespace kreator {
   
   void RendererLayer::Update(Timestep ts) {
     viewport_.UpdateMousePos();
+    editor_camera_.Update(ts);
 
     if (is_playing_) {
       Renderer::Clear(game_data_->GetBgColor());
@@ -81,6 +82,8 @@ namespace kreator {
   }
 
   void RendererLayer::HandleEvents(Event& event) {
+    editor_camera_.EventHandler(event);
+    
     EventDispatcher dispatcher(event);
     dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::KeyPressed));
     dispatcher.Dispatch<WindowResizeEvent>(IK_BIND_EVENT_FN(RendererLayer::WindowResized));
@@ -131,6 +134,7 @@ namespace kreator {
       Renderer::RenderStatsGui(&setting_.common_renderer_stats.flag);
       Renderer::Render2DStatsGui(&setting_.renderer_stats_2d.flag);
       viewport_.RenderGui(&setting_.viewport_data.flag);
+      cbp_.RenderGui(&setting_.common_renderer_stats.flag);
 
       RenderViewport();
 

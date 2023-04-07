@@ -35,6 +35,16 @@ namespace ikan {
   void ContentBrowserPanel::AddFavouritPaths(const std::vector<std::filesystem::path>& favourite_paths) {
     for (const auto& path : favourite_paths)
       favourite_paths_.emplace_back(path);
+    
+  }
+  void ContentBrowserPanel::RenderGui(bool* is_open) {
+    CHECK_WIDGET_FLAG(is_open);
+    
+    ImGui::Begin("Content Browser", is_open);
+    ImGui::PushID("Content Browser");
+
+    ImGui::PopID(); // Content Browser
+    ImGui::End(); // Content Browser
   }
 
 }// namespace ikan
