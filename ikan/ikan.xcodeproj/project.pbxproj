@@ -184,6 +184,7 @@
 		B2C26FC029D2A32400EC1078 /* asserts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = asserts.h; sourceTree = "<group>"; };
 		B2E8D43F29E0335A005F5F0C /* maths.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = maths.cpp; sourceTree = "<group>"; };
 		B2E8D44029E0335A005F5F0C /* maths.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = maths.hpp; sourceTree = "<group>"; };
+		B2E8D44D29E04074005F5F0C /* text_shader.glsl */ = {isa = PBXFileReference; lastKnownFileType = text; path = text_shader.glsl; sourceTree = "<group>"; };
 		B2F70CCF29DED0B2003163BA /* dump_table.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = dump_table.hpp; sourceTree = "<group>"; };
 		B2F70CD329DED19B003163BA /* dump_table.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = dump_table.cpp; sourceTree = "<group>"; wrapsLines = 0; };
 		B2F70CD629DEE4FD003163BA /* shader_uniforms.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = shader_uniforms.hpp; sourceTree = "<group>"; };
@@ -532,6 +533,7 @@
 				B2F70CF729DF0A24003163BA /* batch_circle_shader.glsl */,
 				B2F70CF829DF0A24003163BA /* batch_line_shader.glsl */,
 				B2F70CF929DF0A24003163BA /* batch_quad_shader.glsl */,
+				B2E8D44D29E04074005F5F0C /* text_shader.glsl */,
 			);
 			path = shaders;
 			sourceTree = "<group>";

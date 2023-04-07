@@ -55,11 +55,53 @@ namespace ikan {
   static std::unique_ptr<TextData> text_data_;
 
   void TextRenderer::Initialise() {
+    text_data_ = std::make_unique<TextData>();
     
+    // Allocating the memory for vertex Buffer Pointer
+    text_data_->vertex_buffer_base_ptr = new TextData::Vertex[TextData::VertexForSingleChar * MaxTextureSlotsInShader];
+    
+    // Create Pipeline instance
+    text_data_->pipeline = Pipeline::Create();
+    
+    // Create vertes Buffer
+    text_data_->vertex_buffer = VertexBuffer::Create(sizeof(TextData::Vertex) * TextData::VertexForSingleChar * MaxTextureSlotsInShader);
+    text_data_->vertex_buffer->AddLayout({
+      { "a_Position",  ShaderDataType::Float3 },
+      { "a_Color",     ShaderDataType::Float4 },
+      { "a_TexCoords", ShaderDataType::Float2 },
+      { "a_TexIndex",  ShaderDataType::Float },
+      { "a_ObjectID",  ShaderDataType::Int },
+    });
+    text_data_->pipeline->AddVertexBuffer(text_data_->vertex_buffer);
+    
+    // Settingup shader
+    text_data_->shader = Renderer::GetShader(DirectoryManager::CoreAsset("shaders/text_shader.glsl"));
+    
+    // Base Texture coordinate for Char rendering
+    text_data_->base_texture_coords[0] = { 0.0f, 0.0f };
+    text_data_->base_texture_coords[1] = { 0.0f, 1.0f };
+    text_data_->base_texture_coords[2] = { 1.0f, 1.0f };
+    text_data_->base_texture_coords[3] = { 0.0f, 0.0f };
+    text_data_->base_texture_coords[4] = { 1.0f, 1.0f };
+    text_data_->base_texture_coords[5] = { 1.0f, 0.0f };
+    
+    IK_CORE_TRACE(LogModule::TextRenderer, "Initialised the Text Renderer");
+    IK_CORE_TRACE(LogModule::TextRenderer, "  Vertex Buffer Used  {0} B",
+                  TextData::VertexForSingleChar * sizeof(TextData::Vertex) * MaxTextureSlotsInShader);
+    IK_CORE_TRACE(LogModule::TextRenderer, "  Shader used        | {0}", text_data_->shader->GetName());
   }
   
   void TextRenderer::Shutdown() {
     
   }
   
+  void TextRenderer::LogData() {
+    IK_CORE_INFO(LogModule::TextRenderer,"    Text Renderer Data ...");
+    
+    IK_CORE_INFO(LogModule::TextRenderer,"        Unique characters per Batch       | {0}", MaxTextureSlotsInShader);
+    IK_CORE_INFO(LogModule::TextRenderer,"        Vertex Buffer Used                | {0} B",
+                TextData::VertexForSingleChar * sizeof(TextData::Vertex) * MaxTextureSlotsInShader);
+    IK_CORE_INFO(LogModule::TextRenderer,"        Shader used                       | {0}", text_data_->shader->GetName());
+  }
+
 } // namespace ikan

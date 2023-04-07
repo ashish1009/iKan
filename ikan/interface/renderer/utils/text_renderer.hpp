@@ -15,7 +15,9 @@ namespace ikan {
     static void Initialise();
     /// This function Shuts down on Text the Batch Renderer. Delete all the allocated Data
     static void Shutdown();
-    
+    /// This function Dump the data in logs
+    static void LogData();
+
     MAKE_PURE_STATIC(TextRenderer);
   };
   

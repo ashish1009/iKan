@@ -82,7 +82,7 @@ namespace ikan {
 
     ImGui::SetColumnWidth(3, 100);
     ImGui::Text("%.3f KB", (float)vertex_buffer_size / (float)1000.0f);
-    hovered_message  = "Vertex Buffer Size (Not counting buffer used to render Text) \n";
+    hovered_message  = "Vertex Buffer Size \n";
     hovered_message += "MB    : " + std::to_string((float)vertex_buffer_size / (float)1000000.0f) + "\n";
     hovered_message += "KB    : " + std::to_string((float)vertex_buffer_size / (float)1000.0f) + "\n";
     hovered_message += "Bytes : " + std::to_string(vertex_buffer_size);
