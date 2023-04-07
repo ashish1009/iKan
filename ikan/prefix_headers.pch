@@ -23,6 +23,8 @@
 #include "ikan_common.h"
 
 // Core file
+#include "core/math/maths.hpp"
+
 #include "core/debug/logger.hpp"
 #include "core/debug/core_logger_api.h"
 #include "core/debug/dump_table.hpp"

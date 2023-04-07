@@ -78,8 +78,8 @@
             filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "Batch2DRenderer::AddQuadData(max_element)"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "324"
-            endingLineNumber = "324"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
             landmarkName = "Batch2DRenderer::AddQuadData(max_element)"
             landmarkType = "7">
          </BreakpointContent>
