@@ -56,6 +56,15 @@ namespace ikan {
     
     return modified;
   }
+  
+  bool PropertyGrid::ImageButton(int32_t lable_id, uint32_t texId, const glm::vec2& size) {
+    bool result = false;
+    ImTextureID my_texture_id = (ImTextureID)((size_t)texId);
+    ImGui::PushID(lable_id);
+    result = ImGui::ImageButton(my_texture_id, { size.x, size.y }, ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f));
+    ImGui::PopID();
+    return result;
+  }
 
   bool PropertyGrid::ImageButton(const std::string& lable_id, uint32_t texId, const glm::vec2& size, const glm::vec4& bgColor, int32_t padding) {
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 2));

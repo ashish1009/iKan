@@ -44,6 +44,12 @@ namespace ikan {
     ///   - padding: padding
     static bool ImageButton(const std::string& lable_id, uint32_t texId, const glm::vec2& size,
                             const glm::vec4& bgColor = glm::vec4(0.0f), int32_t padding = 0);
+    /// This funcrtion renders a Image Button with lable ID
+    /// - Parameters:
+    ///   - lableId: lable ID
+    ///   - texId: Texture ID
+    ///   - size: size of textire
+    static bool ImageButton(const int32_t lable_id, uint32_t texId, const glm::vec2& size);
 
     /// This function renders slider for float
     /// - Parameters:

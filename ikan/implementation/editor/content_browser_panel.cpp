@@ -39,8 +39,8 @@ namespace ikan {
   void ContentBrowserPanel::AddFavouritPaths(const std::vector<std::filesystem::path>& favourite_paths) {
     for (const auto& path : favourite_paths)
       favourite_paths_.emplace_back(path);
-    
   }
+  
   void ContentBrowserPanel::RenderGui(bool* is_open) {
     CHECK_WIDGET_FLAG(is_open);
     
@@ -135,6 +135,111 @@ namespace ikan {
   }
   
   void ContentBrowserPanel::MainArea() {
+    static std::shared_ptr<Texture> folder_texture = Renderer::GetTexture(DM::CoreAsset("textures/content_browser/folder.png"));
+    static std::shared_ptr<Texture> file_texture = Renderer::GetTexture(DM::CoreAsset("textures/content_browser/file.png"));
+    static std::shared_ptr<Texture> jpg_texture = Renderer::GetTexture(DM::CoreAsset("textures/content_browser/jpg.png"));
+    static std::shared_ptr<Texture> png_texture = Renderer::GetTexture(DM::CoreAsset("textures/content_browser/png.png"));
+    
+    static std::shared_ptr<Texture> obj_texture = Renderer::GetTexture(DM::CoreAsset("textures/content_browser/obj.png"));
+    static std::shared_ptr<Texture> fbx_texture = Renderer::GetTexture(DM::CoreAsset("textures/content_browser/fbx.png"));
+    
+    static std::shared_ptr<Texture> font_texture = Renderer::GetTexture(DM::CoreAsset("textures/content_browser/font.png"));
+    
+    static std::shared_ptr<Texture> cpp_texture = Renderer::GetTexture(DM::CoreAsset("textures/content_browser/cpp.png"));
+    static std::shared_ptr<Texture> c_texture = Renderer::GetTexture(DM::CoreAsset("textures/content_browser/c.png"));
+    static std::shared_ptr<Texture> h_texture = Renderer::GetTexture(DM::CoreAsset("textures/content_browser/h.png"));
+
+    // Push style
+    ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, round_factor_);
+    ImGui::BeginChild("MainArea", ImVec2(ImGui::GetWindowContentRegionWidth() - side_child_width_,
+                                         ImGui::GetWindowHeight() - window_y_offset_),
+                      true /* Border */, ImGuiWindowFlags_HorizontalScrollbar);
+
+    // Get the current cursor position of imgui widget
+    static ImVec2 init_pos = ImGui::GetCursorPos();
+
+    int32_t push_id = 0; // id for each button
+    
+    // Travers entire directory
+    for (const auto& directory : std::filesystem::directory_iterator(current_directory_)) {
+      // Get the file name from the directory
+      const auto& path = directory.path();
+      const std::string& filename_string = path.filename().string();
+
+      // If search result passes
+      if (search_filter_.PassFilter(filename_string.c_str())) {
+        std::shared_ptr<Texture> icon_texture;
+        static bool is_directory = false;
+
+        // Set the icon if current file is a direcotry/folder else use specific file texture
+        if (directory.is_directory()) {
+          icon_texture = folder_texture;
+          is_directory = true;
+        } else {
+          if (".png" == path.extension()) icon_texture = png_texture;
+          else if (".jpg" == path.extension()) icon_texture = jpg_texture;
+          else if (".cpp" == path.extension()) icon_texture = cpp_texture;
+          else if (".h" == path.extension()) icon_texture = h_texture;
+          else if (".c" == path.extension()) icon_texture = c_texture;
+          else if (".obj" == path.extension()) icon_texture = obj_texture;
+          else if (".fbx" == path.extension()) icon_texture = fbx_texture;
+          else if (".ttf" == path.extension()) icon_texture = font_texture;
+          else icon_texture = file_texture;
+          
+          is_directory = false;
+        }
+
+        // Icon Button size
+        static float icon_size_height = 64.0f;
+        static float icon_size_width  = 50.0f;
+
+        ImGui::PushID(filename_string.c_str());
+        
+        // Update the cursor for each folder/file based on its position
+        ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + ((icon_size_width + 30.0f) * push_id), init_pos.y));
+        ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
+
+        // Render the image button for each folder/file
+        bool pressed = PropertyGrid::ImageButton(push_id, icon_texture->GetRendererID(), { icon_size_width, icon_size_height });
+        
+        // If icon is clicked Do some action
+        if (pressed) {
+          if (is_directory) {
+            // TODO: Add Feature
+          } else {
+            // DO NOTHING
+          }
+        } // if pressed
+
+        // Drag the content from here
+        if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceAllowNullID)) {
+          const std::string& dragged_path = directory.path().string();
+          const char* ch = dragged_path.c_str();
+          ImGui::SetDragDropPayload("SelectedFile", (void*)ch, dragged_path.size(), ImGuiCond_Always);
+          PropertyGrid::ImageButton(push_id, icon_texture->GetRendererID(), { 20.0f, 20.0f });
+          ImGui::EndDragDropSource();
+        }
+        ImGui::PopID(); // ImGui::PushID(filename_string.c_str());
+
+        // Text Button : Directory name
+        static float wrapWidth = 70.0f;
+        ImGui::PushID("CBP_Main_Area_FileNameButton");
+        ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + ((icon_size_width + 30.0f) * push_id), init_pos.y + icon_size_height + 10.0f));
+        
+        ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + wrapWidth);
+        ImGui::Button(filename_string.c_str(), ImVec2(icon_size_width + 5, 20));
+        PropertyGrid::HoveredMsg(filename_string.c_str());
+        ImGui::PopTextWrapPos();
+        
+        ImGui::PopStyleColor(); // ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
+        ImGui::PopID(); // ImGui::PushID("CBP_Main_Area_FileNameButton");
+        
+        push_id++;
+      } // search pass
+    } // Directory Iterator
+    
+    ImGui::EndChild();
+    ImGui::PopStyleVar();
   }
   
   void ContentBrowserPanel::Back() {
