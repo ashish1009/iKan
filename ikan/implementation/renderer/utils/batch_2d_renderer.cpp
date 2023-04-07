@@ -142,7 +142,7 @@ namespace ikan {
         texture_slots[i]->Bind(i);
       
       // Render the Scene
-//      Renderer::DrawIndexed(quad_data_->pipeline, quad_data_->index_count);
+      Renderer::DrawIndexed(pipeline, index_count);
     }
 
     virtual ~Shape2DCommonData() {
@@ -476,7 +476,7 @@ namespace ikan {
       
       line_data_->shader->Bind();      
       // Render the Scene
-//      Renderer::DrawLines(line_data_->pipeline, line_data_->vertex_count);
+      Renderer::DrawLines(line_data_->pipeline, line_data_->vertex_count);
     }
   }
   

@@ -9,6 +9,8 @@
 
 namespace ikan {
     
+  class Pipeline;
+
   /// This class is the interface for Renderer APIs
   class RendererAPI {
   public:
@@ -66,6 +68,16 @@ namespace ikan {
     ///   - pixel_id_index: pixel index
     virtual void GetEntityIdFromPixels(int32_t mx, int32_t my, uint32_t pixel_id_index, int32_t& pixel_data) const = 0;
     
+    /// This API draws a quad with pipeline and indexed count
+    /// - Parameters:
+    ///   - pipeline: pipeline having vertex buffer and index buffer
+    ///   - count: number of Indices (if 0 then use index buffer of Vertex array)
+    virtual void DrawIndexed(const std::shared_ptr<Pipeline>& pipeline, uint32_t count = 0) const = 0;
+    /// This API draws Lines Vertex Array
+    /// - Parameters:
+    ///   - pipeline: pipeline having vertex buffer and index buffer
+    ///   - vertex_count: number of Indices (if 0 then use index buffer of Vertex array)
+    virtual void DrawLines(const std::shared_ptr<Pipeline>& pipeline, uint32_t vertex_count) const = 0;
   };
   
 } // namespace ikan

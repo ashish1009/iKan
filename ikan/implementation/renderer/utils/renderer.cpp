@@ -125,6 +125,13 @@ namespace ikan {
   std::shared_ptr<Shader> Renderer::GetShader(const std::string& path) { return ShaderLibrary::GetShader(path); }
   std::shared_ptr<Texture> Renderer::GetTexture(const std::string& path, bool linear) { return TextureLibrary::GetTexture(path, linear); }
 
+  void Renderer::DrawIndexed(const std::shared_ptr<Pipeline>& pipeline, uint32_t count) {
+    renderer_data_->renderer_api_instance->DrawIndexed(pipeline, count);
+  }
+  void Renderer::DrawLines(const std::shared_ptr<Pipeline>& pipeline, uint32_t vertex_count) {
+    renderer_data_->renderer_api_instance->DrawLines(pipeline, vertex_count);
+  }
+
   // -------------------------------------------------------------------------
   // Renderer Capabilities
   // -------------------------------------------------------------------------
