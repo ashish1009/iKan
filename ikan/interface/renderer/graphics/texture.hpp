@@ -9,6 +9,9 @@
 
 #include "renderer/utils/renderer.hpp"
 
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
 namespace ikan {
   
   enum class TextureFormat  {

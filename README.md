@@ -27,6 +27,7 @@ ${PROJECT_DIR}/../ikan/interface
 ${PROJECT_DIR}/../ikan/vendors/spdlog/include
 ${PROJECT_DIR}/../ikan/vendors/imgui/imgui
 ${PROJECT_DIR}/../ikan/vendors/glm
+${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2
 
 ### Library Search Paths
 
