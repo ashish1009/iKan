@@ -12,17 +12,22 @@
 		B292C0F329D1D7C400B1E678 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B292C0F229D1D7C400B1E678 /* libikan.a */; };
 		B2BEC7CF29DDBBFF008D3DCB /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC7CD29DDBBFF008D3DCB /* renderer_layer.cpp */; };
 		B2BEC7D229DDC033008D3DCB /* game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC7D029DDC033008D3DCB /* game_data.cpp */; };
+		B2E8D44F29E044A5005F5F0C /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2E8D44E29E044A5005F5F0C /* libfreetype.6.dylib */; };
+		B2E8D45229E0460C005F5F0C /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B2E8D45429E0464A005F5F0C /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		B292BB6F29D16F8F00B1E678 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 6;
 			files = (
+				B2E8D45429E0464A005F5F0C /* libpng16.16.dylib in CopyFiles */,
+				B2E8D45229E0460C005F5F0C /* libfreetype.6.dylib in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -39,6 +44,9 @@
 		B2BEC7CE29DDBBFF008D3DCB /* renderer_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_layer.hpp; sourceTree = "<group>"; };
 		B2BEC7D029DDC033008D3DCB /* game_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = game_data.cpp; sourceTree = "<group>"; };
 		B2BEC7D129DDC033008D3DCB /* game_data.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = game_data.hpp; sourceTree = "<group>"; };
+		B2E8D44E29E044A5005F5F0C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
+		B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
+		B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.16.dylib; path = ../ikan/vendors/freetype/libpng/1.6.39/lib/libpng16.16.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2E8D44F29E044A5005F5F0C /* libfreetype.6.dylib in Frameworks */,
 				B281E87929DFEF440038A9EE /* libglfw.a in Frameworks */,
 				B292C0F329D1D7C400B1E678 /* libikan.a in Frameworks */,
 			);
@@ -57,6 +66,8 @@
 		B292BB6829D16F8F00B1E678 = {
 			isa = PBXGroup;
 			children = (
+				B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */,
+				B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */,
 				B292C0F029D1D58700B1E678 /* prefix_headers.pch */,
 				B292BB7329D16F8F00B1E678 /* entry_point */,
 				B2BEC7CC29DDBBF3008D3DCB /* leyer */,
@@ -85,6 +96,7 @@
 		B292C0F129D1D7C400B1E678 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B2E8D44E29E044A5005F5F0C /* libfreetype.6.dylib */,
 				B281E87829DFEF440038A9EE /* libglfw.a */,
 				B228FC7429DB094C00455666 /* IOKit.framework */,
 				B228FC7229DB094700455666 /* Cocoa.framework */,
@@ -135,9 +147,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B292BB7829D16F8F00B1E678 /* Build configuration list for PBXNativeTarget "kreator" */;
 			buildPhases = (
+				B292BB6F29D16F8F00B1E678 /* CopyFiles */,
 				B292BB6D29D16F8F00B1E678 /* Sources */,
 				B292BB6E29D16F8F00B1E678 /* Frameworks */,
-				B292BB6F29D16F8F00B1E678 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -328,7 +340,8 @@
 					"${PROJECT_DIR}/../ikan/vendors/glm",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				LIBRARY_SEARCH_PATHS = "${PROJECT_DIR}/../ikan/vendors/freetype/lib";
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -351,7 +364,8 @@
 					"${PROJECT_DIR}/../ikan/vendors/glm",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				LIBRARY_SEARCH_PATHS = "${PROJECT_DIR}/../ikan/vendors/freetype/lib";
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

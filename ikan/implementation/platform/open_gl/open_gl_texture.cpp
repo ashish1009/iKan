@@ -223,7 +223,7 @@ namespace ikan {
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     
-    IK_CORE_TRACE(LogModule::Texture, "Creating Open GL Char Texture to store Char {0} ( Renderer ID {1} )", char_val, renderer_id_);
+    IK_CORE_TRACE(LogModule::CharTexture, "Creating Open GL Char Texture to store Char {0} ( Renderer ID {1} )", char_val, renderer_id_);
     
     // Increment the size in stats
     data_size_ = face->glyph->bitmap.width * face->glyph->bitmap.rows;

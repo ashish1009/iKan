@@ -113,8 +113,7 @@ namespace ikan {
     
     // load font as face
     FT_Face face;
-    IK_CORE_ASSERT(!FT_New_Face(ft, font_file_path.c_str(), 0, &face),
-                   "Unavle to load tha font to freetype");
+    IK_CORE_ASSERT(!FT_New_Face(ft, font_file_path.c_str(), 0, &face), "Unavle to load tha font to freetype");
     // set size to load glyphs as
     FT_Set_Pixel_Sizes(face, 0, 48);
     

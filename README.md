@@ -18,6 +18,12 @@ Make sure that you do a `--recursive` clone to fetch all of the submodules!
 Link the libikan.a in your project... 
 Link the libglfw.a in your project... 
 
+Link ${PROJECT_DIR}/../ikan/vendors/freetype/lib/libfreetype.6.dylib
+
+### Copy the libraried from following paths
+Link ${PROJECT_DIR}/../ikan/vendors/freetype/lib/libfreetype.6.dylib
+Link ${PROJECT_DIR}/../ikan/vendors/freetype/libpng/1.6.39/lib/libpng16.16.dylib
+
 ### Frameworks
 
 ### Header Search Paths
@@ -30,6 +36,7 @@ ${PROJECT_DIR}/../ikan/vendors/glm
 ${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2
 
 ### Library Search Paths
+${PROJECT_DIR}/../ikan/vendors/freetype/lib
 
 ### Preprocesor
 - Add `IK_DEBUG_FEATURE` to enable Kreator Debug features
