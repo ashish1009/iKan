@@ -29,6 +29,21 @@ namespace ikan {
     /// This function Ends the current batch by rendering all the vertex
     static void EndBatch();
 
+    /// This functions renders the Text in Window using postition and sclae
+    /// - Parameters:
+    ///   - text: Text to be rendereed
+    ///   - position: Text Poistion
+    ///   - scale: Text Poistion
+    ///   - color: Color of text
+    static void RenderFixedViewText(std::string text, glm::vec3 position, const glm::vec2& scale, const glm::vec4& color);
+    /// This functions renders the Text in Window using postition and sclae
+    /// - Parameters:
+    ///   - text: Text to be rendereed
+    ///   - position: Text Poistion
+    ///   - scale: Text Poistion
+    ///   - color: Color of text
+    static void RenderText(std::string text, glm::vec3 position, const glm::vec2& scale, const glm::vec4& color);
+
     MAKE_PURE_STATIC(TextRenderer);
     
   private:
@@ -36,6 +51,14 @@ namespace ikan {
     static void Flush();
     /// This function moves to next batch in single frame
     static void NextBatch();
+
+    /// This functions renders the Text in Window using postition and sclae
+    /// - Parameters:
+    ///   - text: Text to be rendereed
+    ///   - position: Text Poistion
+    ///   - scale: Text Poistion
+    ///   - color: Color of text
+    static void RenderTextImpl(std::string text, glm::vec3 position, const glm::vec2& scale, const glm::vec4& color);
   };
   
 } // namespace ikan

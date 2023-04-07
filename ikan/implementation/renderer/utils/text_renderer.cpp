@@ -178,4 +178,64 @@ namespace ikan {
     text_data_->num_slots_used = 0;
   }
 
+  void TextRenderer::RenderFixedViewText(std::string text, glm::vec3 position, const glm::vec2& scale, const glm::vec4& color) {
+    RenderTextImpl(text, position, scale, color);
+  }
+  
+  void TextRenderer::RenderText(std::string text, glm::vec3 position, const glm::vec2& original_scale, const glm::vec4& color) {
+    glm::vec2 scale = { original_scale.x * 0.035, original_scale.y * 0.035 };
+    RenderTextImpl(text, position, scale, color);
+  }
+  
+  void TextRenderer::RenderTextImpl(std::string text, glm::vec3 position, const glm::vec2& scale, const glm::vec4& color) {
+    float a = 0.0f;
+    for (std::string::const_iterator c = text.begin(); c != text.end(); c++) {
+      if (text_data_->num_slots_used >= MaxTextureSlotsInShader) {
+        Flush();
+      }
+      
+      std::shared_ptr<CharTexture> ch = text_data_->char_texture_map[*c];
+      
+      float xpos = position.x + ch->GetBearing().x * scale.x;
+      float ypos = position.y - (ch->GetSize().y - ch->GetBearing().y) * scale.y;
+      float zpos = position.z;
+      
+      float w = ch->GetSize().x * scale.x;
+      float h = ch->GetSize().y * scale.y;
+      
+      // update VBO for each character
+      glm::vec3 vertex_position[TextData::VertexForSingleChar] = {
+        { xpos,     ypos + h, zpos },
+        { xpos,     ypos    , zpos },
+        { xpos + w, ypos    , zpos },
+        
+        { xpos,     ypos + h, zpos },
+        { xpos + w, ypos    , zpos },
+        { xpos + w, ypos + h, zpos },
+      };
+      
+      // Each Vertex of Char
+      a = (float)text_data_->num_slots_used;
+      for (size_t i = 0; i < TextData::VertexForSingleChar; i++) {
+        text_data_->vertex_buffer_ptr->position      = vertex_position[i];
+        text_data_->vertex_buffer_ptr->color         = color;
+        text_data_->vertex_buffer_ptr->texture_index = a;
+        text_data_->vertex_buffer_ptr->texture_coord = text_data_->base_texture_coords[i];
+        text_data_->vertex_buffer_ptr->object_id     = -1;
+        text_data_->vertex_buffer_ptr++;
+      }
+      
+      // now advance cursors for next glyph (note that advance is number of
+      // 1/64 pixels) bitshift by 6 to get value in pixels (2^6 = 64 (divide
+      // amount of 1/64th pixels by 64 to get amount of pixels))
+      position.x += (ch->GetAdvance() >> 6) * scale.x;
+      
+      // Renderer Vertex count stat
+      RendererStatistics::Get().vertex_count += TextData::VertexForSingleChar;
+      
+      text_data_->char_textures[text_data_->num_slots_used] = ch;
+      text_data_->num_slots_used++;
+    }
+  }
+  
 } // namespace ikan

@@ -16,6 +16,7 @@ namespace kreator {
   static uint32_t loop_limit = sizeof(Setting) / sizeof(SettingWrapper); \
   for (uint32_t setting_idx = 0; setting_idx < loop_limit; setting_idx++) \
 
+  static glm::mat4 still_camera_projection;
   
   RendererLayer::RendererLayer(GameType game_type) : Layer("Kreator"), game_data_(CreateGameData(game_type)) {
     KREATOR_LOG("Creating {0} Layer instance ... ", game_data_->GameName().c_str());
@@ -45,6 +46,8 @@ namespace kreator {
     else {
       if (viewport_.IsFramebufferResized()) {
         viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
+        
+        still_camera_projection = glm::ortho( 0.0f, (float)viewport_.width, 0.0f, (float)viewport_.height);
       }
 
       viewport_.framebuffer->Bind();
@@ -58,10 +61,13 @@ namespace kreator {
   
   void RendererLayer::RenderScene(Timestep ts) {
     Batch2DRenderer::BeginBatch(editor_camera_.GetViewProjection());
-    
     Batch2DRenderer::DrawQuad(glm::mat4(1.0f), {1, 1, 1, 1});
-    
     Batch2DRenderer::EndBatch();
+    
+    TextRenderer::BeginBatch(still_camera_projection);
+    TextRenderer::RenderFixedViewText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)),
+                                      { 5.0f, 5.0f, 0.3f }, { 0.35f, 0.35f }, { 0, 0, 1, 1 });
+    TextRenderer::EndBatch();
   }
 
   void RendererLayer::HandleEvents(Event& event) {
