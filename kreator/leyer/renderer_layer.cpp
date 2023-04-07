@@ -47,6 +47,7 @@ namespace kreator {
       ImguiAPI::StartDcocking();
 
       ShowMenu();
+      GamePlayButton();
       ShowSettings();
       
       ImguiAPI::Framerate(&setting_.frame_rate.flag);

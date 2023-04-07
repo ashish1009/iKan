@@ -50,4 +50,25 @@ namespace ikan {
     virtual const std::string& GetName() const = 0;
   };
   
+  /// This class stores the compiled Texture in library
+  class TextureLibrary {
+  private:
+    /// This function returns the Ref type of ikan::Texture. It creates a new if not present in the map
+    /// - Parameters:
+    ///   - path: path of textre
+    ///   - linear: min linear flag
+    static std::shared_ptr<Texture> GetTexture(const std::string& path, bool linear = true);
+    /// This function deletes all the Texture present int the map
+    static void ResetTextures();
+    
+    // Array of 2 to keep both linear and nearest min and mag flags
+    // 0 -> Linear Filter
+    // 1 -> Nearest Filter
+    static std::unordered_map<std::string, std::array<std::shared_ptr<Texture>, 2>> texture_library_;
+    
+    MAKE_PURE_STATIC(TextureLibrary)
+    
+    friend class Renderer;
+  };
+  
 } // namespace ikan

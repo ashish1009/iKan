@@ -64,6 +64,8 @@ namespace kreator {
     void ShowMenu();
     /// This function renders the setting Widget
     void ShowSettings();
+    /// This function renders the play buttorn for  game
+    void GamePlayButton();
 
     // Member variables
     bool is_playing_ = false;
