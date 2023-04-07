@@ -68,6 +68,7 @@
 
 // Editor Files
 #include <editor/property_grid.hpp>
+#include <editor/content_browser_panel.hpp>
 
 // Scene Files
 #include <scene/viewport.hpp>

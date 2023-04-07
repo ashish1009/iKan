@@ -32,7 +32,7 @@ namespace kreator {
 
     struct Setting {
       SettingWrapper viewport_data{"Viewport Data", true};
-      SettingWrapper frame_rate{"Frame Rate", true};
+      SettingWrapper frame_rate{"Frame Rate", false};
       SettingWrapper common_renderer_stats{"Common Renderer Stats", true};
       SettingWrapper renderer_stats_2d{"2D Renderer Stats", true};
     };
@@ -96,6 +96,8 @@ namespace kreator {
     Setting setting_;
     Viewport viewport_;
     
+    ContentBrowserPanel cbp_;
+
     uint32_t viewport_width_ = 0, viewport_height_ = 0;
     
     EditorCamera editor_camera_;

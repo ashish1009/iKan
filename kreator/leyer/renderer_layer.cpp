@@ -18,7 +18,8 @@ namespace kreator {
 
   static glm::mat4 still_camera_projection;
   
-  RendererLayer::RendererLayer(GameType game_type) : Layer("Kreator"), game_data_(CreateGameData(game_type)) {
+  RendererLayer::RendererLayer(GameType game_type)
+  : Layer("Kreator"), game_data_(CreateGameData(game_type)), cbp_(DM::GetWorkspaceBasePath()) {
     KREATOR_LOG("Creating {0} Layer instance ... ", game_data_->GameName().c_str());
   }
   
