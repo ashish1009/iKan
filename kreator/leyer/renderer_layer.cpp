@@ -35,17 +35,18 @@ namespace kreator {
   
   void RendererLayer::Update(Timestep ts) {
     if (is_playing_) {
+      Renderer::Clear(game_data_->GetBgColor());
       RenderScene(ts);
     }
     else {
       viewport_.framebuffer->Bind();
+      Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
       RenderScene(ts);
       viewport_.framebuffer->Unbind();
     }
   }
   
   void RendererLayer::RenderScene(Timestep ts) {
-    Renderer::Clear(game_data_->GetBgColor());
   }
 
   void RendererLayer::HandleEvents(Event& event) {
@@ -86,6 +87,7 @@ namespace kreator {
       ImguiAPI::Framerate(&setting_.frame_rate.flag);
       Renderer::RenderStatsGui(&setting_.common_renderer_stats.flag);
       Renderer::Render2DStatsGui(&setting_.renderer_stats_2d.flag);
+      viewport_.RenderGui(&setting_.viewport_data.flag);
 
       RenderViewport();
 

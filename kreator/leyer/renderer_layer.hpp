@@ -31,6 +31,7 @@ namespace kreator {
     };
 
     struct Setting {
+      SettingWrapper viewport_data{"Viewport Data", true};
       SettingWrapper frame_rate{"Frame Rate", true};
       SettingWrapper common_renderer_stats{"Common Renderer Stats", true};
       SettingWrapper renderer_stats_2d{"2D Renderer Stats", true};

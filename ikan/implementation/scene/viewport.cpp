@@ -6,6 +6,8 @@
 //
 
 #include "viewport.hpp"
+#include "imgui_api.hpp"
+#include "property_grid.hpp"
 
 namespace ikan {
   
@@ -19,6 +21,28 @@ namespace ikan {
     };
     
     framebuffer = FrameBuffer::Create(fb_spec);
+  }
+
+  void Viewport::RenderGui(bool *is_open) {
+    CHECK_WIDGET_FLAG(is_open);
+
+    ImGui::Begin("Viewport Data", is_open);
+    ImGui::SetNextWindowContentSize(ImVec2(20.0f, 0.0f));
+    ImGui::BeginChild("##RendererStats", ImVec2(0, ImGui::GetFontSize() * 2), false, ImGuiWindowFlags_HorizontalScrollbar);
+
+//    ImGui::Columns(1);
+
+//    ImGui::SetColumnWidth(1, 100);
+    auto color = framebuffer->GetSpecification().color;
+    if (ImGui::ColorEdit4("", &color.x, ImGuiColorEditFlags_NoInputs)) {
+      framebuffer->UpdateSpecificationColor(color);
+    }
+    PropertyGrid::HoveredMsg("Framebuffer Background color");
+
+//    ImGui::Columns(1);
+    
+    ImGui::EndChild();
+    ImGui::End();
   }
   
 } // namespace ikan
