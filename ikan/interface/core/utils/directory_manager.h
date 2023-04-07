@@ -9,6 +9,12 @@
 
 namespace ikan {
   
+  struct Font {
+    std::string path;
+    float size;
+    Font(const std::string& path, float size) : path(path), size(size) {}
+  };
+  
   /// This class stores all the required directorys
   /// - Core Asset path, Client Asset path, Project path and so on...
   class DirectoryManager {

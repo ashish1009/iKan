@@ -7,6 +7,7 @@
 
 #include "imgui_api.hpp"
 #include "editor/property_grid.hpp"
+#include "core_application.hpp"
 
 namespace ikan {
   
@@ -69,6 +70,16 @@ namespace ikan {
     PropertyGrid::HoveredMsg(std::to_string((float)1000.0f / (float)ImGui::GetIO().Framerate).c_str());
     ImGui::PopID();
     ImGui::End();
+  }
+  
+  void ImguiAPI::ChangeFont(const Font& default_font_path, const Font& bold_font_path) {
+    auto& imgui_layer = Application::Get().GetImGuiLayer();
+    imgui_layer.Detach();
+    
+    imgui_layer.Attach();
+    imgui_layer.SetIniFilePath(Application::Get().GetSpecification().save_ini_file_path);
+    
+    imgui_layer.SetFont(default_font_path, bold_font_path);
   }
 
 } // namespace ikan

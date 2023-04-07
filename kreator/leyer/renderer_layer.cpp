@@ -31,6 +31,9 @@ namespace kreator {
     
     // Loading the Default Font for Text rendering
     TextRenderer::LoadFreetype(game_data_->RegularFontData().path);
+
+    // Decorate the Imgui Change the font of imgui
+    ImguiAPI::ChangeFont(game_data_->RegularFontData(), game_data_->BoldFontData());
   }
   
   void RendererLayer::Detach() {

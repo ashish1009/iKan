@@ -97,5 +97,25 @@ namespace ikan {
     ImGuiIO& io = ImGui::GetIO(); (void)io;
     io.IniFilename = ini_file_path.c_str();
   }
+  
+  void ImguiLayer::SetFont(const Font &default_font, const Font &bold_font) {
+    if (default_font.path == "" or bold_font.path == "")
+      return;
+    
+    ImGuiIO& io = ImGui::GetIO(); (void)io;
+    io.Fonts->ClearFonts();
+    
+    // Store the Bold font as well
+    io.Fonts->AddFontFromFileTTF(bold_font.path.c_str(), bold_font.size);
+    
+    // Default font is Regular
+    io.FontDefault = io.Fonts->AddFontFromFileTTF(default_font.path.c_str(), default_font.size);
+    
+    IK_CORE_TRACE(LogModule::Imgui, "Imgui Font changed");
+    IK_CORE_TRACE(LogModule::Imgui, "  Regular Font Path  {0}", default_font.path.c_str());
+    IK_CORE_TRACE(LogModule::Imgui, "  Regular Font Size  {0}", default_font.size);
+    IK_CORE_TRACE(LogModule::Imgui, "  Bold Font Path     {0}", bold_font.path.c_str());
+    IK_CORE_TRACE(LogModule::Imgui, "  Bold Font Size     {0}", bold_font.size);
+  }
 
 } // namespace ikan

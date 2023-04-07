@@ -46,6 +46,11 @@ namespace ikan {
     /// - Parameter ini_file_path: file path relative to executable
     /// - Note: Directory must exist.
     void SetIniFilePath(const std::string& ini_file_path);
+    /// This function overrides font of imgui with new font path
+    /// - Parameters:
+    ///   - default_font: Default font informatiom
+    ///   - bold_font: bold Font informatiom
+    void SetFont(const Font &default_font, const Font &bold_font);
     /// This function blocks the Imgui Events if flag is true
     /// - Parameter block: block flag
     void BlockEvents(bool block);
