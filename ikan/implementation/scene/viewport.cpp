@@ -49,7 +49,7 @@ namespace ikan {
     CHECK_WIDGET_FLAG(is_open);
 
     ImGui::Begin("Viewport Data", is_open);
-    ImGui::SetNextWindowContentSize(ImVec2(300.0f, 0.0f));
+    ImGui::SetNextWindowContentSize(ImVec2(390.0f, 0.0f));
     ImGui::BeginChild("##RendererStats", ImVec2(0, ImGui::GetFontSize() * 2), false, ImGuiWindowFlags_HorizontalScrollbar);
 
     ImGui::Columns(5);

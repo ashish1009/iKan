@@ -74,12 +74,18 @@ namespace ikan {
     glBindVertexArray(renderer_id_);
     for (auto vb : vertex_buffers_)
       vb->Bind();
+    
+    if (index_buffer_)
+      index_buffer_->Bind();
   }
   
   void OpenGLPipeline::Unbind() const {
     glBindVertexArray(0);
     for (auto vb : vertex_buffers_)
       vb->Unbind();
+    
+    if (index_buffer_)
+      index_buffer_->Unbind();
   }
 
   void OpenGLPipeline::AddVertexBuffer(const std::shared_ptr<VertexBuffer>& vertex_buffers) {

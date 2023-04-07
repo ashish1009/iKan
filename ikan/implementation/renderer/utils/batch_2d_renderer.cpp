@@ -304,11 +304,11 @@ namespace ikan {
     // Allocate memory for Quad Data
     data = std::make_unique<QuadData>();
     
-    // Allocating the memory for vertex Buffer Pointer
-    data->vertex_buffer_base_ptr = new QuadData::Vertex[data->max_vertices];
-    
     // Initialize the data for Common shape
     data->Initialise(max_element);
+
+    // Allocating the memory for vertex Buffer Pointer
+    data->vertex_buffer_base_ptr = new QuadData::Vertex[data->max_vertices];
     
     // Create vertes Buffer
     data->vertex_buffer = VertexBuffer::Create(data->max_vertices * sizeof(QuadData::Vertex));
@@ -348,11 +348,11 @@ namespace ikan {
     // Allocate memory for Circle Data
     data = std::make_unique<CircleData>();
     
-    // Allocating the memory for vertex Buffer Pointer
-    data->vertex_buffer_base_ptr = new CircleData::Vertex[data->max_vertices];
-    
     // Initialize the data for Common shape
     data->Initialise(max_element);
+    
+    // Allocating the memory for vertex Buffer Pointer
+    data->vertex_buffer_base_ptr = new CircleData::Vertex[data->max_vertices];
     
     // Create vertes Buffer
     data->vertex_buffer = VertexBuffer::Create(data->max_vertices * sizeof(CircleData::Vertex));
@@ -395,11 +395,11 @@ namespace ikan {
     // Allocate memory for Line Data
     data = std::make_unique<LineData>();
 
-    // Allocating the memory for vertex Buffer Pointer
-    data->vertex_buffer_base_ptr = new LineData::Vertex[data->max_vertices];
-
     // Initialize the data for Common shape
     data->Initialise(max_element);
+    
+    // Allocating the memory for vertex Buffer Pointer
+    data->vertex_buffer_base_ptr = new LineData::Vertex[data->max_vertices];
     
     // Create vertes Buffer
     data->vertex_buffer = VertexBuffer::Create(data->max_vertices * sizeof(LineData::Vertex));
@@ -488,10 +488,11 @@ namespace ikan {
     DrawTextureQuad(transform, nullptr, texture_coords_, 1.0f /* tiling factor */, color, object_id);
   }
   
-//  void Batch2DRenderer::DrawQuad(const glm::vec3& position, const glm::vec3& radius, const glm::vec3& rotation, const glm::vec4& color,
-//                                 float thickness = 1.0f, float fade = (float)0.005, int32_t object_id = -1) {
-//    DrawTextureQuad(transform, nullptr, texture_coords_, 1.0f /* tiling factor */, color, object_id);
-//  }
+  void Batch2DRenderer::DrawQuad(const glm::vec3& position, const glm::vec3& scale, const glm::vec3& rotation,
+                                 const glm::vec4& color, int32_t object_id) {
+    auto transform  = Math::GetTransformMatrix(position, rotation, scale);
+    DrawTextureQuad(transform, nullptr, texture_coords_, 1.0f /* tiling factor */, color, object_id);
+  }
   
   void Batch2DRenderer::DrawQuad(const glm::mat4& transform, const std::shared_ptr<Texture>& texture, const glm::vec4& tint_color,
                                  float tiling_factor, int32_t object_id) {

@@ -50,6 +50,9 @@ namespace kreator {
   
   void RendererLayer::RenderScene(Timestep ts) {
     Batch2DRenderer::BeginBatch(editor_camera_.GetViewProjection());
+    
+    Batch2DRenderer::DrawQuad(glm::mat4(1.0f), {1, 1, 1, 1});
+    
     Batch2DRenderer::EndBatch();
   }
 
