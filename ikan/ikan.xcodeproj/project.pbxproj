@@ -19,6 +19,10 @@
 		B2394A3129D8733500D782E5 /* mac_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2394A2F29D8733500D782E5 /* mac_window.cpp */; };
 		B2394A3229D8733500D782E5 /* mac_window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2394A3029D8733500D782E5 /* mac_window.hpp */; };
 		B2394A3429D879B200D782E5 /* libglfw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F91E6429D721AA00860306 /* libglfw.a */; };
+		B281E85D29DFDA170038A9EE /* framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B281E85B29DFDA170038A9EE /* framebuffer.cpp */; };
+		B281E85E29DFDA170038A9EE /* framebuffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B281E85C29DFDA170038A9EE /* framebuffer.hpp */; };
+		B281E86429DFDA240038A9EE /* open_gl_framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B281E86229DFDA240038A9EE /* open_gl_framebuffer.cpp */; };
+		B281E86529DFDA240038A9EE /* open_gl_framebuffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B281E86329DFDA240038A9EE /* open_gl_framebuffer.hpp */; };
 		B292C0E729D1CF7100B1E678 /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B292C0E529D1CF7100B1E678 /* logger.cpp */; };
 		B292C0E829D1CF7100B1E678 /* logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E629D1CF7100B1E678 /* logger.hpp */; };
 		B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E929D1D1BC00B1E678 /* prefix_headers.pch */; };
@@ -118,6 +122,10 @@
 		B2394A2F29D8733500D782E5 /* mac_window.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mac_window.cpp; sourceTree = "<group>"; };
 		B2394A3029D8733500D782E5 /* mac_window.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mac_window.hpp; sourceTree = "<group>"; };
 		B2394A3329D8785600D782E5 /* time_step.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = time_step.h; sourceTree = "<group>"; };
+		B281E85B29DFDA170038A9EE /* framebuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = framebuffer.cpp; sourceTree = "<group>"; };
+		B281E85C29DFDA170038A9EE /* framebuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = framebuffer.hpp; sourceTree = "<group>"; };
+		B281E86229DFDA240038A9EE /* open_gl_framebuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_framebuffer.cpp; sourceTree = "<group>"; };
+		B281E86329DFDA240038A9EE /* open_gl_framebuffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_framebuffer.hpp; sourceTree = "<group>"; };
 		B292BB8429D184EB00B1E678 /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B292C0E529D1CF7100B1E678 /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		B292C0E629D1CF7100B1E678 /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
@@ -374,6 +382,7 @@
 				B29C831729DEB1BC0061D182 /* renderer_buffer.cpp */,
 				B2F70CE029DEE841003163BA /* shader.cpp */,
 				B2F70CFD29DF0FE7003163BA /* texture.cpp */,
+				B281E85B29DFDA170038A9EE /* framebuffer.cpp */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -485,6 +494,7 @@
 				B29C831829DEB1BC0061D182 /* renderer_buffer.hpp */,
 				B2F70CE129DEE841003163BA /* shader.hpp */,
 				B2F70CFE29DF0FE7003163BA /* texture.hpp */,
+				B281E85C29DFDA170038A9EE /* framebuffer.hpp */,
 			);
 			path = graphics;
 			sourceTree = "<group>";
@@ -517,6 +527,8 @@
 				B2F70CED29DEEC46003163BA /* open_gl_shader.hpp */,
 				B2F70D0429DF0FF0003163BA /* open_gl_texture.cpp */,
 				B2F70D0529DF0FF0003163BA /* open_gl_texture.hpp */,
+				B281E86229DFDA240038A9EE /* open_gl_framebuffer.cpp */,
+				B281E86329DFDA240038A9EE /* open_gl_framebuffer.hpp */,
 			);
 			path = open_gl;
 			sourceTree = "<group>";
@@ -573,6 +585,7 @@
 				B2F70CEF29DEEC46003163BA /* open_gl_shader.hpp in Headers */,
 				B2F91E0F29D70FA400860306 /* renderer.hpp in Headers */,
 				B20FF40E29DDE99500FB3DB7 /* property_grid.hpp in Headers */,
+				B281E85E29DFDA170038A9EE /* framebuffer.hpp in Headers */,
 				B29C830B29DE9A5C0061D182 /* pipeline.hpp in Headers */,
 				B2F70D0B29DF11D9003163BA /* stb_image.h in Headers */,
 				B2BEC7DD29DDC475008D3DCB /* imgui_api.hpp in Headers */,
@@ -581,6 +594,7 @@
 				B228FC6F29DB071300455666 /* graphics_context.hpp in Headers */,
 				B29C832129DEB7140061D182 /* open_gl_renderer_buffer.hpp in Headers */,
 				B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */,
+				B281E86529DFDA240038A9EE /* open_gl_framebuffer.hpp in Headers */,
 				B2F70D0729DF0FF0003163BA /* open_gl_texture.hpp in Headers */,
 				B2394A1D29D8107A00D782E5 /* key_codes.h in Headers */,
 				B292C0E829D1CF7100B1E678 /* logger.hpp in Headers */,
@@ -698,6 +712,7 @@
 				B2F91E0E29D70FA400860306 /* renderer.cpp in Sources */,
 				B228FC6E29DB071300455666 /* graphics_context.cpp in Sources */,
 				B29C830A29DE9A5C0061D182 /* pipeline.cpp in Sources */,
+				B281E86429DFDA240038A9EE /* open_gl_framebuffer.cpp in Sources */,
 				B2394A3129D8733500D782E5 /* mac_window.cpp in Sources */,
 				B2BEC78A29DD7C50008D3DCB /* core_application.cpp in Sources */,
 				B2F91E1929D713FA00860306 /* renderer_api.cpp in Sources */,
@@ -711,6 +726,7 @@
 				B2F70CFF29DF0FE7003163BA /* texture.cpp in Sources */,
 				B2F70D0C29DF11D9003163BA /* stb_image.cpp in Sources */,
 				B2BEC7D529DDC301008D3DCB /* text_renderer.cpp in Sources */,
+				B281E85D29DFDA170038A9EE /* framebuffer.cpp in Sources */,
 				B29C830E29DE9B8C0061D182 /* open_gl_pipeline.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -358,28 +358,28 @@ namespace ikan {
   }
   
   void Batch2DRenderer::LogData() {
-    BATCH_INFO("Batch Renderer Data ...");
+    BATCH_INFO("    Batch Renderer Data ...");
 
-    BATCH_INFO("    Per Batch");
+    BATCH_INFO("        Per Batch");
 
-    BATCH_INFO("        Max Texture slots                 | {0}", kMaxTextureSlotsInShader);
-    BATCH_INFO("        Max Quads                         | {0}", quad_data_->max_element);
-    BATCH_INFO("        Max Circles                       | {0}", circle_data_->max_element);
-    BATCH_INFO("        Max Lines                         | {0}", line_data_->max_element);
+    BATCH_INFO("            Max Texture slots             | {0}", kMaxTextureSlotsInShader);
+    BATCH_INFO("            Max Quads                     | {0}", quad_data_->max_element);
+    BATCH_INFO("            Max Circles                   | {0}", circle_data_->max_element);
+    BATCH_INFO("            Max Lines                     | {0}", line_data_->max_element);
     
-    BATCH_INFO("    GPU Memory");
+    BATCH_INFO("        GPU Memory");
     uint32_t vertex_buffer_size = quad_data_->max_vertices * sizeof(QuadData::Vertex);
     vertex_buffer_size += circle_data_->max_vertices * sizeof(CircleData::Vertex);
     vertex_buffer_size += line_data_->max_vertices * sizeof(LineData::Vertex);
-    BATCH_INFO("        Vertex Buffer used                | {0} Bytes", vertex_buffer_size);
+    BATCH_INFO("            Vertex Buffer used            | {0} Bytes", vertex_buffer_size);
 
     uint32_t index_buffer_size = (quad_data_->max_indices + circle_data_->max_indices) * sizeof(uint32_t);
-    BATCH_INFO("        Index Buffer used                 | {0} Bytes", index_buffer_size);
+    BATCH_INFO("            Index Buffer used             | {0} Bytes", index_buffer_size);
     
-    BATCH_INFO("    Shaders");
-    BATCH_INFO("        Quad                              | {0}", quad_data_->shader->GetName());
-    BATCH_INFO("        Circle                            | {0}", circle_data_->shader->GetName());
-    BATCH_INFO("        Line                              | {0}", line_data_->shader->GetName());
+    BATCH_INFO("        Shaders");
+    BATCH_INFO("            Quad                          | {0}", quad_data_->shader->GetName());
+    BATCH_INFO("            Circle                        | {0}", circle_data_->shader->GetName());
+    BATCH_INFO("            Line                          | {0}", line_data_->shader->GetName());
   }
   
 } // namespace ikan

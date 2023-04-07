@@ -64,3 +64,10 @@ x(const x&); \
 x(x&&); \
 x& operator=(const x&); \
 x& operator =(x&&); \
+
+/// This MACRO Defines the Constructors (Copy and Move ) and Operator = (Copy and Move) for any class x
+#define DEFAULT_COPY_MOVE_CONSTRUCTORS(x) \
+x(const x&) = default; \
+x(x&&) = default; \
+x& operator=(const x&) = default; \
+x& operator =(x&&) = default; \

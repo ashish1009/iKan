@@ -10,7 +10,6 @@
 #include "renderer/utils/renderer_stats.hpp"
 
 #include <stb_image.h>
-#include <glad/glad.h>
 
 namespace ikan {
   
