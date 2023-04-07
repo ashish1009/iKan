@@ -17,6 +17,10 @@ namespace ikan {
 #define BATCH_INFO(...) IK_CORE_INFO(LogModule::Batch2DRenderer, __VA_ARGS__)
 #define BATCH_TRACE(...) IK_CORE_TRACE(LogModule::Batch2DRenderer, __VA_ARGS__)
 
+  static constexpr glm::vec2 texture_coords_[] = {
+    { 0.0f, 0.0f }, { 1.0f, 0.0f }, { 1.0f, 1.0f }, { 0.0f, 1.0f }
+  };
+
   /// This structure holds the common batch renderer data for Quads, circle and lines
   struct CommonBatchData {
     /// Max element to be rendered in single batch
@@ -480,4 +484,197 @@ namespace ikan {
     }
   }
   
+  void Batch2DRenderer::DrawQuad(const glm::mat4& transform, const glm::vec4& color, int32_t object_id) {
+    DrawTextureQuad(transform, nullptr, texture_coords_, 1.0f /* tiling factor */, color, object_id);
+  }
+  
+//  void Batch2DRenderer::DrawQuad(const glm::vec3& position, const glm::vec3& radius, const glm::vec3& rotation, const glm::vec4& color,
+//                                 float thickness = 1.0f, float fade = (float)0.005, int32_t object_id = -1) {
+//    DrawTextureQuad(transform, nullptr, texture_coords_, 1.0f /* tiling factor */, color, object_id);
+//  }
+  
+  void Batch2DRenderer::DrawQuad(const glm::mat4& transform, const std::shared_ptr<Texture>& texture, const glm::vec4& tint_color,
+                                 float tiling_factor, int32_t object_id) {
+    DrawTextureQuad(transform, texture ? texture : nullptr, texture_coords_, tiling_factor, tint_color, object_id );
+  }
+  
+  
+  void Batch2DRenderer::DrawTextureQuad(const glm::mat4& transform, const std::shared_ptr<Texture>& texture,
+                                        const glm::vec2* texture_coords, float tiling_factor, const glm::vec4& tint_color, int32_t object_id) {
+    // If number of indices increase in batch then start new batch
+    if (quad_data_->index_count >= quad_data_->max_indices) {
+      BATCH_INFO("Starts the new batch as number of indices ({0}) increases in the previous batch", quad_data_->index_count);
+      EndBatch();
+      quad_data_->StartBatch();
+    }
+    
+    float texture_index = 0.0f;
+    if (texture) {
+      // Find if texture is already loaded in current batch
+      for (size_t i = 1; i < quad_data_->texture_slot_index; i++) {
+        if (quad_data_->texture_slots[i].get() == texture.get()) {
+          // Found the current textue in the batch
+          texture_index = (float)i;
+          break;
+        }
+      }
+      
+      // If current texture slot is not pre loaded then load the texture in proper slot
+      if (texture_index == 0.0f) {
+        // If number of slots increases max then start new batch
+        if (quad_data_->texture_slot_index >= MaxTextureSlotsInShader) {
+          BATCH_INFO("Starts the new batch as number of texture slot ({0}) increases in the previous batch", quad_data_->texture_slot_index);
+          NextBatch();
+        }
+        
+        // Loading the current texture in the first free slot slot
+        texture_index = (float)quad_data_->texture_slot_index;
+        quad_data_->texture_slots[quad_data_->texture_slot_index] = texture;
+        quad_data_->texture_slot_index++;
+      }
+    }
+    
+    for (size_t i = 0; i < Shape2DCommonData::VertexForSingleElement; i++) {
+      quad_data_->vertex_buffer_ptr->position         = transform * quad_data_->vertex_base_position[i];
+      quad_data_->vertex_buffer_ptr->color            = tint_color;
+      quad_data_->vertex_buffer_ptr->texture_coords   = texture_coords[i];
+      quad_data_->vertex_buffer_ptr->texture_index    = texture_index;
+      quad_data_->vertex_buffer_ptr->tiling_factor    = tiling_factor;
+      quad_data_->vertex_buffer_ptr->pixel_id         = object_id;
+      quad_data_->vertex_buffer_ptr++;
+    }
+    
+    quad_data_->index_count += Shape2DCommonData::IndicesForSingleElement;
+    
+    RendererStatistics::Get().index_count += Shape2DCommonData::IndicesForSingleElement;
+    RendererStatistics::Get().vertex_count += Shape2DCommonData::VertexForSingleElement;
+    
+    RendererStatistics::Get().stats_2d_.quads ++;
+  }
+  
+  void Batch2DRenderer::DrawCircle(const glm::vec3& position, const glm::vec3& radius, const glm::vec3& rotation, const glm::vec4& color,
+                                   float thickness, float fade, int32_t object_id) {
+    auto transform  = Math::GetTransformMatrix(position, rotation, radius);
+    DrawTextureCircle(transform, nullptr, 1.0f /* tiling factor */, color, thickness, fade, object_id);
+  }
+  
+  
+  void Batch2DRenderer::DrawCircle(const glm::mat4& transform, const glm::vec4& color, float thickness, float fade, int32_t object_id) {
+    DrawTextureCircle(transform, nullptr, 1.0f /* tiling factor */, color, thickness, fade, object_id);
+  }
+  void Batch2DRenderer::DrawCircle(const glm::mat4& transform, const std::shared_ptr<Texture>& texture, const glm::vec4& tint_color,
+                                   float tiling_factor, float thickness, float fade, int32_t object_id){
+    DrawTextureCircle(transform, texture, tiling_factor, tint_color, thickness, fade, object_id);
+  }
+  
+  void Batch2DRenderer::DrawTextureCircle(const glm::mat4& transform, const std::shared_ptr<Texture>& texture, float tiling_factor,
+                                          const glm::vec4& tint_color, float thickness, float fade, int32_t object_id) {
+    // If number of indices increase in batch then start new batch
+    if (circle_data_->index_count >= circle_data_->max_indices) {
+      BATCH_INFO("Starts the new batch as number of indices ({0}) increases in the previous batch", circle_data_->index_count);
+      EndBatch();
+      circle_data_->StartBatch();
+    }
+    
+    float texture_index = 0.0f;
+    if (texture) {
+      // Find if texture is already loaded in current batch
+      for (size_t i = 1; i < circle_data_->texture_slot_index; i++) {
+        if (circle_data_->texture_slots[i].get() == texture.get()) {
+          // Found the current textue in the batch
+          texture_index = (float)i;
+          break;
+        }
+      }
+      
+      // If current texture slot is not pre loaded then load the texture in proper slot
+      if (texture_index == 0.0f) {
+        // If number of slots increases max then start new batch
+        if (circle_data_->texture_slot_index >= MaxTextureSlotsInShader) {
+          BATCH_INFO("Starts the new batch as number of texture slot ({0}) increases in the previous batch", circle_data_->texture_slot_index);
+          NextBatch();
+        }
+        
+        // Loading the current texture in the first free slot slot
+        texture_index = (float)circle_data_->texture_slot_index;
+        circle_data_->texture_slots[circle_data_->texture_slot_index] = texture;
+        circle_data_->texture_slot_index++;
+      }
+    }
+    
+    for (size_t i = 0; i < Shape2DCommonData::VertexForSingleElement; i++) {
+      circle_data_->vertex_buffer_ptr->position         = transform * circle_data_->vertex_base_position[i];
+      circle_data_->vertex_buffer_ptr->color            = tint_color;
+      circle_data_->vertex_buffer_ptr->texture_coords   = 2.0f * circle_data_->vertex_base_position[i];
+      circle_data_->vertex_buffer_ptr->texture_index    = texture_index;
+      circle_data_->vertex_buffer_ptr->tiling_factor    = tiling_factor;
+      circle_data_->vertex_buffer_ptr->local_position   = 2.0f * circle_data_->vertex_base_position[i];
+      circle_data_->vertex_buffer_ptr->thickness        = thickness;
+      circle_data_->vertex_buffer_ptr->fade             = fade;
+      circle_data_->vertex_buffer_ptr->pixel_id         = object_id;
+      circle_data_->vertex_buffer_ptr++;
+    }
+    
+    circle_data_->index_count += Shape2DCommonData::IndicesForSingleElement;
+    
+    RendererStatistics::Get().index_count += Shape2DCommonData::IndicesForSingleElement;
+    RendererStatistics::Get().vertex_count += Shape2DCommonData::VertexForSingleElement;
+    RendererStatistics::Get().stats_2d_.circles++;
+  }
+  
+  void Batch2DRenderer::DrawLine(const glm::vec3& p0, const glm::vec3& p1, const glm::vec4& color) {
+    
+    // If number of indices increase in batch then start new batch
+    if (line_data_->vertex_count >= line_data_->max_vertices) {
+      BATCH_INFO("Starts the new batch as number of vertices ({0}) increases in the previous batch", line_data_->vertex_count);
+      EndBatch();
+      line_data_->StartBatch();
+    }
+    
+    line_data_->vertex_buffer_ptr->position = p0;
+    line_data_->vertex_buffer_ptr->color = color;
+    line_data_->vertex_buffer_ptr++;
+    
+    line_data_->vertex_buffer_ptr->position = p1;
+    line_data_->vertex_buffer_ptr->color = color;
+    line_data_->vertex_buffer_ptr++;
+    
+    line_data_->vertex_count += LineData::VertexForSingleLine;
+    RendererStatistics::Get().vertex_count += LineData::VertexForSingleLine;
+    RendererStatistics::Get().stats_2d_.lines++;
+  }
+  
+  void Batch2DRenderer::DrawRect(const glm::vec3& p0, const glm::vec3& p2, const glm::vec4& color) {
+    glm::vec3 p1 = glm::vec3(p2.x, p0.y, p0.z);
+    glm::vec3 p3 = glm::vec3(p0.x, p2.y, p2.z);
+    
+    DrawLine(p0, p1, color);
+    DrawLine(p1, p2, color);
+    DrawLine(p2, p3, color);
+    DrawLine(p3, p0, color);
+  }
+  
+  void Batch2DRenderer::DrawRect(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color) {
+    glm::vec3 p0 = glm::vec3(position.x - size.x * 0.5f, position.y - size.y * 0.5f, position.z);
+    glm::vec3 p1 = glm::vec3(position.x + size.x * 0.5f, position.y - size.y * 0.5f, position.z);
+    glm::vec3 p2 = glm::vec3(position.x + size.x * 0.5f, position.y + size.y * 0.5f, position.z);
+    glm::vec3 p3 = glm::vec3(position.x - size.x * 0.5f, position.y + size.y * 0.5f, position.z);
+    
+    DrawLine(p0, p1, color);
+    DrawLine(p1, p2, color);
+    DrawLine(p2, p3, color);
+    DrawLine(p3, p0, color);
+  }
+  
+  void Batch2DRenderer::DrawRect(const glm::mat4& transform, const glm::vec4& color) {
+    glm::vec3 line_vertices[4];
+    for (size_t i = 0; i < 4; i++)
+      line_vertices[i] = transform * quad_data_->vertex_base_position[i];
+    
+    DrawLine(line_vertices[0], line_vertices[1], color);
+    DrawLine(line_vertices[1], line_vertices[2], color);
+    DrawLine(line_vertices[2], line_vertices[3], color);
+    DrawLine(line_vertices[3], line_vertices[0], color);
+  }
+    
 } // namespace ikan
