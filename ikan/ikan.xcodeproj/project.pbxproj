@@ -28,6 +28,8 @@
 		B281E86F29DFE1630038A9EE /* editor_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B281E86D29DFE1630038A9EE /* editor_camera.hpp */; };
 		B281E87229DFE2080038A9EE /* mac_input.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B281E87029DFE2080038A9EE /* mac_input.cpp */; };
 		B281E87329DFE2080038A9EE /* input.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B281E87129DFE2080038A9EE /* input.hpp */; };
+		B281E87629DFE3350038A9EE /* scene_camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B281E87429DFE3350038A9EE /* scene_camera.cpp */; };
+		B281E87729DFE3350038A9EE /* scene_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B281E87529DFE3350038A9EE /* scene_camera.hpp */; };
 		B292C0E729D1CF7100B1E678 /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B292C0E529D1CF7100B1E678 /* logger.cpp */; };
 		B292C0E829D1CF7100B1E678 /* logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E629D1CF7100B1E678 /* logger.hpp */; };
 		B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E929D1D1BC00B1E678 /* prefix_headers.pch */; };
@@ -136,6 +138,8 @@
 		B281E86D29DFE1630038A9EE /* editor_camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = editor_camera.hpp; sourceTree = "<group>"; };
 		B281E87029DFE2080038A9EE /* mac_input.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mac_input.cpp; sourceTree = "<group>"; };
 		B281E87129DFE2080038A9EE /* input.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = input.hpp; sourceTree = "<group>"; };
+		B281E87429DFE3350038A9EE /* scene_camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_camera.cpp; sourceTree = "<group>"; };
+		B281E87529DFE3350038A9EE /* scene_camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_camera.hpp; sourceTree = "<group>"; };
 		B292BB8429D184EB00B1E678 /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B292C0E529D1CF7100B1E678 /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		B292C0E629D1CF7100B1E678 /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 			children = (
 				B281E86929DFE07C0038A9EE /* camera.hpp */,
 				B281E86D29DFE1630038A9EE /* editor_camera.hpp */,
+				B281E87529DFE3350038A9EE /* scene_camera.hpp */,
 			);
 			path = camera;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 			isa = PBXGroup;
 			children = (
 				B281E86C29DFE1630038A9EE /* editor_camera.cpp */,
+				B281E87429DFE3350038A9EE /* scene_camera.cpp */,
 			);
 			path = camera;
 			sourceTree = "<group>";
@@ -606,6 +612,7 @@
 				B2F70CDC29DEE5B6003163BA /* open_gl_shader_uniforms.hpp in Headers */,
 				B2F70D0029DF0FE7003163BA /* texture.hpp in Headers */,
 				B292C0EF29D1D47000B1E678 /* ikan_headers.h in Headers */,
+				B281E87729DFE3350038A9EE /* scene_camera.hpp in Headers */,
 				B29C831329DE9EB90061D182 /* open_gl_renderer_id_manager.hpp in Headers */,
 				B281E87329DFE2080038A9EE /* input.hpp in Headers */,
 				B228FC6929DB070500455666 /* open_gl_graphics_context.hpp in Headers */,
@@ -736,6 +743,7 @@
 				B29C832029DEB7140061D182 /* open_gl_renderer_buffer.cpp in Sources */,
 				B2BEC7C629DDAA49008D3DCB /* renderer_stats.cpp in Sources */,
 				B20FF40D29DDE99500FB3DB7 /* property_grid.cpp in Sources */,
+				B281E87629DFE3350038A9EE /* scene_camera.cpp in Sources */,
 				B2F70CE229DEE841003163BA /* shader.cpp in Sources */,
 				B2F70D0629DF0FF0003163BA /* open_gl_texture.cpp in Sources */,
 				B2BEC7DC29DDC475008D3DCB /* imgui_api.cpp in Sources */,
