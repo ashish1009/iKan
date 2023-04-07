@@ -168,7 +168,9 @@ namespace ikan {
       IK_CORE_DEBUG(LogModule::Texture, "  InternalFormat     {0}", texture_utils::GetFormatNameFromEnum(internal_format_));
       IK_CORE_DEBUG(LogModule::Texture, "  DataFormat         {0}", texture_utils::GetFormatNameFromEnum(data_format_));
     } else {
-      IK_CORE_CRITICAL(LogModule::Texture, "Failed to load stbi Image {0}", file_path_.c_str());
+#ifdef IK_DEBUG_FEATURE
+      IK_CORE_ASSERT(false, "Failed to load stbi Image. Check the path from Logs");
+#endif
     }
   }
   

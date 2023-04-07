@@ -56,6 +56,12 @@
 #include <renderer/utils/renderer.hpp>
 #include <renderer/utils/batch_2d_renderer.hpp>
 
+#include <renderer/graphics/pipeline.hpp>
+#include <renderer/graphics/renderer_buffer.hpp>
+#include <renderer/graphics/shader.hpp>
+#include <renderer/graphics/texture.hpp>
+#include <renderer/graphics/framebuffer.hpp>
+
 // Editor Files
 #include <editor/property_grid.hpp>
 

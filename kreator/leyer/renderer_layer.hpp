@@ -67,6 +67,10 @@ namespace kreator {
     /// This function renders the play buttorn for  game
     void GamePlayButton();
 
+    /// This function set the game state
+    /// - Parameter is_play: game state
+    void SetPlay(bool is_play);
+
     // Member variables
     bool is_playing_ = false;
     std::unique_ptr<GameData> game_data_;

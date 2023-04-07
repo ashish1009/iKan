@@ -37,6 +37,16 @@ namespace ikan {
                          float column_width_1 = ImGui::GetWindowContentRegionMax().x / 2,
                          float column_width_2 = ImGui::GetWindowContentRegionMax().x / 2);
 
+    /// This function renderes a image button
+    /// - Parameters:
+    ///   - lableId: image lable string
+    ///   - texId: texture id
+    ///   - size: size of image
+    ///   - bgColor: background color
+    ///   - padding: padding
+    static bool ImageButton(const std::string& lable_id, uint32_t texId, const glm::vec2& size,
+                            const glm::vec4& bgColor = glm::vec4(0.0f), int32_t padding = 0);
+
   };
   
 } // namespace ikan

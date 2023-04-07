@@ -97,4 +97,24 @@ namespace kreator {
     ImGui::End();
   }
   
+  void RendererLayer::GamePlayButton() {
+    static std::shared_ptr<Texture> play_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/play.png"));
+    ImGui::Begin("Game Play", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+    
+    float size = ImGui::GetWindowHeight() - 12.0f; // 12 just random number
+    ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 0.5f));
+
+    // Button action
+    if (PropertyGrid::ImageButton("Game Play", play_texture->GetRendererID(), { size, size })) {
+      SetPlay(true);
+    }
+    PropertyGrid::HoveredMsg("Play Button for Game");
+
+    ImGui::End();
+  }
+  
+  void RendererLayer::SetPlay(bool is_play) {
+    is_playing_ = is_play;
+  }
+
 } // namespace kreator
