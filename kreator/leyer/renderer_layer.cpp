@@ -34,6 +34,7 @@ namespace kreator {
 
     // Decorate the Imgui Change the font of imgui
     ImguiAPI::ChangeFont(game_data_->RegularFontData(), game_data_->BoldFontData());
+    ImguiAPI::SetGreyThemeColors();
   }
   
   void RendererLayer::Detach() {
@@ -171,9 +172,24 @@ namespace kreator {
         }); // Exit
       }); // File
       
-      ImguiAPI::Menu("Property", true, []() {
-        ImguiAPI::Menu("Theme", false, []() {
-          
+      ImguiAPI::Menu("Property", true, [this]() {
+        ImguiAPI::Menu("Theme", true, [this]() {
+          ImguiAPI::MenuItem("Light", nullptr, false, true, [this]() {
+            viewport_.framebuffer->UpdateSpecificationColor({0.82f, 0.82f, 0.82f, 1.0f});
+            ImguiAPI::SetLightThemeColors();
+          });
+          ImguiAPI::MenuItem("Light", nullptr, false, true, [this]() {
+            viewport_.framebuffer->UpdateSpecificationColor({0.08f, 0.08f, 0.08f, 1.0f});
+            ImguiAPI::SetDarkThemeColors();
+          });
+          ImguiAPI::MenuItem("Grey", nullptr, false, true, [this]() {
+            viewport_.framebuffer->UpdateSpecificationColor({0.18f, 0.18f, 0.18f, 1.0f});
+            ImguiAPI::SetGreyThemeColors();
+          });
+          ImguiAPI::MenuItem("Light Grey", nullptr, false, true, [this]() {
+            viewport_.framebuffer->UpdateSpecificationColor({0.25f, 0.25f, 0.25f, 1.0f});
+            ImguiAPI::SetLightGreyThemeColors();
+          });
         }); // Theme
       }); // Property
       

@@ -29,6 +29,15 @@ namespace ikan {
     ///   - bold_font_path: bold font file information
     static void ChangeFont(const Font& default_font_path, const Font& bold_font_path);
 
+    /// This fucntions sets the Grey theme of Imgui
+    static void SetGreyThemeColors();
+    /// This fucntions sets the Light Grey theme of Imgui
+    static void SetLightGreyThemeColors();
+    /// This fucntions sets the Light theme of Imgui
+    static void SetLightThemeColors();
+    /// This fucntions sets the Dark theme of Imgui
+    static void SetDarkThemeColors();
+
     template<typename UIFunction>
     /// This function wraps the Imgui Begin Menu
     /// - Parameters:
