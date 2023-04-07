@@ -69,5 +69,10 @@
 // Scene Files
 #include <scene/viewport.hpp>
 
+// Camera Files
+#include <camera/camera.hpp>
+#include <camera/scene_camera.hpp>
+#include <camera/editor_camera.hpp>
+
 // Imgui API
 #include <imgui/imgui_api.hpp>

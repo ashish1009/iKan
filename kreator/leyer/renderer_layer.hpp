@@ -86,6 +86,8 @@ namespace kreator {
     std::unique_ptr<GameData> game_data_;
     Setting setting_;
     Viewport viewport_;
+    
+    EditorCamera editor_camera_;
   };
   
 } // namespace kreator

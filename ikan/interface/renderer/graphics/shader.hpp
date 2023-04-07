@@ -13,7 +13,7 @@ namespace ikan {
   
   /// Maximum Texture slot supported by Senderer Shader Current Open GL Version 4.1 supports only 16 Texture slot in Shader
   /// TODO: Change this value based on the Open GL Version
-  static constexpr uint32_t kMaxTextureSlotsInShader = 16;
+  static constexpr uint32_t MaxTextureSlotsInShader = 16;
   
   // Forward Declaration
   class ShaderUniformBufferDeclaration;

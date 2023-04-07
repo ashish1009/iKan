@@ -26,6 +26,14 @@ namespace ikan {
     std::shared_ptr<Pipeline> pipeline;
     std::shared_ptr<VertexBuffer> vertex_buffer;
     std::shared_ptr<Shader> shader;
+    
+    std::function<void(std::shared_ptr<Shader>,
+                       const glm::mat4&)> load_cam_to_shader = [](std::shared_ptr<Shader> shader,
+                                                                  const glm::mat4& cam_view_proj_mat) {
+      shader->Bind();
+      shader->SetUniformMat4("u_ViewProjection", cam_view_proj_mat);
+      shader->Unbind();
+    };
 
     void CommonInit(uint32_t max_elem, uint32_t max_vertices_single_elem) {
       max_element = max_elem;
@@ -66,10 +74,12 @@ namespace ikan {
     
     /// Store the Vertex and Indices size
     uint32_t max_indices = 0;
-    
+    /// Count of Indices to be renderer in Single Batch
+    uint32_t index_count = 0;
+
     /// Stores all the 16 Texture in array so that there is no need to load texture each frame
     /// NOTE: Load only if new texture is added or older replaced with new
-    std::array<std::shared_ptr<Texture>, kMaxTextureSlotsInShader> texture_slots;
+    std::array<std::shared_ptr<Texture>, MaxTextureSlotsInShader> texture_slots;
     
     /// Texture Slot index sent to Shader to render a specific Texture from slots
     /// Slot 0 is reserved for white texture (No Image only color)
@@ -115,6 +125,16 @@ namespace ikan {
       vertex_base_position[3] = { -0.5f,  0.5f, 0.0f, 1.0f };
     }
     
+    void StartCommonBatch(const glm::mat4& cam_view_proj_mat) {
+      load_cam_to_shader(shader, cam_view_proj_mat);
+      StartCommonBatch();
+    }
+
+    void StartCommonBatch() {
+      index_count = 0;
+      texture_slot_index = 1;
+    }
+
     virtual ~Shape2DCommonData() {
       for(auto texture : texture_slots)
         texture.reset();
@@ -133,6 +153,14 @@ namespace ikan {
     /// Incrememntal Vetrtex Data Pointer to store all the batch data in Buffer
     Vertex* vertex_buffer_ptr = nullptr;
     
+    void StartBatch(const glm::mat4& cam_view_proj_mat) {
+      StartCommonBatch(cam_view_proj_mat);
+      StartBatch();
+    }
+    void StartBatch() {
+      vertex_buffer_ptr = vertex_buffer_base_ptr;
+    }
+
     virtual ~QuadData() {
       delete [] vertex_buffer_base_ptr;
       vertex_buffer_base_ptr = nullptr;
@@ -156,6 +184,15 @@ namespace ikan {
     /// Incrememntal Vetrtex Data Pointer to store all the batch data in Buffer
     Vertex* vertex_buffer_ptr = nullptr;
     
+    void StartBatch(const glm::mat4& cam_view_proj_mat) {
+      StartCommonBatch(cam_view_proj_mat);
+      StartBatch();
+    }
+
+    void StartBatch() {
+      vertex_buffer_ptr = vertex_buffer_base_ptr;
+    }
+
     virtual ~CircleData() {
       delete [] vertex_buffer_base_ptr;
       vertex_buffer_base_ptr = nullptr;
@@ -166,6 +203,9 @@ namespace ikan {
   /// Batch Data to Rendering Lines
   struct LineData : CommonBatchData {
     static constexpr uint32_t VertexForSingleLine = 2;
+
+    /// Count of Indices to be renderer in Single Batch
+    uint32_t vertex_count = 0;
 
     /// Single vertex of a Circle
     struct Vertex {
@@ -178,13 +218,22 @@ namespace ikan {
     /// Incrememntal Vetrtex Data Pointer to store all the batch data in Buffer
     Vertex* vertex_buffer_ptr = nullptr;
 
-    virtual ~LineData() {
-      delete [] vertex_buffer_base_ptr;
-      vertex_buffer_base_ptr = nullptr;
+    void StartBatch(const glm::mat4& cam_view_proj_mat) {
+      load_cam_to_shader(shader, cam_view_proj_mat);
+      StartBatch();
+    }
+    void StartBatch() {
+      vertex_count = 0;
+      vertex_buffer_ptr = vertex_buffer_base_ptr;
     }
 
     void Initialise(uint32_t max_elements) {
       CommonInit(max_elements, VertexForSingleLine);
+    }
+
+    virtual ~LineData() {
+      delete [] vertex_buffer_base_ptr;
+      vertex_buffer_base_ptr = nullptr;
     }
   };
   static std::unique_ptr<LineData> line_data_;
@@ -203,7 +252,7 @@ namespace ikan {
     if (quad_data_) {
       BATCH_TRACE("Destroying the Batch Renderer Quad Data");
       BATCH_TRACE("  Max Quads per Batch            {0}", quad_data_->max_element);
-      BATCH_TRACE("  Max Texture Slots per Batch    {0}", kMaxTextureSlotsInShader);
+      BATCH_TRACE("  Max Texture Slots per Batch    {0}", MaxTextureSlotsInShader);
       BATCH_TRACE("  Vertex Buffer used             {0} B", quad_data_->max_vertices * sizeof(QuadData::Vertex));
       BATCH_TRACE("  Index Buffer used              {0} B", quad_data_->max_indices * sizeof(uint32_t));
       BATCH_TRACE("  Shader Used                    {0}", quad_data_->shader->GetName());
@@ -213,7 +262,7 @@ namespace ikan {
     if (circle_data_) {
       BATCH_TRACE("Destroying the Batch Renderer Circle Data");
       BATCH_TRACE("  Max Circles per Batch          {0}", circle_data_->max_element);
-      BATCH_TRACE("  Max Texture Slots per Batch    {0}", kMaxTextureSlotsInShader);
+      BATCH_TRACE("  Max Texture Slots per Batch    {0}", MaxTextureSlotsInShader);
       BATCH_TRACE("  Vertex Buffer used             {0}", circle_data_->max_vertices * sizeof(CircleData::Vertex));
       BATCH_TRACE("  Vertex Buffer used             {0}", circle_data_->max_indices * sizeof(uint32_t));
       BATCH_TRACE("  Shader used                    {0}", circle_data_->shader->GetName());
@@ -266,7 +315,7 @@ namespace ikan {
     
     BATCH_TRACE("Initialized Batch Renderer for Quad Data");
     BATCH_TRACE("  Max Quads per Batch              {0}", data->max_element);
-    BATCH_TRACE("  Max Texture Slots per Batch      {0}", kMaxTextureSlotsInShader);
+    BATCH_TRACE("  Max Texture Slots per Batch      {0}", MaxTextureSlotsInShader);
     BATCH_TRACE("  Vertex Buffer used               {0} B", data->max_vertices * sizeof(QuadData::Vertex));
     BATCH_TRACE("  Index Buffer used                {0} B", data->max_indices * sizeof(uint32_t));
     BATCH_TRACE("  Shader Used                      {0}", data->shader->GetName());
@@ -313,7 +362,7 @@ namespace ikan {
     
     BATCH_TRACE("Initialized Batch Renderer for Circle Data");
     BATCH_TRACE("  Max Circles per Batch            {0}", data->max_element);
-    BATCH_TRACE("  Max Texture Slots per Batch      {0}", kMaxTextureSlotsInShader);
+    BATCH_TRACE("  Max Texture Slots per Batch      {0}", MaxTextureSlotsInShader);
     BATCH_TRACE("  Vertex Buffer used               {0} B", data->max_vertices * sizeof(CircleData::Vertex));
     BATCH_TRACE("  Index Buffer used                {0} B", data->max_indices * sizeof(uint32_t));
     BATCH_TRACE("  Shader Used                      {0}", data->shader->GetName());
@@ -362,7 +411,7 @@ namespace ikan {
 
     BATCH_INFO("        Per Batch");
 
-    BATCH_INFO("            Max Texture slots             | {0}", kMaxTextureSlotsInShader);
+    BATCH_INFO("            Max Texture slots             | {0}", MaxTextureSlotsInShader);
     BATCH_INFO("            Max Quads                     | {0}", quad_data_->max_element);
     BATCH_INFO("            Max Circles                   | {0}", circle_data_->max_element);
     BATCH_INFO("            Max Lines                     | {0}", line_data_->max_element);
@@ -380,6 +429,22 @@ namespace ikan {
     BATCH_INFO("            Quad                          | {0}", quad_data_->shader->GetName());
     BATCH_INFO("            Circle                        | {0}", circle_data_->shader->GetName());
     BATCH_INFO("            Line                          | {0}", line_data_->shader->GetName());
+  }
+
+  void Batch2DRenderer::BeginBatch(const glm::mat4& cam_view_proj_mat) {
+    if (quad_data_) quad_data_->StartBatch(cam_view_proj_mat);
+    if (circle_data_) circle_data_->StartBatch(cam_view_proj_mat);
+    if (line_data_) line_data_->StartBatch(cam_view_proj_mat);
+  }
+  
+  void Batch2DRenderer::EndBatch() {
+    
+  }
+
+  void Batch2DRenderer::NextBatch() {
+    if (quad_data_) quad_data_->StartBatch();
+    if (circle_data_) circle_data_->StartBatch();
+    if (line_data_) line_data_->StartBatch();
   }
   
 } // namespace ikan

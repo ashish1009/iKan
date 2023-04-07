@@ -49,6 +49,8 @@ namespace kreator {
   }
   
   void RendererLayer::RenderScene(Timestep ts) {
+    Batch2DRenderer::BeginBatch(editor_camera_.GetViewProjection());
+    Batch2DRenderer::EndBatch();
   }
 
   void RendererLayer::HandleEvents(Event& event) {

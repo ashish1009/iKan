@@ -22,6 +22,12 @@ namespace ikan {
     /// This function Dump the data in logs
     static void LogData();
     
+    /// This function begins the Batch for 2D Rendere (to be called each frame)
+    /// - Parameter cam_view_proj_mat: Camera View projection Matrix
+    static void BeginBatch(const glm::mat4& cam_view_proj_mat);
+    /// This function Ends the current batch by rendering all the vertex
+    static void EndBatch();
+
     /// This funcition Adds the quads renderer data to prev allocaged data
     /// - Parameter max_quads: max quad to be renderered in single batch
     static void AddQuadData(uint32_t max_quads);
@@ -33,6 +39,10 @@ namespace ikan {
     static void AddLineData(uint32_t max_lines);
 
     MAKE_PURE_STATIC(Batch2DRenderer);
+    
+  private:
+    /// This function moves to next batch in single frame
+    static void NextBatch();
   };
   
 } // namespace ikan
