@@ -249,6 +249,33 @@ namespace ikan {
   }
   
   void EditorCamera::RendererGui(bool *is_open) {
+    CHECK_WIDGET_FLAG(is_open);
+    
+    ImGui::Begin("Editor Camera", is_open);
+    ImGui::PushID("Editor Camera");
+
+    static float fov_angle = glm::degrees(fov_);
+    bool modified = false;
+    if (PropertyGrid::Float1("FOV", fov_angle, nullptr, 1.0f, 75.0f, 10.0f, 120.0f, 100.0f)) {
+      fov_ = glm::radians(fov_angle);
+      modified = true;
+    }
+    if (PropertyGrid::Float1("Distance", distance_, nullptr, 0.1f, 1.0f, 1.0f, FLT_MAX, 100.0f)) {
+      modified = true;
+    }
+    if (PropertyGrid::Float3("Focal Point", focal_point_, nullptr, 0.1f, 0.0f, 0.0f, FLT_MAX, 100.0f)) {
+      modified = true;
+    }
+
+    if (modified) {
+      UpdateCameraProjection();
+      UpdateCameraView();
+      UpdateRayDirections();
+    }
+    ImGui::Separator();
+
+    ImGui::PopID();
+    ImGui::End();
   }
   
   float EditorCamera::GetZoom() const {

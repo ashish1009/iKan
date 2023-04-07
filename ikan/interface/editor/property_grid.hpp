@@ -32,10 +32,8 @@ namespace ikan {
     ///   - label: Lable for Variable
     ///   - value: Value reference to be changed
     ///   - column_width_2: width of column of lable
-    ///   - column_width_2: width of column of Value
     static bool CheckBox(const char* label, bool& value,
-                         float column_width_1 = ImGui::GetWindowContentRegionMax().x / 2,
-                         float column_width_2 = ImGui::GetWindowContentRegionMax().x / 2);
+                         float column_width_1 = ImGui::GetWindowContentRegionMax().x / 2);
 
     /// This function renderes a image button
     /// - Parameters:
@@ -47,6 +45,46 @@ namespace ikan {
     static bool ImageButton(const std::string& lable_id, uint32_t texId, const glm::vec2& size,
                             const glm::vec4& bgColor = glm::vec4(0.0f), int32_t padding = 0);
 
+    /// This function renders slider for float
+    /// - Parameters:
+    ///   - label: Lable for Variable
+    ///   - value: Value reference to be changed
+    ///   - checkbox_flag: flag to render either checkbox or lable
+    ///   - delta: step of Drag in float
+    ///   - reset_value: value of reset button pressed
+    ///   - min_value: min value
+    ///   - max_value: max value
+    ///   - column_width: width of column of lable
+    static bool Float1(const char* label, float& value, bool* checkbox_flag = nullptr, float delta = 0.1f, float reset_value = 0.0f,
+                       float min_value = 0.0f, float max_value = FLT_MAX, float column_width = ImGui::GetWindowContentRegionMax().x / 2);
+    /// This function renders slider for float 3
+    /// - Parameters:
+    ///   - label: Lable for Variable
+    ///   - value: Value reference to be changed
+    ///   - checkbox_flag: flag to render either checkbox or lable
+    ///   - delta: step of Drag in float
+    ///   - reset_value: value of reset button pressed
+    ///   - min_value: min value
+    ///   - max_value: max value
+    ///   - column_width: width of column of lable
+    static bool Float2(const char* label, glm::vec2& value, bool* checkbox_flag = nullptr, float delta = 0.1f, float reset_value = 0.0f,
+                       float min_value = 0.0f, float max_value = FLT_MAX, float column_width = ImGui::GetWindowContentRegionMax().x / 2);
+    /// This function renders slider for float 3
+    /// - Parameters:
+    ///   - label: Lable for Variable
+    ///   - value: Value reference to be changed
+    ///   - checkbox_flag: flag to render either checkbox or lable
+    ///   - delta: step of Drag in float
+    ///   - reset_value: value of reset button pressed
+    ///   - min_value: min value
+    ///   - max_value: max value
+    ///   - column_width: width of column of lable
+    static bool Float3(const char* label, glm::vec3& value, bool* checkbox_flag = nullptr, float delta = 0.1f, float reset_value = 0.0f,
+                       float min_value = 0.0f, float max_value = FLT_MAX, float column_width = ImGui::GetWindowContentRegionMax().x / 2);
+
+  private:
+    static bool FloatImpl(const std::vector<std::string>& buttons, const char* label, const std::vector<float*>& values,
+                          bool* checkbox_flag, float delta, float reset_value, float min_value, float max_value, float column_width);
   };
   
 } // namespace ikan

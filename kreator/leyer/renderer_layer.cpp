@@ -135,7 +135,9 @@ namespace kreator {
       Renderer::Render2DStatsGui(&setting_.renderer_stats_2d.flag);
       viewport_.RenderGui(&setting_.viewport_data.flag);
       cbp_.RenderGui(&setting_.common_renderer_stats.flag);
-
+      
+      editor_camera_.RendererGui();
+      
       RenderViewport();
 
       ImguiAPI::EndDcocking();

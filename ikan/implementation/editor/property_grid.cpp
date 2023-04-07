@@ -33,7 +33,7 @@ namespace ikan {
     HoveredMsg(description);
   }
   
-  bool PropertyGrid::CheckBox(const char* label, bool& value, float column_width_1, float column_width_2) {
+  bool PropertyGrid::CheckBox(const char* label, bool& value, float column_width_1) {
     bool modified = false;
     
     ImGui::Columns(2);
@@ -44,7 +44,6 @@ namespace ikan {
     
     ImGui::NextColumn();
     ImGui::PushItemWidth(-1);
-    ImGui::SetColumnWidth(1, column_width_2);
     std::string UIContextId = "##" + (std::string)label;
     
     if (ImGui::Checkbox(UIContextId.c_str(), &value))
@@ -84,5 +83,79 @@ namespace ikan {
     
     return result;
   }
-  
+
+  bool PropertyGrid::Float1(const char* label, float& value, bool* checkbox_flag, float delta, float reset_value,
+                            float min_value, float max_value, float column_width) {
+    return FloatImpl({"X"}, label, {&value}, checkbox_flag, delta, reset_value, min_value, max_value, column_width);
+  }
+  bool PropertyGrid::Float2(const char* label, glm::vec2& value, bool* checkbox_flag, float delta, float reset_value,
+                            float min_value, float max_value, float column_width) {
+    return FloatImpl({"X", "Y"}, label, {&value.x, &value.y}, checkbox_flag, delta, reset_value,
+                     min_value, max_value, column_width);
+  }
+  bool PropertyGrid::Float3(const char* label, glm::vec3& value, bool* checkbox_flag, float delta, float reset_value,
+                            float min_value, float max_value, float column_width) {
+    return FloatImpl({"X", "Y", "Z"}, label, {&value.x, &value.y, &value.z}, checkbox_flag, delta, reset_value,
+                     min_value, max_value, column_width);
+  }
+  bool PropertyGrid::FloatImpl(const std::vector<std::string>& buttons, const char* label, const std::vector<float*>& values,
+                               bool* checkbox_flag, float delta, float reset_value, float min_value, float max_value, float column_width) {
+    bool modified = false;
+    ImGuiIO& io   = ImGui::GetIO();
+    auto bold_font = io.Fonts->Fonts[0];
+    
+    ImGui::PushID(label);
+    ImGui::Columns(2);
+    
+    ImGui::PushItemWidth(-1);
+    ImGui::SetColumnWidth(0, column_width);
+    
+    // this flag is to check we need to have slider float or not
+    bool prop_flag;
+    if (checkbox_flag) {
+      ImGui::Checkbox(label, checkbox_flag);
+      prop_flag = *checkbox_flag;
+    }
+    else {
+      ImGui::Text(label);
+      prop_flag = true;
+    }
+    ImGui::PopItemWidth();
+    
+    if (prop_flag) {
+      ImGui::NextColumn();
+      ImGui::PushItemWidth(-1);
+      
+      float lineHeight = GImGui->Font->FontSize + GImGui->Style.FramePadding.y * 2.0f;
+      ImVec2 button_size = { lineHeight + 3.0f, lineHeight };
+      
+      ImGui::PushMultiItemsWidths((uint32_t)buttons.size(), ImGui::CalcItemWidth() - (lineHeight * buttons.size()));
+      ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2{ 0, 0 });
+      
+      for (int32_t i = 0; i < buttons.size(); i++) {
+        ImGui::PushFont(bold_font);
+        if (ImGui::Button((const char*)&buttons[i], button_size)) {
+          *(values[i]) = reset_value;
+          modified = true;
+        }
+        ImGui::PopFont();
+        
+        ImGui::SameLine();
+        std::string id = std::string("##") + std::to_string(i);
+        if (ImGui::DragFloat(id.c_str(), values[i], delta, min_value, max_value, "%.2f"))
+          modified = true;
+        
+        if (i < buttons.size() - 1)
+          ImGui::SameLine();
+      }
+      ImGui::PopItemWidth();
+      ImGui::PopStyleVar();
+    }
+    
+    ImGui::Columns(1);
+    ImGui::PopID();
+    
+    return modified;
+  }
+
 } // namespace ikan
