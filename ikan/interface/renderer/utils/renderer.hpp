@@ -12,6 +12,7 @@
 namespace ikan {
   
   class Shader;
+  class Texture;
   
   /// All renderer ID type
   using RendererID = uint32_t;
@@ -129,6 +130,11 @@ namespace ikan {
     /// This function returns the shader pointer from the library. If not present then  create new shader and store in the library
     /// - Parameter path: path of shader
     [[nodiscard]] static std::shared_ptr<Shader> GetShader(const std::string& path);
+    /// This function returns the shader pointer from the library. If not present then  create new shader and store in the library
+    /// - Parameters:
+    ///   - path: path of textre
+    ///   - linear: min linear flag
+    [[nodiscard]] static std::shared_ptr<Texture> GetTexture(const std::string& path, bool linear = true);
 
     MAKE_PURE_STATIC(Renderer);
   };

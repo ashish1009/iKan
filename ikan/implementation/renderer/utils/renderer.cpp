@@ -10,6 +10,7 @@
 #include "text_renderer.hpp"
 #include "renderer_stats.hpp"
 #include "shader.hpp"
+#include "texture.hpp"
 
 namespace ikan {
   
@@ -58,6 +59,7 @@ namespace ikan {
     TextRenderer::Shutdown();
     
     ShaderLibrary::ResetShaders();
+    TextureLibrary::ResetTextures();
   }
   
   // -------------------------------------------------------------------------
@@ -121,6 +123,7 @@ namespace ikan {
   // Library
   // -------------------------------------------------------------------------
   std::shared_ptr<Shader> Renderer::GetShader(const std::string& path) { return ShaderLibrary::GetShader(path); }
+  std::shared_ptr<Texture> Renderer::GetTexture(const std::string& path, bool linear) { return TextureLibrary::GetTexture(path, linear); }
 
   // -------------------------------------------------------------------------
   // Renderer Capabilities
