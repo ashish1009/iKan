@@ -25,6 +25,7 @@ namespace ikan {
         Depth24Stencil
       };
       
+      Attachments() = default;
       Attachments(std::initializer_list<TextureFormat> attachments);
       std::vector<TextureFormat> texture_formats;
     };
@@ -34,12 +35,11 @@ namespace ikan {
       uint32_t width = 2100, height = 900;
       glm::vec4 color = { 0.1f, 0.1f, 0.1f, 1.0f };
       Attachments attachments;
-      Specification();
     };
 
     /// This static function creates the Framebuffer instance based on the current Supported API
     /// - Parameter spec: Frame buffer specification
-    static std::shared_ptr<FrameBuffer> Create(const Specification& spec = Specification());
+    static std::shared_ptr<FrameBuffer> Create(const Specification& spec);
 
     virtual ~FrameBuffer() = default;
     

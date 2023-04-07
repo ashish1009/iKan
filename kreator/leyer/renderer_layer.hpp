@@ -82,6 +82,7 @@ namespace kreator {
     bool is_playing_ = false;
     std::unique_ptr<GameData> game_data_;
     Setting setting_;
+    Viewport viewport_;
   };
   
 } // namespace kreator

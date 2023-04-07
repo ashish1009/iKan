@@ -66,5 +66,8 @@
 // Editor Files
 #include <editor/property_grid.hpp>
 
+// Scene Files
+#include <scene/viewport.hpp>
+
 // Imgui API
 #include <imgui/imgui_api.hpp>
