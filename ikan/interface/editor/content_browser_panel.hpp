@@ -37,8 +37,28 @@ namespace ikan {
     void RenderGui(bool* is_open = nullptr);
 
   private:
+    /// This function renders the title of Content browser pannel
+    void TitleIcon();
+    /// This function renders the Main area of Content browser pannel
+    void MainArea();
+    /// This function renders the Main area of Content browser pannel
+    void SideMenu();
+
+    /// This function render back icon
+    void Back();
+    /// This function render forward icon
+    void Forward();
+    /// This function render home icon
+    void Home();
+    
+    /// This function render search Text box icon
+    void Search();
+    /// This fucntion prints the path history
+    void PathHistory();
+    
     std::filesystem::path root_path_, current_directory_;
     std::vector<std::filesystem::path> favourite_paths_;
+    ImGuiTextFilter search_filter_;
   };
   
 } // namespace ikan

@@ -82,6 +82,20 @@ namespace ikan {
     static bool Float3(const char* label, glm::vec3& value, bool* checkbox_flag = nullptr, float delta = 0.1f, float reset_value = 0.0f,
                        float min_value = 0.0f, float max_value = FLT_MAX, float column_width = ImGui::GetWindowContentRegionMax().x / 2);
 
+    /// This function renderes a search box with search button
+    /// - Parameters:
+    ///   - value: value written in the box
+    ///   - hint: hint to be shown
+    ///   - size: size of search button
+    static bool Search(char* value, const char* hint, const glm::vec2& size = { 15.0f, 15.0f });
+    /// This function renders Imgae in current Imgui window
+    /// - Parameters:
+    ///   - textureID; Texture id of Image to be rendered
+    ///   - size; size of image need to be rendered inside Imgui window (this size will be visible as texture)
+    ///   - uv0; Left
+    ///   - uv1; Right
+    static void Image(void* textureID, const glm::vec2& size, const glm::vec2& uv0, const glm::vec2& uv1);
+
   private:
     static bool FloatImpl(const std::vector<std::string>& buttons, const char* label, const std::vector<float*>& values,
                           bool* checkbox_flag, float delta, float reset_value, float min_value, float max_value, float column_width);
