@@ -38,7 +38,9 @@ namespace kreator {
       RenderScene(ts);
     }
     else {
+      viewport_.framebuffer->Bind();
       RenderScene(ts);
+      viewport_.framebuffer->Unbind();
     }
   }
   
@@ -85,8 +87,26 @@ namespace kreator {
       Renderer::RenderStatsGui(&setting_.common_renderer_stats.flag);
       Renderer::Render2DStatsGui(&setting_.renderer_stats_2d.flag);
 
+      RenderViewport();
+
       ImguiAPI::EndDcocking();
     }
+  }
+  
+  void RendererLayer::RenderViewport() {
+    // Viewport
+    ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
+    ImGui::Begin("Kreator Viewport");
+    ImGui::PushID("Kreator Viewport");
+    
+    ImVec2 viewport_panel_size = ImGui::GetContentRegionAvail();
+    
+    size_t textureID = viewport_.framebuffer->GetColorAttachmentIds().at(0);
+    ImGui::Image((void*)textureID, viewport_panel_size, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
+    
+    ImGui::PopStyleVar();
+    ImGui::PopID();
+    ImGui::End();
   }
   
   void RendererLayer::ShowMenu() {

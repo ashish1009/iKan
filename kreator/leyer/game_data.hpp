@@ -28,7 +28,7 @@ namespace kreator {
   class GameDataImpl : public GameData {
   public:
     std::string GameName() const override { return "Kreator Editor"; }
-    glm::vec4 GetBgColor() const override { return {0.2f, 0.2f, 0.2f, 1.0f}; }
+    glm::vec4 GetBgColor() const override { return {0.5f, 0.2f, 0.2f, 1.0f}; }
   };
   
   /// This function is the defination of game data. Implementaiton should be at client

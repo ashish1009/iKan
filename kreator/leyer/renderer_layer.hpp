@@ -62,6 +62,8 @@ namespace kreator {
   private:
     /// This function renders the scene data
     void RenderScene(Timestep ts);
+    /// This function render the viewport captured in framebuffer
+    void RenderViewport();
 
     /// This function handles the key button press event
     /// - Parameter e key button pressed event
