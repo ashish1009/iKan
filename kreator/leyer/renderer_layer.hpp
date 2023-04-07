@@ -96,6 +96,8 @@ namespace kreator {
     Setting setting_;
     Viewport viewport_;
     
+    uint32_t viewport_width_ = 0, viewport_height_ = 0;
+    
     EditorCamera editor_camera_;
   };
   

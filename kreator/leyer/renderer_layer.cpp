@@ -63,9 +63,13 @@ namespace kreator {
     Batch2DRenderer::DrawQuad(glm::mat4(1.0f), {1, 1, 1, 1});
     Batch2DRenderer::EndBatch();
     
+    // Text Renderer
+    static glm::vec2 fixed_text_size = {0.3f, 0.3f};
+    static glm::vec4 fixed_text_color = { 0.1, 0.1, 0.1, 1 };
     TextRenderer::BeginBatch(still_camera_projection);
+    TextRenderer::RenderFixedViewText("(c) IKAN", { viewport_width_ - 90, 5.0f, 0.3f }, fixed_text_size, fixed_text_color);
     TextRenderer::RenderFixedViewText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)),
-                                      { 5.0f, 5.0f, 0.3f }, { 0.35f, 0.35f }, { 0, 0, 1, 1 });
+                                      { 5.0f, 5.0f, 0.3f }, fixed_text_size, fixed_text_color);
     TextRenderer::EndBatch();
   }
 
@@ -101,6 +105,8 @@ namespace kreator {
   }
   
   void RendererLayer::ResizeLayer(uint32_t width, uint32_t height) {
+    viewport_width_ = width;
+    viewport_height_ = height;
     still_camera_projection = glm::ortho( 0.0f, (float)width, 0.0f, (float)height);
   }
 
