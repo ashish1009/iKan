@@ -61,6 +61,10 @@ namespace ikan {
     std::filesystem::path root_path_, current_directory_;
     std::vector<std::filesystem::path> favourite_paths_;
     ImGuiTextFilter search_filter_;
+
+    std::vector<std::filesystem::path> back_path_history_;
+    std::vector<std::filesystem::path> forward_path_history_;
+    std::vector<std::filesystem::path> path_hierarchy_;
   };
   
 } // namespace ikan

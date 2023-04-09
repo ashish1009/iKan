@@ -11,6 +11,8 @@
 
 namespace ikan {
   
+#define CBP_DEBUG 0
+  
   static constexpr float round_factor_ = 1.0f;
   static constexpr float window_y_offset_  = 55.0f;
   static constexpr glm::vec2 icon_size_ = {18.0f, 18.0f};
@@ -43,6 +45,21 @@ namespace ikan {
   
   void ContentBrowserPanel::RenderGui(bool* is_open) {
     CHECK_WIDGET_FLAG(is_open);
+    
+#ifdef CBP_DEBUG
+    ImGui::Begin("Content Broser Debug");
+    
+    ImGui::Text("Back paths");
+    for (auto b : back_path_history_)
+      ImGui::Text("%s", b.string().data());
+    
+    
+    ImGui::Text("Forward paths");
+    for (auto b : forward_path_history_)
+      ImGui::Text("%s", b.string().data());
+    
+    ImGui::End();
+#endif
     
     ImGui::Begin("Content Browser", is_open);
     ImGui::PushID("Content Browser");
@@ -121,7 +138,12 @@ namespace ikan {
         }
 
         if (ImGui::IsItemClicked()) {
-          // TODO: Add Feature
+          //TODO: For now clear everything
+          path_hierarchy_.clear();
+          
+          // Change current directory
+          current_directory_ = pinned_path;
+          path_hierarchy_.emplace_back(current_directory_);
         }
 
         ImGui::PopID();
@@ -205,7 +227,19 @@ namespace ikan {
         // If icon is clicked Do some action
         if (pressed) {
           if (is_directory) {
-            // TODO: Add Feature
+            // Store the current directory in path history
+            back_path_history_.emplace_back(current_directory_);
+
+            // Clear the forward path history as we are at the top already
+            while (!forward_path_history_.empty()) {
+              forward_path_history_.pop_back();
+            }
+
+            // Change the current directory
+            current_directory_ /= path.filename();
+            
+            // Store the current path in path hierarchy
+            path_hierarchy_.emplace_back(current_directory_);
           } else {
             // DO NOTHING
           }
@@ -245,21 +279,62 @@ namespace ikan {
   void ContentBrowserPanel::Back() {
     static std::shared_ptr<Texture> back_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/back.png"));
     if (PropertyGrid::ImageButton("Back", back_texture->GetRendererID(), icon_size_)) {
-      // TODO: Add Feature
+      // Do nothing if path history is empty
+      if (back_path_history_.empty())
+        return;
+      
+      // Remove the element from path hierarchy
+      path_hierarchy_.pop_back();
+      
+      // Store the current path in forward history
+      forward_path_history_.emplace_back(current_directory_);
+      
+      // Change the current directory and remove element from path history
+      current_directory_ = back_path_history_.back();
+      back_path_history_.pop_back();
     }
   }
   
   void ContentBrowserPanel::Forward() {
     static std::shared_ptr<Texture> forward_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/forward.png"));
     if (PropertyGrid::ImageButton("Forward", forward_texture->GetRendererID(), icon_size_)) {
-      // TODO: Add Feature
+      // Do nothing if path history is empty
+      if (forward_path_history_.empty())
+        return;
+      
+      // Store the current path in back history
+      back_path_history_.emplace_back(current_directory_);
+      
+      // Change the current directory and remove element from path history
+      current_directory_ = forward_path_history_.back();
+      forward_path_history_.pop_back();
+      
+      // Store the current path in path hierarchy
+      path_hierarchy_.emplace_back(current_directory_);
     }
   }
   
   void ContentBrowserPanel::Home() {
     static std::shared_ptr<Texture> home_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/home.png"));
     if (PropertyGrid::ImageButton("home", home_texture->GetRendererID(), icon_size_)) {
-      // TODO: Add Feature
+      // Do nothing if current path is same as root
+      if (current_directory_ == std::filesystem::path(root_path_)) {
+        return;
+      }
+      
+      // Change the current directory
+      current_directory_ = root_path_;
+      
+      // Clear the forward path history as we are at the top already
+      forward_path_history_.clear();
+      
+      // Clear the back path history as we are not considering any back from
+      // home for now
+      back_path_history_.clear();
+      
+      // Clear the path hierarchy and add only home path
+      path_hierarchy_.clear();
+      path_hierarchy_.emplace_back(current_directory_);
     }
   }
   
@@ -271,7 +346,19 @@ namespace ikan {
   }
   
   void ContentBrowserPanel::PathHistory() {
-    // TODO: Add Feature
+    size_t i = 0;
+    for (const auto& path : path_hierarchy_) {
+      i++;
+      ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
+      if (ImGui::Button(path.filename().c_str())) {
+      }
+      ImGui::PopStyleColor();
+      ImGui::SameLine();
+      
+      if (i != path_hierarchy_.size())
+        ImGui::Text(">");
+      ImGui::SameLine();
+    }
   }
 
 }// namespace ikan
