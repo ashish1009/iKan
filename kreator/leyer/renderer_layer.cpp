@@ -131,6 +131,7 @@ namespace kreator {
 
       ShowMenu();
       GamePlayButton();
+      SceneStateButton();
       ShowSettings();
       
       ImguiAPI::Framerate(&setting_.frame_rate.flag);
@@ -240,6 +241,42 @@ namespace kreator {
     ImGui::End();
   }
   
+  void RendererLayer::SceneStateButton() {
+    // Texture for Play and Pause button
+    static std::shared_ptr<Texture> pause_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/pause.png"));
+    static std::shared_ptr<Texture> play_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/play.png"));
+    static std::shared_ptr<Texture> stop_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/stop.png"));
+    
+    // Play Pause Buttom
+    ImGui::Begin("Scene Play/Pause/Stop", nullptr,
+                 ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+    ImGui::PushID("Scene Play/Pause/Stop");
+    
+    float size = ImGui::GetWindowHeight() - 12.0f; // 12 just random number
+
+    // Update the texture id based on the state of scene
+    uint32_t play_pause_tex_id = play_texture->GetRendererID();// active_scene_->IsEditing() ? play_texture->GetRendererID() : pause_texture->GetRendererID();
+
+    ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 1.0f));
+
+    // Play/Pause Button action
+    if (PropertyGrid::ImageButton("Scene Play/Pause", play_pause_tex_id, { size, size })) {
+    }
+    PropertyGrid::HoveredMsg("Play Button for Scene (Debug Scene in play mode)");
+
+    ImGui::SameLine();
+    uint32_t stop_tex_id = stop_texture->GetRendererID();
+    ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) + (size * 1.0f));
+    
+    // Stop Button action
+    if (PropertyGrid::ImageButton("Scene Stop", stop_tex_id, { size, size })) {
+    }
+    PropertyGrid::HoveredMsg("Play Button for Scene (Debug Scene in play mode)");
+
+    ImGui::PopID();
+    ImGui::End();
+  }
+
   void RendererLayer::SetPlay(bool is_play) {
     is_playing_ = is_play;
     
