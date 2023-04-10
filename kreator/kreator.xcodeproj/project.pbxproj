@@ -339,6 +339,7 @@
 					"${PROJECT_DIR}/../ikan/vendors/imgui/imgui",
 					"${PROJECT_DIR}/../ikan/vendors/glm",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2",
+					"${PROJECT_DIR}/../ikan/vendors/entt//include",
 				);
 				LIBRARY_SEARCH_PATHS = "${PROJECT_DIR}/../ikan/vendors/freetype/lib";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
@@ -363,6 +364,7 @@
 					"${PROJECT_DIR}/../ikan/vendors/imgui/imgui",
 					"${PROJECT_DIR}/../ikan/vendors/glm",
 					"${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2",
+					"${PROJECT_DIR}/../ikan/vendors/entt//include",
 				);
 				LIBRARY_SEARCH_PATHS = "${PROJECT_DIR}/../ikan/vendors/freetype/lib";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
