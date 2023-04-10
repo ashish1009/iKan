@@ -46,7 +46,7 @@ namespace ikan {
   void ContentBrowserPanel::RenderGui(bool* is_open) {
     CHECK_WIDGET_FLAG(is_open);
     
-#ifdef CBP_DEBUG
+#if CBP_DEBUG
     ImGui::Begin("Content Broser Debug");
     
     ImGui::Text("Back paths");

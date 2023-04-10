@@ -189,7 +189,7 @@ namespace kreator {
             viewport_.framebuffer->UpdateSpecificationColor({0.82f, 0.82f, 0.82f, 1.0f});
             ImguiAPI::SetLightThemeColors();
           });
-          ImguiAPI::MenuItem("Light", nullptr, false, true, [this]() {
+          ImguiAPI::MenuItem("Dark", nullptr, false, true, [this]() {
             viewport_.framebuffer->UpdateSpecificationColor({0.08f, 0.08f, 0.08f, 1.0f});
             ImguiAPI::SetDarkThemeColors();
           });
