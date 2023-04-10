@@ -19,6 +19,11 @@ namespace kreator {
   public:
     virtual ~GameData() = default;
     
+    /// Initilize your game data here. This function triggers when scene in Open, Play or Edit in game
+    /// - Note: Whenever Renderer Layer change the Scene pointer this function calls
+    /// - Parameters scene: This is the reference of created scene
+    virtual void Init(const std::shared_ptr<Scene> scene) = 0;
+
     /// This function returns name of your game
     virtual std::string GameName() const = 0;
     /// This function return your viewport background color
@@ -31,10 +36,18 @@ namespace kreator {
     virtual std::string CbpRootDir() const = 0;
     /// This function returns the paths of directory you want in content browser panel
     virtual std::vector<std::filesystem::path> FavDirecotries() const = 0;
+    
+    void SetPlaying(bool playing_flag) { is_playing_ = playing_flag; }
+    bool IsPlaying() { return is_playing_; }
+    
+  protected:
+    bool is_playing_ = false;
   };
   
   class GameDataImpl : public GameData {
   public:
+    void Init(const std::shared_ptr<Scene> scene) override {};
+
     std::string GameName() const override { return "Kreator Editor"; }
     glm::vec4 GetBgColor() const override { return {0.5f, 0.2f, 0.2f, 1.0f}; }
     std::string CbpRootDir() const override { return "../../../"; };

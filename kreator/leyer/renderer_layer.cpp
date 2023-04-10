@@ -21,6 +21,9 @@ namespace kreator {
   RendererLayer::RendererLayer(GameType game_type)
   : Layer("Kreator"), game_data_(CreateGameData(game_type)), cbp_(DM::GetWorkspaceBasePath()) {
     KREATOR_LOG("Creating {0} Layer instance ... ", game_data_->GameName().c_str());
+    
+    editor_scene_ = std::make_shared<Scene>();
+    active_scene_ = editor_scene_;
   }
   
   RendererLayer::~RendererLayer() {
@@ -255,12 +258,13 @@ namespace kreator {
     float size = ImGui::GetWindowHeight() - 12.0f; // 12 just random number
 
     // Update the texture id based on the state of scene
-    uint32_t play_pause_tex_id = play_texture->GetRendererID();// active_scene_->IsEditing() ? play_texture->GetRendererID() : pause_texture->GetRendererID();
+    uint32_t play_pause_tex_id = active_scene_->IsEditing() ? play_texture->GetRendererID() : pause_texture->GetRendererID();
 
     ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 1.0f));
 
     // Play/Pause Button action
     if (PropertyGrid::ImageButton("Scene Play/Pause", play_pause_tex_id, { size, size })) {
+      active_scene_->IsEditing() ? PlayScene() : EditScene();
     }
     PropertyGrid::HoveredMsg("Play Button for Scene (Debug Scene in play mode)");
 
@@ -270,6 +274,7 @@ namespace kreator {
     
     // Stop Button action
     if (PropertyGrid::ImageButton("Scene Stop", stop_tex_id, { size, size })) {
+      StopScene();
     }
     PropertyGrid::HoveredMsg("Play Button for Scene (Debug Scene in play mode)");
 
@@ -285,4 +290,28 @@ namespace kreator {
     }
   }
 
+  void RendererLayer::PlayScene() {
+    active_scene_ = Scene::Copy(editor_scene_);
+
+    game_data_->Init(active_scene_);
+    game_data_->SetPlaying(true);
+
+    active_scene_->PlayScene();
+  }
+  
+  void RendererLayer::EditScene() {
+    game_data_->SetPlaying(false);
+    
+    active_scene_->EditScene();
+  }
+
+  void RendererLayer::StopScene() {
+    active_scene_ = editor_scene_;
+
+    game_data_->Init(active_scene_);
+    game_data_->SetPlaying(false);
+
+    active_scene_->EditScene();
+  }
+  
 } // namespace kreator

@@ -92,16 +92,24 @@ namespace kreator {
     /// This function set the game state
     /// - Parameter is_play: game state
     void SetPlay(bool is_play);
+    /// This function wraps the scene play
+    void PlayScene();
+    /// This function wraps the scene edit in same state of playing
+    void EditScene();
+    /// This function wraps the scene Stop. Edit from begining
+    void StopScene();
 
     // Member variables
+    uint32_t viewport_width_ = Application::Get().GetWindow().GetWidth();
+    uint32_t viewport_height_ = Application::Get().GetWindow().GetWidth();
+
     bool is_playing_ = false;
     std::unique_ptr<GameData> game_data_;
     Setting setting_;
     Viewport viewport_;
     
+    std::shared_ptr<Scene> active_scene_, editor_scene_;
     ContentBrowserPanel cbp_;
-
-    uint32_t viewport_width_ = 0, viewport_height_ = 0;
     
     EditorCamera editor_camera_;
   };
