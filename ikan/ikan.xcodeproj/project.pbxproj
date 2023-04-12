@@ -67,8 +67,8 @@
 		B2BEC7D629DDC301008D3DCB /* text_renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BEC7D429DDC301008D3DCB /* text_renderer.hpp */; };
 		B2BEC7DC29DDC475008D3DCB /* imgui_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC7DA29DDC475008D3DCB /* imgui_api.cpp */; };
 		B2BEC7DD29DDC475008D3DCB /* imgui_api.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BEC7DB29DDC475008D3DCB /* imgui_api.hpp */; };
-		B2E7141329E43C3C008C8CB1 /* entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E7141129E43C3C008C8CB1 /* entity.cpp */; };
-		B2E7141429E43C3C008C8CB1 /* entity.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2E7141229E43C3C008C8CB1 /* entity.hpp */; };
+		B2E7141329E43C3C008C8CB1 /* core_entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E7141129E43C3C008C8CB1 /* core_entity.cpp */; };
+		B2E7141429E43C3C008C8CB1 /* core_entity.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2E7141229E43C3C008C8CB1 /* core_entity.hpp */; };
 		B2E7141A29E43C40008C8CB1 /* components.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E7141829E43C40008C8CB1 /* components.cpp */; };
 		B2E7141B29E43C40008C8CB1 /* components.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2E7141929E43C40008C8CB1 /* components.hpp */; };
 		B2E7141F29E43C4A008C8CB1 /* scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E7141D29E43C4A008C8CB1 /* scene.cpp */; };
@@ -207,8 +207,8 @@
 		B2BEC7DA29DDC475008D3DCB /* imgui_api.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_api.cpp; sourceTree = "<group>"; };
 		B2BEC7DB29DDC475008D3DCB /* imgui_api.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imgui_api.hpp; sourceTree = "<group>"; };
 		B2C26FC029D2A32400EC1078 /* asserts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = asserts.h; sourceTree = "<group>"; };
-		B2E7141129E43C3C008C8CB1 /* entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entity.cpp; sourceTree = "<group>"; };
-		B2E7141229E43C3C008C8CB1 /* entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = entity.hpp; sourceTree = "<group>"; };
+		B2E7141129E43C3C008C8CB1 /* core_entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = core_entity.cpp; sourceTree = "<group>"; };
+		B2E7141229E43C3C008C8CB1 /* core_entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = core_entity.hpp; sourceTree = "<group>"; };
 		B2E7141829E43C40008C8CB1 /* components.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = components.cpp; sourceTree = "<group>"; };
 		B2E7141929E43C40008C8CB1 /* components.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = components.hpp; sourceTree = "<group>"; };
 		B2E7141D29E43C4A008C8CB1 /* scene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene.cpp; sourceTree = "<group>"; };
@@ -338,7 +338,7 @@
 				B281E88329E001A70038A9EE /* viewport.hpp */,
 				B2E7141E29E43C4A008C8CB1 /* scene.hpp */,
 				B2E7141929E43C40008C8CB1 /* components.hpp */,
-				B2E7141229E43C3C008C8CB1 /* entity.hpp */,
+				B2E7141229E43C3C008C8CB1 /* core_entity.hpp */,
 				B295D89829E6D02B00A40956 /* scene_panel_manager.hpp */,
 				B295DB8529E6D6B400A40956 /* scene_serialiser.hpp */,
 			);
@@ -349,7 +349,7 @@
 			isa = PBXGroup;
 			children = (
 				B281E88229E001A70038A9EE /* viewport.cpp */,
-				B2E7141129E43C3C008C8CB1 /* entity.cpp */,
+				B2E7141129E43C3C008C8CB1 /* core_entity.cpp */,
 				B2E7141829E43C40008C8CB1 /* components.cpp */,
 				B2E7141D29E43C4A008C8CB1 /* scene.cpp */,
 			);
@@ -739,7 +739,7 @@
 				B2394A3229D8733500D782E5 /* mac_window.hpp in Headers */,
 				B2BEC7D629DDC301008D3DCB /* text_renderer.hpp in Headers */,
 				B295D89A29E6D02B00A40956 /* scene_panel_manager.hpp in Headers */,
-				B2E7141429E43C3C008C8CB1 /* entity.hpp in Headers */,
+				B2E7141429E43C3C008C8CB1 /* core_entity.hpp in Headers */,
 				B228FC6F29DB071300455666 /* graphics_context.hpp in Headers */,
 				B281E86F29DFE1630038A9EE /* editor_camera.hpp in Headers */,
 				B29C832129DEB7140061D182 /* open_gl_renderer_buffer.hpp in Headers */,
@@ -882,7 +882,7 @@
 				B281E86429DFDA240038A9EE /* open_gl_framebuffer.cpp in Sources */,
 				B2394A3129D8733500D782E5 /* mac_window.cpp in Sources */,
 				B2BEC78A29DD7C50008D3DCB /* core_application.cpp in Sources */,
-				B2E7141329E43C3C008C8CB1 /* entity.cpp in Sources */,
+				B2E7141329E43C3C008C8CB1 /* core_entity.cpp in Sources */,
 				B2F91E1929D713FA00860306 /* renderer_api.cpp in Sources */,
 				B2394A2829D81BDD00D782E5 /* window.cpp in Sources */,
 				B2F70CEA29DEEBAD003163BA /* string_utils.cpp in Sources */,

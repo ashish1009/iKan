@@ -30,8 +30,8 @@ namespace ikan {
   }
   
   ContentBrowserPanel::~ContentBrowserPanel() {
-    IK_CORE_WARN(LogModule::ContentBrowserPanel, "Destroying Content Browser Panel !!! ");
-    IK_CORE_WARN(LogModule::ContentBrowserPanel, "  Root Path {0}", root_path_.string());
+    IK_CORE_TRACE(LogModule::ContentBrowserPanel, "Destroying Content Browser Panel !!! ");
+    IK_CORE_TRACE(LogModule::ContentBrowserPanel, "  Root Path {0}", root_path_.string());
   }
   
   void ContentBrowserPanel::SetRootPath(const std::string& root_path) {
