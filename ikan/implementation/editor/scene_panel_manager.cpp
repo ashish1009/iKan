@@ -30,6 +30,8 @@ namespace ikan {
     ImGui::Begin("Scene Manager", &setting_.scene_panel);
     ImGui::PushID("Scene Manager");
     
+    ImGui::Text(" Scene | %s ", scene_context_->name_.c_str());
+
     ImGui::PopID();
     ImGui::End();
   }

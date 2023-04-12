@@ -38,7 +38,9 @@ namespace kreator {
     virtual std::vector<std::filesystem::path> FavDirecotries() const = 0;
     /// This function returns the path of folder where cliet scenes are saved
     virtual std::string GetScenePath() const = 0;
-    
+    /// This function returns the path of scene you want to open in begining
+    virtual std::string SavedScene() const = 0;
+
     void SetPlaying(bool playing_flag) { is_playing_ = playing_flag; }
     bool IsPlaying() { return is_playing_; }
     
@@ -53,6 +55,7 @@ namespace kreator {
     std::string GameName() const override { return "Kreator Editor"; }
     glm::vec4 GetBgColor() const override { return {0.5f, 0.2f, 0.2f, 1.0f}; }
     std::string GetScenePath() const override { return DM::ClientAsset("scenes/"); }
+    std::string SavedScene() const override { return ""; };
     std::string CbpRootDir() const override { return GetScenePath(); };
     std::vector<std::filesystem::path> FavDirecotries() const override {
       return {

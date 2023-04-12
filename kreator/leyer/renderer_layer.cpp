@@ -41,7 +41,9 @@ namespace kreator {
     ImguiAPI::ChangeFont(game_data_->RegularFontData(), game_data_->BoldFontData());
     ImguiAPI::SetGreyThemeColors();
     
-    NewScene(game_data_->GetScenePath() + "/NewScene" + saved_scene_extension_);
+    const std::string& saved_scene = game_data_->SavedScene();
+    if (StringUtils::GetExtensionFromFilePath(saved_scene) != saved_scene_extension_ or !OpenScene(saved_scene))
+      NewScene(game_data_->GetScenePath() + "/NewScene" + saved_scene_extension_);
   }
   
   void RendererLayer::Detach() {
@@ -181,7 +183,16 @@ namespace kreator {
 
     size_t textureID = viewport_.framebuffer->GetColorAttachmentIds().at(0);
     ImGui::Image((void*)textureID, viewport_panel_size, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
-    
+    if (active_scene_->IsEditing()) {
+      PropertyGrid::DropConent([this](const std::string& path)
+                               {
+        if (StringUtils::GetExtensionFromFilePath(path) == "ikanScene")
+          OpenScene(path);
+        else
+          IK_WARN("Invalid file for Scene {0}", path.c_str());
+      });
+    }
+
     viewport_.UpdateBound();
 
     ImGui::PopStyleVar();
@@ -385,7 +396,7 @@ namespace kreator {
     if (modified) {
       std::string file_path = cbp_.GetCurrentDir().string() + "/" + file_name + ".ikanScene";
       
-      IK_INFO(game_data_->GameName(), "Saving Scene at {0}", file_path.c_str());
+      IK_TRACE(game_data_->GameName(), "Saving Scene at {0}", file_path.c_str());
       if (!file_path.empty()) {
         active_scene_->SetFilePath(file_path);
         SceneSerializer serializer(active_scene_.get());
@@ -395,6 +406,22 @@ namespace kreator {
     
     ImGui::PopID();
     ImGui::End();
+  }
+  
+  const bool RendererLayer::OpenScene(const std::string& scene_path) {
+    IK_TRACE(game_data_->GameName(), "Opening saved scene from {0}", scene_path.c_str());
+    
+    CloseScene();
+    
+    editor_scene_ = std::make_shared<Scene>(scene_path);
+    SceneSerializer serializer(editor_scene_.get());
+    bool result = serializer.Deserialize(scene_path);
+    
+    active_scene_ = editor_scene_;
+    spm_.SetSceneContext(active_scene_.get());
+    game_data_->Init(active_scene_);
+    
+    return result;
   }
   
 } // namespace kreator
