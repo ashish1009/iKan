@@ -57,7 +57,6 @@ namespace kreator {
       return;
 
     viewport_.UpdateMousePos();
-    editor_camera_.Update(ts);
 
     if (is_playing_) {
       Renderer::Clear(game_data_->GetBgColor());
@@ -81,7 +80,7 @@ namespace kreator {
   void RendererLayer::RenderScene(Timestep ts) {
     active_scene_->Update(ts);
 
-    Batch2DRenderer::BeginBatch(editor_camera_.GetViewProjection());
+    Batch2DRenderer::BeginBatch(active_scene_->GetEditorCamera().GetViewProjection());
     Batch2DRenderer::DrawQuad(glm::mat4(1.0f), {1, 1, 1, 1});
     Batch2DRenderer::EndBatch();
     
@@ -98,8 +97,6 @@ namespace kreator {
   void RendererLayer::HandleEvents(Event& event) {
     if (active_scene_)
       active_scene_->EventHandler(event);
-
-    editor_camera_.EventHandler(event);
     
     EventDispatcher dispatcher(event);
     dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::KeyPressed));
@@ -161,9 +158,7 @@ namespace kreator {
         
         cbp_.RenderGui(&setting_.common_renderer_stats.flag);
         spm_.RenderGui();
-        
-        editor_camera_.RendererGui();
-        
+                
         if (active_scene_->IsEditing()) {
           SaveScene();
         }
@@ -247,6 +242,9 @@ namespace kreator {
       
       ImguiAPI::Menu("Settings", true, [this]() {
         ImguiAPI::Menu("Scene", false, [this]() {
+          ImguiAPI::MenuItem("Editor Camera", nullptr, active_scene_->GetSetting().editor_camera, true, [this](){
+            active_scene_->GetSetting().editor_camera = (active_scene_->GetSetting().editor_camera) ? false : true;
+          });
           ImguiAPI::MenuItem("Entity Panel", nullptr, spm_.GetSetting().scene_panel, true, [this](){
             spm_.GetSetting().scene_panel = (spm_.GetSetting().scene_panel) ? false : true;
           });
@@ -268,13 +266,19 @@ namespace kreator {
   void RendererLayer::ShowSettings() {
     ImGui::Begin("Settings");
 
-    FOR_EACH_SETTING {
-      (setting_data + setting_idx)->CheckBox();
-    }
-
+    PropertyGrid::CheckBox("Use Editor Camera", active_scene_->GetSetting().use_editor_camera, 3 * ImGui::GetWindowContentRegionMax().x / 4);
+    if (active_scene_->GetSetting().use_editor_camera)
+      PropertyGrid::CheckBox("Show Editor Camera", active_scene_->GetSetting().editor_camera, 3 * ImGui::GetWindowContentRegionMax().x / 4);
+    
     ImGui::Separator();
     PropertyGrid::CheckBox("Entity Panel", spm_.GetSetting().scene_panel, 3 * ImGui::GetWindowContentRegionMax().x / 4);
     PropertyGrid::CheckBox("Property Panel", spm_.GetSetting().property_panel, 3 * ImGui::GetWindowContentRegionMax().x / 4);
+
+    ImGui::Separator();
+
+    FOR_EACH_SETTING {
+      (setting_data + setting_idx)->CheckBox();
+    }
 
     ImGui::End();
   }

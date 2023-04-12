@@ -10,6 +10,7 @@
 #include <entt.hpp>
 #include "core/utils/time_step.h"
 #include "core/events/event.h"
+#include "camera/editor_camera.hpp"
 
 namespace ikan {
   
@@ -20,6 +21,11 @@ namespace ikan {
     };
     enum Type : uint8_t {
       _2D = 0, _3D = 1
+    };
+
+    struct Setting {
+      bool use_editor_camera = true;
+      bool editor_camera = true;
     };
 
     /// This Constructor creates the instance of Scene.
@@ -63,6 +69,10 @@ namespace ikan {
     const std::string& GetFilePath() const { return file_path_; }
     /// This function returns the type of scene
     Type GetType() const { return type_; }
+    /// This function returns the editor camera of scene
+    const EditorCamera& GetEditorCamera() const { return editor_camera_; };
+    /// This function returns the setting reference to change the setting
+    Setting& GetSetting() { return setting_; };
 
     /// This function create new scene copy the scene data from argument
     /// - Parameter other: copy scene
@@ -89,9 +99,15 @@ namespace ikan {
     void RenderGuiRuntime();
 
     std::string file_path_ = "Unsaved_Scene", name_ = "Unsaved_Scene";
+    
     entt::registry registry_;
+    
     State state_ = State::Edit;
     Type type_ = Type::_2D;
+    
+    EditorCamera editor_camera_;
+
+    Setting setting_;
 
     friend class SceneSerializer;
     friend class ScenePanelManager;

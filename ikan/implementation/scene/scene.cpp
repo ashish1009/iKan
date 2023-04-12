@@ -39,6 +39,9 @@ namespace ikan {
   }
   
   void Scene::UpdateEditor(Timestep ts) {
+    if (setting_.use_editor_camera) {
+      editor_camera_.Update(ts);
+    }
   }
   
   void Scene::UpdateRuntime(Timestep ts) {
@@ -54,6 +57,7 @@ namespace ikan {
   }
   
   void Scene::EventHandlerEditor(Event& event) {
+    editor_camera_.EventHandler(event);
   }
   
   void Scene::EventHandlerRuntime(Event& event) {
@@ -69,6 +73,9 @@ namespace ikan {
   }
   
   void Scene::RenderGuiEditor() {
+    if (setting_.use_editor_camera) {
+      editor_camera_.RendererGui(&setting_.editor_camera);
+    }
   }
   
   void Scene::RenderGuiRuntime() {
