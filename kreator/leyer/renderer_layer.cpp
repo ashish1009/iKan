@@ -141,8 +141,10 @@ namespace kreator {
       Renderer::RenderStatsGui(&setting_.common_renderer_stats.flag);
       Renderer::Render2DStatsGui(&setting_.renderer_stats_2d.flag);
       viewport_.RenderGui(&setting_.viewport_data.flag);
+
       cbp_.RenderGui(&setting_.common_renderer_stats.flag);
-      
+      spm_.RenderGui();
+
       editor_camera_.RendererGui();
       
       RenderViewport();
@@ -176,9 +178,14 @@ namespace kreator {
   
   void RendererLayer::ShowMenu() {
     if (ImGui::BeginMenuBar()) {
-      ImguiAPI::Menu("File", true, []() {
-        ImguiAPI::Menu("Scene", false, []() {
-          
+      ImguiAPI::Menu("File", true, [this]() {
+        ImguiAPI::Menu("Scene", false, [this]() {
+          ImguiAPI::MenuItem("Entity Panel", nullptr, spm_.GetSetting().scene_panel, true, [this](){
+            spm_.GetSetting().scene_panel = (spm_.GetSetting().scene_panel) ? false : true;
+          });
+          ImguiAPI::MenuItem("Property Panel", nullptr, spm_.GetSetting().property_panel, true, [this](){
+            spm_.GetSetting().scene_panel = (spm_.GetSetting().property_panel) ? false : true;
+          });
         }); // Scene
         
         ImGui::Separator();
@@ -224,6 +231,10 @@ namespace kreator {
     FOR_EACH_SETTING {
       (setting_data + setting_idx)->CheckBox();
     }
+
+    ImGui::Separator();
+    PropertyGrid::CheckBox("Entity Panel", spm_.GetSetting().scene_panel, 3 * ImGui::GetWindowContentRegionMax().x / 4);
+    PropertyGrid::CheckBox("Property Panel", spm_.GetSetting().property_panel, 3 * ImGui::GetWindowContentRegionMax().x / 4);
 
     ImGui::End();
   }
@@ -292,7 +303,8 @@ namespace kreator {
 
   void RendererLayer::PlayScene() {
     active_scene_ = Scene::Copy(editor_scene_);
-
+    spm_.SetSceneContext(active_scene_.get());
+    
     game_data_->Init(active_scene_);
     game_data_->SetPlaying(true);
 
@@ -301,12 +313,12 @@ namespace kreator {
   
   void RendererLayer::EditScene() {
     game_data_->SetPlaying(false);
-    
     active_scene_->EditScene();
   }
 
   void RendererLayer::StopScene() {
     active_scene_ = editor_scene_;
+    spm_.SetSceneContext(active_scene_.get());
 
     game_data_->Init(active_scene_);
     game_data_->SetPlaying(false);

@@ -73,6 +73,7 @@
 // Scene Files
 #include <scene/viewport.hpp>
 #include <scene/scene.hpp>
+#include <scene/scene_panel_manager.hpp>
 
 // Camera Files
 #include <camera/camera.hpp>
