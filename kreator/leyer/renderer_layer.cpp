@@ -153,6 +153,10 @@ namespace kreator {
         
         editor_camera_.RendererGui();
         
+        if (active_scene_->IsEditing()) {
+          SaveScene();
+        }
+
         RenderViewport();
         SceneStateButton();
         ShowSettings();        
@@ -362,4 +366,35 @@ namespace kreator {
     editor_scene_ = nullptr;
   }
 
+  void RendererLayer::SaveScene() {
+    if (!setting_ .save_scene.flag)
+      return;
+    
+    static const float column_width = 120.0f;
+    
+    ImGui::Begin("Save File", &setting_.save_scene.flag);
+    ImGui::PushID("Save File");
+
+    const auto& relative_path = (std::filesystem::relative(cbp_.GetCurrentDir(), cbp_.GetRootDir())).string();
+    PropertyGrid::ReadOnlyTextBox("Scene Directory", relative_path,
+                                  "File will be saved at the Current directory in the active scene", column_width);
+
+    static std::string file_name = "";
+    bool modified = PropertyGrid::TextBox(file_name, "Scene Name", 2, column_width);
+    
+    if (modified) {
+      std::string file_path = cbp_.GetCurrentDir().string() + "/" + file_name + ".ikanScene";
+      
+      IK_INFO(game_data_->GameName(), "Saving Scene at {0}", file_path.c_str());
+      if (!file_path.empty()) {
+        active_scene_->SetFilePath(file_path);
+        SceneSerializer serializer(active_scene_.get());
+        serializer.Serialize(file_path);
+      }
+    }
+    
+    ImGui::PopID();
+    ImGui::End();
+  }
+  
 } // namespace kreator

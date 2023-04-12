@@ -26,6 +26,10 @@ namespace ikan {
     /// This function sets the Scene as edit mode
     void EditScene();
 
+    /// This function update the scene path
+    /// - Parameter file_path: file path
+    void SetFilePath(const std::string& file_path);
+    
     /// This function returns the state of scene
     State GetState() const { return state_; }
     /// This finction return is scene is in edit state
@@ -43,6 +47,9 @@ namespace ikan {
     std::string file_path_ = "Unsaved_Scene", name_ = "Unsaved_Scene";
     entt::registry registry_;
     State state_ = State::Edit;
+    
+    friend class SceneSerializer;
+    friend class ScenePanelManager;
   };
   
 } // namespace ikan

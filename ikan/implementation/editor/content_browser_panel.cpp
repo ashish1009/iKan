@@ -8,6 +8,7 @@
 #include "content_browser_panel.hpp"
 #include "editor/property_grid.hpp"
 #include "renderer/graphics/texture.hpp"
+#include "scene/scene_serialiser.hpp"
 
 namespace ikan {
   
@@ -171,6 +172,8 @@ namespace ikan {
     static std::shared_ptr<Texture> c_texture = Renderer::GetTexture(DM::CoreAsset("textures/content_browser/c.png"));
     static std::shared_ptr<Texture> h_texture = Renderer::GetTexture(DM::CoreAsset("textures/content_browser/h.png"));
 
+    static std::shared_ptr<Texture> ikan_scene_texture = Renderer::GetTexture(DM::CoreAsset("textures/content_browser/i_kan.png"));
+
     // Push style
     ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, round_factor_);
     ImGui::BeginChild("MainArea", ImVec2(ImGui::GetWindowContentRegionWidth() - side_child_width_,
@@ -206,6 +209,7 @@ namespace ikan {
           else if (".obj" == path.extension()) icon_texture = obj_texture;
           else if (".fbx" == path.extension()) icon_texture = fbx_texture;
           else if (".ttf" == path.extension()) icon_texture = font_texture;
+          else if (saved_scene_extension_ == path.extension()) icon_texture = ikan_scene_texture;
           else icon_texture = file_texture;
           
           is_directory = false;

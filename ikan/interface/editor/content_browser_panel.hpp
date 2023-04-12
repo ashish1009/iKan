@@ -25,6 +25,7 @@ namespace ikan {
     void SetRootPath(const std::string& root_path);
     /// This funcfion add the favourit paths to the pannel
     /// - Parameter favourite_paths: paths
+    /// - Note: Paths should be absolute
     void AddFavouritPaths(const std::vector<std::filesystem::path>& favourite_paths);
 
     /// This function returns the Current directory

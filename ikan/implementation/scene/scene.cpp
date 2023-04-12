@@ -38,5 +38,10 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::Scene, "Scene is Set to Edit");
     state_ = State::Edit;
   }
-  
+
+  void Scene::SetFilePath(const std::string& file_path) {
+    file_path_ = file_path;
+    name_ = StringUtils::GetNameFromFilePath(file_path_);
+  }
+
 } // namespace ikan

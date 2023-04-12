@@ -102,6 +102,29 @@ namespace ikan {
     ///   - uv1; Right
     static void Image(void* textureID, const glm::vec2& size, const glm::vec2& uv0, const glm::vec2& uv1);
 
+    /// This function renders the text box
+    /// - Parameters:
+    ///   - value: Value need to be edit or entered in box
+    ///   - label: Lable for Variable
+    ///   - num_columns: we can add extra column if needed. If this is more then 2 then reset the column to back to 1 after calling
+    ///   - column_width1: width of column of lable
+    ///   - hint: Hint to be shown in the text box. Null of no hind is given
+    ///   - modifiable: flag to check is string is constant or modifiable
+    ///   - multiple: flag to check if there are multiple line in text box
+    ///   - num_lines: if multipleLine is true then check number of line are there in text box
+    ///   - error: flag to check if text is error (if true text printed as red)
+    static bool TextBox(std::string& value, const char* label = nullptr, uint32_t num_columns = 2, float column_width_1 = 100.0f,
+                        const char* hint = nullptr, bool modifiable = true, bool multiple = false, int32_t num_lines = 1, bool error = false);
+
+    /// This function renders the Text box to enter string
+    /// - Parameters:
+    ///   - label: Lable for Variable
+    ///   - value: Value need to be edit or entered in box
+    ///   - hint: Hint to be shown in the text box. Null of no hind is given
+    ///   - columnWidth: width of column of lable
+    static bool ReadOnlyTextBox(const char* label, const std::string& value, const char* hint = nullptr,
+                                float column_width = ImGui::GetWindowContentRegionMax().x / 2);
+
   private:
     static bool FloatImpl(const std::vector<std::string>& buttons, const char* label, const std::vector<float*>& values,
                           bool* checkbox_flag, float delta, float reset_value, float min_value, float max_value, float column_width);

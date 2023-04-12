@@ -202,4 +202,135 @@ namespace ikan {
     
     ImGui::PopStyleColor(1);
   }
+  
+  bool PropertyGrid::TextBox(std::string& value, const char* label, uint32_t num_columns, float column_width,
+                             const char* hint, bool modifiable, bool multiple, int32_t num_lines, bool error) {
+    IK_CORE_ASSERT(num_columns >= 2, "Column should be minimum 2");
+    bool modified = false;
+    std::string ui_context_id = "##";
+    
+    float x = ImGui::GetContentRegionAvailWidth();
+    
+    ImGui::Columns(num_columns);
+    if (label and strcmp(label, "") != 0) {
+      ImGui::PushID(label);
+      ImGui::PushItemWidth(-1);
+      ImGui::Text(label);
+      ImGui::PopItemWidth();
+      
+      ui_context_id += (std::string)label;
+    } else {
+      ImGui::PushID("No Lable Text box");
+      column_width = 0;
+    }
+    
+    ImGui::SetColumnWidth(0, column_width);
+    
+    if (hint) {
+      ImGui::SameLine();
+      HelpMarker(hint);
+    }
+    
+    ImGui::NextColumn();
+    
+    ImGui::PushItemWidth(-1);
+    float column_width_2 = x - column_width;
+    if (num_columns > 2)
+      column_width_2 -= 16.0f;
+    
+    ImGui::SetColumnWidth(1, column_width_2);
+    
+    // Copy the Name of entity to buffer that will be dumy text in property pannel
+    char buffer[256];
+    strcpy(buffer, value.c_str());
+    
+    // To make string Red in case error flag is true
+    if (error)
+      ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.9f, 0.2f, 0.2f, 1.0f));
+    
+    if (modifiable) {
+      // Take input text from User in Property pannel. that will be name(Tag) of Selected Entity
+      if (multiple) {
+        if (ImGui::InputTextEx(ui_context_id.c_str(),
+                               hint,
+                               buffer,
+                               IM_ARRAYSIZE(buffer),
+                               ImVec2(column_width_2, num_lines * 20.0f),
+                               ImGuiInputTextFlags_Multiline)) {
+          value    = buffer;
+          modified = true;
+        }
+      }
+      else {
+        if (ImGui::InputTextWithHint(ui_context_id.c_str(),
+                                     hint,
+                                     buffer,
+                                     IM_ARRAYSIZE(buffer),
+                                     ImGuiInputTextFlags_EnterReturnsTrue | ImGuiInputTextFlags_AutoSelectAll)) {
+          value    = buffer;
+          modified = true;
+        }
+      }
+    }
+    else
+      ImGui::InputText(ui_context_id.c_str(),
+                       (char*)value.c_str(),
+                       256,
+                       ImGuiInputTextFlags_ReadOnly);
+    
+    // Pop red color if error is enabled
+    if (error)
+      ImGui::PopStyleColor();
+    
+    ImGui::PopItemWidth();
+    ImGui::PopID();
+    
+    if (num_columns == 2)
+      ImGui::Columns(1);
+    
+    return modified;
+  }
+  
+  bool PropertyGrid::ReadOnlyTextBox(const char* label, const std::string& value, const char* hint, float column_width_1) {
+    float x = ImGui::GetContentRegionAvailWidth();
+    
+    bool modified = false;
+    ImGui::PushID(label);
+    
+    ImGui::Columns(2);
+    ImGui::PushItemWidth(-1);
+    ImGui::SetColumnWidth(0, column_width_1);
+    ImGui::Text(label);
+    if (hint) {
+      HoveredMsg(hint);
+    }
+
+    ImGui::PopItemWidth();    
+    
+    ImGui::NextColumn();
+    
+    ImGui::PushItemWidth(-1);
+    float column_width_2 = x - column_width_1;
+    ImGui::SetColumnWidth(1, column_width_2);
+    
+    // Copy the Name of entity to buffer that will be dumy text in property pannel
+    char buffer[256];
+    strcpy(buffer, value.c_str());
+    
+    std::string UIContextId = "##" + (std::string)label;
+    
+    ImGui::InputText(UIContextId.c_str(), (char*)value.c_str(), 256, ImGuiInputTextFlags_ReadOnly);
+    if (hint) {
+      HoveredMsg(hint);
+    }
+
+    ImGui::PopItemWidth();
+    ImGui::NextColumn();
+    ImGui::Columns(1);
+    
+    ImGui::PopID();
+    
+    return modified;
+  }
+  
 } // namespace ikan

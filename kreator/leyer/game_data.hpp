@@ -57,7 +57,7 @@ namespace kreator {
     std::vector<std::filesystem::path> FavDirecotries() const override {
       return {
         DM::ClientAsset("scenes"),
-        DM::ClientAsset("texture"),
+        DM::ClientAsset("textures"),
       };
     };
     Font RegularFontData() const override {
