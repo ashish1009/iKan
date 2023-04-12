@@ -38,6 +38,7 @@
 		B292C0EF29D1D47000B1E678 /* ikan_headers.h in Headers */ = {isa = PBXBuildFile; fileRef = B292C0EE29D1D47000B1E678 /* ikan_headers.h */; };
 		B295D89929E6D02B00A40956 /* scene_panel_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B295D89729E6D02B00A40956 /* scene_panel_manager.cpp */; };
 		B295D89A29E6D02B00A40956 /* scene_panel_manager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B295D89829E6D02B00A40956 /* scene_panel_manager.hpp */; };
+		B295DB8229E6D63400A40956 /* libyaml.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B295D8C529E6D5B300A40956 /* libyaml.a */; };
 		B29C830A29DE9A5C0061D182 /* pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B29C830829DE9A5C0061D182 /* pipeline.cpp */; };
 		B29C830B29DE9A5C0061D182 /* pipeline.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B29C830929DE9A5C0061D182 /* pipeline.hpp */; };
 		B29C830E29DE9B8C0061D182 /* open_gl_pipeline.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B29C830C29DE9B8C0061D182 /* open_gl_pipeline.cpp */; };
@@ -249,6 +250,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B295DB8229E6D63400A40956 /* libyaml.a in Frameworks */,
 				B2BEC76129DD6802008D3DCB /* libimgui.a in Frameworks */,
 				B2394A3429D879B200D782E5 /* libglfw.a in Frameworks */,
 				B2F91E4629D71AC100860306 /* libopen_gl.a in Frameworks */,
@@ -380,8 +382,8 @@
 		B292BEFE29D19BE700B1E678 /* vendors */ = {
 			isa = PBXGroup;
 			children = (
-				B295D8C029E6D5B200A40956 /* yaml.xcodeproj */,
 				B2F70D0829DF11D9003163BA /* stb_image */,
+				B295D8C029E6D5B200A40956 /* yaml.xcodeproj */,
 				B228FC8D29DB133000455666 /* imgui.xcodeproj */,
 				B2F91E5F29D721AA00860306 /* glfw.xcodeproj */,
 				B2F91E3229D71A8800860306 /* open_gl.xcodeproj */,
