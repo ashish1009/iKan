@@ -14,9 +14,12 @@ namespace ikan {
     return new_scene;
   }
 
-  Scene::Scene() {
+  Scene::Scene(const std::string& file_path)
+  : file_path_(file_path), name_(StringUtils::GetNameFromFilePath(file_path)) {
     IK_CORE_TRACE(LogModule::Scene, "Creating Scene ...");
-    
+    IK_CORE_TRACE(LogModule::Scene, "  Path | {0}", file_path_);
+    IK_CORE_TRACE(LogModule::Scene, "  Name | {0}", name_);
+
     // Set the Scene state and register their corresponding Functions
     if (state_ == State::Edit)
       EditScene();

@@ -74,6 +74,7 @@
 #include <scene/viewport.hpp>
 #include <scene/scene.hpp>
 #include <scene/scene_panel_manager.hpp>
+#include <scene/scene_serialiser.hpp>
 
 // Camera Files
 #include <camera/camera.hpp>

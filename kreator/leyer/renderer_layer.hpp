@@ -89,6 +89,17 @@ namespace kreator {
     /// This function renders the scene Play/Pause/Stop buttons
     void SceneStateButton();
     
+    /// This function creates a new scene instance
+    /// - Parameter scene_path: path of new scene
+    void NewScene(const std::string& scene_path = "Unsaved Scene");
+    /// This function Renders an Imgui widget that helps in saving scene
+    void SaveScene();
+    /// This function closes the current scene
+    void CloseScene();
+    /// This function opens already saved scene from path
+    /// - Parameter scene_file_path: scene file path
+    const bool OpenScene(const std::string& scene_file_path);
+
     /// This function set the game state
     /// - Parameter is_play: game state
     void SetPlay(bool is_play);

@@ -21,9 +21,6 @@ namespace kreator {
   RendererLayer::RendererLayer(GameType game_type)
   : Layer("Kreator"), game_data_(CreateGameData(game_type)), cbp_(DM::GetWorkspaceBasePath()) {
     KREATOR_LOG("Creating {0} Layer instance ... ", game_data_->GameName().c_str());
-    
-    editor_scene_ = std::make_shared<Scene>();
-    active_scene_ = editor_scene_;
   }
   
   RendererLayer::~RendererLayer() {
@@ -43,6 +40,8 @@ namespace kreator {
     // Decorate the Imgui Change the font of imgui
     ImguiAPI::ChangeFont(game_data_->RegularFontData(), game_data_->BoldFontData());
     ImguiAPI::SetGreyThemeColors();
+    
+    NewScene(game_data_->GetScenePath() + "/NewScene" + saved_scene_extension_);
   }
   
   void RendererLayer::Detach() {
@@ -50,6 +49,9 @@ namespace kreator {
   }
   
   void RendererLayer::Update(Timestep ts) {
+    if (!active_scene_)
+      return;
+
     viewport_.UpdateMousePos();
     editor_camera_.Update(ts);
 
@@ -104,6 +106,11 @@ namespace kreator {
     if (cmd) {
       switch (event.GetKeyCode()) {
         case Key::R: SetPlay(true); break;
+          
+        // File Manager
+        case Key::N: NewScene();   break;
+        case Key::X: CloseScene(); break;
+
         default: break;
       };
     }
@@ -134,20 +141,22 @@ namespace kreator {
 
       ShowMenu();
       GamePlayButton();
-      SceneStateButton();
-      ShowSettings();
       
-      ImguiAPI::Framerate(&setting_.frame_rate.flag);
-      Renderer::RenderStatsGui(&setting_.common_renderer_stats.flag);
-      Renderer::Render2DStatsGui(&setting_.renderer_stats_2d.flag);
-      viewport_.RenderGui(&setting_.viewport_data.flag);
-
-      cbp_.RenderGui(&setting_.common_renderer_stats.flag);
-      spm_.RenderGui();
-
-      editor_camera_.RendererGui();
-      
-      RenderViewport();
+      if (active_scene_) {
+        ImguiAPI::Framerate(&setting_.frame_rate.flag);
+        Renderer::RenderStatsGui(&setting_.common_renderer_stats.flag);
+        Renderer::Render2DStatsGui(&setting_.renderer_stats_2d.flag);
+        viewport_.RenderGui(&setting_.viewport_data.flag);
+        
+        cbp_.RenderGui(&setting_.common_renderer_stats.flag);
+        spm_.RenderGui();
+        
+        editor_camera_.RendererGui();
+        
+        RenderViewport();
+        SceneStateButton();
+        ShowSettings();        
+      }
 
       ImguiAPI::EndDcocking();
     }
@@ -180,12 +189,8 @@ namespace kreator {
     if (ImGui::BeginMenuBar()) {
       ImguiAPI::Menu("File", true, [this]() {
         ImguiAPI::Menu("Scene", false, [this]() {
-          ImguiAPI::MenuItem("Entity Panel", nullptr, spm_.GetSetting().scene_panel, true, [this](){
-            spm_.GetSetting().scene_panel = (spm_.GetSetting().scene_panel) ? false : true;
-          });
-          ImguiAPI::MenuItem("Property Panel", nullptr, spm_.GetSetting().property_panel, true, [this](){
-            spm_.GetSetting().scene_panel = (spm_.GetSetting().property_panel) ? false : true;
-          });
+          ImguiAPI::MenuItem("New", "Cms + N", false, true, [this](){ NewScene(); });
+          ImguiAPI::MenuItem("Close", "Cms + X", false, true, [this](){ CloseScene(); });
         }); // Scene
         
         ImGui::Separator();
@@ -216,6 +221,16 @@ namespace kreator {
       }); // Property
       
       ImguiAPI::Menu("Settings", true, [this]() {
+        ImguiAPI::Menu("Scene", false, [this]() {
+          ImguiAPI::MenuItem("Entity Panel", nullptr, spm_.GetSetting().scene_panel, true, [this](){
+            spm_.GetSetting().scene_panel = (spm_.GetSetting().scene_panel) ? false : true;
+          });
+          ImguiAPI::MenuItem("Property Panel", nullptr, spm_.GetSetting().property_panel, true, [this](){
+            spm_.GetSetting().scene_panel = (spm_.GetSetting().property_panel) ? false : true;
+          });
+        }); // Scene
+        ImGui::Separator();
+        
         FOR_EACH_SETTING {
           (setting_data + setting_idx)->ShowInMenu();
         }
@@ -326,4 +341,25 @@ namespace kreator {
     active_scene_->EditScene();
   }
   
+  void RendererLayer::NewScene(const std::string& scene_path) {
+    CloseScene();
+    
+    IK_TRACE(game_data_->GameName(), "Creating New Scene {0}", scene_path.c_str());
+    editor_scene_ = std::make_shared<Scene>(scene_path);
+    active_scene_ = editor_scene_;
+    spm_.SetSceneContext(active_scene_.get());
+  }
+
+  void RendererLayer::CloseScene() {
+    if (!active_scene_)
+      return;
+    
+    IK_TRACE(game_data_->GameName(), "Closing Scene {0}", active_scene_->GetName().c_str());
+    active_scene_.reset();
+    active_scene_ = nullptr;
+    
+    editor_scene_.reset();
+    editor_scene_ = nullptr;
+  }
+
 } // namespace kreator

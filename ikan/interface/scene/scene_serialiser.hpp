@@ -11,6 +11,8 @@
 
 namespace ikan {
   
+  static const std::string saved_scene_extension_ = ".ikanScene";
+  
   class SceneSerializer {
   public:
     /// This is Constructor creates instance of Scene serialize and store the scene as pointer

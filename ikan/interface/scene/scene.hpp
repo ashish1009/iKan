@@ -17,8 +17,9 @@ namespace ikan {
       Play, Edit
     };
     
-    /// Default constructor of Scene
-    Scene();
+    /// This Constructor creates the instance of Scene.
+    /// - Parameter file_path: optional file path if we want to create a pre saved scene
+    Scene(const std::string& file_path = "Unsaved_Scene");
 
     /// This function sets the Scene as play mode
     void PlayScene();
@@ -29,12 +30,17 @@ namespace ikan {
     State GetState() const { return state_; }
     /// This finction return is scene is in edit state
     bool IsEditing() const { return state_ == Edit; }
+    /// This finction return Name of scene
+    const std::string& GetName() const { return name_; }
+    /// This finction return File path of scene
+    const std::string& GetFilePath() const { return file_path_; }
 
     /// This function create new scene copy the scene data from argument
     /// - Parameter other: copy scene
     static std::shared_ptr<Scene> Copy(std::shared_ptr<Scene> other);
 
   private:
+    std::string file_path_ = "Unsaved_Scene", name_ = "Unsaved_Scene";
     entt::registry registry_;
     State state_ = State::Edit;
   };
