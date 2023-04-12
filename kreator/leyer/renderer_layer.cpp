@@ -163,6 +163,7 @@ namespace kreator {
 
         RenderViewport();
         SceneStateButton();
+        SceneRendererType();
         ShowSettings();        
       }
 
@@ -321,6 +322,24 @@ namespace kreator {
     }
     PropertyGrid::HoveredMsg("Play Button for Scene (Debug Scene in play mode)");
 
+    ImGui::PopID();
+    ImGui::End();
+  }
+
+  void RendererLayer::SceneRendererType() {
+    // Play Pause Buttom
+    ImGui::Begin("Scene Renderer Type");
+    ImGui::PushID("Scene Renderer Type");
+    
+    Scene::Type current_type = active_scene_->GetType();
+    Scene::Type new_type = Scene::Type(PropertyGrid::ComboDrop("Scene Renderer Type",
+                                                               { "2D" , "3D" },
+                                                               (uint32_t)current_type,
+                                                               3 * ImGui::GetWindowContentRegionMax().x / 5));
+    if (new_type != current_type) {
+      active_scene_->SetType((Scene::Type)new_type);
+    }
+    
     ImGui::PopID();
     ImGui::End();
   }

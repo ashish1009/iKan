@@ -89,7 +89,9 @@ namespace kreator {
     void GamePlayButton();
     /// This function renders the scene Play/Pause/Stop buttons
     void SceneStateButton();
-    
+    /// This function renders the Drop menu for scene type
+    void SceneRendererType();
+
     /// This function creates a new scene instance
     /// - Parameter scene_path: path of new scene
     void NewScene(const std::string& scene_path = "Unsaved Scene");

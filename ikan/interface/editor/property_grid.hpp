@@ -125,6 +125,15 @@ namespace ikan {
     static bool ReadOnlyTextBox(const char* label, const std::string& value, const char* hint = nullptr,
                                 float column_width = ImGui::GetWindowContentRegionMax().x / 2);
 
+    /// ComboDrop: Selectable drop option created
+    /// - Parameters:
+    ///   - label: is string to be printed
+    ///   - options: option of drop box
+    ///   - current_value: current selection value (index of option vector)
+    ///   - column_width: column width
+    static uint32_t ComboDrop(const char* label, const std::vector<std::string>& options, uint32_t current_value,
+                              float column_width = ImGui::GetWindowContentRegionMax().x / 2);
+    
     /// This function catch the dragged content from content prowser pannel and call the function passed as ui_function
     /// - Parameter uiFunction: Function
     template<typename UIFunction> static void DropConent(UIFunction ui_function) {
