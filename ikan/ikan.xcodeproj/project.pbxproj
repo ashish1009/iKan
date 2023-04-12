@@ -108,6 +108,13 @@
 			remoteGlobalIDString = B228FC7F29DB133000455666;
 			remoteInfo = imgui;
 		};
+		B295D8C429E6D5B300A40956 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B295D8C029E6D5B200A40956 /* yaml.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B295D8B229E6D5B200A40956;
+			remoteInfo = yaml;
+		};
 		B2F91E3629D71A8900860306 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B2F91E3229D71A8800860306 /* open_gl.xcodeproj */;
@@ -164,6 +171,7 @@
 		B292C0EE29D1D47000B1E678 /* ikan_headers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ikan_headers.h; sourceTree = "<group>"; };
 		B295D89729E6D02B00A40956 /* scene_panel_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scene_panel_manager.cpp; sourceTree = "<group>"; };
 		B295D89829E6D02B00A40956 /* scene_panel_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_panel_manager.hpp; sourceTree = "<group>"; };
+		B295D8C029E6D5B200A40956 /* yaml.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = yaml.xcodeproj; path = yaml/yaml.xcodeproj; sourceTree = "<group>"; };
 		B29C830829DE9A5C0061D182 /* pipeline.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pipeline.cpp; sourceTree = "<group>"; };
 		B29C830929DE9A5C0061D182 /* pipeline.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pipeline.hpp; sourceTree = "<group>"; };
 		B29C830C29DE9B8C0061D182 /* open_gl_pipeline.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_pipeline.cpp; sourceTree = "<group>"; };
@@ -372,6 +380,7 @@
 		B292BEFE29D19BE700B1E678 /* vendors */ = {
 			isa = PBXGroup;
 			children = (
+				B295D8C029E6D5B200A40956 /* yaml.xcodeproj */,
 				B2F70D0829DF11D9003163BA /* stb_image */,
 				B228FC8D29DB133000455666 /* imgui.xcodeproj */,
 				B2F91E5F29D721AA00860306 /* glfw.xcodeproj */,
@@ -420,6 +429,14 @@
 				B2F70CCF29DED0B2003163BA /* dump_table.hpp */,
 			);
 			path = debug;
+			sourceTree = "<group>";
+		};
+		B295D8C129E6D5B200A40956 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B295D8C529E6D5B300A40956 /* libyaml.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		B2BEC4E329DD6598008D3DCB /* implementation */ = {
@@ -783,6 +800,10 @@
 					ProductGroup = B2F91E3329D71A8800860306 /* Products */;
 					ProjectRef = B2F91E3229D71A8800860306 /* open_gl.xcodeproj */;
 				},
+				{
+					ProductGroup = B295D8C129E6D5B200A40956 /* Products */;
+					ProjectRef = B295D8C029E6D5B200A40956 /* yaml.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -797,6 +818,13 @@
 			fileType = archive.ar;
 			path = libimgui.a;
 			remoteRef = B228FC9129DB133100455666 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B295D8C529E6D5B300A40956 /* libyaml.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libyaml.a;
+			remoteRef = B295D8C429E6D5B300A40956 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		B2F91E3729D71A8900860306 /* libopen_gl.a */ = {
