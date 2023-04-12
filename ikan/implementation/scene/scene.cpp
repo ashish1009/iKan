@@ -28,6 +28,51 @@ namespace ikan {
     else
       IK_ASSERT(false, "Invalid State");
   }
+  
+  void Scene::Update(Timestep ts) {
+    if (IsEditing()) {
+      UpdateEditor(ts);
+    }
+    else {
+      UpdateRuntime(ts);
+    }
+  }
+  
+  void Scene::UpdateEditor(Timestep ts) {
+  }
+  
+  void Scene::UpdateRuntime(Timestep ts) {
+  }
+  
+  void Scene::EventHandler(Event& event) {
+    if (IsEditing()) {
+      EventHandlerEditor(event);
+    }
+    else {
+      EventHandlerRuntime(event);
+    }
+  }
+  
+  void Scene::EventHandlerEditor(Event& event) {
+  }
+  
+  void Scene::EventHandlerRuntime(Event& event) {
+  }
+  
+  void Scene::RenderGui() {
+    if (IsEditing()) {
+      RenderGuiEditor();
+    }
+    else {
+      RenderGuiRuntime();
+    }
+  }
+  
+  void Scene::RenderGuiEditor() {
+  }
+  
+  void Scene::RenderGuiRuntime() {
+  }
 
   void Scene::PlayScene() {
     IK_CORE_TRACE(LogModule::Scene, "Scene is Set to Play");

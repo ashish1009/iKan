@@ -79,6 +79,8 @@ namespace kreator {
   }
   
   void RendererLayer::RenderScene(Timestep ts) {
+    active_scene_->Update(ts);
+
     Batch2DRenderer::BeginBatch(editor_camera_.GetViewProjection());
     Batch2DRenderer::DrawQuad(glm::mat4(1.0f), {1, 1, 1, 1});
     Batch2DRenderer::EndBatch();
@@ -94,6 +96,9 @@ namespace kreator {
   }
 
   void RendererLayer::HandleEvents(Event& event) {
+    if (active_scene_)
+      active_scene_->EventHandler(event);
+
     editor_camera_.EventHandler(event);
     
     EventDispatcher dispatcher(event);
@@ -147,6 +152,8 @@ namespace kreator {
       GamePlayButton();
       
       if (active_scene_) {
+        active_scene_->RenderGui();
+
         ImguiAPI::Framerate(&setting_.frame_rate.flag);
         Renderer::RenderStatsGui(&setting_.common_renderer_stats.flag);
         Renderer::Render2DStatsGui(&setting_.renderer_stats_2d.flag);
