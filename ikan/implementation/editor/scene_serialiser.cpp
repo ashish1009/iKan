@@ -6,7 +6,8 @@
 //
 
 #include "scene_serialiser.hpp"
-
+#include "core_entity.hpp"
+#include "components.hpp"
 #include <yaml-cpp/yaml.h>
 
 namespace YAML {
@@ -35,6 +36,26 @@ namespace ikan {
       out << YAML::Key << "Setting_use_editor_camera" << YAML::Value << scene_->setting_.use_editor_camera;
     }
 
+    out << YAML::Key << "Entities" << YAML::Value << YAML::BeginSeq;
+
+    // Serialize the scene for all the entities
+    for (const auto& [entt_id, entity] : scene_->entity_id_map_) {
+      out << YAML::BeginMap; // Entity
+      out << YAML::Key << "Entity" << YAML::Value << entity.GetUUID();
+
+      if (entity.HasComponent<TagComponent>()) {
+        out << YAML::Key << "TagComponent";
+        out << YAML::BeginMap; // TagComponent
+        
+        auto& tag = entity.GetComponent<TagComponent>().tag;
+        out << YAML::Key << "Tag" << YAML::Value << tag;
+        
+        out << YAML::EndMap; // TagComponent
+      } // Tag Component
+      
+      out << YAML::EndMap; // Entity
+    } // // for (const auto& [uuid, entity] : scene_->entity_id_map_)
+    
     std::ofstream fout(file_path);
     fout << out.c_str();
   }
@@ -58,6 +79,22 @@ namespace ikan {
     scene_->setting_.editor_camera = data["Setting_editor_camera"].as<bool>();
     scene_->setting_.use_editor_camera = data["Setting_use_editor_camera"].as<bool>();
 
+    auto entities = data["Entities"];
+    if (entities) {
+      for (auto entity : entities) {
+        uint64_t uuid = entity["Entity"].as<uint64_t>();
+
+        std::string name;
+        auto tag_component = entity["TagComponent"];
+        name = tag_component["Tag"].as<std::string>();
+
+        Entity deserialized_entity = scene_->CreateEntity(name, uuid);
+        IK_CORE_TRACE(LogModule::SceneSerializer, "  Deserialising Entity");
+        IK_CORE_TRACE(LogModule::SceneSerializer, "  ID     {0}", uuid);
+        IK_CORE_TRACE(LogModule::SceneSerializer, "  Name   {0}", name);
+      } // for (auto entity : entities)
+    } // if (entities)
+    
     return true;
   }
   

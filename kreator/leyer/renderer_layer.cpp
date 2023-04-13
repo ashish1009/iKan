@@ -192,10 +192,10 @@ namespace kreator {
     if (active_scene_->IsEditing()) {
       PropertyGrid::DropConent([this](const std::string& path)
                                {
-        if (StringUtils::GetExtensionFromFilePath(path) == "ikanScene")
+        if (StringUtils::GetExtensionFromFilePath(path) == saved_scene_extension_)
           OpenScene(path);
         else
-          IK_WARN("Invalid file for Scene {0}", path.c_str());
+          IK_WARN(game_data_->GameName(), "Invalid file for Scene {0}", path.c_str());
       });
     }
 
@@ -400,6 +400,8 @@ namespace kreator {
     
     editor_scene_.reset();
     editor_scene_ = nullptr;
+    
+    spm_.SetSelectedEntity(nullptr);
   }
 
   void RendererLayer::SaveScene() {

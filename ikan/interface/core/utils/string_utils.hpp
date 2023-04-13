@@ -17,7 +17,7 @@ namespace ikan {
     static std::string GetNameFromFilePath(const std::string& file_path);
     /// This function returns the file extention from path as string
     /// - Parameter file_path File path for which file Extenstion need to be extracted:
-    /// - Important: e.g. : "folder1/folder2/file_name.extention" return "extension"
+    /// - Important: e.g. : "folder1/folder2/file_name.extention" return ".extension"
     static std::string GetExtensionFromFilePath(const std::string& file_path);
     /// This function returns the Directory from path as string
     /// - Parameter file_path: File path for which directory need to be extracted:

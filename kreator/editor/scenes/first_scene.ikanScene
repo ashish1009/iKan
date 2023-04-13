@@ -1,4 +1,8 @@
 Scene: Untitled
-Scene_type: 0
+Scene_type: 1
 Setting_editor_camera: true
 Setting_use_editor_camera: true
+Entities:
+  - Entity: 12648810820328453540
+    TagComponent:
+      Tag: Empty Entity

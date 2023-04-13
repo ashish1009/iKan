@@ -79,7 +79,6 @@ namespace ikan {
     ImGui::PushID("Entity Property");
     
     if (selected_entity_) {
-      // Tag
       auto& tag = selected_entity_->GetComponent<TagComponent>().tag;
       PropertyGrid::TextBox(tag, "", 3);
       PropertyGrid::HoveredMsg(("Entity ID : " + std::to_string((uint32_t)(*selected_entity_))).c_str());

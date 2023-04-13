@@ -44,6 +44,7 @@
 		B2BEC7CE29DDBBFF008D3DCB /* renderer_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_layer.hpp; sourceTree = "<group>"; };
 		B2BEC7D029DDC033008D3DCB /* game_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = game_data.cpp; sourceTree = "<group>"; };
 		B2BEC7D129DDC033008D3DCB /* game_data.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = game_data.hpp; sourceTree = "<group>"; };
+		B2D856D829E8382000602232 /* first_scene.ikanScene */ = {isa = PBXFileReference; lastKnownFileType = text; path = first_scene.ikanScene; sourceTree = "<group>"; };
 		B2E8D44E29E044A5005F5F0C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.16.dylib; path = ../ikan/vendors/freetype/libpng/1.6.39/lib/libpng16.16.dylib; sourceTree = "<group>"; };
@@ -109,6 +110,7 @@
 		B2BEC78529DD7A92008D3DCB /* editor */ = {
 			isa = PBXGroup;
 			children = (
+				B2D856D729E8382000602232 /* scenes */,
 				B2BEC78729DD7AA9008D3DCB /* ini */,
 				B2BEC78629DD7AA0008D3DCB /* assets */,
 			);
@@ -138,6 +140,14 @@
 				B2BEC7D129DDC033008D3DCB /* game_data.hpp */,
 			);
 			path = leyer;
+			sourceTree = "<group>";
+		};
+		B2D856D729E8382000602232 /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+				B2D856D829E8382000602232 /* first_scene.ikanScene */,
+			);
+			path = scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

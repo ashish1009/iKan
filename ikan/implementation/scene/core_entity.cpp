@@ -44,7 +44,7 @@ namespace ikan {
   }
 
   bool Entity::IsValidScene() const {
-    return scene_ and StringUtils::GetExtensionFromFilePath(scene_->GetFilePath()) != saved_scene_extension_;
+    return scene_ and StringUtils::GetExtensionFromFilePath(scene_->GetFilePath()) == saved_scene_extension_;
   }
   
 } // namespace ikan

@@ -26,14 +26,14 @@ namespace ikan {
   }
   
   /// This function returns the file name from path as std::string
-  ///                        last_dot     npos
-  ///                          |              |
+  ///                                 last_dot   npos
+  ///                                   |        |
   /// e.g. : "folder1/folder2/file_name.extention"
   ///         return "file_name"
   /// - Parameter path: path of file
   std::string StringUtils::GetExtensionFromFilePath(const std::string& path) {
     auto last_dot = path.find_last_of('.');
-    last_dot = last_dot == std::string::npos ? 0 : last_dot + 1;
+    last_dot = last_dot == std::string::npos ? 0 : last_dot;
     auto count = path.size() - last_dot;
     return path.substr(last_dot, count);
   }
