@@ -46,20 +46,7 @@ namespace ikan {
   }
 
   void Table::Dump(Logger::Level level, const std::string& module_name) {
-    std::vector<std::string> rows;
-    for (int col_idx = 0; col_idx < num_cols; col_idx++) {
-      auto& col = table_entries[col_idx];
-      rows.resize(col.total_entries);
-      
-      for (int row_idx = 0; row_idx < col.total_entries; row_idx++) {
-        std::string& val = rows[row_idx];
-        const std::string& col_entry = col.col_entries[row_idx];
-        val += "  ";
-        val += col_entry;
-        val += std::string(size_t(col.max_entry_width - (uint32_t)col_entry.size()), ' ');
-      }
-    }
-    
+    std::vector<std::string> rows = Rows();
     TABLE_LOG(title);
     for (int row_idx = 0; row_idx < rows.size(); row_idx++) {
       if (row_idx == 0 and header)
@@ -73,6 +60,23 @@ namespace ikan {
       if (row_idx == rows.size() - 1 and header)
         TABLE_LOG(std::string(size_t(rows[row_idx].size()), '-').c_str());
     }
+  }
+  
+  std::vector<std::string> Table::Rows() {
+    std::vector<std::string> rows;
+    for (int col_idx = 0; col_idx < num_cols; col_idx++) {
+      auto& col = table_entries[col_idx];
+      rows.resize(col.total_entries);
+      
+      for (int row_idx = 0; row_idx < col.total_entries; row_idx++) {
+        std::string& val = rows[row_idx];
+        const std::string& col_entry = col.col_entries[row_idx];
+        val += "  ";
+        val += col_entry;
+        val += std::string(size_t(col.max_entry_width - (uint32_t)col_entry.size()), ' ');
+      }
+    }
+    return rows;
   }
   
   Table::Table(const std::string& title, uint32_t num_col, bool header)
