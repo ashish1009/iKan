@@ -41,7 +41,7 @@ namespace ikan {
     /// - Parameters:
     ///   - name: name of entity
     ///   - uuid: Unique ID of entity
-    [[nodiscard]] Entity CreateEntity(const std::string& name = "Unknown Entity", UUID uuid = UUID());
+    [[nodiscard]] Entity& CreateEntity(const std::string& name = "Unknown Entity", UUID uuid = UUID());
     /// This function destory the entity from scene registry
     /// - Parameter entity: entity to be destroyed
     void DestroyEntity(Entity entity);

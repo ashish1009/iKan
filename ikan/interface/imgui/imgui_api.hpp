@@ -49,20 +49,6 @@ namespace ikan {
       }
     }
     
-    template<typename UIFunction>
-    /// This function wraps the Imgui Menu Item
-    /// - Parameters:
-    ///   - menu_title: Menu Item title
-    ///   - shortcut: Shortcut to printed
-    ///   - selected: is Item selected
-    ///   - enable: is Item enabled
-    ///   - func: functon to called when menue item is clicked
-    static void MenuItem(const std::string& menu_title, const char* shortcut, bool selected, bool enable, UIFunction func)  {
-      if (ImGui::MenuItem(menu_title.c_str(), shortcut, selected, enable)) {
-        func();
-      }
-    }
-
     MAKE_PURE_STATIC(ImguiAPI);
   };
   

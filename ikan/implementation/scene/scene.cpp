@@ -47,7 +47,7 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::Scene, "  Registry Capacity  {0}", curr_registry_capacity);
   }
   
-  Entity Scene::CreateEntity(const std::string& name, UUID uuid) {
+  Entity& Scene::CreateEntity(const std::string& name, UUID uuid) {
     Entity entity = CreateUniqueEntity(uuid);
     entity.AddComponent<TagComponent>(name);
 
@@ -59,7 +59,7 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::Scene, "  Number of entities Added in Scene  {0}", num_entities_);
     IK_CORE_TRACE(LogModule::Scene, "  Max ID given to entity             {0}", max_entity_id_);
 
-    return entity;
+    return entity_id_map_.at((entt::entity)entity);
   }
 
   Entity Scene::CreateUniqueEntity(UUID uuid) {

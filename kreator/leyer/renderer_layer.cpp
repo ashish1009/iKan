@@ -16,6 +16,11 @@ namespace kreator {
   static uint32_t loop_limit = sizeof(Setting) / sizeof(SettingWrapper); \
   for (uint32_t setting_idx = 0; setting_idx < loop_limit; setting_idx++) \
 
+#define SETTING_TOGGLE(name, flag) \
+  if (ImGui::MenuItem(name, nullptr, flag, true)) { \
+    flag = (flag) ? false : true; \
+  }
+
   static glm::mat4 still_camera_projection;
   
   RendererLayer::RendererLayer(GameType game_type)
@@ -205,48 +210,40 @@ namespace kreator {
     if (ImGui::BeginMenuBar()) {
       ImguiAPI::Menu("File", true, [this]() {
         ImguiAPI::Menu("Scene", false, [this]() {
-          ImguiAPI::MenuItem("New", "Cms + N", false, true, [this](){ NewScene(); });
-          ImguiAPI::MenuItem("Close", "Cms + X", false, true, [this](){ CloseScene(); });
+          if (ImGui::MenuItem("New", "Cmd + N"))    NewScene();
+          if (ImGui::MenuItem("Close", "Cmd + X"))  CloseScene();
         }); // Scene
         
         ImGui::Separator();
-        ImguiAPI::MenuItem("Exit", "Cmd + Q", false, true, []() {
-          Application::Get().Close();
-        }); // Exit
+        if (ImGui::MenuItem("Exit", "Cmd + Q"))     Application::Get().Close();
       }); // File
       
       ImguiAPI::Menu("Property", true, [this]() {
         ImguiAPI::Menu("Theme", true, [this]() {
-          ImguiAPI::MenuItem("Light", nullptr, false, true, [this]() {
+          if (ImGui::MenuItem("Light", nullptr)) {
             viewport_.framebuffer->UpdateSpecificationColor({0.82f, 0.82f, 0.82f, 1.0f});
             ImguiAPI::SetLightThemeColors();
-          });
-          ImguiAPI::MenuItem("Dark", nullptr, false, true, [this]() {
+          }
+          if (ImGui::MenuItem("Dark", nullptr)) {
             viewport_.framebuffer->UpdateSpecificationColor({0.08f, 0.08f, 0.08f, 1.0f});
             ImguiAPI::SetDarkThemeColors();
-          });
-          ImguiAPI::MenuItem("Grey", nullptr, false, true, [this]() {
+          }
+          if (ImGui::MenuItem("Grey", nullptr)) {
             viewport_.framebuffer->UpdateSpecificationColor({0.18f, 0.18f, 0.18f, 1.0f});
             ImguiAPI::SetGreyThemeColors();
-          });
-          ImguiAPI::MenuItem("Light Grey", nullptr, false, true, [this]() {
+          }
+          if (ImGui::MenuItem("Light Grey", nullptr)) {
             viewport_.framebuffer->UpdateSpecificationColor({0.25f, 0.25f, 0.25f, 1.0f});
             ImguiAPI::SetLightGreyThemeColors();
-          });
+          }
         }); // Theme
       }); // Property
       
       ImguiAPI::Menu("Settings", true, [this]() {
         ImguiAPI::Menu("Scene", false, [this]() {
-          ImguiAPI::MenuItem("Editor Camera", nullptr, active_scene_->GetSetting().editor_camera, true, [this](){
-            active_scene_->GetSetting().editor_camera = (active_scene_->GetSetting().editor_camera) ? false : true;
-          });
-          ImguiAPI::MenuItem("Entity Panel", nullptr, spm_.GetSetting().scene_panel, true, [this](){
-            spm_.GetSetting().scene_panel = (spm_.GetSetting().scene_panel) ? false : true;
-          });
-          ImguiAPI::MenuItem("Property Panel", nullptr, spm_.GetSetting().property_panel, true, [this](){
-            spm_.GetSetting().scene_panel = (spm_.GetSetting().property_panel) ? false : true;
-          });
+          SETTING_TOGGLE("Editor Camera", active_scene_->GetSetting().editor_camera);
+          SETTING_TOGGLE("Entity Panel", spm_.GetSetting().scene_panel);
+          SETTING_TOGGLE("Property Panel", spm_.GetSetting().property_panel);
         }); // Scene
         ImGui::Separator();
         

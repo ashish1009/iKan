@@ -21,9 +21,9 @@ namespace kreator {
       SettingWrapper(const std::string& name, bool flag) : name(name), flag(flag) {}
       
       void ShowInMenu() {
-        ImguiAPI::MenuItem(name.c_str(), nullptr, flag, true, [this]() {
+        if (ImGui::MenuItem(name.c_str(), nullptr, flag, true)) {
           flag = (flag) ? false : true;
-        });
+        }
       }
       void CheckBox() {
         PropertyGrid::CheckBox(name.c_str(), flag, 3 * ImGui::GetWindowContentRegionMax().x / 4);
