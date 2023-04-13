@@ -57,6 +57,8 @@ namespace ikan {
     void AddRotation(Axis axis, float value) { ADD_TRANSFORM(rotation) }
     void AddScale(Axis axis, float value) { ADD_TRANSFORM(scale) }
 
+    void RenderGui();
+
     TransformComponent();
     ~TransformComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(TransformComponent);

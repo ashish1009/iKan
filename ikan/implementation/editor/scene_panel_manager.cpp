@@ -15,6 +15,64 @@
 
 namespace ikan {
   
+  /// This function renders the components in property pannel. Takes the function pointer in argument
+  /// - Parameters:
+  ///   - name: name of the entity
+  ///   - entity: entity reference pointer
+  ///   - ui_function: ui function to be called
+  template<typename T, typename UIFunction> static void DrawComponent(const std::string& name, const Entity& entity, UIFunction ui_function) {
+    // Flag for rendering the title of entity
+    const ImGuiTreeNodeFlags tree_node_flags = ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_Framed | ImGuiTreeNodeFlags_SpanAvailWidth |
+                                               ImGuiTreeNodeFlags_AllowItemOverlap | ImGuiTreeNodeFlags_FramePadding;
+    
+    // Render the property if entity have a component component
+    if (entity.HasComponent<T>()) {
+      // Title style
+      ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2{ 4, 4 });
+      
+      // Render the title named as entity name
+      bool open = ImGui::TreeNodeEx((void*)typeid(T).hash_code(), tree_node_flags, name.c_str());
+      ImGui::PopStyleVar(); // ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2{ 4, 4 });
+      
+      // Get the avilable width and height for button position
+      ImVec2 content_region_available = ImGui::GetContentRegionAvail();
+      float line_height = GImGui->Font->FontSize + GImGui->Style.FramePadding.y * 2.0f;
+      
+      // Set the curson position on same line for (X) button
+      ImGui::SameLine(content_region_available.x - line_height * 0.5f);
+      float content_height = GImGui->Font->FontSize;
+      
+      const auto& current_cursor_pos = ImGui::GetCursorPos();
+      ImGui::SetCursorPos({current_cursor_pos.x, current_cursor_pos.y + content_height / 4});
+      
+      // Render the button (X) for removing the component
+      static std::shared_ptr<Texture> close_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/gear.png"));
+      if (PropertyGrid::ImageButton("Close", close_texture->GetRendererID(), { content_height, content_height } )) {
+        ImGui::OpenPopup("ComponentSettings");
+      }
+      
+      // Pop up for removing the component
+      bool remove_component = false;
+      if (ImGui::BeginPopup("ComponentSettings")) {
+        if (ImGui::MenuItem("Remove component"))
+          remove_component = true;
+        
+        ImGui::EndPopup();
+      }
+      
+      // Call the function pointer
+      if (open) {
+        auto& component = entity.GetComponent<T>();
+        ui_function(component);
+        ImGui::TreePop();
+      }
+      
+      // Remove the component if button clicked
+      if (remove_component)
+        entity.RemoveComponent<T>();
+    } // if (entity.HasComponent<T>())
+  }
+  
   ScenePanelManager::ScenePanelManager(Scene* context) : scene_context_(context) {
     IK_CORE_TRACE(LogModule::ScenePanelManager, "Creating Scene pannel Manager ...");
   }
@@ -102,6 +160,9 @@ namespace ikan {
       }
       ImGui::Columns(1);
       ImGui::Separator();
+      
+      // Draw other components
+      DrawComponent<TransformComponent>("Transform", *selected_entity_, [](auto& tc) { tc.RenderGui(); });
     }
 
     ImGui::PopID();

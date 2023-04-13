@@ -62,7 +62,7 @@ namespace ikan {
     ///   - max_value: max value
     ///   - column_width: width of column of lable
     static bool Float1(const char* label, float& value, bool* checkbox_flag = nullptr, float delta = 0.1f, float reset_value = 0.0f,
-                       float min_value = 0.0f, float max_value = FLT_MAX, float column_width = ImGui::GetWindowContentRegionMax().x / 2);
+                       float min_value = MIN_FLT, float max_value = MAX_FLT, float column_width = ImGui::GetWindowContentRegionMax().x / 2);
     /// This function renders slider for float 3
     /// - Parameters:
     ///   - label: Lable for Variable
@@ -74,7 +74,7 @@ namespace ikan {
     ///   - max_value: max value
     ///   - column_width: width of column of lable
     static bool Float2(const char* label, glm::vec2& value, bool* checkbox_flag = nullptr, float delta = 0.1f, float reset_value = 0.0f,
-                       float min_value = 0.0f, float max_value = FLT_MAX, float column_width = ImGui::GetWindowContentRegionMax().x / 2);
+                       float min_value = MIN_FLT, float max_value = MAX_FLT, float column_width = ImGui::GetWindowContentRegionMax().x / 2);
     /// This function renders slider for float 3
     /// - Parameters:
     ///   - label: Lable for Variable
@@ -86,7 +86,7 @@ namespace ikan {
     ///   - max_value: max value
     ///   - column_width: width of column of lable
     static bool Float3(const char* label, glm::vec3& value, bool* checkbox_flag = nullptr, float delta = 0.1f, float reset_value = 0.0f,
-                       float min_value = 0.0f, float max_value = FLT_MAX, float column_width = ImGui::GetWindowContentRegionMax().x / 2);
+                       float min_value = MIN_FLT, float max_value = MAX_FLT, float column_width = ImGui::GetWindowContentRegionMax().x / 2);
 
     /// This function renderes a search box with search button
     /// - Parameters:

@@ -6,6 +6,7 @@
 //
 
 #include "components.hpp"
+#include "property_grid.hpp"
 
 namespace ikan {
   
@@ -97,4 +98,21 @@ namespace ikan {
     return *this;
   }
   
+  void TransformComponent::RenderGui() {
+    if (PropertyGrid::Float3("Translation", position, nullptr, 0.25f, 0.0f, MIN_FLT, MAX_FLT, 80.0f)) {
+      transform = Math::GetTransformMatrix(position, rotation, scale);
+    }
+    
+    glm::vec3 rotation_in_degree = glm::degrees(rotation);
+    if (PropertyGrid::Float3("Rotation", rotation_in_degree, nullptr, 0.25f, 0.0f, MIN_FLT, MAX_FLT, 80.0f)) {
+      rotation = glm::radians(rotation_in_degree);
+      transform = Math::GetTransformMatrix(position, rotation, scale);
+    }
+    
+    if (PropertyGrid::Float3("Scale", scale, nullptr, 0.25f, 1.0f, MIN_FLT, MAX_FLT, 80.0f)) {
+      transform = Math::GetTransformMatrix(position, rotation, scale);
+    }
+    ImGui::Separator();
+  }
+
 } // namespace ikan

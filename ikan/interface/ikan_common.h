@@ -30,7 +30,12 @@ static dispatch_queue_t loop_dispactch_queue_ = dispatch_get_global_queue(DISPAT
 // ----------------------------------
 /// This MACRO Shifts the LSB bit of number 1 at position x
 #define BIT(x)          (1 << x)
-#define INT2VOIDP(i)    (void*)(uintptr_t)(i)   /// This MACRO Cast uint32_t into void pointer
+/// This MACRO Cast uint32_t into void pointer
+#define INT2VOIDP(i)    (void*)(uintptr_t)(i)
+
+/// These MACRO defines the min and max value of float
+#define MIN_FLT         (float)INT_MIN
+#define MAX_FLT         (float)INT_MAX
 
 /// This MACRO return the function if condition x is true
 #define RETURN_IF(condition) \
