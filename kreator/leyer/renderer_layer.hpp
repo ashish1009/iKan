@@ -79,7 +79,7 @@ namespace kreator {
     /// - Parameters:
     ///   - width: new width of viewport
     ///   - height: new height of viewport
-    void ResizeLayer(uint32_t width, uint32_t height);
+    void ResizeData(uint32_t width, uint32_t height);
     
     /// This function render the menue bar
     void ShowMenu();
@@ -92,9 +92,12 @@ namespace kreator {
     /// This function renders the Drop menu for scene type
     void SceneRendererType();
 
-    /// This function creates a new scene instance
+    /// This function is the wrapper to creates a new scene instance
     /// - Parameter scene_path: path of new scene
     void NewScene(const std::string& scene_path = "Unsaved Scene");
+    /// This function creates a new scene instance
+    /// - Parameter scene_path: path of new scene
+    void NewSceneImpl(const std::string& scene_path = "Unsaved Scene");
     /// This function Renders an Imgui widget that helps in saving scene
     void SaveScene();
     /// This function closes the current scene

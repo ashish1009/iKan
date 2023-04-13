@@ -164,6 +164,10 @@ namespace ikan {
   void Scene::RenderGuiRuntime() {
   }
 
+  void Scene::SetViewport(uint32_t width, uint32_t height) {
+    editor_camera_.SetViewportSize(width, height);
+  }
+
   void Scene::PlayScene() {
     IK_CORE_TRACE(LogModule::Scene, "Scene is Set to Play");
     state_ = State::Play;

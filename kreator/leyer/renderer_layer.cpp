@@ -70,7 +70,7 @@ namespace kreator {
     else {
       if (viewport_.IsFramebufferResized()) {
         viewport_.framebuffer->Resize(viewport_.width, viewport_.height);
-        ResizeLayer(viewport_.width, viewport_.height);
+        ResizeData(viewport_.width, viewport_.height);
       }
 
       viewport_.framebuffer->Bind();
@@ -130,13 +130,15 @@ namespace kreator {
   }
   
   bool RendererLayer::WindowResized(WindowResizeEvent& event) {
-    ResizeLayer(event.GetWidth(), event.GetHeight());
+    ResizeData(event.GetWidth(), event.GetHeight());
     return false;
   }
   
-  void RendererLayer::ResizeLayer(uint32_t width, uint32_t height) {
+  void RendererLayer::ResizeData(uint32_t width, uint32_t height) {
     viewport_width_ = width;
     viewport_height_ = height;
+    
+    active_scene_->SetViewport(width, height);
     still_camera_projection = glm::ortho( 0.0f, (float)width, 0.0f, (float)height);
   }
 
@@ -352,7 +354,7 @@ namespace kreator {
     is_playing_ = is_play;
     
     if (is_playing_) {
-      ResizeLayer(Application::Get().GetWindowWidth(), Application::Get().GetWindowHeight());
+      ResizeData(Application::Get().GetWindowWidth(), Application::Get().GetWindowHeight());
     }
   }
 
@@ -382,9 +384,13 @@ namespace kreator {
   }
   
   void RendererLayer::NewScene(const std::string& scene_path) {
+    IK_TRACE(game_data_->GameName(), "Creating New Scene {0}", scene_path.c_str());
+    NewSceneImpl(scene_path);
+  }
+
+  void RendererLayer::NewSceneImpl(const std::string& scene_path) {
     CloseScene();
     
-    IK_TRACE(game_data_->GameName(), "Creating New Scene {0}", scene_path.c_str());
     editor_scene_ = std::make_shared<Scene>(scene_path);
     active_scene_ = editor_scene_;
     spm_.SetSceneContext(active_scene_.get());
@@ -436,16 +442,13 @@ namespace kreator {
   }
   
   const bool RendererLayer::OpenScene(const std::string& scene_path) {
+    NewSceneImpl(scene_path);
+    active_scene_->SetViewport(viewport_width_, viewport_height_);
+    
     IK_TRACE(game_data_->GameName(), "Opening saved scene from {0}", scene_path.c_str());
-    
-    CloseScene();
-    
-    editor_scene_ = std::make_shared<Scene>(scene_path);
     SceneSerializer serializer(editor_scene_.get());
-    bool result = serializer.Deserialize(scene_path);
     
-    active_scene_ = editor_scene_;
-    spm_.SetSceneContext(active_scene_.get());
+    bool result = serializer.Deserialize(scene_path);
     game_data_->Init(active_scene_);
     
     return result;
