@@ -28,7 +28,7 @@ public:
 /// This funtion implementatis the API for creating instance of Core::Application
 std::unique_ptr<ikan::Application> CreateApplication() {
   // Type of game to be run on application
-  kreator::GameType game_type = kreator::GameType::Editor;
+  kreator::GameType game_type = kreator::GameType::Mario;
 
   // Set up all the applicaiton specification
   ikan::Application::Specification application_spec;
@@ -42,7 +42,7 @@ std::unique_ptr<ikan::Application> CreateApplication() {
   // Window Specification
   application_spec.window_specification.title = "Untitled";
   application_spec.window_specification.width = 2100;
-  application_spec.window_specification.height = 600;
+  application_spec.window_specification.height = 900;
   application_spec.window_specification.v_sync = true;
   application_spec.window_specification.fullscreen = false;
   application_spec.window_specification.hide_titlebar = false;
@@ -52,6 +52,14 @@ std::unique_ptr<ikan::Application> CreateApplication() {
   
   // Create the instance of applciaiton based on the type of suppored applucaiton
   switch (game_type) {
+    case kreator::GameType::Mario :
+      application_spec.name = "IKan Mario";
+      application_spec.workspace_path = "../../../";
+      application_spec.client_asset_path = "../../../kreator/mario/assets/";
+      application_spec.save_ini_file_path = "../../../kreator/mario/ini/mario.ini";
+      
+      application_spec.window_specification.title = "Ikan Mario";
+      break;
     case kreator::GameType::Editor :
       application_spec.name = "IKan";
       application_spec.workspace_path = "../../../";

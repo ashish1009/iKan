@@ -13,6 +13,7 @@
 		B2BEC7CF29DDBBFF008D3DCB /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC7CD29DDBBFF008D3DCB /* renderer_layer.cpp */; };
 		B2BEC7D229DDC033008D3DCB /* game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC7D029DDC033008D3DCB /* game_data.cpp */; };
 		B2D856DC29E867D000602232 /* editor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2D856DA29E867D000602232 /* editor.cpp */; };
+		B2D856E429E868C600602232 /* mario.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2D856E229E868C600602232 /* mario.cpp */; };
 		B2E8D44F29E044A5005F5F0C /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2E8D44E29E044A5005F5F0C /* libfreetype.6.dylib */; };
 		B2E8D45229E0460C005F5F0C /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2E8D45429E0464A005F5F0C /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -48,6 +49,8 @@
 		B2D856D829E8382000602232 /* first_scene.ikanScene */ = {isa = PBXFileReference; lastKnownFileType = text; path = first_scene.ikanScene; sourceTree = "<group>"; };
 		B2D856DA29E867D000602232 /* editor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = editor.cpp; sourceTree = "<group>"; };
 		B2D856DB29E867D000602232 /* editor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = editor.hpp; sourceTree = "<group>"; };
+		B2D856E229E868C600602232 /* mario.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario.cpp; sourceTree = "<group>"; };
+		B2D856E329E868C600602232 /* mario.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario.hpp; sourceTree = "<group>"; };
 		B2E8D44E29E044A5005F5F0C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.16.dylib; path = ../ikan/vendors/freetype/libpng/1.6.39/lib/libpng16.16.dylib; sourceTree = "<group>"; };
@@ -178,6 +181,8 @@
 		B2D856DE29E867EA00602232 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				B2D856E229E868C600602232 /* mario.cpp */,
+				B2D856E329E868C600602232 /* mario.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -185,6 +190,8 @@
 		B2D856DF29E867FA00602232 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				B2D856E629E868EF00602232 /* fonts */,
+				B2D856E529E868EA00602232 /* textures */,
 			);
 			path = assets;
 			sourceTree = "<group>";
@@ -201,6 +208,20 @@
 			children = (
 			);
 			path = scenes;
+			sourceTree = "<group>";
+		};
+		B2D856E529E868EA00602232 /* textures */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = textures;
+			sourceTree = "<group>";
+		};
+		B2D856E629E868EF00602232 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2D856E429E868C600602232 /* mario.cpp in Sources */,
 				B2BEC7CF29DDBBFF008D3DCB /* renderer_layer.cpp in Sources */,
 				B2BEC7D229DDC033008D3DCB /* game_data.cpp in Sources */,
 				B2D856DC29E867D000602232 /* editor.cpp in Sources */,
