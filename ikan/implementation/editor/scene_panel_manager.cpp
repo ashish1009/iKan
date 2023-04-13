@@ -7,6 +7,7 @@
 
 #include "scene_panel_manager.hpp"
 #include "scene.hpp"
+#include "components.hpp"
 #include "property_grid.hpp"
 
 namespace ikan {
@@ -39,6 +40,21 @@ namespace ikan {
     "Registry Size                  : " + std::to_string(scene_context_->registry_.size()) + "\n";
     PropertyGrid::HoveredMsg(hovered_msg.c_str());
 
+    static ImGuiTextFilter entity_filter;
+    ImGui::SetNextItemWidth(ImGui::GetFontSize() * 16);
+    if (PropertyGrid::Search(entity_filter.InputBuf, "Search ... "))
+      entity_filter.Build();
+    
+    ImGui::Separator();
+
+    scene_context_->registry_.each([&](auto entity_id)
+                                   {
+      const std::string& tag = scene_context_->registry_.get<TagComponent>(entity_id).tag;
+      // If Search filter pass the result then render the entity name
+      if(entity_filter.PassFilter(tag.c_str()))
+        DrawEntityTreeNode(entity_id);
+    });
+
     ImGui::PopID();
     ImGui::End();
   }
@@ -52,6 +68,19 @@ namespace ikan {
     
     ImGui::PopID();
     ImGui::End();
+  }
+  
+  void ScenePanelManager::DrawEntityTreeNode(entt::entity entity_id) {
+    Entity& entity = scene_context_->entity_id_map_.at(entity_id);
+    ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_SpanAvailWidth | ((selected_entity_ == entity) ? ImGuiTreeNodeFlags_Selected : 0);
+  
+    const std::string& tag = entity.GetComponent<TagComponent>().tag;
+    bool opened = ImGui::TreeNodeEx((void*)(tag.c_str()), flags, tag.c_str());
+    
+    if (opened) {
+      // TODO: Add Feature
+      ImGui::TreePop();
+    }
   }
   
 } // namespace ikan

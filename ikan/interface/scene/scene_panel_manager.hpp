@@ -6,10 +6,9 @@
 //
 
 #pragma once
+#include "core_entity.hpp"
 
 namespace ikan {
-  
-  class Scene;
   
   /// This class is the wrapper to render scene pannel
   class ScenePanelManager {
@@ -43,10 +42,15 @@ namespace ikan {
     void ScenePannel();
     /// This function renders the property for selected entityu in scene
     void PropertyPannel();
-        
+
+    /// This function draw the entity tree node
+    /// - Parameter entity_id: entity id from scene registry
+    void DrawEntityTreeNode(entt::entity entity_id);
+
     // Member Variables
     Scene* scene_context_;
     Setting setting_;
+    Entity selected_entity_;
   };
   
 } // namespace ikan
