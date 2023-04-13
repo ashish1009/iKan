@@ -49,19 +49,28 @@ namespace ikan {
     Application(const Specification& spec);
     /// This destroys the core application instance
     virtual ~Application();
+
+    // Virtual Methods to be defined at client for overriding any functions
+    /// This function calls before game loop
+    virtual void OnInitialise() {}
+    /// This function calls After game loop
+    virtual void OnShutdown() {}
+    /// This function calls when an event triggers
+    virtual void OnEventHander(Event& e) {}
+    /// This function calls in Game Loop Running
+    virtual void OnUpdate(Timestep ts) {}
+    /// This function calls in Game Loop under Gui Layer
+    virtual void OnRenderGui() {}
     
-    // NOTE: Override these virtual Methods in client Application only if you want to create complete fresh application and add
-    // some specialisation functionality. If these methods will be overriden in client side then functionality will be completely
-    // based on overriden methods
     /// This function runs the game loop of the application. This function is responsible for:
     ///   - Updating the Application.:
     ///   - Updating each Layer frame.:
     ///   - Updating the window and Swap the buffers:
     ///   - Render the GUI by calling 'RenderGui()':
     /// - Important: This API performs all the above actions for each API. In Core ikan::entry_point this funciton is called by default
-    virtual void Run();
+    void Run();
     /// This Function responsible for closing the current applciation (ikan::Applciation) adn ends the game loop
-    virtual void Close() { is_running_ = false; }
+    void Close() { is_running_ = false; }
 
     /// This function handles all the events of window. Application is dispatching the events and perform the interupt actions
     /// - Parameter event: event abstract type

@@ -81,6 +81,9 @@ namespace ikan {
     // Event Handler for all layers
     for (auto& layer : layer_stack_)
       layer->HandleEvents(event);
+    
+    // Client side event handler funciton
+    OnEventHander(event);
   }
   
   bool Application::WindowClose([[maybe_unused]] WindowCloseEvent& window_close_event) {
@@ -94,6 +97,9 @@ namespace ikan {
     Batch2DRenderer::LogData();
     TextRenderer::LogData();
     
+    // Client side Init funciton
+    OnInitialise();
+
     IK_CORE_INFO("", "--------------------------------------------------------------------------");
     IK_CORE_INFO("", "                          Starting Game Loop                              ");
     IK_CORE_INFO("", "--------------------------------------------------------------------------");
@@ -111,11 +117,17 @@ namespace ikan {
       for (auto& layer : layer_stack_)
         layer->Update(time_step_);
       
+      // Client side update funciton
+      OnUpdate(time_step_);
+      
       RenderGui();
     }
     IK_CORE_INFO("", "--------------------------------------------------------------------------");
     IK_CORE_INFO("", "                            Ending Game Loop                              ");
     IK_CORE_INFO("", "--------------------------------------------------------------------------");
+    
+    // Client side shutdown funciton
+    OnShutdown();
   }
   
   void Application::RenderGui() {
@@ -124,6 +136,9 @@ namespace ikan {
     // Updating all the attached layer
     for (auto& layer : layer_stack_)
       layer->RenderGui();
+    
+    // Client side Gui Renderer funciton
+    OnRenderGui();
     
     imgui_layer_->End();
   }
