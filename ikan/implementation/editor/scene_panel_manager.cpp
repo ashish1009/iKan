@@ -10,6 +10,8 @@
 #include "components.hpp"
 #include "property_grid.hpp"
 #include "imgui_api.hpp"
+#include "renderer.hpp"
+#include "texture.hpp"
 
 namespace ikan {
   
@@ -82,6 +84,23 @@ namespace ikan {
       auto& tag = selected_entity_->GetComponent<TagComponent>().tag;
       PropertyGrid::TextBox(tag, "", 3);
       PropertyGrid::HoveredMsg(("Entity ID : " + std::to_string((uint32_t)(*selected_entity_))).c_str());
+
+      // Add Component Icon
+      // NOTE: we are adjusting this with text box, this would be next column of text box
+      auto text_box_size = ImGui::GetItemRectSize();
+      ImGui::NextColumn();
+      ImGui::SetColumnWidth(2, 2 * text_box_size.y);
+
+      static std::shared_ptr<Texture> add_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/plus.png"));
+      if (PropertyGrid::ImageButton("Add", add_texture->GetRendererID(), { text_box_size.y, text_box_size.y })) {
+        ImGui::OpenPopup("AddComponent");
+      }
+
+      if (ImGui::BeginPopup("AddComponent")) {
+        AddComponent();
+        ImGui::EndPopup();
+      }
+      ImGui::Columns(1);
       ImGui::Separator();
     }
 
@@ -113,6 +132,9 @@ namespace ikan {
         SetSelectedEntity(&scene_context_->CreateEntity("Empty Entity"));
       }
     });
+  }
+  
+  void ScenePanelManager::AddComponent() {
   }
   
   void ScenePanelManager::SetSelectedEntity(Entity* entity) {

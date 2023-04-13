@@ -33,6 +33,8 @@ namespace ikan {
     void SetSelectedEntity(Entity* entity);
     /// This function renders the option menu on right click the empty space
     void RightClickOptions();
+    /// This function adds the component in the selected entity
+    void AddComponent();
 
     /// This function returns the context of panel
     Scene* GetContext() { return scene_context_; }

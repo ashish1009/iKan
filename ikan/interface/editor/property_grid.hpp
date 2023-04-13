@@ -113,6 +113,8 @@ namespace ikan {
     ///   - multiple: flag to check if there are multiple line in text box
     ///   - num_lines: if multipleLine is true then check number of line are there in text box
     ///   - error: flag to check if text is error (if true text printed as red)
+    /// - Important: If num columns are more than 2 then kindly use those columns outside and set column to 1 again,
+    ///              this API will use only 2 columns and make column 1 only in case of num columns are 2
     static bool TextBox(std::string& value, const char* label = nullptr, uint32_t num_columns = 2, float column_width_1 = 100.0f,
                         const char* hint = nullptr, bool modifiable = true, bool multiple = false, int32_t num_lines = 1, bool error = false);
 
