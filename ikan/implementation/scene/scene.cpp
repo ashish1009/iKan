@@ -7,6 +7,7 @@
 
 #include "scene.hpp"
 #include "components.hpp"
+#include "core_entity.hpp"
 #include "renderer/utils/batch_2d_renderer.hpp"
 
 namespace ikan {
@@ -45,7 +46,38 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::Scene, "  Name               {0}", name_);
     IK_CORE_TRACE(LogModule::Scene, "  Registry Capacity  {0}", curr_registry_capacity);
   }
+  
+  Entity Scene::CreateEntity(const std::string& name, UUID uuid) {
+    Entity entity = CreateUniqueEntity(uuid);
+    return entity;
+  }
 
+  Entity Scene::CreateUniqueEntity(UUID uuid) {
+    if (registry_.size() >= curr_registry_capacity) {
+      IK_ASSERT(false, "Temp Assert to check performance")
+      curr_registry_capacity *= 2;
+      ReserveRegistry(AllComponents{}, registry_, curr_registry_capacity);
+    }
+    
+    Entity entity {registry_.create(), this};
+
+    // Assert if this entity id is already present in scene entity map
+    IK_ASSERT((entity_id_map_.find(entity) == entity_id_map_.end()), "Entity Already Added");
+
+    // Add the Mendatory components
+    entity.AddComponent<IDComponent>(uuid);
+
+    // Store the entity in the entity uuid map. We Copy the Entity
+    entity_id_map_[entity] = entity;
+
+    // Updating the Max entity ID
+    max_entity_id_ = (int32_t)((uint32_t)entity);
+
+    ++num_entities_;
+
+    return entity;
+  }
+  
   void Scene::Update(Timestep ts) {
     if (IsEditing()) {
       UpdateEditor(ts);

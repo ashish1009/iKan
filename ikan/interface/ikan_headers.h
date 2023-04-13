@@ -74,6 +74,8 @@
 // Scene Files
 #include <scene/viewport.hpp>
 #include <scene/scene.hpp>
+#include <scene/core_entity.hpp>
+#include <scene/components.hpp>
 #include <scene/scene_panel_manager.hpp>
 #include <scene/scene_serialiser.hpp>
 

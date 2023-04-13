@@ -14,6 +14,8 @@
 
 namespace ikan {
   
+  class Entity;
+  
   class Scene {
   public:
     enum State : uint8_t {
@@ -34,6 +36,12 @@ namespace ikan {
     ///   - max_entity_capacity: Max entites memory to reserve in scene registry
     Scene(const std::string& file_path = "Unsaved_Scene", uint32_t max_entity_capacity = 200000);
     ~Scene();
+    
+    /// This function create and Entity and store in scene registry
+    /// - Parameters:
+    ///   - name: name of entity
+    ///   - uuid: Unique ID of entity
+    [[nodiscard]] Entity CreateEntity(const std::string& name = "Unknown Entity", UUID uuid = UUID());
     
     /// This function update the scene
     /// - Parameter ts: time step
@@ -82,6 +90,11 @@ namespace ikan {
     static std::shared_ptr<Scene> Copy(std::shared_ptr<Scene> other);
 
   private:
+    // Member Functions
+    /// This function creates an unique entity with UUID
+    /// - Parameter uuid: Unique ID of entity
+    Entity CreateUniqueEntity(UUID uuid);
+
     /// This function updates the scene in edit mode
     /// - Parameter ts time step
     void UpdateEditor(Timestep ts);
@@ -105,10 +118,14 @@ namespace ikan {
     /// - Parameter came_view_proj_mat: camera view projection matrix
     void Render2DEntities(const glm::mat4& came_view_proj_mat);
 
+    // Member Variables
     std::string file_path_ = "Unsaved_Scene", name_ = "Unsaved_Scene";
     
     entt::registry registry_;
-    
+    std::unordered_map<entt::entity, Entity> entity_id_map_;
+
+    uint32_t num_entities_ = 0;
+    int32_t max_entity_id_ = -1;
     uint32_t curr_registry_capacity = 0;
 
     State state_ = State::Edit;
@@ -120,6 +137,7 @@ namespace ikan {
 
     friend class SceneSerializer;
     friend class ScenePanelManager;
+    friend class Entity;
   };
   
 } // namespace ikan
