@@ -49,6 +49,16 @@ namespace ikan {
   
   Entity Scene::CreateEntity(const std::string& name, UUID uuid) {
     Entity entity = CreateUniqueEntity(uuid);
+    entity.AddComponent<TagComponent>(name);
+
+    // Debug Logs
+    IK_CORE_TRACE(LogModule::Scene, "Stored Entity in Scene");
+    IK_CORE_TRACE(LogModule::Scene, "  Name    {0}", entity.GetComponent<TagComponent>().tag.c_str());
+    IK_CORE_TRACE(LogModule::Scene, "  Handle  {0}", (uint32_t)entity);
+    IK_CORE_TRACE(LogModule::Scene, "  ID      {0}", entity.GetComponent<IDComponent>().id);
+    IK_CORE_TRACE(LogModule::Scene, "  Number of entities Added in Scene  {0}", num_entities_);
+    IK_CORE_TRACE(LogModule::Scene, "  Max ID given to entity             {0}", max_entity_id_);
+
     return entity;
   }
 
@@ -76,6 +86,18 @@ namespace ikan {
     ++num_entities_;
 
     return entity;
+  }
+  
+  void Scene::DestroyEntity(Entity entity) {
+    IK_CORE_WARN(LogModule::Scene, "Removed Entity from Scene");
+    IK_CORE_WARN(LogModule::Scene, "  Name    {0}", entity.GetComponent<TagComponent>().tag.c_str());
+    IK_CORE_WARN(LogModule::Scene, "  Handle  {0}", (uint32_t)entity);
+    IK_CORE_WARN(LogModule::Scene, "  ID      {0}", entity.GetComponent<IDComponent>().id);
+    IK_CORE_WARN(LogModule::Scene, "  Number of entities left in the Scene  {0}", --num_entities_);
+   
+    // Delete the eneity from the map
+    entity_id_map_.erase(entity);
+    registry_.destroy(entity);
   }
   
   void Scene::Update(Timestep ts) {
