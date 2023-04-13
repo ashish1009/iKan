@@ -55,4 +55,46 @@ namespace ikan {
     return *this;
   }
   
+  // -------------------------------------------------------------------------
+  // Transform Component
+  // -------------------------------------------------------------------------
+  TransformComponent::TransformComponent() {
+    transform = Math::GetTransformMatrix(position, rotation, scale);
+    quaternion = glm::quat(rotation);
+    COMP_LOG("Creating Transform Component");
+  }
+  TransformComponent::~TransformComponent() {
+    COMP_LOG("Destroying Transform Component");
+  }
+  TransformComponent::TransformComponent(const TransformComponent& other)
+  : position(other.Position()), scale(other.Scale()), rotation(other.Rotation()) {
+    COMP_COPY_LOG("Copying Transform Component");
+    transform = Math::GetTransformMatrix(position, rotation, scale);
+    quaternion = glm::quat(rotation);
+  }
+  TransformComponent::TransformComponent(TransformComponent&& other)
+  : position(other.Position()), scale(other.Scale()), rotation(other.Rotation()) {
+    COMP_COPY_LOG("Moving Transform Component");
+    transform = Math::GetTransformMatrix(position, rotation, scale);
+    quaternion = glm::quat(rotation);
+  }
+  TransformComponent& TransformComponent::operator=(const TransformComponent& other) {
+    COMP_COPY_LOG("Copying with = operator Transform Component");
+    position = other.Position();
+    scale = other.Scale();
+    rotation = other.Rotation();
+    transform = Math::GetTransformMatrix(position, rotation, scale);
+    quaternion = glm::quat(rotation);
+    return *this;
+  }
+  TransformComponent& TransformComponent::operator=(TransformComponent&& other) {
+    COMP_COPY_LOG("Moving with = operator Transform Component");
+    position = other.Position();
+    scale = other.Scale();
+    rotation = other.Rotation();
+    transform = Math::GetTransformMatrix(position, rotation, scale);
+    quaternion = glm::quat(rotation);
+    return *this;
+  }
+  
 } // namespace ikan

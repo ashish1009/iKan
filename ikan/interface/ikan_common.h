@@ -15,6 +15,9 @@ namespace ikan {
     // Add More supported OS
   };
   
+  /// This enum defines the axis names
+  enum Axis : uint8_t { X, Y, Z };
+  
 }
 
 // ----------------------------------

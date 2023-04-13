@@ -50,6 +50,7 @@ namespace ikan {
   Entity& Scene::CreateEntity(const std::string& name, UUID uuid) {
     Entity entity = CreateUniqueEntity(uuid);
     entity.AddComponent<TagComponent>(name);
+    entity.AddComponent<TransformComponent>();
 
     // Debug Logs
     IK_CORE_TRACE(LogModule::Scene, "Stored Entity in Scene");
