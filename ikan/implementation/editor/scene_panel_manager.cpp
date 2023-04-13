@@ -55,6 +55,17 @@ namespace ikan {
         DrawEntityTreeNode(entity_id);
     });
 
+    // Reset the selected entity if mouse is clicked on empty space
+    if (ImGui::IsMouseDown((int32_t)MouseButton::ButtonLeft) and ImGui::IsWindowHovered()) {
+      SetSelectedEntity(nullptr);
+    }
+
+    // Menu popup on Right Click
+    if (ImGui::BeginPopupContextWindow(0 /* ID */, (int32_t)MouseButton::ButtonRight, false /* Right-click on blank space */)) {
+      RightClickOptions();
+      ImGui::EndPopup();
+    }
+
     ImGui::PopID();
     ImGui::End();
   }
@@ -68,9 +79,9 @@ namespace ikan {
     
     if (selected_entity_) {
       // Tag
-      auto& tag = selected_entity_.GetComponent<TagComponent>().tag;
+      auto& tag = selected_entity_->GetComponent<TagComponent>().tag;
       PropertyGrid::TextBox(tag, "", 3);
-      PropertyGrid::HoveredMsg(("Entity ID : " + std::to_string((uint32_t)selected_entity_)).c_str());
+      PropertyGrid::HoveredMsg(("Entity ID : " + std::to_string((uint32_t)(*selected_entity_))).c_str());
       ImGui::Separator();
     }
 
@@ -80,23 +91,29 @@ namespace ikan {
   
   void ScenePanelManager::DrawEntityTreeNode(entt::entity entity_id) {
     Entity& entity = scene_context_->entity_id_map_.at(entity_id);
-    ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_SpanAvailWidth | ((selected_entity_ == entity) ? ImGuiTreeNodeFlags_Selected : 0);
+    ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_SpanAvailWidth | ((*selected_entity_ == entity) ? ImGuiTreeNodeFlags_Selected : 0);
   
     const std::string& tag = entity.GetComponent<TagComponent>().tag;
     bool opened = ImGui::TreeNodeEx((void*)(tag.c_str()), flags, tag.c_str());
     
-    // 1. Left Click Feature. Update the selected entity if item is clicked
+    // Left Click Feature. Update the selected entity if item is clicked
     if (ImGui::IsItemClicked() or ImGui::IsItemClicked(1))
-      SetSelectedEntity(entity);
+      SetSelectedEntity(&entity);
     
     if (opened) {
       // TODO: Add Feature
       ImGui::TreePop();
     }
   }
+
+  void ScenePanelManager::RightClickOptions() {
+  }
   
-  void ScenePanelManager::SetSelectedEntity(Entity entity) {
-    selected_entity_ = entity;
+  void ScenePanelManager::SetSelectedEntity(Entity* entity) {
+    if (entity and entity->IsValidScene())
+      selected_entity_ = entity;
+    else
+      selected_entity_ = nullptr;
   }
   
 } // namespace ikan

@@ -29,8 +29,10 @@ namespace ikan {
     /// - Parameter context: scene context
     void SetSceneContext(Scene* context) { scene_context_ = context; }
     /// This Function update the selected entity of scene
-    /// - Parameter entity: new selected entity
-    void SetSelectedEntity(Entity entity);
+    /// - Parameter entity: new selected entity pointer
+    void SetSelectedEntity(Entity* entity);
+    /// This function renders the option menu on right click the empty space
+    void RightClickOptions();
 
     /// This function returns the context of panel
     Scene* GetContext() { return scene_context_; }
@@ -53,7 +55,7 @@ namespace ikan {
     // Member Variables
     Scene* scene_context_;
     Setting setting_;
-    Entity selected_entity_;
+    Entity* selected_entity_;
   };
   
 } // namespace ikan

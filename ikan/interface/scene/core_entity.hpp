@@ -22,6 +22,9 @@ namespace ikan {
     /// This is default entity Destrcutor
     ~Entity();
     
+    /// This function checks is Scene is valid
+    bool IsValidScene() const;
+
     /// This function returns the UUID of Current entity
     UUID GetUUID() const { return GetComponent<IDComponent>().id; }
     /// This function returns name of entity
@@ -82,10 +85,6 @@ namespace ikan {
 
     entt::entity entity_handle_{ entt::null };
     Scene* scene_ = nullptr;
-    
-  private:
-    /// This function checks is Scene is valid
-    bool IsValidScene() const;
   };
   
 } // namespace ikan
