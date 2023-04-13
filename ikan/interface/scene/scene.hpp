@@ -29,9 +29,12 @@ namespace ikan {
     };
 
     /// This Constructor creates the instance of Scene.
-    /// - Parameter file_path: optional file path if we want to create a pre saved scene
-    Scene(const std::string& file_path = "Unsaved_Scene");
-
+    /// - Parameters:
+    ///   - file_path: optional file path if we want to create a pre saved scene
+    ///   - max_entity_capacity: Max entites memory to reserve in scene registry
+    Scene(const std::string& file_path = "Unsaved_Scene", uint32_t max_entity_capacity = 200000);
+    ~Scene();
+    
     /// This function update the scene
     /// - Parameter ts: time step
     void Update(Timestep ts);
@@ -106,6 +109,8 @@ namespace ikan {
     
     entt::registry registry_;
     
+    uint32_t curr_registry_capacity = 0;
+
     State state_ = State::Edit;
     Type type_ = Type::_2D;
     

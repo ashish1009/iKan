@@ -6,20 +6,29 @@
 //
 
 #include "scene.hpp"
+#include "components.hpp"
 #include "renderer/utils/batch_2d_renderer.hpp"
 
 namespace ikan {
   
+  template<typename... Component>
+  static void ReserveRegistry(ComponentGroup<Component...>, entt::registry& registry, int32_t capacity) {
+    registry.reserve<Component...>(capacity);
+  }
+
   std::shared_ptr<Scene> Scene::Copy(std::shared_ptr<Scene> other) {
     std::shared_ptr<Scene> new_scene = std::make_shared<Scene>();
     return new_scene;
   }
 
-  Scene::Scene(const std::string& file_path)
-  : file_path_(file_path), name_(StringUtils::GetNameFromFilePath(file_path)) {
+  Scene::Scene(const std::string& file_path, uint32_t max_entity_capacity)
+  : file_path_(file_path), name_(StringUtils::GetNameFromFilePath(file_path)), curr_registry_capacity(max_entity_capacity) {
     IK_CORE_TRACE(LogModule::Scene, "Creating Scene ...");
-    IK_CORE_TRACE(LogModule::Scene, "  Path | {0}", file_path_);
-    IK_CORE_TRACE(LogModule::Scene, "  Name | {0}", name_);
+    IK_CORE_TRACE(LogModule::Scene, "  Path               {0}", file_path_);
+    IK_CORE_TRACE(LogModule::Scene, "  Name               {0}", name_);
+    IK_CORE_TRACE(LogModule::Scene, "  Registry Capacity  {0}", curr_registry_capacity);
+
+    ReserveRegistry(AllComponents{}, registry_, curr_registry_capacity);
 
     // Set the Scene state and register their corresponding Functions
     if (state_ == State::Edit)
@@ -30,6 +39,13 @@ namespace ikan {
       IK_ASSERT(false, "Invalid State");
   }
   
+  Scene::~Scene() {
+    IK_CORE_TRACE(LogModule::Scene, "Destroying Scene!!!");
+    IK_CORE_TRACE(LogModule::Scene, "  Path               {0}", file_path_);
+    IK_CORE_TRACE(LogModule::Scene, "  Name               {0}", name_);
+    IK_CORE_TRACE(LogModule::Scene, "  Registry Capacity  {0}", curr_registry_capacity);
+  }
+
   void Scene::Update(Timestep ts) {
     if (IsEditing()) {
       UpdateEditor(ts);

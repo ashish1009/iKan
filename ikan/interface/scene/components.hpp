@@ -5,9 +5,22 @@
 //  Created by Ashish . on 10/04/23.
 //
 
-#ifndef components_hpp
-#define components_hpp
+#pragma once
 
-#include <stdio.h>
+namespace ikan {
+  
+  template<typename... Component>
+  struct ComponentGroup {
+  };
+  
+#define ALL_COPY_COMPONENTS
 
-#endif /* components_hpp */
+  // Stores all the components present in Engine
+  using AllComponents =
+  ComponentGroup<ALL_COPY_COMPONENTS>;
+  
+  // Stores the components that need to be copied
+  using AllCopyComponents =
+  ComponentGroup<ALL_COPY_COMPONENTS>;
+  
+} // namespace ikan

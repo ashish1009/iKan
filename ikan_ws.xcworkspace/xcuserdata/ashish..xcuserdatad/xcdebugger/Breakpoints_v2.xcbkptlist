@@ -7,175 +7,47 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D6861E65-4E01-492F-8466-FB0F26839E6B"
+            uuid = "053C7D1C-B16E-446E-AA6E-CC0F51737113"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/core/debug/dump_table.cpp"
+            filePath = "ikan/implementation/editor/scene_panel_manager.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "Table::AddColumn(cols)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9ABDD69C-8534-4081-BAAE-A93A646977F4"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/core/debug/dump_table.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "Table::Dump(level, module_name)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "78C4529E-1868-4A12-B65F-225A6DF922DD"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/core/debug/dump_table.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "Table::Dump(level, module_name)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C95F2136-117D-49A8-8166-7483EF7337DB"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/renderer/graphics/shader.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "ShaderLibrary::GetShader(path)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "8162A22B-CCF9-4404-9FD5-1164C0554A97"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
-            landmarkName = "Batch2DRenderer::AddQuadData(max_element)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1FF99D8A-D269-44A1-B697-65EC225FAE03"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "328"
-            endingLineNumber = "328"
-            landmarkName = "Batch2DRenderer::AddQuadData(max_element)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F4BEE27E-2CCC-4DB0-85F4-DD0DBD987460"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "465"
-            endingLineNumber = "465"
-            landmarkName = "Batch2DRenderer::Flush()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E7087B7B-BB3F-4029-9CDE-55DBB79446E7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kreator/leyer/renderer_layer.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "RendererLayer::ResizeLayer(width, height)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5ECBF346-557E-4F4D-8FE7-BBF429FDA2E5"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/editor/content_browser_panel.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "25"
-            endingLineNumber = "25"
-            landmarkName = "ContentBrowserPanel::ContentBrowserPanel(root_path, favourite_paths)"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "ScenePanelManager::ScenePannel()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "5ECBF346-557E-4F4D-8FE7-BBF429FDA2E5 - 8ee4fcfb78708f36"
+                  uuid = "053C7D1C-B16E-446E-AA6E-CC0F51737113 - c17085edec1e056b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "ikan::ContentBrowserPanel::ContentBrowserPanel(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; const&amp;, std::__1::vector&lt;std::__1::__fs::filesystem::path, std::__1::allocator&lt;std::__1::__fs::filesystem::path&gt; &gt; const&amp;)"
+                  symbolName = "ikan::ScenePanelManager::ScenePannel()"
                   moduleName = "kreator"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/ikan/implementation/editor/content_browser_panel.cpp"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/ikan/implementation/editor/scene_panel_manager.cpp"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18"
-                  offsetFromSymbolStart = "168">
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "580">
                </Location>
                <Location
-                  uuid = "5ECBF346-557E-4F4D-8FE7-BBF429FDA2E5 - 8ee4fcfb78708f36"
+                  uuid = "053C7D1C-B16E-446E-AA6E-CC0F51737113 - c17085edec1e056b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "ikan::ContentBrowserPanel::ContentBrowserPanel(std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt; const&amp;, std::__1::vector&lt;std::__1::__fs::filesystem::path, std::__1::allocator&lt;std::__1::__fs::filesystem::path&gt; &gt; const&amp;)"
+                  symbolName = "ikan::ScenePanelManager::ScenePannel()"
                   moduleName = "kreator"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/ikan/implementation/editor/content_browser_panel.cpp"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/ikan/implementation/editor/scene_panel_manager.cpp"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18"
-                  offsetFromSymbolStart = "228">
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
+                  offsetFromSymbolStart = "1084">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -183,144 +55,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "83D6E193-788E-4D62-9AA6-698D470B3D56"
+            uuid = "2A31897B-E5F1-48FA-88CF-290425BF9314"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/scene/scene.cpp"
+            filePath = "ikan/implementation/core/debug/dump_table.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "Scene::PlayScene()"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "Table::AddRow(rows)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0A28C6DF-5BDF-4911-BB0C-C5B46CE11F4B"
+            uuid = "FC0394D5-29CD-42C5-8F7D-A3C31C1D2553"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/scene/scene.cpp"
+            filePath = "ikan/implementation/editor/scene_panel_manager.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "Scene::EditScene()"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "ScenePanelManager::ScenePannel()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D6E26EA5-115B-438D-A83B-FC81BCF09D66"
+            uuid = "09EF1431-073C-496D-BC01-3C054E1959F7"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "kreator/leyer/renderer_layer.cpp"
+            filePath = "ikan/implementation/core/debug/dump_table.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "RendererLayer::Attach()"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "Table::AddRow(rows)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "12809931-A891-4BA8-9062-43F24A759C46"
+            uuid = "AF683C7E-1D5C-47D6-B557-338BD712C85A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "kreator/leyer/renderer_layer.cpp"
+            filePath = "ikan/implementation/core/debug/dump_table.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "408"
-            endingLineNumber = "408"
-            landmarkName = "RendererLayer::SaveScene()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "FA4CFFC5-4F13-4A86-8C16-BCC56B696870"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "kreator/leyer/renderer_layer.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "418"
-            endingLineNumber = "418"
-            landmarkName = "RendererLayer::SaveScene()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "06D22345-F833-471A-AFF6-9F9E55C19F99"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/editor/content_browser_panel.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
-            landmarkName = "ContentBrowserPanel::AddFavouritPaths(favourite_paths)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "06D22345-F833-471A-AFF6-9F9E55C19F99 - fa6354da3a0f648b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ikan::ContentBrowserPanel::AddFavouritPaths(std::__1::vector&lt;std::__1::__fs::filesystem::path, std::__1::allocator&lt;std::__1::__fs::filesystem::path&gt; &gt; const&amp;)"
-                  moduleName = "kreator"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/ikan/implementation/editor/content_browser_panel.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "28">
-               </Location>
-               <Location
-                  uuid = "06D22345-F833-471A-AFF6-9F9E55C19F99 - fa6354da3a0f648b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ikan::ContentBrowserPanel::AddFavouritPaths(std::__1::vector&lt;std::__1::__fs::filesystem::path, std::__1::allocator&lt;std::__1::__fs::filesystem::path&gt; &gt; const&amp;)"
-                  moduleName = "kreator"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/ikan/implementation/editor/content_browser_panel.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "88">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "41C88C90-9F09-4903-8FCE-68E8D5C7E15D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ikan/implementation/editor/content_browser_panel.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "ContentBrowserPanel::SideMenu()"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "Table::AddRow(rows)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
