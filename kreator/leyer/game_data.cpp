@@ -6,6 +6,7 @@
 //
 
 #include "game_data.hpp"
+#include "editor.hpp"
 
 namespace kreator {
   
@@ -13,7 +14,7 @@ namespace kreator {
     switch (game_type) {
       case GameType::Editor:
       default:
-        return std::make_unique<GameDataImpl>();
+        return std::make_unique<editor::Editor>();
     }
   }
   

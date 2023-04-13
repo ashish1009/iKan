@@ -12,6 +12,7 @@
 		B292C0F329D1D7C400B1E678 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B292C0F229D1D7C400B1E678 /* libikan.a */; };
 		B2BEC7CF29DDBBFF008D3DCB /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC7CD29DDBBFF008D3DCB /* renderer_layer.cpp */; };
 		B2BEC7D229DDC033008D3DCB /* game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC7D029DDC033008D3DCB /* game_data.cpp */; };
+		B2D856DC29E867D000602232 /* editor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2D856DA29E867D000602232 /* editor.cpp */; };
 		B2E8D44F29E044A5005F5F0C /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2E8D44E29E044A5005F5F0C /* libfreetype.6.dylib */; };
 		B2E8D45229E0460C005F5F0C /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2E8D45429E0464A005F5F0C /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -45,6 +46,8 @@
 		B2BEC7D029DDC033008D3DCB /* game_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = game_data.cpp; sourceTree = "<group>"; };
 		B2BEC7D129DDC033008D3DCB /* game_data.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = game_data.hpp; sourceTree = "<group>"; };
 		B2D856D829E8382000602232 /* first_scene.ikanScene */ = {isa = PBXFileReference; lastKnownFileType = text; path = first_scene.ikanScene; sourceTree = "<group>"; };
+		B2D856DA29E867D000602232 /* editor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = editor.cpp; sourceTree = "<group>"; };
+		B2D856DB29E867D000602232 /* editor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = editor.hpp; sourceTree = "<group>"; };
 		B2E8D44E29E044A5005F5F0C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.16.dylib; path = ../ikan/vendors/freetype/libpng/1.6.39/lib/libpng16.16.dylib; sourceTree = "<group>"; };
@@ -71,6 +74,7 @@
 				B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */,
 				B292C0F029D1D58700B1E678 /* prefix_headers.pch */,
 				B292BB7329D16F8F00B1E678 /* entry_point */,
+				B2D856D929E867C000602232 /* mario */,
 				B2BEC7CC29DDBBF3008D3DCB /* leyer */,
 				B2BEC78529DD7A92008D3DCB /* editor */,
 				B292BB7229D16F8F00B1E678 /* Products */,
@@ -110,6 +114,9 @@
 		B2BEC78529DD7A92008D3DCB /* editor */ = {
 			isa = PBXGroup;
 			children = (
+				B2D856DD29E867E200602232 /* src */,
+				B2D856DA29E867D000602232 /* editor.cpp */,
+				B2D856DB29E867D000602232 /* editor.hpp */,
 				B2D856D729E8382000602232 /* scenes */,
 				B2BEC78729DD7AA9008D3DCB /* ini */,
 				B2BEC78629DD7AA0008D3DCB /* assets */,
@@ -146,6 +153,52 @@
 			isa = PBXGroup;
 			children = (
 				B2D856D829E8382000602232 /* first_scene.ikanScene */,
+			);
+			path = scenes;
+			sourceTree = "<group>";
+		};
+		B2D856D929E867C000602232 /* mario */ = {
+			isa = PBXGroup;
+			children = (
+				B2D856DE29E867EA00602232 /* src */,
+				B2D856E129E8680300602232 /* scenes */,
+				B2D856E029E867FF00602232 /* ini */,
+				B2D856DF29E867FA00602232 /* assets */,
+			);
+			path = mario;
+			sourceTree = "<group>";
+		};
+		B2D856DD29E867E200602232 /* src */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		B2D856DE29E867EA00602232 /* src */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		B2D856DF29E867FA00602232 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		B2D856E029E867FF00602232 /* ini */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ini;
+			sourceTree = "<group>";
+		};
+		B2D856E129E8680300602232 /* scenes */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = scenes;
 			sourceTree = "<group>";
@@ -209,6 +262,7 @@
 			files = (
 				B2BEC7CF29DDBBFF008D3DCB /* renderer_layer.cpp in Sources */,
 				B2BEC7D229DDC033008D3DCB /* game_data.cpp in Sources */,
+				B2D856DC29E867D000602232 /* editor.cpp in Sources */,
 				B292BB7529D16F8F00B1E678 /* entry_point.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
