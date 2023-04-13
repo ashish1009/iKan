@@ -57,7 +57,7 @@ namespace ikan {
     void SetFilePath(const std::string& file_path);
     /// This function change the renderer type of scene
     /// - Parameter type: type of scene
-    void SetType(Type type) { type_ = type; }
+    void SetType(Type type);
 
     /// This function returns the state of scene
     State GetState() const { return state_; }
@@ -97,6 +97,10 @@ namespace ikan {
     void RenderGuiEditor();
     /// This function renderes the imgui of the scene in play mode
     void RenderGuiRuntime();
+
+    /// This function renders the 2D Entities
+    /// - Parameter came_view_proj_mat: camera view projection matrix
+    void Render2DEntities(const glm::mat4& came_view_proj_mat);
 
     std::string file_path_ = "Unsaved_Scene", name_ = "Unsaved_Scene";
     

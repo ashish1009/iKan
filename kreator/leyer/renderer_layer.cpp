@@ -79,10 +79,6 @@ namespace kreator {
   
   void RendererLayer::RenderScene(Timestep ts) {
     active_scene_->Update(ts);
-
-    Batch2DRenderer::BeginBatch(active_scene_->GetEditorCamera().GetViewProjection());
-    Batch2DRenderer::DrawQuad(glm::mat4(1.0f), {1, 1, 1, 1});
-    Batch2DRenderer::EndBatch();
     
     // Text Renderer
     static glm::vec2 fixed_text_size = {0.3f, 0.3f};
