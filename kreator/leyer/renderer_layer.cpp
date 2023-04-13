@@ -89,7 +89,7 @@ namespace kreator {
     static glm::vec2 fixed_text_size = {0.3f, 0.3f};
     static glm::vec4 fixed_text_color = { 0.1, 0.1, 0.1, 1 };
     TextRenderer::BeginBatch(still_camera_projection);
-    TextRenderer::RenderFixedViewText("(c) IKAN", { viewport_width_ - 60, 5.0f, 0.3f }, fixed_text_size, fixed_text_color);
+    TextRenderer::RenderFixedViewText("(c) IKAN", { viewport_width_ - 80, 5.0f, 0.3f }, fixed_text_size, fixed_text_color);
     TextRenderer::RenderFixedViewText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)),
                                       { 5.0f, 5.0f, 0.3f }, fixed_text_size, fixed_text_color);
     TextRenderer::EndBatch();

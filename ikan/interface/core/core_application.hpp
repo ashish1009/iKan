@@ -104,7 +104,7 @@ namespace ikan {
     /// Make Application singleton
     DELETE_COPY_MOVE_CONSTRUCTORS(Application);
     
-  private:
+  protected:
     /// This function dispatched in event dispatcher and trigger when window close event evoked
     /// - Parameter window_close_event: Window close event instacnce
     bool WindowClose([[maybe_unused]] WindowCloseEvent& window_close_event);

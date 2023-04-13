@@ -77,8 +77,8 @@
 				B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */,
 				B292C0F029D1D58700B1E678 /* prefix_headers.pch */,
 				B292BB7329D16F8F00B1E678 /* entry_point */,
-				B2D856D929E867C000602232 /* mario */,
 				B2BEC7CC29DDBBF3008D3DCB /* leyer */,
+				B2D856D929E867C000602232 /* mario */,
 				B2BEC78529DD7A92008D3DCB /* editor */,
 				B292BB7229D16F8F00B1E678 /* Products */,
 				B292C0F129D1D7C400B1E678 /* Frameworks */,
@@ -118,8 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				B2D856DD29E867E200602232 /* src */,
-				B2D856DA29E867D000602232 /* editor.cpp */,
-				B2D856DB29E867D000602232 /* editor.hpp */,
 				B2D856D729E8382000602232 /* scenes */,
 				B2BEC78729DD7AA9008D3DCB /* ini */,
 				B2BEC78629DD7AA0008D3DCB /* assets */,
@@ -174,6 +172,8 @@
 		B2D856DD29E867E200602232 /* src */ = {
 			isa = PBXGroup;
 			children = (
+				B2D856DA29E867D000602232 /* editor.cpp */,
+				B2D856DB29E867D000602232 /* editor.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
