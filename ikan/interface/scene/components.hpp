@@ -9,11 +9,25 @@
 
 namespace ikan {
   
+  struct IDComponent {
+    UUID id = 0;
+    IDComponent(const UUID& id);
+    ~IDComponent();
+    DEFINE_COPY_MOVE_CONSTRUCTORS(IDComponent);
+  };
+  
+  struct TagComponent {
+    std::string tag = "Default Entity";
+    TagComponent(const std::string& tag);
+    ~TagComponent();
+    DEFINE_COPY_MOVE_CONSTRUCTORS(TagComponent);
+  };
+  
   template<typename... Component>
   struct ComponentGroup {
   };
   
-#define ALL_COPY_COMPONENTS
+#define ALL_COPY_COMPONENTS IDComponent, TagComponent
 
   // Stores all the components present in Engine
   using AllComponents =
