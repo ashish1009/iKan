@@ -42,7 +42,7 @@ std::unique_ptr<ikan::Application> CreateApplication() {
   // Window Specification
   application_spec.window_specification.title = "Untitled";
   application_spec.window_specification.width = 2100;
-  application_spec.window_specification.height = 900;
+  application_spec.window_specification.height = 600;
   application_spec.window_specification.v_sync = true;
   application_spec.window_specification.fullscreen = false;
   application_spec.window_specification.hide_titlebar = false;

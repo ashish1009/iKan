@@ -9,6 +9,7 @@
 #include "scene.hpp"
 #include "components.hpp"
 #include "property_grid.hpp"
+#include "imgui_api.hpp"
 
 namespace ikan {
   
@@ -91,7 +92,8 @@ namespace ikan {
   
   void ScenePanelManager::DrawEntityTreeNode(entt::entity entity_id) {
     Entity& entity = scene_context_->entity_id_map_.at(entity_id);
-    ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_SpanAvailWidth | ((*selected_entity_ == entity) ? ImGuiTreeNodeFlags_Selected : 0);
+    ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_SpanAvailWidth |
+    ((selected_entity_ and *selected_entity_ == entity) ? ImGuiTreeNodeFlags_Selected : 0);
   
     const std::string& tag = entity.GetComponent<TagComponent>().tag;
     bool opened = ImGui::TreeNodeEx((void*)(tag.c_str()), flags, tag.c_str());
@@ -107,6 +109,11 @@ namespace ikan {
   }
 
   void ScenePanelManager::RightClickOptions() {
+    ImguiAPI::Menu("New Entity", true, [this](){
+      if (ImGui::MenuItem("Empty Entity")) {
+        SetSelectedEntity(&scene_context_->CreateEntity("Empty Entity"));
+      }
+    });
   }
   
   void ScenePanelManager::SetSelectedEntity(Entity* entity) {
