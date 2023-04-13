@@ -32,7 +32,7 @@ namespace ikan {
     ImGui::PushID("Scene Manager");
     
     ImGui::Text(" Scene | %s ", scene_context_->name_.c_str());
-    std::string hovered_msg;
+    std::string hovered_msg =
     "Registry Max Capacity : " + std::to_string(scene_context_->curr_registry_capacity) + "\n" +
     "Registry Size                  : " + std::to_string(scene_context_->registry_.size()) + "\n";
     PropertyGrid::HoveredMsg(hovered_msg.c_str());

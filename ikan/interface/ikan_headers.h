@@ -37,6 +37,7 @@
 
 // Core Files
 #include <core/math/maths.hpp>
+#include <core/math/uuid.hpp>
 
 #include <core/debug/logger.hpp>
 #include <core/debug/dump_table.hpp>

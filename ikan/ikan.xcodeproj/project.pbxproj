@@ -67,6 +67,8 @@
 		B2BEC7D629DDC301008D3DCB /* text_renderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BEC7D429DDC301008D3DCB /* text_renderer.hpp */; };
 		B2BEC7DC29DDC475008D3DCB /* imgui_api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC7DA29DDC475008D3DCB /* imgui_api.cpp */; };
 		B2BEC7DD29DDC475008D3DCB /* imgui_api.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BEC7DB29DDC475008D3DCB /* imgui_api.hpp */; };
+		B2D856D129E7ECC400602232 /* uuid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2D856CF29E7ECC400602232 /* uuid.cpp */; };
+		B2D856D229E7ECC400602232 /* uuid.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2D856D029E7ECC400602232 /* uuid.hpp */; };
 		B2E7141329E43C3C008C8CB1 /* core_entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E7141129E43C3C008C8CB1 /* core_entity.cpp */; };
 		B2E7141429E43C3C008C8CB1 /* core_entity.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2E7141229E43C3C008C8CB1 /* core_entity.hpp */; };
 		B2E7141A29E43C40008C8CB1 /* components.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2E7141829E43C40008C8CB1 /* components.cpp */; };
@@ -207,6 +209,8 @@
 		B2BEC7DA29DDC475008D3DCB /* imgui_api.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = imgui_api.cpp; sourceTree = "<group>"; };
 		B2BEC7DB29DDC475008D3DCB /* imgui_api.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = imgui_api.hpp; sourceTree = "<group>"; };
 		B2C26FC029D2A32400EC1078 /* asserts.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = asserts.h; sourceTree = "<group>"; };
+		B2D856CF29E7ECC400602232 /* uuid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = uuid.cpp; sourceTree = "<group>"; };
+		B2D856D029E7ECC400602232 /* uuid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = uuid.hpp; sourceTree = "<group>"; };
 		B2E7141129E43C3C008C8CB1 /* core_entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = core_entity.cpp; sourceTree = "<group>"; };
 		B2E7141229E43C3C008C8CB1 /* core_entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = core_entity.hpp; sourceTree = "<group>"; };
 		B2E7141829E43C40008C8CB1 /* components.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = components.cpp; sourceTree = "<group>"; };
@@ -562,6 +566,7 @@
 			isa = PBXGroup;
 			children = (
 				B2E8D44029E0335A005F5F0C /* maths.hpp */,
+				B2D856D029E7ECC400602232 /* uuid.hpp */,
 			);
 			path = math;
 			sourceTree = "<group>";
@@ -570,6 +575,7 @@
 			isa = PBXGroup;
 			children = (
 				B2E8D43F29E0335A005F5F0C /* maths.cpp */,
+				B2D856CF29E7ECC400602232 /* uuid.cpp */,
 			);
 			path = math;
 			sourceTree = "<group>";
@@ -722,6 +728,7 @@
 				B281E87329DFE2080038A9EE /* input.hpp in Headers */,
 				B228FC6929DB070500455666 /* open_gl_graphics_context.hpp in Headers */,
 				B2BEC79F29DD8479008D3DCB /* layer_stack.hpp in Headers */,
+				B2D856D229E7ECC400602232 /* uuid.hpp in Headers */,
 				B29C831A29DEB1BC0061D182 /* renderer_buffer.hpp in Headers */,
 				B2F70CE329DEE841003163BA /* shader.hpp in Headers */,
 				B2BEC7CB29DDACAD008D3DCB /* batch_2d_renderer.hpp in Headers */,
@@ -873,6 +880,7 @@
 				B2F70CEE29DEEC46003163BA /* open_gl_shader.cpp in Sources */,
 				B2BEC7CA29DDACAD008D3DCB /* batch_2d_renderer.cpp in Sources */,
 				B281E86E29DFE1630038A9EE /* editor_camera.cpp in Sources */,
+				B2D856D129E7ECC400602232 /* uuid.cpp in Sources */,
 				B2F70CDB29DEE5B6003163BA /* open_gl_shader_uniforms.cpp in Sources */,
 				B2BEC7B429DD8716008D3DCB /* imgui_build.cpp in Sources */,
 				B2F91E0E29D70FA400860306 /* renderer.cpp in Sources */,

@@ -24,6 +24,7 @@
 
 // Core file
 #include "core/math/maths.hpp"
+#include "core/math/uuid.hpp"
 
 #include "core/debug/logger.hpp"
 #include "core/debug/core_logger_api.h"
