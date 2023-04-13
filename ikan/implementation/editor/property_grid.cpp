@@ -285,7 +285,7 @@ namespace ikan {
     ImGui::PopItemWidth();
     ImGui::PopID();
     
-    if (num_columns == 2)
+    if (num_columns > 1)
       ImGui::Columns(1);
     
     return modified;

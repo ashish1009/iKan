@@ -28,7 +28,10 @@ namespace ikan {
     /// This function update the scene contexrt
     /// - Parameter context: scene context
     void SetSceneContext(Scene* context) { scene_context_ = context; }
-    
+    /// This Function update the selected entity of scene
+    /// - Parameter entity: new selected entity
+    void SetSelectedEntity(Entity entity);
+
     /// This function returns the context of panel
     Scene* GetContext() { return scene_context_; }
     /// This function returns the reference of setting

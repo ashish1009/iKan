@@ -66,6 +66,14 @@ namespace ikan {
     ImGui::Begin("Entity Property", &setting_.property_panel);
     ImGui::PushID("Entity Property");
     
+    if (selected_entity_) {
+      // Tag
+      auto& tag = selected_entity_.GetComponent<TagComponent>().tag;
+      PropertyGrid::TextBox(tag, "", 3);
+      PropertyGrid::HoveredMsg(("Entity ID : " + std::to_string((uint32_t)selected_entity_)).c_str());
+      ImGui::Separator();
+    }
+
     ImGui::PopID();
     ImGui::End();
   }
@@ -77,10 +85,18 @@ namespace ikan {
     const std::string& tag = entity.GetComponent<TagComponent>().tag;
     bool opened = ImGui::TreeNodeEx((void*)(tag.c_str()), flags, tag.c_str());
     
+    // 1. Left Click Feature. Update the selected entity if item is clicked
+    if (ImGui::IsItemClicked() or ImGui::IsItemClicked(1))
+      SetSelectedEntity(entity);
+    
     if (opened) {
       // TODO: Add Feature
       ImGui::TreePop();
     }
+  }
+  
+  void ScenePanelManager::SetSelectedEntity(Entity entity) {
+    selected_entity_ = entity;
   }
   
 } // namespace ikan
