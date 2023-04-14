@@ -12,10 +12,95 @@
 
 namespace YAML {
   
+  // yml converstions vec2
+  template<> struct convert<glm::vec2> {
+    static Node encode(const glm::vec2& rhs) {
+      Node node;
+      node.push_back(rhs.x);
+      node.push_back(rhs.y);
+      node.SetStyle(EmitterStyle::Flow);
+      return node;
+    }
+    
+    static bool decode(const Node& node, glm::vec2& rhs) {
+      if (!node.IsSequence() or node.size() != 2)
+        return false;
+      
+      rhs.x = node[0].as<float>();
+      rhs.y = node[1].as<float>();
+      return true;
+    }
+  };
+  
+  // yml converstions vec3
+  template<> struct convert<glm::vec3> {
+    static Node encode(const glm::vec3& rhs) {
+      Node node;
+      node.push_back(rhs.x);
+      node.push_back(rhs.y);
+      node.push_back(rhs.z);
+      node.SetStyle(EmitterStyle::Flow);
+      return node;
+    }
+    
+    static bool decode(const Node& node, glm::vec3& rhs) {
+      if (!node.IsSequence() or node.size() != 3)
+        return false;
+      
+      rhs.x = node[0].as<float>();
+      rhs.y = node[1].as<float>();
+      rhs.z = node[2].as<float>();
+      return true;
+    }
+  };
+  
+  // yml converstions
+  template<> struct convert<glm::vec4> {
+    static Node encode(const glm::vec4& rhs) {
+      Node node;
+      node.push_back(rhs.x);
+      node.push_back(rhs.y);
+      node.push_back(rhs.z);
+      node.push_back(rhs.w);
+      node.SetStyle(EmitterStyle::Flow);
+      return node;
+    }
+    
+    static bool decode(const Node& node, glm::vec4& rhs) {
+      if (!node.IsSequence() or node.size() != 4)
+        return false;
+      
+      rhs.x = node[0].as<float>();
+      rhs.y = node[1].as<float>();
+      rhs.z = node[2].as<float>();
+      rhs.w = node[3].as<float>();
+      return true;
+    }
+  };
+  
 } // namespace YAML
 
 
 namespace ikan {
+  
+  // yml << operator for glm vec 3
+  static YAML::Emitter& operator<<(YAML::Emitter& out, const glm::vec3& v) {
+    out << YAML::Flow;
+    out << YAML::BeginSeq << v.x << v.y << v.z << YAML::EndSeq;
+    return out;
+  }
+  // yml << operator for glm vec 2
+  static YAML::Emitter& operator<<(YAML::Emitter& out, const glm::vec2& v) {
+    out << YAML::Flow;
+    out << YAML::BeginSeq << v.x << v.y << YAML::EndSeq;
+    return out;
+  }
+  // yml << operator for glm vec 4
+  static YAML::Emitter& operator<<(YAML::Emitter& out, const glm::vec4& v) {
+    out << YAML::Flow;
+    out << YAML::BeginSeq << v.x << v.y << v.z << v.a << YAML::EndSeq;
+    return out;
+  }
   
   SceneSerializer::SceneSerializer(Scene* scene) : scene_(scene) { }
   SceneSerializer::~SceneSerializer() { }
@@ -43,6 +128,7 @@ namespace ikan {
       out << YAML::BeginMap; // Entity
       out << YAML::Key << "Entity" << YAML::Value << entity.GetUUID();
 
+      // ------------------------------------------------------------------------
       if (entity.HasComponent<TagComponent>()) {
         out << YAML::Key << "TagComponent";
         out << YAML::BeginMap; // TagComponent
@@ -52,6 +138,19 @@ namespace ikan {
         
         out << YAML::EndMap; // TagComponent
       } // Tag Component
+      
+      // ------------------------------------------------------------------------
+      if (entity.HasComponent<TransformComponent>()) {
+        out << YAML::Key << "TransformComponent";
+        out << YAML::BeginMap; // TransformComponent
+        
+        auto& tc = entity.GetComponent<TransformComponent>();
+        out << YAML::Key << "Translation" << YAML::Value << tc.Position();
+        out << YAML::Key << "Rotation" << YAML::Value << tc.Rotation();
+        out << YAML::Key << "Scale" << YAML::Value << tc.Scale();
+        
+        out << YAML::EndMap; // TransformComponent
+      }
       
       out << YAML::EndMap; // Entity
     } // // for (const auto& [uuid, entity] : scene_->entity_id_map_)
@@ -92,6 +191,22 @@ namespace ikan {
         IK_CORE_TRACE(LogModule::SceneSerializer, "  Deserialising Entity");
         IK_CORE_TRACE(LogModule::SceneSerializer, "  ID     {0}", uuid);
         IK_CORE_TRACE(LogModule::SceneSerializer, "  Name   {0}", name);
+        
+        // --------------------------------------------------------------------
+        auto transform_component = entity["TransformComponent"];
+        if (transform_component) {
+          // Entities always have transforms
+          auto& tc = deserialized_entity.GetComponent<TransformComponent>();
+          tc.UpdatePosition(transform_component["Translation"].as<glm::vec3>());
+          tc.UpdateRotation(transform_component["Rotation"].as<glm::vec3>());
+          tc.UpdateScale(transform_component["Scale"].as<glm::vec3>());
+          
+          IK_CORE_INFO(LogModule::SceneSerializer, "    Transform Component");
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Translation   | {0} | {1} | {2}", tc.Position().x, tc.Position().y, tc.Position().z);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Rotation      | {0} | {1} | {2}", tc.Rotation().x, tc.Rotation().y, tc.Rotation().z);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Scale         | {0} | {1} | {2}", tc.Scale().x, tc.Scale().y, tc.Scale().z);
+        } // if (transform_component)
+        
       } // for (auto entity : entities)
     } // if (entities)
     

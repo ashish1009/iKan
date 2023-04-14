@@ -55,6 +55,16 @@ namespace ikan {
     void UpdateRotation(Axis axis, float value) { UPDATE_TRANSFORM(rotation) }
     void UpdateScale(Axis axis, float value) { UPDATE_TRANSFORM(scale) }
 
+    void UpdatePosition(const glm::vec3& value) { position = value;
+      transform = Math::GetTransformMatrix(position, rotation, scale);
+    }
+    void UpdateRotation(const glm::vec3& value) { rotation = value;
+      transform = Math::GetTransformMatrix(position, rotation, scale);
+    }
+    void UpdateScale(const glm::vec3& value) { scale = value;
+      transform = Math::GetTransformMatrix(position, rotation, scale);
+    }
+
     void AddPosition(Axis axis, float value) { ADD_TRANSFORM(position) }
     void AddRotation(Axis axis, float value) { ADD_TRANSFORM(rotation) }
     void AddScale(Axis axis, float value) { ADD_TRANSFORM(scale) }
