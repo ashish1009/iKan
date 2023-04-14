@@ -126,9 +126,16 @@ namespace ikan {
   }
   
   void Scene::Render2DEntities(const glm::mat4& cam_view_proj_mat) {
-    Batch2DRenderer::BeginBatch(editor_camera_.GetViewProjection());
-    Batch2DRenderer::DrawQuad(glm::mat4(1.0f), {1, 1, 1, 1});
-    Batch2DRenderer::EndBatch();    
+    Batch2DRenderer::BeginBatch(cam_view_proj_mat);
+    
+    // Render All Quad Entities
+    auto quad_view = registry_.view<TransformComponent, QuadComponent>();
+    for (const auto& quad_entity : quad_view) {
+      const auto& [transform_component, quad_component] = quad_view.get<TransformComponent, QuadComponent>(quad_entity);
+      Batch2DRenderer::DrawQuad(transform_component.Transform(), {1, 1, 1, 1});
+    } // For each Quad Entity
+    
+    Batch2DRenderer::EndBatch();
   }
   
   void Scene::EventHandler(Event& event) {
