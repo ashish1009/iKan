@@ -102,5 +102,31 @@ namespace ikan {
         it->second[i].reset();
     }
   }
+  
+  TextureComponent::TextureComponent(const std::shared_ptr<Texture>& comp, bool use) : texture(comp), use(use) { }
+  TextureComponent::TextureComponent(const TextureComponent& other) : use(other.use) {
+    if (other.texture) texture = Renderer::GetTexture(other.texture->GetfilePath());
+    IK_CORE_INFO(LogModule::Texture, "Copying TextureComponent");
+  }
+  
+  TextureComponent::TextureComponent(TextureComponent&& other)
+  : texture(other.texture), use(other.use) {
+    if (other.texture) texture = Renderer::GetTexture(other.texture->GetfilePath());
+    IK_CORE_INFO(LogModule::Texture, "Moving TextureComponent");
+  }
+  
+  TextureComponent& TextureComponent::operator=(const TextureComponent& other) {
+    if (other.texture) texture = Renderer::GetTexture(other.texture->GetfilePath());
+    use = other.use;
+    IK_CORE_INFO(LogModule::Texture, "Copying TextureComponent (=operator)");
+    return *this;
+  }
+  
+  TextureComponent& TextureComponent::operator=(TextureComponent&& other) {
+    if (other.texture) texture = Renderer::GetTexture(other.texture->GetfilePath());
+    use = other.use;
+    IK_CORE_INFO(LogModule::Texture, "Moving TextureComponent (=operator)");
+    return *this;
+  }
 
 } // namespace ikan
