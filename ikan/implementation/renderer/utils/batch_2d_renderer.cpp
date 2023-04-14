@@ -487,18 +487,21 @@ namespace ikan {
   void Batch2DRenderer::DrawQuad(const glm::mat4& transform, const glm::vec4& color, int32_t object_id) {
     DrawTextureQuad(transform, nullptr, texture_coords_, 1.0f /* tiling factor */, color, object_id);
   }
-  
   void Batch2DRenderer::DrawQuad(const glm::vec3& position, const glm::vec3& scale, const glm::vec3& rotation,
                                  const glm::vec4& color, int32_t object_id) {
     auto transform  = Math::GetTransformMatrix(position, rotation, scale);
     DrawTextureQuad(transform, nullptr, texture_coords_, 1.0f /* tiling factor */, color, object_id);
   }
-  
   void Batch2DRenderer::DrawQuad(const glm::mat4& transform, const std::shared_ptr<Texture>& texture, const glm::vec4& tint_color,
                                  float tiling_factor, int32_t object_id) {
     DrawTextureQuad(transform, texture ? texture : nullptr, texture_coords_, tiling_factor, tint_color, object_id );
   }
-  
+  void Batch2DRenderer::DrawQuad(const glm::mat4& transform, const std::shared_ptr<SubTexture>& sub_texture, const glm::vec4& tint_color,
+                               int32_t object_id) {
+    const glm::vec2* texture_coords = sub_texture->GetTexCoord();
+    DrawTextureQuad(transform, (sub_texture) ? sub_texture->GetSpriteImage() : nullptr, (sub_texture) ? texture_coords : texture_coords_,
+                    1.0f, tint_color, object_id);
+  }
   
   void Batch2DRenderer::DrawTextureQuad(const glm::mat4& transform, const std::shared_ptr<Texture>& texture,
                                         const glm::vec2* texture_coords, float tiling_factor, const glm::vec4& tint_color, int32_t object_id) {

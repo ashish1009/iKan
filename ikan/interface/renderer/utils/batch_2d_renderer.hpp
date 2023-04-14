@@ -10,6 +10,7 @@
 namespace ikan {
   
   class Texture;
+  class SubTexture;
 
   class Batch2DRenderer {
   public:
@@ -64,7 +65,14 @@ namespace ikan {
     ///   - object_id: Pixel ID of Quad
     static void DrawQuad(const glm::mat4& transform, const std::shared_ptr<Texture>& texture, const glm::vec4& tint_color = glm::vec4(1.0f),
                          float tiling_factor = 1.0f, int32_t object_id = -1 );
-    
+    /// This function draws Quad with Subtexture sprite
+    /// - Parameters:
+    ///   - transform: Transformation matrix of Quad
+    ///   - sub_texture: Subtexture component
+    ///   - object_id: entity ID of Quad
+    static void DrawQuad(const glm::mat4& transform, const std::shared_ptr<SubTexture>& sub_texture, const glm::vec4& tint_color = glm::vec4(1.0f),
+                         int32_t object_id = -1);
+
     /// This function draws circle with color
     /// - Parameters:
     ///   - position: Center Circle
