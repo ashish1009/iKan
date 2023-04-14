@@ -3,6 +3,6 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: true
 Entities:
-  - Entity: 12648810820328453540
+  - Entity: 13094833668962902118
     TagComponent:
       Tag: Empty Entity

@@ -15,6 +15,8 @@
 
 namespace ikan {
   
+#define HAS_COMPONENT(Component) selected_entity_->HasComponent<Component>()
+  
   /// This function renders the components in property pannel. Takes the function pointer in argument
   /// - Parameters:
   ///   - name: name of the entity
@@ -163,6 +165,7 @@ namespace ikan {
       
       // Draw other components
       DrawComponent<TransformComponent>("Transform", *selected_entity_, [](auto& tc) { tc.RenderGui(); });
+      DrawComponent<QuadComponent>("Quad", *selected_entity_, [](auto& qc) { qc.RenderGui(); });
     }
 
     ImGui::PopID();
@@ -196,6 +199,11 @@ namespace ikan {
   }
   
   void ScenePanelManager::AddComponent() {
+    if (scene_context_->GetType() == Scene::_2D) {
+      AddComponentMenu<QuadComponent>("Quad", !HAS_COMPONENT(QuadComponent));
+    }
+    else if (scene_context_->GetType() == Scene::_3D) {
+    }
   }
   
   void ScenePanelManager::SetSelectedEntity(Entity* entity) {

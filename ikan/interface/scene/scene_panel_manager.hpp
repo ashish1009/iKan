@@ -54,6 +54,18 @@ namespace ikan {
     /// - Parameter entity_id: entity id from scene registry
     void DrawEntityTreeNode(entt::entity entity_id);
 
+    template <typename T, typename... Args>
+    /// This function create menu for add component
+    /// - Parameters:
+    ///   - menu_item: menu name
+    ///   - exclusive_func: exclusing function
+    void AddComponentMenu(const std::string& menu_item, bool exclusive = false, Args&&... args) {
+      if (ImGui::MenuItem(menu_item.c_str(), nullptr /* Shortcut */, false /* Selected */, exclusive)) {
+        selected_entity_->AddComponent<T>(std::forward<Args>(args)...);
+        ImGui::CloseCurrentPopup();
+      }
+    }
+
     // Member Variables
     Scene* scene_context_;
     Setting setting_;
