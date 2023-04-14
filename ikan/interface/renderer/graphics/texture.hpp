@@ -167,6 +167,7 @@ namespace ikan {
   /// This structure holds the texture component with use flag
   struct TextureComponent {
     bool use = false;
+    float tiling_factor = 1.0f;
     std::shared_ptr<Texture> texture = nullptr;
     
     TextureComponent(const std::shared_ptr<Texture>& tex = nullptr, bool use = true);
@@ -175,6 +176,17 @@ namespace ikan {
   
   /// This structure holds the property of sprite component (Sub Texture)
   struct SpriteComponent : public TextureComponent {
+    bool use_sub_texture = false;
+    bool linear_edge = true;
+    std::shared_ptr<SubTexture> sub_texture = nullptr;
+    
+    SpriteComponent(const std::shared_ptr<Texture>& comp = nullptr, bool use = true);
+    DEFINE_COPY_MOVE_CONSTRUCTORS(SpriteComponent)
+    
+  private:
+    /// This function loads the textrue and sprite again
+    /// - Parameter other: component
+    void LoadTexture(const SpriteComponent& other);
   };
   
 } // namespace ikan

@@ -103,14 +103,13 @@ namespace ikan {
     }
   }
   
-  TextureComponent::TextureComponent(const std::shared_ptr<Texture>& comp, bool use) : texture(comp), use(use) { }
-  TextureComponent::TextureComponent(const TextureComponent& other) : use(other.use) {
+  TextureComponent::TextureComponent(const std::shared_ptr<Texture>& comp, bool use) : use(use), texture(comp) { }
+  TextureComponent::TextureComponent(const TextureComponent& other) : use(other.use), tiling_factor(other.tiling_factor) {
     if (other.texture) texture = Renderer::GetTexture(other.texture->GetfilePath());
     IK_CORE_INFO(LogModule::Texture, "Copying TextureComponent");
   }
   
-  TextureComponent::TextureComponent(TextureComponent&& other)
-  : texture(other.texture), use(other.use) {
+  TextureComponent::TextureComponent(TextureComponent&& other) : use(other.use), tiling_factor(other.tiling_factor) {
     if (other.texture) texture = Renderer::GetTexture(other.texture->GetfilePath());
     IK_CORE_INFO(LogModule::Texture, "Moving TextureComponent");
   }
@@ -118,6 +117,7 @@ namespace ikan {
   TextureComponent& TextureComponent::operator=(const TextureComponent& other) {
     if (other.texture) texture = Renderer::GetTexture(other.texture->GetfilePath());
     use = other.use;
+    tiling_factor = other.tiling_factor;
     IK_CORE_INFO(LogModule::Texture, "Copying TextureComponent (=operator)");
     return *this;
   }
@@ -125,8 +125,64 @@ namespace ikan {
   TextureComponent& TextureComponent::operator=(TextureComponent&& other) {
     if (other.texture) texture = Renderer::GetTexture(other.texture->GetfilePath());
     use = other.use;
+    tiling_factor = other.tiling_factor;
     IK_CORE_INFO(LogModule::Texture, "Moving TextureComponent (=operator)");
     return *this;
+  }
+  
+  SpriteComponent::SpriteComponent(const std::shared_ptr<Texture>& tex, bool use_tex) {
+    IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent");
+    if (texture) sub_texture = SubTexture::CreateFromCoords(texture, {0.0f, 0.0f});
+    use = use_tex;
+    texture = tex;
+  }
+  
+  SpriteComponent::SpriteComponent(const SpriteComponent& other)
+  : linear_edge(other.linear_edge), use_sub_texture(other.use_sub_texture) {
+    use = other.use;
+    LoadTexture(other);
+    IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent");
+  }
+  
+  SpriteComponent::SpriteComponent(SpriteComponent&& other)
+  : linear_edge(other.linear_edge), use_sub_texture(other.use_sub_texture) {
+    use = other.use;
+    IK_CORE_TRACE(LogModule::Texture, "Moving TextureComponent");
+    LoadTexture(other);
+  }
+  
+  SpriteComponent& SpriteComponent::operator=(const SpriteComponent& other) {
+    use = other.use;
+    linear_edge = other.linear_edge;
+    use_sub_texture = other.use_sub_texture;
+    LoadTexture(other);
+    
+    IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent (=operator)");
+    return *this;
+  }
+  
+  SpriteComponent& SpriteComponent::operator=(SpriteComponent&& other) {
+    use = other.use;
+    linear_edge = other.linear_edge;
+    use_sub_texture = other.use_sub_texture;
+    LoadTexture(other);
+    
+    IK_CORE_TRACE(LogModule::Texture, "Moving TextureComponent (=operator)");
+    return *this;
+  }
+
+  void SpriteComponent::LoadTexture(const SpriteComponent& other) {
+    texture = nullptr;
+    sub_texture = nullptr;
+
+    if (other.texture) {
+      texture = Renderer::GetTexture(other.texture->GetfilePath(), other.linear_edge);
+      if (other.sub_texture) {
+        sub_texture = SubTexture::CreateFromCoords(texture, other.sub_texture->GetCoords(),
+                                                   other.sub_texture->GetSpriteSize(),
+                                                   other.sub_texture->GetCellSize());
+      }
+    }
   }
 
 } // namespace ikan
