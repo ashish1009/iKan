@@ -164,4 +164,12 @@ namespace ikan {
     friend class Renderer;
   };
   
+  /// This structure holds the texture component with use flag
+  struct TextureComponent {
+  };
+  
+  /// This structure holds the property of sprite component (Sub Texture)
+  struct SpriteComponent : public TextureComponent {
+  };
+  
 } // namespace ikan

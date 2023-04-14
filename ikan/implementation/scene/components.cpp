@@ -64,9 +64,7 @@ namespace ikan {
     quaternion = glm::quat(rotation);
     COMP_LOG("Creating Transform Component");
   }
-  TransformComponent::~TransformComponent() {
-    COMP_LOG("Destroying Transform Component");
-  }
+  TransformComponent::~TransformComponent() { COMP_LOG("Destroying Transform Component"); }
   TransformComponent::TransformComponent(const TransformComponent& other)
   : position(other.Position()), scale(other.Scale()), rotation(other.Rotation()) {
     COMP_COPY_LOG("Copying Transform Component");
@@ -102,7 +100,6 @@ namespace ikan {
     if (PropertyGrid::Float3("Translation", position, nullptr, 0.25f, 0.0f, MIN_FLT, MAX_FLT, 80.0f)) {
       transform = Math::GetTransformMatrix(position, rotation, scale);
     }
-    
     glm::vec3 rotation_in_degree = glm::degrees(rotation);
     if (PropertyGrid::Float3("Rotation", rotation_in_degree, nullptr, 0.25f, 0.0f, MIN_FLT, MAX_FLT, 80.0f)) {
       rotation = glm::radians(rotation_in_degree);
@@ -115,4 +112,32 @@ namespace ikan {
     ImGui::Separator();
   }
 
+  // -------------------------------------------------------------------------
+  // Quad Component
+  // -------------------------------------------------------------------------
+  QuadComponent::QuadComponent() { COMP_LOG("Creating Quad Component"); }
+  QuadComponent::~QuadComponent() { COMP_LOG("Destroying Quad Component"); }
+  QuadComponent::QuadComponent(const QuadComponent& other) : color(other.color) {
+    COMP_COPY_LOG("Copying Quad Component");
+    sprite = other.sprite;
+  }
+  QuadComponent::QuadComponent(QuadComponent&& other) : color(other.color) {
+    COMP_COPY_LOG("Moving Quad Component");
+    sprite = other.sprite;
+  }
+  QuadComponent& QuadComponent::operator=(const QuadComponent& other) {
+    COMP_COPY_LOG("Copying Quad Component with = operator");
+    color = other.color;
+    sprite = other.sprite;
+    return *this;
+  }
+  QuadComponent& QuadComponent::operator=(QuadComponent&& other) {
+    COMP_COPY_LOG("Moving Quad Component with = operator");
+    color = other.color;
+    sprite = other.sprite;
+    return *this;
+  }
+  void QuadComponent::RenderGui() {
+  }
+  
 } // namespace ikan

@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "renderer/graphics/texture.hpp"
+
 namespace ikan {
   
 #define UPDATE_TRANSFORM(param) \
@@ -58,7 +60,6 @@ namespace ikan {
     void AddScale(Axis axis, float value) { ADD_TRANSFORM(scale) }
 
     void RenderGui();
-
     TransformComponent();
     ~TransformComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(TransformComponent);
@@ -69,15 +70,25 @@ namespace ikan {
     glm::vec3 position{0.0f}, rotation{0.0f}, scale{1.0f};
   };
   
+  struct QuadComponent {
+    SpriteComponent sprite;
+    glm::vec4 color{1.0f};
+    
+    void RenderGui();
+    QuadComponent();
+    ~QuadComponent();
+    DEFINE_COPY_MOVE_CONSTRUCTORS(QuadComponent);
+  };
+  
   template<typename... Component>
   struct ComponentGroup {
   };
   
-#define ALL_COPY_COMPONENTS IDComponent, TagComponent
+#define ALL_COPY_COMPONENTS TransformComponent
 
   // Stores all the components present in Engine
   using AllComponents =
-  ComponentGroup<ALL_COPY_COMPONENTS>;
+  ComponentGroup<IDComponent, TagComponent, ALL_COPY_COMPONENTS>;
   
   // Stores the components that need to be copied
   using AllCopyComponents =
