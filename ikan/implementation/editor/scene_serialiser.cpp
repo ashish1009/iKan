@@ -152,6 +152,30 @@ namespace ikan {
         out << YAML::EndMap; // TransformComponent
       }
       
+      // ------------------------------------------------------------------------
+      if (entity.HasComponent<QuadComponent>()) {
+        out << YAML::Key << "QuadComponent";
+        out << YAML::BeginMap; // QuadComponent
+        
+        auto& qc = entity.GetComponent<QuadComponent>();
+        out << YAML::Key << "Texture_Use" << YAML::Value << qc.sprite.use;
+        out << YAML::Key << "Sprite_Use" << YAML::Value << qc.sprite.use_sub_texture;
+        out << YAML::Key << "Linear_Edge" << YAML::Value << qc.sprite.linear_edge;
+        
+        if (qc.sprite.texture) {
+          out << YAML::Key << "Texture_Path" << YAML::Value << qc.sprite.texture->GetfilePath();
+          out << YAML::Key << "Coords" << YAML::Value << qc.sprite.sub_texture->GetCoords();
+          out << YAML::Key << "Sprite_Size" << YAML::Value << qc.sprite.sub_texture->GetSpriteSize();
+          out << YAML::Key << "Cell_Size" << YAML::Value << qc.sprite.sub_texture->GetCellSize();
+        }
+        else {
+          out << YAML::Key << "Texture_Path" << YAML::Value << "";
+        }
+        out << YAML::Key << "Texture_TilingFactor" << YAML::Value << qc.sprite.tiling_factor;
+        out << YAML::Key << "Color" << YAML::Value << qc.color;
+        
+        out << YAML::EndMap; // QuadComponent
+      }
       out << YAML::EndMap; // Entity
     } // // for (const auto& [uuid, entity] : scene_->entity_id_map_)
     
@@ -207,6 +231,39 @@ namespace ikan {
           IK_CORE_INFO(LogModule::SceneSerializer, "      Scale         | {0} | {1} | {2}", tc.Scale().x, tc.Scale().y, tc.Scale().z);
         } // if (transform_component)
         
+        // --------------------------------------------------------------------
+        auto quad_component = entity["QuadComponent"];
+        if (quad_component) {
+          auto& qc = deserialized_entity.AddComponent<QuadComponent>();
+          
+          qc.sprite.use = quad_component["Texture_Use"].as<bool>();
+          qc.sprite.use_sub_texture = quad_component["Sprite_Use"].as<bool>();
+          qc.sprite.linear_edge = quad_component["Linear_Edge"].as<bool>();
+          
+          std::string texture_path = quad_component["Texture_Path"].as<std::string>();
+          if (texture_path != "") {
+            qc.sprite.texture = Renderer::GetTexture(texture_path, qc.sprite.linear_edge);
+            
+            const glm::vec2& coords = quad_component["Coords"].as<glm::vec2>();
+            const glm::vec2& sprite_size = quad_component["Sprite_Size"].as<glm::vec2>();
+            const glm::vec2& cell_size = quad_component["Cell_Size"].as<glm::vec2>();
+            qc.sprite.sub_texture = SubTexture::CreateFromCoords(qc.sprite.texture, coords, sprite_size, cell_size);
+          }
+          
+          qc.sprite.tiling_factor = quad_component["Texture_TilingFactor"].as<float>();
+          qc.color = quad_component["Color"].as<glm::vec4>();
+          
+          IK_CORE_INFO(LogModule::SceneSerializer, "    Quad Component");
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Texture");
+          IK_CORE_INFO(LogModule::SceneSerializer, "        Use             | {0}", qc.sprite.use);
+          if (qc.sprite.texture)
+            IK_CORE_INFO(LogModule::SceneSerializer, "        Path            | {0}", qc.sprite.texture->GetfilePath());
+          else
+            IK_CORE_INFO(LogModule::SceneSerializer, "        No Texture      ");
+          IK_CORE_INFO(LogModule::SceneSerializer, "        Tiling Factor   | {0}", qc.sprite.tiling_factor);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Color | {0} | {1} | {2}", qc.color.x, qc.color.y, qc.color.z);
+          
+        } // if (quad_component)
       } // for (auto entity : entities)
     } // if (entities)
     
