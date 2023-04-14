@@ -211,7 +211,7 @@ namespace kreator {
   void RendererLayer::ShowMenu() {
     if (ImGui::BeginMenuBar()) {
       ImguiAPI::Menu("File", true, [this]() {
-        ImguiAPI::Menu("Scene", false, [this]() {
+        ImguiAPI::Menu("Scene", true, [this]() {
           if (ImGui::MenuItem("New", "Cmd + N"))    NewScene();
           if (ImGui::MenuItem("Close", "Cmd + X"))  CloseScene();
         }); // Scene
@@ -297,7 +297,7 @@ namespace kreator {
   void RendererLayer::SceneStateButton() {
     // Texture for Play and Pause button
     static std::shared_ptr<Texture> pause_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/pause.png"));
-    static std::shared_ptr<Texture> play_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/play.png"));
+    static std::shared_ptr<Texture> play_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/simulate.png"));
     static std::shared_ptr<Texture> stop_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/stop.png"));
     
     // Play Pause Buttom

@@ -62,6 +62,9 @@ namespace kreator {
     /// - Parameter event: Event (Base class) intance. Dispatch event from Event Dispatcher
     void HandleEvents(Event& event) override;
     
+    /// This function returns the playing state of game
+    bool IsPlaying() const { return is_playing_; }
+    
   private:
     /// This function renders the scene data
     void RenderScene(Timestep ts);
