@@ -36,7 +36,7 @@ namespace kreator {
         GameType current_type = current_game_type_;
         GameType new_type = GameType(PropertyGrid::ComboDrop("Kreator Game Type", { "Editor" , "Mario" }, (uint32_t)current_type,
                                                              3 * ImGui::GetWindowContentRegionMax().x / 5));
-        if (new_type != current_type) {
+        if (new_type != current_game_type_) {
           current_game_type_ = new_type;
           change_game_ = true;
         }
@@ -52,14 +52,14 @@ namespace kreator {
       // Create the instance of applciaiton based on the type of suppored applucaiton
       switch (current_game_type_) {
         case GameType::Mario :
+          specification_.window_specification.title = "Ikan Mario";
           specification_.client_asset_path = "../../../kreator/mario/assets/";
           specification_.save_ini_file_path = "../../../kreator/mario/ini/mario.ini";
-          specification_.window_specification.title = "Ikan Mario";
           break;
         case GameType::Editor :
+          specification_.window_specification.title = "Kreator";
           specification_.client_asset_path = "../../../kreator/editor/assets/";
           specification_.save_ini_file_path = "../../../kreator/editor/ini/editor.ini";
-          specification_.window_specification.title = "Kreator";
           break;
           
         default:
