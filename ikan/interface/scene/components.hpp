@@ -8,6 +8,7 @@
 #pragma once
 
 #include "renderer/graphics/texture.hpp"
+#include "camera/scene_camera.hpp"
 
 namespace ikan {
   
@@ -80,6 +81,16 @@ namespace ikan {
     glm::vec3 position{0.0f}, rotation{0.0f}, scale{1.0f};
   };
   
+  struct CameraComponent {
+    bool is_fixed_aspect_ratio = false;
+    bool is_primary = false;
+    std::shared_ptr<SceneCamera> camera;
+    
+    void RenderGui();
+    CameraComponent(SceneCamera::ProjectionType proj_type = SceneCamera::ProjectionType::Orthographic);
+    DEFINE_COPY_MOVE_CONSTRUCTORS(CameraComponent);
+  };
+
   struct QuadComponent {
     SpriteComponent sprite;
     glm::vec4 color{1.0f};
@@ -94,7 +105,7 @@ namespace ikan {
   struct ComponentGroup {
   };
   
-#define ALL_COPY_COMPONENTS TransformComponent, QuadComponent
+#define ALL_COPY_COMPONENTS TransformComponent, QuadComponent, CameraComponent
 
   // Stores all the components present in Engine
   using AllComponents =

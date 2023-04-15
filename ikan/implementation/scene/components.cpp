@@ -111,6 +111,59 @@ namespace ikan {
     }
     ImGui::Separator();
   }
+  
+  // -------------------------------------------------------------------------
+  // Camera Component
+  // -------------------------------------------------------------------------
+  CameraComponent::CameraComponent(SceneCamera::ProjectionType proj_type) {
+    COMP_LOG("Creating Camera Component");
+    camera = std::make_shared<SceneCamera>(proj_type);
+  }
+  CameraComponent::CameraComponent(const CameraComponent& other)
+  : is_primary(other.is_primary), is_fixed_aspect_ratio(other.is_fixed_aspect_ratio) {
+    COMP_COPY_LOG("Copying Camera Component");
+    camera = std::make_shared<SceneCamera>();
+    *(camera.get()) = *(other.camera.get());
+  }
+  CameraComponent::CameraComponent(CameraComponent&& other)
+  : is_primary(other.is_primary), is_fixed_aspect_ratio(other.is_fixed_aspect_ratio) {
+    COMP_COPY_LOG("Moving Camera Component");
+    camera = std::make_shared<SceneCamera>();
+    *(camera.get()) = *(other.camera.get());
+  }
+  CameraComponent& CameraComponent::operator=(const CameraComponent& other) {
+    COMP_COPY_LOG("Copying Camera Component with = operator");
+    is_primary = other.is_primary;
+    is_fixed_aspect_ratio = other.is_fixed_aspect_ratio;
+    camera = std::make_shared<SceneCamera>();
+    *(camera.get()) = *(other.camera.get());
+    return *this;
+  }
+  CameraComponent& CameraComponent::operator=(CameraComponent&& other) {
+    COMP_COPY_LOG("Moving Camera Component with = operator");
+    is_primary = other.is_primary;
+    is_fixed_aspect_ratio = other.is_fixed_aspect_ratio;
+    camera = std::make_shared<SceneCamera>();
+    *(camera.get()) = *(other.camera.get());
+    camera = std::move(other.camera);
+    return *this;
+  }
+  void CameraComponent::RenderGui() {
+    auto column_width = ImGui::GetWindowContentRegionMax().x / 2;
+    ImGui::Columns(2);
+    
+    ImGui::SetColumnWidth(0, column_width);
+    ImGui::Checkbox("Primary", &is_primary); ImGui::SameLine();
+    
+    ImGui::NextColumn();
+    ImGui::SetColumnWidth(1, column_width);
+    ImGui::Checkbox("Fixed Aspect Ratio", &is_fixed_aspect_ratio);
+    
+    ImGui::Columns(1);
+    
+    camera->RenderGui();
+    ImGui::Separator();
+  }
 
   // -------------------------------------------------------------------------
   // Quad Component
