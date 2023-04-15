@@ -165,6 +165,7 @@ namespace ikan {
       
       // Draw other components
       DrawComponent<TransformComponent>("Transform", *selected_entity_, [](auto& tc) { tc.RenderGui(); });
+      DrawComponent<CameraComponent>("Camera", *selected_entity_, [](auto& cc) { cc.RenderGui(); });
       DrawComponent<QuadComponent>("Quad", *selected_entity_, [](auto& qc) { qc.RenderGui(); });
     }
 
@@ -195,9 +196,14 @@ namespace ikan {
       if (ImGui::MenuItem("Empty Entity")) {
         SetSelectedEntity(&scene_context_->CreateEntity("Empty Entity"));
       }
-      
       ImGui::Separator();
+      if (ImGui::MenuItem("Camera")) {
+        SetSelectedEntity(&scene_context_->CreateEntity("Camera"));
+        selected_entity_->AddComponent<CameraComponent>();
+      }
+
       if (scene_context_->GetType() == Scene::_2D) {
+        ImGui::Separator();
         ImguiAPI::Menu("2D Entity", true, [this](){
           if (ImGui::MenuItem("Quad")) {
             SetSelectedEntity(&scene_context_->CreateEntity("Quad"));
@@ -211,6 +217,7 @@ namespace ikan {
   void ScenePanelManager::AddComponent() {
     if (scene_context_->GetType() == Scene::_2D) {
       AddComponentMenu<QuadComponent>("Quad", !HAS_COMPONENT(QuadComponent));
+      AddComponentMenu<QuadComponent>("Camera", !HAS_COMPONENT(CameraComponent));
     }
     else if (scene_context_->GetType() == Scene::_3D) {
     }
