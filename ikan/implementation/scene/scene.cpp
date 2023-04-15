@@ -185,6 +185,9 @@ namespace ikan {
       else if (type_ == _3D) {
       }
     }
+    else {
+      UpdateRuntime(ts);
+    }
   }
   
   void Scene::UpdateRuntime(Timestep ts) {

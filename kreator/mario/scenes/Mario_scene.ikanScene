@@ -3,7 +3,7 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
-  - Entity: 14263527464705861078
+  - Entity: 2006004470497900375
     TagComponent:
       Tag: Camera
     TransformComponent:
@@ -18,20 +18,17 @@ Entities:
       OrthographicSize: 10
       Near: -1
       Far: 1
-  - Entity: 13094833668962902118
+  - Entity: 17039513187255470450
     TagComponent:
       Tag: Quad
     TransformComponent:
-      Translation: [-2.5, 0, 0]
+      Translation: [0, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
       Texture_Use: true
       Sprite_Use: false
       Linear_Edge: true
-      Texture_Path: ../../../ikan/core_assets/textures/icons/plus.png
-      Coords: [0, 0]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
+      Texture_Path: ""
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]

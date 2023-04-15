@@ -40,7 +40,9 @@ namespace ikan {
     Scene* GetContext() { return scene_context_; }
     /// This function returns the reference of setting
     Setting& GetSetting() { return setting_; }
-    
+    /// This Function update the selected entity of scene
+    Entity* GetSelectedEntity() { return selected_entity_; }
+
     DELETE_COPY_MOVE_CONSTRUCTORS(ScenePanelManager)
     
   private:
