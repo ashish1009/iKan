@@ -11,11 +11,25 @@
 #include "core/utils/time_step.h"
 #include "core/events/event.h"
 #include "camera/editor_camera.hpp"
+#include "camera/scene_camera.hpp"
 
 namespace ikan {
   
   class Entity;
-  
+  struct TransformComponent;
+
+  struct SceneCameraData {
+    SceneCamera* scene_camera = nullptr;
+    glm::vec3 position;
+    glm::mat4 transform_matrix;
+    
+    // TODO: For debugging only
+    TransformComponent* transform_comp;
+    
+    SceneCameraData() = default;
+    DELETE_COPY_MOVE_CONSTRUCTORS(SceneCameraData);
+  };
+
   class Scene {
   public:
     enum State : uint8_t {
@@ -87,6 +101,8 @@ namespace ikan {
     const EditorCamera& GetEditorCamera() const { return editor_camera_; };
     /// This function returns the setting reference to change the setting
     Setting& GetSetting() { return setting_; };
+    /// This function returns the primary camera data
+    const SceneCameraData& GetPrimaryCameraData() const { return primary_camera_data_; }
 
     /// This function create new scene copy the scene data from argument
     /// - Parameter other: copy scene
@@ -121,6 +137,9 @@ namespace ikan {
     /// - Parameter came_view_proj_mat: camera view projection matrix
     void Render2DEntities(const glm::mat4& came_view_proj_mat);
 
+    /// This function updates the primary camera data
+    void UpdatePrimaryCameraData();
+
     // Member Variables
     std::string file_path_ = "Unsaved_Scene", name_ = "Unsaved_Scene";
     
@@ -133,7 +152,8 @@ namespace ikan {
 
     State state_ = State::Edit;
     Type type_ = Type::_2D;
-    
+    SceneCameraData primary_camera_data_;
+
     EditorCamera editor_camera_;
 
     Setting setting_;

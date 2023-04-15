@@ -163,7 +163,7 @@ namespace ikan {
     
     camera->RenderGui();
     ImGui::Separator();
-  }w
+  }
 
   // -------------------------------------------------------------------------
   // Quad Component

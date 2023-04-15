@@ -102,6 +102,8 @@ namespace ikan {
   }
   
   void Scene::Update(Timestep ts) {
+    UpdatePrimaryCameraData();
+
     if (IsEditing()) {
       UpdateEditor(ts);
     }
@@ -123,6 +125,13 @@ namespace ikan {
   }
   
   void Scene::UpdateRuntime(Timestep ts) {
+    if (primary_camera_data_.scene_camera) {
+      if (type_ == _2D) {
+        Render2DEntities(primary_camera_data_.scene_camera->GetProjection() * glm::inverse(primary_camera_data_.transform_matrix));
+      }
+      else if (type_ == _3D) {
+      }
+    }
   }
   
   void Scene::Render2DEntities(const glm::mat4& cam_view_proj_mat) {
@@ -209,6 +218,22 @@ namespace ikan {
     if (type_ == _2D) {
       setting_.use_editor_camera = false;
     }
+  }
+  
+  void Scene::UpdatePrimaryCameraData() {
+    auto camera_view = registry_.view<TransformComponent, CameraComponent>();
+    for (auto& camera_entity : camera_view) {
+      const auto& [transform_component, camera_component] = camera_view.get<TransformComponent, CameraComponent>(camera_entity);
+      if (camera_component.is_primary) {
+        primary_camera_data_.scene_camera = camera_component.camera.get();
+        primary_camera_data_.position = transform_component.Position();
+        primary_camera_data_.transform_matrix = transform_component.Transform();
+        
+        primary_camera_data_.transform_comp = &transform_component;
+        return;
+      }
+    }
+    primary_camera_data_.scene_camera = nullptr;
   }
 
 } // namespace ikan
