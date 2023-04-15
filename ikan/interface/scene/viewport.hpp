@@ -11,6 +11,9 @@
 
 namespace ikan {
   
+  class Entity;
+  class Scene;
+
   struct Viewport {
     bool focused = false;
     bool hovered = false;
@@ -26,6 +29,9 @@ namespace ikan {
 
     std::shared_ptr<FrameBuffer> framebuffer;
 
+    int32_t hovered_entity_id_ = -1; // Entity and ID hovered by mouse position
+    Entity* hovered_entity_ = nullptr; // Entity Handler to store Viewport
+
     Viewport(const glm::vec4& fb_color = glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));
     /// This function render the viewport information in gui
     /// - Parameter is_open: flag to show or hide the widget
@@ -36,6 +42,11 @@ namespace ikan {
     void UpdateBound();
     /// This function returns true if viewport size is not same as framebuffer
     bool IsFramebufferResized();
+    /// This function updates the hoved entity
+    /// - Parameters:
+    ///   - current_selected_entity: current selected entity pointer
+    ///   - scene: scene
+    void UpdateHoveredEntity(Entity* current_selected_entity, Scene* scene);
 
     DELETE_COPY_MOVE_CONSTRUCTORS(Viewport);
   };

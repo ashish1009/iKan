@@ -165,7 +165,7 @@ namespace ikan {
     friend class Renderer;
   };
   
-  static bool LoadTextureIcon(std::shared_ptr<Texture>& texture) {
+  static inline bool LoadTextureIcon(std::shared_ptr<Texture>& texture) {
     bool texture_changed = false;
 
     static std::shared_ptr<Texture> no_texture = Renderer::GetTexture(DM::CoreAsset("textures/default/no_texture.png"));

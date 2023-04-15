@@ -8,6 +8,9 @@
 #include "viewport.hpp"
 #include "imgui_api.hpp"
 #include "property_grid.hpp"
+#include "scene.hpp"
+#include "core_entity.hpp"
+#include <ImGuizmo.h>
 
 namespace ikan {
   
@@ -49,15 +52,34 @@ namespace ikan {
     const FrameBuffer::Specification& spec = framebuffer->GetSpecification();
     return width > 0 and height > 0 and (spec.width != width or spec.height != height);
   }
+  
+  void Viewport::UpdateHoveredEntity(Entity* current_selected_entity, Scene* scene) {
+    if (!hovered) {
+      hovered_entity_ = nullptr;
+      return;
+    }
+    
+    if (ImGuizmo::IsOver()) {
+      hovered_entity_ = current_selected_entity;
+      return;
+    }
+    
+    // Get pixel from rednerer
+    Renderer::GetEntityIdFromPixels(mouse_pos_x, mouse_pos_y, framebuffer->GetPixelIdIndex(), hovered_entity_id_);
+    
+    if (scene) {
+      hovered_entity_ = (hovered_entity_id_ > (int32_t)scene->GetMaxEntityId()) ? nullptr : scene->GetEnitityFromId(hovered_entity_id_);
+    }
+  }
 
   void Viewport::RenderGui(bool *is_open) {
     CHECK_WIDGET_FLAG(is_open);
 
     ImGui::Begin("Viewport Data", is_open);
-    ImGui::SetNextWindowContentSize(ImVec2(390.0f, 0.0f));
+    ImGui::SetNextWindowContentSize(ImVec2(640.0f, 0.0f));
     ImGui::BeginChild("##RendererStats", ImVec2(0, ImGui::GetFontSize() * 2), false, ImGuiWindowFlags_HorizontalScrollbar);
 
-    ImGui::Columns(5);
+    ImGui::Columns(8);
 
     ImGui::SetColumnWidth(0, 90);
     ImGui::Text("%d x %d", mouse_pos_x, mouse_pos_y);
@@ -79,7 +101,29 @@ namespace ikan {
     PropertyGrid::HoveredMsg("Viewport Size");
     ImGui::NextColumn();
 
-    ImGui::SetColumnWidth(4, 30);
+    ImGui::SetColumnWidth(4, 100);
+    ImGui::Text("%d", (int32_t)(hovered_entity_id_));
+    ImGui::NextColumn();
+    
+    if (hovered_entity_) {
+      std::string entity_name = hovered_entity_->GetComponent<TagComponent>().tag;
+      ImGui::SetColumnWidth(5, 50);
+      ImGui::Text("%d", (uint32_t)(*hovered_entity_));
+      ImGui::NextColumn();
+      
+      ImGui::SetColumnWidth(6, 100);
+      ImGui::Text("%s ", entity_name.c_str());
+      ImGui::NextColumn();
+    }
+    else {
+      ImGui::SetColumnWidth(5, 50);
+      ImGui::NextColumn();
+      
+      ImGui::SetColumnWidth(6, 50);
+      ImGui::NextColumn();
+    }
+
+    ImGui::SetColumnWidth(7, 50);
     auto color = framebuffer->GetSpecification().color;
     if (ImGui::ColorEdit4("", &color.x, ImGuiColorEditFlags_NoInputs)) {
       framebuffer->UpdateSpecificationColor(color);
