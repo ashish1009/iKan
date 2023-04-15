@@ -195,6 +195,16 @@ namespace ikan {
       if (ImGui::MenuItem("Empty Entity")) {
         SetSelectedEntity(&scene_context_->CreateEntity("Empty Entity"));
       }
+      
+      ImGui::Separator();
+      if (scene_context_->GetType() == Scene::_2D) {
+        ImguiAPI::Menu("2D Entity", true, [this](){
+          if (ImGui::MenuItem("Quad")) {
+            SetSelectedEntity(&scene_context_->CreateEntity("Quad"));
+            selected_entity_->AddComponent<QuadComponent>();
+          }
+        });
+      }
     });
   }
   

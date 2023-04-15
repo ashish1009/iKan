@@ -47,10 +47,10 @@ namespace kreator {
     ImguiAPI::SetGreyThemeColors();
     
     const std::string& saved_scene = game_data_->SavedScene();
-    if (StringUtils::GetExtensionFromFilePath(saved_scene) != saved_scene_extension_ or !OpenScene(saved_scene))
-      NewScene(game_data_->GetScenePath() + "/NewScene" + saved_scene_extension_);
-    
-    active_scene_->SetType(Scene::_3D);
+    if (StringUtils::GetExtensionFromFilePath(saved_scene) != saved_scene_extension_ or !OpenScene(saved_scene)) {
+      NewScene(game_data_->GetScenePath() + "/NewScene" + saved_scene_extension_); 
+      active_scene_->SetType(Scene::_3D);
+    }
   }
   
   void RendererLayer::Detach() {
