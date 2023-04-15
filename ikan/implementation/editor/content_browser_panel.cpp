@@ -18,12 +18,25 @@ namespace ikan {
   static constexpr float window_y_offset_  = 55.0f;
   static constexpr glm::vec2 icon_size_ = {18.0f, 18.0f};
   
-  ContentBrowserPanel::ContentBrowserPanel(const std::string& root_path, const std::vector<std::filesystem::path>& favourite_paths)
-  : root_path_(root_path), current_directory_(root_path) {
+  /// This function removes the last slash from the directory if present
+  /// - Parameter path: Directoruy path
+  std::string RemoveLastSlash(const std::string& path) {
+    std::string path_without_slash = path;
+    if (path.at(path.length() - 1) == '/') {
+      path_without_slash = path.substr(0, path.length() - 1);
+    }
+    return path_without_slash;
+  }
+  
+  ContentBrowserPanel::ContentBrowserPanel(const std::string& root_path, const std::vector<std::filesystem::path>& favourite_paths) {
+    root_path_ = RemoveLastSlash(root_path);
+    current_directory_ = RemoveLastSlash(root_path);
+
     // Add Pinned Paths
     favourite_paths_.emplace_back(DM::WorkspacePath("ikan/core_assets"));
-    for (const auto& path : favourite_paths)
-      favourite_paths_.emplace_back(path);
+    for (const auto& path : favourite_paths) {
+      favourite_paths_.emplace_back(RemoveLastSlash(path));
+    }
 
     IK_CORE_TRACE(LogModule::ContentBrowserPanel, "Creating Content Browser Panel ... ");
     IK_CORE_TRACE(LogModule::ContentBrowserPanel, "  Root Path {0}", root_path_.string());
@@ -35,13 +48,13 @@ namespace ikan {
   }
   
   void ContentBrowserPanel::SetRootPath(const std::string& root_path) {
-    root_path_ = root_path;
-    current_directory_ = root_path;
+    root_path_ = RemoveLastSlash(root_path);
+    current_directory_ = RemoveLastSlash(root_path);
   }
   
   void ContentBrowserPanel::AddFavouritPaths(const std::vector<std::filesystem::path>& favourite_paths) {
     for (const auto& path : favourite_paths)
-      favourite_paths_.emplace_back(path);
+      favourite_paths_.emplace_back(RemoveLastSlash(path));
   }
   
   void ContentBrowserPanel::RenderGui(bool* is_open) {
