@@ -249,9 +249,10 @@ namespace ikan {
     texture_comp.RenderGui(color, [this]() {
       ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
     });
+    ImGui::Separator();
     
-    PropertyGrid::Float1("Thickness", thickness, nullptr, 0.05f, 1.0f, 100.0f, 0.05, 1.0f);
-    PropertyGrid::Float1("Fade", fade, nullptr, 0.1f, 0.0f, 100.0f, 0.0f);
+    PropertyGrid::Float1("Thickness", thickness, nullptr, 0.05f, 1.0f, 0.05, 1.0f, 100.0f);
+    PropertyGrid::Float1("Fade", fade, nullptr, 0.1f, 0.0f, 0.0f, 1.0f, 100.0f);
     ImGui::Separator();
   }
   

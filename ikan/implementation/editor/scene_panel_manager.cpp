@@ -167,6 +167,7 @@ namespace ikan {
       DrawComponent<TransformComponent>("Transform", *selected_entity_, [](auto& tc) { tc.RenderGui(); });
       DrawComponent<CameraComponent>("Camera", *selected_entity_, [](auto& cc) { cc.RenderGui(); });
       DrawComponent<QuadComponent>("Quad", *selected_entity_, [](auto& qc) { qc.RenderGui(); });
+      DrawComponent<CircleComponent>("Circle", *selected_entity_, [](auto& cc) { cc.RenderGui(); });
     }
 
     ImGui::PopID();
@@ -209,6 +210,10 @@ namespace ikan {
             SetSelectedEntity(&scene_context_->CreateEntity("Quad"));
             selected_entity_->AddComponent<QuadComponent>();
           }
+          if (ImGui::MenuItem("Circle")) {
+            SetSelectedEntity(&scene_context_->CreateEntity("Circle"));
+            selected_entity_->AddComponent<CircleComponent>();
+          }
         });
       }
     });
@@ -216,8 +221,10 @@ namespace ikan {
   
   void ScenePanelManager::AddComponent() {
     if (scene_context_->GetType() == Scene::_2D) {
-      AddComponentMenu<QuadComponent>("Quad", !HAS_COMPONENT(QuadComponent));
       AddComponentMenu<QuadComponent>("Camera", !HAS_COMPONENT(CameraComponent));
+      ImGui::Separator();
+      AddComponentMenu<QuadComponent>("Quad", !HAS_COMPONENT(QuadComponent) and !HAS_COMPONENT(CircleComponent));
+      AddComponentMenu<CircleComponent>("Circle", !HAS_COMPONENT(QuadComponent) and !HAS_COMPONENT(CircleComponent));
     }
     else if (scene_context_->GetType() == Scene::_3D) {
     }
