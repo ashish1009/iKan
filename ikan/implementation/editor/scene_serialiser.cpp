@@ -196,6 +196,28 @@ namespace ikan {
         
         out << YAML::EndMap; // QuadComponent
       }
+      
+      // ------------------------------------------------------------------------
+      if (entity.HasComponent<CircleComponent>()) {
+        out << YAML::Key << "CircleComponent";
+        out << YAML::BeginMap; // CircleComponent
+        
+        auto& cc = entity.GetComponent<CircleComponent>();
+        out << YAML::Key << "Texture_Use" << YAML::Value << cc.texture_comp.use;
+        
+        if (cc.texture_comp.texture)
+          out << YAML::Key << "Texture_Path" << YAML::Value << cc.texture_comp.texture->GetfilePath();
+        else
+          out << YAML::Key << "Texture_Path" << YAML::Value << "";
+        
+        out << YAML::Key << "Texture_TilingFactor" << YAML::Value << cc.texture_comp.tiling_factor;
+        out << YAML::Key << "Color" << YAML::Value << cc.color;
+        out << YAML::Key << "Thickness" << YAML::Value << cc.thickness;
+        out << YAML::Key << "Fade" << YAML::Value << cc.fade;
+        
+        out << YAML::EndMap; // CircleComponent
+      }
+      
       out << YAML::EndMap; // Entity
     } // // for (const auto& [uuid, entity] : scene_->entity_id_map_)
     
@@ -320,6 +342,38 @@ namespace ikan {
           IK_CORE_INFO(LogModule::SceneSerializer, "      Color | {0} | {1} | {2}", qc.color.x, qc.color.y, qc.color.z);
           
         } // if (quad_component)
+        
+        // --------------------------------------------------------------------
+        auto circle_component = entity["CircleComponent"];
+        if (circle_component) {
+          auto& cc = deserialized_entity.AddComponent<CircleComponent>();
+          
+          cc.texture_comp.use = circle_component["Texture_Use"].as<bool>();
+          
+          std::string texture_path = circle_component["Texture_Path"].as<std::string>();
+          if (texture_path != "")
+            cc.texture_comp.texture = Renderer::GetTexture(texture_path);
+          
+          cc.texture_comp.tiling_factor = circle_component["Texture_TilingFactor"].as<float>();
+          
+          cc.color = circle_component["Color"].as<glm::vec4>();
+          cc.thickness = circle_component["Thickness"].as<float>();
+          cc.fade = circle_component["Fade"].as<float>();
+          
+          IK_CORE_INFO(LogModule::SceneSerializer, "    Circle Component");
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Texture");
+          IK_CORE_INFO(LogModule::SceneSerializer, "        Use             | {0}", cc.texture_comp.use);
+          if (cc.texture_comp.texture)
+            IK_CORE_INFO(LogModule::SceneSerializer, "        Path            | {0}", cc.texture_comp.texture->GetfilePath());
+          else
+            IK_CORE_INFO(LogModule::SceneSerializer, "        No Texture      ");
+          IK_CORE_INFO(LogModule::SceneSerializer, "        Tiling Factor   | {0}", cc.texture_comp.tiling_factor);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Color | {0} | {1} | {2}", cc.color.x, cc.color.y, cc.color.z);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Thickness         | {0}", cc.thickness);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Fade              | {0}", cc.fade);
+          
+        } // if (circle_component)
+        
       } // for (auto entity : entities)
     } // if (entities)
     
