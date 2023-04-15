@@ -27,8 +27,11 @@ Entities:
       Scale: [1, 1, 1]
     QuadComponent:
       Texture_Use: true
-      Sprite_Use: false
-      Linear_Edge: true
-      Texture_Path: ""
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/mario/assets/textures/tile.png
+      Coords: [1, 0.5]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]

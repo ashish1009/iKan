@@ -262,8 +262,90 @@ namespace ikan {
         ImGui::DragFloat("", &tiling_factor, 1.0f, 1.0f, 1000.0f);
         PropertyGrid::HoveredMsg("Tiling Factor");
       }
-      
       ImGui::Columns(1);
+      
+      ImGui::Separator();
+      if (sub_texture and use_sub_texture) {
+        glm::vec2 coords = sub_texture->GetCoords();
+        glm::vec2 sprite_size = sub_texture->GetSpriteSize();
+        glm::vec2 cell_size   = sub_texture->GetCellSize();
+        
+        if (PropertyGrid::Float2("Coords", coords, nullptr, 0.1f, 0.0f, 0.0f, MAX_FLT, 100)) {
+          sub_texture->GetSpriteImage().reset();
+          sub_texture = SubTexture::CreateFromCoords(texture, coords, sprite_size, cell_size);
+        }
+        if (PropertyGrid::Float2("Sprite Size", sprite_size, nullptr, 1.0f, 1.0f, 0.0f, MAX_FLT, 100.0f)) {
+          sub_texture->GetSpriteImage().reset();
+          sub_texture = SubTexture::CreateFromCoords(texture, coords, sprite_size, cell_size);
+        }
+        if (PropertyGrid::Float2("Cell Size", cell_size, nullptr, 8.0f, 16.0f, 0.0f, MAX_FLT, 100.0f)) {
+          sub_texture->GetSpriteImage().reset();
+          sub_texture = SubTexture::CreateFromCoords(texture, coords, sprite_size, cell_size);
+        }
+        ImGui::Separator();
+                
+        // Render the title named as entity name
+        const ImGuiTreeNodeFlags tree_node_flags = ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_AllowItemOverlap;
+        bool open = ImGui::TreeNodeEx("Sprite Image", tree_node_flags);
+        if (open) {
+          size_t tex_id = sub_texture->GetSpriteImage()->GetRendererID();
+          
+          float tex_width = (float)sub_texture->GetSpriteImage()->GetWidth();
+          float tex_height = (float)sub_texture->GetSpriteImage()->GetHeight() ;
+          float width = std::min(ImGui::GetContentRegionAvailWidth(), tex_width);
+          
+          float size_ratio = width / tex_width;
+          float height = tex_height * size_ratio;
+          
+          ImGui::Image((void*)tex_id, ImVec2(width, height), ImVec2(0, 1), ImVec2(1, 0), ImVec4(1.0f,1.0f,1.0f,1.0f), ImVec4(1.0f,1.0f,1.0f,0.5f));
+          
+          ImVec2 pos = ImGui::GetCursorScreenPos();
+          if (ImGui::IsItemHovered()) {
+            ImGui::BeginTooltip();
+            
+            ImGuiIO& io = ImGui::GetIO();
+            
+            float region_fixed_x = (float)((int32_t)(sprite_size.x * cell_size.x * size_ratio));
+            float region_fixed_y = (float)((int32_t)(sprite_size.y * cell_size.y * size_ratio));
+            static float zoom = 10.0f;
+            
+            float region_x = io.MousePos.x - pos.x - region_fixed_x * 0.5f;
+            if (region_x < 0.0f)
+              region_x = 0.0f;
+            
+            else if (region_x > width - region_fixed_x)
+              region_x = width - region_fixed_x;
+            
+            float region_y = pos.y - io.MousePos.y - region_fixed_y * 0.5f;
+            if (region_y < 0.0f)
+              region_y = 0.0f;
+            
+            else if (region_y > height - region_fixed_y)
+              region_y = height - region_fixed_y;
+            
+            ImGui::Text("Min: (%.2f, %.2f)", region_x, region_y);
+            ImGui::Text("Max: (%.2f, %.2f)", region_x + region_fixed_x, region_y + region_fixed_y);
+            
+            ImVec2 uv0 = ImVec2((region_x) / width, (region_y + region_fixed_y) / height);
+            ImVec2 uv1 = ImVec2((region_x + region_fixed_x) / width, (region_y) / height);
+            
+            ImGui::Image((void*)tex_id, ImVec2(region_fixed_x * zoom, region_fixed_y * zoom),
+                         uv0, uv1, ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
+            
+            if (ImGui::IsMouseClicked(0)) {
+              glm::vec3 coords;
+              coords.x = (((region_x + region_fixed_x)) / (cell_size.x * size_ratio)) - sprite_size.x;
+              coords.y = (((region_y + region_fixed_y)) / (cell_size.y * size_ratio)) - sprite_size.y;
+              
+              sub_texture->GetSpriteImage().reset();
+              sub_texture = SubTexture::CreateFromCoords(texture, coords, sprite_size, cell_size);
+            }
+            
+            ImGui::EndTooltip();
+          }
+          ImGui::TreePop();
+        }
+      }
     }
     
   private:

@@ -1,0 +1,37 @@
+Scene: Untitled
+Scene_type: 0
+Setting_editor_camera: true
+Setting_use_editor_camera: false
+Entities:
+  - Entity: 17039513187255470450
+    TagComponent:
+      Tag: Quad
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/mario/assets/textures/tile.png
+      Coords: [0, 0]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+  - Entity: 2006004470497900375
+    TagComponent:
+      Tag: Camera
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 0.785398185
+      OrthographicSize: 10
+      Near: -1
+      Far: 1
