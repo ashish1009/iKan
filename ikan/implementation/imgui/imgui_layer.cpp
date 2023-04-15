@@ -13,6 +13,7 @@
 #include <examples/imgui_impl_glfw.h>
 
 #include <GLFW/glfw3.h>
+#include <ImGuizmo.h>
 
 namespace ikan {
 
@@ -77,6 +78,7 @@ namespace ikan {
     ImGui::SaveIniSettingsToDisk("testing.ini");
     
     ImGui::NewFrame();
+    ImGuizmo::BeginFrame();
   }
   
   void ImguiLayer::End() {
