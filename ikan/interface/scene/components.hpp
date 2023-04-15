@@ -101,11 +101,24 @@ namespace ikan {
     DEFINE_COPY_MOVE_CONSTRUCTORS(QuadComponent);
   };
   
+  struct CircleComponent {
+    TextureComponent texture_comp;
+    glm::vec4 color{1.0f};
+    
+    float thickness = 1.0f;
+    float fade = 0.005f;
+    
+    void RenderGui();
+    CircleComponent();
+    ~CircleComponent();
+    DEFINE_COPY_MOVE_CONSTRUCTORS(CircleComponent);
+  };
+  
   template<typename... Component>
   struct ComponentGroup {
   };
   
-#define ALL_COPY_COMPONENTS TransformComponent, QuadComponent, CameraComponent
+#define ALL_COPY_COMPONENTS TransformComponent, QuadComponent, CircleComponent, CameraComponent
 
   // Stores all the components present in Engine
   using AllComponents =

@@ -197,4 +197,62 @@ namespace ikan {
     });
   }
   
+  // -------------------------------------------------------------------------
+  // Circle Component
+  // -------------------------------------------------------------------------
+  CircleComponent::CircleComponent() { COMP_LOG("Creating Circle Component"); }
+  CircleComponent::~CircleComponent() { COMP_LOG("Creating Circle Component"); }
+  CircleComponent::CircleComponent(const CircleComponent& other)
+  : color(other.color), thickness(other.thickness), fade(other.fade) {
+    COMP_COPY_LOG("Copying Circle Component");
+    if (other.texture_comp.texture) {
+      texture_comp.use = other.texture_comp.use;
+      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
+      texture_comp.texture = Renderer::GetTexture(other.texture_comp.texture->GetfilePath());
+    }
+  }
+  CircleComponent::CircleComponent(CircleComponent&& other)
+  : color(other.color), thickness(other.thickness), fade(other.fade) {
+    COMP_COPY_LOG("Moving Circle Component");
+    if (other.texture_comp.texture) {
+      texture_comp.use = other.texture_comp.use;
+      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
+      texture_comp.texture = Renderer::GetTexture(other.texture_comp.texture->GetfilePath());
+    }
+  }
+  CircleComponent& CircleComponent::operator=(const CircleComponent& other) {
+    COMP_COPY_LOG("Copying Circle Component with = operator");
+    color = other.color;
+    thickness = other.thickness;
+    fade = other.fade;
+    if (other.texture_comp.texture) {
+      texture_comp.use = other.texture_comp.use;
+      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
+      texture_comp.texture = Renderer::GetTexture(other.texture_comp.texture->GetfilePath());
+    }
+    return *this;
+  }
+  CircleComponent& CircleComponent::operator=(CircleComponent&& other) {
+    COMP_COPY_LOG("Moving Circle Component with = operator");
+    color = other.color;
+    thickness = other.thickness;
+    fade = other.fade;
+    if (other.texture_comp.texture) {
+      texture_comp.use = other.texture_comp.use;
+      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
+      texture_comp.texture = Renderer::GetTexture(other.texture_comp.texture->GetfilePath());
+    }
+    return *this;
+  }
+  
+  void CircleComponent::RenderGui() {
+    texture_comp.RenderGui(color, [this]() {
+      ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
+    });
+    
+    PropertyGrid::Float1("Thickness", thickness, nullptr, 0.05f, 1.0f, 100.0f, 0.05, 1.0f);
+    PropertyGrid::Float1("Fade", fade, nullptr, 0.1f, 0.0f, 100.0f, 0.0f);
+    ImGui::Separator();
+  }
+  
 } // namespace ikan
