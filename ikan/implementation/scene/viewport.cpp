@@ -81,54 +81,54 @@ namespace ikan {
 
     ImGui::Columns(8);
 
-    ImGui::SetColumnWidth(0, 90);
-    ImGui::Text("%d x %d", mouse_pos_x, mouse_pos_y);
-    PropertyGrid::HoveredMsg("Mouse relative position");
-    ImGui::NextColumn();
-
-    ImGui::SetColumnWidth(1, 90);
-    if (focused)
-      ImGui::Text("Focused");
-    ImGui::NextColumn();
-    
-    ImGui::SetColumnWidth(2, 90);
-    if (hovered)
-      ImGui::Text("Hovered");
-    ImGui::NextColumn();
-
-    ImGui::SetColumnWidth(3, 90);
-    ImGui::Text("%d x %d", width, height);
-    PropertyGrid::HoveredMsg("Viewport Size");
-    ImGui::NextColumn();
-
-    ImGui::SetColumnWidth(4, 100);
-    ImGui::Text("%d", (int32_t)(hovered_entity_id_));
-    ImGui::NextColumn();
-    
-    if (hovered_entity_) {
-      std::string entity_name = hovered_entity_->GetComponent<TagComponent>().tag;
-      ImGui::SetColumnWidth(5, 50);
-      ImGui::Text("%d", (uint32_t)(*hovered_entity_));
-      ImGui::NextColumn();
-      
-      ImGui::SetColumnWidth(6, 100);
-      ImGui::Text("%s ", entity_name.c_str());
-      ImGui::NextColumn();
-    }
-    else {
-      ImGui::SetColumnWidth(5, 50);
-      ImGui::NextColumn();
-      
-      ImGui::SetColumnWidth(6, 50);
-      ImGui::NextColumn();
-    }
-
-    ImGui::SetColumnWidth(7, 50);
+    ImGui::SetColumnWidth(0, 50);
     auto color = framebuffer->GetSpecification().color;
     if (ImGui::ColorEdit4("", &color.x, ImGuiColorEditFlags_NoInputs)) {
       framebuffer->UpdateSpecificationColor(color);
     }
     PropertyGrid::HoveredMsg("Framebuffer Background color");
+    
+    ImGui::SetColumnWidth(1, 90);
+    ImGui::Text("%d x %d", mouse_pos_x, mouse_pos_y);
+    PropertyGrid::HoveredMsg("Mouse relative position");
+    ImGui::NextColumn();
+
+    ImGui::SetColumnWidth(2, 90);
+    if (focused)
+      ImGui::Text("Focused");
+    ImGui::NextColumn();
+    
+    ImGui::SetColumnWidth(3, 90);
+    if (hovered)
+      ImGui::Text("Hovered");
+    ImGui::NextColumn();
+
+    ImGui::SetColumnWidth(4, 90);
+    ImGui::Text("%d x %d", width, height);
+    PropertyGrid::HoveredMsg("Viewport Size");
+    ImGui::NextColumn();
+
+    ImGui::SetColumnWidth(5, 100);
+    ImGui::Text("%d", (int32_t)(hovered_entity_id_));
+    ImGui::NextColumn();
+    
+    if (hovered_entity_) {
+      std::string entity_name = hovered_entity_->GetComponent<TagComponent>().tag;
+      ImGui::SetColumnWidth(6, 50);
+      ImGui::Text("%d", (uint32_t)(*hovered_entity_));
+      ImGui::NextColumn();
+      
+      ImGui::SetColumnWidth(7, 100);
+      ImGui::Text("%s ", entity_name.c_str());
+      ImGui::NextColumn();
+    }
+    else {
+      ImGui::SetColumnWidth(6, 50);
+      ImGui::NextColumn();
+      
+      ImGui::SetColumnWidth(7, 100);
+      ImGui::NextColumn();
+    }
 
     ImGui::Columns(1);
     

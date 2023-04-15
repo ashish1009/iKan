@@ -77,7 +77,10 @@ namespace kreator {
     /// This function handles the Window resize event
     /// - Parameter e window resize event
     bool WindowResized(WindowResizeEvent& event);
-    
+    /// This function handles the mouse button event
+    /// - Parameter e: mouse button pressed event
+    bool MouseButtonPressed(MouseButtonPressedEvent& event);
+
     /// This function update the size of all member present in application
     /// - Parameters:
     ///   - width: new width of viewport

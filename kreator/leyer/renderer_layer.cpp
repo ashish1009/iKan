@@ -78,6 +78,7 @@ namespace kreator {
       Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
       RenderScene(ts);
       
+      viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
       viewport_.framebuffer->Unbind();
     }
   }
@@ -102,6 +103,7 @@ namespace kreator {
     EventDispatcher dispatcher(event);
     dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::KeyPressed));
     dispatcher.Dispatch<WindowResizeEvent>(IK_BIND_EVENT_FN(RendererLayer::WindowResized));
+    dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::MouseButtonPressed));
   }
 
   bool RendererLayer::KeyPressed(KeyPressedEvent& event) {
@@ -134,6 +136,16 @@ namespace kreator {
     return false;
   }
   
+  bool RendererLayer::MouseButtonPressed(MouseButtonPressedEvent& e) {
+    if (e.GetMouseButton() == MouseButton::ButtonLeft) {
+      if (viewport_.mouse_pos_x >= 0 and viewport_.mouse_pos_y >= 0 and
+          viewport_.mouse_pos_x <= viewport_.width and viewport_.mouse_pos_y <= viewport_.height) {
+        spm_.SetSelectedEntity(viewport_.hovered_entity_);
+      }
+    }
+    return false;
+  }
+
   void RendererLayer::ResizeData(uint32_t width, uint32_t height) {
     viewport_width_ = width;
     viewport_height_ = height;
