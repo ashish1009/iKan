@@ -87,6 +87,9 @@ namespace ikan {
     /// - Parameter type: type of scene
     void SetType(Type type);
 
+    /// This function returns the entity Ref from its id
+    /// - Parameter id: entity ID
+    Entity* GetEnitityFromId(int32_t id);
     /// This function returns the state of scene
     State GetState() const { return state_; }
     /// This finction return is scene is in edit state
@@ -103,6 +106,10 @@ namespace ikan {
     Setting& GetSetting() { return setting_; };
     /// This function returns the primary camera data
     const SceneCameraData& GetPrimaryCameraData() const { return primary_camera_data_; }
+    /// This function returns the number of Entities stored in Scene
+    uint32_t GetNumEntities() const { return num_entities_; }
+    /// This function returns the Max Entity ID given to scene
+    uint32_t GetMaxEntityId() const { return max_entity_id_; }
 
     /// This function create new scene copy the scene data from argument
     /// - Parameter other: copy scene

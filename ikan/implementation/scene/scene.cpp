@@ -302,4 +302,10 @@ namespace ikan {
     primary_camera_data_.scene_camera = nullptr;
   }
 
+  Entity* Scene::GetEnitityFromId(int32_t id) {
+    if (entity_id_map_.find((entt::entity)id) != entity_id_map_.end())
+      return &entity_id_map_.at((entt::entity)id);
+    return nullptr;
+  }
+
 } // namespace ikan

@@ -19,6 +19,7 @@
 		B2394A3129D8733500D782E5 /* mac_window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2394A2F29D8733500D782E5 /* mac_window.cpp */; };
 		B2394A3229D8733500D782E5 /* mac_window.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2394A3029D8733500D782E5 /* mac_window.hpp */; };
 		B2394A3429D879B200D782E5 /* libglfw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2F91E6429D721AA00860306 /* libglfw.a */; };
+		B24B20D429EAEEF700487124 /* libimguizmo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B24B209F29EAED8E00487124 /* libimguizmo.a */; };
 		B281E85D29DFDA170038A9EE /* framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B281E85B29DFDA170038A9EE /* framebuffer.cpp */; };
 		B281E85E29DFDA170038A9EE /* framebuffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B281E85C29DFDA170038A9EE /* framebuffer.hpp */; };
 		B281E86429DFDA240038A9EE /* open_gl_framebuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B281E86229DFDA240038A9EE /* open_gl_framebuffer.cpp */; };
@@ -266,6 +267,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B24B20D429EAEEF700487124 /* libimguizmo.a in Frameworks */,
 				B295DB8229E6D63400A40956 /* libyaml.a in Frameworks */,
 				B2BEC76129DD6802008D3DCB /* libimgui.a in Frameworks */,
 				B2394A3429D879B200D782E5 /* libglfw.a in Frameworks */,
@@ -1082,6 +1084,7 @@
 					"${PROJECT_DIR}/vendors/freetype/include/freetype2",
 					"${PROJECT_DIR}/vendors/entt/include",
 					"${PROJECT_DIR}/vendors/yaml/yaml/include",
+					"${PROJECT_DIR}/vendors/imguizmo/imguizmo",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1111,6 +1114,7 @@
 					"${PROJECT_DIR}/vendors/freetype/include/freetype2",
 					"${PROJECT_DIR}/vendors/entt/include",
 					"${PROJECT_DIR}/vendors/yaml/yaml/include",
+					"${PROJECT_DIR}/vendors/imguizmo/imguizmo",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
