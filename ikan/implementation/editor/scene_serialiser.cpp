@@ -153,6 +153,26 @@ namespace ikan {
       }
       
       // ------------------------------------------------------------------------
+      if (entity.HasComponent<CameraComponent>()) {
+        out << YAML::Key << "CameraComponent";
+        out << YAML::BeginMap; // CameraComponent
+        
+        auto& cc = entity.GetComponent<CameraComponent>();
+        out << YAML::Key << "FixedAspectRatio" << YAML::Value << cc.is_fixed_aspect_ratio;
+        out << YAML::Key << "Primary" << YAML::Value << cc.is_primary;
+        
+        // Scene Camera
+        const auto& camera = cc.camera;
+        out << YAML::Key << "ProjectionType" << YAML::Value << (uint32_t)camera->GetProjectionType();
+        out << YAML::Key << "PerspectiveFOV" << YAML::Value << camera->GetPerspectiveFOV();
+        out << YAML::Key << "OrthographicSize" << YAML::Value << camera->GetOrthographicSize();
+        out << YAML::Key << "Near" << YAML::Value << camera->GetNear();
+        out << YAML::Key << "Far" << YAML::Value << camera->GetFar();
+        
+        out << YAML::EndMap; // CameraComponent
+      }
+      
+      // ------------------------------------------------------------------------
       if (entity.HasComponent<QuadComponent>()) {
         out << YAML::Key << "QuadComponent";
         out << YAML::BeginMap; // QuadComponent
@@ -231,6 +251,42 @@ namespace ikan {
           IK_CORE_INFO(LogModule::SceneSerializer, "      Scale         | {0} | {1} | {2}", tc.Scale().x, tc.Scale().y, tc.Scale().z);
         } // if (transform_component)
         
+        // --------------------------------------------------------------------
+        auto camera_component = entity["CameraComponent"];
+        if (camera_component) {
+          auto type = camera_component["ProjectionType"].as<uint32_t>();
+          
+          auto& cc = deserialized_entity.AddComponent<CameraComponent>((SceneCamera::ProjectionType)type);
+          cc.is_fixed_aspect_ratio = camera_component["FixedAspectRatio"].as<bool>();
+          cc.is_primary = camera_component["Primary"].as<bool>();
+          
+          auto fov = camera_component["PerspectiveFOV"].as<float>();
+          auto size = camera_component["OrthographicSize"].as<float>();
+          auto near = camera_component["Near"].as<float>();
+          auto far = camera_component["Far"].as<float>();
+          
+          if ((SceneCamera::ProjectionType)type == SceneCamera::ProjectionType::Orthographic)
+            cc.camera->SetOrthographic(size, near, far);
+          else if ((SceneCamera::ProjectionType)type == SceneCamera::ProjectionType::Perspective)
+            cc.camera->SetPerspective(fov, near, far);
+          
+          IK_CORE_INFO(LogModule::SceneSerializer, "    Cameara Component");
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Primary             | {0}", cc.is_primary);
+          IK_CORE_INFO(LogModule::SceneSerializer, "      Fixed Aspect Ratio  | {0}", cc.is_fixed_aspect_ratio);
+          
+          if ((SceneCamera::ProjectionType)type == SceneCamera::ProjectionType::Orthographic) {
+            IK_CORE_INFO(LogModule::SceneSerializer, "      Orthographic Camera");
+            IK_CORE_INFO(LogModule::SceneSerializer, "        Size | {0}", cc.camera->GetOrthographicSize());
+          }
+          else if ((SceneCamera::ProjectionType)type == SceneCamera::ProjectionType::Perspective) {
+            IK_CORE_INFO(LogModule::SceneSerializer, "      Perspective Camera");
+            IK_CORE_INFO(LogModule::SceneSerializer, "        FOV  | {0}", cc.camera->GetPerspectiveFOV());
+          }
+          
+          IK_CORE_INFO(LogModule::SceneSerializer, "         Near : {0}", cc.camera->GetNear());
+          IK_CORE_INFO(LogModule::SceneSerializer, "         Far  : {0}", cc.camera->GetFar());
+        } // if (camera_component)
+
         // --------------------------------------------------------------------
         auto quad_component = entity["QuadComponent"];
         if (quad_component) {

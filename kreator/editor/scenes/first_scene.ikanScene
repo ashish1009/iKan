@@ -5,7 +5,7 @@ Setting_use_editor_camera: true
 Entities:
   - Entity: 13094833668962902118
     TagComponent:
-      Tag: Empty Entity
+      Tag: Quad
     TransformComponent:
       Translation: [-2.5, 0, 0]
       Rotation: [0, 0, 0]
@@ -20,3 +20,18 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+  - Entity: 14263527464705861078
+    TagComponent:
+      Tag: Camera
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 0.785398185
+      OrthographicSize: 10
+      Near: -1
+      Far: 1
