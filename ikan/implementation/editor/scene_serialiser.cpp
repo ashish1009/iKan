@@ -371,7 +371,6 @@ namespace ikan {
           IK_CORE_INFO(LogModule::SceneSerializer, "      Color | {0} | {1} | {2}", cc.color.x, cc.color.y, cc.color.z);
           IK_CORE_INFO(LogModule::SceneSerializer, "      Thickness         | {0}", cc.thickness);
           IK_CORE_INFO(LogModule::SceneSerializer, "      Fade              | {0}", cc.fade);
-          
         } // if (circle_component)
         
       } // for (auto entity : entities)

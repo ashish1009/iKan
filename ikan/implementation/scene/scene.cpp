@@ -203,6 +203,20 @@ namespace ikan {
   void Scene::Render2DEntities(const glm::mat4& cam_view_proj_mat) {
     Batch2DRenderer::BeginBatch(cam_view_proj_mat);
     
+    auto circle_view = registry_.view<TransformComponent, CircleComponent>();
+    // For all circle entity
+    for (const auto& circle_entity : circle_view) {
+      const auto& [transform_component, circle_component] = circle_view.get<TransformComponent, CircleComponent>(circle_entity);
+      if (circle_component.texture_comp.use and circle_component.texture_comp.texture) {
+        Batch2DRenderer::DrawCircle(transform_component.Transform(), circle_component.texture_comp.texture, circle_component.color,
+                                    circle_component.texture_comp.tiling_factor, circle_component.thickness, circle_component.fade, (uint32_t)circle_entity);
+        
+      } else {
+        Batch2DRenderer::DrawCircle(transform_component.Transform(), circle_component.color, circle_component.thickness, circle_component.fade,
+                                    (uint32_t)circle_entity);
+      }
+    } // for (const auto& entity : circle_view)
+
     // Render All Quad Entities
     auto quad_view = registry_.view<TransformComponent, QuadComponent>();
     for (const auto& quad_entity : quad_view) {

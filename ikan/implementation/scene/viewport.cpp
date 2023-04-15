@@ -87,7 +87,8 @@ namespace ikan {
       framebuffer->UpdateSpecificationColor(color);
     }
     PropertyGrid::HoveredMsg("Framebuffer Background color");
-    
+    ImGui::NextColumn();
+
     ImGui::SetColumnWidth(1, 90);
     ImGui::Text("%d x %d", mouse_pos_x, mouse_pos_y);
     PropertyGrid::HoveredMsg("Mouse relative position");

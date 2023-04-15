@@ -3,20 +3,35 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
-  - Entity: 8825224467360510972
+  - Entity: 9734362800270711246
     TagComponent:
       Tag: Circle
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [-0.75, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CircleComponent:
       Texture_Use: true
       Texture_Path: ""
       Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
+      Color: [0.860465109, 0.280151397, 0.280151397, 1]
       Thickness: 1
       Fade: 0.00499999989
+  - Entity: 14263527464705861078
+    TagComponent:
+      Tag: Camera
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 0.785398185
+      OrthographicSize: 10
+      Near: -1
+      Far: 1
   - Entity: 13094833668962902118
     TagComponent:
       Tag: Quad
@@ -34,18 +49,17 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-  - Entity: 14263527464705861078
+  - Entity: 8825224467360510972
     TagComponent:
-      Tag: Camera
+      Tag: Circle
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [-1.25, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
-    CameraComponent:
-      FixedAspectRatio: false
-      Primary: true
-      ProjectionType: 1
-      PerspectiveFOV: 0.785398185
-      OrthographicSize: 10
-      Near: -1
-      Far: 1
+    CircleComponent:
+      Texture_Use: true
+      Texture_Path: ""
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Thickness: 1
+      Fade: 0.00499999989
