@@ -94,7 +94,7 @@ namespace ikan {
   struct ComponentGroup {
   };
   
-#define ALL_COPY_COMPONENTS TransformComponent
+#define ALL_COPY_COMPONENTS TransformComponent, QuadComponent
 
   // Stores all the components present in Engine
   using AllComponents =

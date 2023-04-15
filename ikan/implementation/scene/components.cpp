@@ -138,6 +138,10 @@ namespace ikan {
     return *this;
   }
   void QuadComponent::RenderGui() {
+    sprite.RenderGui(color, [this]() {
+      ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
+      PropertyGrid::HoveredMsg("Texture filter color");
+    });
   }
   
 } // namespace ikan

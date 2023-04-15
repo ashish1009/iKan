@@ -1,5 +1,5 @@
 Scene: Untitled
-Scene_type: 0
+Scene_type: 1
 Setting_editor_camera: true
 Setting_use_editor_camera: true
 Entities:
@@ -10,3 +10,13 @@ Entities:
       Translation: [-2.5, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../ikan/core_assets/textures/icons/plus.png
+      Coords: [0, 0]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]

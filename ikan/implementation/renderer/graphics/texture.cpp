@@ -132,9 +132,9 @@ namespace ikan {
   
   SpriteComponent::SpriteComponent(const std::shared_ptr<Texture>& tex, bool use_tex) {
     IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent");
-    if (texture) sub_texture = SubTexture::CreateFromCoords(texture, {0.0f, 0.0f});
     use = use_tex;
     texture = tex;
+    if (texture) sub_texture = SubTexture::CreateFromCoords(texture, {0.0f, 0.0f});
   }
   
   SpriteComponent::SpriteComponent(const SpriteComponent& other)
@@ -183,6 +183,20 @@ namespace ikan {
                                                    other.sub_texture->GetCellSize());
       }
     }
+  }
+  
+  void SpriteComponent::ChangeLinearTexture() {
+    // Need to copy so not using reference as texture will deleted
+    const std::string tex_path = texture->GetfilePath();
+    const glm::vec2 coords = sub_texture->GetCoords();
+    const glm::vec2 sprite_size = sub_texture->GetSpriteSize();
+    const glm::vec2 cell_size = sub_texture->GetCellSize();
+    
+    texture.reset();
+    sub_texture.reset();
+    
+    texture = Renderer::GetTexture(tex_path, linear_edge);
+    sub_texture = SubTexture::CreateFromCoords(texture, coords, sprite_size, cell_size);
   }
 
 } // namespace ikan

@@ -8,6 +8,7 @@
 #pragma once
 
 #include "renderer/utils/renderer.hpp"
+#include "editor/property_grid.hpp"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -164,6 +165,27 @@ namespace ikan {
     friend class Renderer;
   };
   
+  bool LoadTextureIcon(std::shared_ptr<Texture>& texture) {
+    bool texture_changed = false;
+
+    static std::shared_ptr<Texture> no_texture = Renderer::GetTexture(DM::CoreAsset("textures/default/no_texture.png"));
+    size_t tex_id = ((texture) ? texture->GetRendererID() : no_texture->GetRendererID());
+    
+    // Show the image of texture
+    ImGui::Image((void*)tex_id, ImVec2(40.0f, 40.0f), ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f),
+                 ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
+    
+    // Drop the texture here and load new texture
+    PropertyGrid::DropConent([&](const std::string& path)
+                             {
+      texture.reset();
+      texture = Renderer::GetTexture(path);
+      texture_changed = true;
+    });
+    PropertyGrid::HoveredMsg("Drop the Texture file in the Image Button to upload the texture");
+    return texture_changed;
+  }
+    
   /// This structure holds the texture component with use flag
   struct TextureComponent {
     bool use = false;
@@ -172,6 +194,28 @@ namespace ikan {
     
     TextureComponent(const std::shared_ptr<Texture>& tex = nullptr, bool use = true);
     DEFINE_COPY_MOVE_CONSTRUCTORS(TextureComponent)
+    
+    template<typename UIFunction>
+    /// This function renders the texture components
+    /// - Parameters:
+    ///   - color: color of the texture
+    ///   - ui_function: function to render below texture Use
+    void RenderGui(glm::vec4& color, UIFunction ui_function) {
+      ImGui::Columns(2);
+      ImGui::SetColumnWidth(0, 60);
+      
+      LoadTextureIcon(texture);
+      ImGui::NextColumn();
+      
+      // Check box to togle use of texture
+      ImGui::Checkbox("Use ", &use);
+      if (use and texture) {
+        ImGui::DragFloat("", &tiling_factor, 1.0f, 1.0f, 1000.0f);
+        PropertyGrid::HoveredMsg("Tiling Factor");
+      }
+      ui_function();
+      ImGui::Columns(1);
+    }
   };
   
   /// This structure holds the property of sprite component (Sub Texture)
@@ -183,10 +227,51 @@ namespace ikan {
     SpriteComponent(const std::shared_ptr<Texture>& comp = nullptr, bool use = true);
     DEFINE_COPY_MOVE_CONSTRUCTORS(SpriteComponent)
     
+    template<typename UIFunction>
+    /// This function renders the texture components
+    /// - Parameters:
+    ///   - color: color of the texture
+    ///   - ui_function: function to render below texture Use
+    void RenderGui(glm::vec4& color, UIFunction ui_function) {
+      ImGui::Columns(2);
+      ImGui::SetColumnWidth(0, 60);
+      
+      if (LoadTextureIcon(texture)) {
+        sub_texture.reset();
+        LoadTexture(texture);
+      }
+      ImGui::NextColumn();
+      
+      // Check box to togle use of texture
+      ImGui::Checkbox("Use ", &use);
+      if (use and texture) {
+        ImGui::SameLine();
+        if (ImGui::Checkbox("Linear Edge", &linear_edge)) {
+          ChangeLinearTexture();
+        }
+        PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+        
+        ImGui::SameLine();
+        ImGui::Checkbox("Sprite", &use_sub_texture);
+        PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+      }
+      ui_function();
+
+      if (use) {
+        ImGui::SameLine();
+        ImGui::DragFloat("", &tiling_factor, 1.0f, 1.0f, 1000.0f);
+        PropertyGrid::HoveredMsg("Tiling Factor");
+      }
+      
+      ImGui::Columns(1);
+    }
+    
   private:
     /// This function loads the textrue and sprite again
     /// - Parameter other: component
     void LoadTexture(const SpriteComponent& other);
+    /// This function changes the linear flag of texture
+    void ChangeLinearTexture();
   };
   
 } // namespace ikan
