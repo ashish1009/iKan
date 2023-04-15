@@ -16,9 +16,72 @@ namespace ikan {
   static void ReserveRegistry(ComponentGroup<Component...>, entt::registry& registry, int32_t capacity) {
     registry.reserve<Component...>(capacity);
   }
+  
+  template<typename... Component>
+  static void CopyComponent(entt::registry& dst,
+                            entt::registry& src,
+                            const std::unordered_map<UUID, entt::entity>& enttMap) {
+    ([&]()
+     {
+      auto view = src.view<Component>();
+      for (auto src_entity : view) {
+        entt::entity dst_entity = enttMap.at(src.get<IDComponent>(src_entity).id);
+        
+        auto& srcComponent = src.get<Component>(src_entity);
+        dst.emplace_or_replace<Component>(dst_entity, srcComponent);
+      }
+    }(), ...);
+  }
+  
+  template<typename... Component>
+  static void CopyComponent(ComponentGroup<Component...>,
+                            entt::registry& dst,
+                            entt::registry& src,
+                            const std::unordered_map<UUID, entt::entity>& entt_map) {
+    CopyComponent<Component...>(dst, src, entt_map);
+  }
+  
+  template<typename... Component>
+  static void CopyComponentIfExists(Entity dst, Entity src) {
+    ([&]()
+     {
+      if (src.HasComponent<Component>())
+        dst.AddOrReplaceComponent<Component>(src.GetComponent<Component>());
+    }(), ...);
+  }
+  
+  template<typename... Component>
+  static void CopyComponentIfExists(ComponentGroup<Component...>, Entity dst, Entity src) {
+    CopyComponentIfExists<Component...>(dst, src);
+  }
+  
+  template<typename Component>
+  static void CopySingleComponentIfExists(Entity& dst, Entity& src) {
+    if (src.HasComponent<Component>())
+      dst.AddOrReplaceComponent<Component>(src.GetComponent<Component>());
+  }
 
   std::shared_ptr<Scene> Scene::Copy(std::shared_ptr<Scene> other) {
-    std::shared_ptr<Scene> new_scene = std::make_shared<Scene>();
+    std::shared_ptr<Scene> new_scene = std::make_shared<Scene>(other->GetFilePath());
+    new_scene->setting_= other->setting_;
+    new_scene->type_ = other->type_;
+
+    auto& src_scene_registry = other->registry_;
+    auto& dst_scene_registry = new_scene->registry_;
+    std::unordered_map<UUID, entt::entity> entt_map;
+
+    // Create entities in new scene
+    auto id_view = src_scene_registry.view<IDComponent>();
+    for (auto e : id_view) {
+      UUID uuid = src_scene_registry.get<IDComponent>(e).id;
+      const auto& name = src_scene_registry.get<TagComponent>(e).tag;
+      Entity new_entity = new_scene->CreateEntity(name, uuid);
+      entt_map[uuid] = (entt::entity)new_entity;
+    }
+    
+    // Copy components (except IDComponent and TagComponent)
+    CopyComponent(AllCopyComponents{}, dst_scene_registry, src_scene_registry, entt_map);
+
     return new_scene;
   }
 
