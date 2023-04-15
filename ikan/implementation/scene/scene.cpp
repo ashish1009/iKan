@@ -131,8 +131,19 @@ namespace ikan {
     // Render All Quad Entities
     auto quad_view = registry_.view<TransformComponent, QuadComponent>();
     for (const auto& quad_entity : quad_view) {
-      const auto& [transform_component, quad_component] = quad_view.get<TransformComponent, QuadComponent>(quad_entity);
-      Batch2DRenderer::DrawQuad(transform_component.Transform(), {1, 1, 1, 1});
+      const auto& [transform_comp, quad_comp] = quad_view.get<TransformComponent, QuadComponent>(quad_entity);
+      if (quad_comp.sprite.use and quad_comp.sprite.texture) {
+        if (quad_comp.sprite.use_sub_texture) {
+          Batch2DRenderer::DrawQuad(transform_comp.Transform(), quad_comp.sprite.sub_texture, quad_comp.color, (uint32_t)quad_entity);
+        }
+        else {
+          Batch2DRenderer::DrawQuad(transform_comp.Transform(), quad_comp.sprite.texture, quad_comp.color, quad_comp.sprite.tiling_factor,
+                                    (uint32_t)quad_entity);
+        }
+      }
+      else {
+        Batch2DRenderer::DrawQuad(transform_comp.Transform(), quad_comp.color, (uint32_t)quad_entity);
+      }
     } // For each Quad Entity
     
     Batch2DRenderer::EndBatch();
