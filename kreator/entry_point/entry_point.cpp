@@ -34,7 +34,7 @@ std::unique_ptr<ikan::Application> CreateApplication() {
   application_spec.resizable = true;
   application_spec.start_maximized = false;
   
-  return std::make_unique<kreator::KreatorApp>(application_spec, kreator::GameType::Editor);
+  return std::make_unique<kreator::KreatorApp>(application_spec, kreator::GameType::Mario);
 }
 
 int main() {

@@ -122,6 +122,9 @@ namespace kreator {
     /// This function wraps the scene Stop. Edit from begining
     void StopScene();
 
+    /// This function Renders the grid for camera
+    void RenderGrid();
+
     // Member variables
     uint32_t viewport_width_ = Application::Get().GetWindow().GetWidth();
     uint32_t viewport_height_ = Application::Get().GetWindow().GetWidth();

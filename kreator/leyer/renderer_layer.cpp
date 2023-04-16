@@ -77,7 +77,8 @@ namespace kreator {
       
       Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
       RenderScene(ts);
-      
+      RenderGrid();
+
       viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
       viewport_.framebuffer->Unbind();
     }
@@ -464,6 +465,12 @@ namespace kreator {
     game_data_->Init(active_scene_);
     
     return result;
+  }
+  
+  void RendererLayer::RenderGrid() {
+    const auto& cd = active_scene_->GetPrimaryCameraData();
+    if (cd.scene_camera)
+      cd.scene_camera->RenderGrids(300, {0.6, 0.6, 0.6, 0.2}, cd.transform_matrix, cd.position);
   }
   
 } // namespace kreator
