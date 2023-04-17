@@ -470,7 +470,7 @@ namespace kreator {
   void RendererLayer::RenderGrid() {
     const auto& cd = active_scene_->GetPrimaryCameraData();
     if (cd.scene_camera)
-      cd.scene_camera->RenderGrids(300, {0.6, 0.6, 0.6, 0.2}, cd.transform_matrix, cd.position);
+      cd.scene_camera->RenderGrids(1000, {0.6, 0.6, 0.6, 0.2}, cd.transform_matrix, cd.position);
   }
   
 } // namespace kreator
