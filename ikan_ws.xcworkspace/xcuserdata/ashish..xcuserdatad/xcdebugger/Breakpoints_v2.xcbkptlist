@@ -78,8 +78,8 @@
             filePath = "ikan/implementation/scene/scene.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
             landmarkName = "Scene::SetType(type)"
             landmarkType = "7">
          </BreakpointContent>

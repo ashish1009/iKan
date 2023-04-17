@@ -94,7 +94,7 @@ namespace ikan {
     
     // Member variables
     ProjectionType projection_type_ = ProjectionType::Orthographic;
-    float perspective_fov_ = glm::radians(45.0f);
+    float perspective_fov_ = glm::radians(75.0f);
     float orthographic_size_ = 10.0f;
   };
   
