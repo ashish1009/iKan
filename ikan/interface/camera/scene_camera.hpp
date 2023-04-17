@@ -21,6 +21,10 @@ namespace ikan {
       Perspective = 0, Orthographic = 1
     };
     
+    struct Grid {
+      bool x_plane = false, y_plane = false, z_plane = true;
+    };
+    
     /// This constructor creates the Scene Camera instance
     /// - Parameter proj_type: Projection type
     SceneCamera(ProjectionType proj_type = ProjectionType::Orthographic);
@@ -86,6 +90,9 @@ namespace ikan {
     float GetPerspectiveFOV() const;
     
     DEFINE_COPY_MOVE_CONSTRUCTORS(SceneCamera);
+    
+    // Debug data
+    Grid grid_pane_;
     
   private:
     // Member functions
