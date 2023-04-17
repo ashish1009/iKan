@@ -276,22 +276,22 @@ namespace ikan {
     IK_ASSERT(zoom != 0.0f, "Invalid Camera type of Zoom value");
     
     float hor_line = zoom;
-    float ver_line = zoom * aspect_ratio_;
-    float hor_line_by_2 = hor_line / 2;
-    float ver_line_by_2 = ver_line / 2;
+    float ver_line = aspect_ratio_ * zoom;
+    float num_lines = std::max(hor_line, ver_line);
+    float line_by_2 = num_lines / 2;
     
     if ((hor_line + ver_line) >= max_lines)
       return;
     
     Batch2DRenderer::BeginBatch(projection_matrix_ * glm::inverse(camera_transform));
-    for (int32_t i = (int32_t)(-hor_line_by_2); i < (int32_t)hor_line_by_2; i++) {
-      Batch2DRenderer::DrawLine({-ver_line_by_2 + camera_pos.x, 0 + 0.5 + i + camera_pos.y, 0},
-                                {ver_line_by_2 + camera_pos.x, 0 + 0.5 + i + camera_pos.y, 0}, line_color);
+    for (int32_t i = (int32_t)(-line_by_2); i < (int32_t)line_by_2; i++) {
+      Batch2DRenderer::DrawLine({-line_by_2 + camera_pos.x, 0 + 0.5 + i + camera_pos.y, 0},
+                                {line_by_2 + camera_pos.x, 0 + 0.5 + i + camera_pos.y, 0}, line_color);
     }
     
-    for (int i = (int32_t)(-ver_line_by_2); i < (int32_t)ver_line_by_2; i++) {
-      Batch2DRenderer::DrawLine({0 + 0.5 + i + camera_pos.x, -hor_line_by_2 + camera_pos.y, 0},
-                                {0 + 0.5 + i + camera_pos.x, hor_line_by_2 + camera_pos.y, 0}, line_color);
+    for (int i = (int32_t)(-line_by_2); i < (int32_t)line_by_2; i++) {
+      Batch2DRenderer::DrawLine({0 + 0.5 + i + camera_pos.x, -line_by_2 + camera_pos.y, 0},
+                                {0 + 0.5 + i + camera_pos.x, line_by_2 + camera_pos.y, 0}, line_color);
     }
     Batch2DRenderer::EndBatch();
   }

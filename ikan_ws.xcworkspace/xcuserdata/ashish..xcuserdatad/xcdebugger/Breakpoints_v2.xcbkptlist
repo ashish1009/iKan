@@ -208,6 +208,21 @@
                   endingLineNumber = "308"
                   offsetFromSymbolStart = "924">
                </Location>
+               <Location
+                  uuid = "F5A91DE6-FB3D-479E-AAFD-45133D660A41 - 9d4ea9532140d766"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ikan::SceneCamera::RenderGrids(unsigned int, glm::vec&lt;4, float, (glm::qualifier)0&gt; const&amp;, glm::mat&lt;4, 4, float, (glm::qualifier)0&gt; const&amp;, glm::vec&lt;3, float, (glm::qualifier)0&gt;)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/ikan/implementation/camera/scene_camera.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "283"
+                  endingLineNumber = "283"
+                  offsetFromSymbolStart = "456">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
