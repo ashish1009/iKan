@@ -182,7 +182,7 @@ namespace kreator {
         RenderViewport();
         SceneStateButton();
         SceneRendererType();
-        ShowSettings();        
+        ShowSettings();
       }
 
       ImguiAPI::EndDcocking();

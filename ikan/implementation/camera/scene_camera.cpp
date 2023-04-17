@@ -245,6 +245,16 @@ namespace ikan {
     } else {
       IK_ASSERT(false, "Invalid Projection Type");
     }
+    
+    ImGui::Separator();
+    bool opened = ImGui::TreeNodeEx("Grids", ImGuiTreeNodeFlags_SpanAvailWidth);
+    if (opened) {
+      PropertyGrid::CheckBox("X Plane", grid_plane_.x);
+      PropertyGrid::CheckBox("Y Plane", grid_plane_.y);
+      PropertyGrid::CheckBox("Z Plane", grid_plane_.z);
+
+      ImGui::TreePop();
+    }
   }
   
   void SceneCamera::RenderGuiWithTitle() {
@@ -285,17 +295,17 @@ namespace ikan {
     
     Batch2DRenderer::BeginBatch(projection_matrix_ * glm::inverse(camera_transform));
     for (int32_t i = (int32_t)(-line_by_2); i < (int32_t)line_by_2; i++) {
-      if (grid_pane_.z_plane) {
+      if (grid_plane_.z) {
         Batch2DRenderer::DrawLine({-line_by_2 + camera_pos.x, 0.5 + i + camera_pos.y, 0}, {line_by_2 + camera_pos.x, 0.5 + i + camera_pos.y, 0}, line_color);
         Batch2DRenderer::DrawLine({0.5 + i + camera_pos.x, -line_by_2 + camera_pos.y, 0}, {0.5 + i + camera_pos.x, line_by_2 + camera_pos.y, 0}, line_color);
       }
       
-      if (grid_pane_.y_plane) {
+      if (grid_plane_.y) {
         Batch2DRenderer::DrawLine({camera_pos.x + i, 0.0f, -line_by_2 + camera_pos.z}, {camera_pos.x + i, 0.0f, line_by_2 + camera_pos.z}, line_color);
         Batch2DRenderer::DrawLine({-line_by_2 + camera_pos.x, 0.0f, camera_pos.z + i}, {line_by_2 + camera_pos.x, 0.0f, camera_pos.z + i}, line_color);
       }
       
-      if (grid_pane_.x_plane) {
+      if (grid_plane_.x) {
         Batch2DRenderer::DrawLine({0.0, -line_by_2 + camera_pos.y, i + camera_pos.z}, {0.0, line_by_2 + camera_pos.y, i + camera_pos.z}, line_color);
         Batch2DRenderer::DrawLine({0.0, i + camera_pos.y, -line_by_2 + camera_pos.z}, {0.0, i + camera_pos.y, line_by_2 + camera_pos.z}, line_color);
       }

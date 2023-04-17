@@ -21,8 +21,8 @@ namespace ikan {
       Perspective = 0, Orthographic = 1
     };
     
-    struct Grid {
-      bool x_plane = false, y_plane = false, z_plane = true;
+    struct GridPlane {
+      bool x = false, y = false, z = true;
     };
     
     /// This constructor creates the Scene Camera instance
@@ -92,7 +92,7 @@ namespace ikan {
     DEFINE_COPY_MOVE_CONSTRUCTORS(SceneCamera);
     
     // Debug data
-    Grid grid_pane_;
+    GridPlane grid_plane_;
     
   private:
     // Member functions
