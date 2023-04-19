@@ -38,10 +38,10 @@ namespace ikan {
     
     // Overwrite the data to create full screen window
     if (mac_window_data_.specification.fullscreen) {
+      primary_monitor = glfwGetPrimaryMonitor();
       const GLFWvidmode* mode = glfwGetVideoMode(primary_monitor);
       width = mode->width;
       height = mode->height;
-      primary_monitor = glfwGetPrimaryMonitor();
     }
     window_ = glfwCreateWindow(width, height, mac_window_data_.specification.title.c_str(), primary_monitor, share_monitor);
 
