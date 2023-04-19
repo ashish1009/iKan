@@ -385,7 +385,11 @@ namespace kreator {
     is_playing_ = is_play;
     
     if (is_playing_) {
-      ResizeData(Application::Get().GetWindowWidth(), Application::Get().GetWindowHeight());
+      Application::Get().MaximizeWindow();
+      PlayScene();
+    }
+    else {
+      EditScene();
     }
   }
 
