@@ -476,6 +476,83 @@ namespace kreator {
   }
   
   void RendererLayer::SelectEntities() {
+    if (!viewport_.IsMouseInsideViewport()) {
+      ClearSelectedEntities();
+      return;
+    }
+    
+    if (!Input::IsKeyPressed(Key::LeftShift) or Input::IsKeyPressed(Key::LeftControl))
+      return;
+
+    static bool first_clicked = true;
+    
+    static glm::vec2 initial_mouse_position_ = glm::vec2(0.0f);
+    static glm::vec2 final_mouse_position_ = glm::vec2(0.0f);
+    
+    static glm::vec2 initial_block_position_ = glm::vec2(0.0f);
+    static glm::vec2 final_block_position_ = glm::vec2(0.0f);
+
+    const auto& cd = active_scene_->GetPrimaryCameraData();
+    float zoom = cd.scene_camera->GetZoom();
+    float aspect_ratio = cd.scene_camera->GetAspectRatio();
+
+    if (Input::IsMouseButtonPressed(MouseButton::ButtonLeft)) {
+      if (first_clicked) {
+        ClearSelectedEntities();
+        
+        first_clicked = false;
+        initial_mouse_position_ = { viewport_.mouse_pos_x, viewport_.mouse_pos_y };
+        initial_block_position_ = {
+          viewport_.mouse_pos_x - ((float)viewport_.width / 2),
+          viewport_.mouse_pos_y - ((float)viewport_.height / 2)
+        };
+        initial_block_position_ *= ((zoom * aspect_ratio) / viewport_.width);
+      }
+      final_mouse_position_ = { viewport_.mouse_pos_x, viewport_.mouse_pos_y };
+      final_block_position_ = {
+        viewport_.mouse_pos_x - ((float)viewport_.width / 2),
+        viewport_.mouse_pos_y - ((float)viewport_.height / 2)
+      };
+      final_block_position_ *= ((zoom * aspect_ratio) / viewport_.width);
+      
+      // Render the outline rectangle
+      Batch2DRenderer::BeginBatch(active_scene_->GetPrimaryCameraData().scene_camera->GetProjection() *
+                                  glm::inverse(active_scene_->GetPrimaryCameraData().transform_matrix));
+      Batch2DRenderer::DrawRect({initial_block_position_.x + cd.position.x, initial_block_position_.y + cd.position.y, 0.1},
+                                {final_block_position_.x + cd.position.x, final_block_position_.y + cd.position.y, 0.1},
+                                {1, 1, 1, 1});
+      Batch2DRenderer::EndBatch();
+    }
+    if (Input::IsMouseButtonReleased(MouseButton::ButtonLeft)) {
+      if (!first_clicked) {
+        // Store entites present in selected entitity
+        float min_x = std::min(initial_mouse_position_.x, final_mouse_position_.x);
+        float max_x = std::max(initial_mouse_position_.x, final_mouse_position_.x);
+        float min_y = std::min(initial_mouse_position_.y, final_mouse_position_.y);
+        float max_y = std::max(initial_mouse_position_.y, final_mouse_position_.y);
+        
+        for (float i_x = min_x; i_x <= max_x; i_x ++) {
+          for (float i_y = min_y; i_y <= max_y; i_y++) {
+            // Get pixel from rednerer
+            int32_t pixel = -1;
+            
+            Renderer::GetEntityIdFromPixels(i_x, i_y, viewport_.framebuffer->GetPixelIdIndex(), pixel);
+#if 0
+            IK_TRACE(game_data_->GameName(), "X : {0}, Y : {1}, Pixel : {2}", i_x, i_y, pixel);
+#endif
+            if (pixel <= (int32_t)active_scene_->GetMaxEntityId()) {
+              if (selected_entities_.find((entt::entity)pixel) == selected_entities_.end()){
+                selected_entities_[(entt::entity)pixel] = active_scene_->GetEnitityFromId(pixel);
+              }
+            }
+          }
+        }
+        
+        // TODO: Do it while adding to vector? or keep separate???
+        HighlightSelectedEntities(true);
+      }
+      first_clicked = true;
+    }
   }
   
   void RendererLayer::ClearSelectedEntities() {
