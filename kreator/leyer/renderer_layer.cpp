@@ -118,7 +118,7 @@ namespace kreator {
       return false;
     
     bool cmd = Input::IsKeyPressed(Key::LeftSuper) or Input::IsKeyPressed(Key::RightSuper);
-    bool right_shift = Input::IsKeyPressed(Key::RightShift);
+    bool left_shift = Input::IsKeyPressed(Key::LeftShift);
 
     if (cmd) {
       switch (event.GetKeyCode()) {
@@ -132,7 +132,7 @@ namespace kreator {
       };
     }
     
-    if (right_shift) {
+    if (left_shift) {
       switch (event.GetKeyCode()) {
         case Key::D:          DuplicateSelectedEntities();  break;
         case Key::Backspace:  DeleteSelectedEntities();     break;

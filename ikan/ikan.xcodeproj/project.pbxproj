@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B206A4DB29F056EA00F6574E /* libbox_2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B206A29229F055E700F6574E /* libbox_2d.a */; };
 		B20FF40D29DDE99500FB3DB7 /* property_grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B20FF40B29DDE99500FB3DB7 /* property_grid.cpp */; };
 		B20FF40E29DDE99500FB3DB7 /* property_grid.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B20FF40C29DDE99500FB3DB7 /* property_grid.hpp */; };
 		B228FC6829DB070500455666 /* open_gl_graphics_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B228FC6629DB070500455666 /* open_gl_graphics_context.cpp */; };
@@ -107,6 +108,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		B206A29129F055E700F6574E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B206A28D29F055E600F6574E /* box_2d.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B206A27F29F055E600F6574E;
+			remoteInfo = box_2d;
+		};
 		B228FC9129DB133100455666 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B228FC8D29DB133000455666 /* imgui.xcodeproj */;
@@ -145,6 +153,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B206A28D29F055E600F6574E /* box_2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = box_2d.xcodeproj; path = box_2d/box_2d.xcodeproj; sourceTree = "<group>"; };
 		B20FF40B29DDE99500FB3DB7 /* property_grid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = property_grid.cpp; sourceTree = "<group>"; };
 		B20FF40C29DDE99500FB3DB7 /* property_grid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = property_grid.hpp; sourceTree = "<group>"; };
 		B228FC6629DB070500455666 /* open_gl_graphics_context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_graphics_context.cpp; sourceTree = "<group>"; };
@@ -267,6 +276,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B206A4DB29F056EA00F6574E /* libbox_2d.a in Frameworks */,
 				B24B20D429EAEEF700487124 /* libimguizmo.a in Frameworks */,
 				B295DB8229E6D63400A40956 /* libyaml.a in Frameworks */,
 				B2BEC76129DD6802008D3DCB /* libimgui.a in Frameworks */,
@@ -278,6 +288,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B206A28E29F055E600F6574E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B206A29229F055E700F6574E /* libbox_2d.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		B20FF40629DDE97900FB3DB7 /* editor */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,6 +429,7 @@
 			isa = PBXGroup;
 			children = (
 				B2F70D0829DF11D9003163BA /* stb_image */,
+				B206A28D29F055E600F6574E /* box_2d.xcodeproj */,
 				B295D8C029E6D5B200A40956 /* yaml.xcodeproj */,
 				B228FC8D29DB133000455666 /* imgui.xcodeproj */,
 				B24B209829EAED8E00487124 /* imguizmo.xcodeproj */,
@@ -824,6 +843,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = B206A28E29F055E600F6574E /* Products */;
+					ProjectRef = B206A28D29F055E600F6574E /* box_2d.xcodeproj */;
+				},
+				{
 					ProductGroup = B2F91E6029D721AA00860306 /* Products */;
 					ProjectRef = B2F91E5F29D721AA00860306 /* glfw.xcodeproj */;
 				},
@@ -852,6 +875,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		B206A29229F055E700F6574E /* libbox_2d.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libbox_2d.a;
+			remoteRef = B206A29129F055E700F6574E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		B228FC9229DB133100455666 /* libimgui.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1085,6 +1115,7 @@
 					"${PROJECT_DIR}/vendors/entt/include",
 					"${PROJECT_DIR}/vendors/yaml/yaml/include",
 					"${PROJECT_DIR}/vendors/imguizmo/imguizmo",
+					"${PROJECT_DIR}/vendors/box_2d/box_2d/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1115,6 +1146,7 @@
 					"${PROJECT_DIR}/vendors/entt/include",
 					"${PROJECT_DIR}/vendors/yaml/yaml/include",
 					"${PROJECT_DIR}/vendors/imguizmo/imguizmo",
+					"${PROJECT_DIR}/vendors/box_2d/box_2d/include",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
