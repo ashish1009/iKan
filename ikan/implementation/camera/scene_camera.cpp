@@ -238,22 +238,19 @@ namespace ikan {
         SetPerspectiveFOV(glm::radians(fov));
       }
       PropertyGrid::HoveredMsg(std::to_string(perspective_fov_).c_str());
+      
+      ImGui::Separator();
+      PropertyGrid::CheckBox("X Plane Grids", grid_plane_.x);
+      PropertyGrid::CheckBox("Y Plane Grids", grid_plane_.y);
+      PropertyGrid::CheckBox("Z Plane Grids", grid_plane_.z);
     } else if (projection_type_ == SceneCamera::ProjectionType::Orthographic) {
       if (PropertyGrid::Float1("Size", orthographic_size_, nullptr, 1.0f, 10.0f)) {
         RecalculateProjection();
       }
+      ImGui::Separator();
+      PropertyGrid::CheckBox("Grids", grid_plane_.z);
     } else {
       IK_ASSERT(false, "Invalid Projection Type");
-    }
-    
-    ImGui::Separator();
-    bool opened = ImGui::TreeNodeEx("Grids", ImGuiTreeNodeFlags_SpanAvailWidth);
-    if (opened) {
-      PropertyGrid::CheckBox("X Plane", grid_plane_.x);
-      PropertyGrid::CheckBox("Y Plane", grid_plane_.y);
-      PropertyGrid::CheckBox("Z Plane", grid_plane_.z);
-
-      ImGui::TreePop();
     }
   }
   
