@@ -21,7 +21,7 @@ namespace angry_bird {
     std::string GameName() const override { return "IKAN Angry Bird"; }
     glm::vec4 GetBgColor() const override { return {0.5f, 0.2f, 0.2f, 1.0f}; }
     std::string GetScenePath() const override { return DM::WorkspacePath("/kreator/angry_bird/scenes/"); }
-    std::string SavedScene() const override { return GetScenePath() + ""; };
+    std::string SavedScene() const override { return GetScenePath() + "AngryBird.ikanScene"; };
     std::string CbpRootDir() const override { return GetScenePath(); };
     std::vector<std::filesystem::path> FavDirecotries() const override {
       return {

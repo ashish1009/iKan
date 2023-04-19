@@ -39,8 +39,8 @@ std::unique_ptr<ikan::Application> CreateApplication() {
 
 int main() {
   // Initialize the ikan Logger
-  ikan::Logger::Init(ikan::Logger::Level::Trace,
-                     ikan::Logger::Level::Trace,
+  ikan::Logger::Init(ikan::Logger::Level::Info,
+                     ikan::Logger::Level::Info,
                      "../../../log/kreator.log");
   
   auto app = CreateApplication();

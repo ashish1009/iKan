@@ -34,6 +34,8 @@ ${PROJECT_DIR}/../ikan/vendors/spdlog/include
 ${PROJECT_DIR}/../ikan/vendors/imgui/imgui
 ${PROJECT_DIR}/../ikan/vendors/glm
 ${PROJECT_DIR}/../ikan/vendors/freetype/include/freetype2
+${PROJECT_DIR}/../ikan/vendors/entt/include
+${PROJECT_DIR}/../ikan/vendors/box_2d/box_2d/include
 
 ### Library Search Paths
 ${PROJECT_DIR}/../ikan/vendors/freetype/lib

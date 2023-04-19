@@ -86,3 +86,6 @@
 
 // Imgui API
 #include <imgui/imgui_api.hpp>
+
+// Physics
+#include <box2d/box2d.h>
