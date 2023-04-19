@@ -3,23 +3,6 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
-  - Entity: 17039513187255470450
-    TagComponent:
-      Tag: Ground
-    TransformComponent:
-      Translation: [-17, -9, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/mario/assets/textures/tile.png
-      Coords: [0, 27]
-      Sprite_Size: [1, 1]
-      Cell_Size: [16, 16]
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
   - Entity: 2006004470497900375
     TagComponent:
       Tag: Camera
@@ -35,3 +18,20 @@ Entities:
       OrthographicSize: 19
       Near: -1
       Far: 1
+  - Entity: 17039513187255470450
+    TagComponent:
+      Tag: Ground
+    TransformComponent:
+      Translation: [-16, -9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sprite_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/mario/assets/textures/tile.png
+      Coords: [0, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]

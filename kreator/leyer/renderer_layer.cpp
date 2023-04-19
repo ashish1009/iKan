@@ -134,14 +134,14 @@ namespace kreator {
     
     if (right_shift) {
       switch (event.GetKeyCode()) {
-//        case Key::R:          DuplicateSelectedEntities();  break;
-//        case Key::Backspace:  DeleteSelectedEntities();     break;
-//        case Key::Escape:     ClearSelectedEntities();      break;
+        case Key::D:          DuplicateSelectedEntities();  break;
+        case Key::Backspace:  DeleteSelectedEntities();     break;
+        case Key::Escape:     ClearSelectedEntities();      break;
           
-        case Key::A:    MoveEntities(Left);   break;
-        case Key::D:    MoveEntities(Right);  break;
-        case Key::W:    MoveEntities(Up);     break;
-        case Key::S:    MoveEntities(Down);   break;
+        case Key::Left:       MoveEntities(Left);   break;
+        case Key::Right:      MoveEntities(Right);  break;
+        case Key::Up:         MoveEntities(Up);     break;
+        case Key::Down:       MoveEntities(Down);   break;
           
         default: break;
       } // switch (e.GetKeyCode())
@@ -582,6 +582,24 @@ namespace kreator {
       auto& qc = entity->GetComponent<QuadComponent>();
       (enable) ? qc.color.a -=0.2f : qc.color.a +=0.2f;
     }
+  }
+  
+  void RendererLayer::DeleteSelectedEntities() {
+    for (auto& [entt, entity] : selected_entities_) {
+      if (spm_.GetSelectedEntity() and *(spm_.GetSelectedEntity()) == *entity) {
+        spm_.SetSelectedEntity(nullptr);
+      }
+      active_scene_->DestroyEntity(*entity);
+    }
+    selected_entities_.clear();
+  }
+  
+  void RendererLayer::DuplicateSelectedEntities() {
+    HighlightSelectedEntities(false);
+    for (auto& [entt, entity] : selected_entities_) {
+      [[maybe_unused]] auto e = active_scene_->DuplicateEntity(*entity);
+    }
+    HighlightSelectedEntities(true);
   }
   
   void RendererLayer::MoveEntities(Direction direction) {
