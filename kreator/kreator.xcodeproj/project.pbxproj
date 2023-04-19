@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B206A26B29EFF69E00F6574E /* angry_bird.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B206A26929EFF69E00F6574E /* angry_bird.cpp */; };
+		B206A26E29EFF70900F6574E /* chess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B206A26C29EFF70900F6574E /* chess.cpp */; };
 		B281E87929DFEF440038A9EE /* libglfw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B281E87829DFEF440038A9EE /* libglfw.a */; };
 		B292BB7529D16F8F00B1E678 /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B292BB7429D16F8F00B1E678 /* entry_point.cpp */; };
 		B292C0F329D1D7C400B1E678 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B292C0F229D1D7C400B1E678 /* libikan.a */; };
@@ -34,6 +36,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B206A26929EFF69E00F6574E /* angry_bird.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = angry_bird.cpp; sourceTree = "<group>"; };
+		B206A26A29EFF69E00F6574E /* angry_bird.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = angry_bird.hpp; sourceTree = "<group>"; };
+		B206A26C29EFF70900F6574E /* chess.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chess.cpp; sourceTree = "<group>"; };
+		B206A26D29EFF70900F6574E /* chess.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chess.hpp; sourceTree = "<group>"; };
 		B228FC7029DB093D00455666 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		B228FC7229DB094700455666 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B228FC7429DB094C00455666 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
@@ -71,6 +77,120 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B206A25B29EFF68600F6574E /* chess */ = {
+			isa = PBXGroup;
+			children = (
+				B206A26129EFF68600F6574E /* src */,
+				B206A25C29EFF68600F6574E /* scenes */,
+				B206A25D29EFF68600F6574E /* ini */,
+				B206A25E29EFF68600F6574E /* assets */,
+			);
+			path = chess;
+			sourceTree = "<group>";
+		};
+		B206A25C29EFF68600F6574E /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = scenes;
+			sourceTree = "<group>";
+		};
+		B206A25D29EFF68600F6574E /* ini */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ini;
+			sourceTree = "<group>";
+		};
+		B206A25E29EFF68600F6574E /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				B206A25F29EFF68600F6574E /* textures */,
+				B206A26029EFF68600F6574E /* fonts */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		B206A25F29EFF68600F6574E /* textures */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = textures;
+			sourceTree = "<group>";
+		};
+		B206A26029EFF68600F6574E /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		B206A26129EFF68600F6574E /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B206A26C29EFF70900F6574E /* chess.cpp */,
+				B206A26D29EFF70900F6574E /* chess.hpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		B206A26229EFF68600F6574E /* angry_bird */ = {
+			isa = PBXGroup;
+			children = (
+				B206A26829EFF68600F6574E /* src */,
+				B206A26329EFF68600F6574E /* scenes */,
+				B206A26429EFF68600F6574E /* ini */,
+				B206A26529EFF68600F6574E /* assets */,
+			);
+			path = angry_bird;
+			sourceTree = "<group>";
+		};
+		B206A26329EFF68600F6574E /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = scenes;
+			sourceTree = "<group>";
+		};
+		B206A26429EFF68600F6574E /* ini */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ini;
+			sourceTree = "<group>";
+		};
+		B206A26529EFF68600F6574E /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				B206A26629EFF68600F6574E /* textures */,
+				B206A26729EFF68600F6574E /* fonts */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		B206A26629EFF68600F6574E /* textures */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = textures;
+			sourceTree = "<group>";
+		};
+		B206A26729EFF68600F6574E /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		B206A26829EFF68600F6574E /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B206A26929EFF69E00F6574E /* angry_bird.cpp */,
+				B206A26A29EFF69E00F6574E /* angry_bird.hpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 		B292BB6829D16F8F00B1E678 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +201,8 @@
 				B2D85BE929E8709C00602232 /* application */,
 				B2BEC7CC29DDBBF3008D3DCB /* leyer */,
 				B2D856D929E867C000602232 /* mario */,
+				B206A26229EFF68600F6574E /* angry_bird */,
+				B206A25B29EFF68600F6574E /* chess */,
 				B2BEC78529DD7A92008D3DCB /* editor */,
 				B292BB7229D16F8F00B1E678 /* Products */,
 				B292C0F129D1D7C400B1E678 /* Frameworks */,
@@ -295,6 +417,8 @@
 				B2BEC7CF29DDBBFF008D3DCB /* renderer_layer.cpp in Sources */,
 				B2BEC7D229DDC033008D3DCB /* game_data.cpp in Sources */,
 				B2D856DC29E867D000602232 /* editor.cpp in Sources */,
+				B206A26B29EFF69E00F6574E /* angry_bird.cpp in Sources */,
+				B206A26E29EFF70900F6574E /* chess.cpp in Sources */,
 				B292BB7529D16F8F00B1E678 /* entry_point.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -12,7 +12,7 @@ namespace kreator {
   using namespace ikan;
   
   enum class GameType {
-    Editor, Mario
+    Editor, Mario, Chess, AngryBird
   };
   
   class GameData {
