@@ -164,7 +164,7 @@ namespace ikan {
     registry_.destroy(entity);
   }
   
-  Entity Scene::DuplicateEntity(Entity entity) {
+  Entity& Scene::DuplicateEntity(Entity entity) {
     Entity new_entity = CreateUniqueEntity(UUID());
     CopySingleComponentIfExists<TagComponent>(new_entity, entity);
     CopyComponentIfExists(AllCopyComponents{}, new_entity, entity);
@@ -177,7 +177,7 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::Scene, "  Number of entities Added in Scene {0}", num_entities_);
     IK_CORE_TRACE(LogModule::Scene, "  Max ID given to entity            {0}", max_entity_id_);
     
-    return new_entity;
+    return entity_id_map_.at((entt::entity)entity);
   }
   
   void Scene::Update(Timestep ts) {

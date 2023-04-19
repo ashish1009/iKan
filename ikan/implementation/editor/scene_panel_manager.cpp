@@ -129,6 +129,15 @@ namespace ikan {
       ImGui::EndPopup();
     }
 
+    // Delete the entity
+    if (delete_entity_) {
+      // Delete entity from scene
+      scene_context_->DestroyEntity(*selected_entity_);
+      
+      SetSelectedEntity(nullptr);
+      delete_entity_ = false;
+    }
+
     ImGui::PopID();
     ImGui::End();
   }
@@ -185,6 +194,20 @@ namespace ikan {
     // Left Click Feature. Update the selected entity if item is clicked
     if (ImGui::IsItemClicked() or ImGui::IsItemClicked(1))
       SetSelectedEntity(&entity);
+    
+    // Right click of mouse option
+    if (ImGui::BeginPopupContextItem()) {
+      // Duplicate Entity
+      if (ImGui::MenuItem("Duplicate Entity")) {
+        selected_entity_ = &scene_context_->DuplicateEntity(*selected_entity_);
+      }
+      
+      // Delete Entity
+      if (ImGui::MenuItem("Delete Entity")) {
+        delete_entity_ = true;
+      }
+      ImGui::EndMenu(); // Add to group
+    }
     
     if (opened) {
       // TODO: Add Feature

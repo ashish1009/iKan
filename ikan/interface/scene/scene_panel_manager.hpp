@@ -72,6 +72,8 @@ namespace ikan {
     Scene* scene_context_;
     Setting setting_;
     Entity* selected_entity_;
+    
+    bool delete_entity_ = false;
   };
   
 } // namespace ikan

@@ -61,7 +61,7 @@ namespace ikan {
     void DestroyEntity(Entity entity);
     /// This function duplicate the entity and copy all the components
     /// - Parameter entity: entity to be destroyed
-    Entity DuplicateEntity(Entity entity);
+    [[nodiscard]] Entity& DuplicateEntity(Entity entity);
 
     /// This function update the scene
     /// - Parameter ts: time step
