@@ -79,10 +79,12 @@ namespace kreator {
       RenderScene(ts);
       RenderGrid();
 
-      if (!game_data_->IsPlaying()) {
-        SelectEntities();
+      if (active_scene_->GetType() == Scene::Type::_2D) {
+        if (!game_data_->IsPlaying()) {
+          SelectEntities();
+        }
       }
-
+      
       viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
       viewport_.framebuffer->Unbind();
     }

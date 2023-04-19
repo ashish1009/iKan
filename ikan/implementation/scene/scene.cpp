@@ -164,6 +164,22 @@ namespace ikan {
     registry_.destroy(entity);
   }
   
+  Entity Scene::DuplicateEntity(Entity entity) {
+    Entity new_entity = CreateUniqueEntity(UUID());
+    CopySingleComponentIfExists<TagComponent>(new_entity, entity);
+    CopyComponentIfExists(AllCopyComponents{}, new_entity, entity);
+    
+    // Debug Logs
+    IK_CORE_TRACE(LogModule::Scene, "Stored Entity in Scene");
+    IK_CORE_TRACE(LogModule::Scene, "  Name    {0}", new_entity.GetComponent<TagComponent>().tag.c_str());
+    IK_CORE_TRACE(LogModule::Scene, "  Handle  {0}", (uint32_t)new_entity);
+    IK_CORE_TRACE(LogModule::Scene, "  ID      {0}", new_entity.GetComponent<IDComponent>().id);
+    IK_CORE_TRACE(LogModule::Scene, "  Number of entities Added in Scene {0}", num_entities_);
+    IK_CORE_TRACE(LogModule::Scene, "  Max ID given to entity            {0}", max_entity_id_);
+    
+    return new_entity;
+  }
+  
   void Scene::Update(Timestep ts) {
     UpdatePrimaryCameraData();
 
