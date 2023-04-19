@@ -66,6 +66,8 @@ namespace kreator {
     bool IsPlaying() const { return is_playing_; }
     
   private:
+    enum Direction {Left, Right, Up, Down};
+
     /// This function renders the scene data
     void RenderScene(Timestep ts);
     /// This function render the viewport captured in framebuffer
@@ -131,6 +133,13 @@ namespace kreator {
     /// This function highlight the selected entiies
     /// - Parameter enable: flag to set or unset
     void HighlightSelectedEntities(bool enable);
+    /// This function Delete the selected entities
+    void DeleteSelectedEntities();
+    /// This function Duplicate the selected entities
+    void DuplicateSelectedEntities();
+    /// This function moves the selected entities
+    /// - Parameter direction: Direction of movement
+    void MoveEntities(Direction direction);
 
     // Member variables
     uint32_t viewport_width_ = Application::Get().GetWindow().GetWidth();

@@ -118,7 +118,8 @@ namespace kreator {
       return false;
     
     bool cmd = Input::IsKeyPressed(Key::LeftSuper) or Input::IsKeyPressed(Key::RightSuper);
-    
+    bool right_shift = Input::IsKeyPressed(Key::RightShift);
+
     if (cmd) {
       switch (event.GetKeyCode()) {
         case Key::R: SetPlay(true); break;
@@ -130,6 +131,21 @@ namespace kreator {
         default: break;
       };
     }
+    
+    if (right_shift) {
+      switch (event.GetKeyCode()) {
+//        case Key::R:          DuplicateSelectedEntities();  break;
+//        case Key::Backspace:  DeleteSelectedEntities();     break;
+//        case Key::Escape:     ClearSelectedEntities();      break;
+          
+        case Key::A:    MoveEntities(Left);   break;
+        case Key::D:    MoveEntities(Right);  break;
+        case Key::W:    MoveEntities(Up);     break;
+        case Key::S:    MoveEntities(Down);   break;
+          
+        default: break;
+      } // switch (e.GetKeyCode())
+    } // if (shift)
 
     switch (event.GetKeyCode()) {
       case Key::Escape: SetPlay(false); break;
@@ -355,9 +371,7 @@ namespace kreator {
     ImGui::PushID("Scene Renderer Type");
     
     Scene::Type current_type = active_scene_->GetType();
-    Scene::Type new_type = Scene::Type(PropertyGrid::ComboDrop("Scene Renderer Type",
-                                                               { "2D" , "3D" },
-                                                               (uint32_t)current_type,
+    Scene::Type new_type = Scene::Type(PropertyGrid::ComboDrop("Scene Renderer Type", { "2D" , "3D" }, (uint32_t)current_type,
                                                                3 * ImGui::GetWindowContentRegionMax().x / 5));
     if (new_type != current_type) {
       active_scene_->SetType((Scene::Type)new_type);
@@ -567,6 +581,21 @@ namespace kreator {
       if(!entity) continue;
       auto& qc = entity->GetComponent<QuadComponent>();
       (enable) ? qc.color.a -=0.2f : qc.color.a +=0.2f;
+    }
+  }
+  
+  void RendererLayer::MoveEntities(Direction direction) {
+    for (auto& [entt, entity] : selected_entities_) {
+      if(!entity) continue;
+      
+      auto& tc = entity->GetComponent<TransformComponent>();
+      switch (direction) {
+        case Down:      tc.AddPosition(Y, - 1.0f);     break;
+        case Up:        tc.AddPosition(Y, 1.0f);       break;
+        case Right:     tc.AddPosition(X, 1.0f);       break;
+        case Left:      tc.AddPosition(X, - 1.0f);     break;
+        default: break;
+      }
     }
   }
   
