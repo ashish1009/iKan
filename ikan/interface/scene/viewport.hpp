@@ -40,13 +40,15 @@ namespace ikan {
     void UpdateMousePos();
     /// This function updates the porition of Viewport bound. Should be called each frame to get mouse position precisely
     void UpdateBound();
-    /// This function returns true if viewport size is not same as framebuffer
-    bool IsFramebufferResized();
     /// This function updates the hoved entity
     /// - Parameters:
     ///   - current_selected_entity: current selected entity pointer
     ///   - scene: scene
     void UpdateHoveredEntity(Entity* current_selected_entity, Scene* scene);
+    /// This function returns true if viewport size is not same as framebuffer
+    bool IsFramebufferResized() const;
+    /// This function returns if mouse is inside the viewport
+    bool IsMouseInsideViewport() const;
 
     DELETE_COPY_MOVE_CONSTRUCTORS(Viewport);
   };

@@ -48,7 +48,7 @@ namespace ikan {
     bounds[1] = { max_bound.x, max_bound.y };
   }
   
-  bool Viewport::IsFramebufferResized() {
+  bool Viewport::IsFramebufferResized() const {
     const FrameBuffer::Specification& spec = framebuffer->GetSpecification();
     return width > 0 and height > 0 and (spec.width != width or spec.height != height);
   }
@@ -70,6 +70,10 @@ namespace ikan {
     if (scene) {
       hovered_entity_ = (hovered_entity_id_ > (int32_t)scene->GetMaxEntityId()) ? nullptr : scene->GetEnitityFromId(hovered_entity_id_);
     }
+  }
+  
+  bool Viewport::IsMouseInsideViewport() const {
+    return (mouse_pos_x >= 0 and mouse_pos_y >= 0 and mouse_pos_x <= width and mouse_pos_y <= height);
   }
 
   void Viewport::RenderGui(bool *is_open) {
