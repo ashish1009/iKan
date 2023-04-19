@@ -20,42 +20,46 @@ namespace ikan {
   #define COMP_COPY_LOG(...)
 #endif
   
+#define COMP_COPY_MOVE_CONSTRUCTORS(x) \
+x::x(const x& other) { \
+  Copy(other); \
+  COMP_COPY_LOG("Copying {0}", #x); \
+} \
+x::x(x&& other) { \
+  Copy(other); \
+  COMP_COPY_LOG("Moving {0}", #x); \
+} \
+x& x::operator=(const x& other) { \
+  COMP_COPY_LOG("Copying with = operator {0}", #x); \
+  Copy(other); \
+  return *this; \
+} \
+x& x::operator=(x&& other) { \
+  COMP_COPY_LOG("Moving with = operator {0}", #x); \
+  Copy(other); \
+  return *this; \
+} \
+  
   // -------------------------------------------------------------------------
   // ID Component
   // -------------------------------------------------------------------------
   IDComponent::IDComponent(const UUID& id) : id(id) { COMP_LOG("Creating ID Component"); }
   IDComponent::~IDComponent() { COMP_LOG("Destroying ID Component"); }
-  IDComponent::IDComponent(const IDComponent& other) : id(other.id) { COMP_COPY_LOG("Copying ID Component"); }
-  IDComponent::IDComponent(IDComponent&& other) : id(other.id) { COMP_COPY_LOG("Moving ID Component"); }
-  IDComponent& IDComponent::operator=(const IDComponent& other) {
-    COMP_COPY_LOG("Copying with = operator ID Component");
+  COMP_COPY_MOVE_CONSTRUCTORS(IDComponent);
+  void IDComponent::Copy(const IDComponent &other) {
     id = other.id;
-    return *this;
   }
-  IDComponent& IDComponent::operator=(IDComponent&& other) {
-    COMP_COPY_LOG("Moving with = operator ID Component");
-    id = other.id;
-    return *this;
-  }
-  
+
   // -------------------------------------------------------------------------
   // Tag Component
   // -------------------------------------------------------------------------
   TagComponent::TagComponent(const std::string& tag) : tag(tag) { COMP_LOG("Creating Tag Component"); }
   TagComponent::~TagComponent() { COMP_LOG("Destroying Tag Component"); }
-  TagComponent::TagComponent(const TagComponent& other) : tag(other.tag) { COMP_COPY_LOG("Copying Tag Component"); }
-  TagComponent::TagComponent(TagComponent&& other) : tag(other.tag) { COMP_COPY_LOG("Moving Tag Component"); }
-  TagComponent& TagComponent::operator=(const TagComponent& other) {
-    COMP_COPY_LOG("Copying with = operator Tag Component");
+  COMP_COPY_MOVE_CONSTRUCTORS(TagComponent);
+  void TagComponent::Copy(const TagComponent &other) {
     tag = other.tag;
-    return *this;
   }
-  TagComponent& TagComponent::operator=(TagComponent&& other) {
-    COMP_COPY_LOG("Moving with = operator Tag Component");
-    tag = other.tag;
-    return *this;
-  }
-  
+
   // -------------------------------------------------------------------------
   // Transform Component
   // -------------------------------------------------------------------------
@@ -65,35 +69,14 @@ namespace ikan {
     COMP_LOG("Creating Transform Component");
   }
   TransformComponent::~TransformComponent() { COMP_LOG("Destroying Transform Component"); }
-  TransformComponent::TransformComponent(const TransformComponent& other)
-  : position(other.Position()), scale(other.Scale()), rotation(other.Rotation()) {
-    COMP_COPY_LOG("Copying Transform Component");
-    transform = Math::GetTransformMatrix(position, rotation, scale);
-    quaternion = glm::quat(rotation);
-  }
-  TransformComponent::TransformComponent(TransformComponent&& other)
-  : position(other.Position()), scale(other.Scale()), rotation(other.Rotation()) {
-    COMP_COPY_LOG("Moving Transform Component");
-    transform = Math::GetTransformMatrix(position, rotation, scale);
-    quaternion = glm::quat(rotation);
-  }
-  TransformComponent& TransformComponent::operator=(const TransformComponent& other) {
-    COMP_COPY_LOG("Copying with = operator Transform Component");
+  COMP_COPY_MOVE_CONSTRUCTORS(TransformComponent);
+  
+  void TransformComponent::Copy(const TransformComponent &other) {
     position = other.Position();
     scale = other.Scale();
     rotation = other.Rotation();
     transform = Math::GetTransformMatrix(position, rotation, scale);
     quaternion = glm::quat(rotation);
-    return *this;
-  }
-  TransformComponent& TransformComponent::operator=(TransformComponent&& other) {
-    COMP_COPY_LOG("Moving with = operator Transform Component");
-    position = other.Position();
-    scale = other.Scale();
-    rotation = other.Rotation();
-    transform = Math::GetTransformMatrix(position, rotation, scale);
-    quaternion = glm::quat(rotation);
-    return *this;
   }
   
   void TransformComponent::RenderGui() {
@@ -119,35 +102,16 @@ namespace ikan {
     COMP_LOG("Creating Camera Component");
     camera = std::make_shared<SceneCamera>(proj_type);
   }
-  CameraComponent::CameraComponent(const CameraComponent& other)
-  : is_primary(other.is_primary), is_fixed_aspect_ratio(other.is_fixed_aspect_ratio) {
-    COMP_COPY_LOG("Copying Camera Component");
-    camera = std::make_shared<SceneCamera>();
-    *(camera.get()) = *(other.camera.get());
-  }
-  CameraComponent::CameraComponent(CameraComponent&& other)
-  : is_primary(other.is_primary), is_fixed_aspect_ratio(other.is_fixed_aspect_ratio) {
-    COMP_COPY_LOG("Moving Camera Component");
-    camera = std::make_shared<SceneCamera>();
-    *(camera.get()) = *(other.camera.get());
-  }
-  CameraComponent& CameraComponent::operator=(const CameraComponent& other) {
-    COMP_COPY_LOG("Copying Camera Component with = operator");
+  CameraComponent::~CameraComponent() { COMP_LOG("Destroying Camera Component"); }
+  COMP_COPY_MOVE_CONSTRUCTORS(CameraComponent);
+  
+  void CameraComponent::Copy(const CameraComponent &other) {
     is_primary = other.is_primary;
     is_fixed_aspect_ratio = other.is_fixed_aspect_ratio;
     camera = std::make_shared<SceneCamera>();
     *(camera.get()) = *(other.camera.get());
-    return *this;
   }
-  CameraComponent& CameraComponent::operator=(CameraComponent&& other) {
-    COMP_COPY_LOG("Moving Camera Component with = operator");
-    is_primary = other.is_primary;
-    is_fixed_aspect_ratio = other.is_fixed_aspect_ratio;
-    camera = std::make_shared<SceneCamera>();
-    *(camera.get()) = *(other.camera.get());
-    camera = std::move(other.camera);
-    return *this;
-  }
+
   void CameraComponent::RenderGui() {
     auto column_width = ImGui::GetWindowContentRegionMax().x / 2;
     ImGui::Columns(2);
@@ -170,26 +134,13 @@ namespace ikan {
   // -------------------------------------------------------------------------
   QuadComponent::QuadComponent() { COMP_LOG("Creating Quad Component"); }
   QuadComponent::~QuadComponent() { COMP_LOG("Destroying Quad Component"); }
-  QuadComponent::QuadComponent(const QuadComponent& other) : color(other.color) {
-    COMP_COPY_LOG("Copying Quad Component");
-    sprite = other.sprite;
-  }
-  QuadComponent::QuadComponent(QuadComponent&& other) : color(other.color) {
-    COMP_COPY_LOG("Moving Quad Component");
-    sprite = other.sprite;
-  }
-  QuadComponent& QuadComponent::operator=(const QuadComponent& other) {
-    COMP_COPY_LOG("Copying Quad Component with = operator");
+  COMP_COPY_MOVE_CONSTRUCTORS(QuadComponent);
+  
+  void QuadComponent::Copy(const QuadComponent &other) {
     color = other.color;
     sprite = other.sprite;
-    return *this;
   }
-  QuadComponent& QuadComponent::operator=(QuadComponent&& other) {
-    COMP_COPY_LOG("Moving Quad Component with = operator");
-    color = other.color;
-    sprite = other.sprite;
-    return *this;
-  }
+
   void QuadComponent::RenderGui() {
     sprite.RenderGui(color, [this]() {
       ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
@@ -202,49 +153,19 @@ namespace ikan {
   // -------------------------------------------------------------------------
   CircleComponent::CircleComponent() { COMP_LOG("Creating Circle Component"); }
   CircleComponent::~CircleComponent() { COMP_LOG("Creating Circle Component"); }
-  CircleComponent::CircleComponent(const CircleComponent& other)
-  : color(other.color), thickness(other.thickness), fade(other.fade) {
-    COMP_COPY_LOG("Copying Circle Component");
-    if (other.texture_comp.texture) {
-      texture_comp.use = other.texture_comp.use;
-      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
-      texture_comp.texture = Renderer::GetTexture(other.texture_comp.texture->GetfilePath());
-    }
-  }
-  CircleComponent::CircleComponent(CircleComponent&& other)
-  : color(other.color), thickness(other.thickness), fade(other.fade) {
-    COMP_COPY_LOG("Moving Circle Component");
-    if (other.texture_comp.texture) {
-      texture_comp.use = other.texture_comp.use;
-      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
-      texture_comp.texture = Renderer::GetTexture(other.texture_comp.texture->GetfilePath());
-    }
-  }
-  CircleComponent& CircleComponent::operator=(const CircleComponent& other) {
-    COMP_COPY_LOG("Copying Circle Component with = operator");
-    color = other.color;
-    thickness = other.thickness;
-    fade = other.fade;
-    if (other.texture_comp.texture) {
-      texture_comp.use = other.texture_comp.use;
-      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
-      texture_comp.texture = Renderer::GetTexture(other.texture_comp.texture->GetfilePath());
-    }
-    return *this;
-  }
-  CircleComponent& CircleComponent::operator=(CircleComponent&& other) {
-    COMP_COPY_LOG("Moving Circle Component with = operator");
-    color = other.color;
-    thickness = other.thickness;
-    fade = other.fade;
-    if (other.texture_comp.texture) {
-      texture_comp.use = other.texture_comp.use;
-      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
-      texture_comp.texture = Renderer::GetTexture(other.texture_comp.texture->GetfilePath());
-    }
-    return *this;
-  }
+  COMP_COPY_MOVE_CONSTRUCTORS(CircleComponent);
   
+  void CircleComponent::Copy(const CircleComponent &other) {
+    color = other.color;
+    thickness = other.thickness;
+    fade = other.fade;
+    if (other.texture_comp.texture) {
+      texture_comp.use = other.texture_comp.use;
+      texture_comp.tiling_factor = other.texture_comp.tiling_factor;
+      texture_comp.texture = Renderer::GetTexture(other.texture_comp.texture->GetfilePath());
+    }
+  }
+
   void CircleComponent::RenderGui() {
     texture_comp.RenderGui(color, [this]() {
       ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);

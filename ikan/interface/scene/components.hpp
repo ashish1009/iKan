@@ -33,6 +33,7 @@ namespace ikan {
 
   struct IDComponent {
     UUID id = 0;
+    void Copy(const IDComponent& other);
     IDComponent(const UUID& id);
     ~IDComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(IDComponent);
@@ -40,6 +41,7 @@ namespace ikan {
   
   struct TagComponent {
     std::string tag = "Default Entity";
+    void Copy(const TagComponent& other);
     TagComponent(const std::string& tag);
     ~TagComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(TagComponent);
@@ -70,6 +72,7 @@ namespace ikan {
     void AddRotation(Axis axis, float value) { ADD_TRANSFORM(rotation) }
     void AddScale(Axis axis, float value) { ADD_TRANSFORM(scale) }
 
+    void Copy(const TransformComponent& other);
     void RenderGui();
     TransformComponent();
     ~TransformComponent();
@@ -86,8 +89,10 @@ namespace ikan {
     bool is_primary = false;
     std::shared_ptr<SceneCamera> camera;
     
+    void Copy(const CameraComponent& other);
     void RenderGui();
     CameraComponent(SceneCamera::ProjectionType proj_type = SceneCamera::ProjectionType::Orthographic);
+    ~CameraComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(CameraComponent);
   };
 
@@ -95,6 +100,7 @@ namespace ikan {
     SpriteComponent sprite;
     glm::vec4 color{1.0f};
     
+    void Copy(const QuadComponent& other);
     void RenderGui();
     QuadComponent();
     ~QuadComponent();
@@ -108,6 +114,7 @@ namespace ikan {
     float thickness = 1.0f;
     float fade = 0.005f;
     
+    void Copy(const CircleComponent& other);
     void RenderGui();
     CircleComponent();
     ~CircleComponent();
