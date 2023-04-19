@@ -124,6 +124,13 @@ namespace kreator {
 
     /// This function Renders the grid for camera
     void RenderGrid();
+    /// This function render the rectangle when click drag mouse and select the entities
+    void SelectEntities();
+    /// This function clear the selected entities
+    void ClearSelectedEntities();
+    /// This function highlight the selected entiies
+    /// - Parameter enable: flag to set or unset
+    void HighlightSelectedEntities(bool enable);
 
     // Member variables
     uint32_t viewport_width_ = Application::Get().GetWindow().GetWidth();
@@ -137,6 +144,9 @@ namespace kreator {
     std::shared_ptr<Scene> active_scene_, editor_scene_;
     ContentBrowserPanel cbp_;
     ScenePanelManager spm_;
+
+    // Debug Data
+    std::unordered_map<entt::entity, Entity*> selected_entities_;
   };
   
 } // namespace kreator

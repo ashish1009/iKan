@@ -79,6 +79,10 @@ namespace kreator {
       RenderScene(ts);
       RenderGrid();
 
+      if (!game_data_->IsPlaying()) {
+        SelectEntities();
+      }
+
       viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
       viewport_.framebuffer->Unbind();
     }
@@ -471,6 +475,22 @@ namespace kreator {
     const auto& cd = active_scene_->GetPrimaryCameraData();
     if (cd.scene_camera)
       cd.scene_camera->RenderGrids(1000, {0.6, 0.6, 0.6, 0.2}, cd.transform_matrix, cd.position);
+  }
+  
+  void RendererLayer::SelectEntities() {
+  }
+  
+  void RendererLayer::ClearSelectedEntities() {
+    HighlightSelectedEntities(false);
+    selected_entities_.clear();
+  }
+  
+  void RendererLayer::HighlightSelectedEntities(bool enable) {
+    for (auto& [entt, entity] : selected_entities_) {
+      if(!entity) continue;
+      auto& qc = entity->GetComponent<QuadComponent>();
+      (enable) ? qc.color.a -=0.2f : qc.color.a +=0.2f;
+    }
   }
   
 } // namespace kreator
