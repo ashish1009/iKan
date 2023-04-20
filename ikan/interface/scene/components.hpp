@@ -158,6 +158,7 @@ namespace ikan {
     void Copy(const PhysicsMaterisl& other);
     DEFINE_COPY_MOVE_CONSTRUCTORS(PhysicsMaterisl);
     friend class Box2DColliderComponent;
+    friend class CircleColliiderComponent;
   };
   
   struct Box2DColliderComponent {
@@ -174,6 +175,20 @@ namespace ikan {
     DEFINE_COPY_MOVE_CONSTRUCTORS(Box2DColliderComponent);
   };
     
+  struct CircleColliiderComponent {
+    glm::vec2 offset = { 0.0f, 0.0f };
+    float radius = 0.5f;
+    
+    PhysicsMaterisl physics_mat;
+    Entity* runtime_fixture = nullptr;
+
+    void RenderGui();
+    CircleColliiderComponent();
+    ~CircleColliiderComponent();
+    void Copy(const CircleColliiderComponent& other);
+    DEFINE_COPY_MOVE_CONSTRUCTORS(CircleColliiderComponent);
+  };
+
   template<typename... Component>
   struct ComponentGroup {
   };

@@ -274,4 +274,31 @@ x& x::operator=(x&& other) { \
     }
   }
   
+  // -------------------------------------------------------------------------
+  // Circle Colloider Component
+  // -------------------------------------------------------------------------
+  CircleColliiderComponent::CircleColliiderComponent() { COMP_LOG("Creating Circle Collider Component"); }
+  CircleColliiderComponent::~CircleColliiderComponent() { COMP_LOG("Destroying Cirlce Collider Component"); }
+  COMP_COPY_MOVE_CONSTRUCTORS(CircleColliiderComponent);
+  void CircleColliiderComponent::Copy(const CircleColliiderComponent &other) {
+    physics_mat = other.physics_mat;
+    offset = other.offset;
+    radius = other.radius;
+    runtime_fixture = other.runtime_fixture;
+  }
+
+  void CircleColliiderComponent::RenderGui() {
+    PropertyGrid::Float2("Offset", offset);
+    PropertyGrid::Float1("Radius", radius);
+    ImGui::Separator();
+    physics_mat.RenderGui();
+    ImGui::Separator();
+    
+    if (runtime_fixture) {
+      Entity* e = (Entity*)runtime_fixture;
+      PropertyGrid::ReadOnlyTextBox("Entity Name", e->GetComponent<TagComponent>().tag.c_str());
+      ImGui::Separator();
+    }
+  }
+  
 } // namespace ikan
