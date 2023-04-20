@@ -3,20 +3,6 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
-  - Entity: 12306606329625896500
-    TagComponent:
-      Tag: Quad
-    TransformComponent:
-      Translation: [0, 0, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sprite_Use: false
-      Linear_Edge: true
-      Texture_Path: ""
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
   - Entity: 2380393522441359302
     TagComponent:
       Tag: Camera
