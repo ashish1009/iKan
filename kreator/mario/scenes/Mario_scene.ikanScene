@@ -3,7 +3,57 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
-  - Entity: 7278642448777653497
+  - Entity: 4078570780797395210
+    TagComponent:
+      Tag: CoinBonus
+    TransformComponent:
+      Translation: [3, -3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Type: 1
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/mario/assets/textures/tile.png
+      Coords: [24, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 40
+      Coords0: [24, 27]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Coords1: [25, 27]
+      Sprite_Size1: [1, 1]
+      Cell_Size1: [16, 16]
+      Num_Coords: 2
+  - Entity: 14110984726524990686
+    TagComponent:
+      Tag: PowerBonus
+    TransformComponent:
+      Translation: [1, -3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Type: 1
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/mario/assets/textures/tile.png
+      Coords: [24, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 40
+      Coords0: [24, 27]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Coords1: [25, 27]
+      Sprite_Size1: [1, 1]
+      Cell_Size1: [16, 16]
+      Num_Coords: 2
+  - Entity: 3862663336962140617
     TagComponent:
       Tag: CoinBonus
     TransformComponent:
@@ -20,7 +70,32 @@ Entities:
       Cell_Size: [16, 16]
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-      Speed: 15
+      Speed: 40
+      Coords0: [24, 27]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Coords1: [25, 27]
+      Sprite_Size1: [1, 1]
+      Cell_Size1: [16, 16]
+      Num_Coords: 2
+  - Entity: 7278642448777653497
+    TagComponent:
+      Tag: PowerBonus
+    TransformComponent:
+      Translation: [2, 2, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Type: 1
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/mario/assets/textures/tile.png
+      Coords: [24, 27]
+      Sprite_Size: [1, 1]
+      Cell_Size: [16, 16]
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 40
       Coords0: [24, 27]
       Sprite_Size0: [1, 1]
       Cell_Size0: [16, 16]

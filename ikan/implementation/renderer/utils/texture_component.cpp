@@ -53,6 +53,8 @@ namespace ikan {
   : linear_edge(other.linear_edge) {
     use = other.use;
     speed = other.speed;
+    type = other.type;
+    anim_idx = other.anim_idx;
     LoadTexture(other);
     
     for (const auto& sprite : other.sprite_images) {
@@ -66,6 +68,8 @@ namespace ikan {
   : linear_edge(other.linear_edge) {
     use = other.use;
     speed = other.speed;
+    type = other.type;
+    anim_idx = other.anim_idx;
     LoadTexture(other);
         
     for (const auto& sprite : other.sprite_images) {
@@ -79,6 +83,8 @@ namespace ikan {
     use = other.use;
     speed = other.speed;
     linear_edge = other.linear_edge;
+    type = other.type;
+    anim_idx = other.anim_idx;
     LoadTexture(other);
     
     for (const auto& sprite : other.sprite_images) {
@@ -93,6 +99,8 @@ namespace ikan {
     use = other.use;
     linear_edge = other.linear_edge;
     speed = other.speed;
+    type = other.type;
+    anim_idx = other.anim_idx;
     LoadTexture(other);
     
     for (const auto& sprite : other.sprite_images) {
