@@ -75,7 +75,7 @@ namespace ikan {
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplGlfw_NewFrame();
     
-    ImGui::SaveIniSettingsToDisk("testing.ini");
+//    ImGui::SaveIniSettingsToDisk("testing.ini");
     
     ImGui::NewFrame();
     ImGuizmo::BeginFrame();
