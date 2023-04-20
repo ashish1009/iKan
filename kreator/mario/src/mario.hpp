@@ -37,4 +37,4 @@ namespace mario {
     };
   };
   
-} // namespace editor
+} // namespace mario

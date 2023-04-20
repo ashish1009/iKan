@@ -609,7 +609,8 @@ namespace kreator {
   void RendererLayer::DuplicateSelectedEntities() {
     HighlightSelectedEntities(false);
     for (auto& [entt, entity] : selected_entities_) {
-      [[maybe_unused]] auto e = active_scene_->DuplicateEntity(*entity);
+      if (entity)
+        [[maybe_unused]] auto e = active_scene_->DuplicateEntity(*entity);
     }
     HighlightSelectedEntities(true);
   }
