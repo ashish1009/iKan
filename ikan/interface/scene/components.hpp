@@ -143,11 +143,40 @@ namespace ikan {
     DEFINE_COPY_MOVE_CONSTRUCTORS(RigidBodyComponent);
   };
   
+  struct PhysicsMaterisl {
+    float density  = 1.0f;
+    float friction = 0.5f;
+    float restitution = 0.0f;
+    float restitution_threshold = 0.5f;
+
+  private:
+    PhysicsMaterisl();
+    ~PhysicsMaterisl();
+    void RenderGui();
+    void Copy(const PhysicsMaterisl& other);
+    DEFINE_COPY_MOVE_CONSTRUCTORS(PhysicsMaterisl);
+    friend class Box2DColliderComponent;
+  };
+  
+  struct Box2DColliderComponent {
+    glm::vec2 size = { 0.5f, 0.5f };
+    glm::vec2 offset = { 0.0f, 0.0f };
+
+    PhysicsMaterisl physics_mat;
+    void* runtime_fixture = nullptr;
+    
+    void RenderGui();
+    Box2DColliderComponent();
+    ~Box2DColliderComponent();
+    void Copy(const Box2DColliderComponent& other);
+    DEFINE_COPY_MOVE_CONSTRUCTORS(Box2DColliderComponent);
+  };
+    
   template<typename... Component>
   struct ComponentGroup {
   };
   
-#define ALL_COPY_COMPONENTS TransformComponent, QuadComponent, CircleComponent, CameraComponent
+#define ALL_COPY_COMPONENTS TransformComponent, CameraComponent, QuadComponent, CircleComponent, RigidBodyComponent
 
   // Stores all the components present in Engine
   using AllComponents =

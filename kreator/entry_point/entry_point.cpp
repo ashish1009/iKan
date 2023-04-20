@@ -37,6 +37,9 @@ std::unique_ptr<ikan::Application> CreateApplication() {
   return std::make_unique<kreator::KreatorApp>(application_spec, kreator::GameType::Mario);
 }
 
+#define IKAN_ENTRY_POINT 1
+
+#if IKAN_ENTRY_POINT
 int main() {
   // Initialize the ikan Logger
   ikan::Logger::Init(ikan::Logger::Level::Trace,
@@ -50,3 +53,27 @@ int main() {
   
   return 0;
 }
+#else
+struct A {
+  A() = default;
+  A(const A& a) {
+    std::cout << "A\n";
+  }
+};
+
+struct B : A{
+  B() = default;
+  B(const B& a) {
+    std::cout << "B\n";
+  }
+};
+
+
+int main() {
+  B b;
+  B bb(b);
+  
+  return 0;
+}
+
+#endif

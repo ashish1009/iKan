@@ -6,6 +6,7 @@
 //
 
 #include "components.hpp"
+#include "core_entity.hpp"
 #include "property_grid.hpp"
 
 namespace ikan {
@@ -217,6 +218,54 @@ x& x::operator=(x&& other) { \
     PropertyGrid::CheckBox("Is Ground", is_ground);
     PropertyGrid::CheckBox("Fixed Rotation", fixed_rotation);
     ImGui::Separator();
+  }
+  
+  // -------------------------------------------------------------------------
+  // Physics Material
+  // -------------------------------------------------------------------------
+  PhysicsMaterisl::PhysicsMaterisl() { COMP_LOG("Creating Physics Materisl"); }
+  PhysicsMaterisl::~PhysicsMaterisl() { COMP_LOG("Destroying Physics Materisl"); }
+  COMP_COPY_MOVE_CONSTRUCTORS(PhysicsMaterisl);
+  void PhysicsMaterisl::Copy(const PhysicsMaterisl &other) {
+    density = other.density;
+    friction = other.friction;
+    restitution = other.restitution;
+    restitution_threshold = other.restitution_threshold;
+  }
+  
+  void PhysicsMaterisl::RenderGui() {
+    PropertyGrid::Float1("Density", density);
+    PropertyGrid::Float1("Friction", friction);
+    PropertyGrid::Float1("Restitution", restitution);
+    PropertyGrid::Float1("Restitution Threshold", restitution_threshold);
+  }
+  
+  // -------------------------------------------------------------------------
+  // Box Colloider Component
+  // -------------------------------------------------------------------------
+  Box2DColliderComponent::Box2DColliderComponent() { COMP_LOG("Creating Box Collider Component"); }
+  Box2DColliderComponent::~Box2DColliderComponent() { COMP_LOG("Destroying Box Collider Component"); }
+  COMP_COPY_MOVE_CONSTRUCTORS(Box2DColliderComponent);
+  void Box2DColliderComponent::Copy(const Box2DColliderComponent &other) {
+    physics_mat = other.physics_mat;
+    offset = other.offset;
+    size = other.size;
+    runtime_fixture = other.runtime_fixture;
+  }
+  
+  void Box2DColliderComponent::RenderGui() {
+    PropertyGrid::Float2("Offset", offset);
+    PropertyGrid::Float2("Size", size);
+    
+    ImGui::Separator();
+    physics_mat.RenderGui();
+    ImGui::Separator();
+    
+    if (runtime_fixture) {
+      Entity* e = (Entity*)runtime_fixture;
+      PropertyGrid::ReadOnlyTextBox("Entity Name", e->GetComponent<TagComponent>().tag.c_str());
+      ImGui::Separator();
+    }
   }
   
 } // namespace ikan
