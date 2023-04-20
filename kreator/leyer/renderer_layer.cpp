@@ -87,6 +87,8 @@ namespace kreator {
         }
       }
       
+      OverlayRender();
+      
       viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
       viewport_.framebuffer->Unbind();
     }
@@ -621,6 +623,52 @@ namespace kreator {
         default: break;
       }
     }
+  }
+
+  void RendererLayer::OverlayRender() {
+    if (setting_.show_collider.flag) {
+      RenderColliders();
+    }
+  }
+  
+  void RendererLayer::RenderColliders() {
+    static const glm::vec4 collider_color = {0.0f, 1.0f, 0.0f, 1.0f};
+    bool camera_found = false;
+    
+    if (active_scene_->IsEditorCameraEnabled()) {
+      Batch2DRenderer::BeginBatch(active_scene_->GetEditorCamera().GetViewProjection());
+      camera_found = true;
+    }
+    else {
+      const auto& cd = active_scene_->GetPrimaryCameraData();
+      if (cd.scene_camera)
+        camera_found = true;
+      
+      if (!camera_found)
+        return;
+      
+      Batch2DRenderer::BeginBatch(cd.scene_camera->GetProjection() * glm::inverse(cd.transform_matrix));
+    }
+    
+    // Box coilider
+    auto box_view = active_scene_->GetEntitesWith<TransformComponent, Box2DColliderComponent>();
+    for (auto entity : box_view) {
+      auto [tc, bcc] = box_view.get<TransformComponent, Box2DColliderComponent>(entity);
+      glm::vec3 p = tc.Position() + glm::vec3(bcc.offset, 0.001f);
+      glm::vec3 s = tc.Scale() * glm::vec3((bcc.size * 2.0f), 1.0f); // We need diameter
+      Batch2DRenderer::DrawRect(Math::GetTransformMatrix(p, tc.Rotation(), s), collider_color);
+    }
+  
+    // Circle Collider
+    auto circle_view = active_scene_->GetEntitesWith<TransformComponent, CircleColliiderComponent>();
+    for (auto entity : circle_view) {
+      auto [tc, ccc] = circle_view.get<TransformComponent, CircleColliiderComponent>(entity);
+      glm::vec3 p = tc.Position() + glm::vec3(ccc.offset, 0.001f);
+      glm::vec3 s = tc.Scale() * glm::vec3(ccc.radius * 2.0f); // We need diameter
+      Batch2DRenderer::DrawCircle(Math::GetTransformMatrix(p, {0, 0, 0}, s), collider_color, 0.05f);
+    }
+
+    Batch2DRenderer::EndBatch();
   }
   
 } // namespace kreator

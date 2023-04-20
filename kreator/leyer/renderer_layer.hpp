@@ -31,6 +31,7 @@ namespace kreator {
     };
 
     struct Setting {
+      SettingWrapper show_collider{"Show Colliders", true};
       SettingWrapper content_browser_panel{"Content Browser Panel", true};
       SettingWrapper viewport_data{"Viewport Data", true};
       SettingWrapper frame_rate{"Frame Rate", false};
@@ -72,7 +73,11 @@ namespace kreator {
     void RenderScene(Timestep ts);
     /// This function render the viewport captured in framebuffer
     void RenderViewport();
-
+    /// This function renders the debug overlay
+    void OverlayRender();
+    /// This function renders the Colliders
+    void RenderColliders();
+    
     /// This function handles the key button press event
     /// - Parameter e key button pressed event
     bool KeyPressed(KeyPressedEvent& event);

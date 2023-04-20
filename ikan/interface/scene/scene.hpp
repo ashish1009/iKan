@@ -114,9 +114,18 @@ namespace ikan {
     /// This function returns the Max Entity ID given to scene
     uint32_t GetMaxEntityId() const { return max_entity_id_; }
 
+    /// This function returns the flag of use editor camera
+    bool IsEditorCameraEnabled() const { return setting_.use_editor_camera; }
+
     /// This function create new scene copy the scene data from argument
     /// - Parameter other: copy scene
     static std::shared_ptr<Scene> Copy(std::shared_ptr<Scene> other);
+
+    template<typename... Components>
+    /// This function returns the entities with the components
+    auto GetEntitesWith() {
+      return registry_.view<Components...>();
+    }
 
   private:
     // Member Functions
