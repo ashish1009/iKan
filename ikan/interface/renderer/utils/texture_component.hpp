@@ -76,9 +76,14 @@ namespace ikan {
     // Animation Sprite Data
     int32_t speed = 15;
     int32_t anim_idx = 0; // No need to copy or save in scene. always starts from 0
-    std::vector<std::shared_ptr<SubTexture>> sprites;
+    std::vector<std::shared_ptr<SubTexture>> sprite_images;
     
-    void ClearSprites() { sprites.clear(); }
+    void ClearSprites() { sprite_images.clear(); }
+    bool IsAnimation() const { return (type == Type::Animation and sprite_images.size() > 0); }
+    void ResetAnimIndx() {
+      if (anim_idx >= speed * sprite_images.size() or anim_idx < 1)
+        anim_idx = 0;
+    }
     
     SpriteComponent(const std::shared_ptr<Texture>& comp = nullptr, bool use = true);
     ~SpriteComponent();
@@ -219,7 +224,7 @@ namespace ikan {
         
         if (type == Type::Animation) {
           float speed_drag = (float)speed;
-          float min_speed = sprites.size();
+          float min_speed = sprite_images.size();
           if (PropertyGrid::Float1("Speed", speed_drag, nullptr, 1.0f, min_speed, min_speed, MAX_FLT, 100.0f))
             speed = (int32_t)speed_drag;
           
@@ -253,20 +258,20 @@ namespace ikan {
           static std::shared_ptr<Texture> add_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/plus.png"));
           if (PropertyGrid::ImageButton("Add", add_texture->GetRendererID(), { content_height, content_height } )) {
             bool add = true;
-            for (const auto& sprite : sprites) {
+            for (const auto& sprite : sprite_images) {
               if (sprite->GetCoords() == coords) {
                 add = false;
                 break;
               }
             }
             if (add)
-              sprites.push_back(SubTexture::CreateFromCoords(texture, coords, sprite_size, cell_size));
+              sprite_images.push_back(SubTexture::CreateFromCoords(texture, coords, sprite_size, cell_size));
           }
           
           static bool delete_sprite = false;
-          auto delete_it = sprites.begin();
+          auto delete_it = sprite_images.begin();
           if (open) {
-            for (auto it = sprites.begin(); it != sprites.end(); it++) {
+            for (auto it = sprite_images.begin(); it != sprite_images.end(); it++) {
               auto& sprite = *it;
               
               std::string sprite_data;
@@ -294,7 +299,7 @@ namespace ikan {
           ImGui::Separator();
           
           if (delete_sprite) {
-            sprites.erase(delete_it);
+            sprite_images.erase(delete_it);
             delete_sprite = false;
           }
         }

@@ -253,7 +253,7 @@ namespace ikan {
         out << YAML::Key << "Speed" << YAML::Value << qc.sprite.speed;
         
         int32_t num_sprite_coords = 0;
-        for (const auto& sprite : qc.sprite.sprites) {
+        for (const auto& sprite : qc.sprite.sprite_images) {
           out << YAML::Key << "Coords" + std::to_string(num_sprite_coords) << YAML::Value << sprite->GetCoords();
           out << YAML::Key << "Sprite_Size" + std::to_string(num_sprite_coords) << YAML::Value << sprite->GetSpriteSize();
           out << YAML::Key << "Cell_Size" + std::to_string(num_sprite_coords) << YAML::Value << sprite->GetCellSize();
@@ -461,7 +461,7 @@ namespace ikan {
             auto coord = quad_component["Coords" + std::to_string(i)].as<glm::vec2>();
             auto sprite_size = quad_component["Sprite_Size" + std::to_string(i)].as<glm::vec2>();
             auto cell_size = quad_component["Cell_Size" + std::to_string(i)].as<glm::vec2>();
-            qc.sprite.sprites.push_back(SubTexture::CreateFromCoords(qc.sprite.texture, coord, sprite_size, cell_size));
+            qc.sprite.sprite_images.push_back(SubTexture::CreateFromCoords(qc.sprite.texture, coord, sprite_size, cell_size));
           }
 
           IK_CORE_TRACE(LogModule::SceneSerializer, "    Quad Component");

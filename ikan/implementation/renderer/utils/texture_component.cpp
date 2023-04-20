@@ -55,8 +55,8 @@ namespace ikan {
     speed = other.speed;
     LoadTexture(other);
     
-    for (const auto& sprite : other.sprites) {
-      sprites.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
+    for (const auto& sprite : other.sprite_images) {
+      sprite_images.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
                                                      sprite->GetSpriteSize(), sprite->GetCellSize()));
     }
     IK_CORE_TRACE(LogModule::Texture, "Copying SpriteComponent");
@@ -68,8 +68,8 @@ namespace ikan {
     speed = other.speed;
     LoadTexture(other);
         
-    for (const auto& sprite : other.sprites) {
-      sprites.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
+    for (const auto& sprite : other.sprite_images) {
+      sprite_images.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
                                                      sprite->GetSpriteSize(), sprite->GetCellSize()));
     }
     IK_CORE_TRACE(LogModule::Texture, "Moving SpriteComponent");
@@ -81,8 +81,8 @@ namespace ikan {
     linear_edge = other.linear_edge;
     LoadTexture(other);
     
-    for (const auto& sprite : other.sprites) {
-      sprites.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
+    for (const auto& sprite : other.sprite_images) {
+      sprite_images.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
                                                      sprite->GetSpriteSize(), sprite->GetCellSize()));
     }
     IK_CORE_TRACE(LogModule::Texture, "Copying SpriteComponent (=operator)");
@@ -95,8 +95,8 @@ namespace ikan {
     speed = other.speed;
     LoadTexture(other);
     
-    for (const auto& sprite : other.sprites) {
-      sprites.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
+    for (const auto& sprite : other.sprite_images) {
+      sprite_images.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
                                                      sprite->GetSpriteSize(), sprite->GetCellSize()));
     }
     IK_CORE_TRACE(LogModule::Texture, "Moving SpriteComponent (=operator)");
