@@ -77,7 +77,9 @@ namespace kreator {
       
       Renderer::Clear(viewport_.framebuffer->GetSpecification().color);
       RenderScene(ts);
-      RenderGrid();
+      
+      if (!active_scene_->GetSetting().use_editor_camera)
+        RenderGrid();
 
       if (active_scene_->GetType() == Scene::Type::_2D) {
         if (!game_data_->IsPlaying()) {
