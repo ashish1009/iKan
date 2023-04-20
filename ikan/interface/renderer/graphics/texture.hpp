@@ -221,11 +221,18 @@ namespace ikan {
   /// This structure holds the property of sprite component (Sub Texture)
   struct SpriteComponent : public TextureComponent {
     bool use_sub_texture = false;
-    bool animation = false;
+    bool is_animation = false;
     bool linear_edge = true;
+    
     std::shared_ptr<SubTexture> sub_texture = nullptr;
     
+    // Animation Sprite Data
+    int32_t speed = 15;
+    int32_t anim_idx = 0; // No need to copy or save in scene. always starts from 0
+    std::vector<std::shared_ptr<SubTexture>> sprites;
+
     SpriteComponent(const std::shared_ptr<Texture>& comp = nullptr, bool use = true);
+    ~SpriteComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(SpriteComponent)
     
     template<typename UIFunction>
