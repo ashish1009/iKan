@@ -31,6 +31,8 @@ namespace ikan {
   } \
   transform = Math::GetTransformMatrix(position, rotation, scale);
 
+  class Entity;
+  
   struct IDComponent {
     UUID id = 0;
     void Copy(const IDComponent& other);
@@ -163,7 +165,7 @@ namespace ikan {
     glm::vec2 offset = { 0.0f, 0.0f };
 
     PhysicsMaterisl physics_mat;
-    void* runtime_fixture = nullptr;
+    Entity* runtime_fixture = nullptr;
     
     void RenderGui();
     Box2DColliderComponent();

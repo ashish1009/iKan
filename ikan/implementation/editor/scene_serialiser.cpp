@@ -102,6 +102,34 @@ namespace ikan {
     return out;
   }
   
+  static void SerializeBoxCollider(YAML::Emitter& out, const Box2DColliderComponent& bcc, std::string identifier) {
+    out << YAML::Key << "Offset" + identifier << YAML::Value << bcc.offset;
+    out << YAML::Key << "Size" + identifier << YAML::Value << bcc.size;
+    
+    out << YAML::Key << "Density" + identifier << YAML::Value << bcc.physics_mat.density;
+    out << YAML::Key << "Friction" + identifier << YAML::Value << bcc.physics_mat.friction;
+    out << YAML::Key << "Restitution" + identifier << YAML::Value << bcc.physics_mat.restitution;
+    out << YAML::Key << "Restitution Threshold" + identifier << YAML::Value << bcc.physics_mat.restitution_threshold;
+  }
+  
+  static void DeserializeBoxCollider(Box2DColliderComponent& bcc, const YAML::Node& box_colloider_component, std::string identifier) {
+    bcc.offset = box_colloider_component["Offset" + identifier].as<glm::vec2>();
+    bcc.size = box_colloider_component["Size" + identifier].as<glm::vec2>();
+    
+    bcc.physics_mat.density = box_colloider_component["Density" + identifier].as<float>();
+    bcc.physics_mat.friction = box_colloider_component["Friction" + identifier].as<float>();
+    bcc.physics_mat.restitution = box_colloider_component["Restitution" + identifier].as<float>();
+    bcc.physics_mat.restitution_threshold = box_colloider_component["Restitution Threshold" + identifier].as<float>();
+    
+    IK_CORE_INFO(LogModule::SceneSerializer, "    Box Collider Component");
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Offset                | {0} | {0}", bcc.offset.x, bcc.offset.y);
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Size                  | {0} | {0}", bcc.size.x, bcc.size.y);
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Density               | {0}", bcc.physics_mat.density);
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Friction              | {0}", bcc.physics_mat.friction);
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution           | {0}", bcc.physics_mat.restitution);
+    IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution Threshold | {0}", bcc.physics_mat.restitution_threshold);
+  }
+
   SceneSerializer::SceneSerializer(Scene* scene) : scene_(scene) { }
   SceneSerializer::~SceneSerializer() { }
   
@@ -239,6 +267,17 @@ namespace ikan {
         out << YAML::EndMap; // RigidBodyComponent
       }
       
+      // ------------------------------------------------------------------------
+      if (entity.HasComponent<Box2DColliderComponent>()) {
+        out << YAML::Key << "BoxColloiderComponent";
+        out << YAML::BeginMap; // BoxColloiderComponent
+        
+        auto& bcc = entity.GetComponent<Box2DColliderComponent>();
+        SerializeBoxCollider(out, bcc, "");
+        
+        out << YAML::EndMap; // BoxColloiderComponent
+      }
+
       out << YAML::EndMap; // Entity
     } // // for (const auto& [uuid, entity] : scene_->entity_id_map_)
     
@@ -420,6 +459,13 @@ namespace ikan {
           IK_CORE_TRACE(LogModule::SceneSerializer, "      Angular Damping  | {0}", rc.angular_damping);
           IK_CORE_TRACE(LogModule::SceneSerializer, "      Gravity Scale    | {0}", rc.gravity_scale);
         } // if (rigid_body_component)
+
+        // --------------------------------------------------------------------
+        auto box_colloider_component = entity["BoxColloiderComponent"];
+        if (box_colloider_component) {
+          auto& bcc = deserialized_entity.AddComponent<Box2DColliderComponent>();
+          DeserializeBoxCollider(bcc, box_colloider_component, "");
+        } // if (box_colloider_component)
 
       } // for (auto entity : entities)
     } // if (entities)
