@@ -177,6 +177,7 @@ namespace ikan {
       DrawComponent<CameraComponent>("Camera", *selected_entity_, [](auto& cc) { cc.RenderGui(); });
       DrawComponent<QuadComponent>("Quad", *selected_entity_, [](auto& qc) { qc.RenderGui(); });
       DrawComponent<CircleComponent>("Circle", *selected_entity_, [](auto& cc) { cc.RenderGui(); });
+      DrawComponent<RigidBodyComponent>("Rigid Body", *selected_entity_, [](auto& rbc) { rbc.RenderGui(); });
     }
 
     ImGui::PopID();
@@ -243,14 +244,16 @@ namespace ikan {
   }
   
   void ScenePanelManager::AddComponent() {
+    AddComponentMenu<QuadComponent>("Camera", !HAS_COMPONENT(CameraComponent));
+    ImGui::Separator();
     if (scene_context_->GetType() == Scene::_2D) {
-      AddComponentMenu<QuadComponent>("Camera", !HAS_COMPONENT(CameraComponent));
-      ImGui::Separator();
       AddComponentMenu<QuadComponent>("Quad", !HAS_COMPONENT(QuadComponent) and !HAS_COMPONENT(CircleComponent));
       AddComponentMenu<CircleComponent>("Circle", !HAS_COMPONENT(QuadComponent) and !HAS_COMPONENT(CircleComponent));
+      ImGui::Separator();
     }
     else if (scene_context_->GetType() == Scene::_3D) {
     }
+    AddComponentMenu<RigidBodyComponent>("Rigid Body", !HAS_COMPONENT(RigidBodyComponent));
   }
   
   void ScenePanelManager::SetSelectedEntity(Entity* entity) {

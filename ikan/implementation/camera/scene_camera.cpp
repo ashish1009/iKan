@@ -223,10 +223,8 @@ namespace ikan {
   }
   
   void SceneCamera::RenderGui() {
-    ProjectionType new_proj_type = ProjectionType(PropertyGrid::ComboDrop("Projection Type",
-                                                                          { "Perspective" , "Orthographic" },
-                                                                          (uint32_t)projection_type_,
-                                                                          ImGui::GetWindowContentRegionMax().x / 2));
+    ProjectionType new_proj_type = ProjectionType(PropertyGrid::ComboDrop("Projection Type", { "Perspective" , "Orthographic" },
+                                                                          (uint32_t)projection_type_));
     
     // Render the property based on the projection type of camera
     if (new_proj_type != projection_type_)

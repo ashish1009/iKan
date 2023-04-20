@@ -197,24 +197,21 @@ x& x::operator=(x&& other) { \
   }
   
   void RigidBodyComponent::RenderGui() {
-    RbBodyType new_body_type = RbBodyType(PropertyGrid::ComboDrop("Rigid Body Type",
-                                                                  { "Static" , "Kinamatic", "Dynamic" },
-                                                                  (uint32_t)type,
-                                                                  ImGui::GetWindowContentRegionMax().x / 2));
+    RbBodyType new_body_type = RbBodyType(PropertyGrid::ComboDrop("Rigid Body Type", { "Static" , "Kinamatic", "Dynamic" }, (uint32_t)type));
     
     // Render the property based on the projection type of camera
     if (new_body_type != type)
       type = new_body_type;
     
-    PropertyGrid::Float2("Linear Velocity", velocity, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT, 200);
-    PropertyGrid::Float1("Angular Velocity", angular_velocity, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT, 200);
+    PropertyGrid::Float2("Linear Velocity", velocity, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT);
+    PropertyGrid::Float1("Angular Velocity", angular_velocity, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT);
     
     ImGui::Separator();
-    PropertyGrid::Float1("Linear Damping", linear_damping, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT, 200);
-    PropertyGrid::Float1("Angular Damping", angular_damping, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT, 200);
+    PropertyGrid::Float1("Linear Damping", linear_damping, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT);
+    PropertyGrid::Float1("Angular Damping", angular_damping, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT);
     
     ImGui::Separator();
-    PropertyGrid::Float1("Gravity Scale", gravity_scale, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT, 200);
+    PropertyGrid::Float1("Gravity Scale", gravity_scale, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT);
     
     ImGui::Separator();
     PropertyGrid::CheckBox("Is Ground", is_ground);
