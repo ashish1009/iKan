@@ -129,7 +129,35 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::SceneSerializer, "      Restitution           | {0}", bcc.physics_mat.restitution);
     IK_CORE_TRACE(LogModule::SceneSerializer, "      Restitution Threshold | {0}", bcc.physics_mat.restitution_threshold);
   }
+  
+  static void SerializeCircleCollider(YAML::Emitter& out, const CircleColliiderComponent& ccc, std::string identifier) {
+    out << YAML::Key << "Offset" + identifier << YAML::Value << ccc.offset;
+    out << YAML::Key << "Radius" + identifier << YAML::Value << ccc.radius;
+    
+    out << YAML::Key << "Density" + identifier << YAML::Value << ccc.physics_mat.density;
+    out << YAML::Key << "Friction" + identifier << YAML::Value << ccc.physics_mat.friction;
+    out << YAML::Key << "Restitution" + identifier << YAML::Value << ccc.physics_mat.restitution;
+    out << YAML::Key << "Restitution Threshold" + identifier << YAML::Value << ccc.physics_mat.restitution_threshold;
+  }
 
+  static void DeserializeCircleCollider(CircleColliiderComponent& ccc, const YAML::Node& circle_colloider_component, std::string identifier) {
+    ccc.offset = circle_colloider_component["Offset" + identifier].as<glm::vec2>();
+    ccc.radius = circle_colloider_component["Radius" + identifier].as<float>();
+    
+    ccc.physics_mat.density = circle_colloider_component["Density" + identifier].as<float>();
+    ccc.physics_mat.friction = circle_colloider_component["Friction" + identifier].as<float>();
+    ccc.physics_mat.restitution = circle_colloider_component["Restitution" + identifier].as<float>();
+    ccc.physics_mat.restitution_threshold = circle_colloider_component["Restitution Threshold" + identifier].as<float>();
+    
+    IK_CORE_TRACE(LogModule::SceneSerializer, "    Circle Colloider Component");
+    IK_CORE_TRACE(LogModule::SceneSerializer, "      Offset                | {0} | {0}", ccc.offset.x, ccc.offset.y);
+    IK_CORE_TRACE(LogModule::SceneSerializer, "      Radius                | {0}", ccc.radius);
+    IK_CORE_TRACE(LogModule::SceneSerializer, "      Density               | {0}", ccc.physics_mat.density);
+    IK_CORE_TRACE(LogModule::SceneSerializer, "      Friction              | {0}", ccc.physics_mat.friction);
+    IK_CORE_TRACE(LogModule::SceneSerializer, "      Restitution           | {0}", ccc.physics_mat.restitution);
+    IK_CORE_TRACE(LogModule::SceneSerializer, "      Restitution Threshold | {0}", ccc.physics_mat.restitution_threshold);
+  }
+  
   SceneSerializer::SceneSerializer(Scene* scene) : scene_(scene) { }
   SceneSerializer::~SceneSerializer() { }
   
@@ -276,6 +304,17 @@ namespace ikan {
         SerializeBoxCollider(out, bcc, "");
         
         out << YAML::EndMap; // BoxColloiderComponent
+      }
+      
+      // ------------------------------------------------------------------------
+      if (entity.HasComponent<CircleColliiderComponent>()) {
+        out << YAML::Key << "CircleColloiderComponent";
+        out << YAML::BeginMap; // CircleColloiderComponent
+        
+        auto& ccc = entity.GetComponent<CircleColliiderComponent>();
+        SerializeCircleCollider(out, ccc, "");
+        
+        out << YAML::EndMap; // CircleColloiderComponent
       }
 
       out << YAML::EndMap; // Entity
@@ -467,6 +506,13 @@ namespace ikan {
           DeserializeBoxCollider(bcc, box_colloider_component, "");
         } // if (box_colloider_component)
 
+        // --------------------------------------------------------------------
+        auto circle_colloider_component = entity["CircleColloiderComponent"];
+        if (circle_colloider_component) {
+          auto& ccc = deserialized_entity.AddComponent<CircleColliiderComponent>();
+          DeserializeCircleCollider(ccc, circle_colloider_component, "");
+        } // if (circle_colloider_component)
+        
       } // for (auto entity : entities)
     } // if (entities)
     
