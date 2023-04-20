@@ -283,6 +283,7 @@ namespace kreator {
       ImguiAPI::Menu("Settings", true, [this]() {
         ImguiAPI::Menu("Scene", false, [this]() {
           SETTING_TOGGLE("Editor Camera", active_scene_->GetSetting().editor_camera);
+          SETTING_TOGGLE("Fixed Camera", active_scene_->GetSetting().show_fixed_camera);
           SETTING_TOGGLE("Entity Panel", spm_.GetSetting().scene_panel);
           SETTING_TOGGLE("Property Panel", spm_.GetSetting().property_panel);
         }); // Scene
@@ -304,6 +305,7 @@ namespace kreator {
     
     ImGui::Begin("Settings", &show_setting_);
 
+    PropertyGrid::CheckBox("Show Fixed Camera", active_scene_->GetSetting().show_fixed_camera, 3 * ImGui::GetWindowContentRegionMax().x / 4);
     PropertyGrid::CheckBox("Use Editor Camera", active_scene_->GetSetting().use_editor_camera, 3 * ImGui::GetWindowContentRegionMax().x / 4);
     if (active_scene_->GetSetting().use_editor_camera)
       PropertyGrid::CheckBox("Show Editor Camera", active_scene_->GetSetting().editor_camera, 3 * ImGui::GetWindowContentRegionMax().x / 4);

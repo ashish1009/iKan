@@ -49,15 +49,16 @@ namespace ikan {
     RecalculateProjection();
   }
   
-  void FixedCamera::RenderGui() {
-    ImGui::Begin("Fixed Camera");
+  void FixedCamera::RenderGui(bool* flag) {
+    CHECK_WIDGET_FLAG(flag);
+    
+    ImGui::Begin("Fixed Camera", flag);
     ImGui::PushID("Fixed Camera");
 
     if (PropertyGrid::Float1("Size", orthographic_size_, nullptr, 1.0f, 10.0f)) {
       RecalculateProjection();
     }
     
-    ImGui::Separator();
     ImGui::PopID();
     ImGui::End();
   }

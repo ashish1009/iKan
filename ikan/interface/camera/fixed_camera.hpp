@@ -18,6 +18,9 @@ namespace ikan {
     /// Default Scene Camera Desctructorr
     virtual ~FixedCamera();
 
+    /// This function returns the zoom value of camera
+    float GetZoom() const override { return orthographic_size_; }
+
     /// This function updates the Viewport size of camera
     /// - Parameters:
     ///   - width: new width
@@ -25,7 +28,8 @@ namespace ikan {
     void SetViewportSize(uint32_t width, uint32_t height);
 
     /// This function renders Imgui pannel for Scene should cal this function between Imgui::Begin and Imgui::End
-    void RenderGui();
+    /// - Parameter flag: flag to enable widget
+    void RenderGui(bool* flag);
 
   private:
     /// This function recalculate the projection matrix
