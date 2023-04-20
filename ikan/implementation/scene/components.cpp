@@ -204,19 +204,25 @@ x& x::operator=(x&& other) { \
     if (new_body_type != type)
       type = new_body_type;
     
-    PropertyGrid::Float2("Linear Velocity", velocity, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT);
-    PropertyGrid::Float1("Angular Velocity", angular_velocity, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT);
-    
-    ImGui::Separator();
-    PropertyGrid::Float1("Linear Damping", linear_damping, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT);
-    PropertyGrid::Float1("Angular Damping", angular_damping, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT);
-    
-    ImGui::Separator();
-    PropertyGrid::Float1("Gravity Scale", gravity_scale, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT);
+    if (type != RbBodyType::Static) {
+      PropertyGrid::Float2("Linear Velocity", velocity, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT);
+      PropertyGrid::Float1("Angular Velocity", angular_velocity, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT);
+      
+      ImGui::Separator();
+      PropertyGrid::Float1("Linear Damping", linear_damping, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT);
+      PropertyGrid::Float1("Angular Damping", angular_damping, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT);
+      
+      ImGui::Separator();
+      PropertyGrid::Float1("Gravity Scale", gravity_scale, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT);
+    }
     
     ImGui::Separator();
     PropertyGrid::CheckBox("Is Ground", is_ground);
-    PropertyGrid::CheckBox("Fixed Rotation", fixed_rotation);
+    
+    if (type != RbBodyType::Static) {
+      PropertyGrid::CheckBox("Fixed Rotation", fixed_rotation);
+    }
+    
     ImGui::Separator();
   }
   

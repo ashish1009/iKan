@@ -121,13 +121,13 @@ namespace ikan {
     bcc.physics_mat.restitution = box_colloider_component["Restitution" + identifier].as<float>();
     bcc.physics_mat.restitution_threshold = box_colloider_component["Restitution Threshold" + identifier].as<float>();
     
-    IK_CORE_INFO(LogModule::SceneSerializer, "    Box Collider Component");
-    IK_CORE_INFO(LogModule::SceneSerializer, "      Offset                | {0} | {0}", bcc.offset.x, bcc.offset.y);
-    IK_CORE_INFO(LogModule::SceneSerializer, "      Size                  | {0} | {0}", bcc.size.x, bcc.size.y);
-    IK_CORE_INFO(LogModule::SceneSerializer, "      Density               | {0}", bcc.physics_mat.density);
-    IK_CORE_INFO(LogModule::SceneSerializer, "      Friction              | {0}", bcc.physics_mat.friction);
-    IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution           | {0}", bcc.physics_mat.restitution);
-    IK_CORE_INFO(LogModule::SceneSerializer, "      Restitution Threshold | {0}", bcc.physics_mat.restitution_threshold);
+    IK_CORE_TRACE(LogModule::SceneSerializer, "    Box Collider Component");
+    IK_CORE_TRACE(LogModule::SceneSerializer, "      Offset                | {0} | {0}", bcc.offset.x, bcc.offset.y);
+    IK_CORE_TRACE(LogModule::SceneSerializer, "      Size                  | {0} | {0}", bcc.size.x, bcc.size.y);
+    IK_CORE_TRACE(LogModule::SceneSerializer, "      Density               | {0}", bcc.physics_mat.density);
+    IK_CORE_TRACE(LogModule::SceneSerializer, "      Friction              | {0}", bcc.physics_mat.friction);
+    IK_CORE_TRACE(LogModule::SceneSerializer, "      Restitution           | {0}", bcc.physics_mat.restitution);
+    IK_CORE_TRACE(LogModule::SceneSerializer, "      Restitution Threshold | {0}", bcc.physics_mat.restitution_threshold);
   }
 
   SceneSerializer::SceneSerializer(Scene* scene) : scene_(scene) { }
