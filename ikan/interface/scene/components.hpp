@@ -8,6 +8,7 @@
 #pragma once
 
 #include "renderer/graphics/texture.hpp"
+#include "renderer/utils/texture_component.hpp"
 #include "camera/scene_camera.hpp"
 
 namespace ikan {
