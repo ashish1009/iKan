@@ -317,6 +317,19 @@ namespace ikan {
         out << YAML::EndMap; // CircleColloiderComponent
       }
 
+      // ------------------------------------------------------------------------
+      if (entity.HasComponent<PillBoxColliderComponent>()) {
+        out << YAML::Key << "PillBoxColliderComponent";
+        out << YAML::BeginMap; // PillBoxColliderComponent
+        
+        auto& pbc = entity.GetComponent<PillBoxColliderComponent>();
+        
+        out << YAML::Key << "Offset" << YAML::Value << pbc.offset;
+        out << YAML::Key << "Width" << YAML::Value << pbc.width;
+        out << YAML::Key << "Height" << YAML::Value << pbc.height;
+
+        out << YAML::EndMap; // PillBoxColliderComponent
+      }
       out << YAML::EndMap; // Entity
     } // // for (const auto& [uuid, entity] : scene_->entity_id_map_)
     
@@ -512,6 +525,18 @@ namespace ikan {
           auto& ccc = deserialized_entity.AddComponent<CircleColliiderComponent>();
           DeserializeCircleCollider(ccc, circle_colloider_component, "");
         } // if (circle_colloider_component)
+        
+        // --------------------------------------------------------------------
+        auto Pill_box_colloider_component = entity["PillBoxColliderComponent"];
+        if (Pill_box_colloider_component) {
+          auto& pbc = deserialized_entity.AddComponent<PillBoxColliderComponent>();
+          
+          pbc.offset = Pill_box_colloider_component["Offset"].as<glm::vec2>();
+          pbc.width  = Pill_box_colloider_component["Width"].as<float>();
+          pbc.height = Pill_box_colloider_component["Height"].as<float>();
+          
+          pbc.RecalculateColliders();
+        } // if (Pill_box_colloider_component)
         
       } // for (auto entity : entities)
     } // if (entities)
