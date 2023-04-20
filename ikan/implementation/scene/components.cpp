@@ -351,7 +351,6 @@ x& x::operator=(x&& other) { \
     bcc.offset = offset;
   }
   
-#define DEBUG_PILL_BOX 0
   void PillBoxColliderComponent::RenderGui() {
     if (PropertyGrid::Float2("Offset", offset))
       RecalculateColliders();
@@ -361,29 +360,33 @@ x& x::operator=(x&& other) { \
       RecalculateColliders();
     ImGui::Separator();
     
-#if DEBUG_PILL_BOX
-    const ImGuiTreeNodeFlags tree_node_flags = ImGuiTreeNodeFlags_SpanAvailWidth |
-    ImGuiTreeNodeFlags_AllowItemOverlap |
-    ImGuiTreeNodeFlags_FramePadding;
-    
-    bool box_open = ImGui::TreeNodeEx("Box Collider", tree_node_flags);
-    if (box_open) {
-      bcc.RenderGui();
-      ImGui::TreePop();
+    static bool show_debug_colliders = false;
+    PropertyGrid::CheckBox("Show Debug Collliders", show_debug_colliders);
+    ImGui::Separator();
+
+    if (show_debug_colliders) {
+      const ImGuiTreeNodeFlags tree_node_flags = ImGuiTreeNodeFlags_SpanAvailWidth |
+      ImGuiTreeNodeFlags_AllowItemOverlap |
+      ImGuiTreeNodeFlags_FramePadding;
+      
+      bool box_open = ImGui::TreeNodeEx("Box Collider", tree_node_flags);
+      if (box_open) {
+        bcc.RenderGui();
+        ImGui::TreePop();
+      }
+      
+      bool top_circle_open = ImGui::TreeNodeEx("Top Circle Collider", tree_node_flags);
+      if (top_circle_open) {
+        top_ccc.RenderGui();
+        ImGui::TreePop();
+      }
+      
+      bool bottom_circle_open = ImGui::TreeNodeEx("Bottom Circle Collider", tree_node_flags);
+      if (bottom_circle_open) {
+        bottom_ccc.RenderGui();
+        ImGui::TreePop();
+      }
     }
-    
-    bool top_circle_open = ImGui::TreeNodeEx("Top Circle Collider", tree_node_flags);
-    if (top_circle_open) {
-      top_ccc.RenderGui();
-      ImGui::TreePop();
-    }
-    
-    bool bottom_circle_open = ImGui::TreeNodeEx("Bottom Circle Collider", tree_node_flags);
-    if (bottom_circle_open) {
-      bottom_ccc.RenderGui();
-      ImGui::TreePop();
-    }
-#endif
   }
 
 } // namespace ikan
