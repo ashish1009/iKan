@@ -17,7 +17,9 @@ namespace chess {
   class Chess : public GameData {
   public:
     void Init(const std::shared_ptr<Scene> scene) override {};
-    
+    void Update(Timestep ts) override {}
+    void SetViewportSize(uint32_t width, uint32_t height) override {}
+
     std::string GameName() const override { return "IKAN Chess"; }
     glm::vec4 GetBgColor() const override { return {0.5f, 0.2f, 0.2f, 1.0f}; }
     std::string GetScenePath() const override { return DM::WorkspacePath("/kreator/chess/scenes/"); }

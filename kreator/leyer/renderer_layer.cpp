@@ -96,6 +96,7 @@ namespace kreator {
   
   void RendererLayer::RenderScene(Timestep ts) {
     active_scene_->Update(ts);
+    game_data_->Update(ts);
     
     // Text Renderer
     static glm::vec2 fixed_text_size = {0.3f, 0.3f};
@@ -177,6 +178,7 @@ namespace kreator {
     
     active_scene_->SetViewport(width, height);
     still_camera_projection = glm::ortho( 0.0f, (float)width, 0.0f, (float)height);
+    game_data_->SetViewportSize(width, height);
   }
 
   void RendererLayer::RenderGui() {
