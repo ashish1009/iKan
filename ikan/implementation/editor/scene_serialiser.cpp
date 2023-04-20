@@ -218,6 +218,27 @@ namespace ikan {
         out << YAML::EndMap; // CircleComponent
       }
       
+      // ------------------------------------------------------------------------
+      if (entity.HasComponent<RigidBodyComponent>()) {
+        out << YAML::Key << "RigidBodyComponent";
+        out << YAML::BeginMap; // RigidBodyComponent
+        
+        auto& rc = entity.GetComponent<RigidBodyComponent>();
+        
+        uint32_t type = (uint32_t)rc.type;
+        out << YAML::Key << "Type" << YAML::Value << type;
+        out << YAML::Key << "Is Ground" << YAML::Value << rc.is_ground;
+        out << YAML::Key << "Fixed Rotation" << YAML::Value << rc.fixed_rotation;
+        
+        out << YAML::Key << "Linear Velocity" << YAML::Value << rc.velocity;
+        out << YAML::Key << "Angular Damping" << YAML::Value << rc.angular_damping;
+        out << YAML::Key << "Angular Velocity" << YAML::Value << rc.angular_velocity;
+        out << YAML::Key << "Linear Damping" << YAML::Value << rc.linear_damping;
+        out << YAML::Key << "Gravity Scale" << YAML::Value << rc.gravity_scale;
+        
+        out << YAML::EndMap; // RigidBodyComponent
+      }
+      
       out << YAML::EndMap; // Entity
     } // // for (const auto& [uuid, entity] : scene_->entity_id_map_)
     
@@ -267,10 +288,10 @@ namespace ikan {
           tc.UpdateRotation(transform_component["Rotation"].as<glm::vec3>());
           tc.UpdateScale(transform_component["Scale"].as<glm::vec3>());
           
-          IK_CORE_INFO(LogModule::SceneSerializer, "    Transform Component");
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Translation   | {0} | {1} | {2}", tc.Position().x, tc.Position().y, tc.Position().z);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Rotation      | {0} | {1} | {2}", tc.Rotation().x, tc.Rotation().y, tc.Rotation().z);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Scale         | {0} | {1} | {2}", tc.Scale().x, tc.Scale().y, tc.Scale().z);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "    Transform Component");
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Translation   | {0} | {1} | {2}", tc.Position().x, tc.Position().y, tc.Position().z);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Rotation      | {0} | {1} | {2}", tc.Rotation().x, tc.Rotation().y, tc.Rotation().z);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Scale         | {0} | {1} | {2}", tc.Scale().x, tc.Scale().y, tc.Scale().z);
         } // if (transform_component)
         
         // --------------------------------------------------------------------
@@ -292,21 +313,21 @@ namespace ikan {
           else if ((SceneCamera::ProjectionType)type == SceneCamera::ProjectionType::Perspective)
             cc.camera->SetPerspective(fov, near, far);
           
-          IK_CORE_INFO(LogModule::SceneSerializer, "    Cameara Component");
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Primary             | {0}", cc.is_primary);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Fixed Aspect Ratio  | {0}", cc.is_fixed_aspect_ratio);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "    Cameara Component");
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Primary             | {0}", cc.is_primary);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Fixed Aspect Ratio  | {0}", cc.is_fixed_aspect_ratio);
           
           if ((SceneCamera::ProjectionType)type == SceneCamera::ProjectionType::Orthographic) {
-            IK_CORE_INFO(LogModule::SceneSerializer, "      Orthographic Camera");
-            IK_CORE_INFO(LogModule::SceneSerializer, "        Size | {0}", cc.camera->GetOrthographicSize());
+            IK_CORE_TRACE(LogModule::SceneSerializer, "      Orthographic Camera");
+            IK_CORE_TRACE(LogModule::SceneSerializer, "        Size | {0}", cc.camera->GetOrthographicSize());
           }
           else if ((SceneCamera::ProjectionType)type == SceneCamera::ProjectionType::Perspective) {
-            IK_CORE_INFO(LogModule::SceneSerializer, "      Perspective Camera");
-            IK_CORE_INFO(LogModule::SceneSerializer, "        FOV  | {0}", cc.camera->GetPerspectiveFOV());
+            IK_CORE_TRACE(LogModule::SceneSerializer, "      Perspective Camera");
+            IK_CORE_TRACE(LogModule::SceneSerializer, "        FOV  | {0}", cc.camera->GetPerspectiveFOV());
           }
           
-          IK_CORE_INFO(LogModule::SceneSerializer, "         Near : {0}", cc.camera->GetNear());
-          IK_CORE_INFO(LogModule::SceneSerializer, "         Far  : {0}", cc.camera->GetFar());
+          IK_CORE_TRACE(LogModule::SceneSerializer, "         Near : {0}", cc.camera->GetNear());
+          IK_CORE_TRACE(LogModule::SceneSerializer, "         Far  : {0}", cc.camera->GetFar());
         } // if (camera_component)
 
         // --------------------------------------------------------------------
@@ -331,15 +352,15 @@ namespace ikan {
           qc.sprite.tiling_factor = quad_component["Texture_TilingFactor"].as<float>();
           qc.color = quad_component["Color"].as<glm::vec4>();
           
-          IK_CORE_INFO(LogModule::SceneSerializer, "    Quad Component");
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Texture");
-          IK_CORE_INFO(LogModule::SceneSerializer, "        Use             | {0}", qc.sprite.use);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "    Quad Component");
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Texture");
+          IK_CORE_TRACE(LogModule::SceneSerializer, "        Use             | {0}", qc.sprite.use);
           if (qc.sprite.texture)
-            IK_CORE_INFO(LogModule::SceneSerializer, "        Path            | {0}", qc.sprite.texture->GetfilePath());
+            IK_CORE_TRACE(LogModule::SceneSerializer, "        Path            | {0}", qc.sprite.texture->GetfilePath());
           else
-            IK_CORE_INFO(LogModule::SceneSerializer, "        No Texture      ");
-          IK_CORE_INFO(LogModule::SceneSerializer, "        Tiling Factor   | {0}", qc.sprite.tiling_factor);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Color | {0} | {1} | {2}", qc.color.x, qc.color.y, qc.color.z);
+            IK_CORE_TRACE(LogModule::SceneSerializer, "        No Texture      ");
+          IK_CORE_TRACE(LogModule::SceneSerializer, "        Tiling Factor   | {0}", qc.sprite.tiling_factor);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Color | {0} | {1} | {2}", qc.color.x, qc.color.y, qc.color.z);
           
         } // if (quad_component)
         
@@ -360,19 +381,46 @@ namespace ikan {
           cc.thickness = circle_component["Thickness"].as<float>();
           cc.fade = circle_component["Fade"].as<float>();
           
-          IK_CORE_INFO(LogModule::SceneSerializer, "    Circle Component");
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Texture");
-          IK_CORE_INFO(LogModule::SceneSerializer, "        Use             | {0}", cc.texture_comp.use);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "    Circle Component");
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Texture");
+          IK_CORE_TRACE(LogModule::SceneSerializer, "        Use             | {0}", cc.texture_comp.use);
           if (cc.texture_comp.texture)
-            IK_CORE_INFO(LogModule::SceneSerializer, "        Path            | {0}", cc.texture_comp.texture->GetfilePath());
+            IK_CORE_TRACE(LogModule::SceneSerializer, "        Path            | {0}", cc.texture_comp.texture->GetfilePath());
           else
-            IK_CORE_INFO(LogModule::SceneSerializer, "        No Texture      ");
-          IK_CORE_INFO(LogModule::SceneSerializer, "        Tiling Factor   | {0}", cc.texture_comp.tiling_factor);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Color | {0} | {1} | {2}", cc.color.x, cc.color.y, cc.color.z);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Thickness         | {0}", cc.thickness);
-          IK_CORE_INFO(LogModule::SceneSerializer, "      Fade              | {0}", cc.fade);
+            IK_CORE_TRACE(LogModule::SceneSerializer, "        No Texture      ");
+          IK_CORE_TRACE(LogModule::SceneSerializer, "        Tiling Factor   | {0}", cc.texture_comp.tiling_factor);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Color | {0} | {1} | {2}", cc.color.x, cc.color.y, cc.color.z);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Thickness         | {0}", cc.thickness);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Fade              | {0}", cc.fade);
         } // if (circle_component)
         
+        // --------------------------------------------------------------------
+        auto rigid_body_component = entity["RigidBodyComponent"];
+        if (rigid_body_component) {
+          auto& rc = deserialized_entity.AddComponent<RigidBodyComponent>();
+          
+          auto type = rigid_body_component["Type"].as<uint8_t>();
+          rc.type = (RigidBodyComponent::RbBodyType)type;
+          rc.fixed_rotation = rigid_body_component["Fixed Rotation"].as<bool>();
+          rc.is_ground = rigid_body_component["Is Ground"].as<bool>();
+          
+          rc.velocity         = rigid_body_component["Linear Velocity"].as<glm::vec2>();
+          rc.angular_damping  = rigid_body_component["Angular Damping"].as<float>();
+          rc.angular_velocity = rigid_body_component["Angular Velocity"].as<float>();
+          rc.linear_damping   = rigid_body_component["Linear Damping"].as<float>();
+          rc.gravity_scale    = rigid_body_component["Gravity Scale"].as<float>();
+          
+          IK_CORE_TRACE(LogModule::SceneSerializer, "    Rigid Body Component");
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Type             | {0}", type);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Fixed Rotation   | {0}", rc.fixed_rotation);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Is Ground        | {0}", rc.is_ground);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Linear Velocity  | {0} | {1}", rc.velocity.x, rc.velocity.y);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Angular Velocity | {0}", rc.angular_velocity);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Linear Damping   | {0}", rc.linear_damping);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Angular Damping  | {0}", rc.angular_damping);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Gravity Scale    | {0}", rc.gravity_scale);
+        } // if (rigid_body_component)
+
       } // for (auto entity : entities)
     } // if (entities)
     
