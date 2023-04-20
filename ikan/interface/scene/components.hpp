@@ -169,9 +169,9 @@ namespace ikan {
     Entity* runtime_fixture = nullptr;
     
     void RenderGui();
+    void Copy(const Box2DColliderComponent& other);
     Box2DColliderComponent();
     ~Box2DColliderComponent();
-    void Copy(const Box2DColliderComponent& other);
     DEFINE_COPY_MOVE_CONSTRUCTORS(Box2DColliderComponent);
   };
     
@@ -183,17 +183,40 @@ namespace ikan {
     Entity* runtime_fixture = nullptr;
 
     void RenderGui();
+    void Copy(const CircleColliiderComponent& other);
     CircleColliiderComponent();
     ~CircleColliiderComponent();
-    void Copy(const CircleColliiderComponent& other);
     DEFINE_COPY_MOVE_CONSTRUCTORS(CircleColliiderComponent);
+  };
+  
+  struct PillBoxColliderComponent {
+    bool reset_flag = false;
+    float width = 0.5f;
+    float height = 0.5f;
+    glm::vec2 offset;
+    
+    Box2DColliderComponent bcc;
+    CircleColliiderComponent top_ccc;
+    CircleColliiderComponent bottom_ccc;
+    
+    void SetHeight(float height);
+    void SetWidth(float width);
+    void SetSize(const glm::vec2& size);
+    void RecalculateColliders();
+    
+    void RenderGui();
+    void Copy(const PillBoxColliderComponent& other);
+    PillBoxColliderComponent();
+    ~PillBoxColliderComponent();
+    DEFINE_COPY_MOVE_CONSTRUCTORS(PillBoxColliderComponent);
   };
 
   template<typename... Component>
   struct ComponentGroup {
   };
   
-#define ALL_COPY_COMPONENTS TransformComponent, CameraComponent, QuadComponent, CircleComponent, RigidBodyComponent
+#define ALL_COPY_COMPONENTS TransformComponent, CameraComponent, QuadComponent, CircleComponent, \
+RigidBodyComponent, Box2DColliderComponent, CircleColliiderComponent, PillBoxColliderComponent
 
   // Stores all the components present in Engine
   using AllComponents =

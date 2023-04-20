@@ -301,4 +301,89 @@ x& x::operator=(x&& other) { \
     }
   }
   
+  // -------------------------------------------------------------------------
+  // Pill Box Colloider Component
+  // -------------------------------------------------------------------------
+  PillBoxColliderComponent::PillBoxColliderComponent() { COMP_LOG("Creating Pill Box Collider Component "); RecalculateColliders(); }
+  PillBoxColliderComponent::~PillBoxColliderComponent() { COMP_LOG("Destroying Pill Box Collider Component "); }
+  COMP_COPY_MOVE_CONSTRUCTORS(PillBoxColliderComponent);
+  void PillBoxColliderComponent::Copy(const PillBoxColliderComponent &other) {
+    reset_flag = other.reset_flag;
+    offset = other.offset;
+    width = other.width;
+    height = other.height;
+    bcc = other.bcc;
+    top_ccc = other.top_ccc;
+    bottom_ccc = other.bottom_ccc;
+    RecalculateColliders();
+  }
+  
+  void PillBoxColliderComponent::SetHeight(float height) {
+    this->height = height;
+    RecalculateColliders();
+    reset_flag = true;
+  }
+  
+  void PillBoxColliderComponent::SetWidth(float width) {
+    this->width = width;
+    RecalculateColliders();
+    reset_flag = true;
+  }
+  
+  void PillBoxColliderComponent::SetSize(const glm::vec2& size) {
+    this->height = size.y;
+    this->width = size.x;
+    RecalculateColliders();
+    reset_flag = true;
+  }
+  
+  void PillBoxColliderComponent::RecalculateColliders() {
+    float circle_radius = width;
+    float box_height = std::max((height - circle_radius), 0.01f);
+    
+    top_ccc.radius = circle_radius;
+    bottom_ccc.radius = circle_radius;
+    
+    top_ccc.offset = offset + glm::vec2(0, box_height);
+    bottom_ccc.offset = offset - glm::vec2(0, box_height);
+    
+    bcc.size = {width - 0.03, box_height};
+    bcc.offset = offset;
+  }
+  
+#define DEBUG_PILL_BOX 0
+  void PillBoxColliderComponent::RenderGui() {
+    if (PropertyGrid::Float2("Offset", offset))
+      RecalculateColliders();
+    if (PropertyGrid::Float1("Width ", width))
+      RecalculateColliders();
+    if (PropertyGrid::Float1("Height ", height))
+      RecalculateColliders();
+    ImGui::Separator();
+    
+#if DEBUG_PILL_BOX
+    const ImGuiTreeNodeFlags tree_node_flags = ImGuiTreeNodeFlags_SpanAvailWidth |
+    ImGuiTreeNodeFlags_AllowItemOverlap |
+    ImGuiTreeNodeFlags_FramePadding;
+    
+    bool box_open = ImGui::TreeNodeEx("Box Collider", tree_node_flags);
+    if (box_open) {
+      bcc.RenderGui();
+      ImGui::TreePop();
+    }
+    
+    bool top_circle_open = ImGui::TreeNodeEx("Top Circle Collider", tree_node_flags);
+    if (top_circle_open) {
+      top_ccc.RenderGui();
+      ImGui::TreePop();
+    }
+    
+    bool bottom_circle_open = ImGui::TreeNodeEx("Bottom Circle Collider", tree_node_flags);
+    if (bottom_circle_open) {
+      bottom_ccc.RenderGui();
+      ImGui::TreePop();
+    }
+#endif
+  }
+
 } // namespace ikan
