@@ -121,6 +121,28 @@ namespace ikan {
     DEFINE_COPY_MOVE_CONSTRUCTORS(CircleComponent);
   };
   
+  struct RigidBodyComponent {
+    enum class RbBodyType { Static, Kinametic, Dynamic };
+    RbBodyType type = RbBodyType::Static;
+
+    bool is_ground = false;
+    bool fixed_rotation = false;
+    
+    glm::vec2 velocity{0, 0};
+    float angular_velocity = 0.0f;
+    float linear_damping = 0.9f;
+    float angular_damping = 0.8f;
+    float gravity_scale = 1.0f;
+
+    void* runtime_body = nullptr;
+    
+    void Copy(const RigidBodyComponent& other);
+    void RenderGui();
+    RigidBodyComponent();
+    ~RigidBodyComponent();
+    DEFINE_COPY_MOVE_CONSTRUCTORS(RigidBodyComponent);
+  };
+  
   template<typename... Component>
   struct ComponentGroup {
   };

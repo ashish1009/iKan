@@ -177,4 +177,49 @@ x& x::operator=(x&& other) { \
     ImGui::Separator();
   }
   
+  // -------------------------------------------------------------------------
+  // Rigid Body Component
+  // -------------------------------------------------------------------------
+  RigidBodyComponent::RigidBodyComponent() { COMP_LOG("Creating Rigid Body Component"); }
+  RigidBodyComponent::~RigidBodyComponent() { COMP_LOG("Destroying Rigid Body Component"); }
+  COMP_COPY_MOVE_CONSTRUCTORS(RigidBodyComponent);
+
+  void RigidBodyComponent::Copy(const RigidBodyComponent &other) {
+    type = other.type;
+    is_ground =  other.is_ground;
+    fixed_rotation =  other.fixed_rotation;
+    velocity =  other.velocity;
+    angular_velocity =  other.angular_velocity;
+    linear_damping =  other.linear_damping;
+    angular_damping =  other.angular_damping;
+    gravity_scale =  other.gravity_scale;
+    runtime_body = other.runtime_body;
+  }
+  
+  void RigidBodyComponent::RenderGui() {
+    RbBodyType new_body_type = RbBodyType(PropertyGrid::ComboDrop("Rigid Body Type",
+                                                                  { "Static" , "Kinamatic", "Dynamic" },
+                                                                  (uint32_t)type,
+                                                                  ImGui::GetWindowContentRegionMax().x / 2));
+    
+    // Render the property based on the projection type of camera
+    if (new_body_type != type)
+      type = new_body_type;
+    
+    PropertyGrid::Float2("Linear Velocity", velocity, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT, 200);
+    PropertyGrid::Float1("Angular Velocity", angular_velocity, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT, 200);
+    
+    ImGui::Separator();
+    PropertyGrid::Float1("Linear Damping", linear_damping, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT, 200);
+    PropertyGrid::Float1("Angular Damping", angular_damping, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT, 200);
+    
+    ImGui::Separator();
+    PropertyGrid::Float1("Gravity Scale", gravity_scale, nullptr, 0.1, 0.0f, 0.0f, MAX_FLT, 200);
+    
+    ImGui::Separator();
+    PropertyGrid::CheckBox("Is Ground", is_ground);
+    PropertyGrid::CheckBox("Fixed Rotation", fixed_rotation);
+    ImGui::Separator();
+  }
+  
 } // namespace ikan
