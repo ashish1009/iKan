@@ -3,22 +3,22 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
-  - Entity: 12795209592278056308
+  - Entity: 12805849845729188852
     TagComponent:
-      Tag: Circle
+      Tag: Quad
     TransformComponent:
-      Translation: [0, 2, 0]
+      Translation: [-2, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
-    CircleComponent:
+    QuadComponent:
       Texture_Use: true
+      Sprite_Use: false
+      Linear_Edge: true
       Texture_Path: ""
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
-      Thickness: 1
-      Fade: 0.00499999989
     RigidBodyComponent:
-      Type: 2
+      Type: 0
       Is Ground: false
       Fixed Rotation: false
       Linear Velocity: [0, 0]
@@ -26,13 +26,25 @@ Entities:
       Angular Velocity: 0
       Linear Damping: 0.899999976
       Gravity Scale: 1
-    CircleColloiderComponent:
+    PillBoxColliderComponent:
       Offset: [0, 0]
-      Radius: 0.5
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
+      Width: 0.400000006
+      Height: 0.5
+  - Entity: 2006004470497900375
+    TagComponent:
+      Tag: Camera
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 1.30899692
+      OrthographicSize: 19
+      Near: -1
+      Far: 1
   - Entity: 17039513187255470450
     TagComponent:
       Tag: Ground
@@ -66,37 +78,22 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 2006004470497900375
+  - Entity: 12795209592278056308
     TagComponent:
-      Tag: Camera
+      Tag: Circle
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [0, 2, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
-    CameraComponent:
-      FixedAspectRatio: false
-      Primary: true
-      ProjectionType: 1
-      PerspectiveFOV: 1.30899692
-      OrthographicSize: 19
-      Near: -1
-      Far: 1
-  - Entity: 12805849845729188852
-    TagComponent:
-      Tag: Quad
-    TransformComponent:
-      Translation: [-2, 0, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
+    CircleComponent:
       Texture_Use: true
-      Sprite_Use: false
-      Linear_Edge: true
       Texture_Path: ""
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
+      Thickness: 1
+      Fade: 0.00499999989
     RigidBodyComponent:
-      Type: 0
+      Type: 2
       Is Ground: false
       Fixed Rotation: false
       Linear Velocity: [0, 0]
@@ -104,7 +101,10 @@ Entities:
       Angular Velocity: 0
       Linear Damping: 0.899999976
       Gravity Scale: 1
-    PillBoxColliderComponent:
+    CircleColloiderComponent:
       Offset: [0, 0]
-      Width: 0.5
-      Height: 0.5
+      Radius: 0.5
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5

@@ -672,6 +672,30 @@ namespace kreator {
       Batch2DRenderer::DrawCircle(Math::GetTransformMatrix(p, {0, 0, 0}, s), collider_color, 0.05f);
     }
 
+    // Pill Box Collider
+    auto pbc_view = active_scene_->GetEntitesWith<TransformComponent, PillBoxColliderComponent>();
+    for (auto entity : pbc_view) {
+      auto [tc, pbc] = pbc_view.get<TransformComponent, PillBoxColliderComponent>(entity);
+      pbc.RecalculateColliders();
+      
+      // Box
+      const auto& bcc = pbc.bcc;
+      glm::vec3 bcc_p = tc.Position() + glm::vec3(bcc.offset, 0.001f);
+      glm::vec3 bcc_s = glm::vec3((bcc.size * 2.0f), 1.0f); // We need diameter
+      Batch2DRenderer::DrawRect(Math::GetTransformMatrix(bcc_p, tc.Rotation(), bcc_s), collider_color);
+
+      // Top Circle
+      const auto& top_ccc = pbc.top_ccc;
+      glm::vec3 top_ccc_p = tc.Position() + glm::vec3(top_ccc.offset, 0.001f);
+      glm::vec3 top_ccc_s = glm::vec3(top_ccc.radius * 2.0f); // We need diameter
+      Batch2DRenderer::DrawCircle(Math::GetTransformMatrix(top_ccc_p, {0, 0, 0}, top_ccc_s), collider_color, 0.05f);
+
+      // Bottom Circle
+      const auto& bottom_ccc = pbc.bottom_ccc;
+      glm::vec3 bottom_ccc_p = tc.Position() + glm::vec3(bottom_ccc.offset, 0.001f);
+      glm::vec3 bottom_ccc_s = glm::vec3(bottom_ccc.radius * 2.0f); // We need diameter
+      Batch2DRenderer::DrawCircle(Math::GetTransformMatrix(bottom_ccc_p, {0, 0, 0}, bottom_ccc_s), collider_color, 0.05f);
+    }
     Batch2DRenderer::EndBatch();
   }
   
