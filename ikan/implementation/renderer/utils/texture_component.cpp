@@ -37,79 +37,69 @@ namespace ikan {
   }
   
   SpriteComponent::SpriteComponent(const std::shared_ptr<Texture>& tex, bool use_tex) {
-    IK_CORE_TRACE(LogModule::Texture, "Creating TextureComponent");
+    IK_CORE_TRACE(LogModule::Texture, "Creating SpriteComponent");
     use = use_tex;
     texture = tex;
     if (texture) sub_texture = SubTexture::CreateFromCoords(texture, {0.0f, 0.0f});
   }
   
   SpriteComponent::~SpriteComponent() {
-    IK_CORE_TRACE(LogModule::Texture, "Destroying TextureComponent");
+    IK_CORE_TRACE(LogModule::Texture, "Destroying SpriteComponent");
     sub_texture.reset();
     ClearSprites();
   }
   
   SpriteComponent::SpriteComponent(const SpriteComponent& other)
-  : linear_edge(other.linear_edge), use_sub_texture(other.use_sub_texture) {
+  : linear_edge(other.linear_edge) {
     use = other.use;
-    LoadTexture(other);
-    
-    is_animation = other.is_animation;
     speed = other.speed;
+    LoadTexture(other);
     
     for (const auto& sprite : other.sprites) {
       sprites.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
                                                      sprite->GetSpriteSize(), sprite->GetCellSize()));
     }
-    IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent");
+    IK_CORE_TRACE(LogModule::Texture, "Copying SpriteComponent");
   }
   
   SpriteComponent::SpriteComponent(SpriteComponent&& other)
-  : linear_edge(other.linear_edge), use_sub_texture(other.use_sub_texture) {
+  : linear_edge(other.linear_edge) {
     use = other.use;
-    LoadTexture(other);
-    
-    is_animation = other.is_animation;
     speed = other.speed;
-    
+    LoadTexture(other);
+        
     for (const auto& sprite : other.sprites) {
       sprites.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
                                                      sprite->GetSpriteSize(), sprite->GetCellSize()));
     }
-    IK_CORE_TRACE(LogModule::Texture, "Moving TextureComponent");
+    IK_CORE_TRACE(LogModule::Texture, "Moving SpriteComponent");
   }
   
   SpriteComponent& SpriteComponent::operator=(const SpriteComponent& other) {
     use = other.use;
-    linear_edge = other.linear_edge;
-    use_sub_texture = other.use_sub_texture;
-    LoadTexture(other);
-    
-    is_animation = other.is_animation;
     speed = other.speed;
+    linear_edge = other.linear_edge;
+    LoadTexture(other);
     
     for (const auto& sprite : other.sprites) {
       sprites.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
                                                      sprite->GetSpriteSize(), sprite->GetCellSize()));
     }
-    IK_CORE_TRACE(LogModule::Texture, "Copying TextureComponent (=operator)");
+    IK_CORE_TRACE(LogModule::Texture, "Copying SpriteComponent (=operator)");
     return *this;
   }
   
   SpriteComponent& SpriteComponent::operator=(SpriteComponent&& other) {
     use = other.use;
     linear_edge = other.linear_edge;
-    use_sub_texture = other.use_sub_texture;
-    LoadTexture(other);
-    
-    is_animation = other.is_animation;
     speed = other.speed;
+    LoadTexture(other);
     
     for (const auto& sprite : other.sprites) {
       sprites.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
                                                      sprite->GetSpriteSize(), sprite->GetCellSize()));
     }
-    IK_CORE_TRACE(LogModule::Texture, "Moving TextureComponent (=operator)");
+    IK_CORE_TRACE(LogModule::Texture, "Moving SpriteComponent (=operator)");
     return *this;
   }
   

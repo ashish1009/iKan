@@ -235,7 +235,7 @@ namespace ikan {
         
         auto& qc = entity.GetComponent<QuadComponent>();
         out << YAML::Key << "Texture_Use" << YAML::Value << qc.sprite.use;
-        out << YAML::Key << "Sprite_Use" << YAML::Value << qc.sprite.use_sub_texture;
+        out << YAML::Key << "Type" << YAML::Value << (uint32_t)qc.sprite.type;
         out << YAML::Key << "Linear_Edge" << YAML::Value << qc.sprite.linear_edge;
         
         if (qc.sprite.texture) {
@@ -249,7 +249,18 @@ namespace ikan {
         }
         out << YAML::Key << "Texture_TilingFactor" << YAML::Value << qc.sprite.tiling_factor;
         out << YAML::Key << "Color" << YAML::Value << qc.color;
+
+        out << YAML::Key << "Speed" << YAML::Value << qc.sprite.speed;
         
+        int32_t num_sprite_coords = 0;
+        for (const auto& sprite : qc.sprite.sprites) {
+          out << YAML::Key << "Coords" + std::to_string(num_sprite_coords) << YAML::Value << sprite->GetCoords();
+          out << YAML::Key << "Sprite_Size" + std::to_string(num_sprite_coords) << YAML::Value << sprite->GetSpriteSize();
+          out << YAML::Key << "Cell_Size" + std::to_string(num_sprite_coords) << YAML::Value << sprite->GetCellSize();
+          num_sprite_coords++;
+        }
+        out << YAML::Key << "Num_Coords" << YAML::Value << num_sprite_coords;
+
         out << YAML::EndMap; // QuadComponent
       }
       
@@ -427,7 +438,7 @@ namespace ikan {
           auto& qc = deserialized_entity.AddComponent<QuadComponent>();
           
           qc.sprite.use = quad_component["Texture_Use"].as<bool>();
-          qc.sprite.use_sub_texture = quad_component["Sprite_Use"].as<bool>();
+          qc.sprite.type = (SpriteComponent::Type)(quad_component["Type"].as<uint32_t>());
           qc.sprite.linear_edge = quad_component["Linear_Edge"].as<bool>();
           
           std::string texture_path = quad_component["Texture_Path"].as<std::string>();
@@ -443,6 +454,16 @@ namespace ikan {
           qc.sprite.tiling_factor = quad_component["Texture_TilingFactor"].as<float>();
           qc.color = quad_component["Color"].as<glm::vec4>();
           
+          qc.sprite.speed = quad_component["Speed"].as<int32_t>();
+          
+          int32_t num_coords = quad_component["Num_Coords"].as<int32_t>();
+          for (int i = 0; i < num_coords; i++) {
+            auto coord = quad_component["Coords" + std::to_string(i)].as<glm::vec2>();
+            auto sprite_size = quad_component["Sprite_Size" + std::to_string(i)].as<glm::vec2>();
+            auto cell_size = quad_component["Cell_Size" + std::to_string(i)].as<glm::vec2>();
+            qc.sprite.sprites.push_back(SubTexture::CreateFromCoords(qc.sprite.texture, coord, sprite_size, cell_size));
+          }
+
           IK_CORE_TRACE(LogModule::SceneSerializer, "    Quad Component");
           IK_CORE_TRACE(LogModule::SceneSerializer, "      Texture");
           IK_CORE_TRACE(LogModule::SceneSerializer, "        Use             | {0}", qc.sprite.use);

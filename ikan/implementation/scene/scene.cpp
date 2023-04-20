@@ -238,7 +238,7 @@ namespace ikan {
     for (const auto& quad_entity : quad_view) {
       const auto& [transform_comp, quad_comp] = quad_view.get<TransformComponent, QuadComponent>(quad_entity);
       if (quad_comp.sprite.use and quad_comp.sprite.texture) {
-        if (quad_comp.sprite.use_sub_texture) {
+        if (quad_comp.sprite.type == SpriteComponent::Type::Sprite) {
           Batch2DRenderer::DrawQuad(transform_comp.Transform(), quad_comp.sprite.sub_texture, quad_comp.color, (uint32_t)quad_entity);
         }
         else {

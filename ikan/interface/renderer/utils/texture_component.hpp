@@ -66,8 +66,9 @@ namespace ikan {
   
   /// This structure holds the property of sprite component (Sub Texture)
   struct SpriteComponent : public TextureComponent {
-    bool use_sub_texture = false;
-    bool is_animation = false;
+    enum class Type { Sprite = 0, Animation = 1 };
+    Type type = Type::Sprite;
+
     bool linear_edge = true;
     
     std::shared_ptr<SubTexture> sub_texture = nullptr;
@@ -119,35 +120,22 @@ namespace ikan {
         ImGui::Separator();
         
         ImGui::PushID("Animation/Sprite");
-        enum class Type { Sprite = 0, Animation = 1 };
         
         ImGui::Columns(2);
         ImGui::SetColumnWidth(0, ImGui::GetWindowContentRegionMax().x / 2);
         
-        static Type type = Type::Sprite;
         ImGui::RadioButton("Sprite", ((int32_t*)(&type)), (int32_t)Type::Sprite);
         ImGui::NextColumn();
         
         ImGui::RadioButton("Animation", ((int32_t*)(&type)), (int32_t)Type::Animation);
         
-        if (type == Type::Sprite) {
-          use_sub_texture = true;
-          is_animation = false;
-        }
-        else if (type == Type::Animation){
-          use_sub_texture = false;
-          is_animation = true;
-        }
-        else {
-          IK_ASSERT(false, "Wrong Type");
-        }
         ImGui::Columns(1);
         ImGui::PopID();
         
         ImGui::Separator();
         
         // Sub Texture Renderer
-        if (sub_texture and use_sub_texture) {
+        if (sub_texture and type == Type::Sprite) {
           glm::vec2 coords = sub_texture->GetCoords();
           glm::vec2 sprite_size = sub_texture->GetSpriteSize();
           glm::vec2 cell_size   = sub_texture->GetCellSize();
@@ -229,7 +217,7 @@ namespace ikan {
           } // if Sprite Image Open
         } // if Sub Texture and Use Sub Texture
         
-        if (is_animation) {
+        if (type == Type::Animation) {
           float speed_drag = (float)speed;
           float min_speed = sprites.size();
           if (PropertyGrid::Float1("Speed", speed_drag, nullptr, 1.0f, min_speed, min_speed, MAX_FLT, 100.0f))
