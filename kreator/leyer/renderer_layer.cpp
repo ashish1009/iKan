@@ -20,8 +20,6 @@ namespace kreator {
   if (ImGui::MenuItem(name, nullptr, flag, true)) { \
     flag = (flag) ? false : true; \
   }
-
-  static glm::mat4 still_camera_projection;
   
   RendererLayer::RendererLayer(GameType game_type)
   : Layer("Kreator"), game_data_(CreateGameData(game_type)), cbp_(DM::GetWorkspaceBasePath()) {
@@ -100,11 +98,10 @@ namespace kreator {
     
     // Text Renderer
     static glm::vec2 fixed_text_size = {0.3f, 0.3f};
-    static glm::vec4 fixed_text_color = { 0.1, 0.1, 0.1, 1 };
-    TextRenderer::BeginBatch(still_camera_projection);
+    static glm::vec4 fixed_text_color = { 0.1, 0.1, 0.1, 1};
+    TextRenderer::BeginBatch(FixedCamera::projection);
     TextRenderer::RenderFixedViewText("(c) IKAN", { viewport_width_ - 80, 5.0f, 0.3f }, fixed_text_size, fixed_text_color);
-    TextRenderer::RenderFixedViewText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)),
-                                      { 5.0f, 5.0f, 0.3f }, fixed_text_size, fixed_text_color);
+    TextRenderer::RenderFixedViewText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)), { 5.0f, 5.0f, 0.3f }, fixed_text_size, fixed_text_color);
     TextRenderer::EndBatch();
   }
 
@@ -177,8 +174,9 @@ namespace kreator {
     viewport_height_ = height;
     
     active_scene_->SetViewport(width, height);
-    still_camera_projection = glm::ortho( 0.0f, (float)width, 0.0f, (float)height);
     game_data_->SetViewportSize(width, height);
+    
+    FixedCamera::SetViewport(width, height);
   }
 
   void RendererLayer::RenderGui() {
@@ -283,7 +281,6 @@ namespace kreator {
       ImguiAPI::Menu("Settings", true, [this]() {
         ImguiAPI::Menu("Scene", false, [this]() {
           SETTING_TOGGLE("Editor Camera", active_scene_->GetSetting().editor_camera);
-          SETTING_TOGGLE("Fixed Camera", active_scene_->GetSetting().show_fixed_camera);
           SETTING_TOGGLE("Entity Panel", spm_.GetSetting().scene_panel);
           SETTING_TOGGLE("Property Panel", spm_.GetSetting().property_panel);
         }); // Scene
@@ -305,7 +302,6 @@ namespace kreator {
     
     ImGui::Begin("Settings", &show_setting_);
 
-    PropertyGrid::CheckBox("Show Fixed Camera", active_scene_->GetSetting().show_fixed_camera, 3 * ImGui::GetWindowContentRegionMax().x / 4);
     PropertyGrid::CheckBox("Use Editor Camera", active_scene_->GetSetting().use_editor_camera, 3 * ImGui::GetWindowContentRegionMax().x / 4);
     if (active_scene_->GetSetting().use_editor_camera)
       PropertyGrid::CheckBox("Show Editor Camera", active_scene_->GetSetting().editor_camera, 3 * ImGui::GetWindowContentRegionMax().x / 4);

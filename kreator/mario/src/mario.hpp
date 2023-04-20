@@ -18,13 +18,10 @@ namespace mario {
     glm::vec2 size = { 0.6f, 0.6f };
     const glm::vec4 color = { 1.0f, 1.0f, 1.0f, 1.0f };
     
-    glm::mat4 still_camera_projection;
     float row_pos[2];
     float col_pos[4];
     
-    void Update(float width, float height) {
-      still_camera_projection = glm::ortho( 0.0f, (float)width, 0.0f, (float)height);
-      
+    void SetViewport(float width, float height) {      
       static const glm::vec2 size_ref = { 0.6f, 0.6f };
       size = size_ref * width / 1600.0f;
       

@@ -24,7 +24,7 @@ namespace mario {
     }
 
     // Score and All text
-    TextRenderer::BeginBatch(text_data_.still_camera_projection);
+    TextRenderer::BeginBatch(FixedCamera::projection);
     
     text_data_.Render("MARIO", 0, 0);
     text_data_.Render(std::to_string(0), 1, 0);
@@ -41,7 +41,7 @@ namespace mario {
   }
   
   void Mario::SetViewportSize(uint32_t width, uint32_t height) {
-    text_data_.Update(width, height);
+    text_data_.SetViewport(width, height);
   }
 
 } // namespace mario

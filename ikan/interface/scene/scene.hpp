@@ -11,7 +11,6 @@
 #include "core/utils/time_step.h"
 #include "core/events/event.h"
 #include "camera/editor_camera.hpp"
-#include "camera/fixed_camera.hpp"
 #include "camera/scene_camera.hpp"
 
 namespace ikan {
@@ -43,7 +42,6 @@ namespace ikan {
     struct Setting {
       bool use_editor_camera = true;
       bool editor_camera = true;
-      bool show_fixed_camera = true;
     };
 
     /// This Constructor creates the instance of Scene.
@@ -107,8 +105,6 @@ namespace ikan {
     Type GetType() const { return type_; }
     /// This function returns the editor camera of scene
     const EditorCamera& GetEditorCamera() const { return editor_camera_; };
-    /// This function returns the fixed camera of scene
-    const FixedCamera& GetFixedCamera() const { return fixed_camera_; };
     /// This function returns the setting reference to change the setting
     Setting& GetSetting() { return setting_; };
     /// This function returns the primary camera data
@@ -178,8 +174,6 @@ namespace ikan {
     SceneCameraData primary_camera_data_;
 
     EditorCamera editor_camera_;
-    FixedCamera fixed_camera_;
-
     Setting setting_;
 
     friend class SceneSerializer;

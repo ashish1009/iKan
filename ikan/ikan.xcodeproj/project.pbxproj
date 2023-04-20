@@ -14,7 +14,6 @@
 		B228FC6929DB070500455666 /* open_gl_graphics_context.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B228FC6729DB070500455666 /* open_gl_graphics_context.hpp */; };
 		B228FC6E29DB071300455666 /* graphics_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B228FC6C29DB071300455666 /* graphics_context.cpp */; };
 		B228FC6F29DB071300455666 /* graphics_context.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B228FC6D29DB071300455666 /* graphics_context.hpp */; };
-		B232A58629F1726E00AF292B /* fixed_camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B232A58429F1726E00AF292B /* fixed_camera.cpp */; };
 		B232A58729F1726E00AF292B /* fixed_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B232A58529F1726E00AF292B /* fixed_camera.hpp */; };
 		B2394A1D29D8107A00D782E5 /* key_codes.h in Headers */ = {isa = PBXBuildFile; fileRef = B2394A1C29D8107A00D782E5 /* key_codes.h */; };
 		B2394A2829D81BDD00D782E5 /* window.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2394A2629D81BDD00D782E5 /* window.cpp */; };
@@ -163,7 +162,6 @@
 		B228FC6C29DB071300455666 /* graphics_context.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = graphics_context.cpp; sourceTree = "<group>"; };
 		B228FC6D29DB071300455666 /* graphics_context.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = graphics_context.hpp; sourceTree = "<group>"; };
 		B228FC8D29DB133000455666 /* imgui.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = imgui.xcodeproj; path = imgui/imgui.xcodeproj; sourceTree = "<group>"; };
-		B232A58429F1726E00AF292B /* fixed_camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = fixed_camera.cpp; sourceTree = "<group>"; };
 		B232A58529F1726E00AF292B /* fixed_camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = fixed_camera.hpp; sourceTree = "<group>"; };
 		B2394A1C29D8107A00D782E5 /* key_codes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = key_codes.h; sourceTree = "<group>"; };
 		B2394A2029D810CB00D782E5 /* mouse_codes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mouse_codes.h; sourceTree = "<group>"; };
@@ -363,7 +361,6 @@
 				B281E86929DFE07C0038A9EE /* camera.hpp */,
 				B281E86D29DFE1630038A9EE /* editor_camera.hpp */,
 				B281E87529DFE3350038A9EE /* scene_camera.hpp */,
-				B232A58429F1726E00AF292B /* fixed_camera.cpp */,
 				B232A58529F1726E00AF292B /* fixed_camera.hpp */,
 			);
 			path = camera;
@@ -957,7 +954,6 @@
 				B281E86429DFDA240038A9EE /* open_gl_framebuffer.cpp in Sources */,
 				B2394A3129D8733500D782E5 /* mac_window.cpp in Sources */,
 				B2BEC78A29DD7C50008D3DCB /* core_application.cpp in Sources */,
-				B232A58629F1726E00AF292B /* fixed_camera.cpp in Sources */,
 				B2E7141329E43C3C008C8CB1 /* core_entity.cpp in Sources */,
 				B2F91E1929D713FA00860306 /* renderer_api.cpp in Sources */,
 				B2394A2829D81BDD00D782E5 /* window.cpp in Sources */,

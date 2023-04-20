@@ -283,10 +283,6 @@ namespace ikan {
     if (setting_.use_editor_camera) {
       editor_camera_.RendererGui(&setting_.editor_camera);
     }
-    
-    if (setting_.show_fixed_camera) {
-      fixed_camera_.RenderGui(&setting_.show_fixed_camera);
-    }
   }
   
   void Scene::RenderGuiRuntime() {

@@ -174,7 +174,6 @@ namespace ikan {
     // Scene Debugger data
     {
       out << YAML::Key << "Setting_editor_camera" << YAML::Value << scene_->setting_.editor_camera;
-      out << YAML::Key << "Setting_fixed_camera" << YAML::Value << scene_->setting_.show_fixed_camera;
       out << YAML::Key << "Setting_use_editor_camera" << YAML::Value << scene_->setting_.use_editor_camera;
     }
 
@@ -356,7 +355,6 @@ namespace ikan {
     // Scene Debugger
     scene_->setting_.editor_camera = data["Setting_editor_camera"].as<bool>();
     scene_->setting_.use_editor_camera = data["Setting_use_editor_camera"].as<bool>();
-    scene_->setting_.show_fixed_camera = data["Setting_fixed_camera"].as<bool>();
 
     auto entities = data["Entities"];
     if (entities) {
