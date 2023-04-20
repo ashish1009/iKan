@@ -238,9 +238,19 @@ namespace ikan {
     for (const auto& quad_entity : quad_view) {
       const auto& [transform_comp, quad_comp] = quad_view.get<TransformComponent, QuadComponent>(quad_entity);
       if (quad_comp.sprite.use and quad_comp.sprite.texture) {
-        if (quad_comp.sprite.type == SpriteComponent::Type::Sprite) {
+        // Sprite Animation
+        if (quad_comp.sprite.type == SpriteComponent::Type::Animation and quad_comp.sprite.sprites.size() > 0) {
+          if (quad_comp.sprite.anim_idx >= quad_comp.sprite.speed * quad_comp.sprite.sprites.size() or quad_comp.sprite.anim_idx < 1)
+            quad_comp.sprite.anim_idx = 0;
+          Batch2DRenderer::DrawQuad(transform_comp.Transform(), quad_comp.sprite.sprites[quad_comp.sprite.anim_idx / quad_comp.sprite.speed],
+                                    quad_comp.color, (uint32_t)quad_entity);
+          quad_comp.sprite.anim_idx++;
+        }
+        // Sprite No Animation
+        else if (quad_comp.sprite.type == SpriteComponent::Type::Sprite) {
           Batch2DRenderer::DrawQuad(transform_comp.Transform(), quad_comp.sprite.sub_texture, quad_comp.color, (uint32_t)quad_entity);
         }
+        // Only Texture
         else {
           Batch2DRenderer::DrawQuad(transform_comp.Transform(), quad_comp.sprite.texture, quad_comp.color, quad_comp.sprite.tiling_factor,
                                     (uint32_t)quad_entity);
