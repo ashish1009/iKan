@@ -179,6 +179,7 @@ namespace ikan {
       DrawComponent<CircleComponent>("Circle", *selected_entity_, [](auto& cc) { cc.RenderGui(); });
       DrawComponent<RigidBodyComponent>("Rigid Body", *selected_entity_, [](auto& rbc) { rbc.RenderGui(); });
       DrawComponent<Box2DColliderComponent>("Box 2D Collider", *selected_entity_, [](auto& bcc) { bcc.RenderGui(); });
+      DrawComponent<CircleColliiderComponent>("Circle Collider", *selected_entity_, [](auto& ccc) { ccc.RenderGui(); });
     }
 
     ImGui::PopID();
@@ -251,7 +252,8 @@ namespace ikan {
       AddComponentMenu<QuadComponent>("Quad", !HAS_COMPONENT(QuadComponent) and !HAS_COMPONENT(CircleComponent));
       AddComponentMenu<CircleComponent>("Circle", !HAS_COMPONENT(QuadComponent) and !HAS_COMPONENT(CircleComponent));
       ImGui::Separator();
-      AddComponentMenu<Box2DColliderComponent>("Box Collider", !HAS_COMPONENT(Box2DColliderComponent));
+      AddComponentMenu<Box2DColliderComponent>("Box Collider", !HAS_COMPONENT(Box2DColliderComponent) and !HAS_COMPONENT(CircleColliiderComponent));
+      AddComponentMenu<CircleColliiderComponent>("Circle Collider", !HAS_COMPONENT(CircleColliiderComponent) and !HAS_COMPONENT(Box2DColliderComponent));
     }
     else if (scene_context_->GetType() == Scene::_3D) {
     }
