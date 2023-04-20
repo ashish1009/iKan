@@ -285,7 +285,9 @@ namespace kreator {
           SETTING_TOGGLE("Property Panel", spm_.GetSetting().property_panel);
         }); // Scene
         ImGui::Separator();
-        
+        SETTING_TOGGLE("Show Setting Widget", show_setting_);
+        ImGui::Separator();
+
         FOR_EACH_SETTING {
           (setting_data + setting_idx)->ShowInMenu();
         }
@@ -296,7 +298,9 @@ namespace kreator {
   }
   
   void RendererLayer::ShowSettings() {
-    ImGui::Begin("Settings");
+    CHECK_WIDGET_FLAG(&show_setting_);
+    
+    ImGui::Begin("Settings", &show_setting_);
 
     PropertyGrid::CheckBox("Use Editor Camera", active_scene_->GetSetting().use_editor_camera, 3 * ImGui::GetWindowContentRegionMax().x / 4);
     if (active_scene_->GetSetting().use_editor_camera)
