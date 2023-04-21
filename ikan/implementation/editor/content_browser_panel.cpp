@@ -34,6 +34,10 @@ namespace ikan {
   }
   
   void ContentBrowserPanel::AddFavouritPaths(const std::vector<std::filesystem::path>& favourite_paths) {
+    if (favourite_paths_.empty()) {
+      favourite_paths_.emplace_back(RemoveLastSlash(DM::WorkspacePath("../ikan/")));
+      favourite_paths_.emplace_back(RemoveLastSlash(DM::WorkspacePath("ikan/core_assets")));
+    }
     for (const auto& path : favourite_paths)
       favourite_paths_.emplace_back(RemoveLastSlash(path));
   }
@@ -112,9 +116,7 @@ namespace ikan {
                       true /* Border */, ImGuiWindowFlags_HorizontalScrollbar);
     
     // Flag for the child menu
-    ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow |
-    ImGuiTreeNodeFlags_SpanAvailWidth |
-    ImGuiTreeNodeFlags_Framed;
+    ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_Framed;
     
     // Shows the content of the side pinned folders
     bool fav_opened = ImGui::TreeNodeEx((void*)"##SizeMenu", flags, "Favourits");
@@ -209,7 +211,7 @@ namespace ikan {
 
     // Push style
     ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, round_factor_);
-    ImGui::BeginChild("MainArea", ImVec2(ImGui::GetWindowContentRegionWidth() - side_child_width_,
+    ImGui::BeginChild("MainArea", ImVec2(ImGui::GetWindowContentRegionWidth() - side_child_width_ - 10,
                                          ImGui::GetWindowHeight() - window_y_offset_),
                       true /* Border */, ImGuiWindowFlags_HorizontalScrollbar);
 
@@ -250,8 +252,8 @@ namespace ikan {
         }
 
         // Icon Button size
-        static float icon_size_height = 64.0f;
-        static float icon_size_width  = 50.0f;
+        float icon_size_height = std::min(ImGui::GetWindowHeight() - ImGui::GetFontSize() , 64.0f);
+        float icon_size_width  = icon_size_height * 0.8;
 
         ImGui::PushID(filename_string.c_str());
         
