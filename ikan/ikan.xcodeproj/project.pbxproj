@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B201A2D229F27A3100D3C1FE /* scriptable_entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A2D029F27A3100D3C1FE /* scriptable_entity.cpp */; };
+		B201A2D329F27A3100D3C1FE /* scriptable_entity.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B201A2D129F27A3100D3C1FE /* scriptable_entity.hpp */; };
 		B206A4DB29F056EA00F6574E /* libbox_2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B206A29229F055E700F6574E /* libbox_2d.a */; };
 		B20FF40D29DDE99500FB3DB7 /* property_grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B20FF40B29DDE99500FB3DB7 /* property_grid.cpp */; };
 		B20FF40E29DDE99500FB3DB7 /* property_grid.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B20FF40C29DDE99500FB3DB7 /* property_grid.hpp */; };
@@ -156,6 +158,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B201A2D029F27A3100D3C1FE /* scriptable_entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scriptable_entity.cpp; sourceTree = "<group>"; };
+		B201A2D129F27A3100D3C1FE /* scriptable_entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scriptable_entity.hpp; sourceTree = "<group>"; };
 		B206A28D29F055E600F6574E /* box_2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = box_2d.xcodeproj; path = box_2d/box_2d.xcodeproj; sourceTree = "<group>"; };
 		B20FF40B29DDE99500FB3DB7 /* property_grid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = property_grid.cpp; sourceTree = "<group>"; };
 		B20FF40C29DDE99500FB3DB7 /* property_grid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = property_grid.hpp; sourceTree = "<group>"; };
@@ -388,6 +392,7 @@
 				B2E7141229E43C3C008C8CB1 /* core_entity.hpp */,
 				B295D89829E6D02B00A40956 /* scene_panel_manager.hpp */,
 				B295DB8529E6D6B400A40956 /* scene_serialiser.hpp */,
+				B201A2D129F27A3100D3C1FE /* scriptable_entity.hpp */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -399,6 +404,7 @@
 				B2E7141129E43C3C008C8CB1 /* core_entity.cpp */,
 				B2E7141829E43C40008C8CB1 /* components.cpp */,
 				B2E7141D29E43C4A008C8CB1 /* scene.cpp */,
+				B201A2D029F27A3100D3C1FE /* scriptable_entity.cpp */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -763,6 +769,7 @@
 				B281E86B29DFE07C0038A9EE /* camera.hpp in Headers */,
 				B2BEC78B29DD7C50008D3DCB /* core_application.hpp in Headers */,
 				B2F70CD829DEE4FD003163BA /* shader_uniforms.hpp in Headers */,
+				B201A2D329F27A3100D3C1FE /* scriptable_entity.hpp in Headers */,
 				B2F91E1629D713EF00860306 /* open_gl_renderer_api.hpp in Headers */,
 				B2E7142029E43C4A008C8CB1 /* scene.hpp in Headers */,
 				B2F70CDC29DEE5B6003163BA /* open_gl_shader_uniforms.hpp in Headers */,
@@ -958,6 +965,7 @@
 				B228FC6E29DB071300455666 /* graphics_context.cpp in Sources */,
 				B2E7141F29E43C4A008C8CB1 /* scene.cpp in Sources */,
 				B29C830A29DE9A5C0061D182 /* pipeline.cpp in Sources */,
+				B201A2D229F27A3100D3C1FE /* scriptable_entity.cpp in Sources */,
 				B281E86429DFDA240038A9EE /* open_gl_framebuffer.cpp in Sources */,
 				B2394A3129D8733500D782E5 /* mac_window.cpp in Sources */,
 				B2BEC78A29DD7C50008D3DCB /* core_application.cpp in Sources */,

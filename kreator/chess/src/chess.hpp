@@ -20,6 +20,7 @@ namespace chess {
     void Update(Timestep ts) override {}
     void SetViewportSize(uint32_t width, uint32_t height) override {}
 
+    // Game Data API
     std::string GameName() const override { return "IKAN Chess"; }
     glm::vec4 GetBgColor() const override { return {0.5f, 0.2f, 0.2f, 1.0f}; }
     std::string GetScenePath() const override { return DM::WorkspacePath("/kreator/chess/scenes/"); }
