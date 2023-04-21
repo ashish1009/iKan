@@ -12,6 +12,8 @@ namespace mario {
   void Mario::Init(const std::shared_ptr<Scene> scene) {
     scene_ = scene;
     
+    Batch2DRenderer::AddQuadData(1000);
+    
     timer_ = 0;
     time_left_ = MaxTime;
   }
