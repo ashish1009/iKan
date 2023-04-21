@@ -20,11 +20,7 @@ namespace ikan {
     enum class ProjectionType {
       Perspective = 0, Orthographic = 1
     };
-    
-    struct GridPlane {
-      bool x = false, y = false, z = true;
-    };
-    
+        
     /// This constructor creates the Scene Camera instance
     /// - Parameter proj_type: Projection type
     SceneCamera(ProjectionType proj_type = ProjectionType::Orthographic);
@@ -90,10 +86,7 @@ namespace ikan {
     float GetPerspectiveFOV() const;
     
     DEFINE_COPY_MOVE_CONSTRUCTORS(SceneCamera);
-    
-    // Debug data
-    GridPlane grid_plane_;
-    
+        
   private:
     // Member functions
     /// This function recalculate the projection matrix
@@ -103,6 +96,8 @@ namespace ikan {
     ProjectionType projection_type_ = ProjectionType::Orthographic;
     float perspective_fov_ = glm::radians(75.0f);
     float orthographic_size_ = 10.0f;
+    // Debug data
+    bool grid_2d_ = true;
   };
   
 } // namespace ikan
