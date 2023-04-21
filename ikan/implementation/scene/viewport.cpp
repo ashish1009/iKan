@@ -6,10 +6,11 @@
 //
 
 #include "viewport.hpp"
-#include "imgui_api.hpp"
-#include "property_grid.hpp"
-#include "scene.hpp"
-#include "core_entity.hpp"
+#include "imgui/imgui_api.hpp"
+#include "editor/property_grid.hpp"
+#include "scene/scene.hpp"
+#include "scene/core_entity.hpp"
+#include "scene/components.hpp"
 #include <ImGuizmo.h>
 
 namespace ikan {

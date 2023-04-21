@@ -46,5 +46,8 @@ namespace ikan {
   bool Entity::IsValidScene() const {
     return scene_ and StringUtils::GetExtensionFromFilePath(scene_->GetFilePath()) == saved_scene_extension_;
   }
-  
+
+  UUID Entity::GetUUID() const { return GetComponent<IDComponent>().id; }
+  const std::string& Entity::GetName() const { return GetComponent<TagComponent>().tag; }
+
 } // namespace ikan

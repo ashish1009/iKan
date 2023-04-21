@@ -18,6 +18,7 @@
 #include <map>
 #include <fstream>
 #include <dispatch/dispatch.h>
+#include <cxxabi.h>
 
 // Engine Files
 #include "ikan_common.h"

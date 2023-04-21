@@ -8,7 +8,6 @@
 #pragma once
 
 #include "scene.hpp"
-#include "components.hpp"
 
 namespace ikan {
   
@@ -26,9 +25,9 @@ namespace ikan {
     bool IsValidScene() const;
 
     /// This function returns the UUID of Current entity
-    UUID GetUUID() const { return GetComponent<IDComponent>().id; }
+    UUID GetUUID() const;
     /// This function returns name of entity
-    const std::string& GetName() const { return GetComponent<TagComponent>().tag; }
+    const std::string& GetName() const;
     
     /// This function returns Entity as entity handle
     operator entt::entity() const { return entity_handle_; }
