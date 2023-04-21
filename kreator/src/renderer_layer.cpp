@@ -232,10 +232,8 @@ namespace kreator {
     if (active_scene_->IsEditing()) {
       PropertyGrid::DropConent([this](const std::string& path)
                                {
-        if (StringUtils::GetExtensionFromFilePath(path) == saved_scene_extension_)
-          OpenScene(path);
-        else
-          IK_WARN(game_data_->GameName(), "Invalid file for Scene {0}", path.c_str());
+        if (StringUtils::GetExtensionFromFilePath(path) == saved_scene_extension_) OpenScene(path);
+        else IK_WARN(game_data_->GameName(), "Invalid file for Scene {0}", path.c_str());
       });
     }
 

@@ -278,7 +278,11 @@ namespace ikan {
     else if (projection_type_ == ProjectionType::Perspective) {
       zoom = std::pow(camera_pos.z, std::max(GetZoom(), 1.0f));
     }
-    IK_ASSERT(zoom != 0.0f, "Invalid Camera type of Zoom value");
+    else {
+      IK_ASSERT(false, "Invalid Camera type of Zoom value");
+    }
+    
+    zoom = std::max(zoom, 1.0f);
     
     float hor_line = zoom;
     float ver_line = aspect_ratio_ * zoom;
