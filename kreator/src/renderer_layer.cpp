@@ -244,8 +244,23 @@ namespace kreator {
     if (active_scene_->IsEditing()) {
       PropertyGrid::DropConent([this](const std::string& path)
                                {
-        if (StringUtils::GetExtensionFromFilePath(path) == saved_scene_extension_) OpenScene(path);
-        else IK_WARN(game_data_->GameName(), "Invalid file for Scene {0}", path.c_str());
+        if (StringUtils::GetExtensionFromFilePath(path) == saved_scene_extension_) {
+          OpenScene(path);
+        }
+        else if (StringUtils::GetExtensionFromFilePath(path) == prefab_extenstion_) {
+          const auto& cam_data = active_scene_->GetPrimaryCameraData();
+          float zoom = viewport_.height / cam_data.scene_camera->GetZoom();
+          float x_pos = (viewport_.mouse_pos_x - (float)viewport_.width / 2) / zoom;
+          float y_pos = (viewport_.mouse_pos_y - (float)viewport_.height / 2) / zoom;
+          
+          Entity e = Prefab::Deserialize(path, active_scene_.get());
+          auto& tc = e.GetComponent<TransformComponent>();
+          tc.UpdatePosition(X, x_pos);
+          tc.UpdatePosition(Y, y_pos);
+        }
+        else {
+          IK_WARN(game_data_->GameName(), "Invalid file for Scene {0}", path.c_str());
+        }
       });
       OnImguizmoUpdate();
     }

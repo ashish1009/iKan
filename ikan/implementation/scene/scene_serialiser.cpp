@@ -64,8 +64,19 @@ namespace ikan {
 
     auto entities = data["Entities"];
     if (entities) {
-      for (auto entity : entities) {
-        EntitySerialiser::DeserislizeEntity(entity, scene_);
+      for (auto entity_data : entities) {
+        uint64_t uuid = entity_data["Entity"].as<uint64_t>();
+        
+        std::string name;
+        auto tag_component = entity_data["TagComponent"];
+        name = tag_component["Tag"].as<std::string>();
+        
+        Entity deserialized_entity = scene_->CreateEntity(name, uuid);
+        IK_CORE_TRACE(LogModule::SceneSerializer, "  Deserialising Entity");
+        IK_CORE_TRACE(LogModule::SceneSerializer, "  ID     {0}", uuid);
+        IK_CORE_TRACE(LogModule::SceneSerializer, "  Name   {0}", name);
+        
+        EntitySerialiser::DeserislizeEntity(entity_data, deserialized_entity, scene_);
       } // for (auto entity : entities)
     } // if (entities)
     

@@ -28,8 +28,18 @@ namespace ikan {
     fout << out.c_str();
   }
   
-  Entity* Prefab::Deserialize(const std::string& file_path) {
-    return nullptr;
+  Entity Prefab::Deserialize(const std::string& file_path, Scene* scene) {
+    YAML::Node entity_data = YAML::LoadFile(file_path);
+    std::string name;
+    auto tag_component = entity_data["TagComponent"];
+    name = tag_component["Tag"].as<std::string>();
+    
+    Entity deserialized_entity = scene->CreateEntity(name);
+    IK_CORE_TRACE(LogModule::Prefab, "  Deserialising Entity");
+    IK_CORE_TRACE(LogModule::Prefab, "  Name   {0}", name);
+
+    EntitySerialiser::DeserislizeEntity(entity_data, deserialized_entity, scene);
+    return deserialized_entity;
   }
   
   void Prefab::Loader(bool* flag) {

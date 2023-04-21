@@ -19,7 +19,7 @@ namespace ikan {
     static void SerializeCircleCollider(YAML::Emitter& out, const CircleColliiderComponent& ccc, std::string identifier);
     static void DeserializeCircleCollider(CircleColliiderComponent& ccc, const YAML::Node& circle_colloider_component, std::string identifier);
     static void SerialiseEntity(YAML::Emitter& out, Entity entity);
-    static Entity DeserislizeEntity(YAML::Node entity, Scene* scene_);
+    static void DeserislizeEntity(YAML::Node entity, Entity e, Scene* scene_);
     
     MAKE_PURE_STATIC(EntitySerialiser);
   };

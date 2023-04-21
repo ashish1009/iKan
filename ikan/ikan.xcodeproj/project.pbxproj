@@ -328,8 +328,6 @@
 			children = (
 				B20FF40B29DDE99500FB3DB7 /* property_grid.cpp */,
 				B2E8D45829E06195005F5F0C /* content_browser_panel.cpp */,
-				B295D89729E6D02B00A40956 /* scene_panel_manager.cpp */,
-				B295DB8429E6D6B400A40956 /* scene_serialiser.cpp */,
 			);
 			path = editor;
 			sourceTree = "<group>";
@@ -411,9 +409,11 @@
 			isa = PBXGroup;
 			children = (
 				B281E88229E001A70038A9EE /* viewport.cpp */,
-				B2E7141129E43C3C008C8CB1 /* core_entity.cpp */,
-				B2E7141829E43C40008C8CB1 /* components.cpp */,
 				B2E7141D29E43C4A008C8CB1 /* scene.cpp */,
+				B2E7141829E43C40008C8CB1 /* components.cpp */,
+				B2E7141129E43C3C008C8CB1 /* core_entity.cpp */,
+				B295D89729E6D02B00A40956 /* scene_panel_manager.cpp */,
+				B295DB8429E6D6B400A40956 /* scene_serialiser.cpp */,
 				B201A2D029F27A3100D3C1FE /* scriptable_entity.cpp */,
 				B201AD6029F29CEB00D3C1FE /* prefab.cpp */,
 				B2592B0129F2C6A20053CBDB /* serialise_entity.cpp */,

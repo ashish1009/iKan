@@ -119,13 +119,13 @@ namespace ikan {
     bcc.physics_mat.restitution = box_colloider_component["Restitution" + identifier].as<float>();
     bcc.physics_mat.restitution_threshold = box_colloider_component["Restitution Threshold" + identifier].as<float>();
     
-    IK_CORE_TRACE(LogModule::SceneSerializer, "    Box Collider Component");
-    IK_CORE_TRACE(LogModule::SceneSerializer, "      Offset                | {0} | {0}", bcc.offset.x, bcc.offset.y);
-    IK_CORE_TRACE(LogModule::SceneSerializer, "      Size                  | {0} | {0}", bcc.size.x, bcc.size.y);
-    IK_CORE_TRACE(LogModule::SceneSerializer, "      Density               | {0}", bcc.physics_mat.density);
-    IK_CORE_TRACE(LogModule::SceneSerializer, "      Friction              | {0}", bcc.physics_mat.friction);
-    IK_CORE_TRACE(LogModule::SceneSerializer, "      Restitution           | {0}", bcc.physics_mat.restitution);
-    IK_CORE_TRACE(LogModule::SceneSerializer, "      Restitution Threshold | {0}", bcc.physics_mat.restitution_threshold);
+    IK_CORE_TRACE(LogModule::EntitySerializer, "    Box Collider Component");
+    IK_CORE_TRACE(LogModule::EntitySerializer, "      Offset                | {0} | {0}", bcc.offset.x, bcc.offset.y);
+    IK_CORE_TRACE(LogModule::EntitySerializer, "      Size                  | {0} | {0}", bcc.size.x, bcc.size.y);
+    IK_CORE_TRACE(LogModule::EntitySerializer, "      Density               | {0}", bcc.physics_mat.density);
+    IK_CORE_TRACE(LogModule::EntitySerializer, "      Friction              | {0}", bcc.physics_mat.friction);
+    IK_CORE_TRACE(LogModule::EntitySerializer, "      Restitution           | {0}", bcc.physics_mat.restitution);
+    IK_CORE_TRACE(LogModule::EntitySerializer, "      Restitution Threshold | {0}", bcc.physics_mat.restitution_threshold);
   }
   
   void EntitySerialiser::SerializeCircleCollider(YAML::Emitter& out, const CircleColliiderComponent& ccc, std::string identifier) {
@@ -147,13 +147,13 @@ namespace ikan {
     ccc.physics_mat.restitution = circle_colloider_component["Restitution" + identifier].as<float>();
     ccc.physics_mat.restitution_threshold = circle_colloider_component["Restitution Threshold" + identifier].as<float>();
     
-    IK_CORE_TRACE(LogModule::SceneSerializer, "    Circle Colloider Component");
-    IK_CORE_TRACE(LogModule::SceneSerializer, "      Offset                | {0} | {0}", ccc.offset.x, ccc.offset.y);
-    IK_CORE_TRACE(LogModule::SceneSerializer, "      Radius                | {0}", ccc.radius);
-    IK_CORE_TRACE(LogModule::SceneSerializer, "      Density               | {0}", ccc.physics_mat.density);
-    IK_CORE_TRACE(LogModule::SceneSerializer, "      Friction              | {0}", ccc.physics_mat.friction);
-    IK_CORE_TRACE(LogModule::SceneSerializer, "      Restitution           | {0}", ccc.physics_mat.restitution);
-    IK_CORE_TRACE(LogModule::SceneSerializer, "      Restitution Threshold | {0}", ccc.physics_mat.restitution_threshold);
+    IK_CORE_TRACE(LogModule::EntitySerializer, "    Circle Colloider Component");
+    IK_CORE_TRACE(LogModule::EntitySerializer, "      Offset                | {0} | {0}", ccc.offset.x, ccc.offset.y);
+    IK_CORE_TRACE(LogModule::EntitySerializer, "      Radius                | {0}", ccc.radius);
+    IK_CORE_TRACE(LogModule::EntitySerializer, "      Density               | {0}", ccc.physics_mat.density);
+    IK_CORE_TRACE(LogModule::EntitySerializer, "      Friction              | {0}", ccc.physics_mat.friction);
+    IK_CORE_TRACE(LogModule::EntitySerializer, "      Restitution           | {0}", ccc.physics_mat.restitution);
+    IK_CORE_TRACE(LogModule::EntitySerializer, "      Restitution Threshold | {0}", ccc.physics_mat.restitution_threshold);
   }
   
   void EntitySerialiser::SerialiseEntity(YAML::Emitter& out, Entity entity) {
@@ -333,18 +333,7 @@ namespace ikan {
     out << YAML::EndMap; // Entity
   }
   
-  Entity EntitySerialiser::DeserislizeEntity(YAML::Node entity, Scene* scene_) {
-    uint64_t uuid = entity["Entity"].as<uint64_t>();
-    
-    std::string name;
-    auto tag_component = entity["TagComponent"];
-    name = tag_component["Tag"].as<std::string>();
-    
-    Entity deserialized_entity = scene_->CreateEntity(name, uuid);
-    IK_CORE_TRACE(LogModule::SceneSerializer, "  Deserialising Entity");
-    IK_CORE_TRACE(LogModule::SceneSerializer, "  ID     {0}", uuid);
-    IK_CORE_TRACE(LogModule::SceneSerializer, "  Name   {0}", name);
-    
+  void EntitySerialiser::DeserislizeEntity(YAML::Node entity, Entity deserialized_entity, Scene* scene_) {
     // --------------------------------------------------------------------
     auto transform_component = entity["TransformComponent"];
     if (transform_component) {
@@ -354,10 +343,10 @@ namespace ikan {
       tc.UpdateRotation(transform_component["Rotation"].as<glm::vec3>());
       tc.UpdateScale(transform_component["Scale"].as<glm::vec3>());
       
-      IK_CORE_TRACE(LogModule::SceneSerializer, "    Transform Component");
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Translation   | {0} | {1} | {2}", tc.Position().x, tc.Position().y, tc.Position().z);
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Rotation      | {0} | {1} | {2}", tc.Rotation().x, tc.Rotation().y, tc.Rotation().z);
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Scale         | {0} | {1} | {2}", tc.Scale().x, tc.Scale().y, tc.Scale().z);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "    Transform Component");
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Translation   | {0} | {1} | {2}", tc.Position().x, tc.Position().y, tc.Position().z);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Rotation      | {0} | {1} | {2}", tc.Rotation().x, tc.Rotation().y, tc.Rotation().z);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Scale         | {0} | {1} | {2}", tc.Scale().x, tc.Scale().y, tc.Scale().z);
     } // if (transform_component)
     
     // --------------------------------------------------------------------
@@ -379,21 +368,21 @@ namespace ikan {
       else if ((SceneCamera::ProjectionType)type == SceneCamera::ProjectionType::Perspective)
         cc.camera->SetPerspective(fov, near, far);
       
-      IK_CORE_TRACE(LogModule::SceneSerializer, "    Cameara Component");
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Primary             | {0}", cc.is_primary);
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Fixed Aspect Ratio  | {0}", cc.is_fixed_aspect_ratio);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "    Cameara Component");
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Primary             | {0}", cc.is_primary);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Fixed Aspect Ratio  | {0}", cc.is_fixed_aspect_ratio);
       
       if ((SceneCamera::ProjectionType)type == SceneCamera::ProjectionType::Orthographic) {
-        IK_CORE_TRACE(LogModule::SceneSerializer, "      Orthographic Camera");
-        IK_CORE_TRACE(LogModule::SceneSerializer, "        Size | {0}", cc.camera->GetOrthographicSize());
+        IK_CORE_TRACE(LogModule::EntitySerializer, "      Orthographic Camera");
+        IK_CORE_TRACE(LogModule::EntitySerializer, "        Size | {0}", cc.camera->GetOrthographicSize());
       }
       else if ((SceneCamera::ProjectionType)type == SceneCamera::ProjectionType::Perspective) {
-        IK_CORE_TRACE(LogModule::SceneSerializer, "      Perspective Camera");
-        IK_CORE_TRACE(LogModule::SceneSerializer, "        FOV  | {0}", cc.camera->GetPerspectiveFOV());
+        IK_CORE_TRACE(LogModule::EntitySerializer, "      Perspective Camera");
+        IK_CORE_TRACE(LogModule::EntitySerializer, "        FOV  | {0}", cc.camera->GetPerspectiveFOV());
       }
       
-      IK_CORE_TRACE(LogModule::SceneSerializer, "         Near : {0}", cc.camera->GetNear());
-      IK_CORE_TRACE(LogModule::SceneSerializer, "         Far  : {0}", cc.camera->GetFar());
+      IK_CORE_TRACE(LogModule::EntitySerializer, "         Near : {0}", cc.camera->GetNear());
+      IK_CORE_TRACE(LogModule::EntitySerializer, "         Far  : {0}", cc.camera->GetFar());
     } // if (camera_component)
     
     // --------------------------------------------------------------------
@@ -428,15 +417,15 @@ namespace ikan {
         qc.sprite.sprite_images.push_back(SubTexture::CreateFromCoords(qc.sprite.texture, coord, sprite_size, cell_size));
       }
       
-      IK_CORE_TRACE(LogModule::SceneSerializer, "    Quad Component");
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Texture");
-      IK_CORE_TRACE(LogModule::SceneSerializer, "        Use             | {0}", qc.sprite.use);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "    Quad Component");
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Texture");
+      IK_CORE_TRACE(LogModule::EntitySerializer, "        Use             | {0}", qc.sprite.use);
       if (qc.sprite.texture)
-        IK_CORE_TRACE(LogModule::SceneSerializer, "        Path            | {0}", qc.sprite.texture->GetfilePath());
+        IK_CORE_TRACE(LogModule::EntitySerializer, "        Path            | {0}", qc.sprite.texture->GetfilePath());
       else
-        IK_CORE_TRACE(LogModule::SceneSerializer, "        No Texture      ");
-      IK_CORE_TRACE(LogModule::SceneSerializer, "        Tiling Factor   | {0}", qc.sprite.tiling_factor);
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Color | {0} | {1} | {2}", qc.color.x, qc.color.y, qc.color.z);
+        IK_CORE_TRACE(LogModule::EntitySerializer, "        No Texture      ");
+      IK_CORE_TRACE(LogModule::EntitySerializer, "        Tiling Factor   | {0}", qc.sprite.tiling_factor);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Color | {0} | {1} | {2}", qc.color.x, qc.color.y, qc.color.z);
       
     } // if (quad_component)
     
@@ -457,17 +446,17 @@ namespace ikan {
       cc.thickness = circle_component["Thickness"].as<float>();
       cc.fade = circle_component["Fade"].as<float>();
       
-      IK_CORE_TRACE(LogModule::SceneSerializer, "    Circle Component");
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Texture");
-      IK_CORE_TRACE(LogModule::SceneSerializer, "        Use             | {0}", cc.texture_comp.use);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "    Circle Component");
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Texture");
+      IK_CORE_TRACE(LogModule::EntitySerializer, "        Use             | {0}", cc.texture_comp.use);
       if (cc.texture_comp.texture)
-        IK_CORE_TRACE(LogModule::SceneSerializer, "        Path            | {0}", cc.texture_comp.texture->GetfilePath());
+        IK_CORE_TRACE(LogModule::EntitySerializer, "        Path            | {0}", cc.texture_comp.texture->GetfilePath());
       else
-        IK_CORE_TRACE(LogModule::SceneSerializer, "        No Texture      ");
-      IK_CORE_TRACE(LogModule::SceneSerializer, "        Tiling Factor   | {0}", cc.texture_comp.tiling_factor);
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Color | {0} | {1} | {2}", cc.color.x, cc.color.y, cc.color.z);
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Thickness         | {0}", cc.thickness);
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Fade              | {0}", cc.fade);
+        IK_CORE_TRACE(LogModule::EntitySerializer, "        No Texture      ");
+      IK_CORE_TRACE(LogModule::EntitySerializer, "        Tiling Factor   | {0}", cc.texture_comp.tiling_factor);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Color | {0} | {1} | {2}", cc.color.x, cc.color.y, cc.color.z);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Thickness         | {0}", cc.thickness);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Fade              | {0}", cc.fade);
     } // if (circle_component)
     
     // --------------------------------------------------------------------
@@ -486,15 +475,15 @@ namespace ikan {
       rc.linear_damping   = rigid_body_component["Linear Damping"].as<float>();
       rc.gravity_scale    = rigid_body_component["Gravity Scale"].as<float>();
       
-      IK_CORE_TRACE(LogModule::SceneSerializer, "    Rigid Body Component");
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Type             | {0}", type);
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Fixed Rotation   | {0}", rc.fixed_rotation);
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Is Ground        | {0}", rc.is_ground);
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Linear Velocity  | {0} | {1}", rc.velocity.x, rc.velocity.y);
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Angular Velocity | {0}", rc.angular_velocity);
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Linear Damping   | {0}", rc.linear_damping);
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Angular Damping  | {0}", rc.angular_damping);
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Gravity Scale    | {0}", rc.gravity_scale);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "    Rigid Body Component");
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Type             | {0}", type);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Fixed Rotation   | {0}", rc.fixed_rotation);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Is Ground        | {0}", rc.is_ground);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Linear Velocity  | {0} | {1}", rc.velocity.x, rc.velocity.y);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Angular Velocity | {0}", rc.angular_velocity);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Linear Damping   | {0}", rc.linear_damping);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Angular Damping  | {0}", rc.angular_damping);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Gravity Scale    | {0}", rc.gravity_scale);
     } // if (rigid_body_component)
     
     // --------------------------------------------------------------------
@@ -527,17 +516,13 @@ namespace ikan {
     auto script_component = entity["NativeScriptComponent"];
     if (script_component) {
       std::string name_tag = "Script_name_";
-      IK_CORE_TRACE(LogModule::SceneSerializer, "    Script Component");
+      IK_CORE_TRACE(LogModule::EntitySerializer, "    Script Component");
       std::string script_name = script_component[name_tag].as<std::string>();
       
       auto& sc = deserialized_entity.AddComponent<NativeScriptComponent>(script_name);
       ScriptManager::UpdateScript(&sc, script_name, sc.loader_function);
-      IK_CORE_TRACE(LogModule::SceneSerializer, "      Script | {0}", script_name);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Script | {0}", script_name);
     } // if (script_component)
-    
-    return deserialized_entity;
   }
-  
-
   
 } // namespace ikan

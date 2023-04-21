@@ -21,8 +21,10 @@ namespace ikan {
     ///   - file_path: path wehre scene need to be saved
     static void Serialize(Entity* entity, const std::string& file_path);
     /// This functions serializes(Opens) the scene frol path 'file_path'
-    /// - Parameter file_path: path which need to be loaded
-    static Entity* Deserialize(const std::string& file_path);
+    /// - Parameters:
+    ///   - file_path: path which need to be loaded
+    ///   - scene: Active Scene
+    static Entity Deserialize(const std::string& file_path, Scene* scene);
     /// This Funciton Rneders a GUI Widget to load prefab
     /// - Parameter flag: flag to hide the widget
     static void Loader(bool* flag);
