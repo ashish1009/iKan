@@ -32,6 +32,8 @@ namespace ikan {
     int32_t hovered_entity_id_ = -1; // Entity and ID hovered by mouse position
     Entity* hovered_entity_ = nullptr; // Entity Handler to store Viewport
 
+    int32_t guizmo_type = -1;
+
     Viewport(const glm::vec4& fb_color = glm::vec4(0.2f, 0.2f, 0.2f, 1.0f));
     /// This function render the viewport information in gui
     /// - Parameter is_open: flag to show or hide the widget

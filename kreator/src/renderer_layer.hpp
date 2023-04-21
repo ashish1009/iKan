@@ -144,6 +144,8 @@ namespace kreator {
     /// This function moves the selected entities
     /// - Parameter direction: Direction of movement
     void MoveEntities(Direction direction);
+    /// This funciton Render the imguizmo
+    void OnImguizmoUpdate();
 
     // Member variables
     uint32_t viewport_width_ = Application::Get().GetWindow().GetWidth();

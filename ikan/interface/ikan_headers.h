@@ -23,6 +23,7 @@
 
 // Imgui files
 #include <imgui.h>
+#include <ImGuizmo.h>
 
 // glm math library
 #include <glm/glm.hpp>

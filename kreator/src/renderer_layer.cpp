@@ -120,11 +120,13 @@ namespace kreator {
     if (event.GetRepeatCount() > 0)
       return false;
     
+    bool ctrl = Input::IsKeyPressed(Key::LeftControl) or Input::IsKeyPressed(Key::RightControl);
     bool cmd = Input::IsKeyPressed(Key::LeftSuper) or Input::IsKeyPressed(Key::RightSuper);
     bool left_shift = Input::IsKeyPressed(Key::LeftShift);
 
     if (cmd) {
       switch (event.GetKeyCode()) {
+        case Key::T: PlayScene();   break;
         case Key::R: SetPlay(true); break;
           
         // File Manager
@@ -133,6 +135,16 @@ namespace kreator {
 
         default: break;
       };
+    }
+    
+    if (ctrl) {
+      switch (event.GetKeyCode()) {
+        case Key::Q: viewport_.guizmo_type = -1;                              break;
+        case Key::W: viewport_.guizmo_type = ImGuizmo::OPERATION::TRANSLATE;  break;
+        case Key::E: viewport_.guizmo_type = ImGuizmo::OPERATION::ROTATE;     break;
+        case Key::R: viewport_.guizmo_type = ImGuizmo::OPERATION::SCALE;      break;
+        default: break;
+      }
     }
     
     if (left_shift) {
@@ -235,6 +247,7 @@ namespace kreator {
         if (StringUtils::GetExtensionFromFilePath(path) == saved_scene_extension_) OpenScene(path);
         else IK_WARN(game_data_->GameName(), "Invalid file for Scene {0}", path.c_str());
       });
+      OnImguizmoUpdate();
     }
 
     viewport_.UpdateBound();
@@ -680,6 +693,70 @@ namespace kreator {
       Batch2DRenderer::DrawCircle(Math::GetTransformMatrix(bottom_ccc_p, {0, 0, 0}, bottom_ccc_s), collider_color, 0.05f);
     }
     Batch2DRenderer::EndBatch();
+  }
+
+  void RendererLayer::OnImguizmoUpdate() {
+    Entity* selected_entity = spm_.GetSelectedEntity();
+    if (selected_entity and viewport_.guizmo_type != -1) {
+      ImGuizmo::SetOrthographic(false);
+      ImGuizmo::SetDrawlist();
+      
+      float window_width = (float)ImGui::GetWindowWidth();
+      float window_height = (float)ImGui::GetWindowHeight();
+      ImGuizmo::SetRect(ImGui::GetWindowPos().x, ImGui::GetWindowPos().y, window_width, window_height);
+      
+      // Entity transform
+      auto& tc = selected_entity->GetComponent<TransformComponent>();
+      glm::mat4 transform = tc.Transform();
+      
+      // Snapping
+      bool snap = Input::IsKeyPressed(Key::LeftControl);
+      float snap_value = 0.5f; // Snap to 0.5m for translation/scale
+      
+      // Snap to 45 degrees for rotation
+      if (viewport_.guizmo_type == ImGuizmo::OPERATION::ROTATE)
+        snap_value = 45.0f;
+      
+      float snap_values[3] = { snap_value, snap_value, snap_value };
+      
+      if (!active_scene_->IsEditorCameraEnabled()) {
+        // Camera
+        const auto& cd = active_scene_->GetPrimaryCameraData();
+        const glm::mat4& camera_projection = cd.scene_camera->GetProjection();
+        
+        if (cd.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Orthographic) {
+          const glm::mat4& camera_view = glm::inverse(Math::GetTransformMatrix({cd.position.x, cd.position.y, cd.position.z + 1.0f},
+                                                                               cd.transform_comp->Rotation(),
+                                                                               cd.transform_comp->Scale()));
+          ImGuizmo::Manipulate(glm::value_ptr(camera_view), glm::value_ptr(camera_projection), (ImGuizmo::OPERATION)viewport_.guizmo_type,
+                               ImGuizmo::LOCAL, glm::value_ptr(transform), nullptr, snap ? snap_values : nullptr);
+        }
+        else {
+          const glm::mat4& camera_view = glm::inverse(cd.transform_comp->Transform());
+          ImGuizmo::Manipulate(glm::value_ptr(camera_view), glm::value_ptr(camera_projection), (ImGuizmo::OPERATION)viewport_.guizmo_type,
+                               ImGuizmo::LOCAL, glm::value_ptr(transform), nullptr, snap ? snap_values : nullptr);
+        }
+      } else {
+        // Camera
+        const EditorCamera& editor_camera = active_scene_->GetEditorCamera();
+        
+        const glm::mat4& camera_projection = editor_camera.GetProjection();
+        const glm::mat4& camera_view = editor_camera.GetView();
+        
+        ImGuizmo::Manipulate(glm::value_ptr(camera_view), glm::value_ptr(camera_projection), (ImGuizmo::OPERATION)viewport_.guizmo_type,
+                             ImGuizmo::LOCAL, glm::value_ptr(transform), nullptr, snap ? snap_values : nullptr);
+      }
+      
+      if (ImGuizmo::IsUsing()) {
+        glm::vec3 translation, rotation, scale;
+        Math::DecomposeTransform(transform, translation, rotation, scale);
+        
+        glm::vec3 deltaRotation = rotation - tc.Rotation();
+        tc.UpdatePosition(translation);
+        tc.UpdateRotation(tc.Rotation() + deltaRotation);
+        tc.UpdateScale(scale);
+      } // if (ImGuizmo::IsUsing())
+    } // if (selected_entity and viewport_.guizmo_type != -1)
   }
   
 } // namespace kreator

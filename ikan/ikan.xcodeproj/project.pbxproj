@@ -402,7 +402,6 @@
 				B295DB8529E6D6B400A40956 /* scene_serialiser.hpp */,
 				B201A2D129F27A3100D3C1FE /* scriptable_entity.hpp */,
 				B201AD6129F29CEB00D3C1FE /* prefab.hpp */,
-				B2592B0129F2C6A20053CBDB /* serialise_entity.cpp */,
 				B2592B0229F2C6A20053CBDB /* serialise_entity.hpp */,
 			);
 			path = scene;
@@ -417,6 +416,7 @@
 				B2E7141D29E43C4A008C8CB1 /* scene.cpp */,
 				B201A2D029F27A3100D3C1FE /* scriptable_entity.cpp */,
 				B201AD6029F29CEB00D3C1FE /* prefab.cpp */,
+				B2592B0129F2C6A20053CBDB /* serialise_entity.cpp */,
 			);
 			path = scene;
 			sourceTree = "<group>";
