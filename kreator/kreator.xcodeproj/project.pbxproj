@@ -137,9 +137,9 @@
 			children = (
 				B201A2DB29F285F500D3C1FE /* game_data.hpp */,
 				B201A2F429F285F500D3C1FE /* game_data.cpp */,
+				B201A30A29F285F500D3C1FE /* mario */,
 				B201A2DC29F285F500D3C1FE /* angry_bird */,
 				B201A2F529F285F500D3C1FE /* chess */,
-				B201A30A29F285F500D3C1FE /* mario */,
 				B201A31529F285F500D3C1FE /* editor */,
 			);
 			path = games;
@@ -434,8 +434,8 @@
 			children = (
 				B201A33C29F285F500D3C1FE /* entry_point.cpp */,
 				B201A33B29F285F500D3C1FE /* kreator_application.hpp */,
-				B201A33A29F285F500D3C1FE /* renderer_layer.hpp */,
 				B201A33D29F285F500D3C1FE /* renderer_layer.cpp */,
+				B201A33A29F285F500D3C1FE /* renderer_layer.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";

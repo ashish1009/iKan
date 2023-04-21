@@ -98,8 +98,6 @@ namespace kreator {
     void ShowMenu();
     /// This function renders the setting Widget
     void ShowSettings();
-    /// This function renders the play buttorn for  game
-    void GamePlayButton();
     /// This function renders the scene Play/Pause/Stop buttons
     void SceneStateButton();
     /// This function renders the Drop menu for scene type

@@ -186,7 +186,6 @@ namespace kreator {
       ImguiAPI::StartDcocking();
 
       ShowMenu();
-      GamePlayButton();
       
       if (active_scene_) {
         active_scene_->RenderGui();
@@ -319,52 +318,38 @@ namespace kreator {
     ImGui::End();
   }
   
-  void RendererLayer::GamePlayButton() {
-    static std::shared_ptr<Texture> play_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/play.png"));
-    ImGui::Begin("Game Play", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
-    
-    float size = ImGui::GetWindowHeight() - 12.0f; // 12 just random number
-    ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 0.5f));
-
-    // Button action
-    if (PropertyGrid::ImageButton("Game Play", play_texture->GetRendererID(), { size, size })) {
-      SetPlay(true);
-    }
-    PropertyGrid::HoveredMsg("Play Button for Game");
-
-    ImGui::End();
-  }
-  
   void RendererLayer::SceneStateButton() {
     // Texture for Play and Pause button
-    static std::shared_ptr<Texture> pause_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/pause.png"));
-    static std::shared_ptr<Texture> play_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/simulate.png"));
-    static std::shared_ptr<Texture> stop_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/stop.png"));
-    
-    // Play Pause Buttom
-    ImGui::Begin("Scene Play/Pause/Stop", nullptr,
-                 ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
-    ImGui::PushID("Scene Play/Pause/Stop");
+    static std::shared_ptr<Texture> scene_pause_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/pause.png"));
+    static std::shared_ptr<Texture> scene_play_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/simulate.png"));
+    static std::shared_ptr<Texture> scene_stop_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/stop.png"));
+    static std::shared_ptr<Texture> game_play_texture = Renderer::GetTexture(DM::CoreAsset("textures/icons/play.png"));
+
+    ImGui::Begin("Play/Pause/Stop", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
+    ImGui::PushID("Play/Pause/Stop");
     
     float size = ImGui::GetWindowHeight() - 12.0f; // 12 just random number
 
-    // Update the texture id based on the state of scene
-    uint32_t play_pause_tex_id = active_scene_->IsEditing() ? play_texture->GetRendererID() : pause_texture->GetRendererID();
-
-    ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 1.0f));
-
-    // Play/Pause Button action
+    // Scene Play Pause buttorn
+    uint32_t play_pause_tex_id = active_scene_->IsEditing() ? scene_play_texture->GetRendererID() : scene_pause_texture->GetRendererID();
+    ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 2.0f));
     if (PropertyGrid::ImageButton("Scene Play/Pause", play_pause_tex_id, { size, size })) {
       active_scene_->IsEditing() ? PlayScene() : EditScene();
     }
     PropertyGrid::HoveredMsg("Play Button for Scene (Debug Scene in play mode)");
 
+    // Game Play Button
     ImGui::SameLine();
-    uint32_t stop_tex_id = stop_texture->GetRendererID();
+    ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) - (size * 0.5f));
+    if (PropertyGrid::ImageButton("Game Play", game_play_texture->GetRendererID(), { size, size })) {
+      SetPlay(true);
+    }
+    PropertyGrid::HoveredMsg("Play Button for Game");
+
+    // Scene Stop Button
+    ImGui::SameLine();
     ImGui::SetCursorPosX((ImGui::GetWindowContentRegionMax().x * 0.5f) + (size * 1.0f));
-    
-    // Stop Button action
-    if (PropertyGrid::ImageButton("Scene Stop", stop_tex_id, { size, size })) {
+    if (PropertyGrid::ImageButton("Scene Stop", scene_stop_texture->GetRendererID(), { size, size })) {
       StopScene();
     }
     PropertyGrid::HoveredMsg("Play Button for Scene (Debug Scene in play mode)");
