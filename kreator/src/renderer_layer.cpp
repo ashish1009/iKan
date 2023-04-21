@@ -362,7 +362,8 @@ namespace kreator {
 
   void RendererLayer::SceneRendererType() {
     // Play Pause Buttom
-    ImGui::Begin("Scene Renderer Type");
+    ImGui::Begin("Scene Renderer Type", nullptr,
+                 ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
     ImGui::PushID("Scene Renderer Type");
     
     Scene::Type current_type = active_scene_->GetType();

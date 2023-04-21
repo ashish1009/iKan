@@ -50,8 +50,8 @@ namespace mario {
     std::string GetScenePath() const override { return DM::WorkspacePath("/kreator/games/mario/scenes/"); }
     std::string SavedScene() const override { return GetScenePath() + "Mario_scene.ikanScene"; };
     std::string CbpRootDir() const override { return GetScenePath(); };
-    Font RegularFontData() const override { return {DM::ClientAsset("fonts/mario.ttf"), 14}; };
-    Font BoldFontData() const override { return {DM::ClientAsset("fonts/mario.ttf"), 14}; };
+    Font RegularFontData() const override { return {DM::ClientAsset("fonts/mario.ttf"), 13.5}; };
+    Font BoldFontData() const override { return {DM::ClientAsset("fonts/mario.ttf"), 13.5}; };
     std::vector<std::filesystem::path> FavDirecotries() const override { return { DM::WorkspacePath("/kreator") }; };
     std::vector<std::filesystem::path> AssetDirecotries() const override {
       return {

@@ -34,7 +34,7 @@ namespace kreator {
       SettingWrapper show_collider{"Show Colliders", true};
       SettingWrapper content_browser_panel{"Content Browser Panel", true};
       SettingWrapper viewport_data{"Viewport Data", true};
-      SettingWrapper frame_rate{"Frame Rate", false};
+      SettingWrapper frame_rate{"Frame Rate", true};
       SettingWrapper common_renderer_stats{"Common Renderer Stats", true};
       SettingWrapper renderer_stats_2d{"2D Renderer Stats", true};
       SettingWrapper save_scene{"Save Scene Panel", true};

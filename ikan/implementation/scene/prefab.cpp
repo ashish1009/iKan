@@ -24,7 +24,7 @@ namespace ikan {
   void Prefab::Loader(bool* flag) {
     CHECK_WIDGET_FLAG(flag)
     
-    ImGui::Begin("Prefab Loader", flag);
+    ImGui::Begin("Prefab Loader", flag, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
     ImGui::PushID("Prefab Loader");
     
     const auto& relative_path = (std::filesystem::relative(CBP::GetCurrentDir(), CBP::GetRootDir())).string();
