@@ -6,6 +6,7 @@
 //
 
 #include "prefab.hpp"
+#include "scene/serialise_entity.hpp"
 #include "editor/content_browser_panel.hpp"
 #include "editor/property_grid.hpp"
 #include "renderer/utils/renderer.hpp"
@@ -20,8 +21,8 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::Prefab, "  Path {0}", file_path);
 
     YAML::Emitter out;
-    out << YAML::BeginMap;
-    out << YAML::EndMap;
+    
+    EntitySerialiser::SerialiseEntity(out, *entity);
     
     std::ofstream fout(file_path);
     fout << out.c_str();
