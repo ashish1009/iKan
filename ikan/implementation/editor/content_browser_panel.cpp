@@ -9,6 +9,7 @@
 #include "editor/property_grid.hpp"
 #include "renderer/graphics/texture.hpp"
 #include "scene/scene_serialiser.hpp"
+#include "scene/prefab.hpp"
 
 namespace ikan {
   
@@ -208,6 +209,7 @@ namespace ikan {
     static std::shared_ptr<Texture> h_texture = Renderer::GetTexture(DM::CoreAsset("textures/content_browser/h.png"));
 
     static std::shared_ptr<Texture> ikan_scene_texture = Renderer::GetTexture(DM::CoreAsset("textures/content_browser/i_kan.png"));
+    static std::shared_ptr<Texture> prefab_texture = Renderer::GetTexture(DM::CoreAsset("textures/content_browser/prefab.png"));
 
     // Push style
     ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, round_factor_);
@@ -248,6 +250,7 @@ namespace ikan {
           else if (".fbx" == path.extension()) icon_texture = fbx_texture;
           else if (".ttf" == path.extension()) icon_texture = font_texture;
           else if (saved_scene_extension_ == path.extension()) icon_texture = ikan_scene_texture;
+          else if (prefab_extenstion_ == path.extension()) icon_texture = prefab_texture;
           else icon_texture = file_texture;
           
           is_directory = false;
@@ -255,7 +258,7 @@ namespace ikan {
 
         // Icon Button size
         float icon_size_height = std::min(ImGui::GetWindowHeight() - ImGui::GetFontSize() , 64.0f);
-        float icon_size_width  = icon_size_height * 0.8;
+        float icon_size_width  = icon_size_height * 0.85;
 
         ImGui::PushID(filename_string.c_str());
         

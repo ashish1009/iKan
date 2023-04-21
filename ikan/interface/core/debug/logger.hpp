@@ -20,7 +20,7 @@ namespace ikan {
   f(Pipeline) f(VertexBuffer) f(IndexBuffer) f(Shader) f(Texture) f(FrameBuffer) f(CharTexture) f(SubTexture) \
   f(EditorCamera) f(SceneCamera) f(FixedCamera) \
   f(ContentBrowserPanel) \
-f(Scene) f(ScenePanelManager) f(SceneSerializer) f(Entity) f(Component) \
+f(Scene) f(ScenePanelManager) f(SceneSerializer) f(Entity) f(Component) f(Prefab) \
   f(Imgui) \
   
 CreateEnum(LogModule);
