@@ -211,15 +211,17 @@ namespace ikan {
 
     // Push style
     ImGui::PushStyleVar(ImGuiStyleVar_ChildRounding, round_factor_);
-    ImGui::BeginChild("MainArea", ImVec2(ImGui::GetWindowContentRegionWidth() - side_child_width_ - 10,
-                                         ImGui::GetWindowHeight() - window_y_offset_),
+    float main_width = ImGui::GetWindowContentRegionWidth() - side_child_width_ - 10;
+    ImGui::BeginChild("MainArea", ImVec2(main_width, ImGui::GetWindowHeight() - window_y_offset_),
                       true /* Border */, ImGuiWindowFlags_HorizontalScrollbar);
 
     // Get the current cursor position of imgui widget
     static ImVec2 init_pos = ImGui::GetCursorPos();
 
-    int32_t push_id = 0; // id for each button
+    int32_t directory_idx = 0; // id for each button
+    int32_t item_idx = 0; // Item shown each row
     
+    int32_t line = 0;
     // Travers entire directory
     for (const auto& directory : std::filesystem::directory_iterator(current_directory_)) {
       // Get the file name from the directory
@@ -258,11 +260,21 @@ namespace ikan {
         ImGui::PushID(filename_string.c_str());
         
         // Update the cursor for each folder/file based on its position
-        ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + ((icon_size_width + 30.0f) * push_id), init_pos.y));
+        float cursor_x = ImGui::GetCursorPos().x + ((icon_size_width + 30.0f) * item_idx);
+        float cursor_y = init_pos.y + line * 100;
+        
+        if (cursor_x + icon_size_width > main_width) {
+          line++;
+          item_idx = 0;
+          cursor_x = 8.0f;
+          cursor_y = init_pos.y + line * 100;
+        }
+
+        ImGui::SetCursorPos(ImVec2(cursor_x, cursor_y));
         ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
 
         // Render the image button for each folder/file
-        bool pressed = PropertyGrid::ImageButton(push_id, icon_texture->GetRendererID(), { icon_size_width, icon_size_height });
+        bool pressed = PropertyGrid::ImageButton(directory_idx, icon_texture->GetRendererID(), { icon_size_width, icon_size_height });
         
         // If icon is clicked Do some action
         if (pressed) {
@@ -290,7 +302,7 @@ namespace ikan {
           const std::string& dragged_path = directory.path().string();
           const char* ch = dragged_path.c_str();
           ImGui::SetDragDropPayload("SelectedFile", (void*)ch, dragged_path.size(), ImGuiCond_Always);
-          PropertyGrid::ImageButton(push_id, icon_texture->GetRendererID(), { 20.0f, 20.0f });
+          PropertyGrid::ImageButton(directory_idx, icon_texture->GetRendererID(), { 20.0f, 20.0f });
           ImGui::EndDragDropSource();
         }
         ImGui::PopID(); // ImGui::PushID(filename_string.c_str());
@@ -298,17 +310,19 @@ namespace ikan {
         // Text Button : Directory name
         static float wrapWidth = 70.0f;
         ImGui::PushID("CBP_Main_Area_FileNameButton");
-        ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + ((icon_size_width + 30.0f) * push_id), init_pos.y + icon_size_height + 10.0f));
-        
+        ImGui::SetCursorPos(ImVec2(cursor_x, (init_pos.y + icon_size_height + 10.0f) + line * 100));
+
         ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + wrapWidth);
         ImGui::Button(filename_string.c_str(), ImVec2(icon_size_width + 5, 20));
         PropertyGrid::HoveredMsg(filename_string.c_str());
         ImGui::PopTextWrapPos();
         
-        ImGui::PopStyleColor(); // ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
         ImGui::PopID(); // ImGui::PushID("CBP_Main_Area_FileNameButton");
+
+        ImGui::PopStyleColor(); // ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
         
-        push_id++;
+        directory_idx++;
+        item_idx++;
       } // search pass
     } // Directory Iterator
     
