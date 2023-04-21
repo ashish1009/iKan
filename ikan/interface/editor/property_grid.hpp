@@ -142,8 +142,7 @@ namespace ikan {
       if (ImGui::BeginDragDropTarget() and
           !ImGui::IsMouseDragging(0) and
           ImGui::IsMouseReleased(0)) {
-        if (const ImGuiPayload* data = ImGui::AcceptDragDropPayload("SelectedFile",
-                                                                    ImGuiDragDropFlags_AcceptBeforeDelivery)) {
+        if (const ImGuiPayload* data = ImGui::AcceptDragDropPayload("SelectedFile", ImGuiDragDropFlags_AcceptBeforeDelivery)) {
           char* file_path = new char[uint32_t(data->DataSize + 1)];
           memcpy(file_path, (char*)data->Data, (size_t)data->DataSize);
           file_path[data->DataSize] = '\0';
