@@ -6,12 +6,12 @@
 //
 
 #include "scene_panel_manager.hpp"
-#include "scene.hpp"
-#include "components.hpp"
-#include "property_grid.hpp"
-#include "imgui_api.hpp"
-#include "renderer.hpp"
-#include "texture.hpp"
+#include "scene/scene.hpp"
+#include "scene/components.hpp"
+#include "editor/property_grid.hpp"
+#include "imgui/imgui_api.hpp"
+#include "renderer/utils/renderer.hpp"
+#include "renderer/graphics/texture.hpp"
 
 namespace ikan {
   

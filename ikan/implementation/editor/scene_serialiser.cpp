@@ -341,6 +341,19 @@ namespace ikan {
 
         out << YAML::EndMap; // PillBoxColliderComponent
       }
+      
+      // ------------------------------------------------------------------------
+      if (entity.HasComponent<NativeScriptComponent>()) {
+        out << YAML::Key << "NativeScriptComponent";
+        out << YAML::BeginMap; // NativeScriptComponent
+        
+        auto& sc = entity.GetComponent<NativeScriptComponent>();
+        std::string name_tag = "Script_name_";
+        out << YAML::Key << name_tag << YAML::Value << sc.script_name;
+        
+        out << YAML::EndMap; // NativeScriptComponent
+      }
+
       out << YAML::EndMap; // Entity
     } // // for (const auto& [uuid, entity] : scene_->entity_id_map_)
     
@@ -559,6 +572,18 @@ namespace ikan {
           pbc.RecalculateColliders();
         } // if (Pill_box_colloider_component)
         
+        // --------------------------------------------------------------------
+        auto script_component = entity["NativeScriptComponent"];
+        if (script_component) {
+          std::string name_tag = "Script_name_";
+          IK_CORE_TRACE(LogModule::SceneSerializer, "    Script Component");
+          std::string script_name = script_component[name_tag].as<std::string>();
+          
+          auto& sc = deserialized_entity.AddComponent<NativeScriptComponent>(script_name);
+          ScriptManager::UpdateScript(&sc, script_name, sc.loader_function);
+          IK_CORE_TRACE(LogModule::SceneSerializer, "      Script | {0}", script_name);
+        } // if (script_component)
+
       } // for (auto entity : entities)
     } // if (entities)
     
