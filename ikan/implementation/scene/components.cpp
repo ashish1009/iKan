@@ -81,7 +81,7 @@ x& x::operator=(x&& other) { \
   }
   
   void TransformComponent::RenderGui() {
-    if (PropertyGrid::Float3("Translation", position, nullptr, 0.25f, 0.0f, MIN_FLT, MAX_FLT, 80.0f)) {
+    if (PropertyGrid::Float3("Position", position, nullptr, 0.25f, 0.0f, MIN_FLT, MAX_FLT, 80.0f)) {
       transform = Math::GetTransformMatrix(position, rotation, scale);
     }
     glm::vec3 rotation_in_degree = glm::degrees(rotation);

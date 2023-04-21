@@ -211,8 +211,8 @@
 		B201A2F129F285F500D3C1FE /* src */ = {
 			isa = PBXGroup;
 			children = (
-				B201A2F229F285F500D3C1FE /* angry_bird.hpp */,
 				B201A2F329F285F500D3C1FE /* angry_bird.cpp */,
+				B201A2F229F285F500D3C1FE /* angry_bird.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";

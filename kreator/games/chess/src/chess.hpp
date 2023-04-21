@@ -26,17 +26,13 @@ namespace chess {
     std::string GetScenePath() const override { return DM::WorkspacePath("/kreator/games/chess/scenes/"); }
     std::string SavedScene() const override { return GetScenePath() + "Chess.ikanScene"; };
     std::string CbpRootDir() const override { return GetScenePath(); };
+    Font RegularFontData() const override { return {DM::ClientAsset("fonts/Opensans/Regular.ttf"), 14}; };
+    Font BoldFontData() const override { return {DM::ClientAsset("fonts/Opensans/Bold.ttf"), 14}; };
     std::vector<std::filesystem::path> FavDirecotries() const override {
       return {
         GetScenePath(),
         DM::ClientAsset("textures"),
       };
-    };
-    Font RegularFontData() const override {
-      return {DM::ClientAsset("fonts/Opensans/Regular.ttf"), 14};
-    };
-    Font BoldFontData() const override {
-      return {DM::ClientAsset("fonts/Opensans/Bold.ttf"), 14};
     };
   };
   
