@@ -12,65 +12,61 @@ namespace ikan {
   /// This class renders imgui window to access contents of folders
   class ContentBrowserPanel {
   public:
-    /// This constructor creates content Browser Panel instance with root path
-    /// - Parameters:
-    ///   - root_path: root path of Content browser panel
-    ///   - favourite_paths: favourit paths in side bar
-    ContentBrowserPanel(const std::string& root_path, const std::vector<std::filesystem::path>& favourite_paths = {});
-    /// This destructor destroy Content browser panel instance
-    ~ContentBrowserPanel();
-
     /// This function update the root path of CBP
     /// - Parameter root_path: root path
-    void SetRootPath(const std::string& root_path);
+    static void SetRootPath(const std::string& root_path);
     /// This funcfion add the favourit paths to the pannel
     /// - Parameter favourite_paths: paths
     /// - Note: Paths should be absolute
-    void AddFavouritPaths(const std::vector<std::filesystem::path>& favourite_paths);
+    static void AddFavouritPaths(const std::vector<std::filesystem::path>& favourite_paths);
     /// This funcfion add the Asset paths to the pannel
     /// - Parameter asset_paths: paths
     /// - Note: Paths should be absolute
-    void AddAssetPaths(const std::vector<std::filesystem::path>& asset_paths);
+    static void AddAssetPaths(const std::vector<std::filesystem::path>& asset_paths);
 
     /// This function returns the Current directory
-    const std::filesystem::path& GetCurrentDir() const { return current_directory_; }
+    static const std::filesystem::path& GetCurrentDir() { return current_directory_; }
     /// This function returns the Root directory
-    const std::filesystem::path& GetRootDir() const { return root_path_; }
+    static const std::filesystem::path& GetRootDir() { return root_path_; }
     
     /// This function renders Imgui for Contenct browser panel
     /// - Parameter is_open: flag to show or hide widget
-    void RenderGui(bool* is_open = nullptr);
+    static void RenderGui(bool* is_open = nullptr);
 
+    MAKE_PURE_STATIC(ContentBrowserPanel);
+    
   private:
     /// This function renders the title of Content browser pannel
-    void TitleIcon();
+    static void TitleIcon();
     /// This function renders the Main area of Content browser pannel
-    void MainArea();
+    static void MainArea();
     /// This function renders the Main area of Content browser pannel
-    void SideMenu();
+    static void SideMenu();
 
     /// This function render back icon
-    void Back();
+    static void Back();
     /// This function render forward icon
-    void Forward();
+    static void Forward();
     /// This function render home icon
-    void Home();
+    static void Home();
     
     /// This function render search Text box icon
-    void Search();
+    static void Search();
     /// This fucntion prints the path history
-    void PathHistory();
+    static void PathHistory();
     
-    float side_child_width_ = 0.15f;
+    inline static float side_child_width_ = 0.15f;
     
-    std::filesystem::path root_path_, current_directory_;
-    std::vector<std::filesystem::path> favourite_paths_;
-    std::vector<std::filesystem::path> asset_paths_;
-    ImGuiTextFilter search_filter_;
+    inline static std::filesystem::path root_path_, current_directory_;
+    inline static std::vector<std::filesystem::path> favourite_paths_;
+    inline static std::vector<std::filesystem::path> asset_paths_;
+    inline static ImGuiTextFilter search_filter_;
 
-    std::vector<std::filesystem::path> back_path_history_;
-    std::vector<std::filesystem::path> forward_path_history_;
-    std::vector<std::filesystem::path> path_hierarchy_;
+    inline static std::vector<std::filesystem::path> back_path_history_;
+    inline static std::vector<std::filesystem::path> forward_path_history_;
+    inline static std::vector<std::filesystem::path> path_hierarchy_;
   };
+  
+  using CBP = ContentBrowserPanel;
   
 } // namespace ikan

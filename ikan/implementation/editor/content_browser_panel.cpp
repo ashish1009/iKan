@@ -28,26 +28,6 @@ namespace ikan {
     return path_without_slash;
   }
   
-  ContentBrowserPanel::ContentBrowserPanel(const std::string& root_path, const std::vector<std::filesystem::path>& favourite_paths) {
-    root_path_ = RemoveLastSlash(root_path);
-    current_directory_ = RemoveLastSlash(root_path);
-
-    // Add Pinned Paths
-    favourite_paths_.emplace_back(RemoveLastSlash(DM::WorkspacePath("../ikan/")));
-    favourite_paths_.emplace_back(RemoveLastSlash(DM::WorkspacePath("ikan/core_assets")));
-    for (const auto& path : favourite_paths) {
-      favourite_paths_.emplace_back(RemoveLastSlash(path));
-    }
-
-    IK_CORE_TRACE(LogModule::ContentBrowserPanel, "Creating Content Browser Panel ... ");
-    IK_CORE_TRACE(LogModule::ContentBrowserPanel, "  Root Path {0}", root_path_.string());
-  }
-  
-  ContentBrowserPanel::~ContentBrowserPanel() {
-    IK_CORE_TRACE(LogModule::ContentBrowserPanel, "Destroying Content Browser Panel !!! ");
-    IK_CORE_TRACE(LogModule::ContentBrowserPanel, "  Root Path {0}", root_path_.string());
-  }
-  
   void ContentBrowserPanel::SetRootPath(const std::string& root_path) {
     root_path_ = RemoveLastSlash(root_path);
     current_directory_ = RemoveLastSlash(root_path);

@@ -22,7 +22,7 @@ namespace kreator {
   }
   
   RendererLayer::RendererLayer(GameType game_type)
-  : Layer("Kreator"), game_data_(CreateGameData(game_type)), cbp_(DM::GetWorkspaceBasePath()) {
+  : Layer("Kreator"), game_data_(CreateGameData(game_type)) {
     KREATOR_LOG("Creating {0} Layer instance ... ", game_data_->GameName().c_str());
   }
   
@@ -34,9 +34,9 @@ namespace kreator {
     KREATOR_LOG("Attaching {0} Layer instance", game_data_->GameName().c_str());
     
     // Add paths in content browser panel
-    cbp_.SetRootPath(game_data_->CbpRootDir());
-    cbp_.AddFavouritPaths(game_data_->FavDirecotries());
-    cbp_.AddAssetPaths(game_data_->AssetDirecotries());
+    CBP::SetRootPath(game_data_->CbpRootDir());
+    CBP::AddFavouritPaths(game_data_->FavDirecotries());
+    CBP::AddAssetPaths(game_data_->AssetDirecotries());
 
     // Loading the Default Font for Text rendering
     TextRenderer::LoadFreetype(game_data_->RegularFontData().path);
@@ -196,7 +196,7 @@ namespace kreator {
         Renderer::Render2DStatsGui(&setting_.renderer_stats_2d.flag);
         viewport_.RenderGui(&setting_.viewport_data.flag);
         
-        cbp_.RenderGui(&setting_.content_browser_panel.flag);
+        CBP::RenderGui(&setting_.content_browser_panel.flag);
         spm_.RenderGui();
                 
         if (active_scene_->IsEditing()) {
@@ -448,13 +448,13 @@ namespace kreator {
     ImGui::PushID("Save File");
 
     static std::string file_name = "";
-    const auto& relative_path = (std::filesystem::relative(cbp_.GetCurrentDir(), cbp_.GetRootDir())).string();
-    std::string hint = "Scene will be saved at " + cbp_.GetCurrentDir().string();
+    const auto& relative_path = (std::filesystem::relative(CBP::GetCurrentDir(), CBP::GetRootDir())).string();
+    std::string hint = "Scene will be saved at " + CBP::GetCurrentDir().string();
     bool modified = PropertyGrid::TextBox(file_name, "Scene Name", 2, 100.0f, hint.c_str());
     PropertyGrid::HoveredMsg(hint.c_str());
     
     if (modified) {
-      std::string file_path = cbp_.GetCurrentDir().string() + "/" + file_name + ".ikanScene";
+      std::string file_path = CBP::GetCurrentDir().string() + "/" + file_name + ".ikanScene";
       IK_TRACE(game_data_->GameName(), "Saving Scene at {0}", file_path.c_str());
       if (!file_path.empty()) {
         active_scene_->SetFilePath(file_path);

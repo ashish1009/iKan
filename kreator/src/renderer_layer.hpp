@@ -156,7 +156,6 @@ namespace kreator {
     Viewport viewport_;
     
     std::shared_ptr<Scene> active_scene_, editor_scene_;
-    ContentBrowserPanel cbp_;
     ScenePanelManager spm_;
 
     // Debug Data

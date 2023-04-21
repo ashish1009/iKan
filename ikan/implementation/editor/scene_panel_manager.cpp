@@ -195,7 +195,12 @@ namespace ikan {
   
     const std::string& tag = entity.GetComponent<TagComponent>().tag;
     bool opened = ImGui::TreeNodeEx((void*)(tag.c_str()), flags, tag.c_str());
-    
+    // Drag the content from here
+    if (ImGui::BeginDragDropSource(ImGuiDragDropFlags_SourceAllowNullID)) {
+      ImGui::SetDragDropPayload("SelectedFile", (void*)(&entity), sizeof(Entity), ImGuiCond_Always);
+      ImGui::EndDragDropSource();
+    }
+
     // Left Click Feature. Update the selected entity if item is clicked
     if (ImGui::IsItemClicked() or ImGui::IsItemClicked(1))
       SetSelectedEntity(&entity);
