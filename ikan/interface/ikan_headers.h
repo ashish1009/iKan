@@ -80,6 +80,7 @@
 #include <scene/scene_panel_manager.hpp>
 #include <scene/scene_serialiser.hpp>
 #include <scene/scriptable_entity.hpp>
+#include <scene/prefab.hpp>
 
 // Camera Files
 #include <camera/camera.hpp>

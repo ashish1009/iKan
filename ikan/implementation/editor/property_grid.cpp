@@ -227,8 +227,7 @@ namespace ikan {
     ImGui::SetColumnWidth(0, column_width);
     
     if (hint) {
-      ImGui::SameLine();
-      HelpMarker(hint);
+      PropertyGrid::HoveredMsg(hint);
     }
     
     ImGui::NextColumn();

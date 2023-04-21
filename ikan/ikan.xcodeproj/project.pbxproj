@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		B201A2D229F27A3100D3C1FE /* scriptable_entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A2D029F27A3100D3C1FE /* scriptable_entity.cpp */; };
 		B201A2D329F27A3100D3C1FE /* scriptable_entity.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B201A2D129F27A3100D3C1FE /* scriptable_entity.hpp */; };
-		B201AD6229F29CEB00D3C1FE /* prefab_serialiser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201AD6029F29CEB00D3C1FE /* prefab_serialiser.cpp */; };
-		B201AD6329F29CEB00D3C1FE /* prefab_serialiser.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B201AD6129F29CEB00D3C1FE /* prefab_serialiser.hpp */; };
+		B201AD6229F29CEB00D3C1FE /* prefab.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201AD6029F29CEB00D3C1FE /* prefab.cpp */; };
+		B201AD6329F29CEB00D3C1FE /* prefab.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B201AD6129F29CEB00D3C1FE /* prefab.hpp */; };
 		B206A4DB29F056EA00F6574E /* libbox_2d.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B206A29229F055E700F6574E /* libbox_2d.a */; };
 		B20FF40D29DDE99500FB3DB7 /* property_grid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B20FF40B29DDE99500FB3DB7 /* property_grid.cpp */; };
 		B20FF40E29DDE99500FB3DB7 /* property_grid.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B20FF40C29DDE99500FB3DB7 /* property_grid.hpp */; };
@@ -162,8 +162,8 @@
 /* Begin PBXFileReference section */
 		B201A2D029F27A3100D3C1FE /* scriptable_entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = scriptable_entity.cpp; sourceTree = "<group>"; };
 		B201A2D129F27A3100D3C1FE /* scriptable_entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scriptable_entity.hpp; sourceTree = "<group>"; };
-		B201AD6029F29CEB00D3C1FE /* prefab_serialiser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = prefab_serialiser.cpp; sourceTree = "<group>"; };
-		B201AD6129F29CEB00D3C1FE /* prefab_serialiser.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = prefab_serialiser.hpp; sourceTree = "<group>"; };
+		B201AD6029F29CEB00D3C1FE /* prefab.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = prefab.cpp; sourceTree = "<group>"; };
+		B201AD6129F29CEB00D3C1FE /* prefab.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = prefab.hpp; sourceTree = "<group>"; };
 		B206A28D29F055E600F6574E /* box_2d.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = box_2d.xcodeproj; path = box_2d/box_2d.xcodeproj; sourceTree = "<group>"; };
 		B20FF40B29DDE99500FB3DB7 /* property_grid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = property_grid.cpp; sourceTree = "<group>"; };
 		B20FF40C29DDE99500FB3DB7 /* property_grid.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = property_grid.hpp; sourceTree = "<group>"; };
@@ -397,7 +397,7 @@
 				B295D89829E6D02B00A40956 /* scene_panel_manager.hpp */,
 				B295DB8529E6D6B400A40956 /* scene_serialiser.hpp */,
 				B201A2D129F27A3100D3C1FE /* scriptable_entity.hpp */,
-				B201AD6129F29CEB00D3C1FE /* prefab_serialiser.hpp */,
+				B201AD6129F29CEB00D3C1FE /* prefab.hpp */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -410,7 +410,7 @@
 				B2E7141829E43C40008C8CB1 /* components.cpp */,
 				B2E7141D29E43C4A008C8CB1 /* scene.cpp */,
 				B201A2D029F27A3100D3C1FE /* scriptable_entity.cpp */,
-				B201AD6029F29CEB00D3C1FE /* prefab_serialiser.cpp */,
+				B201AD6029F29CEB00D3C1FE /* prefab.cpp */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -771,7 +771,7 @@
 				B2F70CE729DEE94A003163BA /* buffers.hpp in Headers */,
 				B2BEC79B29DD83DC008D3DCB /* layer.hpp in Headers */,
 				B2E8D44229E0335A005F5F0C /* maths.hpp in Headers */,
-				B201AD6329F29CEB00D3C1FE /* prefab_serialiser.hpp in Headers */,
+				B201AD6329F29CEB00D3C1FE /* prefab.hpp in Headers */,
 				B2F91E1A29D713FA00860306 /* renderer_api.hpp in Headers */,
 				B281E86B29DFE07C0038A9EE /* camera.hpp in Headers */,
 				B2BEC78B29DD7C50008D3DCB /* core_application.hpp in Headers */,
@@ -986,7 +986,7 @@
 				B29C831229DE9EB90061D182 /* open_gl_renderer_id_manager.cpp in Sources */,
 				B2E8D45A29E06195005F5F0C /* content_browser_panel.cpp in Sources */,
 				B2E8D44129E0335A005F5F0C /* maths.cpp in Sources */,
-				B201AD6229F29CEB00D3C1FE /* prefab_serialiser.cpp in Sources */,
+				B201AD6229F29CEB00D3C1FE /* prefab.cpp in Sources */,
 				B281E88429E001A70038A9EE /* viewport.cpp in Sources */,
 				B2F91E1529D713EF00860306 /* open_gl_renderer_api.cpp in Sources */,
 				B2F70CFF29DF0FE7003163BA /* texture.cpp in Sources */,

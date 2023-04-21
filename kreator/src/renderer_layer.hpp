@@ -38,6 +38,7 @@ namespace kreator {
       SettingWrapper common_renderer_stats{"Common Renderer Stats", true};
       SettingWrapper renderer_stats_2d{"2D Renderer Stats", true};
       SettingWrapper save_scene{"Save Scene Panel", true};
+      SettingWrapper prefab_loader{"Prefab Loader Panel", true};
     };
     
     /// Layer Default Constructor to store the name of layer
