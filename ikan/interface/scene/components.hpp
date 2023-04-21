@@ -10,6 +10,7 @@
 #include "renderer/graphics/texture.hpp"
 #include "renderer/utils/texture_component.hpp"
 #include "camera/scene_camera.hpp"
+#include "scene/scriptable_entity.hpp"
 
 namespace ikan {
   
@@ -211,13 +212,42 @@ namespace ikan {
     ~PillBoxColliderComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(PillBoxColliderComponent);
   };
+  
+  struct NativeScriptComponent {
+    std::shared_ptr<ScriptableEntity> script;
+    ScriptLoaderFn loader_function;
+    std::string script_name;
+    
+    template<typename T, typename... Args>
+    void Bind(Args... args) {
+      script = static_cast<std::shared_ptr<ScriptableEntity>>(std::make_shared<T>(std::forward<Args>(args)...));
+      
+      // Store the script name
+      int32_t status;
+      std::string tname = typeid(T).name();
+      char *demangled_name = abi::__cxa_demangle(tname.c_str(), NULL, NULL, &status);
+      script_name = (std::string)demangled_name;
+      
+      // Delete the allocated memory
+      if(status == 0) {
+        tname = demangled_name;
+        std::free(demangled_name);
+      }
+    }
+    
+    void RenderGui();
+    void Copy(const NativeScriptComponent& other);
+    NativeScriptComponent(std::string name, ScriptLoaderFn loader_fun = nullptr);
+    ~NativeScriptComponent();
+    DEFINE_COPY_MOVE_CONSTRUCTORS(NativeScriptComponent);
+  };
 
   template<typename... Component>
   struct ComponentGroup {
   };
   
 #define ALL_COPY_COMPONENTS TransformComponent, CameraComponent, QuadComponent, CircleComponent, \
-RigidBodyComponent, Box2DColliderComponent, CircleColliiderComponent, PillBoxColliderComponent
+RigidBodyComponent, Box2DColliderComponent, CircleColliiderComponent, PillBoxColliderComponent, NativeScriptComponent\
 
   // Stores all the components present in Engine
   using AllComponents =

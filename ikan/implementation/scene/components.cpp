@@ -389,4 +389,33 @@ x& x::operator=(x&& other) { \
     }
   }
 
+  // -------------------------------------------------------------------------
+  // Native Script Component
+  // -------------------------------------------------------------------------
+  NativeScriptComponent::NativeScriptComponent(std::string name, ScriptLoaderFn loader_fun) : script_name(name), loader_function(loader_fun) {
+    COMP_LOG("Creating Native Script Compontnt");
+  }
+  NativeScriptComponent::~NativeScriptComponent() { COMP_LOG("Destroying Native Script Compontnt"); }
+  COMP_COPY_MOVE_CONSTRUCTORS(NativeScriptComponent);
+  
+  void NativeScriptComponent::Copy(const NativeScriptComponent &other) {
+    loader_function = other.loader_function;
+    script_name = other.script_name;
+    
+    ScriptManager::UpdateScript(this, script_name, loader_function);
+    script->Copy((void*)other.script.get());
+  }
+  
+  void NativeScriptComponent::RenderGui() {
+    ImGui::PushID("Natiove Script Component");
+    
+    bool opened = ImGui::TreeNodeEx(script_name.c_str(), ImGuiTreeNodeFlags_Bullet);
+    if (opened) {
+      if (script)
+        script->RenderGui();
+      ImGui::TreePop();
+    }
+    ImGui::PopID();
+  }
+  
 } // namespace ikan
