@@ -214,8 +214,9 @@ namespace ikan {
           icon_texture = folder_texture;
           is_directory = true;
         } else {
-          if (".png" == path.extension()) icon_texture = png_texture;
-          else if (".jpg" == path.extension()) icon_texture = jpg_texture;
+          if (".png" == path.extension() or ".jpg" == path.extension()) {
+            icon_texture = Renderer::GetTexture(path);
+          }
           else if (".cpp" == path.extension()) icon_texture = cpp_texture;
           else if (".h" == path.extension()) icon_texture = h_texture;
           else if (".c" == path.extension()) icon_texture = c_texture;
