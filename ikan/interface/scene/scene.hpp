@@ -159,6 +159,10 @@ namespace ikan {
     /// This function updates the primary camera data
     void UpdatePrimaryCameraData();
 
+    /// This functuion Insantiates all the native script
+    /// - Parameter ts: time step of each frame
+    void InstantiateScript(Timestep ts);
+
     // Member Variables
     std::string file_path_ = "Unsaved_Scene", name_ = "Unsaved_Scene";
     

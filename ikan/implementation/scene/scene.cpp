@@ -187,6 +187,7 @@ namespace ikan {
       UpdateEditor(ts);
     }
     else {
+      InstantiateScript(ts);
       UpdateRuntime(ts);
     }
   }
@@ -278,6 +279,10 @@ namespace ikan {
   }
   
   void Scene::EventHandlerRuntime(Event& event) {
+    registry_.view<NativeScriptComponent>().each([&](auto entity, auto& nsc) {
+      if (nsc.script)
+        nsc.script->EventHandler(event);
+    });
   }
   
   void Scene::RenderGui() {
@@ -354,6 +359,22 @@ namespace ikan {
     if (entity_id_map_.find((entt::entity)id) != entity_id_map_.end())
       return &entity_id_map_.at((entt::entity)id);
     return nullptr;
+  }
+
+  void Scene::InstantiateScript(Timestep ts) {
+    registry_.view<NativeScriptComponent>().each([=](auto entity, auto& nsc)
+                                                 {
+      if (!nsc.script) {
+        ScriptManager::UpdateScript(&nsc, nsc.script_name, nsc.loader_function);
+      }
+      else {
+        if (!nsc.script->scene_) {
+          nsc.script->scene_ = this;
+          nsc.script->Create(Entity{ entity, this });
+        }
+        nsc.script->Update(ts);
+      }
+    });
   }
 
 } // namespace ikan
