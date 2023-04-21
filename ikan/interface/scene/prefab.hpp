@@ -13,7 +13,7 @@ namespace ikan {
   
   static const std::string prefab_extenstion_ = ".ikanPrefab";
   
-  class PrefabSerializer {
+  class Prefab {
   public:
     /// This functions serializes(Saves) the scene at path 'file_path'
     /// - Parameters:
@@ -23,6 +23,10 @@ namespace ikan {
     /// This functions serializes(Opens) the scene frol path 'file_path'
     /// - Parameter file_path: path which need to be loaded
     static Entity* Deserialize(const std::string& file_path);
+    /// This Funciton Rneders a GUI Widget to load prefab
+    /// - Parameter flag: flag to hide the widget
+    static void Loader(bool* flag);
+    
   };
   
 } // namespace ikan

@@ -100,7 +100,8 @@ namespace ikan {
     ///   - size; size of image need to be rendered inside Imgui window (this size will be visible as texture)
     ///   - uv0; Left
     ///   - uv1; Right
-    static void Image(void* textureID, const glm::vec2& size, const glm::vec2& uv0, const glm::vec2& uv1);
+    static void Image(void* textureID, const glm::vec2& size, const glm::vec2& uv0 = glm::vec2( 0, 1 ),
+                      const glm::vec2& uv1 = glm::vec2( 1, 0 ));
 
     /// This function renders the text box
     /// - Parameters:
