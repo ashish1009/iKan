@@ -36,6 +36,7 @@ namespace kreator {
     // Add paths in content browser panel
     cbp_.SetRootPath(game_data_->CbpRootDir());
     cbp_.AddFavouritPaths(game_data_->FavDirecotries());
+    cbp_.AddAssetPaths(game_data_->AssetDirecotries());
 
     // Loading the Default Font for Text rendering
     TextRenderer::LoadFreetype(game_data_->RegularFontData().path);

@@ -27,6 +27,10 @@ namespace ikan {
     /// - Parameter favourite_paths: paths
     /// - Note: Paths should be absolute
     void AddFavouritPaths(const std::vector<std::filesystem::path>& favourite_paths);
+    /// This funcfion add the Asset paths to the pannel
+    /// - Parameter asset_paths: paths
+    /// - Note: Paths should be absolute
+    void AddAssetPaths(const std::vector<std::filesystem::path>& asset_paths);
 
     /// This function returns the Current directory
     const std::filesystem::path& GetCurrentDir() const { return current_directory_; }
@@ -61,6 +65,7 @@ namespace ikan {
     
     std::filesystem::path root_path_, current_directory_;
     std::vector<std::filesystem::path> favourite_paths_;
+    std::vector<std::filesystem::path> asset_paths_;
     ImGuiTextFilter search_filter_;
 
     std::vector<std::filesystem::path> back_path_history_;

@@ -40,10 +40,12 @@ namespace kreator {
     virtual Font RegularFontData() const = 0;
     /// This function returns the Bold Font information
     virtual Font BoldFontData() const = 0;
-    /// This function returns the paths of directory you want in content browser panel
+    /// This function returns the paths of directory you want in content browser panel as home
     virtual std::string CbpRootDir() const = 0;
-    /// This function returns the paths of directory you want in content browser panel
+    /// This function returns the paths of directory you want in content browser panel as favourite
     virtual std::vector<std::filesystem::path> FavDirecotries() const = 0;
+    /// This function returns the paths of directory you want in content browser panel as assets
+    virtual std::vector<std::filesystem::path> AssetDirecotries() const = 0;
     /// This function returns the path of folder where cliet scenes are saved
     virtual std::string GetScenePath() const = 0;
     /// This function returns the path of scene you want to open in begining

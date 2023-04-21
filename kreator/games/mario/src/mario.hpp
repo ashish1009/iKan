@@ -52,13 +52,15 @@ namespace mario {
     std::string CbpRootDir() const override { return GetScenePath(); };
     Font RegularFontData() const override { return {DM::ClientAsset("fonts/mario.ttf"), 14}; };
     Font BoldFontData() const override { return {DM::ClientAsset("fonts/mario.ttf"), 14}; };
-    std::vector<std::filesystem::path> FavDirecotries() const override {
+    std::vector<std::filesystem::path> FavDirecotries() const override { return { DM::WorkspacePath("/kreator") }; };
+    std::vector<std::filesystem::path> AssetDirecotries() const override {
       return {
         GetScenePath(),
         DM::ClientAsset("textures"),
+        DM::ClientAsset("prefabs"),
       };
     };
-    
+
   private:
     std::shared_ptr<Scene> scene_;
     TextData text_data_;
