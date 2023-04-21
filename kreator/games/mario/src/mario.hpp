@@ -47,7 +47,7 @@ namespace mario {
 
     std::string GameName() const override { return "IKAN Mario"; }
     glm::vec4 GetBgColor() const override { return {0.2, 0.4, 0.6, 1.0f}; }
-    std::string GetScenePath() const override { return DM::WorkspacePath("/kreator/mario/scenes/"); }
+    std::string GetScenePath() const override { return DM::WorkspacePath("/kreator/games/mario/scenes/"); }
     std::string SavedScene() const override { return GetScenePath() + "Mario_scene.ikanScene"; };
     std::string CbpRootDir() const override { return GetScenePath(); };
     std::vector<std::filesystem::path> FavDirecotries() const override {

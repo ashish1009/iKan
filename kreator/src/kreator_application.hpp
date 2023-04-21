@@ -54,23 +54,19 @@ namespace kreator {
       switch (current_game_type_) {
         case GameType::Editor :
           specification_.window_specification.title = "Kreator";
-          specification_.client_asset_path = "../../../kreator/editor/assets/";
-          specification_.save_ini_file_path = "../../../kreator/editor/ini/editor.ini";
+          specification_.client_asset_path = "../../../kreator/games/editor/assets/";
           break;
         case GameType::Mario :
           specification_.window_specification.title = "Ikan Mario";
-          specification_.client_asset_path = "../../../kreator/mario/assets/";
-          specification_.save_ini_file_path = "../../../kreator/mario/ini/mario.ini";
+          specification_.client_asset_path = "../../../kreator/games/mario/assets/";
           break;
         case GameType::Chess :
           specification_.window_specification.title = "Ikan Chess";
-          specification_.client_asset_path = "../../../kreator/chess/assets/";
-          specification_.save_ini_file_path = "../../../kreator/chess/ini/chess.ini";
+          specification_.client_asset_path = "../../../kreator/games/chess/assets/";
           break;
         case GameType::AngryBird :
           specification_.window_specification.title = "Ikan Angry Bird";
-          specification_.client_asset_path = "../../../kreator/angry_bird/assets/";
-          specification_.save_ini_file_path = "../../../kreator/angry_bird/ini/angry_bird.ini";
+          specification_.client_asset_path = "../../../kreator/games/angry_bird/assets/";
           break;
 
         default:

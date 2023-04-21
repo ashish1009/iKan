@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B206A26B29EFF69E00F6574E /* angry_bird.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B206A26929EFF69E00F6574E /* angry_bird.cpp */; };
-		B206A26E29EFF70900F6574E /* chess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B206A26C29EFF70900F6574E /* chess.cpp */; };
+		B201A33E29F285F500D3C1FE /* angry_bird.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A2F329F285F500D3C1FE /* angry_bird.cpp */; };
+		B201A33F29F285F500D3C1FE /* game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A2F429F285F500D3C1FE /* game_data.cpp */; };
+		B201A34029F285F500D3C1FE /* chess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A30929F285F500D3C1FE /* chess.cpp */; };
+		B201A34129F285F500D3C1FE /* mario.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A31329F285F500D3C1FE /* mario.cpp */; };
+		B201A34229F285F500D3C1FE /* editor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A33829F285F500D3C1FE /* editor.cpp */; };
+		B201A34329F285F500D3C1FE /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A33C29F285F500D3C1FE /* entry_point.cpp */; };
+		B201A34429F285F500D3C1FE /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A33D29F285F500D3C1FE /* renderer_layer.cpp */; };
 		B281E87929DFEF440038A9EE /* libglfw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B281E87829DFEF440038A9EE /* libglfw.a */; };
-		B292BB7529D16F8F00B1E678 /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B292BB7429D16F8F00B1E678 /* entry_point.cpp */; };
 		B292C0F329D1D7C400B1E678 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B292C0F229D1D7C400B1E678 /* libikan.a */; };
-		B2BEC7CF29DDBBFF008D3DCB /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC7CD29DDBBFF008D3DCB /* renderer_layer.cpp */; };
-		B2BEC7D229DDC033008D3DCB /* game_data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC7D029DDC033008D3DCB /* game_data.cpp */; };
-		B2D856DC29E867D000602232 /* editor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2D856DA29E867D000602232 /* editor.cpp */; };
-		B2D856E429E868C600602232 /* mario.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2D856E229E868C600602232 /* mario.cpp */; };
 		B2E8D44F29E044A5005F5F0C /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2E8D44E29E044A5005F5F0C /* libfreetype.6.dylib */; };
 		B2E8D45229E0460C005F5F0C /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2E8D45429E0464A005F5F0C /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -36,28 +36,83 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B206A26929EFF69E00F6574E /* angry_bird.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = angry_bird.cpp; sourceTree = "<group>"; };
-		B206A26A29EFF69E00F6574E /* angry_bird.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = angry_bird.hpp; sourceTree = "<group>"; };
-		B206A26C29EFF70900F6574E /* chess.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = chess.cpp; sourceTree = "<group>"; };
-		B206A26D29EFF70900F6574E /* chess.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = chess.hpp; sourceTree = "<group>"; };
+		B201A2DB29F285F500D3C1FE /* game_data.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = game_data.hpp; sourceTree = "<group>"; };
+		B201A2DE29F285F500D3C1FE /* AngryBird.ikanScene */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AngryBird.ikanScene; sourceTree = "<group>"; };
+		B201A2E329F285F500D3C1FE /* LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LightItalic.ttf; sourceTree = "<group>"; };
+		B201A2E429F285F500D3C1FE /* SemiMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SemiMedium.ttf; sourceTree = "<group>"; };
+		B201A2E529F285F500D3C1FE /* BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BlackItalic.ttf; sourceTree = "<group>"; };
+		B201A2E629F285F500D3C1FE /* Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Light.ttf; sourceTree = "<group>"; };
+		B201A2E729F285F500D3C1FE /* Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Italic.ttf; sourceTree = "<group>"; };
+		B201A2E829F285F500D3C1FE /* MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MediumItalic.ttf; sourceTree = "<group>"; };
+		B201A2E929F285F500D3C1FE /* BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BoldItalic.ttf; sourceTree = "<group>"; };
+		B201A2EA29F285F500D3C1FE /* ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThinItalic.ttf; sourceTree = "<group>"; };
+		B201A2EB29F285F500D3C1FE /* Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Medium.ttf; sourceTree = "<group>"; };
+		B201A2EC29F285F500D3C1FE /* Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Black.ttf; sourceTree = "<group>"; };
+		B201A2ED29F285F500D3C1FE /* Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bold.ttf; sourceTree = "<group>"; };
+		B201A2EE29F285F500D3C1FE /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		B201A2EF29F285F500D3C1FE /* Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Regular.ttf; sourceTree = "<group>"; };
+		B201A2F029F285F500D3C1FE /* Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thin.ttf; sourceTree = "<group>"; };
+		B201A2F229F285F500D3C1FE /* angry_bird.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = angry_bird.hpp; sourceTree = "<group>"; };
+		B201A2F329F285F500D3C1FE /* angry_bird.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = angry_bird.cpp; sourceTree = "<group>"; };
+		B201A2F429F285F500D3C1FE /* game_data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = game_data.cpp; sourceTree = "<group>"; };
+		B201A2F729F285F500D3C1FE /* Chess.ikanScene */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Chess.ikanScene; sourceTree = "<group>"; };
+		B201A2FC29F285F500D3C1FE /* LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LightItalic.ttf; sourceTree = "<group>"; };
+		B201A2FD29F285F500D3C1FE /* Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Light.ttf; sourceTree = "<group>"; };
+		B201A2FE29F285F500D3C1FE /* SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SemiBold.ttf; sourceTree = "<group>"; };
+		B201A2FF29F285F500D3C1FE /* Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Italic.ttf; sourceTree = "<group>"; };
+		B201A30029F285F500D3C1FE /* BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BoldItalic.ttf; sourceTree = "<group>"; };
+		B201A30129F285F500D3C1FE /* ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ExtraBoldItalic.ttf; sourceTree = "<group>"; };
+		B201A30229F285F500D3C1FE /* ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ExtraBold.ttf; sourceTree = "<group>"; };
+		B201A30329F285F500D3C1FE /* Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bold.ttf; sourceTree = "<group>"; };
+		B201A30429F285F500D3C1FE /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		B201A30529F285F500D3C1FE /* Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Regular.ttf; sourceTree = "<group>"; };
+		B201A30629F285F500D3C1FE /* SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SemiBoldItalic.ttf; sourceTree = "<group>"; };
+		B201A30829F285F500D3C1FE /* chess.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = chess.hpp; sourceTree = "<group>"; };
+		B201A30929F285F500D3C1FE /* chess.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = chess.cpp; sourceTree = "<group>"; };
+		B201A30C29F285F500D3C1FE /* Mario_scene.ikanScene */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Mario_scene.ikanScene; sourceTree = "<group>"; };
+		B201A30F29F285F500D3C1FE /* tile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tile.png; sourceTree = "<group>"; };
+		B201A31129F285F500D3C1FE /* mario.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = mario.ttf; sourceTree = "<group>"; };
+		B201A31329F285F500D3C1FE /* mario.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mario.cpp; sourceTree = "<group>"; };
+		B201A31429F285F500D3C1FE /* mario.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = mario.hpp; sourceTree = "<group>"; };
+		B201A31729F285F500D3C1FE /* first_scene.ikanScene */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = first_scene.ikanScene; sourceTree = "<group>"; };
+		B201A31C29F285F500D3C1FE /* LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LightItalic.ttf; sourceTree = "<group>"; };
+		B201A31D29F285F500D3C1FE /* SemiMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SemiMedium.ttf; sourceTree = "<group>"; };
+		B201A31E29F285F500D3C1FE /* BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BlackItalic.ttf; sourceTree = "<group>"; };
+		B201A31F29F285F500D3C1FE /* Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Light.ttf; sourceTree = "<group>"; };
+		B201A32029F285F500D3C1FE /* Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Italic.ttf; sourceTree = "<group>"; };
+		B201A32129F285F500D3C1FE /* MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MediumItalic.ttf; sourceTree = "<group>"; };
+		B201A32229F285F500D3C1FE /* BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BoldItalic.ttf; sourceTree = "<group>"; };
+		B201A32329F285F500D3C1FE /* ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ThinItalic.ttf; sourceTree = "<group>"; };
+		B201A32429F285F500D3C1FE /* Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Medium.ttf; sourceTree = "<group>"; };
+		B201A32529F285F500D3C1FE /* Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Black.ttf; sourceTree = "<group>"; };
+		B201A32629F285F500D3C1FE /* Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bold.ttf; sourceTree = "<group>"; };
+		B201A32729F285F500D3C1FE /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		B201A32829F285F500D3C1FE /* Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Regular.ttf; sourceTree = "<group>"; };
+		B201A32929F285F500D3C1FE /* Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Thin.ttf; sourceTree = "<group>"; };
+		B201A32B29F285F500D3C1FE /* LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LightItalic.ttf; sourceTree = "<group>"; };
+		B201A32C29F285F500D3C1FE /* Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Light.ttf; sourceTree = "<group>"; };
+		B201A32D29F285F500D3C1FE /* SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SemiBold.ttf; sourceTree = "<group>"; };
+		B201A32E29F285F500D3C1FE /* Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Italic.ttf; sourceTree = "<group>"; };
+		B201A32F29F285F500D3C1FE /* BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BoldItalic.ttf; sourceTree = "<group>"; };
+		B201A33029F285F500D3C1FE /* ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ExtraBoldItalic.ttf; sourceTree = "<group>"; };
+		B201A33129F285F500D3C1FE /* ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ExtraBold.ttf; sourceTree = "<group>"; };
+		B201A33229F285F500D3C1FE /* Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Bold.ttf; sourceTree = "<group>"; };
+		B201A33329F285F500D3C1FE /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		B201A33429F285F500D3C1FE /* Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Regular.ttf; sourceTree = "<group>"; };
+		B201A33529F285F500D3C1FE /* SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SemiBoldItalic.ttf; sourceTree = "<group>"; };
+		B201A33729F285F500D3C1FE /* editor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = editor.hpp; sourceTree = "<group>"; };
+		B201A33829F285F500D3C1FE /* editor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = editor.cpp; sourceTree = "<group>"; };
+		B201A33A29F285F500D3C1FE /* renderer_layer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = renderer_layer.hpp; sourceTree = "<group>"; };
+		B201A33B29F285F500D3C1FE /* kreator_application.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kreator_application.hpp; sourceTree = "<group>"; };
+		B201A33C29F285F500D3C1FE /* entry_point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = entry_point.cpp; sourceTree = "<group>"; };
+		B201A33D29F285F500D3C1FE /* renderer_layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_layer.cpp; sourceTree = "<group>"; };
 		B228FC7029DB093D00455666 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		B228FC7229DB094700455666 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B228FC7429DB094C00455666 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		B281E87829DFEF440038A9EE /* libglfw.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libglfw.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B292BB7129D16F8F00B1E678 /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
-		B292BB7429D16F8F00B1E678 /* entry_point.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = entry_point.cpp; sourceTree = "<group>"; };
 		B292C0F029D1D58700B1E678 /* prefix_headers.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_headers.pch; sourceTree = "<group>"; };
 		B292C0F229D1D7C400B1E678 /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		B2BEC7CD29DDBBFF008D3DCB /* renderer_layer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_layer.cpp; sourceTree = "<group>"; };
-		B2BEC7CE29DDBBFF008D3DCB /* renderer_layer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_layer.hpp; sourceTree = "<group>"; };
-		B2BEC7D029DDC033008D3DCB /* game_data.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = game_data.cpp; sourceTree = "<group>"; };
-		B2BEC7D129DDC033008D3DCB /* game_data.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = game_data.hpp; sourceTree = "<group>"; };
-		B2D856D829E8382000602232 /* first_scene.ikanScene */ = {isa = PBXFileReference; lastKnownFileType = text; path = first_scene.ikanScene; sourceTree = "<group>"; };
-		B2D856DA29E867D000602232 /* editor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = editor.cpp; sourceTree = "<group>"; };
-		B2D856DB29E867D000602232 /* editor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = editor.hpp; sourceTree = "<group>"; };
-		B2D856E229E868C600602232 /* mario.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = mario.cpp; sourceTree = "<group>"; };
-		B2D856E329E868C600602232 /* mario.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = mario.hpp; sourceTree = "<group>"; };
-		B2D85BEB29E870AA00602232 /* kreator_application.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = kreator_application.hpp; sourceTree = "<group>"; };
 		B2E8D44E29E044A5005F5F0C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.16.dylib; path = ../ikan/vendors/freetype/libpng/1.6.39/lib/libpng16.16.dylib; sourceTree = "<group>"; };
@@ -77,116 +132,310 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		B206A25B29EFF68600F6574E /* chess */ = {
+		B201A2DA29F285F500D3C1FE /* games */ = {
 			isa = PBXGroup;
 			children = (
-				B206A26129EFF68600F6574E /* src */,
-				B206A25C29EFF68600F6574E /* scenes */,
-				B206A25D29EFF68600F6574E /* ini */,
-				B206A25E29EFF68600F6574E /* assets */,
+				B201A2DB29F285F500D3C1FE /* game_data.hpp */,
+				B201A2F429F285F500D3C1FE /* game_data.cpp */,
+				B201A2DC29F285F500D3C1FE /* angry_bird */,
+				B201A2F529F285F500D3C1FE /* chess */,
+				B201A30A29F285F500D3C1FE /* mario */,
+				B201A31529F285F500D3C1FE /* editor */,
 			);
-			path = chess;
+			path = games;
 			sourceTree = "<group>";
 		};
-		B206A25C29EFF68600F6574E /* scenes */ = {
+		B201A2DC29F285F500D3C1FE /* angry_bird */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			path = scenes;
-			sourceTree = "<group>";
-		};
-		B206A25D29EFF68600F6574E /* ini */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ini;
-			sourceTree = "<group>";
-		};
-		B206A25E29EFF68600F6574E /* assets */ = {
-			isa = PBXGroup;
-			children = (
-				B206A25F29EFF68600F6574E /* textures */,
-				B206A26029EFF68600F6574E /* fonts */,
-			);
-			path = assets;
-			sourceTree = "<group>";
-		};
-		B206A25F29EFF68600F6574E /* textures */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = textures;
-			sourceTree = "<group>";
-		};
-		B206A26029EFF68600F6574E /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = fonts;
-			sourceTree = "<group>";
-		};
-		B206A26129EFF68600F6574E /* src */ = {
-			isa = PBXGroup;
-			children = (
-				B206A26C29EFF70900F6574E /* chess.cpp */,
-				B206A26D29EFF70900F6574E /* chess.hpp */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		B206A26229EFF68600F6574E /* angry_bird */ = {
-			isa = PBXGroup;
-			children = (
-				B206A26829EFF68600F6574E /* src */,
-				B206A26329EFF68600F6574E /* scenes */,
-				B206A26429EFF68600F6574E /* ini */,
-				B206A26529EFF68600F6574E /* assets */,
+				B201A2F129F285F500D3C1FE /* src */,
+				B201A2DD29F285F500D3C1FE /* scenes */,
+				B201A2DF29F285F500D3C1FE /* assets */,
 			);
 			path = angry_bird;
 			sourceTree = "<group>";
 		};
-		B206A26329EFF68600F6574E /* scenes */ = {
+		B201A2DD29F285F500D3C1FE /* scenes */ = {
 			isa = PBXGroup;
 			children = (
+				B201A2DE29F285F500D3C1FE /* AngryBird.ikanScene */,
 			);
 			path = scenes;
 			sourceTree = "<group>";
 		};
-		B206A26429EFF68600F6574E /* ini */ = {
+		B201A2DF29F285F500D3C1FE /* assets */ = {
 			isa = PBXGroup;
 			children = (
-			);
-			path = ini;
-			sourceTree = "<group>";
-		};
-		B206A26529EFF68600F6574E /* assets */ = {
-			isa = PBXGroup;
-			children = (
-				B206A26629EFF68600F6574E /* textures */,
-				B206A26729EFF68600F6574E /* fonts */,
+				B201A2E029F285F500D3C1FE /* textures */,
+				B201A2E129F285F500D3C1FE /* fonts */,
 			);
 			path = assets;
 			sourceTree = "<group>";
 		};
-		B206A26629EFF68600F6574E /* textures */ = {
+		B201A2E029F285F500D3C1FE /* textures */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = textures;
 			sourceTree = "<group>";
 		};
-		B206A26729EFF68600F6574E /* fonts */ = {
+		B201A2E129F285F500D3C1FE /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				B201A2E229F285F500D3C1FE /* Roboto */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
 		};
-		B206A26829EFF68600F6574E /* src */ = {
+		B201A2E229F285F500D3C1FE /* Roboto */ = {
 			isa = PBXGroup;
 			children = (
-				B206A26929EFF69E00F6574E /* angry_bird.cpp */,
-				B206A26A29EFF69E00F6574E /* angry_bird.hpp */,
+				B201A2E329F285F500D3C1FE /* LightItalic.ttf */,
+				B201A2E429F285F500D3C1FE /* SemiMedium.ttf */,
+				B201A2E529F285F500D3C1FE /* BlackItalic.ttf */,
+				B201A2E629F285F500D3C1FE /* Light.ttf */,
+				B201A2E729F285F500D3C1FE /* Italic.ttf */,
+				B201A2E829F285F500D3C1FE /* MediumItalic.ttf */,
+				B201A2E929F285F500D3C1FE /* BoldItalic.ttf */,
+				B201A2EA29F285F500D3C1FE /* ThinItalic.ttf */,
+				B201A2EB29F285F500D3C1FE /* Medium.ttf */,
+				B201A2EC29F285F500D3C1FE /* Black.ttf */,
+				B201A2ED29F285F500D3C1FE /* Bold.ttf */,
+				B201A2EE29F285F500D3C1FE /* LICENSE.txt */,
+				B201A2EF29F285F500D3C1FE /* Regular.ttf */,
+				B201A2F029F285F500D3C1FE /* Thin.ttf */,
+			);
+			path = Roboto;
+			sourceTree = "<group>";
+		};
+		B201A2F129F285F500D3C1FE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B201A2F229F285F500D3C1FE /* angry_bird.hpp */,
+				B201A2F329F285F500D3C1FE /* angry_bird.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		B201A2F529F285F500D3C1FE /* chess */ = {
+			isa = PBXGroup;
+			children = (
+				B201A30729F285F500D3C1FE /* src */,
+				B201A2F629F285F500D3C1FE /* scenes */,
+				B201A2F829F285F500D3C1FE /* assets */,
+			);
+			path = chess;
+			sourceTree = "<group>";
+		};
+		B201A2F629F285F500D3C1FE /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+				B201A2F729F285F500D3C1FE /* Chess.ikanScene */,
+			);
+			path = scenes;
+			sourceTree = "<group>";
+		};
+		B201A2F829F285F500D3C1FE /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				B201A2F929F285F500D3C1FE /* textures */,
+				B201A2FA29F285F500D3C1FE /* fonts */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		B201A2F929F285F500D3C1FE /* textures */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = textures;
+			sourceTree = "<group>";
+		};
+		B201A2FA29F285F500D3C1FE /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B201A2FB29F285F500D3C1FE /* Opensans */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		B201A2FB29F285F500D3C1FE /* Opensans */ = {
+			isa = PBXGroup;
+			children = (
+				B201A2FC29F285F500D3C1FE /* LightItalic.ttf */,
+				B201A2FD29F285F500D3C1FE /* Light.ttf */,
+				B201A2FE29F285F500D3C1FE /* SemiBold.ttf */,
+				B201A2FF29F285F500D3C1FE /* Italic.ttf */,
+				B201A30029F285F500D3C1FE /* BoldItalic.ttf */,
+				B201A30129F285F500D3C1FE /* ExtraBoldItalic.ttf */,
+				B201A30229F285F500D3C1FE /* ExtraBold.ttf */,
+				B201A30329F285F500D3C1FE /* Bold.ttf */,
+				B201A30429F285F500D3C1FE /* LICENSE.txt */,
+				B201A30529F285F500D3C1FE /* Regular.ttf */,
+				B201A30629F285F500D3C1FE /* SemiBoldItalic.ttf */,
+			);
+			path = Opensans;
+			sourceTree = "<group>";
+		};
+		B201A30729F285F500D3C1FE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B201A30829F285F500D3C1FE /* chess.hpp */,
+				B201A30929F285F500D3C1FE /* chess.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		B201A30A29F285F500D3C1FE /* mario */ = {
+			isa = PBXGroup;
+			children = (
+				B201A31229F285F500D3C1FE /* src */,
+				B201A30B29F285F500D3C1FE /* scenes */,
+				B201A30D29F285F500D3C1FE /* assets */,
+			);
+			path = mario;
+			sourceTree = "<group>";
+		};
+		B201A30B29F285F500D3C1FE /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+				B201A30C29F285F500D3C1FE /* Mario_scene.ikanScene */,
+			);
+			path = scenes;
+			sourceTree = "<group>";
+		};
+		B201A30D29F285F500D3C1FE /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				B201A30E29F285F500D3C1FE /* textures */,
+				B201A31029F285F500D3C1FE /* fonts */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		B201A30E29F285F500D3C1FE /* textures */ = {
+			isa = PBXGroup;
+			children = (
+				B201A30F29F285F500D3C1FE /* tile.png */,
+			);
+			path = textures;
+			sourceTree = "<group>";
+		};
+		B201A31029F285F500D3C1FE /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B201A31129F285F500D3C1FE /* mario.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		B201A31229F285F500D3C1FE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B201A31329F285F500D3C1FE /* mario.cpp */,
+				B201A31429F285F500D3C1FE /* mario.hpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		B201A31529F285F500D3C1FE /* editor */ = {
+			isa = PBXGroup;
+			children = (
+				B201A33629F285F500D3C1FE /* src */,
+				B201A31629F285F500D3C1FE /* scenes */,
+				B201A31829F285F500D3C1FE /* assets */,
+			);
+			path = editor;
+			sourceTree = "<group>";
+		};
+		B201A31629F285F500D3C1FE /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+				B201A31729F285F500D3C1FE /* first_scene.ikanScene */,
+			);
+			path = scenes;
+			sourceTree = "<group>";
+		};
+		B201A31829F285F500D3C1FE /* assets */ = {
+			isa = PBXGroup;
+			children = (
+				B201A31929F285F500D3C1FE /* textures */,
+				B201A31A29F285F500D3C1FE /* fonts */,
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		B201A31929F285F500D3C1FE /* textures */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = textures;
+			sourceTree = "<group>";
+		};
+		B201A31A29F285F500D3C1FE /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B201A31B29F285F500D3C1FE /* Roboto */,
+				B201A32A29F285F500D3C1FE /* Opensans */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		B201A31B29F285F500D3C1FE /* Roboto */ = {
+			isa = PBXGroup;
+			children = (
+				B201A31C29F285F500D3C1FE /* LightItalic.ttf */,
+				B201A31D29F285F500D3C1FE /* SemiMedium.ttf */,
+				B201A31E29F285F500D3C1FE /* BlackItalic.ttf */,
+				B201A31F29F285F500D3C1FE /* Light.ttf */,
+				B201A32029F285F500D3C1FE /* Italic.ttf */,
+				B201A32129F285F500D3C1FE /* MediumItalic.ttf */,
+				B201A32229F285F500D3C1FE /* BoldItalic.ttf */,
+				B201A32329F285F500D3C1FE /* ThinItalic.ttf */,
+				B201A32429F285F500D3C1FE /* Medium.ttf */,
+				B201A32529F285F500D3C1FE /* Black.ttf */,
+				B201A32629F285F500D3C1FE /* Bold.ttf */,
+				B201A32729F285F500D3C1FE /* LICENSE.txt */,
+				B201A32829F285F500D3C1FE /* Regular.ttf */,
+				B201A32929F285F500D3C1FE /* Thin.ttf */,
+			);
+			path = Roboto;
+			sourceTree = "<group>";
+		};
+		B201A32A29F285F500D3C1FE /* Opensans */ = {
+			isa = PBXGroup;
+			children = (
+				B201A32B29F285F500D3C1FE /* LightItalic.ttf */,
+				B201A32C29F285F500D3C1FE /* Light.ttf */,
+				B201A32D29F285F500D3C1FE /* SemiBold.ttf */,
+				B201A32E29F285F500D3C1FE /* Italic.ttf */,
+				B201A32F29F285F500D3C1FE /* BoldItalic.ttf */,
+				B201A33029F285F500D3C1FE /* ExtraBoldItalic.ttf */,
+				B201A33129F285F500D3C1FE /* ExtraBold.ttf */,
+				B201A33229F285F500D3C1FE /* Bold.ttf */,
+				B201A33329F285F500D3C1FE /* LICENSE.txt */,
+				B201A33429F285F500D3C1FE /* Regular.ttf */,
+				B201A33529F285F500D3C1FE /* SemiBoldItalic.ttf */,
+			);
+			path = Opensans;
+			sourceTree = "<group>";
+		};
+		B201A33629F285F500D3C1FE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B201A33729F285F500D3C1FE /* editor.hpp */,
+				B201A33829F285F500D3C1FE /* editor.cpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		B201A33929F285F500D3C1FE /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B201A33C29F285F500D3C1FE /* entry_point.cpp */,
+				B201A33B29F285F500D3C1FE /* kreator_application.hpp */,
+				B201A33A29F285F500D3C1FE /* renderer_layer.hpp */,
+				B201A33D29F285F500D3C1FE /* renderer_layer.cpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -197,13 +446,8 @@
 				B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */,
 				B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */,
 				B292C0F029D1D58700B1E678 /* prefix_headers.pch */,
-				B292BB7329D16F8F00B1E678 /* entry_point */,
-				B2D85BE929E8709C00602232 /* application */,
-				B2BEC7CC29DDBBF3008D3DCB /* leyer */,
-				B2D856D929E867C000602232 /* mario */,
-				B206A26229EFF68600F6574E /* angry_bird */,
-				B206A25B29EFF68600F6574E /* chess */,
-				B2BEC78529DD7A92008D3DCB /* editor */,
+				B201A33929F285F500D3C1FE /* src */,
+				B201A2DA29F285F500D3C1FE /* games */,
 				B292BB7229D16F8F00B1E678 /* Products */,
 				B292C0F129D1D7C400B1E678 /* Frameworks */,
 			);
@@ -217,14 +461,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B292BB7329D16F8F00B1E678 /* entry_point */ = {
-			isa = PBXGroup;
-			children = (
-				B292BB7429D16F8F00B1E678 /* entry_point.cpp */,
-			);
-			path = entry_point;
-			sourceTree = "<group>";
-		};
 		B292C0F129D1D7C400B1E678 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -236,124 +472,6 @@
 				B292C0F229D1D7C400B1E678 /* libikan.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B2BEC78529DD7A92008D3DCB /* editor */ = {
-			isa = PBXGroup;
-			children = (
-				B2D856DD29E867E200602232 /* src */,
-				B2D856D729E8382000602232 /* scenes */,
-				B2BEC78729DD7AA9008D3DCB /* ini */,
-				B2BEC78629DD7AA0008D3DCB /* assets */,
-			);
-			path = editor;
-			sourceTree = "<group>";
-		};
-		B2BEC78629DD7AA0008D3DCB /* assets */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = assets;
-			sourceTree = "<group>";
-		};
-		B2BEC78729DD7AA9008D3DCB /* ini */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ini;
-			sourceTree = "<group>";
-		};
-		B2BEC7CC29DDBBF3008D3DCB /* leyer */ = {
-			isa = PBXGroup;
-			children = (
-				B2BEC7CD29DDBBFF008D3DCB /* renderer_layer.cpp */,
-				B2BEC7CE29DDBBFF008D3DCB /* renderer_layer.hpp */,
-				B2BEC7D029DDC033008D3DCB /* game_data.cpp */,
-				B2BEC7D129DDC033008D3DCB /* game_data.hpp */,
-			);
-			path = leyer;
-			sourceTree = "<group>";
-		};
-		B2D856D729E8382000602232 /* scenes */ = {
-			isa = PBXGroup;
-			children = (
-				B2D856D829E8382000602232 /* first_scene.ikanScene */,
-			);
-			path = scenes;
-			sourceTree = "<group>";
-		};
-		B2D856D929E867C000602232 /* mario */ = {
-			isa = PBXGroup;
-			children = (
-				B2D856DE29E867EA00602232 /* src */,
-				B2D856E129E8680300602232 /* scenes */,
-				B2D856E029E867FF00602232 /* ini */,
-				B2D856DF29E867FA00602232 /* assets */,
-			);
-			path = mario;
-			sourceTree = "<group>";
-		};
-		B2D856DD29E867E200602232 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				B2D856DA29E867D000602232 /* editor.cpp */,
-				B2D856DB29E867D000602232 /* editor.hpp */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		B2D856DE29E867EA00602232 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				B2D856E229E868C600602232 /* mario.cpp */,
-				B2D856E329E868C600602232 /* mario.hpp */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		B2D856DF29E867FA00602232 /* assets */ = {
-			isa = PBXGroup;
-			children = (
-				B2D856E629E868EF00602232 /* fonts */,
-				B2D856E529E868EA00602232 /* textures */,
-			);
-			path = assets;
-			sourceTree = "<group>";
-		};
-		B2D856E029E867FF00602232 /* ini */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ini;
-			sourceTree = "<group>";
-		};
-		B2D856E129E8680300602232 /* scenes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = scenes;
-			sourceTree = "<group>";
-		};
-		B2D856E529E868EA00602232 /* textures */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = textures;
-			sourceTree = "<group>";
-		};
-		B2D856E629E868EF00602232 /* fonts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = fonts;
-			sourceTree = "<group>";
-		};
-		B2D85BE929E8709C00602232 /* application */ = {
-			isa = PBXGroup;
-			children = (
-				B2D85BEB29E870AA00602232 /* kreator_application.hpp */,
-			);
-			path = application;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -413,13 +531,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2D856E429E868C600602232 /* mario.cpp in Sources */,
-				B2BEC7CF29DDBBFF008D3DCB /* renderer_layer.cpp in Sources */,
-				B2BEC7D229DDC033008D3DCB /* game_data.cpp in Sources */,
-				B2D856DC29E867D000602232 /* editor.cpp in Sources */,
-				B206A26B29EFF69E00F6574E /* angry_bird.cpp in Sources */,
-				B206A26E29EFF70900F6574E /* chess.cpp in Sources */,
-				B292BB7529D16F8F00B1E678 /* entry_point.cpp in Sources */,
+				B201A34029F285F500D3C1FE /* chess.cpp in Sources */,
+				B201A33E29F285F500D3C1FE /* angry_bird.cpp in Sources */,
+				B201A34429F285F500D3C1FE /* renderer_layer.cpp in Sources */,
+				B201A34129F285F500D3C1FE /* mario.cpp in Sources */,
+				B201A34329F285F500D3C1FE /* entry_point.cpp in Sources */,
+				B201A33F29F285F500D3C1FE /* game_data.cpp in Sources */,
+				B201A34229F285F500D3C1FE /* editor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

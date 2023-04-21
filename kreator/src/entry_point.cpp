@@ -34,6 +34,8 @@ std::unique_ptr<ikan::Application> CreateApplication() {
   application_spec.resizable = true;
   application_spec.start_maximized = false;
   
+  application_spec.save_ini_file_path = "../../../kreator/ini/kreator.ini";
+
   return std::make_unique<kreator::KreatorApp>(application_spec, kreator::GameType::Mario);
 }
 

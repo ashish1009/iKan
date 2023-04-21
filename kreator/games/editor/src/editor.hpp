@@ -1,30 +1,29 @@
 //
-//  chess.hpp
+//  editor.hpp
 //  kreator
 //
-//  Created by Ashish . on 19/04/23.
+//  Created by Ashish . on 13/04/23.
 //
 
 #pragma once
 
 #include "game_data.hpp"
 
-namespace chess {
+namespace editor {
   
   using namespace kreator;
   using namespace ikan;
   
-  class Chess : public GameData {
+  class Editor : public GameData {
   public:
     void Init(const std::shared_ptr<Scene> scene) override {};
     void Update(Timestep ts) override {}
     void SetViewportSize(uint32_t width, uint32_t height) override {}
 
-    // Game Data API
-    std::string GameName() const override { return "IKAN Chess"; }
+    std::string GameName() const override { return "Kreator Editor"; }
     glm::vec4 GetBgColor() const override { return {0.5f, 0.2f, 0.2f, 1.0f}; }
-    std::string GetScenePath() const override { return DM::WorkspacePath("/kreator/chess/scenes/"); }
-    std::string SavedScene() const override { return GetScenePath() + "Chess.ikanScene"; };
+    std::string GetScenePath() const override { return DM::WorkspacePath("/kreator/games/editor/scenes/"); }
+    std::string SavedScene() const override { return GetScenePath() + "first_scene.ikanScene"; };
     std::string CbpRootDir() const override { return GetScenePath(); };
     std::vector<std::filesystem::path> FavDirecotries() const override {
       return {
@@ -40,4 +39,4 @@ namespace chess {
     };
   };
   
-} // namespace chess
+} // namespace editor
