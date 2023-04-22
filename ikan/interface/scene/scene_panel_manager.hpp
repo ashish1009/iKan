@@ -6,7 +6,7 @@
 //
 
 #pragma once
-#include "core_entity.hpp"
+#include "scene/core_entity.hpp"
 
 namespace ikan {
   

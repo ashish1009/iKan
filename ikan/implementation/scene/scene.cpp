@@ -6,8 +6,8 @@
 //
 
 #include "scene.hpp"
-#include "components.hpp"
-#include "core_entity.hpp"
+#include "scene/components.hpp"
+#include "scene/core_entity.hpp"
 #include "renderer/utils/batch_2d_renderer.hpp"
 
 namespace ikan {

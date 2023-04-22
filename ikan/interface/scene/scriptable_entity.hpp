@@ -8,6 +8,7 @@
 #pragma once
 
 #include "scene/core_entity.hpp"
+
 #include <box2d/b2_contact.h>
 
 namespace ikan {

@@ -6,8 +6,8 @@
 //
 
 #include "core_entity.hpp"
-#include "components.hpp"
-#include "scene_serialiser.hpp"
+#include "scene/components.hpp"
+#include "scene/scene_serialiser.hpp"
 
 namespace ikan {
     

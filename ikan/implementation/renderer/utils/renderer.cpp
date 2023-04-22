@@ -6,11 +6,11 @@
 //
 
 #include "renderer.hpp"
-#include "batch_2d_renderer.hpp"
-#include "text_renderer.hpp"
-#include "renderer_stats.hpp"
-#include "shader.hpp"
-#include "texture.hpp"
+#include "renderer/utils/batch_2d_renderer.hpp"
+#include "renderer/utils/text_renderer.hpp"
+#include "renderer/utils/renderer_stats.hpp"
+#include "renderer/graphics/shader.hpp"
+#include "renderer/graphics/texture.hpp"
 
 namespace ikan {
   

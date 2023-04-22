@@ -7,7 +7,7 @@
 
 #pragma once
 
-#include "components.hpp"
+#include "scene/components.hpp"
 #include <yaml-cpp/yaml.h>
 
 namespace ikan {

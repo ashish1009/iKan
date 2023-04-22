@@ -6,8 +6,8 @@
 //
 
 #include "components.hpp"
-#include "core_entity.hpp"
-#include "property_grid.hpp"
+#include "scene/core_entity.hpp"
+#include "editor.property_grid.hpp"
 
 namespace ikan {
   

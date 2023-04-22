@@ -6,9 +6,9 @@
 //
 
 #include "scene_serialiser.hpp"
-#include "core_entity.hpp"
-#include "components.hpp"
-#include "serialise_entity.hpp"
+#include "scene/core_entity.hpp"
+#include "scene/components.hpp"
+#include "scene/serialise_entity.hpp"
 #include <yaml-cpp/yaml.h>
 
 namespace ikan {

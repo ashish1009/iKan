@@ -18,9 +18,8 @@ namespace ikan {
     Locked = 2
   };
   
-  /// This class is interface for handling the Input. Implementation in Platform specific in Platform
-  /// folder. Resposible for checking the Type of input given to Window or application (Either Key or
-  /// Mouse). polling to be done each frame
+  /// This class is interface for handling the Input. Implementation in Platform specific in Platform folder. Resposible for checking the Type of input
+  /// given to Window or application (Either Key or Mouse). polling to be done each frame
   class Input {
   public:
     /// This function checks if a specific key is pressed, return true if pressed else false

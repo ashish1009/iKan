@@ -6,9 +6,9 @@
 //
 
 #include "core_application.hpp"
-#include "renderer_stats.hpp"
-#include "batch_2d_renderer.hpp"
-#include "text_renderer.hpp"
+#include "renderer/utils/renderer_stats.hpp"
+#include "renderer/utils/batch_2d_renderer.hpp"
+#include "renderer/utils/text_renderer.hpp"
 
 namespace ikan {
   
