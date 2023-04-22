@@ -15,6 +15,8 @@
 		B201A34329F285F500D3C1FE /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A33C29F285F500D3C1FE /* entry_point.cpp */; };
 		B201A34429F285F500D3C1FE /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A33D29F285F500D3C1FE /* renderer_layer.cpp */; };
 		B281E87929DFEF440038A9EE /* libglfw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B281E87829DFEF440038A9EE /* libglfw.a */; };
+		B29016F529F43ED800BB309D /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B29016F329F43ED800BB309D /* common.cpp */; };
+		B29016F829F4401200BB309D /* sprite_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B29016F629F4401200BB309D /* sprite_manager.cpp */; };
 		B292C0F329D1D7C400B1E678 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B292C0F229D1D7C400B1E678 /* libikan.a */; };
 		B2E8D44F29E044A5005F5F0C /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2E8D44E29E044A5005F5F0C /* libfreetype.6.dylib */; };
 		B2E8D45229E0460C005F5F0C /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -110,6 +112,10 @@
 		B228FC7229DB094700455666 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B228FC7429DB094C00455666 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		B281E87829DFEF440038A9EE /* libglfw.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libglfw.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B29016F329F43ED800BB309D /* common.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = common.cpp; sourceTree = "<group>"; };
+		B29016F429F43ED800BB309D /* common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = common.hpp; sourceTree = "<group>"; };
+		B29016F629F4401200BB309D /* sprite_manager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = sprite_manager.cpp; sourceTree = "<group>"; };
+		B29016F729F4401200BB309D /* sprite_manager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = sprite_manager.hpp; sourceTree = "<group>"; };
 		B292BB7129D16F8F00B1E678 /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B292C0F029D1D58700B1E678 /* prefix_headers.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_headers.pch; sourceTree = "<group>"; };
 		B292C0F229D1D7C400B1E678 /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -337,6 +343,10 @@
 			children = (
 				B201A31329F285F500D3C1FE /* mario.cpp */,
 				B201A31429F285F500D3C1FE /* mario.hpp */,
+				B29016F329F43ED800BB309D /* common.cpp */,
+				B29016F429F43ED800BB309D /* common.hpp */,
+				B29016F629F4401200BB309D /* sprite_manager.cpp */,
+				B29016F729F4401200BB309D /* sprite_manager.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -567,8 +577,10 @@
 				B201A33E29F285F500D3C1FE /* angry_bird.cpp in Sources */,
 				B201A34429F285F500D3C1FE /* renderer_layer.cpp in Sources */,
 				B201A34129F285F500D3C1FE /* mario.cpp in Sources */,
+				B29016F529F43ED800BB309D /* common.cpp in Sources */,
 				B201A34329F285F500D3C1FE /* entry_point.cpp in Sources */,
 				B201A33F29F285F500D3C1FE /* game_data.cpp in Sources */,
+				B29016F829F4401200BB309D /* sprite_manager.cpp in Sources */,
 				B201A34229F285F500D3C1FE /* editor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

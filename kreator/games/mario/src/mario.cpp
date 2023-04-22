@@ -6,6 +6,7 @@
 //
 
 #include "mario.hpp"
+#include "sprite_manager.hpp"
 
 namespace mario {
   
@@ -14,10 +15,12 @@ namespace mario {
   Mario::Mario() {
     IK_INFO(MarioLogTag, "Creating Mario Game Data ... ");
     Batch2DRenderer::AddQuadData(2000);
+    SpriteManager::Init();
   }
   
   Mario::~Mario() {
     IK_WARN(MarioLogTag, "Destroying Mario Game Data ... ");
+    SpriteManager::Shutdown();
   }
   
   void Mario::Init(const std::shared_ptr<Scene> scene) {
