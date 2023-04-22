@@ -43,6 +43,8 @@
 		B281E87729DFE3350038A9EE /* scene_camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B281E87529DFE3350038A9EE /* scene_camera.hpp */; };
 		B281E88429E001A70038A9EE /* viewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B281E88229E001A70038A9EE /* viewport.cpp */; };
 		B281E88529E001A70038A9EE /* viewport.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B281E88329E001A70038A9EE /* viewport.hpp */; };
+		B29016E529F3FFDD00BB309D /* ray_cast.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B29016E329F3FFDD00BB309D /* ray_cast.cpp */; };
+		B29016E629F3FFDD00BB309D /* ray_cast.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B29016E429F3FFDD00BB309D /* ray_cast.hpp */; };
 		B292C0E729D1CF7100B1E678 /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B292C0E529D1CF7100B1E678 /* logger.cpp */; };
 		B292C0E829D1CF7100B1E678 /* logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E629D1CF7100B1E678 /* logger.hpp */; };
 		B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E929D1D1BC00B1E678 /* prefix_headers.pch */; };
@@ -204,6 +206,8 @@
 		B281E87529DFE3350038A9EE /* scene_camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = scene_camera.hpp; sourceTree = "<group>"; };
 		B281E88229E001A70038A9EE /* viewport.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = viewport.cpp; sourceTree = "<group>"; };
 		B281E88329E001A70038A9EE /* viewport.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = viewport.hpp; sourceTree = "<group>"; };
+		B29016E329F3FFDD00BB309D /* ray_cast.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ray_cast.cpp; sourceTree = "<group>"; };
+		B29016E429F3FFDD00BB309D /* ray_cast.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ray_cast.hpp; sourceTree = "<group>"; };
 		B292BB8429D184EB00B1E678 /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B292C0E529D1CF7100B1E678 /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		B292C0E629D1CF7100B1E678 /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
@@ -401,6 +405,8 @@
 				B201A2D129F27A3100D3C1FE /* scriptable_entity.hpp */,
 				B201AD6129F29CEB00D3C1FE /* prefab.hpp */,
 				B2592B0229F2C6A20053CBDB /* serialise_entity.hpp */,
+				B29016E329F3FFDD00BB309D /* ray_cast.cpp */,
+				B29016E429F3FFDD00BB309D /* ray_cast.hpp */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -774,6 +780,7 @@
 			files = (
 				B2394A2929D81BDD00D782E5 /* window.hpp in Headers */,
 				B29C830F29DE9B8C0061D182 /* open_gl_pipeline.hpp in Headers */,
+				B29016E629F3FFDD00BB309D /* ray_cast.hpp in Headers */,
 				B2F70CE729DEE94A003163BA /* buffers.hpp in Headers */,
 				B2BEC79B29DD83DC008D3DCB /* layer.hpp in Headers */,
 				B2E8D44229E0335A005F5F0C /* maths.hpp in Headers */,
@@ -984,6 +991,7 @@
 				B281E86429DFDA240038A9EE /* open_gl_framebuffer.cpp in Sources */,
 				B2394A3129D8733500D782E5 /* mac_window.cpp in Sources */,
 				B2BEC78A29DD7C50008D3DCB /* core_application.cpp in Sources */,
+				B29016E529F3FFDD00BB309D /* ray_cast.cpp in Sources */,
 				B2E7141329E43C3C008C8CB1 /* core_entity.cpp in Sources */,
 				B2F91E1929D713FA00860306 /* renderer_api.cpp in Sources */,
 				B2394A2829D81BDD00D782E5 /* window.cpp in Sources */,

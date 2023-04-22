@@ -115,9 +115,12 @@ namespace ikan {
     uint32_t GetNumEntities() const { return num_entities_; }
     /// This function returns the Max Entity ID given to scene
     uint32_t GetMaxEntityId() const { return max_entity_id_; }
-
     /// This function returns the flag of use editor camera
     bool IsEditorCameraEnabled() const { return setting_.use_editor_camera; }
+    
+    /// This function check is entity present in the scene as we delete the entity from scene in other frame
+    /// - Parameter entity: eneity
+    bool IsEntityPresentInMap(entt::entity entity) const;
 
     /// This function create new scene copy the scene data from argument
     /// - Parameter other: copy scene

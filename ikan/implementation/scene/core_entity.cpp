@@ -50,4 +50,6 @@ namespace ikan {
   UUID Entity::GetUUID() const { return GetComponent<IDComponent>().id; }
   const std::string& Entity::GetName() const { return GetComponent<TagComponent>().tag; }
 
+  bool Entity::IsValid(Entity* e) { return e and e->scene_->IsEntityPresentInMap((entt::entity)(*e)); }
+
 } // namespace ikan

@@ -80,6 +80,10 @@ namespace ikan {
       scene_->registry_.remove<T>(entity_handle_);
     }
     
+    /// This function checks the entity e is valid or not
+    /// - Parameter e: entity to be checked
+    static bool IsValid(Entity* e);
+    
     DEFINE_COPY_MOVE_CONSTRUCTORS(Entity);
 
     entt::entity entity_handle_{ entt::null };

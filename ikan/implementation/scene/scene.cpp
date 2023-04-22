@@ -384,4 +384,8 @@ namespace ikan {
     });
   }
 
+  bool Scene::IsEntityPresentInMap(entt::entity entity) const {
+    return entity_id_map_.find(entity) != entity_id_map_.end();
+  }
+
 } // namespace ikan
