@@ -271,6 +271,7 @@ namespace ikan {
       uint32_t type = (uint32_t)rc.type;
       out << YAML::Key << "Type" << YAML::Value << type;
       out << YAML::Key << "Is Ground" << YAML::Value << rc.is_ground;
+      out << YAML::Key << "Is Sensor" << YAML::Value << rc.is_sensor;
       out << YAML::Key << "Fixed Rotation" << YAML::Value << rc.fixed_rotation;
       
       out << YAML::Key << "Linear Velocity" << YAML::Value << rc.velocity;
@@ -468,7 +469,8 @@ namespace ikan {
       rc.type = (RigidBodyComponent::RbBodyType)type;
       rc.fixed_rotation = rigid_body_component["Fixed Rotation"].as<bool>();
       rc.is_ground = rigid_body_component["Is Ground"].as<bool>();
-      
+      rc.is_sensor = rigid_body_component["Is Sensor"].as<bool>();
+
       rc.velocity         = rigid_body_component["Linear Velocity"].as<glm::vec2>();
       rc.angular_damping  = rigid_body_component["Angular Damping"].as<float>();
       rc.angular_velocity = rigid_body_component["Angular Velocity"].as<float>();
@@ -479,6 +481,7 @@ namespace ikan {
       IK_CORE_TRACE(LogModule::EntitySerializer, "      Type             | {0}", type);
       IK_CORE_TRACE(LogModule::EntitySerializer, "      Fixed Rotation   | {0}", rc.fixed_rotation);
       IK_CORE_TRACE(LogModule::EntitySerializer, "      Is Ground        | {0}", rc.is_ground);
+      IK_CORE_TRACE(LogModule::EntitySerializer, "      Is Sensor        | {0}", rc.is_sensor);
       IK_CORE_TRACE(LogModule::EntitySerializer, "      Linear Velocity  | {0} | {1}", rc.velocity.x, rc.velocity.y);
       IK_CORE_TRACE(LogModule::EntitySerializer, "      Angular Velocity | {0}", rc.angular_velocity);
       IK_CORE_TRACE(LogModule::EntitySerializer, "      Linear Damping   | {0}", rc.linear_damping);

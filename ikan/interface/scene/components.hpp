@@ -131,7 +131,7 @@ namespace ikan {
 
     bool is_ground = false;
     bool fixed_rotation = false;
-    bool is_sensor = true;
+    bool is_sensor = false;
     
     glm::vec2 velocity{0, 0};
     float angular_velocity = 0.0f;
