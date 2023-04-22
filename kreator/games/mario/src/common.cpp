@@ -12,12 +12,12 @@ namespace mario {
   
   void MarioPrefab::AddQuadComponent(Entity *entity) {
     if (!entity->HasComponent<QuadComponent>()) {
-      auto& qc = entity->AddComponent<QuadComponent>();
-      qc.sprite.use = true;
-      qc.sprite.type = SpriteComponent::Type::Sprite;
-      qc.sprite.linear_edge = false;
-      qc.sprite.texture = SpriteManager::GetTexture(SpriteType::Player);
-      qc.sprite.sub_texture = nullptr; // SpriteManager::GetPlayerStateSprite(PlayerState::Small, PlayerAction::Idle).at(0);
+//      auto& qc = entity->AddComponent<QuadComponent>();
+//      qc.sprite.use = true;
+//      qc.sprite.type = SpriteComponent::Type::Sprite;
+//      qc.sprite.linear_edge = false;
+//      qc.sprite.texture = SpriteManager::GetTexture(SpriteType::Player);
+//      qc.sprite.sub_texture = nullptr; // SpriteManager::GetPlayerStateSprite(PlayerState::Small, PlayerAction::Idle).at(0);
     }
   }
   

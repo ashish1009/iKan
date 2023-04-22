@@ -211,14 +211,11 @@ namespace ikan {
       
       auto& qc = entity.GetComponent<QuadComponent>();
       out << YAML::Key << "Texture_Use" << YAML::Value << qc.sprite.use;
-      out << YAML::Key << "Type" << YAML::Value << (uint32_t)qc.sprite.type;
+      out << YAML::Key << "Sub_Texture_Use" << YAML::Value << qc.sprite.use_sub_texture;
       out << YAML::Key << "Linear_Edge" << YAML::Value << qc.sprite.linear_edge;
       
       if (qc.sprite.texture) {
         out << YAML::Key << "Texture_Path" << YAML::Value << qc.sprite.texture->GetfilePath();
-        out << YAML::Key << "Coords" << YAML::Value << qc.sprite.sub_texture->GetCoords();
-        out << YAML::Key << "Sprite_Size" << YAML::Value << qc.sprite.sub_texture->GetSpriteSize();
-        out << YAML::Key << "Cell_Size" << YAML::Value << qc.sprite.sub_texture->GetCellSize();
       }
       else {
         out << YAML::Key << "Texture_Path" << YAML::Value << "";
@@ -392,17 +389,12 @@ namespace ikan {
       auto& qc = deserialized_entity.AddComponent<QuadComponent>();
       
       qc.sprite.use = quad_component["Texture_Use"].as<bool>();
-      qc.sprite.type = (SpriteComponent::Type)(quad_component["Type"].as<uint32_t>());
+      qc.sprite.use_sub_texture = quad_component["Sub_Texture_Use"].as<bool>();
       qc.sprite.linear_edge = quad_component["Linear_Edge"].as<bool>();
       
       std::string texture_path = quad_component["Texture_Path"].as<std::string>();
       if (texture_path != "") {
-        qc.sprite.texture = Renderer::GetTexture(texture_path, qc.sprite.linear_edge);
-        
-        const glm::vec2& coords = quad_component["Coords"].as<glm::vec2>();
-        const glm::vec2& sprite_size = quad_component["Sprite_Size"].as<glm::vec2>();
-        const glm::vec2& cell_size = quad_component["Cell_Size"].as<glm::vec2>();
-        qc.sprite.sub_texture = SubTexture::CreateFromCoords(qc.sprite.texture, coords, sprite_size, cell_size);
+        qc.sprite.texture = Renderer::GetTexture(texture_path, qc.sprite.linear_edge);        
       }
       
       qc.sprite.tiling_factor = quad_component["Texture_TilingFactor"].as<float>();

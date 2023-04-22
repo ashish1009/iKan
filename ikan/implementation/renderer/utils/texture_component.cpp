@@ -40,26 +40,24 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::Texture, "Creating SpriteComponent");
     use = use_tex;
     texture = tex;
-    if (texture) sub_texture = SubTexture::CreateFromCoords(texture, {0.0f, 0.0f});
+    if (texture) sprite_images.emplace_back(SubTexture::CreateFromCoords(texture, {0.0f, 0.0f}));
   }
   
   SpriteComponent::~SpriteComponent() {
     IK_CORE_TRACE(LogModule::Texture, "Destroying SpriteComponent");
-    sub_texture.reset();
     ClearSprites();
   }
   
   SpriteComponent::SpriteComponent(const SpriteComponent& other)
   : linear_edge(other.linear_edge) {
     use = other.use;
+    use_sub_texture = other.use_sub_texture;
     speed = other.speed;
-    type = other.type;
     anim_idx = other.anim_idx;
     LoadTexture(other);
     
     for (const auto& sprite : other.sprite_images) {
-      sprite_images.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
-                                                     sprite->GetSpriteSize(), sprite->GetCellSize()));
+      sprite_images.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(), sprite->GetSpriteSize(), sprite->GetCellSize()));
     }
     IK_CORE_TRACE(LogModule::Texture, "Copying SpriteComponent");
   }
@@ -67,8 +65,8 @@ namespace ikan {
   SpriteComponent::SpriteComponent(SpriteComponent&& other)
   : linear_edge(other.linear_edge) {
     use = other.use;
+    use_sub_texture = other.use_sub_texture;
     speed = other.speed;
-    type = other.type;
     anim_idx = other.anim_idx;
     LoadTexture(other);
         
@@ -81,9 +79,9 @@ namespace ikan {
   
   SpriteComponent& SpriteComponent::operator=(const SpriteComponent& other) {
     use = other.use;
+    use_sub_texture = other.use_sub_texture;
     speed = other.speed;
     linear_edge = other.linear_edge;
-    type = other.type;
     anim_idx = other.anim_idx;
     LoadTexture(other);
     
@@ -97,9 +95,9 @@ namespace ikan {
   
   SpriteComponent& SpriteComponent::operator=(SpriteComponent&& other) {
     use = other.use;
+    use_sub_texture = other.use_sub_texture;
     linear_edge = other.linear_edge;
     speed = other.speed;
-    type = other.type;
     anim_idx = other.anim_idx;
     LoadTexture(other);
     
@@ -113,14 +111,12 @@ namespace ikan {
   
   void SpriteComponent::LoadTexture(const SpriteComponent& other) {
     texture = nullptr;
-    sub_texture = nullptr;
+    ClearSprites();
     
     if (other.texture) {
       texture = Renderer::GetTexture(other.texture->GetfilePath(), other.linear_edge);
-      if (other.sub_texture) {
-        sub_texture = SubTexture::CreateFromCoords(texture, other.sub_texture->GetCoords(),
-                                                   other.sub_texture->GetSpriteSize(),
-                                                   other.sub_texture->GetCellSize());
+      for (const auto& sprite : other.sprite_images) {
+        sprite_images.emplace_back(SubTexture::CreateFromCoords(texture, sprite->GetCoords(), sprite->GetSpriteSize(), sprite->GetCellSize()));
       }
     }
   }
@@ -128,15 +124,17 @@ namespace ikan {
   void SpriteComponent::ChangeLinearTexture() {
     // Need to copy so not using reference as texture will deleted
     const std::string tex_path = texture->GetfilePath();
-    const glm::vec2 coords = sub_texture->GetCoords();
-    const glm::vec2 sprite_size = sub_texture->GetSpriteSize();
-    const glm::vec2 cell_size = sub_texture->GetCellSize();
     
     texture.reset();
-    sub_texture.reset();
-    
     texture = Renderer::GetTexture(tex_path, linear_edge);
-    sub_texture = SubTexture::CreateFromCoords(texture, coords, sprite_size, cell_size);
+    
+    for (auto& sprite : sprite_images) {
+      const glm::vec2 coords = sprite->GetCoords();
+      const glm::vec2 sprite_size = sprite->GetSpriteSize();
+      const glm::vec2 cell_size = sprite->GetCellSize();
+
+      sprite = SubTexture::CreateFromCoords(texture, coords, sprite_size, cell_size);
+    }
   }
   
 } // namespace ikan
