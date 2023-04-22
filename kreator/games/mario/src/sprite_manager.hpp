@@ -22,6 +22,10 @@ namespace mario {
     /// This function shutdowns the sprite manager with all the sprite texture data
     static void Shutdown();
     
+    /// This function returns the texture of a sprite type
+    /// - Parameter type: sprite type to return the texture
+    static std::shared_ptr<Texture> GetTexture(SpriteType type);
+
     MAKE_PURE_STATIC(SpriteManager);
   };
   

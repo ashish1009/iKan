@@ -29,4 +29,10 @@ namespace mario {
     data_.reset();
   }
   
+  std::shared_ptr<Texture> SpriteManager::GetTexture(SpriteType type) {
+    if (data_ and data_->texture_map.find(type) != data_->texture_map.end())
+      return data_->texture_map.at(type);
+    return nullptr;
+  }
+
 } // namespace mario
