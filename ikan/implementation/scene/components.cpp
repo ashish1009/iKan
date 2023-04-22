@@ -187,7 +187,8 @@ x& x::operator=(x&& other) { \
 
   void RigidBodyComponent::Copy(const RigidBodyComponent &other) {
     type = other.type;
-    is_ground =  other.is_ground;
+    is_ground = other.is_ground;
+    is_sensor = other.is_sensor;
     fixed_rotation =  other.fixed_rotation;
     velocity =  other.velocity;
     angular_velocity =  other.angular_velocity;
@@ -197,6 +198,14 @@ x& x::operator=(x&& other) { \
     runtime_body = other.runtime_body;
   }
   
+  b2BodyType RigidBodyComponent::B2BodyType(RigidBodyComponent::RbBodyType type) {
+    switch (type) {
+      case RbBodyType::Static: return b2BodyType::b2_staticBody;
+      case RbBodyType::Kinametic: return b2BodyType::b2_kinematicBody;
+      case RbBodyType::Dynamic: return b2BodyType::b2_dynamicBody;
+      default: IK_ASSERT(false);
+    }
+  }
   void RigidBodyComponent::RenderGui() {
     RbBodyType new_body_type = RbBodyType(PropertyGrid::ComboDrop("Rigid Body Type", { "Static" , "Kinamatic", "Dynamic" }, (uint32_t)type));
     
@@ -218,7 +227,8 @@ x& x::operator=(x&& other) { \
     
     ImGui::Separator();
     PropertyGrid::CheckBox("Is Ground", is_ground);
-    
+    PropertyGrid::CheckBox("Is Sensor", is_sensor);
+
     if (type != RbBodyType::Static) {
       PropertyGrid::CheckBox("Fixed Rotation", fixed_rotation);
     }

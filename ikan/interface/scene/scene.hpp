@@ -20,6 +20,10 @@ namespace ikan {
   
   class Entity;
   struct TransformComponent;
+  struct Box2DColliderComponent;
+  struct CircleColliiderComponent;
+  struct RigidBodyComponent;
+  struct PillBoxColliderComponent;
 
   struct SceneCameraData {
     SceneCamera* scene_camera = nullptr;
@@ -93,6 +97,12 @@ namespace ikan {
     /// - Parameter type: type of scene
     void SetType(Type type);
 
+    /// This function adds the Rigid body to the physics worlds
+    /// - Parameters:
+    ///   - entity: Entity
+    ///   - rb2d: Rigid Body reference
+    void AddBodyToPhysicsWorld(Entity entity, RigidBodyComponent& rb2d);
+
     /// This function returns the entity Ref from its id
     /// - Parameter id: entity ID
     Entity* GetEnitityFromId(int32_t id);
@@ -161,17 +171,47 @@ namespace ikan {
     /// This function renders the 2D Entities
     /// - Parameter came_view_proj_mat: camera view projection matrix
     void Render2DEntities(const glm::mat4& came_view_proj_mat);
-
     /// This function updates the primary camera data
     void UpdatePrimaryCameraData();
-
     /// This functuion Insantiates all the native script
     /// - Parameter ts: time step of each frame
     void InstantiateScript(Timestep ts);
-
     /// This function starts the runtime physics
     void RuntimeStart();
 
+    /// This function reset the ficture in body
+    /// - Parameter body:
+    static void ResetFixture(b2Body* body);
+
+    /// This function add the box collider data to worlds body
+    /// - Parameters:
+    ///   - tc: transform of entity
+    ///   - bc2d: box data
+    ///   - body: body
+    ///   - is_pill: Is Pill Box
+    static void AddBoxColliderData(const TransformComponent& tc, const Box2DColliderComponent& bc2d, const RigidBodyComponent& rb2d,
+                                   bool is_pill = false);
+    /// This function add the circle collider data to worlds body
+    /// - Parameters:
+    ///   - tc: transform of entity
+    ///   - cc2d: circlw data
+    ///   - body: body
+    ///   - is_pill: is Pill Box
+    static void AddCircleColliderData(const TransformComponent& tc, const CircleColliiderComponent& cc2d, const RigidBodyComponent& rb2d,
+                                      bool is_pill = false);
+    
+    /// This function add the circle collider data to worlds body
+    /// - Parameters:
+    ///   - tc: transform of entity
+    ///   - cc2d: circlw data
+    ///   - body: body
+    ///   - is_pill: is Pill Box
+    static void AddPillColliderData(const TransformComponent& tc, const PillBoxColliderComponent& pbc, const RigidBodyComponent& rb2d);
+    
+    /// This function returns the fxture size of body
+    /// - Parameter body: physics body
+    static int32_t FixtureListSize(b2Body* body);
+    
     // Member Variables
     // Utils Data
     std::string file_path_ = "Unsaved_Scene", name_ = "Unsaved_Scene";

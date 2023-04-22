@@ -10,6 +10,10 @@
 #include "scene/core_entity.hpp"
 #include "renderer/utils/batch_2d_renderer.hpp"
 
+#include <box2d/b2_polygon_shape.h>
+#include <box2d/b2_circle_shape.h>
+#include <box2d/b2_fixture.h>
+
 namespace ikan {
   
   template<typename... Component>
@@ -159,6 +163,39 @@ namespace ikan {
     IK_CORE_WARN(LogModule::Scene, "  ID      {0}", entity.GetComponent<IDComponent>().id);
     IK_CORE_WARN(LogModule::Scene, "  Number of entities left in the Scene  {0}", --num_entities_);
    
+    if (type_ == _2D) {
+      // Delete physics data
+      if (physics_2d_world_ and entity.HasComponent<RigidBodyComponent>()) {
+        auto& rb = entity.GetComponent<RigidBodyComponent>();
+        ResetFixture((b2Body*)rb.runtime_body);
+        
+        physics_2d_world_->DestroyBody((b2Body*)rb.runtime_body);
+        rb.runtime_body = nullptr;
+      }
+      
+      if (entity.HasComponent<CircleColliiderComponent>()) {
+        auto& cc = entity.GetComponent<CircleColliiderComponent>();
+        delete cc.runtime_fixture;
+        cc.runtime_fixture = nullptr;
+      }
+      
+      if (entity.HasComponent<Box2DColliderComponent>()) {
+        auto& bc = entity.GetComponent<Box2DColliderComponent>();
+        delete bc.runtime_fixture;
+        bc.runtime_fixture = nullptr;
+      }
+      
+      if (entity.HasComponent<PillBoxColliderComponent>()) {
+        auto& pbc = entity.GetComponent<PillBoxColliderComponent>();
+        delete pbc.bcc.runtime_fixture;
+        pbc.bcc.runtime_fixture = nullptr;
+        delete pbc.top_ccc.runtime_fixture;
+        pbc.top_ccc.runtime_fixture = nullptr;
+        delete pbc.bottom_ccc.runtime_fixture;
+        pbc.bottom_ccc.runtime_fixture = nullptr;
+      }
+    }
+    
     // Delete the eneity from the map
     entity_id_map_.erase(entity);
     registry_.destroy(entity);
@@ -326,6 +363,13 @@ namespace ikan {
       physics_2d_world_ = std::make_shared<b2World>(b2Vec2(0.0f, -9.8f));
       contact_listner_2d_ = std::make_shared<ContactListner2D>();
       physics_2d_world_->SetContactListener(contact_listner_2d_.get());
+      
+      auto view = registry_.view<RigidBodyComponent>();
+      for (auto e : view) {
+        Entity entity = { e, this };
+        auto& rb2d = entity.GetComponent<RigidBodyComponent>();
+        AddBodyToPhysicsWorld(entity,rb2d);
+      }
     }
   }
   
@@ -385,9 +429,110 @@ namespace ikan {
       }
     });
   }
-
-  bool Scene::IsEntityPresentInMap(entt::entity entity) const {
-    return entity_id_map_.find(entity) != entity_id_map_.end();
+  
+  int32_t Scene::FixtureListSize(b2Body* body) {
+    int32_t size = 0;
+    b2Fixture* fixture = body->GetFixtureList();
+    while (fixture) {
+      size++;
+      fixture = fixture->GetNext();
+    }
+    return size;
   }
+
+  void Scene::ResetFixture(b2Body* body) {
+    int32_t size = FixtureListSize(body);
+    for (int32_t i = 0; i < size; i++) {
+      body->DestroyFixture(body->GetFixtureList());
+    }
+  }
+  
+  void Scene::AddBoxColliderData(const TransformComponent& tc, const Box2DColliderComponent& bc2d, const RigidBodyComponent& rb2d, bool is_pill) {
+    b2Body* body = (b2Body*)rb2d.runtime_body;
+    b2PolygonShape polygon_shape;
+    if (is_pill)
+      polygon_shape.SetAsBox(bc2d.size.x, bc2d.size.y, {bc2d.offset.x, bc2d.offset.y}, 0);
+    else
+      polygon_shape.SetAsBox(bc2d.size.x * tc.Scale().x, bc2d.size.y * tc.Scale().y, {bc2d.offset.x, bc2d.offset.y}, 0);
+    
+    b2FixtureDef fixture_def;
+    fixture_def.shape = & polygon_shape;
+    fixture_def.density = bc2d.physics_mat.density;
+    fixture_def.friction = bc2d.physics_mat.friction;
+    fixture_def.restitution = bc2d.physics_mat.restitution;
+    fixture_def.restitutionThreshold = bc2d.physics_mat.restitution_threshold;
+    fixture_def.isSensor = rb2d.is_sensor;
+    fixture_def.userData.pointer = (uintptr_t)bc2d.runtime_fixture;
+    
+    body->CreateFixture(&fixture_def);
+  }
+  
+  void Scene::AddCircleColliderData(const TransformComponent& tc, const CircleColliiderComponent& cc2d, const RigidBodyComponent& rb2d, bool is_pill) {
+    b2Body* body = (b2Body*)rb2d.runtime_body;
+    b2CircleShape circle_shape;
+    circle_shape.m_p.Set(cc2d.offset.x, cc2d.offset.y);
+    if (is_pill)
+      circle_shape.m_radius = cc2d.radius;
+    else
+      circle_shape.m_radius = std::abs(tc.Scale().x) * cc2d.radius;
+    
+    b2FixtureDef fixture_def;
+    fixture_def.shape = & circle_shape;
+    fixture_def.density = cc2d.physics_mat.density;
+    fixture_def.friction = cc2d.physics_mat.friction;
+    fixture_def.restitution = cc2d.physics_mat.restitution;
+    fixture_def.restitutionThreshold = cc2d.physics_mat.restitution_threshold;
+    fixture_def.isSensor = rb2d.is_sensor;
+    fixture_def.userData.pointer = (uintptr_t)cc2d.runtime_fixture;
+    
+    body->CreateFixture(&fixture_def);
+  }
+  
+  void Scene::AddPillColliderData(const TransformComponent &tc, const PillBoxColliderComponent &pbc, const RigidBodyComponent& rb2d) {
+    AddBoxColliderData(tc, pbc.bcc, rb2d, true);
+    AddCircleColliderData(tc, pbc.top_ccc, rb2d, true);
+    AddCircleColliderData(tc, pbc.bottom_ccc, rb2d, true);
+  }
+  
+  void Scene::AddBodyToPhysicsWorld(Entity entity, RigidBodyComponent& rb2d) {
+    auto& transform = entity.GetComponent<TransformComponent>();
+
+    b2BodyDef body_def;
+    body_def.type = RigidBodyComponent::B2BodyType(rb2d.type);
+    body_def.position.Set(transform.Position().x, transform.Position().y);
+    body_def.angle = transform.Rotation().z;
+    
+    body_def.linearVelocity = {rb2d.velocity.x, rb2d.velocity.y};
+    body_def.angularVelocity = rb2d.angular_velocity;
+    body_def.linearDamping = rb2d.linear_damping;
+    body_def.angularDamping = rb2d.angular_damping;
+    body_def.gravityScale = rb2d.gravity_scale;
+
+    b2Body* body = physics_2d_world_->CreateBody(&body_def);
+    body->SetFixedRotation(rb2d.fixed_rotation);
+    rb2d.runtime_body = body;
+
+    if (entity.HasComponent<Box2DColliderComponent>()) {
+      auto& bc2d = entity.GetComponent<Box2DColliderComponent>();
+      bc2d.runtime_fixture = new Entity(entity);
+      AddBoxColliderData(transform, bc2d, rb2d);
+    }
+    
+    if (entity.HasComponent<CircleColliiderComponent>()) {
+      auto& cc2d = entity.GetComponent<CircleColliiderComponent>();
+      cc2d.runtime_fixture = new Entity(entity);
+      AddCircleColliderData(transform, cc2d, rb2d);
+    }
+    
+    if (entity.HasComponent<PillBoxColliderComponent>()) {
+      auto& pbc = entity.GetComponent<PillBoxColliderComponent>();
+      pbc.bcc.runtime_fixture = new Entity(entity);
+      pbc.top_ccc.runtime_fixture = new Entity(entity);
+      pbc.bottom_ccc.runtime_fixture = new Entity(entity);
+      AddPillColliderData(transform, pbc, rb2d);
+    }
+  }
+
+  bool Scene::IsEntityPresentInMap(entt::entity entity) const { return entity_id_map_.find(entity) != entity_id_map_.end(); }
 
 } // namespace ikan

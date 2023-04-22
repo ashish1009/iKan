@@ -131,6 +131,7 @@ namespace ikan {
 
     bool is_ground = false;
     bool fixed_rotation = false;
+    bool is_sensor = true;
     
     glm::vec2 velocity{0, 0};
     float angular_velocity = 0.0f;
@@ -144,6 +145,8 @@ namespace ikan {
     void RenderGui();
     RigidBodyComponent();
     ~RigidBodyComponent();
+    
+    static b2BodyType B2BodyType(RbBodyType type);
     DEFINE_COPY_MOVE_CONSTRUCTORS(RigidBodyComponent);
   };
   
