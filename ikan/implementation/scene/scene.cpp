@@ -112,6 +112,8 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::Scene, "  Path               {0}", file_path_);
     IK_CORE_TRACE(LogModule::Scene, "  Name               {0}", name_);
     IK_CORE_TRACE(LogModule::Scene, "  Registry Capacity  {0}", curr_registry_capacity);
+    
+    RemoveRuntimeFixtureToColliders();
   }
   
   Entity& Scene::CreateEntity(const std::string& name, UUID uuid) {
@@ -446,6 +448,36 @@ namespace ikan {
     int32_t size = FixtureListSize(body);
     for (int32_t i = 0; i < size; i++) {
       body->DestroyFixture(body->GetFixtureList());
+    }
+  }
+  
+  void Scene::RemoveRuntimeFixtureToColliders() {
+    // Store the Entity in each box collider
+    auto box_view = registry_.view<Box2DColliderComponent>();
+    for (auto e : box_view) {
+      auto &c = box_view.get<Box2DColliderComponent>(e);
+      delete c.runtime_fixture;
+      c.runtime_fixture = nullptr;
+    }
+    
+    // Store the Entity in each circle collider
+    auto circle_view = registry_.view<CircleColliiderComponent>();
+    for (auto e : circle_view) {
+      auto &c = circle_view.get<CircleColliiderComponent>(e);
+      delete c.runtime_fixture;
+      c.runtime_fixture = nullptr;
+    }
+    
+    auto pill_view = registry_.view<PillBoxColliderComponent>();
+    for (auto e : pill_view) {
+      auto &c = pill_view.get<PillBoxColliderComponent>(e);
+      
+      delete c.bcc.runtime_fixture;
+      c.bcc.runtime_fixture = nullptr;
+      delete c.top_ccc.runtime_fixture;
+      c.top_ccc.runtime_fixture = nullptr;
+      delete c.bottom_ccc.runtime_fixture;
+      c.bottom_ccc.runtime_fixture = nullptr;
     }
   }
   

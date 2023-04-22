@@ -180,6 +180,9 @@ namespace ikan {
     /// This function starts the runtime physics
     void RuntimeStart();
 
+    /// This function removes the runtime fixture from colliders
+    void RemoveRuntimeFixtureToColliders();
+    
     /// This function reset the ficture in body
     /// - Parameter body:
     static void ResetFixture(b2Body* body);
