@@ -9,13 +9,24 @@
 
 namespace mario {
   
+  static const std::string MarioLogTag = "Mario";
+  
+  Mario::Mario() {
+    IK_INFO(MarioLogTag, "Creating Mario Game Data ... ");
+    Batch2DRenderer::AddQuadData(2000);
+  }
+  
+  Mario::~Mario() {
+    IK_WARN(MarioLogTag, "Destroying Mario Game Data ... ");
+  }
+  
   void Mario::Init(const std::shared_ptr<Scene> scene) {
     scene_ = scene;
     
-    Batch2DRenderer::AddQuadData(1000);
-    
     timer_ = 0;
     time_left_ = MaxTime;
+    
+    SearchOrCreatePlayer();
   }
   
   void Mario::Update(Timestep ts) {
@@ -45,6 +56,28 @@ namespace mario {
     text_data_.Render(std::to_string(time_left_), 1, 3);
     
     TextRenderer::EndBatch();
+  }
+  
+  void Mario::SearchOrCreatePlayer() {
+    const std::string player_name = "Mario Player";
+    bool found_player = false;
+    Entity player_entity;
+
+    // Search for Player in current scene
+    auto tag_view = scene_->GetEntitesWith<TagComponent>();
+    for (auto entity : tag_view) {
+      const auto& player_tag = tag_view.get<TagComponent>(entity).tag;
+      // - Note: This has to be the payer Name in the game
+      if (player_tag == player_name) {
+        found_player = true;
+        player_entity = Entity(entity, scene_.get());
+        break;
+      }
+    }
+    
+    if (!found_player) {
+      player_entity = scene_->CreateEntity(player_name);
+    }
   }
   
   void Mario::SetViewportSize(uint32_t width, uint32_t height) {

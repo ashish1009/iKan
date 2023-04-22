@@ -41,6 +41,9 @@ namespace mario {
   
   class Mario : public GameData {
   public:
+    Mario();
+    virtual ~Mario();
+
     void Init(const std::shared_ptr<Scene> scene) override;
     void Update(Timestep ts) override;
     void SetViewportSize(uint32_t width, uint32_t height) override;
@@ -62,6 +65,10 @@ namespace mario {
     };
 
   private:
+    /// This function Finds the player entity "Named as Mario Player". And add the player Controller with its entity. If not created then it creates one
+    /// with all the required components
+    void SearchOrCreatePlayer();
+
     std::shared_ptr<Scene> scene_;
     TextData text_data_;
 
