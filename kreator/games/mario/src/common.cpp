@@ -11,7 +11,7 @@
 
 namespace mario {
   
-  void MarioPrefab::AddQuad(Entity *entity, TextureRef tex, const std::vector<SubTextureRef>& sprites) {
+  QuadComponent* MarioPrefab::AddQuad(Entity *entity, TextureRef tex, const std::vector<SubTextureRef>& sprites) {
     QuadComponent* qc = GET_COMPONENT(QuadComponent);
     
     qc->sprite.use = true;
@@ -27,20 +27,23 @@ namespace mario {
         qc->sprite.sprite_images.emplace_back(sprite);
       }
     }
+    return qc;
   }
   
-  void MarioPrefab::AddRigidBody(Entity *entity, RigidBodyComponent::RbBodyType type, bool fixed_rotation) {
+  RigidBodyComponent* MarioPrefab::AddRigidBody(Entity *entity, RigidBodyComponent::RbBodyType type, bool fixed_rotation) {
     RigidBodyComponent* rbc = GET_COMPONENT(RigidBodyComponent);
     rbc->type = type;
     rbc->fixed_rotation = fixed_rotation;
+    return rbc;
   }
   
-  void MarioPrefab::AddPillBoxCollider(Entity *entity, float width, float height, const glm::vec2& offset) {
+  PillBoxColliderComponent* MarioPrefab::AddPillBoxCollider(Entity *entity, float width, float height, const glm::vec2& offset) {
     PillBoxColliderComponent* pbc = GET_COMPONENT(PillBoxColliderComponent);
     pbc->width = width;
     pbc->height = height;
     pbc->offset = offset;
     pbc->RecalculateColliders();
+    return pbc;
   }
   
 } // namespace ikan

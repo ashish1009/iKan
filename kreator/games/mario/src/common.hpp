@@ -16,9 +16,9 @@ namespace mario {
   
   class MarioPrefab {
   public:
-    static void AddQuad(Entity* entity, TextureRef tex, const std::vector<SubTextureRef>& sprites);
-    static void AddRigidBody(Entity* entity, RigidBodyComponent::RbBodyType type, bool fixed_rotation);
-    static void AddPillBoxCollider(Entity* entity, float width = 0.5f, float height = 0.5f, const glm::vec2& offset = glm::vec2(0.0f));
+    static QuadComponent* AddQuad(Entity* entity, TextureRef tex, const std::vector<SubTextureRef>& sprites);
+    static RigidBodyComponent* AddRigidBody(Entity* entity, RigidBodyComponent::RbBodyType type, bool fixed_rotation);
+    static PillBoxColliderComponent* AddPillBoxCollider(Entity* entity, float width = 0.5f, float height = 0.5f, const glm::vec2& offset = glm::vec2(0.0f));
     MAKE_PURE_STATIC(MarioPrefab);
   };
   
