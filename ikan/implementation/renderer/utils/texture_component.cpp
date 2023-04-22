@@ -56,9 +56,6 @@ namespace ikan {
     anim_idx = other.anim_idx;
     LoadTexture(other);
     
-    for (const auto& sprite : other.sprite_images) {
-      sprite_images.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(), sprite->GetSpriteSize(), sprite->GetCellSize()));
-    }
     IK_CORE_TRACE(LogModule::Texture, "Copying SpriteComponent");
   }
   
@@ -70,10 +67,6 @@ namespace ikan {
     anim_idx = other.anim_idx;
     LoadTexture(other);
         
-    for (const auto& sprite : other.sprite_images) {
-      sprite_images.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
-                                                     sprite->GetSpriteSize(), sprite->GetCellSize()));
-    }
     IK_CORE_TRACE(LogModule::Texture, "Moving SpriteComponent");
   }
   
@@ -85,10 +78,6 @@ namespace ikan {
     anim_idx = other.anim_idx;
     LoadTexture(other);
     
-    for (const auto& sprite : other.sprite_images) {
-      sprite_images.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
-                                                     sprite->GetSpriteSize(), sprite->GetCellSize()));
-    }
     IK_CORE_TRACE(LogModule::Texture, "Copying SpriteComponent (=operator)");
     return *this;
   }
@@ -101,10 +90,6 @@ namespace ikan {
     anim_idx = other.anim_idx;
     LoadTexture(other);
     
-    for (const auto& sprite : other.sprite_images) {
-      sprite_images.push_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
-                                                     sprite->GetSpriteSize(), sprite->GetCellSize()));
-    }
     IK_CORE_TRACE(LogModule::Texture, "Moving SpriteComponent (=operator)");
     return *this;
   }
@@ -116,7 +101,8 @@ namespace ikan {
     if (other.texture) {
       texture = Renderer::GetTexture(other.texture->GetfilePath(), other.linear_edge);
       for (const auto& sprite : other.sprite_images) {
-        sprite_images.emplace_back(SubTexture::CreateFromCoords(texture, sprite->GetCoords(), sprite->GetSpriteSize(), sprite->GetCellSize()));
+        sprite_images.emplace_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
+                                                                sprite->GetSpriteSize(), sprite->GetCellSize()));
       }
     }
   }

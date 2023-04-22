@@ -129,6 +129,8 @@ namespace ikan {
           SubtextureGui();
         } // if Sub texture
       } // If Use Texture
+      
+      ImGui::Columns(1);
     }
     
   private:
