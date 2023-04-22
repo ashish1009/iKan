@@ -6,18 +6,29 @@
 //
 
 #include "common.hpp"
-#include "sprite_manager.hpp"
 
 namespace mario {
   
-  void MarioPrefab::AddQuadComponent(Entity *entity) {
+  void MarioPrefab::AddQuadComponent(Entity *entity, TextureRef tex, const std::vector<SubTextureRef>& sprites) {
+    QuadComponent* qc;
     if (!entity->HasComponent<QuadComponent>()) {
-//      auto& qc = entity->AddComponent<QuadComponent>();
-//      qc.sprite.use = true;
-//      qc.sprite.type = SpriteComponent::Type::Sprite;
-//      qc.sprite.linear_edge = false;
-//      qc.sprite.texture = SpriteManager::GetTexture(SpriteType::Player);
-//      qc.sprite.sub_texture = nullptr; // SpriteManager::GetPlayerStateSprite(PlayerState::Small, PlayerAction::Idle).at(0);
+      qc = &(entity->AddComponent<QuadComponent>());
+    } else {
+      qc = &(entity->GetComponent<QuadComponent>());
+    }
+    
+    qc->sprite.use = true;
+    qc->sprite.use_sub_texture = true;
+    qc->sprite.linear_edge = false;
+    
+    qc->sprite.texture.reset();
+    qc->sprite.texture = tex;
+    
+    qc->sprite.ClearSprites();
+    for (const auto& sprite : sprites) {
+      if (sprite) {
+        qc->sprite.sprite_images.emplace_back(sprite);
+      }
     }
   }
   

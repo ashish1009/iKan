@@ -7,6 +7,7 @@
 
 #include "mario.hpp"
 #include "sprite_manager.hpp"
+#include "player.hpp"
 
 namespace mario {
   
@@ -81,6 +82,10 @@ namespace mario {
     if (!found_player) {
       player_entity = scene_->CreateEntity(player_name);
     }
+    
+    MarioPrefab::AddQuadComponent(&player_entity,
+                                  SpriteManager::GetTexture(SpriteType::Player),
+                                  SpriteManager::GetPlayerSprite(PlayerState::Small, PlayerAction::Idle));
   }
   
   void Mario::SetViewportSize(uint32_t width, uint32_t height) {
