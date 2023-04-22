@@ -86,7 +86,8 @@ namespace ikan {
     void SetViewport(uint32_t width, uint32_t height);
 
     /// This function sets the Scene as play mode
-    void PlayScene();
+    /// - Parameter reset_physics: flag to reset Physics
+    void PlayScene(bool reset_physics);
     /// This function sets the Scene as edit mode
     void EditScene();
 

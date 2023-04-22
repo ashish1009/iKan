@@ -213,11 +213,11 @@ namespace kreator {
                 
         if (active_scene_->IsEditing()) {
           SaveScene();
-          SceneStateButton();
           Prefab::Loader(&setting_.prefab_loader.flag);
         }
 
         RenderViewport();
+        SceneStateButton();
         SceneRendererType();
         ShowSettings();
       }
@@ -413,23 +413,29 @@ namespace kreator {
       PlayScene();
     }
     else {
-      EditScene();
+      StopScene();
     }
   }
 
   void RendererLayer::PlayScene() {
-    active_scene_ = Scene::Copy(editor_scene_);
+    bool reset_physcs = false;
+    if (start_from_begin_) {
+      active_scene_ = Scene::Copy(editor_scene_);
+      reset_physcs = true;
+    }
+    
     spm_.SetSceneContext(active_scene_.get());
     
     game_data_->Init(active_scene_);
     game_data_->SetPlaying(true);
 
-    active_scene_->PlayScene();
+    active_scene_->PlayScene(reset_physcs);
   }
   
   void RendererLayer::EditScene() {
     game_data_->SetPlaying(false);
     active_scene_->EditScene();
+    start_from_begin_ = false;
   }
 
   void RendererLayer::StopScene() {
@@ -440,6 +446,7 @@ namespace kreator {
     game_data_->SetPlaying(false);
 
     active_scene_->EditScene();
+    start_from_begin_ = true;
   }
   
   void RendererLayer::NewScene(const std::string& scene_path) {

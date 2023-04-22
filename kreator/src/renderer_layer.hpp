@@ -151,6 +151,7 @@ namespace kreator {
     uint32_t viewport_width_ = Application::Get().GetWindow().GetWidth();
     uint32_t viewport_height_ = Application::Get().GetWindow().GetWidth();
 
+    bool start_from_begin_ = true;
     bool is_playing_ = false;
     bool show_setting_ = true;
     std::unique_ptr<GameData> game_data_;

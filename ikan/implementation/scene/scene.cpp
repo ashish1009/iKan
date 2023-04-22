@@ -102,7 +102,7 @@ namespace ikan {
     if (state_ == State::Edit)
       EditScene();
     else if (state_ == State::Play)
-      PlayScene();
+      PlayScene(false);
     else
       IK_ASSERT(false, "Invalid State");
   }
@@ -352,10 +352,12 @@ namespace ikan {
     }
   }
 
-  void Scene::PlayScene() {
+  void Scene::PlayScene(bool reset_physics) {
     IK_CORE_TRACE(LogModule::Scene, "Scene is Set to Play");
     state_ = State::Play;
-    RuntimeStart();
+    
+    if (reset_physics)
+      RuntimeStart();
   }
   
   void Scene::RuntimeStart() {
