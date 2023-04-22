@@ -35,4 +35,6 @@ namespace mario {
     MAKE_PURE_STATIC(SpriteManager);
   };
   
+  using SM = SpriteManager;
+  
 } // namespace mario
