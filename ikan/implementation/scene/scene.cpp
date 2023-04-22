@@ -324,6 +324,8 @@ namespace ikan {
   void Scene::RuntimeStart() {
     if (type_ == _2D) {
       physics_2d_world_ = std::make_shared<b2World>(b2Vec2(0.0f, -9.8f));
+      contact_listner_2d_ = std::make_shared<ContactListner2D>();
+      physics_2d_world_->SetContactListener(contact_listner_2d_.get());
     }
   }
   

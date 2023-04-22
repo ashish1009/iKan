@@ -10,6 +10,7 @@
 #include <entt.hpp>
 #include <box2d/b2_world.h>
 
+#include "physics/contact_listener.hpp"
 #include "core/utils/time_step.h"
 #include "core/events/event.h"
 #include "camera/editor_camera.hpp"
@@ -193,7 +194,8 @@ namespace ikan {
     
     // Physics
     std::shared_ptr<b2World> physics_2d_world_;
-    
+    std::shared_ptr<b2ContactListener> contact_listner_2d_;
+
     friend class SceneSerializer;
     friend class ScenePanelManager;
     friend class Entity;

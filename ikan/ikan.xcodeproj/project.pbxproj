@@ -45,6 +45,8 @@
 		B281E88529E001A70038A9EE /* viewport.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B281E88329E001A70038A9EE /* viewport.hpp */; };
 		B29016E529F3FFDD00BB309D /* ray_cast.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B29016E329F3FFDD00BB309D /* ray_cast.cpp */; };
 		B29016E629F3FFDD00BB309D /* ray_cast.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B29016E429F3FFDD00BB309D /* ray_cast.hpp */; };
+		B29016F129F4030900BB309D /* contact_listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B29016EF29F4030900BB309D /* contact_listener.cpp */; };
+		B29016F229F4030900BB309D /* contact_listener.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B29016F029F4030900BB309D /* contact_listener.hpp */; };
 		B292C0E729D1CF7100B1E678 /* logger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B292C0E529D1CF7100B1E678 /* logger.cpp */; };
 		B292C0E829D1CF7100B1E678 /* logger.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E629D1CF7100B1E678 /* logger.hpp */; };
 		B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */ = {isa = PBXBuildFile; fileRef = B292C0E929D1D1BC00B1E678 /* prefix_headers.pch */; };
@@ -208,6 +210,8 @@
 		B281E88329E001A70038A9EE /* viewport.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = viewport.hpp; sourceTree = "<group>"; };
 		B29016E329F3FFDD00BB309D /* ray_cast.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ray_cast.cpp; sourceTree = "<group>"; };
 		B29016E429F3FFDD00BB309D /* ray_cast.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ray_cast.hpp; sourceTree = "<group>"; };
+		B29016EF29F4030900BB309D /* contact_listener.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = contact_listener.cpp; sourceTree = "<group>"; };
+		B29016F029F4030900BB309D /* contact_listener.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = contact_listener.hpp; sourceTree = "<group>"; };
 		B292BB8429D184EB00B1E678 /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B292C0E529D1CF7100B1E678 /* logger.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = logger.cpp; sourceTree = "<group>"; };
 		B292C0E629D1CF7100B1E678 /* logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = logger.hpp; sourceTree = "<group>"; };
@@ -405,8 +409,6 @@
 				B201A2D129F27A3100D3C1FE /* scriptable_entity.hpp */,
 				B201AD6129F29CEB00D3C1FE /* prefab.hpp */,
 				B2592B0229F2C6A20053CBDB /* serialise_entity.hpp */,
-				B29016E329F3FFDD00BB309D /* ray_cast.cpp */,
-				B29016E429F3FFDD00BB309D /* ray_cast.hpp */,
 			);
 			path = scene;
 			sourceTree = "<group>";
@@ -425,6 +427,24 @@
 				B2592B0129F2C6A20053CBDB /* serialise_entity.cpp */,
 			);
 			path = scene;
+			sourceTree = "<group>";
+		};
+		B29016ED29F402E900BB309D /* physics */ = {
+			isa = PBXGroup;
+			children = (
+				B29016E429F3FFDD00BB309D /* ray_cast.hpp */,
+				B29016F029F4030900BB309D /* contact_listener.hpp */,
+			);
+			path = physics;
+			sourceTree = "<group>";
+		};
+		B29016EE29F402F600BB309D /* physics */ = {
+			isa = PBXGroup;
+			children = (
+				B29016E329F3FFDD00BB309D /* ray_cast.cpp */,
+				B29016EF29F4030900BB309D /* contact_listener.cpp */,
+			);
+			path = physics;
 			sourceTree = "<group>";
 		};
 		B292BB7B29D184EB00B1E678 = {
@@ -477,6 +497,7 @@
 				B292C0EE29D1D47000B1E678 /* ikan_headers.h */,
 				B292C0E329D1CF6200B1E678 /* core */,
 				B281E87D29E001880038A9EE /* scene */,
+				B29016ED29F402E900BB309D /* physics */,
 				B2F91E0A29D70F9300860306 /* renderer */,
 				B20FF40629DDE97900FB3DB7 /* editor */,
 				B281E86629DFE05C0038A9EE /* camera */,
@@ -525,6 +546,7 @@
 			children = (
 				B2BEC4E429DD65C9008D3DCB /* core */,
 				B281E88129E0019D0038A9EE /* scene */,
+				B29016EE29F402F600BB309D /* physics */,
 				B2BEC4E529DD65D6008D3DCB /* renderer */,
 				B20FF40A29DDE98500FB3DB7 /* editor */,
 				B281E86729DFE0640038A9EE /* camera */,
@@ -825,6 +847,7 @@
 				B295D89A29E6D02B00A40956 /* scene_panel_manager.hpp in Headers */,
 				B2E7141429E43C3C008C8CB1 /* core_entity.hpp in Headers */,
 				B228FC6F29DB071300455666 /* graphics_context.hpp in Headers */,
+				B29016F229F4030900BB309D /* contact_listener.hpp in Headers */,
 				B281E86F29DFE1630038A9EE /* editor_camera.hpp in Headers */,
 				B29C832129DEB7140061D182 /* open_gl_renderer_buffer.hpp in Headers */,
 				B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */,
@@ -965,6 +988,7 @@
 			files = (
 				B295DB8629E6D6B400A40956 /* scene_serialiser.cpp in Sources */,
 				B2F70CD429DED19B003163BA /* dump_table.cpp in Sources */,
+				B29016F129F4030900BB309D /* contact_listener.cpp in Sources */,
 				B2BEC79E29DD8479008D3DCB /* layer_stack.cpp in Sources */,
 				B281E87229DFE2080038A9EE /* mac_input.cpp in Sources */,
 				B29C832029DEB7140061D182 /* open_gl_renderer_buffer.cpp in Sources */,
