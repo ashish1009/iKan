@@ -110,6 +110,32 @@ namespace ikan {
     
     ImGui::Separator();
 
+    // Show the Primary Camera Entity
+    auto camera_view = scene_context_->registry_.view<CameraComponent>();
+    for (auto& entity : camera_view) {
+      const auto& camera_component = camera_view.get<CameraComponent>(entity);
+      if (camera_component.is_primary) {
+        ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_SpanAvailWidth |
+        ((selected_entity_ and *selected_entity_ == entity) ? ImGuiTreeNodeFlags_Selected : 0);
+        
+        Entity camera_entity = Entity(entity, scene_context_);
+        const std::string& tag = camera_entity.GetComponent<TagComponent>().tag;
+        bool opened = ImGui::TreeNodeEx((void*)(tag.c_str()), flags, tag.c_str());
+        
+        // Left Click Feature. Update the selected entity if item is clicked
+        if (ImGui::IsItemClicked() or ImGui::IsItemClicked(1))
+          SetSelectedEntity(scene_context_->GetEnitityFromId((int32_t)entity));
+
+        if (opened) {
+          // TODO: Add Feature
+          ImGui::TreePop();
+        }
+        ImGui::Separator();
+        break;
+      }
+    }
+
+    // Show All the entities
     scene_context_->registry_.each([&](auto entity_id)
                                    {
       const std::string& tag = scene_context_->registry_.get<TagComponent>(entity_id).tag;
