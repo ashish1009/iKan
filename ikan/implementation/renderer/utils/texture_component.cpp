@@ -124,6 +124,9 @@ namespace ikan {
   }
   
   void SpriteComponent::SubtextureGui() {
+    if (sprite_images.size() == 0)
+      return;
+    
     static Type type = Type::Sprite;
     ImGui::PushID("Animation/Sprite");
     
