@@ -103,6 +103,9 @@ namespace ikan {
     ///   - entity: Entity
     ///   - rb2d: Rigid Body reference
     void AddBodyToPhysicsWorld(Entity entity, RigidBodyComponent& rb2d);
+    /// This function Update the physics each frame
+    /// - Parameter ts: time step
+    void UpdatePhysics(Timestep ts);
 
     /// This function returns the entity Ref from its id
     /// - Parameter id: entity ID

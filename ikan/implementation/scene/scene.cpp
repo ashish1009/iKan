@@ -227,6 +227,7 @@ namespace ikan {
     }
     else {
       InstantiateScript(ts);
+      UpdatePhysics(ts);
       UpdateRuntime(ts);
     }
   }
@@ -254,6 +255,34 @@ namespace ikan {
       else if (type_ == _3D) {
       }
     }
+  }
+  
+  void Scene::UpdatePhysics(Timestep ts) {
+    if (type_ == _2D) {
+      // Physics
+      const int32_t velocity_iteration = 6;
+      const int32_t position_iteration = 2;
+      
+      physics_2d_world_->Step(ts, velocity_iteration, position_iteration);
+      
+      // Get Transform
+      auto view = registry_.view<RigidBodyComponent>();
+      for (auto e : view) {
+        Entity& entity = entity_id_map_.at(e);
+        
+        auto& rb2d = entity.GetComponent<RigidBodyComponent>();
+        if (rb2d.type == RigidBodyComponent::RbBodyType::Dynamic or rb2d.type == RigidBodyComponent::RbBodyType::Kinametic) {
+          auto& transform = entity.GetComponent<TransformComponent>();
+          b2Body* body = (b2Body*)rb2d.runtime_body;
+          if (body != nullptr) {
+            const auto& position = body->GetPosition();
+            
+            transform.UpdateRotation(Z, body->GetAngle());
+            transform.UpdatePosition({position.x, position.y, transform.Position().z});
+          }
+        } // if (rb2d.type == b2_dynamicBody or rb2d.type == b2_kinematicBody)
+      } // for (auto e : view)
+    } // if (type_ == _2D)
   }
   
   void Scene::Render2DEntities(const glm::mat4& cam_view_proj_mat) {
