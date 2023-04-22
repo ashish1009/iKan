@@ -318,6 +318,13 @@ namespace ikan {
   void Scene::PlayScene() {
     IK_CORE_TRACE(LogModule::Scene, "Scene is Set to Play");
     state_ = State::Play;
+    RuntimeStart();
+  }
+  
+  void Scene::RuntimeStart() {
+    if (type_ == _2D) {
+      physics_2d_world_ = std::make_shared<b2World>(b2Vec2(0.0f, -9.8f));
+    }
   }
   
   void Scene::EditScene() {

@@ -8,6 +8,8 @@
 #pragma once
 
 #include <entt.hpp>
+#include <box2d/b2_world.h>
+
 #include "core/utils/time_step.h"
 #include "core/events/event.h"
 #include "camera/editor_camera.hpp"
@@ -163,23 +165,32 @@ namespace ikan {
     /// - Parameter ts: time step of each frame
     void InstantiateScript(Timestep ts);
 
+    /// This function starts the runtime physics
+    void RuntimeStart();
+
     // Member Variables
+    // Utils Data
     std::string file_path_ = "Unsaved_Scene", name_ = "Unsaved_Scene";
     
+    // EnTT data
     entt::registry registry_;
     std::unordered_map<entt::entity, Entity> entity_id_map_;
-
     uint32_t num_entities_ = 0;
     int32_t max_entity_id_ = -1;
     uint32_t curr_registry_capacity = 0;
 
+    // Scene Data
     State state_ = State::Edit;
     Type type_ = Type::_2D;
-    SceneCameraData primary_camera_data_;
-
-    EditorCamera editor_camera_;
     Setting setting_;
-
+    
+    // Camera Data
+    SceneCameraData primary_camera_data_;
+    EditorCamera editor_camera_;
+    
+    // Physics
+    std::shared_ptr<b2World> physics_2d_world_;
+    
     friend class SceneSerializer;
     friend class ScenePanelManager;
     friend class Entity;

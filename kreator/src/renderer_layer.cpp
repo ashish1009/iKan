@@ -213,11 +213,11 @@ namespace kreator {
                 
         if (active_scene_->IsEditing()) {
           SaveScene();
+          SceneStateButton();
           Prefab::Loader(&setting_.prefab_loader.flag);
         }
 
         RenderViewport();
-        SceneStateButton();
         SceneRendererType();
         ShowSettings();
       }
