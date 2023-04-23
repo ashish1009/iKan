@@ -8,18 +8,11 @@
 #pragma once
 
 #include "common.hpp"
+#include "player_state_machine.hpp"
 
 namespace mario {
   
   using namespace ikan;
-  
-  enum class PlayerAction {
-    Invalid, Idle, Run, SwitchSide, Jump, Die, PowerUp
-  };
-  
-  enum class PlayerState {
-    Invalid, Small, Big, Fire
-  };
     
   class PlayerController : public ScriptableEntity {
   public:

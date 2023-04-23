@@ -15,6 +15,7 @@
 		B201A34329F285F500D3C1FE /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A33C29F285F500D3C1FE /* entry_point.cpp */; };
 		B201A34429F285F500D3C1FE /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A33D29F285F500D3C1FE /* renderer_layer.cpp */; };
 		B281E87929DFEF440038A9EE /* libglfw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B281E87829DFEF440038A9EE /* libglfw.a */; };
+		B28C139529F552F700AB96AE /* player_state_machine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B28C139329F552F700AB96AE /* player_state_machine.cpp */; };
 		B28D3A8B29F46EB10022E3DC /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B28D3A8929F46EB10022E3DC /* player.cpp */; };
 		B29016F529F43ED800BB309D /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B29016F329F43ED800BB309D /* common.cpp */; };
 		B29016F829F4401200BB309D /* sprite_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B29016F629F4401200BB309D /* sprite_manager.cpp */; };
@@ -113,6 +114,8 @@
 		B228FC7229DB094700455666 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B228FC7429DB094C00455666 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		B281E87829DFEF440038A9EE /* libglfw.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libglfw.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B28C139329F552F700AB96AE /* player_state_machine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = player_state_machine.cpp; sourceTree = "<group>"; };
+		B28C139429F552F700AB96AE /* player_state_machine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = player_state_machine.hpp; sourceTree = "<group>"; };
 		B28D3A8929F46EB10022E3DC /* player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
 		B28D3A8A29F46EB10022E3DC /* player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
 		B29016F329F43ED800BB309D /* common.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = common.cpp; sourceTree = "<group>"; };
@@ -352,6 +355,8 @@
 				B29016F729F4401200BB309D /* sprite_manager.hpp */,
 				B28D3A8929F46EB10022E3DC /* player.cpp */,
 				B28D3A8A29F46EB10022E3DC /* player.hpp */,
+				B28C139329F552F700AB96AE /* player_state_machine.cpp */,
+				B28C139429F552F700AB96AE /* player_state_machine.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -580,6 +585,7 @@
 			files = (
 				B201A34029F285F500D3C1FE /* chess.cpp in Sources */,
 				B201A33E29F285F500D3C1FE /* angry_bird.cpp in Sources */,
+				B28C139529F552F700AB96AE /* player_state_machine.cpp in Sources */,
 				B201A34429F285F500D3C1FE /* renderer_layer.cpp in Sources */,
 				B201A34129F285F500D3C1FE /* mario.cpp in Sources */,
 				B29016F529F43ED800BB309D /* common.cpp in Sources */,
