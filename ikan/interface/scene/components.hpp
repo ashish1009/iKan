@@ -142,7 +142,9 @@ namespace ikan {
     void* runtime_body = nullptr;
     
     void SetGravityScale(float scale);
-    
+    void SetVelocity(const glm::vec2& vel);
+    void SetAngularVelocity(float ang_vel);
+
     void Copy(const RigidBodyComponent& other);
     void RenderGui();
     RigidBodyComponent();

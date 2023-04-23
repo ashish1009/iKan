@@ -213,6 +213,18 @@ x& x::operator=(x&& other) { \
       ((b2Body*)runtime_body)->SetGravityScale(gravity_scale);
     }
   }
+  
+  void RigidBodyComponent::SetVelocity(const glm::vec2& vel) {
+    if (runtime_body == nullptr)  return;
+    velocity = vel;
+    ((b2Body*)runtime_body)->SetLinearVelocity({velocity.x, velocity.y});
+  }
+  
+  void RigidBodyComponent::SetAngularVelocity(float ang_vel) {
+    if (runtime_body == nullptr)  return;
+    angular_velocity = ang_vel;
+    ((b2Body*)runtime_body)->SetAngularVelocity(angular_velocity);
+  }
 
   void RigidBodyComponent::RenderGui() {
     RbBodyType new_body_type = RbBodyType(PropertyGrid::ComboDrop("Rigid Body Type", { "Static" , "Kinamatic", "Dynamic" }, (uint32_t)type));

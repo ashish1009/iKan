@@ -134,7 +134,9 @@ namespace ikan {
     uint32_t GetMaxEntityId() const { return max_entity_id_; }
     /// This function returns the flag of use editor camera
     bool IsEditorCameraEnabled() const { return setting_.use_editor_camera; }
-    
+    /// This function returns the Pgysics 2D Gravity
+    b2Vec2 Get2DWorldGravity() const { return physics_2d_world_->GetGravity(); }
+
     /// This function check is entity present in the scene as we delete the entity from scene in other frame
     /// - Parameter entity: eneity
     bool IsEntityPresentInMap(entt::entity entity) const;

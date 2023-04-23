@@ -30,7 +30,21 @@ namespace mario {
   }
   
   void PlayerController::Update(Timestep ts) {
+    // Check the player is landed on some A body which is ground
     CheckOnGround();
+    
+    // Poll the button for Running the jumping. If not jumping then land the player
+    JumpAndLand(ts);
+    
+    // Add Velocity to player body
+    velocity_.x += acceleration_.x * ts * 2.0f;
+    velocity_.y += acceleration_.y * ts * 2.0f;
+    
+    velocity_.x = std::max(std::min(velocity_.x, terminal_velocity_.x), -terminal_velocity_.x);
+    velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
+    
+    rbc_->SetVelocity(velocity_);
+    rbc_->SetAngularVelocity(0.0f);
   }
   
   void PlayerController::BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
@@ -67,6 +81,16 @@ namespace mario {
     y_val -= 0.02f;
     
     on_ground_ = entity_.scene_->CheckOnGround(&entity_, inner_player_width, y_val);
+  }
+  
+  void PlayerController::JumpAndLand(Timestep ts) {
+    if (!on_ground_) {
+      // Free fall with scene gravity
+      acceleration_.y = entity_.scene_->Get2DWorldGravity().y * free_fall_factor;
+      
+      // Player State is Jumping if player is on Air
+      state_machine_->SetAction(PlayerAction::Jump);
+    }
   }
   
   void PlayerController::Copy(void* script) {
