@@ -30,17 +30,16 @@ namespace mario {
     return qc;
   }
   
-  RigidBodyComponent* MarioPrefab::AddRigidBody(Entity *entity, RigidBodyComponent::RbBodyType type, bool fixed_rotation) {
+  RigidBodyComponent* MarioPrefab::AddRigidBody(Entity *entity, RigidBodyComponent::RbBodyType type) {
     RigidBodyComponent* rbc = GET_COMPONENT(RigidBodyComponent);
     rbc->type = type;
-    rbc->fixed_rotation = fixed_rotation;
     return rbc;
   }
   
-  PillBoxColliderComponent* MarioPrefab::AddPillBoxCollider(Entity *entity, float width, float height, const glm::vec2& offset) {
+  PillBoxColliderComponent* MarioPrefab::AddPillBoxCollider(Entity *entity, const glm::vec2& size, const glm::vec2& offset) {
     PillBoxColliderComponent* pbc = GET_COMPONENT(PillBoxColliderComponent);
-    pbc->width = width;
-    pbc->height = height;
+    pbc->width = size.x;
+    pbc->height = size.y;
     pbc->offset = offset;
     pbc->RecalculateColliders();
     return pbc;

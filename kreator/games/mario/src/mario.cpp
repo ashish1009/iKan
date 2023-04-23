@@ -79,12 +79,14 @@ namespace mario {
       }
     }
     
+    // Create new player if not found
     if (!found_player) {
       player_entity = scene_->CreateEntity(player_name);
     }
     
+    // Add Essentials Components
     MarioPrefab::AddQuad(&player_entity, SM::GetTexture(SpriteType::Player), SM::GetPlayerSprite(PlayerState::Small, PlayerAction::Idle));
-    MarioPrefab::AddRigidBody(&player_entity, RigidBodyComponent::RbBodyType::Dynamic, true);
+    MarioPrefab::AddRigidBody(&player_entity, RigidBodyComponent::RbBodyType::Dynamic);
     MarioPrefab::AddPillBoxCollider(&player_entity, 0.4f);
   }
   
