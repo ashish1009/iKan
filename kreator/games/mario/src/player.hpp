@@ -33,6 +33,13 @@ namespace mario {
     static PlayerController* Get() { return instance_; }
 
   private:
+    /// This function wraps the state machine change state, also update the size of plyaer entity based on state
+    /// - Parameter new_state: new state
+    void SetState(PlayerState new_state);
+
+    // Size of player
+    float width_ = 1.0f, height_ = 1.0f;
+
     std::shared_ptr<StateMachine> state_machine_;
     static PlayerController* instance_;
   };
