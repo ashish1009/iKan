@@ -13,6 +13,15 @@
 
 namespace ikan {
   
+#define ScriptLoader(x, ...) \
+  [=](NativeScriptComponent* sc, const std::string& script_name) {  \
+    if (script_name == #x) {                                        \
+      sc->Bind<x>(__VA_ARGS__);                                     \
+      return true;                                                  \
+    }                                                               \
+    return false;                                                   \
+  }
+  
   class NativeScriptComponent;
   
   // Using Typedefs

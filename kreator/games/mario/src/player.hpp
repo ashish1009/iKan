@@ -21,7 +21,7 @@ namespace mario {
     Invalid, Small, Big, Fire
   };
   
-  class PlayerController : ScriptableEntity {
+  class PlayerController : public ScriptableEntity {
   public:
     PlayerController();
     ~PlayerController();

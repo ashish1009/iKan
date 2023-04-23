@@ -89,7 +89,9 @@ namespace mario {
     // Add Essentials Components
     MarioPrefab::AddQuad(&player_entity, SM::GetTexture(SpriteType::Player), SM::GetPlayerSprite(PlayerState::Small, PlayerAction::Idle));
     MarioPrefab::AddRigidBody(&player_entity, RigidBodyComponent::RbBodyType::Dynamic);
-    MarioPrefab::AddPillBoxCollider(&player_entity, {0.4f, 0.5f});    
+    MarioPrefab::AddPillBoxCollider(&player_entity, {0.4f, 0.5f});
+    
+    MarioPrefab::AddScript<mario::PlayerController>(&player_entity, "mario::PlayerController", ScriptLoader(mario::PlayerController));
   }
   
   void Mario::SetViewportSize(uint32_t width, uint32_t height) {
