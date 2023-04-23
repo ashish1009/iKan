@@ -334,7 +334,8 @@ namespace kreator {
     PropertyGrid::CheckBox("Use Editor Camera", active_scene_->GetSetting().use_editor_camera, 3 * ImGui::GetWindowContentRegionMax().x / 4);
     if (active_scene_->GetSetting().use_editor_camera)
       PropertyGrid::CheckBox("Show Editor Camera", active_scene_->GetSetting().editor_camera, 3 * ImGui::GetWindowContentRegionMax().x / 4);
-    
+    PropertyGrid::CheckBox("Scene Debug Draw", active_scene_->GetSetting().debug_draw);
+
     ImGui::Separator();
     PropertyGrid::CheckBox("Entity Panel", spm_.GetSetting().scene_panel, 3 * ImGui::GetWindowContentRegionMax().x / 4);
     PropertyGrid::CheckBox("Property Panel", spm_.GetSetting().property_panel, 3 * ImGui::GetWindowContentRegionMax().x / 4);

@@ -30,7 +30,7 @@ namespace mario {
   }
   
   void PlayerController::Update(Timestep ts) {
-    
+    CheckOnGround();
   }
   
   void PlayerController::BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
@@ -59,6 +59,14 @@ namespace mario {
       // Do Nothing for Fire for now
     }
     entity_.GetComponent<TransformComponent>().UpdateScale(Y, height_);
+  }
+  
+  void PlayerController::CheckOnGround() {
+    float inner_player_width = width_ * 0.6f;
+    float y_val = -(height_ / 2);
+    y_val -= 0.02f;
+    
+    on_ground_ = entity_.scene_->CheckOnGround(&entity_, inner_player_width, y_val);
   }
   
   void PlayerController::Copy(void* script) {

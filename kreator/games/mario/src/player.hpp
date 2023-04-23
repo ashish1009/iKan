@@ -36,6 +36,11 @@ namespace mario {
     /// This function wraps the state machine change state, also update the size of plyaer entity based on state
     /// - Parameter new_state: new state
     void SetState(PlayerState new_state);
+    /// This function checks the player hits the ground rigid body
+    void CheckOnGround();
+
+    // Member Variables
+    bool on_ground_ = false;
 
     // Size of player
     float width_ = 1.0f, height_ = 1.0f;

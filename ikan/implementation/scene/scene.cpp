@@ -598,6 +598,39 @@ namespace ikan {
       AddPillColliderData(transform, pbc, rb2d);
     }
   }
+  
+  bool Scene::CheckOnGround(Entity* entity, float width, float height) {
+    const glm::vec2& position = glm::vec2(entity->GetComponent<TransformComponent>().Position());
+    glm::vec2 ray_cast_1_begin = position;
+    ray_cast_1_begin -= glm::vec2(width / 2.0f, 0.0f);
+    
+    glm::vec2 ray_cast_1_end = ray_cast_1_begin + glm::vec2(0.0f, height);
+    std::shared_ptr<RayCast2DInfo> info_1 = RayCast2D(entity, {ray_cast_1_begin.x, ray_cast_1_begin.y}, {ray_cast_1_end.x, ray_cast_1_end.y});
+    
+    
+    glm::vec2 ray_cast_2_begin = ray_cast_1_begin + glm::vec2(width, 0.0f);
+    glm::vec2 ray_cast_2_end = ray_cast_1_end + glm::vec2(width, 0.0f);
+    
+    std::shared_ptr<RayCast2DInfo> info_2 = RayCast2D(entity, {ray_cast_2_begin.x, ray_cast_2_begin.y}, {ray_cast_2_end.x, ray_cast_2_end.y});
+    
+    bool on_ground = info_1->OnGround() or info_2->OnGround();
+    
+    if (setting_.debug_draw) {
+      const auto& cd = primary_camera_data_;
+      Batch2DRenderer::BeginBatch(cd.scene_camera->GetProjection() * glm::inverse(cd.transform_matrix));
+      Batch2DRenderer::DrawLine(glm::vec3(ray_cast_1_begin, 0.0f), glm::vec3(ray_cast_1_end, 0.0f), {0, 1, 0, 1});
+      Batch2DRenderer::DrawLine(glm::vec3(ray_cast_2_begin, 0.0f), glm::vec3(ray_cast_2_end, 0.0f), {0, 1, 0, 1});
+      Batch2DRenderer::EndBatch();
+    }
+    
+    return on_ground;
+  }
+
+  std::shared_ptr<RayCast2DInfo> Scene::RayCast2D(Entity* requesting_obj, const glm::vec2& hit_point, const glm::vec2& normal) {
+    std::shared_ptr<RayCast2DInfo> callback = std::make_shared<RayCast2DInfo>(requesting_obj);
+    physics_2d_world_->RayCast(callback.get(), { hit_point.x, hit_point.y }, { normal.x, normal.y });
+    return callback;
+  }
 
   bool Scene::IsEntityPresentInMap(entt::entity entity) const { return entity_id_map_.find(entity) != entity_id_map_.end(); }
 

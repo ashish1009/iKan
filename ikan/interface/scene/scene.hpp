@@ -11,6 +11,7 @@
 #include <box2d/b2_world.h>
 
 #include "physics/contact_listener.hpp"
+#include "physics/ray_cast.hpp"
 #include "core/utils/time_step.h"
 #include "core/events/event.h"
 #include "camera/editor_camera.hpp"
@@ -47,6 +48,7 @@ namespace ikan {
     };
 
     struct Setting {
+      bool debug_draw = true;
       bool use_editor_camera = true;
       bool editor_camera = true;
     };
@@ -137,6 +139,19 @@ namespace ikan {
     /// - Parameter entity: eneity
     bool IsEntityPresentInMap(entt::entity entity) const;
 
+    /// This function checks the position is on ground or not
+    /// - Parameters:
+    ///   - entity: entity pointer
+    ///   - width: width of entity
+    ///   - height: height of entity
+    bool CheckOnGround(Entity* entity, float width, float height);
+    /// This function callback the world raycast
+    /// - Parameters:
+    ///   - requesting_obj: requesting object type
+    ///   - hit_point: hit point
+    ///   - normal: normal of ray
+    std::shared_ptr<RayCast2DInfo> RayCast2D(Entity* requesting_obj, const glm::vec2& hit_point, const glm::vec2& normal);
+    
     /// This function create new scene copy the scene data from argument
     /// - Parameter other: copy scene
     static std::shared_ptr<Scene> Copy(std::shared_ptr<Scene> other);
