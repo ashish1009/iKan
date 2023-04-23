@@ -21,7 +21,9 @@ namespace mario {
   }
   
   void PlayerController::Create(Entity entity) {
-    
+    entity_ = entity;
+    rbc_ = &(GetComponent<RigidBodyComponent>());
+    rbc_->SetGravityScale(0.0f);
   }
   
   void PlayerController::Update(Timestep ts) {

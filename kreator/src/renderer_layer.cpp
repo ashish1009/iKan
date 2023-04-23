@@ -450,11 +450,15 @@ namespace kreator {
   }
   
   void RendererLayer::NewScene(const std::string& scene_path) {
+    if (!start_from_begin_) return;
+    
     IK_TRACE(game_data_->GameName(), "Creating New Scene {0}", scene_path.c_str());
     NewSceneImpl(scene_path);
   }
 
   void RendererLayer::NewSceneImpl(const std::string& scene_path) {
+    if (!start_from_begin_) return;
+    
     CloseScene();
     
     editor_scene_ = std::make_shared<Scene>(scene_path);
@@ -463,8 +467,7 @@ namespace kreator {
   }
 
   void RendererLayer::CloseScene() {
-    if (!active_scene_)
-      return;
+    if (!active_scene_ or !start_from_begin_) return;
     
     IK_TRACE(game_data_->GameName(), "Closing Scene {0}", active_scene_->GetName().c_str());
     active_scene_.reset();
@@ -504,6 +507,8 @@ namespace kreator {
   }
   
   const bool RendererLayer::OpenScene(const std::string& scene_path) {
+    if (!start_from_begin_) return false;
+    
     NewSceneImpl(scene_path);
     active_scene_->SetViewport(viewport_width_, viewport_height_);
     

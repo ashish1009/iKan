@@ -141,6 +141,8 @@ namespace ikan {
 
     void* runtime_body = nullptr;
     
+    void SetGravityScale(float scale);
+    
     void Copy(const RigidBodyComponent& other);
     void RenderGui();
     RigidBodyComponent();

@@ -23,7 +23,8 @@ namespace ikan {
   }
   
   class NativeScriptComponent;
-  
+  class RigidBodyComponent;
+
   // Using Typedefs
   using ScriptLoaderFn = std::function<bool(NativeScriptComponent* sc, const std::string& script_name)>;
 
@@ -60,13 +61,17 @@ namespace ikan {
     virtual void Copy(void* script) {}
     
   protected:
-    virtual void Create(Entity entity) { entity_ = entity; }
+    virtual void Create(Entity entity) {
+      entity_ = entity;
+      rbc_ = &(GetComponent<RigidBodyComponent>());
+    }
     virtual void Destroy() {}
     virtual void Update(Timestep ts) {}
     
   protected:
     Entity entity_;
     Scene* scene_;
+    RigidBodyComponent* rbc_;
     friend class Scene;
   };
   

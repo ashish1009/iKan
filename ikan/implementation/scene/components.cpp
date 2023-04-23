@@ -206,6 +206,14 @@ x& x::operator=(x&& other) { \
       default: IK_ASSERT(false);
     }
   }
+  
+  void RigidBodyComponent::SetGravityScale(float scale) {
+    gravity_scale = scale;
+    if (runtime_body != nullptr) {
+      ((b2Body*)runtime_body)->SetGravityScale(gravity_scale);
+    }
+  }
+
   void RigidBodyComponent::RenderGui() {
     RbBodyType new_body_type = RbBodyType(PropertyGrid::ComboDrop("Rigid Body Type", { "Static" , "Kinamatic", "Dynamic" }, (uint32_t)type));
     
