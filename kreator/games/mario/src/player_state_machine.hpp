@@ -41,6 +41,11 @@ namespace mario {
     /// This function set the new state of player
     /// - Parameter new_state: new state
     void SetState(PlayerState new_state);
+    
+    /// This function returns the player state in string
+    std::string StateString() const;
+    /// This function returns the player action in string
+    std::string ActionString() const;
 
   private:
     Entity* player_entity_;

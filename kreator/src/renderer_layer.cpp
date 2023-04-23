@@ -430,6 +430,7 @@ namespace kreator {
     game_data_->SetPlaying(true);
 
     active_scene_->PlayScene(reset_physcs);
+    spm_.SetSelectedEntity(nullptr);
   }
   
   void RendererLayer::EditScene() {
@@ -446,6 +447,7 @@ namespace kreator {
     game_data_->SetPlaying(false);
 
     active_scene_->EditScene();
+    spm_.SetSelectedEntity(nullptr);
     start_from_begin_ = true;
   }
   

@@ -24,13 +24,11 @@ namespace mario {
     entity_ = entity;
     rbc_ = &(GetComponent<RigidBodyComponent>());
     rbc_->SetGravityScale(0.0f);
+    
+    state_machine_ = std::make_shared<StateMachine>(&entity_);
   }
   
   void PlayerController::Update(Timestep ts) {
-    
-  }
-  
-  void PlayerController::RenderGui() {
     
   }
   
@@ -38,13 +36,19 @@ namespace mario {
     
   }
   
+  void PlayerController::EventHandler(Event& event) {
+    
+  }
+
   void PlayerController::Copy(void* script) {
     
   }
   
-  void PlayerController::EventHandler(Event& event) {
-    
+  void PlayerController::RenderGui() {
+    if (state_machine_) {
+      ImGui::Text(" State             | %s", state_machine_->StateString().c_str());
+      ImGui::Text(" Action            | %s", state_machine_->ActionString().c_str());
+    }
   }
-  
 
 } // namespace mario

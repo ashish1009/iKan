@@ -33,6 +33,7 @@ namespace mario {
     static PlayerController* Get() { return instance_; }
 
   private:
+    std::shared_ptr<StateMachine> state_machine_;
     static PlayerController* instance_;
   };
   
