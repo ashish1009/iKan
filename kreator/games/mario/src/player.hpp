@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include "common.hpp"
+
 namespace mario {
   
   using namespace ikan;
@@ -17,6 +19,24 @@ namespace mario {
   
   enum class PlayerState {
     Invalid, Small, Big, Fire
+  };
+  
+  class PlayerController : ScriptableEntity {
+  public:
+    PlayerController();
+    ~PlayerController();
+    
+    void Create(Entity entity) override;
+    void Update(Timestep ts) override;
+    void RenderGui() override;
+    void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
+    void Copy(void* script) override;
+    void EventHandler(Event& event) override;
+
+    static PlayerController* Get() { return instance_; }
+
+  private:
+    static PlayerController* instance_;
   };
   
 } // namespace mario

@@ -12,6 +12,8 @@
 
 namespace mario {
   
+#define MARIO_LOG(...) IK_TRACE("Mario", __VA_ARGS__);
+  
   using namespace ikan;
   
   class MarioPrefab {

@@ -10,23 +10,22 @@
 #include "player.hpp"
 
 namespace mario {
-  
-  static const std::string MarioLogTag = "Mario";
-  
+    
   Mario::Mario() {
-    IK_INFO(MarioLogTag, "Creating Mario Game Data ... ");
+    MARIO_LOG("Creating Mario Game Data ... ");
     Batch2DRenderer::AddQuadData(2000);
     SpriteManager::Init();
   }
   
   Mario::~Mario() {
-    IK_WARN(MarioLogTag, "Destroying Mario Game Data ... ");
+    MARIO_LOG("Destroying Mario Game Data ... ");
     SpriteManager::Shutdown();
   }
   
   void Mario::Init(const std::shared_ptr<Scene> scene) {
-    scene_ = scene;
+    MARIO_LOG("Initialising Mario Game Data ... ");
     
+    scene_ = scene;
     timer_ = 0;
     time_left_ = MaxTime;
     
@@ -68,6 +67,7 @@ namespace mario {
     Entity player_entity;
 
     // Search for Player in current scene
+    MARIO_LOG("Searching Mario Player ");
     auto tag_view = scene_->GetEntitesWith<TagComponent>();
     for (auto entity : tag_view) {
       const auto& player_tag = tag_view.get<TagComponent>(entity).tag;
@@ -75,19 +75,21 @@ namespace mario {
       if (player_tag == player_name) {
         found_player = true;
         player_entity = Entity(entity, scene_.get());
+        MARIO_LOG("Found Mario Player ... ");
         break;
       }
     }
     
     // Create new player if not found
     if (!found_player) {
+      MARIO_LOG("Mario Player didnt found. Creating New ... ");
       player_entity = scene_->CreateEntity(player_name);
     }
     
     // Add Essentials Components
     MarioPrefab::AddQuad(&player_entity, SM::GetTexture(SpriteType::Player), SM::GetPlayerSprite(PlayerState::Small, PlayerAction::Idle));
     MarioPrefab::AddRigidBody(&player_entity, RigidBodyComponent::RbBodyType::Dynamic);
-    MarioPrefab::AddPillBoxCollider(&player_entity, 0.4f);
+    MarioPrefab::AddPillBoxCollider(&player_entity, {0.4f, 0.5f});    
   }
   
   void Mario::SetViewportSize(uint32_t width, uint32_t height) {
