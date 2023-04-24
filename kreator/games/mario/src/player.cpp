@@ -51,7 +51,16 @@ namespace mario {
   }
   
   void PlayerController::BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
-    
+    // Immediatly NILL all forward velocity as player hits the obstacle of block
+    if (std::abs(contact_normal.x) > 0.8f) {
+      velocity_.x = 0.0f;
+    }
+    // Immediatly NILL all Vertical velocity as player hits the obstacle of block
+    else if (contact_normal.y > 0.8f) {
+      velocity_.y = 0;
+      acceleration_.y = 0;
+      jump_time_ = 0;
+    }
   }
   
   void PlayerController::EventHandler(Event& event) {
