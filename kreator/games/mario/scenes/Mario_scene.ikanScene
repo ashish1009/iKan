@@ -2563,7 +2563,7 @@ Entities:
     TagComponent:
       Tag: Mario_Camera
     TransformComponent:
-      Translation: [-0.268763304, -4.46442032, 0]
+      Translation: [-0.617756605, -7.76644516, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
@@ -2571,7 +2571,7 @@ Entities:
       Primary: true
       ProjectionType: 1
       PerspectiveFOV: 1.30899692
-      OrthographicSize: 7
+      OrthographicSize: 3
       Near: -1
       Far: 1
   - Entity: 12420305873759546239
@@ -2597,7 +2597,7 @@ Entities:
       Type: 2
       Is Ground: false
       Is Sensor: false
-      Fixed Rotation: false
+      Fixed Rotation: true
       Linear Velocity: [0, -18.1000004]
       Angular Damping: 0.800000012
       Angular Velocity: 0
