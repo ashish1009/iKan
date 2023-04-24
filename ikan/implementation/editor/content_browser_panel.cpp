@@ -19,6 +19,9 @@ namespace ikan {
   static constexpr float window_y_offset_  = 55.0f;
   static constexpr glm::vec2 icon_size_ = {18.0f, 18.0f};
   
+  static std::unordered_map<std::string, ImageData> prefab_image_map_;
+  static std::unordered_map<std::string, std::shared_ptr<Texture>> texture_image_map_;
+
   /// This function removes the last slash from the directory if present
   /// - Parameter path: Directoruy path
   std::string RemoveLastSlash(const std::string& path) {
@@ -27,6 +30,11 @@ namespace ikan {
       path_without_slash = path.substr(0, path.length() - 1);
     }
     return path_without_slash;
+  }
+  
+  void ContentBrowserPanel::Shutdown() {
+    prefab_image_map_.clear();
+    texture_image_map_.clear();
   }
   
   void ContentBrowserPanel::SetRootPath(const std::string& root_path) {
@@ -235,22 +243,43 @@ namespace ikan {
         std::shared_ptr<Texture> icon_texture;
         static bool is_directory = false;
 
+        glm::vec2 uv0 = {0.0f, 1.0f};
+        glm::vec2 uv1 = {1.0f, 0.0f};
+
         // Set the icon if current file is a direcotry/folder else use specific file texture
         if (directory.is_directory()) {
           icon_texture = folder_texture;
           is_directory = true;
-        } else {
-          if (".png" == path.extension() or ".jpg" == path.extension()) {
-            icon_texture = Renderer::GetTexture(path);
-          }
-          else if (".cpp" == path.extension()) icon_texture = cpp_texture;
+        }
+        else {
+          if (".cpp" == path.extension()) icon_texture = cpp_texture;
           else if (".h" == path.extension()) icon_texture = h_texture;
           else if (".c" == path.extension()) icon_texture = c_texture;
           else if (".obj" == path.extension()) icon_texture = obj_texture;
           else if (".fbx" == path.extension()) icon_texture = fbx_texture;
           else if (".ttf" == path.extension()) icon_texture = font_texture;
           else if (saved_scene_extension_ == path.extension()) icon_texture = ikan_scene_texture;
-          else if (prefab_extenstion_ == path.extension()) icon_texture = prefab_texture;
+          else if (".png" == path.extension() or ".jpg" == path.extension()) {
+            if (texture_image_map_.find(path) == texture_image_map_.end()) {
+              texture_image_map_[path] = Renderer::GetTexture(path);
+            }
+            icon_texture = texture_image_map_.at(path);
+          }
+          else if (prefab_extenstion_ == path.extension()) {
+            if (prefab_image_map_.find(path) == prefab_image_map_.end()) {
+              prefab_image_map_[path] = Prefab::GetImageData(path);
+            }
+            
+            ImageData data = prefab_image_map_.at(path);
+            if (data.has_data) {
+              icon_texture = data.texture;
+              uv0 = data.uv0;
+              uv1 = data.uv1;
+            }
+            else {
+              icon_texture = prefab_texture;
+            }
+          }
           else icon_texture = file_texture;
           
           is_directory = false;
@@ -277,7 +306,7 @@ namespace ikan {
         ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
 
         // Render the image button for each folder/file
-        bool pressed = PropertyGrid::ImageButton(directory_idx, icon_texture->GetRendererID(), { icon_size_width, icon_size_height });
+        bool pressed = PropertyGrid::ImageButton(directory_idx, icon_texture->GetRendererID(), { icon_size_width, icon_size_height }, uv0, uv1);
         
         // If icon is clicked Do some action
         if (pressed) {

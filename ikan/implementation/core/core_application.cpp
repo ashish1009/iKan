@@ -9,6 +9,7 @@
 #include "renderer/utils/renderer_stats.hpp"
 #include "renderer/utils/batch_2d_renderer.hpp"
 #include "renderer/utils/text_renderer.hpp"
+#include "editor/content_browser_panel.hpp"
 
 namespace ikan {
   
@@ -72,6 +73,7 @@ namespace ikan {
   Application::~Application() {
     IK_CORE_TRACE(LogModule::Application, "Destroying Core Application Instance !!!");
     Renderer::Shutdown();
+    ContentBrowserPanel::Shutdown();
   }
 
   void Application::HandleEvents(Event& event) {

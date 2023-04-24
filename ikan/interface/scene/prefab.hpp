@@ -13,6 +13,14 @@ namespace ikan {
   
   static const std::string prefab_extenstion_ = ".ikanPrefab";
   
+  class Texture;
+  
+  struct ImageData {
+    bool has_data = false;
+    std::shared_ptr<Texture> texture;
+    glm::vec2 uv0 = glm::vec2(0.0f, 1.0f), uv1 = glm::vec2(1.0f, 0.0f);
+  };
+  
   class Prefab {
   public:
     /// This functions serializes(Saves) the scene at path 'file_path'
@@ -29,6 +37,7 @@ namespace ikan {
     /// - Parameter flag: flag to hide the widget
     static void Loader(bool* flag);
     
+    static ImageData GetImageData(const std::string& file_path);
   };
   
 } // namespace ikan

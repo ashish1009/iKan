@@ -118,8 +118,8 @@ namespace ikan {
         ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_SpanAvailWidth |
         ((selected_entity_ and *selected_entity_ == entity) ? ImGuiTreeNodeFlags_Selected : 0);
         
-        Entity camera_entity = Entity(entity, scene_context_);
-        const std::string& tag = camera_entity.GetComponent<TagComponent>().tag;
+        Entity* camera_entity = scene_context_->GetEnitityFromId((int32_t)entity);
+        const std::string& tag = camera_entity->GetComponent<TagComponent>().tag;
         bool opened = ImGui::TreeNodeEx((void*)(tag.c_str()), flags, tag.c_str());
         
         // Left Click Feature. Update the selected entity if item is clicked

@@ -57,16 +57,17 @@ namespace ikan {
     return modified;
   }
   
-  bool PropertyGrid::ImageButton(int32_t lable_id, uint32_t texId, const glm::vec2& size) {
+  bool PropertyGrid::ImageButton(int32_t lable_id, uint32_t texId, const glm::vec2& size, const glm::vec2& uv0, const glm::vec2& uv1) {
     bool result = false;
     ImTextureID my_texture_id = (ImTextureID)((size_t)texId);
     ImGui::PushID(lable_id);
-    result = ImGui::ImageButton(my_texture_id, { size.x, size.y }, ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f));
+    result = ImGui::ImageButton(my_texture_id, { size.x, size.y }, ImVec2(uv0.x, uv0.y), ImVec2(uv1.x, uv1.y));
     ImGui::PopID();
     return result;
   }
 
-  bool PropertyGrid::ImageButton(const std::string& lable_id, uint32_t texId, const glm::vec2& size, const glm::vec4& bgColor, int32_t padding) {
+  bool PropertyGrid::ImageButton(const std::string& lable_id, uint32_t texId, const glm::vec2& size, const glm::vec4& bgColor, int32_t padding,
+                                 const glm::vec2& uv0, const glm::vec2& uv1) {
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 2));
     ImGui::PushStyleVar(ImGuiStyleVar_ItemInnerSpacing, ImVec2(0, 0));
     ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
@@ -84,7 +85,7 @@ namespace ikan {
     bool result = false;
     ImTextureID my_texture_id = (ImTextureID)((size_t)texId);
     ImGui::PushID(lable_id.c_str());
-    result = ImGui::ImageButton(my_texture_id, { size.x, size.y }, ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f), padding,
+    result = ImGui::ImageButton(my_texture_id, { size.x, size.y }, ImVec2(uv0.x, uv0.y), ImVec2(uv1.x, uv1.y), padding,
                                 { bgColor.r, bgColor.g, bgColor.b, bgColor.a });
     ImGui::PopID();
     

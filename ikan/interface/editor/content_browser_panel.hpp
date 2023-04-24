@@ -12,6 +12,8 @@ namespace ikan {
   /// This class renders imgui window to access contents of folders
   class ContentBrowserPanel {
   public:
+    /// This function destory any created Data
+    static void Shutdown();
     /// This function update the root path of CBP
     /// - Parameter root_path: root path
     static void SetRootPath(const std::string& root_path);
