@@ -37,13 +37,14 @@ namespace mario {
     static PillBoxColliderComponent* AddPillBoxCollider(Entity* entity, const glm::vec2& size = glm::vec2(0.5f),
                                                         const glm::vec2& offset = glm::vec2(0.0f));
     
-    template<typename  T>
+    template<typename T, typename... Args>
     /// This function add the Native script component if not present else add the required parameter
     /// - Parameters:
     ///   - entity: entity
     ///   - scrip_name: Script name
     ///   - fn: scrip loader fnction
-    static NativeScriptComponent* AddScript(Entity* entity, const std::string& scrip_name, const ScriptLoaderFn& fn) {
+    ///   - args: Arguments required for Bind function
+    static NativeScriptComponent* AddScript(Entity* entity, const std::string& scrip_name, const ScriptLoaderFn& fn, Args&&... args) {
       NativeScriptComponent* nsc;
       if (!entity->HasComponent<NativeScriptComponent>()) {
         nsc = &(entity->AddComponent<NativeScriptComponent>(scrip_name, fn));
@@ -51,8 +52,8 @@ namespace mario {
       else {
         nsc = &(entity->GetComponent<NativeScriptComponent>());
         nsc->loader_function = fn;
-        nsc->Bind<T>();
       }
+      nsc->Bind<T>(std::forward<Args>(args)...);
       return nsc;
     }
     MAKE_PURE_STATIC(MarioPrefab);

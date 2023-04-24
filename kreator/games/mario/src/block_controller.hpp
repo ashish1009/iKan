@@ -12,7 +12,7 @@ namespace mario {
   using namespace ikan;
   
   enum class BlockType {
-    Empty, Coin, PowerUp, Star
+    Empty, Coin, PowerUp
   };
   
   class BlockController : public ScriptableEntity {
@@ -25,6 +25,10 @@ namespace mario {
     void RenderGui() override;
     void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
     void Copy(void* script) override;
+    
+  private:
+    BlockType type_ = BlockType::Empty;
+    uint32_t count_ = 0;
   };
   
   class BlockScriptManager {
@@ -45,5 +49,11 @@ namespace mario {
     static uint32_t GetCount(const std::string& tag);
   };
   using BSM = BlockScriptManager;
+  
+  inline bool IsBlock(const std::string& tag) {
+    return tag == "Brick" or
+    tag == "CoinBonus" or tag == "MultiCoinBonus" or
+    tag == "PowerUpBonus";
+  }
   
 } // namespace mario

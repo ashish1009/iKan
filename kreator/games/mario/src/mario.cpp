@@ -8,6 +8,7 @@
 #include "mario.hpp"
 #include "sprite_manager.hpp"
 #include "player.hpp"
+#include "block_controller.hpp"
 
 namespace mario {
     
@@ -15,11 +16,13 @@ namespace mario {
     MARIO_LOG("Creating Mario Game Data ... ");
     Batch2DRenderer::AddQuadData(2000);
     SpriteManager::Init();
+    BlockScriptManager::Init();
   }
   
   Mario::~Mario() {
     MARIO_LOG("Destroying Mario Game Data ... ");
     SpriteManager::Shutdown();
+    BlockScriptManager::Shutdown();
   }
   
   void Mario::Init(const std::shared_ptr<Scene> scene) {
@@ -30,6 +33,7 @@ namespace mario {
     time_left_ = MaxTime;
     
     SearchOrCreatePlayer();
+    AddScriptsToEntities();
   }
   
   void Mario::Update(Timestep ts) {
@@ -90,6 +94,18 @@ namespace mario {
     rbc->fixed_rotation = true;
     MarioPrefab::AddPillBoxCollider(&player_entity, {0.4f, 0.5f});
     MarioPrefab::AddScript<mario::PlayerController>(&player_entity, "mario::PlayerController", ScriptLoader(mario::PlayerController));
+  }
+  
+  void Mario::AddScriptsToEntities() {
+    auto tag_view = scene_->GetEntitesWith<TagComponent>();
+    
+    for (auto e : tag_view) {
+      const auto &c = tag_view.get<TagComponent>(e);
+      if (IsBlock(c.tag)) {
+        Entity entity = Entity(e, scene_.get());
+        MarioPrefab::AddScript<BlockController>(&entity, "mario::BlockController", BSM::GetLoaderFn(c.tag), BSM::GetType(c.tag), BSM::GetCount(c.tag));
+      } // If IsBlock
+    } // For each Tag
   }
   
   void Mario::SetViewportSize(uint32_t width, uint32_t height) {

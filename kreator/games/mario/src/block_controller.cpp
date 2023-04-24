@@ -9,7 +9,17 @@
 
 namespace mario {
   
-  BlockController::BlockController(BlockType type, uint32_t count) {
+  static std::string GetTypeString(BlockType type) {
+    switch (type) {
+      case BlockType::Empty: return "Empty";
+      case BlockType::Coin: return "Coin";
+      case BlockType::PowerUp: return "PowerUp";
+      default:
+        IK_ASSERT(false);
+    }
+  }
+  
+  BlockController::BlockController(BlockType type, uint32_t count) : type_(type), count_(count) {
   }
   
   void BlockController::Create(Entity entity) {
@@ -22,6 +32,7 @@ namespace mario {
   }
   
   void BlockController::RenderGui() {
+    ImGui::Text("Type | %s", GetTypeString(type_).c_str());
   }
   
   void BlockController::Copy(void* script) {

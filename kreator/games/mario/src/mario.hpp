@@ -68,6 +68,8 @@ namespace mario {
     /// This function Finds the player entity "Named as Mario Player". And add the player Controller with its entity. If not created then it creates one
     /// with all the required components
     void SearchOrCreatePlayer();
+    /// This function add the scripts to entites
+    void AddScriptsToEntities();
 
     std::shared_ptr<Scene> scene_;
     TextData text_data_;
