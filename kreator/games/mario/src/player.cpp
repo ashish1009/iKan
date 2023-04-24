@@ -103,9 +103,17 @@ namespace mario {
   void PlayerController::Run(Timestep ts) {
     auto& tc = entity_.GetComponent<TransformComponent>();
     if (Input::IsKeyPressed(Key::Left)) {
+      // Change the direction
+      tc.UpdateScale(X, -width_);
+      
+      // Update the direction and value of X axis acceleration
       acceleration_.x = -walk_speed_;
     }
     else if (Input::IsKeyPressed(Key::Right)) {
+      // Change the direction
+      tc.UpdateScale(X, width_);
+      
+      // Update the direction and value of X axis acceleration
       acceleration_.x = walk_speed_;
     }
     else { // Friction Stop
