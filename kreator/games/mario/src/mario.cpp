@@ -104,7 +104,7 @@ namespace mario {
       if (IsBlock(c.tag)) {
         Entity entity = Entity(e, scene_.get());
         MarioPrefab::AddScript<BlockController>(&entity, "mario::BlockController", BSM::GetLoaderFn(c.tag), BSM::GetType(c.tag), BSM::GetCount(c.tag));
-      } // If IsBlock
+      } 
     } // For each Tag
   }
   

@@ -27,6 +27,15 @@ namespace mario {
     void Copy(void* script) override;
     
   private:
+    static constexpr float speed_ = 3.0f;
+
+    bool going_up_ = true;
+    bool animation_ = false;
+    bool active_ = true;
+
+    glm::vec2 start_pos_;
+    glm::vec2 end_pos_;
+
     BlockType type_ = BlockType::Empty;
     uint32_t count_ = 0;
   };

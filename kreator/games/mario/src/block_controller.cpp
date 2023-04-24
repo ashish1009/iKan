@@ -6,6 +6,7 @@
 //
 
 #include "block_controller.hpp"
+#include "player.hpp"
 
 namespace mario {
   
@@ -19,10 +20,12 @@ namespace mario {
     }
   }
   
-  BlockController::BlockController(BlockType type, uint32_t count) : type_(type), count_(count) {
-  }
+  BlockController::BlockController(BlockType type, uint32_t count) : type_(type), count_(count) { }
   
   void BlockController::Create(Entity entity) {
+    entity_ = entity;
+    start_pos_ = glm::vec2(entity_.GetComponent<TransformComponent>().Position());
+    end_pos_ = start_pos_ + glm::vec2(0.0f, 0.2f);
   }
   
   void BlockController::Update(Timestep ts) {
@@ -32,13 +35,27 @@ namespace mario {
   }
   
   void BlockController::RenderGui() {
-    ImGui::Text("Type | %s", GetTypeString(type_).c_str());
+    ImGui::Text("Type       | %s", GetTypeString(type_).c_str());
+    ImGui::Text("Active     | %s", active_ ? "True" : "False");
+    ImGui::Text("Item Count | %d", count_);
+    
+    ImGui::Separator();
+    ImGui::Text("Start Pos  | %f x %f", start_pos_.x, start_pos_.y);
+    ImGui::Text("End   Pos  | %f x %f", end_pos_.x, end_pos_.y);
   }
   
   void BlockController::Copy(void* script) {
     if (!script) return;    
     BlockController* block_script = reinterpret_cast<BlockController*>(script);
     IK_ASSERT(block_script);
+    
+    going_up_ = block_script->going_up_;
+    animation_ = block_script->animation_;
+    start_pos_ = block_script->start_pos_;
+    end_pos_ = block_script->end_pos_;
+    active_ = block_script->active_;
+    type_ = block_script->type_;
+    count_ = block_script->count_;
   }
   
   /// This structure Wraps the Block Data to store in Map for each Block
