@@ -15,6 +15,7 @@ namespace mario {
       case BlockType::Empty: return "Empty";
       case BlockType::Coin: return "Coin";
       case BlockType::PowerUp: return "PowerUp";
+      case BlockType::Star: return "Star";
       default:
         IK_ASSERT(false);
     }
@@ -61,6 +62,26 @@ namespace mario {
     PlayerController* pc = PlayerController::Get();
     if (active_ and pc and contact_normal.y < -0.8f) {
       animation_ = true;
+      PlayerHit(pc);
+    }
+  }
+  
+  void BlockController::PlayerHit(PlayerController *pc) {
+    switch (type_) {
+      case BlockType::Empty : {
+        break;
+      }
+      case BlockType::Coin: {
+        break;
+      }
+      case BlockType::Star: {
+        break;
+      }
+      case BlockType::PowerUp : {
+        break;
+      }
+      default:
+        break;
     }
   }
   
@@ -109,11 +130,13 @@ namespace mario {
     auto coin_loader_fn = ScriptLoader(mario::BlockController, mario::BlockType::Coin, 1);
     auto multi_coin_loader_fn = ScriptLoader(mario::BlockController, mario::BlockType::Coin, 10);
     auto powerup_coin_loader_fn = ScriptLoader(mario::BlockController, mario::BlockType::PowerUp, 0);
-    
+    auto start_loader_fn = ScriptLoader(mario::BlockController, mario::BlockType::Star, 0);
+
     data->block_map["Brick"] = {BlockType::Empty, brick_loader_fn, 0};
     data->block_map["CoinBonus"] = {BlockType::Coin, coin_loader_fn, 1};
     data->block_map["MultiCoinBonus"] = {BlockType::Coin, multi_coin_loader_fn, 10};
     data->block_map["PowerUpBonus"] = {BlockType::PowerUp, powerup_coin_loader_fn, 0};
+    data->block_map["Start"] = {BlockType::Star, start_loader_fn, 0};
   }
   
   void BlockScriptManager::Shutdown() { data.reset(); }

@@ -12,8 +12,10 @@ namespace mario {
   using namespace ikan;
   
   enum class BlockType {
-    Empty, Coin, PowerUp
+    Empty, Coin, PowerUp, Star
   };
+ 
+  class PlayerController;
   
   class BlockController : public ScriptableEntity {
   public:
@@ -27,6 +29,10 @@ namespace mario {
     void Copy(void* script) override;
     
   private:
+    /// This function action the Player Hit
+    /// - Parameter pc: player controller
+    void PlayerHit(PlayerController* pc);
+
     static constexpr float speed_ = 3.0f;
 
     bool going_up_ = true;
@@ -60,9 +66,7 @@ namespace mario {
   using BSM = BlockScriptManager;
   
   inline bool IsBlock(const std::string& tag) {
-    return tag == "Brick" or
-    tag == "CoinBonus" or tag == "MultiCoinBonus" or
-    tag == "PowerUpBonus";
+    return tag == "Brick" or tag == "CoinBonus" or tag == "MultiCoinBonus" or tag == "PowerUpBonus" or "Start";
   }
   
 } // namespace mario
