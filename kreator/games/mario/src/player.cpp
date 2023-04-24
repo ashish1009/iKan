@@ -124,6 +124,9 @@ namespace mario {
       
       // Reset Ground debounce immediately after Space is pressed
       ground_debounce_ = 0.0f;
+      
+      // Player State is Jumping if player is on Air
+      state_machine_->SetAction(PlayerAction::Jump);
     }
     else if (!on_ground_) {
       // If Player is in Air and Some jump time left. Then retard the Y Velocity and Make Jump time 0
@@ -163,6 +166,13 @@ namespace mario {
       // If already have different direction motion then slow it down. Switching Side
       if (velocity_.x > 0) {
         velocity_.x -= slow_down_force_;
+        
+        if (on_ground_)
+          state_machine_->SetAction(PlayerAction::SwitchSide);
+      }
+      else {
+        if (on_ground_)
+          state_machine_->SetAction(PlayerAction::Run);
       }
     }
     else if (Input::IsKeyPressed(Key::Right)) {
@@ -175,6 +185,12 @@ namespace mario {
       // If already have different direction motion then slow it down. Switching Side
       if (velocity_.x < 0) {
         velocity_.x += slow_down_force_;
+        if (on_ground_)
+          state_machine_->SetAction(PlayerAction::SwitchSide);
+      }
+      else {
+        if (on_ground_)
+          state_machine_->SetAction(PlayerAction::Run);
       }
     }
     else {
@@ -186,6 +202,11 @@ namespace mario {
       }
       else if (velocity_.x < 0) {
         velocity_.x = std::min(0.0f, velocity_.x + slow_down_force_);
+      }
+      
+      // If Player stopped then Set state to Idle
+      if (velocity_.x == 0 and on_ground_) {
+        state_machine_->SetAction(PlayerAction::Idle);
       }
     }
   }

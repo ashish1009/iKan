@@ -439,7 +439,7 @@ x& x::operator=(x&& other) { \
   void NativeScriptComponent::RenderGui() {
     ImGui::PushID("Natiove Script Component");
     
-    bool opened = ImGui::TreeNodeEx(script_name.c_str(), ImGuiTreeNodeFlags_Bullet);
+    bool opened = ImGui::TreeNodeEx(script_name.c_str(), ImGuiTreeNodeFlags_Bullet | ImGuiTreeNodeFlags_DefaultOpen);
     if (opened) {
       if (script)
         script->RenderGui();
