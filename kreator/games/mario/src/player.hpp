@@ -48,6 +48,9 @@ namespace mario {
     // Constants
     static constexpr float free_fall_factor = 2.7f;
     static constexpr float slow_down_force_ = 0.08f;
+    static constexpr glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
+    static constexpr float jump_impulse_ = 10.0f;
+    static constexpr float jump_boost_factor_ = 2.0f;
 
     // Member Variables
     bool on_ground_ = false;
@@ -59,7 +62,13 @@ namespace mario {
     float walk_speed_ = 4.0f;
     glm::vec2 acceleration_;
     glm::vec2 velocity_;
-    glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
+    
+    // Jump data
+    int32_t jump_time_ = 0;
+    
+    float jumb_boost_ = 1.0f;
+    float ground_debounce_ = 0.0f; // Seconds
+    float ground_debounce_time_ = 0.1f; // Seconds
 
     std::shared_ptr<StateMachine> state_machine_;
     static PlayerController* instance_;

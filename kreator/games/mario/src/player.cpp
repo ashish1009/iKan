@@ -38,7 +38,7 @@ namespace mario {
     
     // Poll the buttons for Running the player
     Run(ts);
-
+    
     // Add Velocity to player body
     velocity_.x += acceleration_.x * ts * 2.0f;
     velocity_.y += acceleration_.y * ts * 2.0f;
@@ -57,7 +57,7 @@ namespace mario {
   void PlayerController::EventHandler(Event& event) {
     
   }
-
+  
   void PlayerController::SetState(PlayerState new_state) {
     state_machine_->SetState(new_state);
     
@@ -87,7 +87,45 @@ namespace mario {
   }
   
   void PlayerController::JumpAndLand(Timestep ts) {
-    if (!on_ground_) {
+    // If
+    // - Space is pressed and
+    // - Either
+    //    - Jump time is non zero (Player is in Air) or
+    //    - Player is on Ground or
+    //    - Ground Debound time is non zero (If a player is on some edge then before it falls we have ground_debounce_time_ left to jump again)
+    if (Input::IsKeyPressed(Key::Space) and (jump_time_ > 0 or on_ground_ or ground_debounce_ > 0)) {
+      // If
+      // - Jump time is non zero (Player is in Air) and
+      // - Either
+      //    - Player is on Ground (Only edge) or
+      //    - Ground Debound time is non zero (If a player is on some edge then before it falls we have ground_debounce_time_ left to jump again)
+      if ((on_ground_ or ground_debounce_ > 0) and jump_time_ == 0) {
+        jump_time_ = 55;
+        velocity_.y = jump_impulse_;
+      }
+      // If Player is in Air
+      else if (jump_time_ > 0) {
+        jump_time_--;
+        velocity_.y = (jump_time_ / 2.2f) * jumb_boost_;
+      }
+      // If Landed and Space Key is Pressed
+      else {
+        velocity_.y = 0.0f;
+      }
+      
+      // Reset Ground debounce immediately after Space is pressed
+      ground_debounce_ = 0.0f;
+    }
+    else if (!on_ground_) {
+      // If Player is in Air and Some jump time left. Then retard the Y Velocity and Make Jump time 0
+      if (jump_time_ > 0) {
+        velocity_.y *= 0.35f;
+        jump_time_ = 0;
+      }
+      
+      // If Space is not pressed yet and player is at Edge then wait for ground debounce time before player fell of the edge
+      ground_debounce_ -= ts;
+
       // Free fall with scene gravity
       acceleration_.y = entity_.scene_->Get2DWorldGravity().y * free_fall_factor;
       
@@ -95,8 +133,12 @@ namespace mario {
       state_machine_->SetAction(PlayerAction::Jump);
     }
     else {
+      // Set the Vertical velocity as 0
       velocity_.y = 0;
       acceleration_.y = 0;
+      
+      // Time to wait before player fell of the edge
+      ground_debounce_ = ground_debounce_time_;
     }
   }
   
@@ -128,7 +170,7 @@ namespace mario {
     }
     else {
       // Friction Stop
-      // Note : Not considering Object friction as player is not in contact with ground. Player is landing by tracking ray tracing 
+      // Note : Not considering Object friction as player is not in contact with ground. Player is landing by tracking ray tracing
       acceleration_.x = 0;
       if (velocity_.x > 0) {
         velocity_.x = std::max(0.0f, velocity_.x - slow_down_force_);
@@ -145,12 +187,18 @@ namespace mario {
     IK_ASSERT(player_script);
     
     on_ground_ = player_script->on_ground_;
+    
     width_ = player_script->width_;
     height_ = player_script->height_;
+    
     walk_speed_ = player_script->walk_speed_;
     velocity_ = player_script->velocity_;
     acceleration_ = player_script->acceleration_;
-    terminal_velocity_ = player_script->terminal_velocity_;
+    
+    jump_time_ = player_script->jump_time_;
+    jumb_boost_ = player_script->jumb_boost_;
+    ground_debounce_ = player_script->ground_debounce_;
+    ground_debounce_time_ = player_script->ground_debounce_time_;
   }
   
   void PlayerController::RenderGui() {
@@ -162,5 +210,5 @@ namespace mario {
     ImGui::Separator();
     ImGui::Text(" Size              | %f x %f", width_, height_);
   }
-
+  
 } // namespace mario
