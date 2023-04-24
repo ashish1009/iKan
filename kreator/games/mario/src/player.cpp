@@ -126,7 +126,16 @@ namespace mario {
         velocity_.x += slow_down_force_;
       }
     }
-    else { // Friction Stop
+    else {
+      // Friction Stop
+      // Note : Not considering Object friction as player is not in contact with ground. Player is landing by tracking ray tracing 
+      acceleration_.x = 0;
+      if (velocity_.x > 0) {
+        velocity_.x = std::max(0.0f, velocity_.x - slow_down_force_);
+      }
+      else if (velocity_.x < 0) {
+        velocity_.x = std::min(0.0f, velocity_.x + slow_down_force_);
+      }
     }
   }
   
