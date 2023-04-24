@@ -25,13 +25,43 @@ namespace mario {
   void BlockController::Create(Entity entity) {
     entity_ = entity;
     start_pos_ = glm::vec2(entity_.GetComponent<TransformComponent>().Position());
-    end_pos_ = start_pos_ + glm::vec2(0.0f, 0.2f);
+    end_pos_ = start_pos_ + glm::vec2(0.0f, 0.3f);
   }
   
   void BlockController::Update(Timestep ts) {
+    // If Player Hit and Valid Animatuion block then Move the block little Up and then down to original Position
+    if (animation_) {
+      auto& tc = entity_.GetComponent<TransformComponent>();
+      if (going_up_) {
+        // Lift the block Up
+        if (tc.Position().y < end_pos_.y) {
+          tc.AddPosition(Y, ts * speed_);
+        }
+        // Send the block down
+        else {
+          going_up_ = false;
+        }
+      }
+      else {
+        // Move block to back to original Position
+        if (tc.Position().y > start_pos_.y) {
+          tc.AddPosition(Y, -(ts * speed_));
+        }
+        // In case some margin left then Reset the Block Position to original
+        else {
+          tc.UpdatePosition(Y, start_pos_.y);
+          going_up_ = true;
+          animation_ = false;
+        }
+      }
+    }
   }
   
   void BlockController::BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
+    PlayerController* pc = PlayerController::Get();
+    if (active_ and pc and contact_normal.y < -0.8f) {
+      animation_ = true;
+    }
   }
   
   void BlockController::RenderGui() {
