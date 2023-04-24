@@ -25,6 +25,20 @@ namespace mario {
 
   void RuntimeItem::Init() {
     data = std::make_shared<RuntimeItemData>();
+    
+    static auto coin_script_loader = ScriptLoader(mario::CoinController);
+    static auto mushroom_script_loader = ScriptLoader(mario::MushroomController);
+    static auto flower_script_loader = ScriptLoader(mario::FlowerController);
+    static auto fireball_script_loader = ScriptLoader(mario::FireballController);
+    static auto star_script_loader = ScriptLoader(mario::FireballController);
+    static auto score_script_loader = ScriptLoader(mario::ScoreController);
+
+    data->item_map[Items::Coin] = { "Block Coin", "mario::CoinController", coin_script_loader };
+    data->item_map[Items::Mushroom] = { "Mushroom", "mario::MushroomController", mushroom_script_loader };
+    data->item_map[Items::Flower] = { "Flower", "mario::FlowerController", flower_script_loader };
+    data->item_map[Items::Fireball] = { "Fireball", "mario::FireballController", fireball_script_loader };
+    data->item_map[Items::Star] = { "Star", "mario::StarController", star_script_loader };
+    data->item_map[Items::Score] = { "Score", "mario::ScoreController", score_script_loader };
   }
   
   void RuntimeItem::Shutdown() {
