@@ -39,7 +39,14 @@ namespace mario {
     /// This function checks the player hits the ground rigid body
     void CheckOnGround();
     /// This function jumps the player on polling the space button. Also check the ground debounce time and enemy bounce
+    /// - Parameter ts: Time step of each frame
     void JumpAndLand(Timestep ts);
+    /// This function runs the player on polling the Left or right button
+    /// - Parameter ts: Time step of each frame
+    void Run(Timestep ts);
+    
+    // Constants
+    static constexpr float free_fall_factor = 2.7f;
 
     // Member Variables
     bool on_ground_ = false;
@@ -47,10 +54,8 @@ namespace mario {
     // Size of player
     float width_ = 1.0f, height_ = 1.0f;
     
-    // Jump and Freefall
-    float free_fall_factor = 2.7f;
-
-    // Player Motion data
+    // Player Movement data
+    float walk_speed_ = 4.0f;
     glm::vec2 acceleration_;
     glm::vec2 velocity_;
     glm::vec2 terminal_velocity_ = {8.1f, 18.1f};

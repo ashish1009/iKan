@@ -36,6 +36,9 @@ namespace mario {
     // Poll the button for Running the jumping. If not jumping then land the player
     JumpAndLand(ts);
     
+    // Poll the buttons for Running the player
+    Run(ts);
+
     // Add Velocity to player body
     velocity_.x += acceleration_.x * ts * 2.0f;
     velocity_.y += acceleration_.y * ts * 2.0f;
@@ -97,6 +100,18 @@ namespace mario {
     }
   }
   
+  void PlayerController::Run(Timestep ts) {
+    auto& tc = entity_.GetComponent<TransformComponent>();
+    if (Input::IsKeyPressed(Key::Left)) {
+      acceleration_.x = -walk_speed_;
+    }
+    else if (Input::IsKeyPressed(Key::Right)) {
+      acceleration_.x = walk_speed_;
+    }
+    else { // Friction Stop
+    }
+  }
+  
   void PlayerController::Copy(void* script) {
     if (!script) return;
     PlayerController* player_script = reinterpret_cast<PlayerController*>(script);
@@ -105,7 +120,7 @@ namespace mario {
     on_ground_ = player_script->on_ground_;
     width_ = player_script->width_;
     height_ = player_script->height_;
-    free_fall_factor = player_script->free_fall_factor;
+    walk_speed_ = player_script->walk_speed_;
     velocity_ = player_script->velocity_;
     acceleration_ = player_script->acceleration_;
     terminal_velocity_ = player_script->terminal_velocity_;
