@@ -108,6 +108,11 @@ namespace mario {
       
       // Update the direction and value of X axis acceleration
       acceleration_.x = -walk_speed_;
+      
+      // If already have different direction motion then slow it down. Switching Side
+      if (velocity_.x > 0) {
+        velocity_.x -= slow_down_force_;
+      }
     }
     else if (Input::IsKeyPressed(Key::Right)) {
       // Change the direction
@@ -115,6 +120,11 @@ namespace mario {
       
       // Update the direction and value of X axis acceleration
       acceleration_.x = walk_speed_;
+      
+      // If already have different direction motion then slow it down. Switching Side
+      if (velocity_.x < 0) {
+        velocity_.x += slow_down_force_;
+      }
     }
     else { // Friction Stop
     }

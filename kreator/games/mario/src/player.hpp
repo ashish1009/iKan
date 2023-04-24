@@ -47,6 +47,7 @@ namespace mario {
     
     // Constants
     static constexpr float free_fall_factor = 2.7f;
+    static constexpr float slow_down_force_ = 0.08f;
 
     // Member Variables
     bool on_ground_ = false;
