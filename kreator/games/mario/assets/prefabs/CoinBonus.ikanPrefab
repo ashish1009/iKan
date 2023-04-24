@@ -1,8 +1,8 @@
-Entity: 16333153041493043698
+Entity: 12158449387553947571
 TagComponent:
-  Tag: PowerBonus
+  Tag: CoinBonus
 TransformComponent:
-  Translation: [4, 2, 0]
+  Translation: [3, -3, 0]
   Rotation: [0, 0, 0]
   Scale: [1, 1, 1]
 QuadComponent:

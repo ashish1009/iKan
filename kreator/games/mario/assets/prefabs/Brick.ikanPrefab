@@ -1,8 +1,8 @@
-Entity: 16333153041493043698
+Entity: 2891064198218708759
 TagComponent:
-  Tag: PowerBonus
+  Tag: Brick
 TransformComponent:
-  Translation: [4, 2, 0]
+  Translation: [6, -3, 0]
   Rotation: [0, 0, 0]
   Scale: [1, 1, 1]
 QuadComponent:
@@ -12,17 +12,11 @@ QuadComponent:
   Texture_Path: ../../../kreator/games/mario/assets/textures/tile.png
   Texture_TilingFactor: 1
   Color: [1, 1, 1, 1]
-  Speed: 40
-  Coords0: [24, 27]
+  Speed: 15
+  Coords0: [13, 27]
   Sprite_Size0: [1, 1]
   Cell_Size0: [16, 16]
-  Coords1: [25, 27]
-  Sprite_Size1: [1, 1]
-  Cell_Size1: [16, 16]
-  Coords2: [26, 27]
-  Sprite_Size2: [1, 1]
-  Cell_Size2: [16, 16]
-  Num_Coords: 3
+  Num_Coords: 1
 RigidBodyComponent:
   Type: 0
   Is Ground: true

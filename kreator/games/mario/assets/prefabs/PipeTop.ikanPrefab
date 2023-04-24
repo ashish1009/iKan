@@ -1,10 +1,10 @@
-Entity: 16333153041493043698
+Entity: 12002082003847779166
 TagComponent:
-  Tag: PowerBonus
+  Tag: PipeTop
 TransformComponent:
-  Translation: [4, 2, 0]
+  Translation: [15, -6, 0]
   Rotation: [0, 0, 0]
-  Scale: [1, 1, 1]
+  Scale: [2, 1, 1]
 QuadComponent:
   Texture_Use: true
   Sub_Texture_Use: true
@@ -12,17 +12,11 @@ QuadComponent:
   Texture_Path: ../../../kreator/games/mario/assets/textures/tile.png
   Texture_TilingFactor: 1
   Color: [1, 1, 1, 1]
-  Speed: 40
-  Coords0: [24, 27]
-  Sprite_Size0: [1, 1]
+  Speed: 15
+  Coords0: [0, 19]
+  Sprite_Size0: [2, 1]
   Cell_Size0: [16, 16]
-  Coords1: [25, 27]
-  Sprite_Size1: [1, 1]
-  Cell_Size1: [16, 16]
-  Coords2: [26, 27]
-  Sprite_Size2: [1, 1]
-  Cell_Size2: [16, 16]
-  Num_Coords: 3
+  Num_Coords: 1
 RigidBodyComponent:
   Type: 0
   Is Ground: true

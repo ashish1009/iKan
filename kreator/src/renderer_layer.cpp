@@ -211,7 +211,7 @@ namespace kreator {
         CBP::RenderGui(&setting_.content_browser_panel.flag);
         spm_.RenderGui();
                 
-        if (active_scene_->IsEditing()) {
+        if (active_scene_->IsEditing() and start_from_begin_) {
           SaveScene();
           Prefab::Loader(&setting_.prefab_loader.flag);
         }

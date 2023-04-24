@@ -1,0 +1,19 @@
+Entity: 2400480431159014354
+TagComponent:
+  Tag: Forest_R
+TransformComponent:
+  Translation: [9, -7, -0.100000001]
+  Rotation: [0, 0, 0]
+  Scale: [1, 1, 1]
+QuadComponent:
+  Texture_Use: true
+  Sub_Texture_Use: true
+  Linear_Edge: false
+  Texture_Path: ../../../kreator/games/mario/assets/textures/tile.png
+  Texture_TilingFactor: 1
+  Color: [1, 1, 1, 1]
+  Speed: 15
+  Coords0: [10, 19]
+  Sprite_Size0: [1, 1]
+  Cell_Size0: [16, 16]
+  Num_Coords: 1
