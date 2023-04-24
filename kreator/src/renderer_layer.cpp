@@ -80,12 +80,12 @@ namespace kreator {
       if (!active_scene_->GetSetting().use_editor_camera)
         RenderGrid();
 
-      if (active_scene_->GetType() == Scene::Type::_2D) {
-        if (!game_data_->IsPlaying()) {
-          SelectEntities();
-        }
+      if (active_scene_->GetType() == Scene::Type::_2D and active_scene_->IsEditing()) {
+        SelectEntities();
       }
-      
+
+      // TODO: Move this inside Edit mode later
+      DebugCameraController(ts);
       OverlayRender();
       
       viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
@@ -789,6 +789,26 @@ namespace kreator {
         tc.UpdateScale(scale);
       } // if (ImGuizmo::IsUsing())
     } // if (selected_entity and viewport_.guizmo_type != -1)
+  }
+  
+  void RendererLayer::DebugCameraController(Timestep ts) {
+    auto& cd = active_scene_->GetPrimaryCameraData();
+    if (cd.scene_camera) {
+      auto& cam = cd.scene_camera;
+      auto& tc = cd.transform_comp;
+      
+      bool right_shift = Input::IsKeyPressed(Key::RightShift);
+      if (right_shift) {
+        if (Input::IsKeyPressed(Key::A)) tc->AddPosition(X, -(cam->GetZoom() * ts));
+        if (Input::IsKeyPressed(Key::D)) tc->AddPosition(X, cam->GetZoom() * ts);
+        
+        if (Input::IsKeyPressed(Key::W)) tc->AddPosition(Y, cam->GetZoom() * ts);
+        if (Input::IsKeyPressed(Key::S)) tc->AddPosition(Y, -(cam->GetZoom() * ts));
+        
+        if (Input::IsKeyPressed(Key::Q)) cam->SetOrthographicSize(cam->GetOrthographicSize() + 1.0f);
+        if (Input::IsKeyPressed(Key::E)) cam->SetOrthographicSize(cam->GetOrthographicSize() - 1.0f);
+      }
+    }
   }
   
 } // namespace kreator

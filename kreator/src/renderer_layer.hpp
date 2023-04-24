@@ -146,6 +146,10 @@ namespace kreator {
     void MoveEntities(Direction direction);
     /// This funciton Render the imguizmo
     void OnImguizmoUpdate();
+    
+    /// This function Controlls the primary camera with key for debug
+    /// - Parameter ts: time step of each frame
+    void DebugCameraController(Timestep ts);
 
     // Member variables
     uint32_t viewport_width_ = Application::Get().GetWindow().GetWidth();

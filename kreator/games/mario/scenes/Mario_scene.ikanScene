@@ -2563,7 +2563,7 @@ Entities:
     TagComponent:
       Tag: Mario_Camera
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [-0.268763304, -4.46442032, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
@@ -2571,25 +2571,44 @@ Entities:
       Primary: true
       ProjectionType: 1
       PerspectiveFOV: 1.30899692
-      OrthographicSize: 19
+      OrthographicSize: 7
       Near: -1
       Far: 1
   - Entity: 12420305873759546239
     TagComponent:
       Tag: Mario Player
     TransformComponent:
-      Translation: [0, 0, 0]
-      Rotation: [0, 0, 0]
+      Translation: [-6.20695403e-07, 0.00499916077, 0]
+      Rotation: [0, 0, 1.24810492e-06]
       Scale: [1, 1, 1]
     QuadComponent:
       Texture_Use: true
       Sub_Texture_Use: true
       Linear_Edge: false
-      Texture_Path: ""
+      Texture_Path: ../../../kreator/games/mario/assets/textures/player.png
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
       Speed: 15
-      Num_Coords: 0
+      Coords0: [6, 30]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+    RigidBodyComponent:
+      Type: 2
+      Is Ground: false
+      Is Sensor: false
+      Fixed Rotation: false
+      Linear Velocity: [0, -18.1000004]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Gravity Scale: 0
+    PillBoxColliderComponent:
+      Offset: [0, 0]
+      Width: 0.400000006
+      Height: 0.5
+    NativeScriptComponent:
+      Script_name_: mario::PlayerController
   - Entity: 11680966388383310473
     TagComponent:
       Tag: Ground

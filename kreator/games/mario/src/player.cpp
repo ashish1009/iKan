@@ -91,6 +91,10 @@ namespace mario {
       // Player State is Jumping if player is on Air
       state_machine_->SetAction(PlayerAction::Jump);
     }
+    else {
+      velocity_.y = 0;
+      acceleration_.y = 0;
+    }
   }
   
   void PlayerController::Copy(void* script) {
@@ -98,8 +102,13 @@ namespace mario {
     PlayerController* player_script = reinterpret_cast<PlayerController*>(script);
     IK_ASSERT(player_script);
     
+    on_ground_ = player_script->on_ground_;
     width_ = player_script->width_;
     height_ = player_script->height_;
+    free_fall_factor = player_script->free_fall_factor;
+    velocity_ = player_script->velocity_;
+    acceleration_ = player_script->acceleration_;
+    terminal_velocity_ = player_script->terminal_velocity_;
   }
   
   void PlayerController::RenderGui() {
@@ -107,6 +116,8 @@ namespace mario {
       ImGui::Text(" State             | %s", state_machine_->StateString().c_str());
       ImGui::Text(" Action            | %s", state_machine_->ActionString().c_str());
     }
+    ImGui::Text(" On Ground         | %s", on_ground_ ? "True" : "False");
+    ImGui::Separator();
     ImGui::Text(" Size              | %f x %f", width_, height_);
   }
 
