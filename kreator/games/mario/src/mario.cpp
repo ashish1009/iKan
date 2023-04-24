@@ -46,10 +46,8 @@ namespace mario {
     text_data_.Render(std::to_string(0), 1, 0);
     
     Batch2DRenderer::BeginBatch(FixedCamera::projection);
-    Batch2DRenderer::DrawQuad(Math::GetTransformMatrix({text_data_.col_pos[1] - 10, text_data_.row_pos[1] + 8, 0},
-                                                       {0, 0, 0}, {20, 20, 1}), {1, 1, 1, 1});
+    Batch2DRenderer::DrawQuad(Math::GetTransformMatrix({text_data_.col_pos[1] - 10, text_data_.row_pos[1] + 8, 0}, {0, 0, 0}, {20, 20, 1}), {1, 1, 1, 1});
     Batch2DRenderer::EndBatch();
-
     text_data_.Render(" x " + std::to_string(0), 1, 1);
     
     text_data_.Render("WORLD", 0, 2);
@@ -88,10 +86,8 @@ namespace mario {
     
     // Add Essentials Components
     MarioPrefab::AddQuad(&player_entity, SM::GetTexture(SpriteType::Player), SM::GetPlayerSprite(PlayerState::Small, PlayerAction::Idle));
-    
     auto rbc = MarioPrefab::AddRigidBody(&player_entity, RigidBodyComponent::RbBodyType::Dynamic);
     rbc->fixed_rotation = true;
-    
     MarioPrefab::AddPillBoxCollider(&player_entity, {0.4f, 0.5f});
     MarioPrefab::AddScript<mario::PlayerController>(&player_entity, "mario::PlayerController", ScriptLoader(mario::PlayerController));
   }

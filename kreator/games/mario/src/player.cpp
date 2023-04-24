@@ -204,9 +204,14 @@ namespace mario {
         velocity_.x = std::min(0.0f, velocity_.x + slow_down_force_);
       }
       
-      // If Player stopped then Set state to Idle
-      if (velocity_.x == 0 and on_ground_) {
-        state_machine_->SetAction(PlayerAction::Idle);
+      if (on_ground_) {
+        // If Player stopped then Set state to Idle
+        if (velocity_.x == 0) {
+          state_machine_->SetAction(PlayerAction::Idle);
+        }
+        else if (velocity_.x !=0) {
+          state_machine_->SetAction(PlayerAction::Run);
+        }
       }
     }
   }
