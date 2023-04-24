@@ -9,6 +9,7 @@
 #include "sprite_manager.hpp"
 #include "player.hpp"
 #include "block_controller.hpp"
+#include "runtime_items.hpp"
 
 namespace mario {
     
@@ -17,12 +18,14 @@ namespace mario {
     Batch2DRenderer::AddQuadData(2000);
     SpriteManager::Init();
     BlockScriptManager::Init();
+    RuntimeItem::Init();
   }
   
   Mario::~Mario() {
     MARIO_LOG("Destroying Mario Game Data ... ");
     SpriteManager::Shutdown();
     BlockScriptManager::Shutdown();
+    RuntimeItem::Shutdown();
   }
   
   void Mario::Init(const std::shared_ptr<Scene> scene) {

@@ -15,6 +15,7 @@
 		B201A34329F285F500D3C1FE /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A33C29F285F500D3C1FE /* entry_point.cpp */; };
 		B201A34429F285F500D3C1FE /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A33D29F285F500D3C1FE /* renderer_layer.cpp */; };
 		B247160029F6B81B00BA166E /* block_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24715FE29F6B81B00BA166E /* block_controller.cpp */; };
+		B247160929F6E34700BA166E /* runtime_items.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B247160729F6E34700BA166E /* runtime_items.cpp */; };
 		B281E87929DFEF440038A9EE /* libglfw.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B281E87829DFEF440038A9EE /* libglfw.a */; };
 		B28C139529F552F700AB96AE /* player_state_machine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B28C139329F552F700AB96AE /* player_state_machine.cpp */; };
 		B28D3A8B29F46EB10022E3DC /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B28D3A8929F46EB10022E3DC /* player.cpp */; };
@@ -116,6 +117,8 @@
 		B228FC7429DB094C00455666 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		B24715FE29F6B81B00BA166E /* block_controller.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = block_controller.cpp; sourceTree = "<group>"; };
 		B24715FF29F6B81B00BA166E /* block_controller.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = block_controller.hpp; sourceTree = "<group>"; };
+		B247160729F6E34700BA166E /* runtime_items.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = runtime_items.cpp; sourceTree = "<group>"; };
+		B247160829F6E34700BA166E /* runtime_items.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = runtime_items.hpp; sourceTree = "<group>"; };
 		B281E87829DFEF440038A9EE /* libglfw.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libglfw.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B28C139329F552F700AB96AE /* player_state_machine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = player_state_machine.cpp; sourceTree = "<group>"; };
 		B28C139429F552F700AB96AE /* player_state_machine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = player_state_machine.hpp; sourceTree = "<group>"; };
@@ -350,18 +353,20 @@
 		B201A31229F285F500D3C1FE /* src */ = {
 			isa = PBXGroup;
 			children = (
-				B201A31329F285F500D3C1FE /* mario.cpp */,
-				B201A31429F285F500D3C1FE /* mario.hpp */,
 				B29016F329F43ED800BB309D /* common.cpp */,
 				B29016F429F43ED800BB309D /* common.hpp */,
-				B29016F629F4401200BB309D /* sprite_manager.cpp */,
-				B29016F729F4401200BB309D /* sprite_manager.hpp */,
+				B201A31329F285F500D3C1FE /* mario.cpp */,
+				B201A31429F285F500D3C1FE /* mario.hpp */,
 				B28D3A8929F46EB10022E3DC /* player.cpp */,
 				B28D3A8A29F46EB10022E3DC /* player.hpp */,
+				B29016F629F4401200BB309D /* sprite_manager.cpp */,
+				B29016F729F4401200BB309D /* sprite_manager.hpp */,
 				B28C139329F552F700AB96AE /* player_state_machine.cpp */,
 				B28C139429F552F700AB96AE /* player_state_machine.hpp */,
 				B24715FE29F6B81B00BA166E /* block_controller.cpp */,
 				B24715FF29F6B81B00BA166E /* block_controller.hpp */,
+				B247160729F6E34700BA166E /* runtime_items.cpp */,
+				B247160829F6E34700BA166E /* runtime_items.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -591,6 +596,7 @@
 				B201A34029F285F500D3C1FE /* chess.cpp in Sources */,
 				B201A33E29F285F500D3C1FE /* angry_bird.cpp in Sources */,
 				B28C139529F552F700AB96AE /* player_state_machine.cpp in Sources */,
+				B247160929F6E34700BA166E /* runtime_items.cpp in Sources */,
 				B201A34429F285F500D3C1FE /* renderer_layer.cpp in Sources */,
 				B201A34129F285F500D3C1FE /* mario.cpp in Sources */,
 				B29016F529F43ED800BB309D /* common.cpp in Sources */,
