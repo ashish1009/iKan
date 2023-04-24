@@ -15,6 +15,18 @@ namespace mario {
     Empty, Coin, PowerUp, Star
   };
   
+  class BlockController : public ScriptableEntity {
+  public:
+    BlockController(BlockType type, uint32_t count);
+    ~BlockController() = default;
+    
+    void Create(Entity entity) override;
+    void Update(Timestep ts) override;
+    void RenderGui() override;
+    void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
+    void Copy(void* script) override;
+  };
+  
   class BlockScriptManager {
   public:
     /// This function Initialse the Block Scripts

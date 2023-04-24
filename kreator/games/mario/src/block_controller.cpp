@@ -9,11 +9,33 @@
 
 namespace mario {
   
+  BlockController::BlockController(BlockType type, uint32_t count) {
+  }
+  
+  void BlockController::Create(Entity entity) {
+  }
+  
+  void BlockController::Update(Timestep ts) {
+  }
+  
+  void BlockController::BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
+  }
+  
+  void BlockController::RenderGui() {
+  }
+  
+  void BlockController::Copy(void* script) {
+    if (!script) return;    
+    BlockController* block_script = reinterpret_cast<BlockController*>(script);
+    IK_ASSERT(block_script);
+  }
+  
   /// This structure Wraps the Block Data to store in Map for each Block
   struct BlockData {
     BlockType type;
     ScriptLoaderFn loader_fun;
     uint32_t item_count;
+    BlockData() = default;
     BlockData(BlockType type, ScriptLoaderFn loader_fun, uint32_t item_count) : type(type), loader_fun(loader_fun), item_count(item_count) {}
   };
   
@@ -24,6 +46,16 @@ namespace mario {
   
   void BlockScriptManager::Init() {
     data = std::make_shared<BlockScriptManagerData>();
+    
+    auto brick_loader_fn = ScriptLoader(mario::BlockController, mario::BlockType::Empty, 0);
+    auto coin_loader_fn = ScriptLoader(mario::BlockController, mario::BlockType::Coin, 1);
+    auto multi_coin_loader_fn = ScriptLoader(mario::BlockController, mario::BlockType::Coin, 10);
+    auto powerup_coin_loader_fn = ScriptLoader(mario::BlockController, mario::BlockType::PowerUp, 0);
+    
+    data->block_map["Brick"] = {BlockType::Empty, brick_loader_fn, 0};
+    data->block_map["CoinBonus"] = {BlockType::Coin, coin_loader_fn, 1};
+    data->block_map["MultiCoinBonus"] = {BlockType::Coin, multi_coin_loader_fn, 10};
+    data->block_map["PowerUpBonus"] = {BlockType::PowerUp, powerup_coin_loader_fn, 0};
   }
   
   void BlockScriptManager::Shutdown() { data.reset(); }
