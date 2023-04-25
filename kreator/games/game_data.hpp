@@ -19,6 +19,14 @@ namespace kreator {
   public:
     virtual ~GameData() = default;
     
+    /// This function load the prefab on Droping the item
+    /// - Parameters:
+    ///   - active_scene: Active Scene pointer
+    ///   - viewport: viewport data
+    ///   - path: file path of prefab
+    /// - Note: Not Interface
+    virtual void LoadPrefab(const std::string& path, Scene* active_scene, const Viewport& viewport);
+    
     /// Initilize your game data here. This function triggers when scene in Open, Play or Edit in game
     /// - Note: Whenever Renderer Layer change the Scene pointer this function calls
     /// - Parameters scene: This is the reference of created scene

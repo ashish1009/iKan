@@ -156,8 +156,8 @@
 				B201A2F429F285F500D3C1FE /* game_data.cpp */,
 				B201A2DB29F285F500D3C1FE /* game_data.hpp */,
 				B201A30A29F285F500D3C1FE /* mario */,
-				B201A2DC29F285F500D3C1FE /* angry_bird */,
 				B201A2F529F285F500D3C1FE /* chess */,
+				B201A2DC29F285F500D3C1FE /* angry_bird */,
 				B201A31529F285F500D3C1FE /* editor */,
 			);
 			path = games;

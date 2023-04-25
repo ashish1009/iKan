@@ -248,17 +248,7 @@ namespace kreator {
           OpenScene(path);
         }
         else if (StringUtils::GetExtensionFromFilePath(path) == prefab_extenstion_) {
-          const auto& cam_data = active_scene_->GetPrimaryCameraData();
-          if (cam_data.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Orthographic) {
-            float zoom = viewport_.height / cam_data.scene_camera->GetZoom();
-            float x_pos = (viewport_.mouse_pos_x - (float)viewport_.width / 2) / zoom;
-            float y_pos = (viewport_.mouse_pos_y - (float)viewport_.height / 2) / zoom;
-            
-            Entity e = Prefab::Deserialize(path, active_scene_.get());
-            auto& tc = e.GetComponent<TransformComponent>();
-            tc.UpdatePosition(X, x_pos);
-            tc.UpdatePosition(Y, y_pos);
-          }
+          game_data_->LoadPrefab(path, active_scene_.get(), viewport_);
         }
         else {
           IK_WARN(game_data_->GameName(), "Invalid file for Scene {0}", path.c_str());

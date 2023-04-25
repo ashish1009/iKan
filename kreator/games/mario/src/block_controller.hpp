@@ -66,7 +66,7 @@ namespace mario {
   using BSM = BlockScriptManager;
   
   inline bool IsBlock(const std::string& tag) {
-    return tag == "Brick" or tag == "CoinBonus" or tag == "MultiCoinBonus" or tag == "PowerUpBonus" or "Start";
+    return tag == "Brick" or tag == "CoinBonus" or tag == "MultiCoinBonus" or tag == "PowerUpBonus" or tag == "Star";
   }
   
 } // namespace mario
