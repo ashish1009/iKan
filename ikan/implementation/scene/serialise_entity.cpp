@@ -362,7 +362,7 @@ namespace ikan {
       auto near = camera_component["Near"].as<float>();
       auto far = camera_component["Far"].as<float>();
 
-//      cc.camera->grid_2d_ = camera_component["Grid"].as<bool>();
+      cc.camera->grid_2d_ = camera_component["Grid"].as<bool>();
 
       if ((SceneCamera::ProjectionType)type == SceneCamera::ProjectionType::Orthographic)
         cc.camera->SetOrthographic(size, near, far);
