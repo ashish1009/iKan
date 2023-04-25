@@ -28,6 +28,7 @@ namespace kreator {
   
   RendererLayer::~RendererLayer() {
     KREATOR_LOG("Destroying {0} Layer instance !!! ", game_data_->GameName().c_str());
+    ContentBrowserPanel::ClearAllPaths();
   }
   
   void RendererLayer::Attach() {

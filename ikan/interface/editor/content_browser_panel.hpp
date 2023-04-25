@@ -31,6 +31,9 @@ namespace ikan {
     /// This function returns the Root directory
     static const std::filesystem::path& GetRootDir() { return root_path_; }
     
+    /// This function clear all Favourite and assits paths
+    static void ClearAllPaths();
+    
     /// This function renders Imgui for Contenct browser panel
     /// - Parameter is_open: flag to show or hide widget
     static void RenderGui(bool* is_open = nullptr);

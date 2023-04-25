@@ -55,6 +55,11 @@ namespace ikan {
     for (const auto& path : asset_paths)
       asset_paths_.emplace_back(RemoveLastSlash(path));
   }
+  
+  void ContentBrowserPanel::ClearAllPaths() {
+    asset_paths_.clear();
+    favourite_paths_.clear();
+  }
 
   void ContentBrowserPanel::RenderGui(bool* is_open) {
     CHECK_WIDGET_FLAG(is_open);
