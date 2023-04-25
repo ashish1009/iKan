@@ -18,3 +18,4 @@ Entities:
       OrthographicSize: 10
       Near: -1
       Far: 1
+      Grid: false

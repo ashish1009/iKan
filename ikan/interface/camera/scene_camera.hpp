@@ -86,7 +86,11 @@ namespace ikan {
     float GetPerspectiveFOV() const;
     
     DEFINE_COPY_MOVE_CONSTRUCTORS(SceneCamera);
-        
+
+    // Debug data
+    // No need to make private
+    bool grid_2d_ = true;
+
   private:
     // Member functions
     /// This function recalculate the projection matrix
@@ -96,8 +100,6 @@ namespace ikan {
     ProjectionType projection_type_ = ProjectionType::Orthographic;
     float perspective_fov_ = glm::radians(75.0f);
     float orthographic_size_ = 10.0f;
-    // Debug data
-    bool grid_2d_ = true;
   };
   
 } // namespace ikan

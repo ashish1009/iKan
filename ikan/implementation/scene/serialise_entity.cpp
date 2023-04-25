@@ -200,7 +200,8 @@ namespace ikan {
       out << YAML::Key << "OrthographicSize" << YAML::Value << camera->GetOrthographicSize();
       out << YAML::Key << "Near" << YAML::Value << camera->GetNear();
       out << YAML::Key << "Far" << YAML::Value << camera->GetFar();
-      
+      out << YAML::Key << "Grid" << YAML::Value << camera->grid_2d_;
+
       out << YAML::EndMap; // CameraComponent
     }
     
@@ -360,7 +361,9 @@ namespace ikan {
       auto size = camera_component["OrthographicSize"].as<float>();
       auto near = camera_component["Near"].as<float>();
       auto far = camera_component["Far"].as<float>();
-      
+
+//      cc.camera->grid_2d_ = camera_component["Grid"].as<bool>();
+
       if ((SceneCamera::ProjectionType)type == SceneCamera::ProjectionType::Orthographic)
         cc.camera->SetOrthographic(size, near, far);
       else if ((SceneCamera::ProjectionType)type == SceneCamera::ProjectionType::Perspective)
