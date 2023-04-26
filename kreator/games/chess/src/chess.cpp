@@ -11,6 +11,10 @@ namespace chess {
   
   Chess::Chess() {
     CHESS_LOG("Creating Chess Game Data ... ");
+    IK_ASSERT(BlockSize > 0);
+    
+    cam_pos_ = {(MaxCols / 2) * BlockSize, (MaxRows / 2) * BlockSize};
+    
     Batch2DRenderer::AddLineData(50);
     Batch2DRenderer::AddQuadData(100);
   }
@@ -23,7 +27,6 @@ namespace chess {
     CHESS_LOG("Initialising Chess Game Data ... ");
     scene_ = scene;
     viewport_ = viewport;
-    
     scene_->GetSetting().use_editor_camera = false;
   }
   
@@ -33,16 +36,15 @@ namespace chess {
     static bool change_camera_pos = true;
     if (change_camera_pos) {
       if (auto& cam_data = scene_->GetPrimaryCameraData(); cam_data.scene_camera) {
-        cam_data.transform_comp->UpdatePosition({8.0f, 8.0f, 0.0f});
-        cam_data.scene_camera->SetOrthographicSize(20.0f);
+        cam_data.transform_comp->UpdatePosition({cam_pos_.x, cam_pos_.y, 0.0f});
       }
     }
     
-    RenderBackgroundAndBorder();
-    RenderText();
+//    RenderBackgroundAndBorder();
+//    RenderText();
         
     if (is_playing_) {
-      HighlightHoveredBlock();
+//      HighlightHoveredBlock();
     }
     else {
       RenderChessGrids();

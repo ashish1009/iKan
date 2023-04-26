@@ -3,7 +3,7 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
-  - Entity: 7333058419676270384
+  - Entity: 12759999416264289019
     TagComponent:
       Tag: Camera
     TransformComponent:
@@ -18,4 +18,4 @@ Entities:
       OrthographicSize: 20
       Near: -1
       Far: 1
-      Grid: false
+      Grid: true

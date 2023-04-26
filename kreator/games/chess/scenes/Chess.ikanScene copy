@@ -1,0 +1,1845 @@
+Scene: Untitled
+Scene_type: 0
+Setting_editor_camera: true
+Setting_use_editor_camera: false
+Entities:
+  - Entity: 16763450638410527512
+    TagComponent:
+      Tag: black_pawn
+    TransformComponent:
+      Translation: [3, 13, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/pawn.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 7572085606819348902
+    TagComponent:
+      Tag: black_pawn
+    TransformComponent:
+      Translation: [5, 13, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/pawn.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 5649952037023728837
+    TagComponent:
+      Tag: black_pawn
+    TransformComponent:
+      Translation: [7, 13, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/pawn.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 8914165338101613983
+    TagComponent:
+      Tag: black_pawn
+    TransformComponent:
+      Translation: [9, 13, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/pawn.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 8451134709684832021
+    TagComponent:
+      Tag: black_pawn
+    TransformComponent:
+      Translation: [11, 13, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/pawn.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 7459758161276365814
+    TagComponent:
+      Tag: black_pawn
+    TransformComponent:
+      Translation: [13, 13, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/pawn.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 17092040449367893256
+    TagComponent:
+      Tag: black_pawn
+    TransformComponent:
+      Translation: [15, 13, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/pawn.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 14377079001532312012
+    TagComponent:
+      Tag: black_pawn
+    TransformComponent:
+      Translation: [1, 13, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/pawn.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 14979077479197740464
+    TagComponent:
+      Tag: black_rook
+    TransformComponent:
+      Translation: [15, 15, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/rook.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 16926593558483507455
+    TagComponent:
+      Tag: black_bishop
+    TransformComponent:
+      Translation: [11, 15, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/bishop.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 9083355330278954650
+    TagComponent:
+      Tag: black_king
+    TransformComponent:
+      Translation: [9, 15, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/king.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 13170635825364638624
+    TagComponent:
+      Tag: black_knight
+    TransformComponent:
+      Translation: [13, 15, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/knight.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 3743419379368751994
+    TagComponent:
+      Tag: black_queen
+    TransformComponent:
+      Translation: [7, 15, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/queen.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 31221214905947978
+    TagComponent:
+      Tag: black_bishop
+    TransformComponent:
+      Translation: [5, 15, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/bishop.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 4574085272541602105
+    TagComponent:
+      Tag: black_rook
+    TransformComponent:
+      Translation: [1, 15, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/rook.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 10523973299180882307
+    TagComponent:
+      Tag: black_knight
+    TransformComponent:
+      Translation: [3, 15, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/knight.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 9433890826201148621
+    TagComponent:
+      Tag: white_king
+    TransformComponent:
+      Translation: [9, 1, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/king.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 17353068925631730335
+    TagComponent:
+      Tag: white_queen
+    TransformComponent:
+      Translation: [7, 1, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/queen.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 15216918505408848751
+    TagComponent:
+      Tag: white_bishop
+    TransformComponent:
+      Translation: [5, 1, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/bishop.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 296349455477722484
+    TagComponent:
+      Tag: white_bishop
+    TransformComponent:
+      Translation: [11, 1, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/bishop.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 13915744114119079282
+    TagComponent:
+      Tag: white_knight
+    TransformComponent:
+      Translation: [13, 1, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/knight.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 13542794810808235514
+    TagComponent:
+      Tag: white_knight
+    TransformComponent:
+      Translation: [3, 1, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/knight.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 6670901943440993073
+    TagComponent:
+      Tag: white_rook
+    TransformComponent:
+      Translation: [15, 1, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/rook.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 4094370495567335125
+    TagComponent:
+      Tag: white_rook
+    TransformComponent:
+      Translation: [1, 1, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/rook.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 12041287592917059642
+    TagComponent:
+      Tag: white_pawn
+    TransformComponent:
+      Translation: [3, 3, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/pawn.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 16928443975202864454
+    TagComponent:
+      Tag: white_pawn
+    TransformComponent:
+      Translation: [11, 3, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/pawn.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 4189257244923888282
+    TagComponent:
+      Tag: white_pawn
+    TransformComponent:
+      Translation: [9, 3, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/pawn.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 8007696058357105750
+    TagComponent:
+      Tag: white_pawn
+    TransformComponent:
+      Translation: [7, 3, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/pawn.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 7826424582885973370
+    TagComponent:
+      Tag: white_pawn
+    TransformComponent:
+      Translation: [5, 3, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/pawn.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 4825310907379284262
+    TagComponent:
+      Tag: white_pawn
+    TransformComponent:
+      Translation: [15, 3, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/pawn.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 13271557323695995103
+    TagComponent:
+      Tag: white_pawn
+    TransformComponent:
+      Translation: [1, 3, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/pawn.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 16133596475395211304
+    TagComponent:
+      Tag: white_pawn
+    TransformComponent:
+      Translation: [13, 3, 0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/pawn.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 15856517958422082436
+    TagComponent:
+      Tag: Camera
+    TransformComponent:
+      Translation: [8, 8, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 1.30899692
+      OrthographicSize: 20
+      Near: -1
+      Far: 1
+      Grid: false
+  - Entity: 7286640049471901528
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [15, 15, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 17237936795954461615
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [1, 15, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 1163395661669840052
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [5, 15, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 9744746684410396832
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [3, 15, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 17954769205754462876
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [9, 15, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 408471499111401258
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [7, 15, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 17109982432129256524
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [13, 15, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 14024405987534299974
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [11, 15, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 7436360714722321763
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [15, 13, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 10268432974659347863
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [13, 13, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 7118029104736950320
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [11, 13, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 15520069833233485537
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [9, 13, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 6869393766756240850
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [5, 13, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 15052116063682802602
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [3, 13, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 14825026036055054721
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [7, 13, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 12637209781454298826
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [1, 13, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 9574187382299810493
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [15, 3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 10889909155140103292
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [15, 1, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 6607634723000590685
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [13, 3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 7152513635403662353
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [13, 1, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 11601803195146825113
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [11, 3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 5046847793963247351
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [9, 1, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 14056149516259145069
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [7, 3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 3331762011274709938
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [7, 1, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 5249922542545881816
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [3, 3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 844656091926671709
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [5, 3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 1908733403402787166
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [3, 1, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 7838322089058341393
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [11, 1, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 4527216210298880089
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [5, 1, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 15302094947748597789
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [1, 3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 8501039476986754590
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [9, 3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 831261056244151483
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [1, 1, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 67315066644480036
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [15, 7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 9939990843079218482
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [15, 5, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 1430138418129236153
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [13, 7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 11341643853207057201
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [13, 5, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 987516039021593326
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [11, 7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 16154951064869000110
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [9, 5, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 6242110874970075033
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [7, 7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 14741952109327498992
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [7, 5, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 4408398266327972911
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [3, 7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 5701203739060963469
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [5, 7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 2247220706899970231
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [3, 5, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 3283014894570527079
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [11, 5, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 4127994657686605222
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [5, 5, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 14377612161828529327
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [1, 7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 10868464881366152474
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [9, 7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 10064677168969148256
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [1, 5, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 1338441791458400555
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [15, 11, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 12792519146459718786
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [15, 9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 5614815148350329582
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [13, 11, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 14419056679751165207
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [13, 9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 8312991431254250060
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [11, 11, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 364559641100648286
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [9, 9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 5815521032359681771
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [7, 11, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 9747663200957827982
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [7, 9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 5746390116904998695
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [3, 11, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 4193379857984943933
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [5, 11, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 5403264816523948911
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [3, 9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 5071290555410301311
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [11, 9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 2941362251620951954
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [5, 9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 6687035707083504056
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [1, 11, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 5573574529877810491
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [9, 11, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/black/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 14898281123886775845
+    TagComponent:
+      Tag: block
+    TransformComponent:
+      Translation: [1, 9, 0]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/block.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1

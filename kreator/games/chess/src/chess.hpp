@@ -63,6 +63,8 @@ namespace chess {
     // Member data
     uint32_t viewport_width_ = 0, viewport_height_ = 0;
     std::array<std::array<BlockRef, MaxCols>, MaxRows> blocks_;
+    
+    glm::vec2 cam_pos_;
   };
   
 } // namespace chess
