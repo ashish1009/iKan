@@ -28,10 +28,12 @@ namespace chess {
   void Chess::Update(Timestep ts) {
     RenderBackgroundAndBorder();
     RenderChessGrids();
+    RenderText();
   }
   
   void Chess::SetViewportSize(uint32_t width, uint32_t height) {
-    
+    viewport_width_ = width;
+    viewport_height_ = height;
   }
   
   void Chess::RenderChessGrids() {
@@ -64,6 +66,21 @@ namespace chess {
     Batch2DRenderer::DrawQuad(border_transform, border, { 0.641860485, 0.468707442, 0.468707442, 1 });
     
     Batch2DRenderer::EndBatch();
+  }
+  
+  void Chess::RenderText() {
+    static glm::vec2 size = {0.3f, 0.3f};
+    static glm::vec4 color = { 0.7, 0.7, 0.7, 1};
+
+    const auto& cam_data = scene_->GetPrimaryCameraData();
+    TextRenderer::BeginBatch(cam_data.scene_camera->GetProjection() * glm::inverse(cam_data.transform_comp->Transform()));
+    for (int32_t row = 0;  row < MaxCols; row++) {
+      TextRenderer::RenderText(std::to_string(row + 1), { -1, 0.5 + (BlockSize * row), 0.3f }, size, color);
+    }
+    for (int32_t col = 0;  col < MaxCols; col++) {
+      TextRenderer::RenderText(std::string(1, 'A' + col), { 0.7f + (BlockSize * col), -1.0f, 0.3f }, size, color);
+    }
+    TextRenderer::EndBatch();
   }
   
 } // namespace chess
