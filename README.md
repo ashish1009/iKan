@@ -49,3 +49,13 @@ ${PROJECT_DIR}/../ikan/vendors/freetype/lib
 ## Features
 
 ## Road Map  
+
+## Outputs
+### Editor
+![](/kreator/games/outpus/mario_editor.png)
+
+### Mario
+![](/kreator/games/outpus/mario.png)
+
+### Chess
+![](/kreator/games/outpus/chess.png)
