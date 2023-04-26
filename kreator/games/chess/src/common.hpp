@@ -14,6 +14,7 @@ namespace chess {
   static constexpr uint16_t MaxRows = 8;
   static constexpr uint16_t MaxCols = 8;
   
-  static constexpr uint16_t BlockSize = 1;
+  // Should be same as Prefab/Piece Height
+  static constexpr uint16_t BlockSize = 2;
   
 } // namespace chess

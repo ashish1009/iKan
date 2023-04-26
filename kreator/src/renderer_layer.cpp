@@ -221,6 +221,8 @@ namespace kreator {
         SceneStateButton();
         SceneRendererType();
         ShowSettings();
+        
+        game_data_->RenderGui();
       }
 
       ImguiAPI::EndDcocking();

@@ -13,7 +13,7 @@ namespace chess {
     CHESS_LOG("Creating Chess Game Data ... ");
     IK_ASSERT(BlockSize > 0);
     
-    cam_pos_ = {(MaxCols / 2) * BlockSize, (MaxRows / 2) * BlockSize};
+    init_cam_pos_ = {(MaxCols / 2) * BlockSize, (MaxRows / 2) * BlockSize};
     
     Batch2DRenderer::AddLineData(50);
     Batch2DRenderer::AddQuadData(100);
@@ -36,15 +36,15 @@ namespace chess {
     static bool change_camera_pos = true;
     if (change_camera_pos) {
       if (auto& cam_data = scene_->GetPrimaryCameraData(); cam_data.scene_camera) {
-        cam_data.transform_comp->UpdatePosition({cam_pos_.x, cam_pos_.y, 0.0f});
+        cam_data.transform_comp->UpdatePosition({init_cam_pos_.x, init_cam_pos_.y, 0.0f});
       }
     }
     
-//    RenderBackgroundAndBorder();
-//    RenderText();
+    RenderBackgroundAndBorder();
+    RenderText();
         
     if (is_playing_) {
-//      HighlightHoveredBlock();
+      HighlightHoveredBlock();
     }
     else {
       RenderChessGrids();
@@ -54,6 +54,14 @@ namespace chess {
   void Chess::SetViewportSize(uint32_t width, uint32_t height) {
     viewport_width_ = width;
     viewport_height_ = height;
+  }
+  
+  void Chess::RenderGui() {
+    if (auto& cam_data = scene_->GetPrimaryCameraData(); cam_data.scene_camera) {
+      ImGui::Begin("Zoom");
+      cam_data.scene_camera->ZoomWidget();
+      ImGui::End();
+    }
   }
   
   void Chess::SetPlaying(bool playing_flag) {
@@ -121,11 +129,13 @@ namespace chess {
     Batch2DRenderer::BeginBatch(cam_data.scene_camera->GetProjection() * glm::inverse(cam_data.transform_comp->Transform()));
     
     // Background
-    static glm::mat4 bg_transform = Math::GetTransformMatrix({8, 8, -0.9}, {0, 0, 0}, {100, 100, 1});
+    static glm::mat4 bg_transform = Math::GetTransformMatrix({init_cam_pos_.x, init_cam_pos_.y, -0.9}, {0, 0, 0}, {100, 100, 1});
     Batch2DRenderer::DrawQuad(bg_transform, bg);
 
     // Border
-    static glm::mat4 border_transform = Math::GetTransformMatrix({8, 8, -0.5}, {0, 0, 0}, {19.2, 19.2, 1});
+    static glm::mat4 border_transform = Math::GetTransformMatrix({init_cam_pos_.x, init_cam_pos_.y, -0.5},
+                                                                 {0, 0, 0},
+                                                                 {(BlockSize * (MaxCols + 1.6)), (BlockSize * (MaxRows + 1.6)), 1});
     Batch2DRenderer::DrawQuad(border_transform, border, { 0.641860485, 0.468707442, 0.468707442, 1 });
     
     Batch2DRenderer::EndBatch();

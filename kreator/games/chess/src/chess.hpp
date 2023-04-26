@@ -26,8 +26,9 @@ namespace chess {
     void Init(const std::shared_ptr<Scene> scene, Viewport* viewport) override;
     void Update(Timestep ts) override;
     void SetViewportSize(uint32_t width, uint32_t height) override;
+    void RenderGui() override;
 
-    void SetPlaying(bool playing_flag);
+    void SetPlaying(bool playing_flag) override;
 
     // Game Data API
     std::string GameName() const override { return "IKAN Chess"; }
@@ -64,7 +65,7 @@ namespace chess {
     uint32_t viewport_width_ = 0, viewport_height_ = 0;
     std::array<std::array<BlockRef, MaxCols>, MaxRows> blocks_;
     
-    glm::vec2 cam_pos_;
+    glm::vec2 init_cam_pos_;
   };
   
 } // namespace chess

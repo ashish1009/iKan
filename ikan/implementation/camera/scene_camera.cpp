@@ -238,9 +238,7 @@ namespace ikan {
       PropertyGrid::HoveredMsg(std::to_string(perspective_fov_).c_str());
       
     } else if (projection_type_ == SceneCamera::ProjectionType::Orthographic) {
-      if (PropertyGrid::Float1("Size", orthographic_size_, nullptr, 1.0f, 10.0f)) {
-        RecalculateProjection();
-      }
+      ZoomWidget();
       ImGui::Separator();
       PropertyGrid::CheckBox("Grids", grid_2d_);
     } else {
@@ -257,6 +255,12 @@ namespace ikan {
     ImGui::Separator();
     ImGui::PopID();
     ImGui::End();
+  }
+  
+  void SceneCamera::ZoomWidget() {
+    if (PropertyGrid::Float1("Size", orthographic_size_, nullptr, 1.0f, 10.0f)) {
+      RecalculateProjection();
+    }
   }
   
   void SceneCamera::RenderGrids(uint32_t max_lines, const glm::vec4& line_color,

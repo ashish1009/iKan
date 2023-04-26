@@ -78,6 +78,10 @@ namespace ikan {
     /// - Parameter fov: new FOV
     void SetPerspectiveFOV(float fov);
     
+    /// This function renders the widget for zoom
+    /// - Note: Should called between Begin and End
+    void ZoomWidget();
+    
     /// This function returns the Projection type of camera
     ProjectionType GetProjectionType() const;
     /// This function returns size of Orthographic Camera

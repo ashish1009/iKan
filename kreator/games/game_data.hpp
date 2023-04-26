@@ -39,7 +39,10 @@ namespace kreator {
     ///   - width: width of viewport
     ///   - height: height of viewport
     virtual void SetViewportSize(uint32_t width, uint32_t height) = 0;
-
+    
+    /// This function renders the Gui for Game
+    virtual void RenderGui() {}
+    
     /// This function returns name of your game
     virtual std::string GameName() const = 0;
     /// This function return your viewport background color
