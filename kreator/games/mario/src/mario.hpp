@@ -71,7 +71,6 @@ namespace mario {
     /// This function add the scripts to entites
     void AddScriptsToEntities();
 
-    std::shared_ptr<Scene> scene_;
     TextData text_data_;
 
     const uint32_t MaxTime = 100;

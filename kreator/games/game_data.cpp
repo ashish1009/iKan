@@ -24,14 +24,14 @@ namespace kreator {
     }
   }
   
-  void GameData::LoadPrefab(const std::string& path, Scene* active_scene, const Viewport& viewport) {
-    const auto& cam_data = active_scene->GetPrimaryCameraData();
+  void GameData::LoadPrefab(const std::string& path, const Viewport& viewport) {
+    const auto& cam_data = scene_->GetPrimaryCameraData();
     if (cam_data.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Orthographic) {
       float zoom = viewport.height / cam_data.scene_camera->GetZoom();
       float x_pos = (viewport.mouse_pos_x - (float)viewport.width / 2) / zoom;
       float y_pos = (viewport.mouse_pos_y - (float)viewport.height / 2) / zoom;
       
-      Entity e = Prefab::Deserialize(path, active_scene);
+      Entity e = Prefab::Deserialize(path, scene_.get());
       auto& tc = e.GetComponent<TransformComponent>();
       tc.UpdatePosition(X, x_pos);
       tc.UpdatePosition(Y, y_pos);

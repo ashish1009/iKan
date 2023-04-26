@@ -228,7 +228,6 @@ namespace kreator {
   }
   
   void RendererLayer::RenderViewport() {
-    // Viewport
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
     ImGui::Begin("Kreator Viewport");
     ImGui::PushID("Kreator Viewport");
@@ -249,7 +248,7 @@ namespace kreator {
           OpenScene(path);
         }
         else if (StringUtils::GetExtensionFromFilePath(path) == prefab_extenstion_) {
-          game_data_->LoadPrefab(path, active_scene_.get(), viewport_);
+          game_data_->LoadPrefab(path, viewport_);
         }
         else {
           IK_WARN(game_data_->GameName(), "Invalid file for Scene {0}", path.c_str());

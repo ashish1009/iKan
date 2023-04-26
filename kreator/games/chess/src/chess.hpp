@@ -48,7 +48,6 @@ namespace chess {
     /// This function renders the text of game
     void RenderText();
     
-    std::shared_ptr<Scene> scene_;
     uint32_t viewport_width_ = 0, viewport_height_ = 0;
   };
   
