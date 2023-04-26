@@ -40,11 +40,14 @@ namespace chess {
     }
     
     RenderBackgroundAndBorder();
-    RenderChessGrids();
     RenderText();
     
-    if (is_playing_)
+    if (is_playing_) {
       HighlightHoveredBlock();
+    }
+    else {
+      RenderChessGrids();
+    }
   }
   
   void Chess::SetViewportSize(uint32_t width, uint32_t height) {
