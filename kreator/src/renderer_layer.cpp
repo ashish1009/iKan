@@ -99,11 +99,11 @@ namespace kreator {
     game_data_->Update(ts);
     
     // Text Renderer
-    static glm::vec2 fixed_text_size = {0.3f, 0.3f};
-    static glm::vec4 fixed_text_color = { 0.1, 0.1, 0.1, 1};
+    static glm::vec2 size = {0.3f, 0.3f};
+    static glm::vec4 color = { 0.1, 0.1, 0.1, 1};
     TextRenderer::BeginBatch(FixedCamera::projection);
-    TextRenderer::RenderFixedViewText("(c) IKAN", { viewport_width_ - 80, 5.0f, 0.3f }, fixed_text_size, fixed_text_color);
-    TextRenderer::RenderFixedViewText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)), { 5.0f, 5.0f, 0.3f }, fixed_text_size, fixed_text_color);
+    TextRenderer::RenderFixedViewText("(c) IKAN", { viewport_width_ - 80, 5.0f, 0.3f }, size, color);
+    TextRenderer::RenderFixedViewText(std::to_string((uint32_t)(ImGui::GetIO().Framerate)), { 5.0f, 5.0f, 0.3f }, size, color);
     TextRenderer::EndBatch();
   }
 
@@ -404,6 +404,8 @@ namespace kreator {
       active_scene_->GetSetting().debug_draw = false;
       
       Application::Get().MaximizeWindow();
+      ResizeData(Application::Get().GetWindowWidth(), Application::Get().GetWindowHeight());
+
       PlayScene();
     }
     else {
