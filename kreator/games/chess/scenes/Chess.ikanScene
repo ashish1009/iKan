@@ -3,6 +3,41 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
+  - Entity: 2567373062037857063
+    TagComponent:
+      Tag: Quad
+    TransformComponent:
+      Translation: [0, 0, -0.100000001]
+      Rotation: [0, 0, 0]
+      Scale: [2, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ""
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 12145525244884912975
+    TagComponent:
+      Tag: Quad
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path: ../../../kreator/games/chess/assets/textures/white/knight.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
   - Entity: 15856517958422082436
     TagComponent:
       Tag: Camera

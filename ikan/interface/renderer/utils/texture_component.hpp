@@ -18,8 +18,7 @@ namespace ikan {
     size_t tex_id = ((texture) ? texture->GetRendererID() : no_texture->GetRendererID());
     
     // Show the image of texture
-    ImGui::Image((void*)tex_id, ImVec2(40.0f, 40.0f), ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f),
-                 ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
+    ImGui::Image((void*)tex_id, ImVec2(40.0f, 40.0f), ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
     
     // Drop the texture here and load new texture
     PropertyGrid::DropConent([&](const std::string& path)

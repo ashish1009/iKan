@@ -76,10 +76,11 @@ namespace ikan {
         data.has_data = true;
         
         bool linear_edge = quad_component["Linear_Edge"].as<bool>();
+        bool use_subtexture = quad_component["Sub_Texture_Use"].as<bool>();
         data.texture = Renderer::GetTexture(texture_path, linear_edge);
         
         int32_t num_coords = quad_component["Num_Coords"].as<int32_t>();
-        if (num_coords > 0) {
+        if (num_coords > 0 and use_subtexture) {
           int32_t i = 0;
           auto coord = quad_component["Coords" + std::to_string(i)].as<glm::vec2>();
           auto sprite_size = quad_component["Sprite_Size" + std::to_string(i)].as<glm::vec2>();
