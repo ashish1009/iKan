@@ -110,6 +110,8 @@ namespace mario {
         MarioPrefab::AddScript<BlockController>(&entity, "mario::BlockController", BSM::GetLoaderFn(c.tag), BSM::GetType(c.tag), BSM::GetCount(c.tag));
       } 
     } // For each Tag
+    
+    MARIO_LOG("Added Script in each Mario Entities");
   }
   
   void Mario::SetViewportSize(uint32_t width, uint32_t height) {

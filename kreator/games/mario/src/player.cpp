@@ -12,7 +12,7 @@ namespace mario {
   PlayerController* PlayerController::instance_ = nullptr;
   
   PlayerController::PlayerController() {
-    MARIO_LOG("Creating Mario Player Controller");
+    MARIO_LOG("Player Controller Constructed");
     instance_ = this;
   }
   
@@ -27,6 +27,7 @@ namespace mario {
     state_machine_ = std::make_shared<StateMachine>(&entity_);
     
     SetState(PlayerState::Small);
+    MARIO_LOG("Creating Mario Player Controller");
   }
   
   void PlayerController::Update(Timestep ts) {

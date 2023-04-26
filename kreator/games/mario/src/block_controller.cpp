@@ -27,6 +27,7 @@ namespace mario {
     entity_ = entity;
     start_pos_ = glm::vec2(entity_.GetComponent<TransformComponent>().Position());
     end_pos_ = start_pos_ + glm::vec2(0.0f, 0.3f);
+    MARIO_LOG("Creating Mario Block Controller");
   }
   
   void BlockController::Update(Timestep ts) {
@@ -137,9 +138,14 @@ namespace mario {
     data->block_map["MultiCoinBonus"] = {BlockType::Coin, multi_coin_loader_fn, 10};
     data->block_map["PowerUpBonus"] = {BlockType::PowerUp, powerup_coin_loader_fn, 0};
     data->block_map["Start"] = {BlockType::Star, start_loader_fn, 0};
+    
+    MARIO_LOG("Initialised the Block Script Manager");
   }
   
-  void BlockScriptManager::Shutdown() { data.reset(); }
+  void BlockScriptManager::Shutdown() {
+    data.reset();
+    MARIO_LOG("Destroyed the Block Script Manager");
+  }
   ScriptLoaderFn BlockScriptManager::GetLoaderFn(const std::string& tag) { return data->block_map.at(tag).loader_fun; }
   BlockType BlockScriptManager::GetType(const std::string& tag) { return data->block_map.at(tag).type; }
   uint32_t BlockScriptManager::GetCount(const std::string& tag) { return data->block_map.at(tag).item_count; }

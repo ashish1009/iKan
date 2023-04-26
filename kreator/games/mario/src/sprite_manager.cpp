@@ -57,11 +57,15 @@ namespace mario {
     fire_player_map[PlayerAction::Run].push_back(SubTexture::CreateFromCoords(player_sprite, {2.0f, 28.0f}, {1.0f, 2.0f}));
     fire_player_map[PlayerAction::SwitchSide].push_back(SubTexture::CreateFromCoords(player_sprite, {3.0f, 28.0f}, {1.0f, 2.0f}));
     fire_player_map[PlayerAction::Jump].push_back(SubTexture::CreateFromCoords(player_sprite, {4.0f, 28.0f}, {1.0f, 2.0f}));
+    
+    MARIO_LOG("Initialised the Sprite Manager");
   }
   
   void SpriteManager::Shutdown() {
     data_->texture_map.clear();
     data_.reset();
+    
+    MARIO_LOG("Destroyed the Sprite Manager");
   }
   
   TextureRef SpriteManager::GetTexture(SpriteType type) {

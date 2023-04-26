@@ -14,6 +14,8 @@ namespace mario {
     player_entity_ = entity;
     SetState(PlayerState::Small);
     SetAction(PlayerAction::Idle);
+    
+    MARIO_LOG("Creating Player State Machine");
   }
   
   void StateMachine::SetAction(PlayerAction new_action) {

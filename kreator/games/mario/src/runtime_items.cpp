@@ -6,6 +6,7 @@
 //
 
 #include "runtime_items.hpp"
+#include "common.hpp"
 
 namespace mario {
   
@@ -39,10 +40,13 @@ namespace mario {
     data->item_map[Items::Fireball] = { "Fireball", "mario::FireballController", fireball_script_loader };
     data->item_map[Items::Star] = { "Star", "mario::StarController", star_script_loader };
     data->item_map[Items::Score] = { "Score", "mario::ScoreController", score_script_loader };
+    
+    MARIO_LOG("Initialised the Runtime Items Manager");
   }
   
   void RuntimeItem::Shutdown() {
     data.reset();
+    MARIO_LOG("Destroyed the Runtime Items Manager");
   }
   
 } // namespace mario
