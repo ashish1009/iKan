@@ -32,6 +32,8 @@ namespace chess {
     RenderBackgroundAndBorder();
     RenderChessGrids();
     RenderText();
+    
+    HighlightHoveredBlock();
   }
   
   void Chess::SetViewportSize(uint32_t width, uint32_t height) {
@@ -119,6 +121,29 @@ namespace chess {
       TextRenderer::RenderText(std::string(1, 'A' + col), { 0.7f + (BlockSize * col), -1.0f, 0.3f }, size, color);
     }
     TextRenderer::EndBatch();
+  }
+  
+  void Chess::HighlightHoveredBlock() {
+    const auto& cam_data = scene_->GetPrimaryCameraData();
+    if (!cam_data.scene_camera) return;
+
+    int32_t hovered_entity_id = -1;
+    Renderer::GetEntityIdFromPixels(viewport_->mouse_pos_x, viewport_->mouse_pos_y, viewport_->framebuffer->GetPixelIdIndex(), hovered_entity_id);
+    
+    if (hovered_entity_id == -1) return;
+    
+    Entity* hovered_entity = (hovered_entity_id > (int32_t)scene_->GetMaxEntityId()) ? nullptr : scene_->GetEnitityFromId(hovered_entity_id);
+    auto& tc = hovered_entity->GetComponent<TransformComponent>();
+    
+    static const std::shared_ptr<Texture> hovered = Renderer::GetTexture(DM::ClientAsset("textures/hovered.png"));
+    
+    Batch2DRenderer::BeginBatch(cam_data.scene_camera->GetProjection() * glm::inverse(cam_data.transform_comp->Transform()));
+    
+    const auto& p = tc.Position();
+    glm::mat4 transform = Math::GetTransformMatrix({p.x, p.y, 0.2}, tc.Rotation(), {BlockSize, BlockSize, 1});
+    Batch2DRenderer::DrawQuad(transform, hovered);
+    
+    Batch2DRenderer::EndBatch();
   }
   
 } // namespace chess

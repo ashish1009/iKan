@@ -49,6 +49,8 @@ namespace chess {
     void RenderBackgroundAndBorder();
     /// This function renders the text of game
     void RenderText();
+    /// This function highlight the hovered block
+    void HighlightHoveredBlock();
     
     uint32_t viewport_width_ = 0, viewport_height_ = 0;
   };
