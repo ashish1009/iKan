@@ -48,6 +48,8 @@ namespace chess {
     };
     
   private:
+    /// This function returns the position of Block if mouse hovered
+    glm::vec2 GetBlockPosition();
     /// This function renders the chess Block Grids
     void RenderChessGrids();
     /// This function renders the background and border

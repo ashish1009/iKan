@@ -66,6 +66,9 @@ namespace chess {
       cam_data.scene_camera->ZoomWidget();
       ImGui::End();
     }
+    
+    ImGui::Begin("Chess");
+    ImGui::End();
   }
   
   void Chess::SetPlaying(bool playing_flag) {
@@ -80,18 +83,36 @@ namespace chess {
     if (!cam_data.scene_camera) return;
 
     if (cam_data.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Orthographic) {
+      glm::vec2 pos = GetBlockPosition();
+      
+      if (pos.x == -1 or pos.y == -1) return;
+      
+      Entity e = Prefab::Deserialize(path, scene_.get());
+      auto& tc = e.GetComponent<TransformComponent>();
+      tc.UpdatePosition(X, pos.x);
+      tc.UpdatePosition(Y, pos.y);
+    }
+  }
+  
+  glm::vec2 Chess::GetBlockPosition() {
+    const auto& cam_data = scene_->GetPrimaryCameraData();
+    if (!cam_data.scene_camera) return {-1, -1 };
+    
+    float x_pos = -1, y_pos = -1;
+    
+    if (cam_data.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Orthographic) {
       float zoom = viewport_->height / cam_data.scene_camera->GetZoom();
-      float x_pos = (viewport_->mouse_pos_x - (float)viewport_->width / 2) / zoom;
-      float y_pos = (viewport_->mouse_pos_y - (float)viewport_->height / 2) / zoom;
-
+      x_pos = (viewport_->mouse_pos_x - (float)viewport_->width / 2) / zoom;
+      y_pos = (viewport_->mouse_pos_y - (float)viewport_->height / 2) / zoom;
+      
       // Getting position relating to camera position
       x_pos += cam_data.position.x;
       y_pos += cam_data.position.y;
       
       // If Position is outside board then return
-      if (x_pos < 0 or x_pos > BlockSize * MaxCols) return;
-      if (y_pos < 0 or y_pos > BlockSize * MaxRows) return;
-  
+      if (x_pos < 0 or x_pos > BlockSize * MaxCols) return {-1, -1};
+      if (y_pos < 0 or y_pos > BlockSize * MaxRows) return {-1, -1};
+      
       // Round of the values in INT
       int32_t x_pos_int = int32_t(x_pos / BlockSize);
       int32_t y_pos_int = int32_t(y_pos / BlockSize);
@@ -99,12 +120,8 @@ namespace chess {
       // Getting position relating to block size
       x_pos = x_pos_int * BlockSize + BlockSize / 2;
       y_pos = y_pos_int * BlockSize + BlockSize / 2;
-      
-      Entity e = Prefab::Deserialize(path, scene_.get());
-      auto& tc = e.GetComponent<TransformComponent>();
-      tc.UpdatePosition(X, x_pos);
-      tc.UpdatePosition(Y, y_pos);
     }
+    return {x_pos, y_pos};
   }
   
   void Chess::RenderChessGrids() {
