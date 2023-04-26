@@ -450,6 +450,7 @@ namespace kreator {
     
     IK_TRACE(game_data_->GameName(), "Creating New Scene {0}", scene_path.c_str());
     NewSceneImpl(scene_path);
+    game_data_->Init(active_scene_, &viewport_);
   }
 
   void RendererLayer::NewSceneImpl(const std::string& scene_path) {
