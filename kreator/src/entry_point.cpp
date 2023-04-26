@@ -36,7 +36,7 @@ std::unique_ptr<ikan::Application> CreateApplication() {
   
   application_spec.save_ini_file_path = "../../../kreator/ini/kreator.ini";
 
-  return std::make_unique<kreator::KreatorApp>(application_spec, kreator::GameType::Mario);
+  return std::make_unique<kreator::KreatorApp>(application_spec, kreator::GameType::Chess);
 }
 
 #define IKAN_ENTRY_POINT 1

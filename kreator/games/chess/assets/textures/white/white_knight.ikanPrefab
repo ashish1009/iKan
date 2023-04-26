@@ -1,0 +1,19 @@
+Entity: 12145525244884912975
+TagComponent:
+  Tag: white_knight
+TransformComponent:
+  Translation: [0, 0, 0]
+  Rotation: [0, 0, 0]
+  Scale: [1, 2, 1]
+QuadComponent:
+  Texture_Use: true
+  Sub_Texture_Use: false
+  Linear_Edge: true
+  Texture_Path: ../../../kreator/games/chess/assets/textures/white/knight.png
+  Texture_TilingFactor: 1
+  Color: [1, 1, 1, 1]
+  Speed: 15
+  Coords0: [0, 0]
+  Sprite_Size0: [1, 1]
+  Cell_Size0: [16, 16]
+  Num_Coords: 1
