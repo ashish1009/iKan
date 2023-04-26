@@ -264,7 +264,7 @@ namespace ikan {
           else if (".fbx" == path.extension()) icon_texture = fbx_texture;
           else if (".ttf" == path.extension()) icon_texture = font_texture;
           else if (saved_scene_extension_ == path.extension()) icon_texture = ikan_scene_texture;
-          else if (".png" == path.extension() or ".jpg" == path.extension()) {
+          else if (".png" == path.extension() or ".jpg" == path.extension()  or ".jpeg" == path.extension()) {
             if (texture_image_map_.find(path) == texture_image_map_.end()) {
               texture_image_map_[path] = Renderer::GetTexture(path);
             }
