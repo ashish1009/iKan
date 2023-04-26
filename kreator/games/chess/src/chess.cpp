@@ -55,12 +55,30 @@ namespace chess {
     }
   }
   
+  void Chess::EventHandler(Event &event) {
+    EventDispatcher dispatcher(event);
+    dispatcher.Dispatch<MouseMovedEvent>(IK_BIND_EVENT_FN(Chess::MouseMoved));
+  }
+  
+  bool Chess::MouseMoved(MouseMovedEvent &mouse_move_event) {
+    if (RendererLayer::IsPlaying()) {
+      mouse_pos_.x = mouse_move_event.GetX();
+      mouse_pos_.y = viewport_height_ - mouse_move_event.GetY();
+    }
+    else {
+      mouse_pos_ = {viewport_->mouse_pos_x, viewport_->mouse_pos_y};
+    }
+    return false;
+  }
+  
   void Chess::SetViewportSize(uint32_t width, uint32_t height) {
     viewport_width_ = width;
     viewport_height_ = height;
   }
   
   void Chess::RenderGui() {
+    if (is_playing_) return;
+    
     if (auto& cam_data = scene_->GetPrimaryCameraData(); cam_data.scene_camera) {
       ImGui::Begin("Zoom");
       cam_data.scene_camera->ZoomWidget();
@@ -79,19 +97,13 @@ namespace chess {
   }
   
   void Chess::LoadPrefab(const std::string &path) {
-    const auto& cam_data = scene_->GetPrimaryCameraData();
-    if (!cam_data.scene_camera) return;
-
-    if (cam_data.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Orthographic) {
-      glm::vec2 pos = GetBlockPosition();
-      
-      if (pos.x == -1 or pos.y == -1) return;
-      
-      Entity e = Prefab::Deserialize(path, scene_.get());
-      auto& tc = e.GetComponent<TransformComponent>();
-      tc.UpdatePosition(X, pos.x);
-      tc.UpdatePosition(Y, pos.y);
-    }
+    glm::vec2 pos = GetBlockPosition();
+    if (pos.x == -1 or pos.y == -1) return;
+    
+    Entity e = Prefab::Deserialize(path, scene_.get());
+    auto& tc = e.GetComponent<TransformComponent>();
+    tc.UpdatePosition(X, pos.x);
+    tc.UpdatePosition(Y, pos.y);
   }
   
   glm::vec2 Chess::GetBlockPosition() {
@@ -101,9 +113,9 @@ namespace chess {
     float x_pos = -1, y_pos = -1;
     
     if (cam_data.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Orthographic) {
-      float zoom = viewport_->height / cam_data.scene_camera->GetZoom();
-      x_pos = (viewport_->mouse_pos_x - (float)viewport_->width / 2) / zoom;
-      y_pos = (viewport_->mouse_pos_y - (float)viewport_->height / 2) / zoom;
+      float zoom = viewport_height_ / cam_data.scene_camera->GetZoom();
+      x_pos = (mouse_pos_.x - (float)viewport_width_ / 2) / zoom;
+      y_pos = (mouse_pos_.y - (float)viewport_height_ / 2) / zoom;
       
       // Getting position relating to camera position
       x_pos += cam_data.position.x;
@@ -180,26 +192,17 @@ namespace chess {
   }
   
   void Chess::HighlightHoveredBlock() {
+    static const std::shared_ptr<Texture> hovered = Renderer::GetTexture(DM::ClientAsset("textures/hovered.png"));
+    
+    glm::vec2 pos = GetBlockPosition();
+    if (pos.x == -1 or pos.y == -1) return;
+    
     const auto& cam_data = scene_->GetPrimaryCameraData();
     if (!cam_data.scene_camera) return;
 
-    int32_t hovered_entity_id = -1;
-    Renderer::GetEntityIdFromPixels(viewport_->mouse_pos_x, viewport_->mouse_pos_y, viewport_->framebuffer->GetPixelIdIndex(), hovered_entity_id);
-    
-    if (hovered_entity_id == -1) return;
-    
-    Entity* hovered_entity = (hovered_entity_id > (int32_t)scene_->GetMaxEntityId()) ? nullptr : scene_->GetEnitityFromId(hovered_entity_id);
-    if (!hovered_entity)
-      return;
-    
-    auto& tc = hovered_entity->GetComponent<TransformComponent>();
-    
-    static const std::shared_ptr<Texture> hovered = Renderer::GetTexture(DM::ClientAsset("textures/hovered.png"));
-    
     Batch2DRenderer::BeginBatch(cam_data.scene_camera->GetProjection() * glm::inverse(cam_data.transform_comp->Transform()));
     
-    const auto& p = tc.Position();
-    glm::mat4 transform = Math::GetTransformMatrix({p.x, p.y, 0.2}, tc.Rotation(), {BlockSize, BlockSize, 1});
+    glm::mat4 transform = Math::GetTransformMatrix({pos.x, pos.y, 0.2}, glm::vec3(0.0f), {BlockSize, BlockSize, 1});
     Batch2DRenderer::DrawQuad(transform, hovered);
     
     Batch2DRenderer::EndBatch();

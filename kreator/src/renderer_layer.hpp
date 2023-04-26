@@ -64,13 +64,12 @@ namespace kreator {
     /// - Parameter event: Event (Base class) intance. Dispatch event from Event Dispatcher
     void HandleEvents(Event& event) override;
     
-    /// This function returns the playing state of game
-    bool IsPlaying() const { return is_playing_; }
-    
     /// This static API returns the reference of SPM Settings
     static ScenePanelManager::Setting& GetSmpSetting();
     /// This static API returns the reference of Settings
     static Setting& GetSetting();
+    /// This function returns the playing state of game
+    static bool IsPlaying(){ return is_playing_; }
     
   private:
     enum Direction {Left, Right, Up, Down};
@@ -159,12 +158,12 @@ namespace kreator {
     // Member variables
     static std::shared_ptr<ScenePanelManager> spm_;
     static Setting setting_;
+    static bool is_playing_;
 
     uint32_t viewport_width_ = Application::Get().GetWindow().GetWidth();
     uint32_t viewport_height_ = Application::Get().GetWindow().GetWidth();
 
     bool start_from_begin_ = true;
-    bool is_playing_ = false;
     bool show_setting_ = true;
     std::unique_ptr<GameData> game_data_;
     Viewport viewport_;

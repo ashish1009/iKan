@@ -23,6 +23,7 @@ namespace kreator {
   
   std::shared_ptr<ScenePanelManager> RendererLayer::spm_;
   RendererLayer::Setting RendererLayer::setting_;
+  bool RendererLayer::is_playing_ = false;
   
   RendererLayer::RendererLayer(GameType game_type)
   : Layer("Kreator"), game_data_(CreateGameData(game_type)) {
@@ -117,6 +118,8 @@ namespace kreator {
   void RendererLayer::HandleEvents(Event& event) {
     if (active_scene_)
       active_scene_->EventHandler(event);
+    
+    game_data_->EventHandler(event);
     
     EventDispatcher dispatcher(event);
     dispatcher.Dispatch<KeyPressedEvent>(IK_BIND_EVENT_FN(RendererLayer::KeyPressed));
@@ -219,14 +222,16 @@ namespace kreator {
         CBP::RenderGui(&setting_.content_browser_panel.flag);
         spm_->RenderGui();
                 
-        if (active_scene_->IsEditing() and start_from_begin_) {
-          SaveScene();
-          Prefab::Loader(&setting_.prefab_loader.flag);
+        if (active_scene_->IsEditing()) {
+          if (start_from_begin_) {
+            SaveScene();
+            Prefab::Loader(&setting_.prefab_loader.flag);
+          }
+          SceneRendererType();
         }
 
         RenderViewport();
         SceneStateButton();
-        SceneRendererType();
         ShowSettings();
         
         game_data_->RenderGui();

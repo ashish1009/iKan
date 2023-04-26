@@ -34,6 +34,9 @@ namespace kreator {
     /// This funcion calls each frame in renderer Pass. Update or debug render your game.
     /// - Parameter ts: tiem step of frames
     virtual void Update(Timestep ts) = 0;
+    /// This function handles the events of your game
+    /// - Parameter event: event
+    virtual void EventHandler(Event& event) {}
     /// This function update the viewport width of your game
     /// - Parameters:
     ///   - width: width of viewport

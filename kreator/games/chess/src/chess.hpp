@@ -25,6 +25,7 @@ namespace chess {
 
     void Init(const std::shared_ptr<Scene> scene, Viewport* viewport) override;
     void Update(Timestep ts) override;
+    void EventHandler(Event& event) override;
     void SetViewportSize(uint32_t width, uint32_t height) override;
     void RenderGui() override;
 
@@ -48,6 +49,9 @@ namespace chess {
     };
     
   private:
+    /// This function dispatched in event dispatcher and trigger when mouse move event evoked
+    /// - Parameter mouse_move_event: Mouse Move event instacnce
+    bool MouseMoved(MouseMovedEvent& mouse_move_event);
     /// This function returns the position of Block if mouse hovered
     glm::vec2 GetBlockPosition();
     /// This function renders the chess Block Grids
@@ -67,6 +71,7 @@ namespace chess {
     uint32_t viewport_width_ = 0, viewport_height_ = 0;
     std::array<std::array<BlockRef, MaxCols>, MaxRows> blocks_;
     
+    glm::vec2 mouse_pos_;
     glm::vec2 init_cam_pos_;
   };
   
