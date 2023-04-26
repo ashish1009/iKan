@@ -67,6 +67,11 @@ namespace kreator {
     /// This function returns the playing state of game
     bool IsPlaying() const { return is_playing_; }
     
+    /// This static API returns the reference of SPM Settings
+    static ScenePanelManager::Setting& GetSmpSetting();
+    /// This static API returns the reference of Settings
+    static Setting& GetSetting();
+    
   private:
     enum Direction {Left, Right, Up, Down};
 
@@ -152,6 +157,9 @@ namespace kreator {
     void DebugCameraController(Timestep ts);
 
     // Member variables
+    static std::shared_ptr<ScenePanelManager> spm_;
+    static Setting setting_;
+
     uint32_t viewport_width_ = Application::Get().GetWindow().GetWidth();
     uint32_t viewport_height_ = Application::Get().GetWindow().GetWidth();
 
@@ -159,11 +167,9 @@ namespace kreator {
     bool is_playing_ = false;
     bool show_setting_ = true;
     std::unique_ptr<GameData> game_data_;
-    Setting setting_;
     Viewport viewport_;
     
     std::shared_ptr<Scene> active_scene_, editor_scene_;
-    ScenePanelManager spm_;
 
     // Debug Data
     std::unordered_map<entt::entity, Entity*> selected_entities_;

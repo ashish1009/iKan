@@ -21,14 +21,21 @@ namespace kreator {
     flag = (flag) ? false : true; \
   }
   
+  std::shared_ptr<ScenePanelManager> RendererLayer::spm_;
+  RendererLayer::Setting RendererLayer::setting_;
+  
   RendererLayer::RendererLayer(GameType game_type)
   : Layer("Kreator"), game_data_(CreateGameData(game_type)) {
     KREATOR_LOG("Creating {0} Layer instance ... ", game_data_->GameName().c_str());
+    
+    if (!spm_)
+      spm_ = std::make_shared<ScenePanelManager>();
   }
   
   RendererLayer::~RendererLayer() {
     KREATOR_LOG("Destroying {0} Layer instance !!! ", game_data_->GameName().c_str());
     ContentBrowserPanel::ClearAllPaths();
+    spm_.reset();
   }
   
   void RendererLayer::Attach() {
@@ -89,7 +96,7 @@ namespace kreator {
       DebugCameraController(ts);
       OverlayRender();
       
-      viewport_.UpdateHoveredEntity(spm_.GetSelectedEntity(), active_scene_.get());
+      viewport_.UpdateHoveredEntity(spm_->GetSelectedEntity(), active_scene_.get());
       viewport_.framebuffer->Unbind();
     }
   }
@@ -178,7 +185,7 @@ namespace kreator {
   bool RendererLayer::MouseButtonPressed(MouseButtonPressedEvent& e) {
     if (e.GetMouseButton() == MouseButton::ButtonLeft) {
       if (viewport_.IsMouseInsideViewport())
-        spm_.SetSelectedEntity(viewport_.hovered_entity_);
+        spm_->SetSelectedEntity(viewport_.hovered_entity_);
     }
     return false;
   }
@@ -210,7 +217,7 @@ namespace kreator {
         viewport_.RenderGui(&setting_.viewport_data.flag);
         
         CBP::RenderGui(&setting_.content_browser_panel.flag);
-        spm_.RenderGui();
+        spm_->RenderGui();
                 
         if (active_scene_->IsEditing() and start_from_begin_) {
           SaveScene();
@@ -302,8 +309,8 @@ namespace kreator {
       ImguiAPI::Menu("Settings", true, [this]() {
         ImguiAPI::Menu("Scene", false, [this]() {
           SETTING_TOGGLE("Editor Camera", active_scene_->GetSetting().editor_camera);
-          SETTING_TOGGLE("Entity Panel", spm_.GetSetting().scene_panel);
-          SETTING_TOGGLE("Property Panel", spm_.GetSetting().property_panel);
+          SETTING_TOGGLE("Entity Panel", spm_->GetSetting().scene_panel);
+          SETTING_TOGGLE("Property Panel", spm_->GetSetting().property_panel);
         }); // Scene
         ImGui::Separator();
         SETTING_TOGGLE("Show Setting Widget", show_setting_);
@@ -329,8 +336,8 @@ namespace kreator {
     PropertyGrid::CheckBox("Scene Debug Draw", active_scene_->GetSetting().debug_draw, 3 * ImGui::GetWindowContentRegionMax().x / 4);
 
     ImGui::Separator();
-    PropertyGrid::CheckBox("Entity Panel", spm_.GetSetting().scene_panel, 3 * ImGui::GetWindowContentRegionMax().x / 4);
-    PropertyGrid::CheckBox("Property Panel", spm_.GetSetting().property_panel, 3 * ImGui::GetWindowContentRegionMax().x / 4);
+    PropertyGrid::CheckBox("Entity Panel", spm_->GetSetting().scene_panel, 3 * ImGui::GetWindowContentRegionMax().x / 4);
+    PropertyGrid::CheckBox("Property Panel", spm_->GetSetting().property_panel, 3 * ImGui::GetWindowContentRegionMax().x / 4);
 
     ImGui::Separator();
 
@@ -420,13 +427,13 @@ namespace kreator {
       reset_physcs = true;
     }
     
-    spm_.SetSceneContext(active_scene_.get());
+    spm_->SetSceneContext(active_scene_.get());
     
     game_data_->Init(active_scene_, &viewport_);
     game_data_->SetPlaying(true);
 
     active_scene_->PlayScene(reset_physcs);
-    spm_.SetSelectedEntity(nullptr);
+    spm_->SetSelectedEntity(nullptr);
   }
   
   void RendererLayer::EditScene() {
@@ -437,13 +444,13 @@ namespace kreator {
 
   void RendererLayer::StopScene() {
     active_scene_ = editor_scene_;
-    spm_.SetSceneContext(active_scene_.get());
+    spm_->SetSceneContext(active_scene_.get());
 
     game_data_->Init(active_scene_, &viewport_);
     game_data_->SetPlaying(false);
 
     active_scene_->EditScene();
-    spm_.SetSelectedEntity(nullptr);
+    spm_->SetSelectedEntity(nullptr);
     start_from_begin_ = true;
   }
   
@@ -462,7 +469,7 @@ namespace kreator {
     
     editor_scene_ = std::make_shared<Scene>(scene_path);
     active_scene_ = editor_scene_;
-    spm_.SetSceneContext(active_scene_.get());
+    spm_->SetSceneContext(active_scene_.get());
   }
 
   void RendererLayer::CloseScene() {
@@ -475,7 +482,7 @@ namespace kreator {
     editor_scene_.reset();
     editor_scene_ = nullptr;
     
-    spm_.SetSelectedEntity(nullptr);
+    spm_->SetSelectedEntity(nullptr);
   }
 
   void RendererLayer::SaveScene() {
@@ -621,8 +628,8 @@ namespace kreator {
   
   void RendererLayer::DeleteSelectedEntities() {
     for (auto& [entt, entity] : selected_entities_) {
-      if (spm_.GetSelectedEntity() and *(spm_.GetSelectedEntity()) == *entity) {
-        spm_.SetSelectedEntity(nullptr);
+      if (spm_->GetSelectedEntity() and *(spm_->GetSelectedEntity()) == *entity) {
+        spm_->SetSelectedEntity(nullptr);
       }
       active_scene_->DestroyEntity(*entity);
     }
@@ -724,7 +731,7 @@ namespace kreator {
   }
 
   void RendererLayer::OnImguizmoUpdate() {
-    Entity* selected_entity = spm_.GetSelectedEntity();
+    Entity* selected_entity = spm_->GetSelectedEntity();
     if (selected_entity and viewport_.guizmo_type != -1) {
       ImGuizmo::SetOrthographic(false);
       ImGuizmo::SetDrawlist();
@@ -806,5 +813,8 @@ namespace kreator {
       }
     }
   }
+  
+  ScenePanelManager::Setting& RendererLayer::GetSmpSetting() { return spm_->GetSetting(); }
+  RendererLayer::Setting& RendererLayer::GetSetting() { return setting_; }
   
 } // namespace kreator

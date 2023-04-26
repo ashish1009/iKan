@@ -6,6 +6,7 @@
 //
 
 #include "chess.hpp"
+#include "renderer_layer.hpp"
 
 namespace chess {
   
@@ -28,6 +29,9 @@ namespace chess {
     scene_ = scene;
     viewport_ = viewport;
     scene_->GetSetting().use_editor_camera = false;
+    
+    auto& spm_setting = RendererLayer::GetSmpSetting();
+    spm_setting.property_panel = false;
   }
   
   void Chess::Update(Timestep ts) {
