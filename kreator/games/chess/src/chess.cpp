@@ -44,14 +44,21 @@ namespace chess {
 
     if (cam_data.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Orthographic) {
       float zoom = viewport.height / cam_data.scene_camera->GetZoom();
-      float x_pos = (((viewport.mouse_pos_x - (float)viewport.width / 2) / zoom) + cam_data.position.x);
-      float y_pos = (((viewport.mouse_pos_y - (float)viewport.height / 2) / zoom) + cam_data.position.y);
+      float x_pos = (viewport.mouse_pos_x - (float)viewport.width / 2) / zoom;
+      float y_pos = (viewport.mouse_pos_y - (float)viewport.height / 2) / zoom;
 
+      x_pos += cam_data.position.x;
+      y_pos += cam_data.position.y;
+      
+      if (x_pos < 0 or x_pos > BlockSize * MaxCols) return;
+      if (y_pos < 0 or y_pos > BlockSize * MaxRows) return;
+  
       int32_t x_pos_int = int32_t(x_pos / BlockSize);
       int32_t y_pos_int = int32_t(y_pos / BlockSize);
       
       x_pos = x_pos_int * BlockSize + BlockSize / 2;
       y_pos = y_pos_int * BlockSize + BlockSize / 2;
+      
       
       Entity e = Prefab::Deserialize(path, scene_.get());
       auto& tc = e.GetComponent<TransformComponent>();
