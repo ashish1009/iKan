@@ -106,10 +106,10 @@ namespace kreator {
 
     /// This function is the wrapper to creates a new scene instance
     /// - Parameter scene_path: path of new scene
-    void NewScene(const std::string& scene_path = "Unsaved Scene");
+    void NewScene(const std::string& scene_path = "UnsavedScene" + saved_scene_extension_);
     /// This function creates a new scene instance
     /// - Parameter scene_path: path of new scene
-    void NewSceneImpl(const std::string& scene_path = "Unsaved Scene");
+    void NewSceneImpl(const std::string& scene_path);
     /// This function Renders an Imgui widget that helps in saving scene
     void SaveScene();
     /// This function closes the current scene
