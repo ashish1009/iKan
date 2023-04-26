@@ -40,6 +40,8 @@ namespace chess {
   
   void Chess::RenderChessGrids() {
     const auto& cam_data = scene_->GetPrimaryCameraData();
+    if (!cam_data.scene_camera) return;
+    
     static const glm::vec4 color = { 1.0f, 1.0f, 1.0f, 0.6f};
     static const float z = -0.1f;
     Batch2DRenderer::BeginBatch(cam_data.scene_camera->GetProjection() * glm::inverse(cam_data.transform_comp->Transform()));
@@ -53,10 +55,12 @@ namespace chess {
   }
   
   void Chess::RenderBackgroundAndBorder() {
+    const auto& cam_data = scene_->GetPrimaryCameraData();
+    if (!cam_data.scene_camera) return;
+    
     static const std::shared_ptr<Texture> bg = Renderer::GetTexture(DM::ClientAsset("textures/background.png"));
     static const std::shared_ptr<Texture> border = Renderer::GetTexture(DM::ClientAsset("textures/border.png"));
     
-    const auto& cam_data = scene_->GetPrimaryCameraData();
     Batch2DRenderer::BeginBatch(cam_data.scene_camera->GetProjection() * glm::inverse(cam_data.transform_comp->Transform()));
     
     // Background
@@ -71,10 +75,12 @@ namespace chess {
   }
   
   void Chess::RenderText() {
+    const auto& cam_data = scene_->GetPrimaryCameraData();
+    if (!cam_data.scene_camera) return;
+    
     static glm::vec2 size = {0.3f, 0.3f};
     static glm::vec4 color = { 0.7, 0.7, 0.7, 1};
 
-    const auto& cam_data = scene_->GetPrimaryCameraData();
     TextRenderer::BeginBatch(cam_data.scene_camera->GetProjection() * glm::inverse(cam_data.transform_comp->Transform()));
     for (int32_t row = 0;  row < MaxCols; row++) {
       TextRenderer::RenderText(std::to_string(row + 1), { -1, 0.5 + (BlockSize * row), 0.3f }, size, color);
