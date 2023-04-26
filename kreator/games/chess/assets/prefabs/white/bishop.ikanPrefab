@@ -2,7 +2,7 @@ Entity: 12145525244884912975
 TagComponent:
   Tag: white_bishop
 TransformComponent:
-  Translation: [0, 0, 0]
+  Translation: [0, 0, 0.100000001]
   Rotation: [0, 0, 0]
   Scale: [1, 2, 1]
 QuadComponent:

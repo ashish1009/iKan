@@ -134,6 +134,21 @@
 		B292BB7129D16F8F00B1E678 /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B292C0F029D1D58700B1E678 /* prefix_headers.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_headers.pch; sourceTree = "<group>"; };
 		B292C0F229D1D7C400B1E678 /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2DE4BA529F9261800AF8702 /* knight.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = knight.ikanPrefab; sourceTree = "<group>"; };
+		B2DE4BA629F9261800AF8702 /* white_knight.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = white_knight.ikanPrefab; sourceTree = "<group>"; };
+		B2DE4BA729F9261800AF8702 /* rook.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = rook.ikanPrefab; sourceTree = "<group>"; };
+		B2DE4BA829F9261800AF8702 /* bishop.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = bishop.ikanPrefab; sourceTree = "<group>"; };
+		B2DE4BA929F9261800AF8702 /* queen.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = queen.ikanPrefab; sourceTree = "<group>"; };
+		B2DE4BAA29F9261800AF8702 /* pawn.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = pawn.ikanPrefab; sourceTree = "<group>"; };
+		B2DE4BAB29F9261800AF8702 /* block.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = block.ikanPrefab; sourceTree = "<group>"; };
+		B2DE4BAC29F9261800AF8702 /* king.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = king.ikanPrefab; sourceTree = "<group>"; };
+		B2DE4BAE29F9261800AF8702 /* knight.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = knight.ikanPrefab; sourceTree = "<group>"; };
+		B2DE4BAF29F9261800AF8702 /* rook.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = rook.ikanPrefab; sourceTree = "<group>"; };
+		B2DE4BB029F9261800AF8702 /* bishop.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = bishop.ikanPrefab; sourceTree = "<group>"; };
+		B2DE4BB129F9261800AF8702 /* queen.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = queen.ikanPrefab; sourceTree = "<group>"; };
+		B2DE4BB229F9261800AF8702 /* pawn.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = pawn.ikanPrefab; sourceTree = "<group>"; };
+		B2DE4BB329F9261800AF8702 /* block.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = block.ikanPrefab; sourceTree = "<group>"; };
+		B2DE4BB429F9261800AF8702 /* king.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = king.ikanPrefab; sourceTree = "<group>"; };
 		B2E8D44E29E044A5005F5F0C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.16.dylib; path = ../ikan/vendors/freetype/libpng/1.6.39/lib/libpng16.16.dylib; sourceTree = "<group>"; };
@@ -260,7 +275,7 @@
 		B201A2F829F285F500D3C1FE /* assets */ = {
 			isa = PBXGroup;
 			children = (
-				B201AD5E29F297CC00D3C1FE /* prefabs */,
+				B2DE4BA329F9261800AF8702 /* prefabs */,
 				B201A2F929F285F500D3C1FE /* textures */,
 				B201A2FA29F285F500D3C1FE /* fonts */,
 			);
@@ -493,13 +508,6 @@
 			path = prefabs;
 			sourceTree = "<group>";
 		};
-		B201AD5E29F297CC00D3C1FE /* prefabs */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = prefabs;
-			sourceTree = "<group>";
-		};
 		B201AD5F29F297D900D3C1FE /* prefabs */ = {
 			isa = PBXGroup;
 			children = (
@@ -539,6 +547,44 @@
 				B292C0F229D1D7C400B1E678 /* libikan.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B2DE4BA329F9261800AF8702 /* prefabs */ = {
+			isa = PBXGroup;
+			children = (
+				B2DE4BA429F9261800AF8702 /* white */,
+				B2DE4BAD29F9261800AF8702 /* black */,
+			);
+			path = prefabs;
+			sourceTree = "<group>";
+		};
+		B2DE4BA429F9261800AF8702 /* white */ = {
+			isa = PBXGroup;
+			children = (
+				B2DE4BA529F9261800AF8702 /* knight.ikanPrefab */,
+				B2DE4BA629F9261800AF8702 /* white_knight.ikanPrefab */,
+				B2DE4BA729F9261800AF8702 /* rook.ikanPrefab */,
+				B2DE4BA829F9261800AF8702 /* bishop.ikanPrefab */,
+				B2DE4BA929F9261800AF8702 /* queen.ikanPrefab */,
+				B2DE4BAA29F9261800AF8702 /* pawn.ikanPrefab */,
+				B2DE4BAB29F9261800AF8702 /* block.ikanPrefab */,
+				B2DE4BAC29F9261800AF8702 /* king.ikanPrefab */,
+			);
+			path = white;
+			sourceTree = "<group>";
+		};
+		B2DE4BAD29F9261800AF8702 /* black */ = {
+			isa = PBXGroup;
+			children = (
+				B2DE4BAE29F9261800AF8702 /* knight.ikanPrefab */,
+				B2DE4BAF29F9261800AF8702 /* rook.ikanPrefab */,
+				B2DE4BB029F9261800AF8702 /* bishop.ikanPrefab */,
+				B2DE4BB129F9261800AF8702 /* queen.ikanPrefab */,
+				B2DE4BB229F9261800AF8702 /* pawn.ikanPrefab */,
+				B2DE4BB329F9261800AF8702 /* block.ikanPrefab */,
+				B2DE4BB429F9261800AF8702 /* king.ikanPrefab */,
+			);
+			path = black;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
