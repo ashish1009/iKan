@@ -43,6 +43,8 @@ namespace chess {
   private:
     /// This function renders the chess Block Grids
     void RenderChessGrids();
+    /// This function renders the background and border
+    void RenderBackgroundAndBorder();
     
     std::shared_ptr<Scene> scene_;
   };

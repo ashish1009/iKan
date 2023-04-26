@@ -26,6 +26,7 @@ namespace chess {
   }
   
   void Chess::Update(Timestep ts) {
+    RenderBackgroundAndBorder();
     RenderChessGrids();
   }
   
@@ -44,6 +45,24 @@ namespace chess {
     for (int32_t col = 0; col <= MaxCols; col++) {
       Batch2DRenderer::DrawLine({col * BlockSize, 0, z}, {col * BlockSize, MaxRows * BlockSize, z}, color);
     }
+    Batch2DRenderer::EndBatch();
+  }
+  
+  void Chess::RenderBackgroundAndBorder() {
+    static const std::shared_ptr<Texture> bg = Renderer::GetTexture(DM::ClientAsset("textures/background.png"));
+    static const std::shared_ptr<Texture> border = Renderer::GetTexture(DM::ClientAsset("textures/border.png"));
+    
+    const auto& cam_data = scene_->GetPrimaryCameraData();
+    Batch2DRenderer::BeginBatch(cam_data.scene_camera->GetProjection() * glm::inverse(cam_data.transform_comp->Transform()));
+    
+    // Background
+    static glm::mat4 bg_transform = Math::GetTransformMatrix({8, 8, -0.9}, {0, 0, 0}, {100, 100, 1});
+    Batch2DRenderer::DrawQuad(bg_transform, bg);
+
+    // Border
+    static glm::mat4 border_transform = Math::GetTransformMatrix({8, 8, -0.5}, {0, 0, 0}, {19.2, 19.2, 1});
+    Batch2DRenderer::DrawQuad(border_transform, border, { 0.641860485, 0.468707442, 0.468707442, 1 });
+    
     Batch2DRenderer::EndBatch();
   }
   
