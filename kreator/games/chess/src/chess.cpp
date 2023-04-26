@@ -24,16 +24,27 @@ namespace chess {
     CHESS_LOG("Initialising Chess Game Data ... ");
     scene_ = scene;
     viewport_ = viewport;
+    
+    scene_->GetSetting().use_editor_camera = false;
   }
   
   void Chess::Update(Timestep ts) {
     if (!scene_) return;
     
+    static bool change_camera_pos = true;
+    if (change_camera_pos) {
+      if (auto& cam_data = scene_->GetPrimaryCameraData(); cam_data.scene_camera) {
+        cam_data.transform_comp->UpdatePosition({8.0f, 8.0f, 0.0f});
+        cam_data.scene_camera->SetOrthographicSize(20.0f);
+      }
+    }
+    
     RenderBackgroundAndBorder();
     RenderChessGrids();
     RenderText();
     
-    HighlightHoveredBlock();
+    if (is_playing_)
+      HighlightHoveredBlock();
   }
   
   void Chess::SetViewportSize(uint32_t width, uint32_t height) {
@@ -133,6 +144,9 @@ namespace chess {
     if (hovered_entity_id == -1) return;
     
     Entity* hovered_entity = (hovered_entity_id > (int32_t)scene_->GetMaxEntityId()) ? nullptr : scene_->GetEnitityFromId(hovered_entity_id);
+    if (!hovered_entity)
+      return;
+    
     auto& tc = hovered_entity->GetComponent<TransformComponent>();
     
     static const std::shared_ptr<Texture> hovered = Renderer::GetTexture(DM::ClientAsset("textures/hovered.png"));
