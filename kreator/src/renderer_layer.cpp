@@ -405,7 +405,6 @@ namespace kreator {
       
       Application::Get().MaximizeWindow();
       ResizeData(Application::Get().GetWindowWidth(), Application::Get().GetWindowHeight());
-
       PlayScene();
     }
     else {

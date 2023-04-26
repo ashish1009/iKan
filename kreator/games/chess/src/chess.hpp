@@ -16,9 +16,12 @@ namespace chess {
   
   class Chess : public GameData {
   public:
-    void Init(const std::shared_ptr<Scene> scene) override {};
-    void Update(Timestep ts) override {}
-    void SetViewportSize(uint32_t width, uint32_t height) override {}
+    Chess();
+    ~Chess();
+    
+    void Init(const std::shared_ptr<Scene> scene) override;
+    void Update(Timestep ts) override;
+    void SetViewportSize(uint32_t width, uint32_t height) override;
 
     // Game Data API
     std::string GameName() const override { return "IKAN Chess"; }
@@ -36,6 +39,12 @@ namespace chess {
         DM::ClientAsset("prefabs"),
       };
     };
+    
+  private:
+    /// This function renders the chess Block Grids
+    void RenderChessGrids();
+    
+    std::shared_ptr<Scene> scene_;
   };
   
 } // namespace chess

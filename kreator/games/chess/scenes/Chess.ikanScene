@@ -7,7 +7,7 @@ Entities:
     TagComponent:
       Tag: Camera
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [8, 8, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
@@ -15,7 +15,7 @@ Entities:
       Primary: true
       ProjectionType: 1
       PerspectiveFOV: 1.30899692
-      OrthographicSize: 10
+      OrthographicSize: 20
       Near: -1
       Far: 1
       Grid: false
