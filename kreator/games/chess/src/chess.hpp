@@ -19,9 +19,9 @@ namespace chess {
     Chess();
     ~Chess();
 
-    void LoadPrefab(const std::string& path, const Viewport& viewport) override;
+    void LoadPrefab(const std::string& path) override;
 
-    void Init(const std::shared_ptr<Scene> scene) override;
+    void Init(const std::shared_ptr<Scene> scene, Viewport* viewport) override;
     void Update(Timestep ts) override;
     void SetViewportSize(uint32_t width, uint32_t height) override;
 

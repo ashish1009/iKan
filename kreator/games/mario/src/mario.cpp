@@ -28,10 +28,11 @@ namespace mario {
     RuntimeItem::Shutdown();
   }
   
-  void Mario::Init(const std::shared_ptr<Scene> scene) {
+  void Mario::Init(const std::shared_ptr<Scene> scene, Viewport* viewport) {
     MARIO_LOG("Initialising Mario Game Data ... ");
     
     scene_ = scene;
+    viewport_ = viewport;
     timer_ = 0;
     time_left_ = MaxTime;
     

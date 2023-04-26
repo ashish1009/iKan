@@ -15,21 +15,22 @@ namespace kreator {
     Editor, Mario, Chess, AngryBird
   };
   
+  /// Game Data Interface
   class GameData {
   public:
     virtual ~GameData() = default;
     
     /// This function load the prefab on Droping the item
-    /// - Parameters:
-    ///   - viewport: viewport data
-    ///   - path: file path of prefab
+    /// - Parameter path: file path of prefab
     /// - Note: Not Interface
-    virtual void LoadPrefab(const std::string& path, const Viewport& viewport);
+    virtual void LoadPrefab(const std::string& path);
     
     /// Initilize your game data here. This function triggers when scene in Open, Play or Edit in game
     /// - Note: Whenever Renderer Layer change the Scene pointer this function calls
-    /// - Parameters scene: This is the reference of created scene
-    virtual void Init(const std::shared_ptr<Scene> scene) = 0;
+    /// - Parameters:
+    ///   - scene: This is the reference of created scene
+    ///   - viewport: Viewport Data const reference
+    virtual void Init(const std::shared_ptr<Scene> scene, Viewport* viewport) = 0;
     /// This funcion calls each frame in renderer Pass. Update or debug render your game.
     /// - Parameter ts: tiem step of frames
     virtual void Update(Timestep ts) = 0;
@@ -64,6 +65,7 @@ namespace kreator {
   protected:
     bool is_playing_ = false;
     std::shared_ptr<Scene> scene_;
+    Viewport* viewport_;
   };
   
   /// This function is the defination of game data. Implementaiton should be at client

@@ -248,7 +248,7 @@ namespace kreator {
           OpenScene(path);
         }
         else if (StringUtils::GetExtensionFromFilePath(path) == prefab_extenstion_) {
-          game_data_->LoadPrefab(path, viewport_);
+          game_data_->LoadPrefab(path);
         }
         else {
           IK_WARN(game_data_->GameName(), "Invalid file for Scene {0}", path.c_str());
@@ -420,7 +420,7 @@ namespace kreator {
     
     spm_.SetSceneContext(active_scene_.get());
     
-    game_data_->Init(active_scene_);
+    game_data_->Init(active_scene_, &viewport_);
     game_data_->SetPlaying(true);
 
     active_scene_->PlayScene(reset_physcs);
@@ -437,7 +437,7 @@ namespace kreator {
     active_scene_ = editor_scene_;
     spm_.SetSceneContext(active_scene_.get());
 
-    game_data_->Init(active_scene_);
+    game_data_->Init(active_scene_, &viewport_);
     game_data_->SetPlaying(false);
 
     active_scene_->EditScene();
@@ -512,7 +512,7 @@ namespace kreator {
     SceneSerializer serializer(editor_scene_.get());
     
     bool result = serializer.Deserialize(scene_path);
-    game_data_->Init(active_scene_);
+    game_data_->Init(active_scene_, &viewport_);
     
     return result;
   }

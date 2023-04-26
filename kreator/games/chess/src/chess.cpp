@@ -20,9 +20,10 @@ namespace chess {
     CHESS_LOG("Destroying Chess Game Data ... ");
   }
   
-  void Chess::Init(const std::shared_ptr<Scene> scene) {
+  void Chess::Init(const std::shared_ptr<Scene> scene, Viewport* viewport) {
     CHESS_LOG("Initialising Chess Game Data ... ");
     scene_ = scene;
+    viewport_ = viewport;
   }
   
   void Chess::Update(Timestep ts) {
@@ -38,14 +39,14 @@ namespace chess {
     viewport_height_ = height;
   }
   
-  void Chess::LoadPrefab(const std::string &path, const Viewport &viewport) {
+  void Chess::LoadPrefab(const std::string &path) {
     const auto& cam_data = scene_->GetPrimaryCameraData();
     if (!cam_data.scene_camera) return;
 
     if (cam_data.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Orthographic) {
-      float zoom = viewport.height / cam_data.scene_camera->GetZoom();
-      float x_pos = (viewport.mouse_pos_x - (float)viewport.width / 2) / zoom;
-      float y_pos = (viewport.mouse_pos_y - (float)viewport.height / 2) / zoom;
+      float zoom = viewport_->height / cam_data.scene_camera->GetZoom();
+      float x_pos = (viewport_->mouse_pos_x - (float)viewport_->width / 2) / zoom;
+      float y_pos = (viewport_->mouse_pos_y - (float)viewport_->height / 2) / zoom;
 
       x_pos += cam_data.position.x;
       y_pos += cam_data.position.y;

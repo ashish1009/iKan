@@ -44,7 +44,7 @@ namespace mario {
     Mario();
     virtual ~Mario();
 
-    void Init(const std::shared_ptr<Scene> scene) override;
+    void Init(const std::shared_ptr<Scene> scene, Viewport* viewport) override;
     void Update(Timestep ts) override;
     void SetViewportSize(uint32_t width, uint32_t height) override;
 
