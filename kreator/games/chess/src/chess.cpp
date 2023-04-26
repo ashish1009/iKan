@@ -26,6 +26,8 @@ namespace chess {
   }
   
   void Chess::Update(Timestep ts) {
+    if (!scene_) return;
+    
     RenderBackgroundAndBorder();
     RenderChessGrids();
     RenderText();
