@@ -58,9 +58,12 @@ namespace kreator {
     virtual std::string GetScenePath() const = 0;
     /// This function returns the path of scene you want to open in begining
     virtual std::string SavedScene() const = 0;
-
-    void SetPlaying(bool playing_flag) { is_playing_ = playing_flag; }
-    bool IsPlaying() { return is_playing_; }
+    
+    /// This function set the flag as playing
+    /// - Parameter playing_flag: play flag
+    virtual void SetPlaying(bool playing_flag) { is_playing_ = playing_flag; }
+    /// this function returns is game playing
+    virtual bool IsPlaying() { return is_playing_; }
     
   protected:
     bool is_playing_ = false;

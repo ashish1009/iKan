@@ -8,6 +8,8 @@
 #pragma once
 
 #include "game_data.hpp"
+#include "common.hpp"
+#include "block.hpp"
 
 namespace chess {
   
@@ -24,6 +26,8 @@ namespace chess {
     void Init(const std::shared_ptr<Scene> scene, Viewport* viewport) override;
     void Update(Timestep ts) override;
     void SetViewportSize(uint32_t width, uint32_t height) override;
+
+    void SetPlaying(bool playing_flag);
 
     // Game Data API
     std::string GameName() const override { return "IKAN Chess"; }
@@ -51,8 +55,14 @@ namespace chess {
     void RenderText();
     /// This function highlight the hovered block
     void HighlightHoveredBlock();
+    /// This function create
+    /// - Note: Block Name should be "block"
+    /// - Note: Piece Name should be {color_<piece> where piece : {pawn, king, queen, knight, bishop, rook}}
+    void CreateBlocks();
     
+    // Member data
     uint32_t viewport_width_ = 0, viewport_height_ = 0;
+    std::array<std::array<BlockRef, MaxCols>, MaxRows> blocks_;
   };
   
 } // namespace chess

@@ -6,7 +6,6 @@
 //
 
 #include "chess.hpp"
-#include "common.hpp"
 
 namespace chess {
   
@@ -41,7 +40,7 @@ namespace chess {
     
     RenderBackgroundAndBorder();
     RenderText();
-    
+        
     if (is_playing_) {
       HighlightHoveredBlock();
     }
@@ -55,6 +54,13 @@ namespace chess {
     viewport_height_ = height;
   }
   
+  void Chess::SetPlaying(bool playing_flag) {
+    is_playing_ = playing_flag;
+    if (is_playing_) {
+      CreateBlocks();
+    }
+  }
+  
   void Chess::LoadPrefab(const std::string &path) {
     const auto& cam_data = scene_->GetPrimaryCameraData();
     if (!cam_data.scene_camera) return;
@@ -64,18 +70,21 @@ namespace chess {
       float x_pos = (viewport_->mouse_pos_x - (float)viewport_->width / 2) / zoom;
       float y_pos = (viewport_->mouse_pos_y - (float)viewport_->height / 2) / zoom;
 
+      // Getting position relating to camera position
       x_pos += cam_data.position.x;
       y_pos += cam_data.position.y;
       
+      // If Position is outside board then return
       if (x_pos < 0 or x_pos > BlockSize * MaxCols) return;
       if (y_pos < 0 or y_pos > BlockSize * MaxRows) return;
   
+      // Round of the values in INT
       int32_t x_pos_int = int32_t(x_pos / BlockSize);
       int32_t y_pos_int = int32_t(y_pos / BlockSize);
       
+      // Getting position relating to block size
       x_pos = x_pos_int * BlockSize + BlockSize / 2;
       y_pos = y_pos_int * BlockSize + BlockSize / 2;
-      
       
       Entity e = Prefab::Deserialize(path, scene_.get());
       auto& tc = e.GetComponent<TransformComponent>();
@@ -161,6 +170,26 @@ namespace chess {
     Batch2DRenderer::DrawQuad(transform, hovered);
     
     Batch2DRenderer::EndBatch();
+  }
+  
+  void Chess::CreateBlocks() {
+    auto view = scene_->GetEntitesWith<TagComponent, TransformComponent>();
+    for (auto e : view) {
+      const auto& [tag_comp, transform_comp] = view.get<TagComponent, TransformComponent>(e);
+      if (tag_comp.tag == "block") {
+        const auto &p = transform_comp.Position();
+        
+        // Getting Row and column number from Position relative to block size
+        float row = (p.y - BlockSize / 2) / BlockSize;
+        float col = (p.x - BlockSize / 2) / BlockSize;
+        
+        // If Row and column out of bond
+        IK_ASSERT(row >= 0 and row < MaxRows);
+        IK_ASSERT(col >= 0 and col < MaxCols);
+        
+        blocks_[row][col] = std::make_shared<Block>();
+      }
+    }
   }
   
 } // namespace chess
