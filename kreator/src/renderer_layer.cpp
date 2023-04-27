@@ -46,7 +46,7 @@ namespace kreator {
     CBP::AddAssetPaths(game_data_->AssetDirecotries());
 
     // Loading the Default Font for Text rendering
-    TextRenderer::LoadFreetype(game_data_->RegularFontData().path);
+    TextRenderer::Initialise(game_data_->RegularFontData().path);
 
     // Decorate the Imgui Change the font of imgui
     ImguiAPI::ChangeFont(game_data_->RegularFontData(), game_data_->BoldFontData());
@@ -63,6 +63,8 @@ namespace kreator {
     KREATOR_LOG("Detaching {0} Layer instance ", game_data_->GameName().c_str());
     
     ContentBrowserPanel::ClearAllPaths();
+    TextRenderer::Shutdown();
+    
     spm_.reset();
   }
   

@@ -12,7 +12,9 @@ namespace ikan {
   class TextRenderer {
   public:
     /// This function initializes the Text renderer. Create All buffers needed to store Data (Both Renderer and CPU)
-    static void Initialise();
+    /// - Parameter font_file_path: path of font
+    /// - Note: Load the Font before using any other API In client
+    static void Initialise(const std::string& font_file_path = "");
     /// This function Shuts down on Text the Batch Renderer. Delete all the allocated Data
     static void Shutdown();
     /// This function Dump the data in logs

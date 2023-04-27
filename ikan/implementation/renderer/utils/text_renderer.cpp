@@ -56,7 +56,7 @@ namespace ikan {
   };
   static std::unique_ptr<TextData> text_data_;
 
-  void TextRenderer::Initialise() {
+  void TextRenderer::Initialise(const std::string& font_file_path) {
     text_data_ = std::make_unique<TextData>();
     
     // Allocating the memory for vertex Buffer Pointer
@@ -91,9 +91,15 @@ namespace ikan {
     IK_CORE_TRACE(LogModule::TextRenderer, "  Vertex Buffer Used  {0} B",
                   TextData::VertexForSingleChar * sizeof(TextData::Vertex) * MaxTextureSlotsInShader);
     IK_CORE_TRACE(LogModule::TextRenderer, "  Shader used         {0}", text_data_->shader->GetName());
+    
+    if (font_file_path != "") {
+      LoadFreetype(font_file_path);
+    }
   }
   
   void TextRenderer::Shutdown() {
+    if (!text_data_) return;
+    
     IK_CORE_TRACE(LogModule::TextRenderer, "Shutting down the Text Renderer !!!");
     IK_CORE_TRACE(LogModule::TextRenderer, "  Vertex Buffer Used  {0} B",
                   TextData::VertexForSingleChar * sizeof(TextData::Vertex) * MaxTextureSlotsInShader);
