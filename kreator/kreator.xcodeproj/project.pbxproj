@@ -27,6 +27,7 @@
 		B2E8D45229E0460C005F5F0C /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2E8D45429E0464A005F5F0C /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2FDC3D229FA4580006D1383 /* setting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FDC3D129FA4580006D1383 /* setting.cpp */; };
+		B2FDC3DC29FA4AC8006D1383 /* piece.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FDC3DA29FA4AC8006D1383 /* piece.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -154,6 +155,8 @@
 		B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.16.dylib; path = ../ikan/vendors/freetype/libpng/1.6.39/lib/libpng16.16.dylib; sourceTree = "<group>"; };
 		B2FDC3D129FA4580006D1383 /* setting.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = setting.cpp; sourceTree = "<group>"; };
+		B2FDC3DA29FA4AC8006D1383 /* piece.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = piece.cpp; sourceTree = "<group>"; };
+		B2FDC3DB29FA4AC8006D1383 /* piece.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = piece.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +329,8 @@
 				B201A30829F285F500D3C1FE /* chess.hpp */,
 				B266841D29F949720083F5BD /* block.cpp */,
 				B266841E29F949720083F5BD /* block.hpp */,
+				B2FDC3DA29FA4AC8006D1383 /* piece.cpp */,
+				B2FDC3DB29FA4AC8006D1383 /* piece.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -647,6 +652,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2FDC3DC29FA4AC8006D1383 /* piece.cpp in Sources */,
 				B201A34029F285F500D3C1FE /* chess.cpp in Sources */,
 				B201A33E29F285F500D3C1FE /* angry_bird.cpp in Sources */,
 				B2FDC3D229FA4580006D1383 /* setting.cpp in Sources */,

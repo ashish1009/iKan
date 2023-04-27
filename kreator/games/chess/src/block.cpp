@@ -17,7 +17,7 @@ namespace chess {
     CHESS_LOG("Destroying Block Instance");
   }
   
-  void Block::SetData(Color color, Piece piece) {
+  void Block::SetData(Color color, PieceType piece) {
     IK_INFO("", "{0}, {1}", GetColorString(color), GetPieceString(piece));
   }
 

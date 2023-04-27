@@ -21,7 +21,7 @@ namespace chess {
     Black, White
   };
   
-  enum class Piece {
+  enum class PieceType {
     King, Queen, Rook, Bishop, Knight, Pawn
   };
   
@@ -30,7 +30,7 @@ namespace chess {
   std::string GetColorString(Color color);
   /// This function returns the color string
   /// - Parameter color: color enum
-  std::string GetPieceString(Piece color);
+  std::string GetPieceString(PieceType color);
 
   /// This function return the color type from entity tag
   /// - Parameter tag: entity Tag
@@ -41,7 +41,7 @@ namespace chess {
   /// - Parameter tag: entity Tag
   /// - Note: Tag should be in form of color_<piece type>
   /// - Note: piece name should be <"king queen rook bioshop knight pawn">
-  Piece GetPieceFromTag(const std::string& piece_tag);
+  PieceType GetPieceFromTag(const std::string& piece_tag);
 
   /// This function return if the entity is piece
   /// - Parameter tag: entity Tag

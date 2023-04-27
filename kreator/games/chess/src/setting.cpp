@@ -17,14 +17,14 @@ namespace chess {
     }
   }
   
-  std::string GetPieceString(Piece piece) {
+  std::string GetPieceString(PieceType piece) {
     switch (piece) {
-      case Piece::King:     return "King";
-      case Piece::Queen:    return "Queen";
-      case Piece::Rook:     return "Rook";
-      case Piece::Bishop:   return "Bishop";
-      case Piece::Knight:   return "Knight";
-      case Piece::Pawn:     return "Pawn";
+      case PieceType::King:     return "King";
+      case PieceType::Queen:    return "Queen";
+      case PieceType::Rook:     return "Rook";
+      case PieceType::Bishop:   return "Bishop";
+      case PieceType::Knight:   return "Knight";
+      case PieceType::Pawn:     return "Pawn";
       default: IK_ASSERT(false);
     }
   }
@@ -40,17 +40,17 @@ namespace chess {
     IK_ASSERT(false);
   }
 
-  Piece GetPieceFromTag(const std::string& piece_tag) {
+  PieceType GetPieceFromTag(const std::string& piece_tag) {
     auto underscore = piece_tag.find_last_of("_");
     IK_ASSERT(underscore != std::string::npos);
     std::string piece = piece_tag.substr(underscore + 1, piece_tag.size());
     
-    if (piece == "king") return     Piece::King;
-    if (piece == "queen") return    Piece::Queen;
-    if (piece == "rook") return     Piece::Rook;
-    if (piece == "bishop") return   Piece::Bishop;
-    if (piece == "knight") return   Piece::Knight;
-    if (piece == "pawn") return     Piece::Pawn;
+    if (piece == "king") return     PieceType::King;
+    if (piece == "queen") return    PieceType::Queen;
+    if (piece == "rook") return     PieceType::Rook;
+    if (piece == "bishop") return   PieceType::Bishop;
+    if (piece == "knight") return   PieceType::Knight;
+    if (piece == "pawn") return     PieceType::Pawn;
 
     IK_ASSERT(false);
   }

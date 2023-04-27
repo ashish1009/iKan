@@ -237,7 +237,7 @@ namespace chess {
         
         // Get Color and piece of block
         Color color = GetColorFromTag(tag_comp.tag);
-        Piece piece = GetPieceFromTag(tag_comp.tag);
+        PieceType piece = GetPieceFromTag(tag_comp.tag);
 
         blocks_[row][col]->SetData(color, piece);
       }

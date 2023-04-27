@@ -24,10 +24,10 @@ namespace chess {
     /// - Parameters:
     ///   - color: color of piece
     ///   - piece: type of piece
-    void SetData(Color color, Piece piece);
+    void SetData(Color color, PieceType piece);
     
   private:
-    std::shared_ptr<Piece> piece;
+    std::shared_ptr<PieceType> piece;
   };
     
 } // namespace chess
