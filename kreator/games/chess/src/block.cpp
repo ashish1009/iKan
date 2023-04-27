@@ -6,17 +6,19 @@
 //
 
 #include "block.hpp"
-#include "common.hpp"
 
 namespace chess {
   
   Block::Block() {
-    static int num_blocks = 0;
-    CHESS_LOG("Creating Block Instance {0}", num_blocks++);
+    CHESS_LOG("Creating Block Instance");
   }
-
+  
   Block::~Block() {
     CHESS_LOG("Destroying Block Instance");
+  }
+  
+  void Block::SetData(Color color, Piece piece) {
+    IK_INFO("", "{0}, {1}", GetColorString(color), GetPieceString(piece));
   }
 
 } // namespace chess

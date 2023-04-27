@@ -14,7 +14,6 @@
 		B201A34229F285F500D3C1FE /* editor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A33829F285F500D3C1FE /* editor.cpp */; };
 		B201A34329F285F500D3C1FE /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A33C29F285F500D3C1FE /* entry_point.cpp */; };
 		B201A34429F285F500D3C1FE /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A33D29F285F500D3C1FE /* renderer_layer.cpp */; };
-		B20EFEB229F9125400D6DC84 /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B20EFEB029F9125400D6DC84 /* common.cpp */; };
 		B247160029F6B81B00BA166E /* block_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24715FE29F6B81B00BA166E /* block_controller.cpp */; };
 		B247160929F6E34700BA166E /* runtime_items.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B247160729F6E34700BA166E /* runtime_items.cpp */; };
 		B266841F29F949720083F5BD /* block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B266841D29F949720083F5BD /* block.cpp */; };
@@ -27,6 +26,7 @@
 		B2E8D44F29E044A5005F5F0C /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2E8D44E29E044A5005F5F0C /* libfreetype.6.dylib */; };
 		B2E8D45229E0460C005F5F0C /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2E8D45429E0464A005F5F0C /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B2FDC3D229FA4580006D1383 /* setting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2FDC3D129FA4580006D1383 /* setting.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -114,8 +114,7 @@
 		B201A33B29F285F500D3C1FE /* kreator_application.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kreator_application.hpp; sourceTree = "<group>"; };
 		B201A33C29F285F500D3C1FE /* entry_point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = entry_point.cpp; sourceTree = "<group>"; };
 		B201A33D29F285F500D3C1FE /* renderer_layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_layer.cpp; sourceTree = "<group>"; };
-		B20EFEB029F9125400D6DC84 /* common.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = common.cpp; sourceTree = "<group>"; };
-		B20EFEB129F9125400D6DC84 /* common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = common.hpp; sourceTree = "<group>"; };
+		B20EFEB129F9125400D6DC84 /* setting.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = setting.hpp; sourceTree = "<group>"; };
 		B228FC7029DB093D00455666 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		B228FC7229DB094700455666 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		B228FC7429DB094C00455666 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
@@ -154,6 +153,7 @@
 		B2E8D44E29E044A5005F5F0C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfreetype.6.dylib; path = ../ikan/vendors/freetype/lib/libfreetype.6.dylib; sourceTree = "<group>"; };
 		B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpng16.16.dylib; path = ../ikan/vendors/freetype/libpng/1.6.39/lib/libpng16.16.dylib; sourceTree = "<group>"; };
+		B2FDC3D129FA4580006D1383 /* setting.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = setting.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,8 +320,8 @@
 		B201A30729F285F500D3C1FE /* src */ = {
 			isa = PBXGroup;
 			children = (
-				B20EFEB029F9125400D6DC84 /* common.cpp */,
-				B20EFEB129F9125400D6DC84 /* common.hpp */,
+				B2FDC3D129FA4580006D1383 /* setting.cpp */,
+				B20EFEB129F9125400D6DC84 /* setting.hpp */,
 				B201A30929F285F500D3C1FE /* chess.cpp */,
 				B201A30829F285F500D3C1FE /* chess.hpp */,
 				B266841D29F949720083F5BD /* block.cpp */,
@@ -649,6 +649,7 @@
 			files = (
 				B201A34029F285F500D3C1FE /* chess.cpp in Sources */,
 				B201A33E29F285F500D3C1FE /* angry_bird.cpp in Sources */,
+				B2FDC3D229FA4580006D1383 /* setting.cpp in Sources */,
 				B266841F29F949720083F5BD /* block.cpp in Sources */,
 				B28C139529F552F700AB96AE /* player_state_machine.cpp in Sources */,
 				B247160929F6E34700BA166E /* runtime_items.cpp in Sources */,
@@ -656,7 +657,6 @@
 				B201A34129F285F500D3C1FE /* mario.cpp in Sources */,
 				B29016F529F43ED800BB309D /* common.cpp in Sources */,
 				B201A34329F285F500D3C1FE /* entry_point.cpp in Sources */,
-				B20EFEB229F9125400D6DC84 /* common.cpp in Sources */,
 				B28D3A8B29F46EB10022E3DC /* player.cpp in Sources */,
 				B201A33F29F285F500D3C1FE /* game_data.cpp in Sources */,
 				B29016F829F4401200BB309D /* sprite_manager.cpp in Sources */,

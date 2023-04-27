@@ -29,9 +29,6 @@ namespace chess {
     scene_ = scene;
     viewport_ = viewport;
     scene_->GetSetting().use_editor_camera = false;
-    
-    auto& spm_setting = RendererLayer::GetSmpSetting();
-    spm_setting.property_panel = false;
   }
   
   void Chess::Update(Timestep ts) {
@@ -166,9 +163,7 @@ namespace chess {
     Batch2DRenderer::DrawQuad(bg_transform, bg);
 
     // Border
-    static glm::mat4 border_transform = Math::GetTransformMatrix({init_cam_pos_.x, init_cam_pos_.y, -0.5},
-                                                                 {0, 0, 0},
-                                                                 {(BlockSize * (MaxCols + 1.6)), (BlockSize * (MaxRows + 1.6)), 1});
+    static glm::mat4 border_transform = Math::GetTransformMatrix({init_cam_pos_.x, init_cam_pos_.y, -0.5}, {0, 0, 0}, {(BlockSize * (MaxCols + 1.6)), (BlockSize * (MaxRows + 1.6)), 1});
     Batch2DRenderer::DrawQuad(border_transform, border, { 0.641860485, 0.468707442, 0.468707442, 1 });
     
     Batch2DRenderer::EndBatch();
@@ -226,6 +221,28 @@ namespace chess {
         blocks_[row][col] = std::make_shared<Block>();
       }
     }
+  
+    for (auto e : view) {
+      const auto& [tag_comp, transform_comp] = view.get<TagComponent, TransformComponent>(e);
+      if (IsPieceTag(tag_comp.tag)) {
+        const auto &p = transform_comp.Position();
+        
+        // Getting Row and column number from Position relative to block size
+        float row = (p.y - BlockSize / 2) / BlockSize;
+        float col = (p.x - BlockSize / 2) / BlockSize;
+        
+        // If Row and column out of bond
+        IK_ASSERT(row >= 0 and row < MaxRows);
+        IK_ASSERT(col >= 0 and col < MaxCols);
+        
+        // Get Color and piece of block
+        Color color = GetColorFromTag(tag_comp.tag);
+        Piece piece = GetPieceFromTag(tag_comp.tag);
+
+        blocks_[row][col]->SetData(color, piece);
+      }
+    }
+    
   }
   
 } // namespace chess
