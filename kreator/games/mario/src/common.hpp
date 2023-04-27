@@ -9,12 +9,13 @@
 
 #define TextureRef std::shared_ptr<Texture>
 #define SubTextureRef std::shared_ptr<SubTexture>
+#define MARIO_LOG(...) IK_TRACE("Mario", __VA_ARGS__);
 
 namespace mario {
   
-#define MARIO_LOG(...) IK_TRACE("Mario", __VA_ARGS__);
-  
   using namespace ikan;
+
+  static const uint32_t NoScore = 0;
   
   class MarioPrefab {
   public:

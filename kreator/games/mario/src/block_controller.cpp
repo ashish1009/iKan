@@ -7,6 +7,8 @@
 
 #include "block_controller.hpp"
 #include "player.hpp"
+#include "runtime_items.hpp"
+#include "common.hpp"
 
 namespace mario {
   
@@ -68,11 +70,13 @@ namespace mario {
   }
   
   void BlockController::PlayerHit(PlayerController *pc) {
+    auto& tc = entity_.GetComponent<TransformComponent>();
     switch (type_) {
       case BlockType::Empty : {
         break;
       }
       case BlockType::Coin: {
+        RuntimeItem::Spawn(Items::Coin, entity_.scene_, {tc.Position().x, tc.Position().y + 1}, NoScore);
         break;
       }
       case BlockType::Star: {
