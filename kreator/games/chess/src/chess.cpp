@@ -74,8 +74,6 @@ namespace chess {
   }
   
   void Chess::RenderGui() {
-    if (is_playing_) return;
-    
     if (auto& cam_data = scene_->GetPrimaryCameraData(); cam_data.scene_camera) {
       ImGui::Begin("Zoom");
       cam_data.scene_camera->ZoomWidget();
@@ -83,6 +81,37 @@ namespace chess {
     }
     
     ImGui::Begin("Chess");
+    if (hovered_block_) {
+      ImGui::Text("Hovered Block");
+      ImGui::Separator();
+      
+      ImGui::Columns(2);
+      ImGui::SetColumnWidth(0, ImGui::GetWindowContentRegionMax().x / 2);
+      
+      ImGui::Text("Block Row");
+      ImGui::Text("Block Colum");
+
+      std::shared_ptr<Piece> piece = hovered_block_->GetPiece();
+      if (piece) {
+        ImGui::Text("Piece Type");
+        ImGui::Text("Piece Color");
+      }
+      else {
+        ImGui::Text("Empty Block");
+      }
+
+      ImGui::NextColumn();
+      
+      ImGui::Text("%d", hovered_block_->GetRow());
+      ImGui::Text("%d", hovered_block_->GetCol());
+
+      if (piece) {
+        ImGui::Text("%s", GetPieceString(piece->GetPiece()).c_str());
+        ImGui::Text("%s", GetColorString(piece->GetColor()).c_str());
+      }
+
+      ImGui::Columns(1);
+    }
     ImGui::End();
   }
   
@@ -190,7 +219,10 @@ namespace chess {
     static const std::shared_ptr<Texture> hovered = Renderer::GetTexture(DM::ClientAsset("textures/hovered.png"));
     
     glm::vec2 pos = GetBlockPosition();
-    if (pos.x == -1 or pos.y == -1) return;
+    if (pos.x == -1 or pos.y == -1) {
+      hovered_block_ = nullptr;
+      return;
+    }
     
     const auto& cam_data = scene_->GetPrimaryCameraData();
     if (!cam_data.scene_camera) return;
@@ -201,6 +233,13 @@ namespace chess {
     Batch2DRenderer::DrawQuad(transform, hovered);
     
     Batch2DRenderer::EndBatch();
+
+    int32_t col = (int32_t)((pos.x - BlockSize / 2) / BlockSize);
+    int32_t row = (int32_t)((pos.y - BlockSize / 2) / BlockSize);
+
+    
+    // Update the Hovered block
+    hovered_block_ = (blocks_[row][col]).get();
   }
   
   void Chess::CreateBlocks() {
@@ -218,7 +257,7 @@ namespace chess {
         IK_ASSERT(row >= 0 and row < MaxRows);
         IK_ASSERT(col >= 0 and col < MaxCols);
         
-        blocks_[row][col] = std::make_shared<Block>();
+        blocks_[row][col] = std::make_shared<Block>(row, col);
       }
     }
   

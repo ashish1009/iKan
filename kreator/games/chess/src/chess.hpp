@@ -73,6 +73,8 @@ namespace chess {
     
     glm::vec2 mouse_pos_;
     glm::vec2 init_cam_pos_;
+    
+    Block* hovered_block_ = nullptr;
   };
   
 } // namespace chess

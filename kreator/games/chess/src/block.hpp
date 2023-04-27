@@ -8,6 +8,7 @@
 #pragma once
 
 #include "setting.hpp"
+#include "piece.hpp"
 
 namespace chess {
   
@@ -16,7 +17,10 @@ namespace chess {
   class Block {
   public:
     /// This Constructor creates the Block Data
-    Block();
+    /// - Parameters:
+    ///   - row_: Row index of block
+    ///   - col_: column index of block
+    Block(int32_t row, int32_t col);
     /// This Constructor destroy the Block Data
     ~Block();
     
@@ -26,8 +30,18 @@ namespace chess {
     ///   - piece: type of piece
     void SetData(Color color, PieceType piece);
     
+    /// This function returns the row index of block
+    int32_t GetRow() const { return row_; }
+    /// This function returns the column index of block
+    int32_t GetCol() const { return col_; }
+    /// This function returns the Piece on this block
+    std::shared_ptr<Piece> GetPiece() { return piece_; }
+    
   private:
-    std::shared_ptr<PieceType> piece;
+    std::shared_ptr<Piece> piece_;
+    
+    // For Debug
+    int32_t row_ = -1, col_ = -1;
   };
     
 } // namespace chess

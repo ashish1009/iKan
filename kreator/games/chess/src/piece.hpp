@@ -32,21 +32,57 @@ namespace chess {
   };
   
   class King : public Piece {
+  public:
+    King(PieceType piece, Color color) {
+      piece_ = piece;
+      color_ = color;
+    }
+    ~King() = default;
   };
 
   class Queen : public Piece {
+  public:
+    Queen(PieceType piece, Color color) {
+      piece_ = piece;
+      color_ = color;
+    }
+    ~Queen() = default;
   };
 
   class Rook : public Piece {
+  public:
+    Rook(PieceType piece, Color color) {
+      piece_ = piece;
+      color_ = color;
+    }
+    ~Rook() = default;
   };
 
   class Bishop : public Piece {
+  public:
+    Bishop(PieceType piece, Color color) {
+      piece_ = piece;
+      color_ = color;
+    }
+    ~Bishop() = default;
   };
 
   class Knight : public Piece {
+  public:
+    Knight(PieceType piece, Color color) {
+      piece_ = piece;
+      color_ = color;
+    }
+    ~Knight() = default;
   };
 
   class Pawn : public Piece {
+  public:
+    Pawn(PieceType piece, Color color) {
+      piece_ = piece;
+      color_ = color;
+    }
+    ~Pawn() = default;
   };
 
 } // namespace chess
