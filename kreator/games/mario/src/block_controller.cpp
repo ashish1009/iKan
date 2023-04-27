@@ -77,6 +77,11 @@ namespace mario {
       }
       case BlockType::Coin: {
         RuntimeItem::Spawn(Items::Coin, entity_.scene_, {tc.Position().x, tc.Position().y + 1}, NoScore);
+        
+        count_--;
+        if (count_ == 0)
+          SetInactive();
+
         break;
       }
       case BlockType::Star: {
@@ -88,6 +93,15 @@ namespace mario {
       default:
         break;
     }
+  }
+  
+  void BlockController::SetInactive() {
+    auto& qc = entity_.GetComponent<QuadComponent>();
+    qc.sprite.ClearSprites();
+    qc.sprite.texture = SpriteManager::GetTexture(SpriteType::Items);
+    qc.sprite.sprite_images = {SpriteManager::GetItemSprite(Items::InactiveBlock)};
+        
+    active_ = false;
   }
   
   void BlockController::RenderGui() {

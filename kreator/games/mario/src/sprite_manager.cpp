@@ -68,6 +68,7 @@ namespace mario {
     data_->item_subtextures_map[Items::Flower] = SubTexture::CreateFromCoords(item_sprite, {0.0f, 18.0f});
     data_->item_subtextures_map[Items::Fireball] = SubTexture::CreateFromCoords(item_sprite, {7.0f, 10.0f});
     data_->item_subtextures_map[Items::BigFireball] = SubTexture::CreateFromCoords(item_sprite, {7.0f, 9.0f});
+    data_->item_subtextures_map[Items::InactiveBlock] = SubTexture::CreateFromCoords(item_sprite, {3.0f, 8.0f});
 
     MARIO_LOG("Initialised the Sprite Manager");
   }

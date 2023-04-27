@@ -32,7 +32,9 @@ namespace mario {
     /// This function action the Player Hit
     /// - Parameter pc: player controller
     void PlayerHit(PlayerController* pc);
-
+    /// This function set the block as inactive and behave as Ground
+    void SetInactive();
+    
     static constexpr float speed_ = 3.0f;
 
     bool going_up_ = true;

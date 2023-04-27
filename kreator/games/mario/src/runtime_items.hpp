@@ -14,7 +14,7 @@ namespace mario {
   using namespace ikan;
   
   enum class Items {
-    Coin, Mushroom, Flower, Fireball, BigFireball, Star, Score
+    Coin, Mushroom, Flower, Fireball, BigFireball, Star, Score, InactiveBlock
   };
   
   class CoinController : public ScriptableEntity {
