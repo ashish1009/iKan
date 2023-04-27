@@ -45,7 +45,7 @@ namespace kreator {
     /// - Parameter game_type: Type of game to render using this layer
     RendererLayer(GameType game_type);
     /// Default Destructor
-    ~RendererLayer();
+    virtual ~RendererLayer();
     
     /// This funciton initialises the layer, calls when we push layer in the application (To be called only once)
     void Attach() override;

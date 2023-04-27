@@ -28,20 +28,18 @@ namespace kreator {
   RendererLayer::RendererLayer(GameType game_type)
   : Layer("Kreator"), game_data_(CreateGameData(game_type)) {
     KREATOR_LOG("Creating {0} Layer instance ... ", game_data_->GameName().c_str());
-    
-    if (!spm_)
-      spm_ = std::make_shared<ScenePanelManager>();
   }
   
   RendererLayer::~RendererLayer() {
     KREATOR_LOG("Destroying {0} Layer instance !!! ", game_data_->GameName().c_str());
-    ContentBrowserPanel::ClearAllPaths();
-    spm_.reset();
   }
   
   void RendererLayer::Attach() {
     KREATOR_LOG("Attaching {0} Layer instance", game_data_->GameName().c_str());
     
+    if (!spm_)
+      spm_ = std::make_shared<ScenePanelManager>();
+
     // Add paths in content browser panel
     CBP::SetRootPath(game_data_->CbpRootDir());
     CBP::AddFavouritPaths(game_data_->FavDirecotries());
@@ -63,6 +61,9 @@ namespace kreator {
   
   void RendererLayer::Detach() {
     KREATOR_LOG("Detaching {0} Layer instance ", game_data_->GameName().c_str());
+    
+    ContentBrowserPanel::ClearAllPaths();
+    spm_.reset();
   }
   
   void RendererLayer::Update(Timestep ts) {

@@ -18,7 +18,7 @@ namespace kreator {
       IK_TRACE("Kreator Application", "Creating Kreator Application Instance ...");
       CreateLayer();
     }
-    ~KreatorApp() {
+    virtual ~KreatorApp() {
       IK_TRACE("Kreator Application", "Destroying Kreator Application Instance !!!");
     }
     
