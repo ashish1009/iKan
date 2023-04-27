@@ -14,10 +14,17 @@ namespace mario {
   using namespace ikan;
   
   enum class Items {
-    Coin, Mushroom, Flower, Fireball, Star, Score
+    Coin, Mushroom, Flower, Fireball, BigFireball, Star, Score
   };
   
   class CoinController : public ScriptableEntity {
+  public:
+    void Create(Entity entity) override;
+    void Update(Timestep ts) override;
+
+  private:
+    glm::vec2 top_pos_;
+    float speed_ = 8.0f;
   };
   
   class MushroomController : public ScriptableEntity {
@@ -76,8 +83,9 @@ namespace mario {
         // Text
       }
       else {
-        // Quad
+        MarioPrefab::AddQuad(&run_time_entity, SpriteManager::GetTexture(SpriteType::Items), {SpriteManager::GetItemSprite(item)});
       }
+      run_time_entity.AddComponent<NativeScriptComponent>(data_->item_map.at(item).scrip_name, data_->item_map.at(item).loader_fun);
     }
     
   private:

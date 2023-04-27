@@ -7,6 +7,7 @@
 
 #include "sprite_manager.hpp"
 #include "player.hpp"
+#include "runtime_items.hpp"
 
 namespace mario {
 
@@ -15,6 +16,8 @@ namespace mario {
     std::unordered_map<SpriteType, TextureRef> texture_map;
     // Stores the Subtextures of Player for each Action and State Combination
     std::unordered_map<PlayerState, std::unordered_map<PlayerAction, std::vector<SubTextureRef>>> player_subtextures_map;
+    // Stores the Runtime Item Subtextures
+    std::unordered_map<Items, std::shared_ptr<SubTexture>> item_subtextures_map;
   };
   static std::shared_ptr<SpriteData> data_;
 
@@ -58,6 +61,14 @@ namespace mario {
     fire_player_map[PlayerAction::SwitchSide].push_back(SubTexture::CreateFromCoords(player_sprite, {3.0f, 28.0f}, {1.0f, 2.0f}));
     fire_player_map[PlayerAction::Jump].push_back(SubTexture::CreateFromCoords(player_sprite, {4.0f, 28.0f}, {1.0f, 2.0f}));
     
+    // Items
+    auto& item_sprite = data_->texture_map[SpriteType::Items];
+    data_->item_subtextures_map[Items::Coin] = SubTexture::CreateFromCoords(item_sprite, {0.0f, 14.0f});
+    data_->item_subtextures_map[Items::Mushroom] = SubTexture::CreateFromCoords(item_sprite, {0.0f, 19.0f});
+    data_->item_subtextures_map[Items::Flower] = SubTexture::CreateFromCoords(item_sprite, {0.0f, 18.0f});
+    data_->item_subtextures_map[Items::Fireball] = SubTexture::CreateFromCoords(item_sprite, {7.0f, 10.0f});
+    data_->item_subtextures_map[Items::BigFireball] = SubTexture::CreateFromCoords(item_sprite, {7.0f, 9.0f});
+
     MARIO_LOG("Initialised the Sprite Manager");
   }
   
@@ -81,6 +92,11 @@ namespace mario {
     IK_ASSERT(player_map.find(action) != player_map.end());
     
     return player_map.at(action);
+  }
+
+  std::shared_ptr<SubTexture> SpriteManager::GetItemSprite(Items item) {
+    IK_ASSERT(data_ or data_->item_subtextures_map.find(item) != data_->item_subtextures_map.end());
+    return data_->item_subtextures_map.at(item);
   }
 
 } // namespace mario

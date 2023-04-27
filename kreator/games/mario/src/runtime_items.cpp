@@ -10,6 +10,23 @@
 
 namespace mario {
   
+  void CoinController::Create(Entity entity) {
+    entity_ = entity;
+    const auto& tc = entity_.GetComponent<TransformComponent>().Position();
+    top_pos_ = {tc.x, tc.y + 5.0f};
+  }
+  
+  void CoinController::Update(Timestep ts) {
+    auto& tc = entity_.GetComponent<TransformComponent>();
+    if (tc.Position().y < top_pos_.y) {
+      tc.AddPosition(Y, ts * speed_);
+      tc.AddScale(X, -fmod((2.5f * ts), -1.0f));
+    }
+    else {
+      entity_.scene_->DestroyEntity(entity_);
+    }
+  }
+
   std::shared_ptr<RuntimeItemData> RuntimeItem::data_;
   
   void RuntimeItem::Init() {

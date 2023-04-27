@@ -15,6 +15,7 @@ namespace mario {
   
   enum class PlayerAction;
   enum class PlayerState;
+  enum class Items;
 
   enum class SpriteType {
     Player, Items, Enemy, Tile
@@ -30,7 +31,14 @@ namespace mario {
     /// This function returns the texture of a sprite type
     /// - Parameter type: sprite type to return the texture
     static TextureRef GetTexture(SpriteType type);
+    /// This function returns all the subtextures in vector requred for an action for a player state
+    /// - Parameters:
+    ///   - state: player state
+    ///   - action: player action
     static const std::vector<SubTextureRef>& GetPlayerSprite(PlayerState state, PlayerAction action);
+    /// This Function returns the Runtime Item Subtexture
+    /// - Parameter type: Item Type
+    static std::shared_ptr<SubTexture> GetItemSprite(Items type);
 
     MAKE_PURE_STATIC(SpriteManager);
   };
