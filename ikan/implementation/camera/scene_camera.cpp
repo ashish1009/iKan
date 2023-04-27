@@ -93,6 +93,7 @@ namespace ikan {
   
   
   SceneCamera& SceneCamera::operator=(const SceneCamera &other) {
+    grid_2d_ = other.grid_2d_;
     near_plane_ = other.near_plane_;
     far_plane_ = other.far_plane_;
     aspect_ratio_ = other.aspect_ratio_;
