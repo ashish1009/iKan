@@ -9,6 +9,14 @@
 
 #include "setting.hpp"
 
+#define CONSTRUCT_DESTRUCT(PieceClass) \
+PieceClass(PieceType piece, Color color) { \
+piece_ = piece; \
+color_ = color; \
+} \
+~PieceClass() = default; \
+
+
 namespace chess {
   
   class Piece {
@@ -33,56 +41,32 @@ namespace chess {
   
   class King : public Piece {
   public:
-    King(PieceType piece, Color color) {
-      piece_ = piece;
-      color_ = color;
-    }
-    ~King() = default;
+    CONSTRUCT_DESTRUCT(King);
   };
 
   class Queen : public Piece {
   public:
-    Queen(PieceType piece, Color color) {
-      piece_ = piece;
-      color_ = color;
-    }
-    ~Queen() = default;
+    CONSTRUCT_DESTRUCT(Queen);
   };
 
   class Rook : public Piece {
   public:
-    Rook(PieceType piece, Color color) {
-      piece_ = piece;
-      color_ = color;
-    }
-    ~Rook() = default;
+    CONSTRUCT_DESTRUCT(Rook);
   };
 
   class Bishop : public Piece {
   public:
-    Bishop(PieceType piece, Color color) {
-      piece_ = piece;
-      color_ = color;
-    }
-    ~Bishop() = default;
+    CONSTRUCT_DESTRUCT(Bishop);
   };
 
   class Knight : public Piece {
   public:
-    Knight(PieceType piece, Color color) {
-      piece_ = piece;
-      color_ = color;
-    }
-    ~Knight() = default;
+    CONSTRUCT_DESTRUCT(Knight);
   };
 
   class Pawn : public Piece {
   public:
-    Pawn(PieceType piece, Color color) {
-      piece_ = piece;
-      color_ = color;
-    }
-    ~Pawn() = default;
+    CONSTRUCT_DESTRUCT(Pawn);
   };
 
 } // namespace chess
