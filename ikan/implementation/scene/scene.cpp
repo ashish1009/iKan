@@ -9,6 +9,7 @@
 #include "scene/components.hpp"
 #include "scene/core_entity.hpp"
 #include "renderer/utils/batch_2d_renderer.hpp"
+#include "renderer/utils/text_renderer.hpp"
 
 #include <box2d/b2_polygon_shape.h>
 #include <box2d/b2_circle_shape.h>
@@ -241,6 +242,7 @@ namespace ikan {
       }
       else if (type_ == _3D) {
       }
+      RenderTexts(editor_camera_.GetViewProjection());
     }
     else {
       UpdateRuntime(ts);
@@ -254,6 +256,7 @@ namespace ikan {
       }
       else if (type_ == _3D) {
       }
+      RenderTexts(primary_camera_data_.scene_camera->GetProjection() * glm::inverse(primary_camera_data_.transform_matrix));
     }
   }
   
@@ -334,6 +337,19 @@ namespace ikan {
     } // For each Quad Entity
     
     Batch2DRenderer::EndBatch();
+  }
+  
+  void Scene::RenderTexts(const glm::mat4& cam_view_proj_mat) {
+    TextRenderer::BeginBatch(cam_view_proj_mat);
+    
+    auto text_view = registry_.view<TransformComponent, TextComponent>();
+    // For all text entity
+    for (const auto& text_entity : text_view) {
+      const auto& [transform_component, text_component] = text_view.get<TransformComponent, TextComponent>(text_entity);
+      TextRenderer::RenderText(text_component.text, transform_component.Position(), transform_component.Scale(), text_component.color);
+    } // for (const auto& entity : sprite_view)
+    
+    TextRenderer::EndBatch();
   }
   
   void Scene::EventHandler(Event& event) {

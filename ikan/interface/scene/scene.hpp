@@ -192,6 +192,9 @@ namespace ikan {
     /// This function renders the 2D Entities
     /// - Parameter came_view_proj_mat: camera view projection matrix
     void Render2DEntities(const glm::mat4& came_view_proj_mat);
+    /// This function renders the Texts
+    /// - Parameter came_view_proj_mat: camera view projection matrix
+    void RenderTexts(const glm::mat4& came_view_proj_mat);
     /// This function updates the primary camera data
     void UpdatePrimaryCameraData();
     /// This functuion Insantiates all the native script
