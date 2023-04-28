@@ -26,6 +26,24 @@ namespace mario {
       entity_.scene_->DestroyEntity(entity_);
     }
   }
+  
+  ScoreController::ScoreController(int32_t score) : score_(score) { }
+  void ScoreController::Create(Entity entity) {
+    entity_ = entity;
+    MarioPrefab::AddText(&entity_, std::to_string(score_));
+    
+    const auto& tc = entity_.GetComponent<TransformComponent>().Position();
+    top_pos_ = {tc.x, tc.y + 2.0f};
+  }
+  void ScoreController::Update(Timestep ts) {
+    auto& tc = entity_.GetComponent<TransformComponent>();
+    if (tc.Position().y < top_pos_.y) {
+      tc.AddPosition(Y, (ts * speed_));
+    }
+    else {
+      entity_.scene_->DestroyEntity(entity_);
+    }
+  }
 
   std::shared_ptr<RuntimeItemData> RuntimeItem::data_;
   
@@ -37,7 +55,7 @@ namespace mario {
     static auto flower_script_loader = ScriptLoader(mario::FlowerController);
     static auto fireball_script_loader = ScriptLoader(mario::FireballController);
     static auto star_script_loader = ScriptLoader(mario::FireballController);
-    static auto score_script_loader = ScriptLoader(mario::ScoreController);
+    static auto score_script_loader = ScriptLoader(mario::ScoreController, 100); // Default score is 100
 
     data_->item_map[Items::Coin] = { "Block Coin", "mario::CoinController", coin_script_loader };
     data_->item_map[Items::Mushroom] = { "Mushroom", "mario::MushroomController", mushroom_script_loader };
