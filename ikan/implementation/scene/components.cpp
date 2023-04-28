@@ -422,9 +422,7 @@ x& x::operator=(x&& other) { \
   // -------------------------------------------------------------------------
   // Native Script Component
   // -------------------------------------------------------------------------
-  NativeScriptComponent::NativeScriptComponent(std::string name, ScriptLoaderFn loader_fun) : script_name(name), loader_function(loader_fun) {
-    COMP_LOG("Creating Native Script Compontnt");
-  }
+  NativeScriptComponent::NativeScriptComponent(std::string name, ScriptLoaderFn loader_fun) : script_name(name), loader_function(loader_fun) { COMP_LOG("Creating Native Script Compontnt"); }
   NativeScriptComponent::~NativeScriptComponent() { COMP_LOG("Destroying Native Script Compontnt"); }
   COMP_COPY_MOVE_CONSTRUCTORS(NativeScriptComponent);
   
@@ -446,6 +444,28 @@ x& x::operator=(x&& other) { \
       ImGui::TreePop();
     }
     ImGui::PopID();
+  }
+
+  // -------------------------------------------------------------------------
+  // TextComponent Component
+  // -------------------------------------------------------------------------
+  TextComponent::TextComponent() { COMP_LOG("Creating Text Component"); }
+  TextComponent::~TextComponent() { COMP_LOG("Destroying Text Component"); }
+  COMP_COPY_MOVE_CONSTRUCTORS(TextComponent);
+  void TextComponent::Copy(const TextComponent& other) {
+    text = other.text;
+    color = other.color;
+  }
+
+  void TextComponent::RenderGui() {
+    PropertyGrid::TextBox(text, "Text ");
+    ImGui::Columns(2);
+    ImGui::SetColumnWidth(0, 100.0f);
+    ImGui::Text("Color");
+    ImGui::NextColumn();
+    ImGui::ColorEdit4("Color ", glm::value_ptr(color), ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
+    ImGui::Columns(1);
+    ImGui::Separator();
   }
   
 } // namespace ikan

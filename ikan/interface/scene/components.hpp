@@ -248,13 +248,25 @@ namespace ikan {
     ~NativeScriptComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(NativeScriptComponent);
   };
+  
+  struct TextComponent {
+    std::string text = "New Text";
+    glm::vec4 color = glm::vec4(1.0f);
+
+    void Copy(const TextComponent& other);
+    void RenderGui();
+    TextComponent();
+    ~TextComponent();
+    DEFINE_COPY_MOVE_CONSTRUCTORS(TextComponent);
+  };
 
   template<typename... Component>
   struct ComponentGroup {
   };
   
 #define ALL_COPY_COMPONENTS TransformComponent, CameraComponent, QuadComponent, CircleComponent, \
-RigidBodyComponent, Box2DColliderComponent, CircleColliiderComponent, PillBoxColliderComponent, NativeScriptComponent\
+RigidBodyComponent, Box2DColliderComponent, CircleColliiderComponent, PillBoxColliderComponent, NativeScriptComponent, \
+TextComponent
 
   // Stores all the components present in Engine
   using AllComponents =
