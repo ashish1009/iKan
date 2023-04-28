@@ -44,6 +44,19 @@ namespace mario {
     ///   - color: Color of text
     static TextComponent* AddText(Entity* entity, const std::string& text, const glm::vec4& color = glm::vec4(1.0f));
 
+    template<typename... Args>
+    /// This function add the Native script component if not present else add the required parameter
+    /// - Parameters:
+    ///   - entity: entity
+    ///   - scrip_name: Script name
+    ///   - fn: scrip loader fnction
+    ///   - args: Arguments required for Bind function
+    /// - Note: There should not be Sctipt compomnent present in tne entity
+    static NativeScriptComponent* AddScript(Entity* entity, const std::string& scrip_name, const ScriptLoaderFn& fn, Args&&... args) {
+      NativeScriptComponent* nsc = &(entity->AddComponent<NativeScriptComponent>(scrip_name, fn));
+      return nsc;
+    }
+    
     template<typename T, typename... Args>
     /// This function add the Native script component if not present else add the required parameter
     /// - Parameters:
