@@ -44,5 +44,12 @@ namespace mario {
     pbc->RecalculateColliders();
     return pbc;
   }
-  
+
+  TextComponent* MarioPrefab::AddText(Entity *entity, const std::string &text, const glm::vec4& color) {
+  TextComponent* tc = GET_COMPONENT(TextComponent);
+    tc->text = text;
+    tc->color = color;
+    return tc;
+  }
+
 } // namespace ikan

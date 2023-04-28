@@ -77,7 +77,8 @@ namespace mario {
       }
       case BlockType::Coin: {
         RuntimeItem::Spawn(Items::Coin, entity_.scene_, {tc.Position().x, tc.Position().y + 1}, NoScore);
-        
+        RuntimeItem::Spawn(Items::Score, entity_.scene_, {tc.Position().x - 0.5, tc.Position().y + 1}, CoinScore);
+
         count_--;
         if (count_ == 0)
           SetInactive();

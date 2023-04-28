@@ -16,7 +16,8 @@ namespace mario {
   using namespace ikan;
 
   static const uint32_t NoScore = 0;
-  
+  static const uint32_t CoinScore = 100;
+
   class MarioPrefab {
   public:
     /// This function add the quad component if not present else add the required parameter
@@ -35,9 +36,14 @@ namespace mario {
     ///   - entity: entity
     ///   - size: size of pill
     ///   - offset: offset of pill
-    static PillBoxColliderComponent* AddPillBoxCollider(Entity* entity, const glm::vec2& size = glm::vec2(0.5f),
-                                                        const glm::vec2& offset = glm::vec2(0.0f));
-    
+    static PillBoxColliderComponent* AddPillBoxCollider(Entity* entity, const glm::vec2& size = glm::vec2(0.5f), const glm::vec2& offset = glm::vec2(0.0f));
+    /// This function add the Text component if not present else add the required parameter
+    /// - Parameters:
+    ///   - entity: entity
+    ///   - text: Text to be rendererd
+    ///   - color: Color of text
+    static TextComponent* AddText(Entity* entity, const std::string& text, const glm::vec4& color = glm::vec4(1.0f));
+
     template<typename T, typename... Args>
     /// This function add the Native script component if not present else add the required parameter
     /// - Parameters:

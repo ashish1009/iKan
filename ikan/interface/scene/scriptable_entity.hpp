@@ -63,7 +63,6 @@ namespace ikan {
   protected:
     virtual void Create(Entity entity) {
       entity_ = entity;
-      rbc_ = &(GetComponent<RigidBodyComponent>());
     }
     virtual void Destroy() {}
     virtual void Update(Timestep ts) {}

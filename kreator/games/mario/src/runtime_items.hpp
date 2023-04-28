@@ -80,7 +80,10 @@ namespace mario {
       tc.UpdatePosition(glm::vec3(pos, 0.1f));
 
       if (item == Items::Score) {
-        // Text
+        tc.AddPosition(Z, 0.1f);
+        tc.UpdateScale({0.3, 0.3, 1.0f});
+
+        MarioPrefab::AddText(&run_time_entity, "Some Text");
       }
       else {
         MarioPrefab::AddQuad(&run_time_entity, SpriteManager::GetTexture(SpriteType::Items), {SpriteManager::GetItemSprite(item)});
