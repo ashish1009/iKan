@@ -66,6 +66,22 @@ namespace mario {
     top_pos_ = score_script->top_pos_;
   }
 
+  void MushroomController::Create(Entity entity) {
+    entity_ = entity;
+  }
+  
+  void MushroomController::Update(Timestep ts) {
+  }
+  
+  void MushroomController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
+  }
+  
+  void MushroomController::Copy(void* script) {
+    if (!script) return;
+    MushroomController* mushroom_script = reinterpret_cast<MushroomController*>(script);
+    IK_ASSERT(mushroom_script);
+  }
+  
   std::shared_ptr<RuntimeItemData> RuntimeItem::data_;
   
   void RuntimeItem::Init() {

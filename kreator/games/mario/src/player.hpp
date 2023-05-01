@@ -19,7 +19,7 @@ namespace mario {
     /// Default Constructor of Player controller
     PlayerController();
     /// Default Desructor of Player controller
-    ~PlayerController();
+    virtual ~PlayerController();
 
     // Documentation @ScriptableEntity
     void Create(Entity entity) override;
@@ -28,6 +28,9 @@ namespace mario {
     void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
     void Copy(void* script) override;
     void EventHandler(Event& event) override;
+    
+    /// This function returns if player is small
+    bool IsSmall() const { return state_machine_->State() == PlayerState::Small; }
     
     /// This function return the current instance of player
     static PlayerController* Get() { return instance_; }

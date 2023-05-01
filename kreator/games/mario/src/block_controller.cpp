@@ -89,6 +89,13 @@ namespace mario {
         break;
       }
       case BlockType::PowerUp : {
+        if (pc->IsSmall()) {
+          RuntimeItem::Spawn(Items::Mushroom, entity_.scene_, {tc.Position().x, tc.Position().y + 1.0}, NoScore);
+          SetInactive();
+        }
+        else {
+          
+        }
         break;
       }
       default:

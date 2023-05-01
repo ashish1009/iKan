@@ -20,7 +20,7 @@ namespace mario {
   class BlockController : public ScriptableEntity {
   public:
     BlockController(BlockType type, uint32_t count);
-    ~BlockController() = default;
+    virtual ~BlockController() = default;
     
     void Create(Entity entity) override;
     void Update(Timestep ts) override;

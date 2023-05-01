@@ -19,6 +19,8 @@ namespace mario {
   
   class CoinController : public ScriptableEntity {
   public:
+    virtual ~CoinController() = default;
+    
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
     void Copy(void* script) override;
@@ -32,6 +34,8 @@ namespace mario {
   class ScoreController : public ScriptableEntity {
   public:
     ScoreController(int32_t score);
+    virtual ~ScoreController() = default;
+    
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
     void Copy(void* script) override;
@@ -44,6 +48,19 @@ namespace mario {
   };
 
   class MushroomController : public ScriptableEntity {
+  public:
+    virtual ~MushroomController() = default;
+    void Create(Entity entity) override;
+    void Update(Timestep ts) override;
+    void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& normal) override;
+    void Copy(void* script) override;
+    
+  private:
+    static constexpr float max_speed_ = 8.0f;
+    static constexpr float free_fall_factor = 1.0f;
+
+    bool going_right_ = true;
+    glm::vec2 velocity_ = { 4.0f, 0.0f };
   };
   
   class FlowerController : public ScriptableEntity {
