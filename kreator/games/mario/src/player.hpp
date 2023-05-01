@@ -32,6 +32,9 @@ namespace mario {
     /// This function returns if player is small
     bool IsSmall() const { return state_machine_->State() == PlayerState::Small; }
     
+    /// This functin checks the entity is player
+    /// - Parameter entity: entity
+    static bool IsPlayer(Entity* entity);
     /// This function return the current instance of player
     static PlayerController* Get() { return instance_; }
 

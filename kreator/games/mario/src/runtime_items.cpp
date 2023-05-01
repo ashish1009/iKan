@@ -7,9 +7,18 @@
 
 #include "runtime_items.hpp"
 #include "common.hpp"
+#include "player.hpp"
 
 namespace mario {
   
+  static bool PlayerHitCheck(Entity* collided_entity, Entity* curr_entity, b2Contact* contact) {
+    if (PlayerController::IsPlayer(collided_entity)) {
+      contact->SetEnabled(false);
+      return true;
+    }
+    return false;
+  }
+    
   void CoinController::Create(Entity entity) {
     entity_ = entity;
     if (set_position_) {
@@ -87,9 +96,15 @@ namespace mario {
     else if (!going_right_ and std::abs(rbc_->velocity.x) < max_speed_) {
       rbc_->SetVelocity({-velocity_.x, velocity_.y});
     }
+    
+    if (destroy_)
+      entity_.scene_->DestroyEntity(entity_);
   }
   
   void MushroomController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
+    if (destroy_) return;
+    
+    destroy_ = PlayerHitCheck(collided_entity, &entity_, contact);
     if (std::abs(contact_normal.y) < 0.1f) {
       going_right_ = contact_normal.x < 0.0f;
     }

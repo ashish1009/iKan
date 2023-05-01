@@ -11,6 +11,11 @@ namespace mario {
   
   PlayerController* PlayerController::instance_ = nullptr;
   
+  bool PlayerController::IsPlayer(Entity* entity) {
+    return (instance_ and entity->scene_ and entity->HasComponent<NativeScriptComponent>() and
+            entity->GetComponent<NativeScriptComponent>().script.get() == instance_);
+  }
+  
   PlayerController::PlayerController() {
     MARIO_LOG("Player Controller Constructed");
     instance_ = this;
