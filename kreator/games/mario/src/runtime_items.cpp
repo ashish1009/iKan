@@ -68,6 +68,12 @@ namespace mario {
 
   void MushroomController::Create(Entity entity) {
     entity_ = entity;
+    rbc_ = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
+    rbc_->fixed_rotation = false;
+    rbc_->SetGravityScale(0.0f);
+    
+    CircleColliiderComponent* ccc = MarioPrefab::AddCircleCollider(&entity_);
+    ccc->runtime_fixture = new Entity(entity_, entity_.scene_);
   }
   
   void MushroomController::Update(Timestep ts) {

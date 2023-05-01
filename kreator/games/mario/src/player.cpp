@@ -22,8 +22,11 @@ namespace mario {
   
   void PlayerController::Create(Entity entity) {
     entity_ = entity;
+    
     rbc_ = &(GetComponent<RigidBodyComponent>());
     rbc_->SetGravityScale(0.0f);
+    rbc_->fixed_rotation = true;
+    
     state_machine_ = std::make_shared<StateMachine>(&entity_);
     
     SetState(PlayerState::Small);
