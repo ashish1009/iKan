@@ -69,7 +69,10 @@ namespace mario {
     virtual ~FlowerController() = default;
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
-    void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& normal) override;
+    void BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
+    
+  private:
+    bool destroy_ = false;
   };
   
   class FireballController : public ScriptableEntity {

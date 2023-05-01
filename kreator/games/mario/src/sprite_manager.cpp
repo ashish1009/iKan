@@ -16,6 +16,8 @@ namespace mario {
     std::unordered_map<SpriteType, TextureRef> texture_map;
     // Stores the Subtextures of Player for each Action and State Combination
     std::unordered_map<PlayerState, std::unordered_map<PlayerAction, std::vector<SubTextureRef>>> player_subtextures_map;
+    // Stores the Subtextures of Player for each Action and State Combination
+    std::unordered_map<PlayerAction, std::vector<SubTextureRef>> invinc_player_subtextures_map;
     // Stores the Runtime Item Subtextures
     std::unordered_map<Items, std::shared_ptr<SubTexture>> item_subtextures_map;
   };
@@ -44,7 +46,7 @@ namespace mario {
     small_player_map[PlayerAction::Die].push_back(SubTexture::CreateFromCoords(player_sprite, {5.0f, 30.0f}));
     small_player_map[PlayerAction::PowerUp].push_back(SubTexture::CreateFromCoords(player_sprite, {6.0f, 30.0f}));
     small_player_map[PlayerAction::PowerUp].push_back(SubTexture::CreateFromCoords(player_sprite, {15.0f, 31.0f}, {1.0f, 2.0f}));
-
+    
     // Big Player
     auto& big_player_map = data_->player_subtextures_map[PlayerState::Big];
     big_player_map[PlayerAction::Idle].push_back(SubTexture::CreateFromCoords(player_sprite, {6.0f, 31.0f}, {1.0f, 2.0f}));
@@ -63,6 +65,14 @@ namespace mario {
     fire_player_map[PlayerAction::SwitchSide].push_back(SubTexture::CreateFromCoords(player_sprite, {3.0f, 28.0f}, {1.0f, 2.0f}));
     fire_player_map[PlayerAction::Jump].push_back(SubTexture::CreateFromCoords(player_sprite, {4.0f, 28.0f}, {1.0f, 2.0f}));
     
+    auto& invinc_player_subtexture = data_->invinc_player_subtextures_map;
+    for (int32_t i = 0; i < 5; i++) {
+      invinc_player_subtexture[PlayerAction::Idle].push_back(SubTexture::CreateFromCoords(player_sprite, {6.0f, 31.0f - (3 * i)}, {1.0f, 2.0f}));
+      invinc_player_subtexture[PlayerAction::Run].push_back(SubTexture::CreateFromCoords(player_sprite, {1.0f, 31.0f - (3 * i)}, {1.0f, 2.0f}));
+      invinc_player_subtexture[PlayerAction::SwitchSide].push_back(SubTexture::CreateFromCoords(player_sprite, {3.0f, 31.0f - (3 * i)}, {1.0f, 2.0f}));
+      invinc_player_subtexture[PlayerAction::Jump].push_back(SubTexture::CreateFromCoords(player_sprite, {3.0f, 31.0f - (3 * i)}, {1.0f, 2.0f}));
+    }
+
     // Items
     auto& item_sprite = data_->texture_map[SpriteType::Items];
     data_->item_subtextures_map[Items::Coin] = SubTexture::CreateFromCoords(item_sprite, {0.0f, 14.0f});
@@ -88,7 +98,15 @@ namespace mario {
     return nullptr;
   }
 
-  const std::vector<SubTextureRef>& SpriteManager::GetPlayerSprite(PlayerState state, PlayerAction action) {
+  const std::vector<SubTextureRef>& SpriteManager::GetPlayerSprite(PlayerState state, PlayerAction action, PlayerAction prev_action) {
+    // For Powerup while Big we need to animate the Player to all color based on the prev action
+    if (action == PlayerAction::PowerUp and state == PlayerState::Big) {
+      const auto& invince_player_map = data_->invinc_player_subtextures_map;
+      IK_ASSERT(invince_player_map.find(prev_action) != invince_player_map.end());
+      
+      return invince_player_map.at(prev_action);
+    }
+
     IK_ASSERT(data_ or data_->player_subtextures_map.find(state) != data_->player_subtextures_map.end());
     
     const auto& player_map = data_->player_subtextures_map.at(state);

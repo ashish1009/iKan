@@ -103,7 +103,6 @@ namespace mario {
   
   void MushroomController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
     if (destroy_) return;
-    
     destroy_ = PowerupPlayerHitCheck(collided_entity, &entity_, contact);
     if (std::abs(contact_normal.y) < 0.1f) {
       going_right_ = contact_normal.x < 0.0f;
@@ -130,8 +129,12 @@ namespace mario {
   }
   
   void FlowerController::Update(Timestep ts) {
+    if (destroy_)
+      entity_.scene_->DestroyEntity(entity_);
   }
-  void FlowerController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
+  void FlowerController::BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
+    if (destroy_) return;
+    destroy_ = PowerupPlayerHitCheck(collided_entity, &entity_, contact);
   }
   
   std::shared_ptr<RuntimeItemData> RuntimeItem::data_;

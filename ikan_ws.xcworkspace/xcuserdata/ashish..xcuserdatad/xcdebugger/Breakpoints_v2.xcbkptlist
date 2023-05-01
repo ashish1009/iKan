@@ -62,8 +62,8 @@
             filePath = "kreator/games/mario/src/runtime_items.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -81,6 +81,22 @@
             startingLineNumber = "71"
             endingLineNumber = "71"
             landmarkName = "BlockController::Update(ts)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6B83B646-D697-44B9-92B1-07AE05DD5A7B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kreator/games/mario/src/runtime_items.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "FlowerController::Update(ts)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

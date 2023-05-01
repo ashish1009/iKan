@@ -23,7 +23,7 @@ namespace mario {
     player_action_ = new_action;
     
     auto& qc = player_entity_->GetComponent<QuadComponent>();
-    qc.sprite.sprite_images = SpriteManager::GetPlayerSprite(player_state_, player_action_);
+    qc.sprite.sprite_images = SpriteManager::GetPlayerSprite(player_state_, player_action_, player_prev_action_);
   }
   
   void StateMachine::SetState(PlayerState new_state) {

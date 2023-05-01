@@ -95,7 +95,8 @@ namespace mario {
     }
     
     // Add Essentials Components
-    MarioPrefab::AddQuad(&player_entity, SM::GetTexture(SpriteType::Player), SM::GetPlayerSprite(PlayerState::Small, PlayerAction::Idle));
+    MarioPrefab::AddQuad(&player_entity, SM::GetTexture(SpriteType::Player),
+                         SM::GetPlayerSprite(PlayerState::Small, PlayerAction::Idle, PlayerAction::Idle));
     MarioPrefab::AddRigidBody(&player_entity, RigidBodyComponent::RbBodyType::Dynamic);
     MarioPrefab::AddPillBoxCollider(&player_entity, {0.4f, 0.5f});
     MarioPrefab::AddScript<mario::PlayerController>(&player_entity, "mario::PlayerController", ScriptLoader(mario::PlayerController));
