@@ -118,6 +118,22 @@ namespace mario {
     velocity_ = mushroom_script->velocity_;
   }
   
+  void FlowerController::Create(Entity entity) {
+    entity_ = entity;
+
+    rbc_ = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
+    rbc_->is_sensor = true;
+    rbc_->SetGravityScale(0.0f);
+
+    MarioPrefab::AddCircleCollider(&entity_);
+    entity_.scene_->AddBodyToPhysicsWorld(entity_, *rbc_);
+  }
+  
+  void FlowerController::Update(Timestep ts) {
+  }
+  void FlowerController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
+  }
+  
   std::shared_ptr<RuntimeItemData> RuntimeItem::data_;
   
   void RuntimeItem::Init() {
