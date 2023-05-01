@@ -261,6 +261,7 @@ namespace mario {
       walk_speed_ *= jump_boost_factor_;
     }
     else {
+      SetState(PlayerState::Fire);
     }
   }
   
