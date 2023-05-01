@@ -29,17 +29,30 @@ namespace mario {
     entity_ = entity;
     start_pos_ = glm::vec2(entity_.GetComponent<TransformComponent>().Position());
     end_pos_ = start_pos_ + glm::vec2(0.0f, 0.3f);
+    
+    rbc_ = &(GetComponent<RigidBodyComponent>());
+    rbc_->SetGravityScale(0.0f);
+    rbc_->fixed_rotation = true;
+
     MARIO_LOG("Creating Mario Block Controller");
   }
   
   void BlockController::Update(Timestep ts) {
+    // Animation speed
+    static constexpr float speed = 4.0f;
+    
+    if (change_body_type_) {
+      rbc_->SetType(ikan::RigidBodyComponent::RbBodyType::Kinametic);
+      animation_ = true;
+      change_body_type_ = false;
+    }
     // If Player Hit and Valid Animatuion block then Move the block little Up and then down to original Position
     if (animation_) {
       auto& tc = entity_.GetComponent<TransformComponent>();
       if (going_up_) {
         // Lift the block Up
         if (tc.Position().y < end_pos_.y) {
-          tc.AddPosition(Y, ts * speed_);
+          rbc_->SetVelocity({0, speed});
         }
         // Send the block down
         else {
@@ -49,10 +62,12 @@ namespace mario {
       else {
         // Move block to back to original Position
         if (tc.Position().y > start_pos_.y) {
-          tc.AddPosition(Y, -(ts * speed_));
+          rbc_->SetVelocity({0, -speed});
         }
         // In case some margin left then Reset the Block Position to original
         else {
+          rbc_->SetVelocity({0, 0});
+          rbc_->SetType(ikan::RigidBodyComponent::RbBodyType::Static);
           tc.UpdatePosition(Y, start_pos_.y);
           going_up_ = true;
           animation_ = false;
@@ -64,7 +79,7 @@ namespace mario {
   void BlockController::BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
     PlayerController* pc = PlayerController::Get();
     if (active_ and pc and contact_normal.y < -0.8f) {
-      animation_ = true;
+      change_body_type_ = true;
       PlayerHit(pc);
     }
   }
@@ -115,6 +130,8 @@ namespace mario {
   void BlockController::RenderGui() {
     ImGui::Text("Type       | %s", GetTypeString(type_).c_str());
     ImGui::Text("Active     | %s", active_ ? "True" : "False");
+    ImGui::Text("Animation  | %s", animation_ ? "True" : "False");
+    ImGui::Text("Going Up   | %s", going_up_ ? "True" : "False");
     ImGui::Text("Item Count | %d", count_);
     
     ImGui::Separator();

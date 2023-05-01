@@ -40,6 +40,7 @@ namespace mario {
     bool going_up_ = true;
     bool animation_ = false;
     bool active_ = true;
+    bool change_body_type_ = false;
 
     glm::vec2 start_pos_;
     glm::vec2 end_pos_;

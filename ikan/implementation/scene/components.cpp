@@ -231,6 +231,11 @@ x& x::operator=(x&& other) { \
     ((b2Body*)runtime_body)->ApplyLinearImpulseToCenter({imp.x, imp.y}, true);
   }
   
+  void RigidBodyComponent::SetType(RbBodyType rb_type) {
+    type = rb_type;
+    ((b2Body*)runtime_body)->SetType(B2BodyType(type));
+  }
+  
   void RigidBodyComponent::RenderGui() {
     RbBodyType new_body_type = RbBodyType(PropertyGrid::ComboDrop("Rigid Body Type", { "Static" , "Kinamatic", "Dynamic" }, (uint32_t)type));
     

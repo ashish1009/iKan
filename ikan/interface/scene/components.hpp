@@ -139,6 +139,7 @@ namespace ikan {
     void SetVelocity(const glm::vec2& vel);
     void SetAngularVelocity(float ang_vel);
     void ApplyImpulseToCenter(const glm::vec2& imp);
+    void SetType(RbBodyType rb_type);
     
     void Copy(const RigidBodyComponent& other);
     void RenderGui();
