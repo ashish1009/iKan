@@ -69,25 +69,38 @@ namespace mario {
   void MushroomController::Create(Entity entity) {
     entity_ = entity;
     rbc_ = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
-    rbc_->fixed_rotation = false;
+    rbc_->fixed_rotation = true;
     rbc_->SetGravityScale(0.0f);
     
     CircleColliiderComponent* ccc = MarioPrefab::AddCircleCollider(&entity_);
     ccc->runtime_fixture = new Entity(entity_, entity_.scene_);
+    ccc->physics_mat.friction = 0.0f;
     
     entity_.scene_->AddBodyToPhysicsWorld(entity_, *rbc_);
+    velocity_.y = entity_.scene_->Get2DWorldGravity().y * free_fall_factor;
   }
   
   void MushroomController::Update(Timestep ts) {
+    if (going_right_ and std::abs(rbc_->velocity.x) < max_speed_) {
+      rbc_->SetVelocity(velocity_);
+    }
+    else if (!going_right_ and std::abs(rbc_->velocity.x) < max_speed_) {
+      rbc_->SetVelocity({-velocity_.x, velocity_.y});
+    }
   }
   
   void MushroomController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
+    if (std::abs(contact_normal.y) < 0.1f) {
+      going_right_ = contact_normal.x < 0.0f;
+    }
   }
   
   void MushroomController::Copy(void* script) {
     if (!script) return;
     MushroomController* mushroom_script = reinterpret_cast<MushroomController*>(script);
     IK_ASSERT(mushroom_script);
+    going_right_ = mushroom_script->going_right_;
+    velocity_ = mushroom_script->velocity_;
   }
   
   std::shared_ptr<RuntimeItemData> RuntimeItem::data_;

@@ -58,9 +58,9 @@ namespace mario {
   private:
     static constexpr float max_speed_ = 8.0f;
     static constexpr float free_fall_factor = 1.0f;
-
-    bool going_right_ = true;
+    
     glm::vec2 velocity_ = { 4.0f, 0.0f };
+    bool going_right_ = true;
   };
   
   class FlowerController : public ScriptableEntity {
