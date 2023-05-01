@@ -11,9 +11,10 @@
 
 namespace mario {
   
-  static bool PlayerHitCheck(Entity* collided_entity, Entity* curr_entity, b2Contact* contact) {
+  static bool PowerupPlayerHitCheck(Entity* collided_entity, Entity* curr_entity, b2Contact* contact) {
     if (PlayerController::IsPlayer(collided_entity)) {
       contact->SetEnabled(false);
+      PlayerController::Get()->SetPowerup();
       return true;
     }
     return false;
@@ -104,7 +105,7 @@ namespace mario {
   void MushroomController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
     if (destroy_) return;
     
-    destroy_ = PlayerHitCheck(collided_entity, &entity_, contact);
+    destroy_ = PowerupPlayerHitCheck(collided_entity, &entity_, contact);
     if (std::abs(contact_normal.y) < 0.1f) {
       going_right_ = contact_normal.x < 0.0f;
     }

@@ -31,7 +31,8 @@ namespace mario {
     
     /// This function returns if player is small
     bool IsSmall() const { return state_machine_->State() == PlayerState::Small; }
-    
+    /// This function update the powerup flag to true
+    void SetPowerup() { power_up_ = true; };
     /// This functin checks the entity is player
     /// - Parameter entity: entity
     static bool IsPlayer(Entity* entity);
@@ -50,7 +51,10 @@ namespace mario {
     /// This function runs the player on polling the Left or right button
     /// - Parameter ts: Time step of each frame
     void Run(Timestep ts);
-    
+    /// This function powers up the player on hitting the powerup Item
+    /// - Parameter ts: time step
+    void PowerUp(Timestep ts);
+
     // Constants
     static constexpr float free_fall_factor = 2.7f;
     static constexpr float slow_down_force_ = 0.08f;
@@ -60,6 +64,7 @@ namespace mario {
 
     // Member Variables
     bool on_ground_ = false;
+    bool reset_fixture_ = false;
 
     // Size of player
     float width_ = 1.0f, height_ = 1.0f;
@@ -71,10 +76,13 @@ namespace mario {
     
     // Jump data
     int32_t jump_time_ = 0;
-    
     float jumb_boost_ = 1.0f;
     float ground_debounce_ = 0.0f; // Seconds
     float ground_debounce_time_ = 0.1f; // Seconds
+    
+    // Powerup data
+    bool power_up_ = false;
+    float powerup_time_ = 0.0f;
 
     std::shared_ptr<StateMachine> state_machine_;
     static PlayerController* instance_;

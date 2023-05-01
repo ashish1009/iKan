@@ -158,6 +158,57 @@ namespace ikan {
     /// - Parameter other: copy scene
     static std::shared_ptr<Scene> Copy(std::shared_ptr<Scene> other);
 
+    /// This function reset the ficture in body
+    /// - Parameter body:
+    static void ResetFixture(b2Body* body);
+    /// This function reset the Pill Box collider fixture
+    /// - Parameters:
+    ///   - tc: transform oif body
+    ///   - rb: rigid body
+    ///   - pbc: pill box
+    static void ResetPillBoxColliderFixture(const TransformComponent &tc, RigidBodyComponent* rb, const PillBoxColliderComponent& pbc);
+    /// This function reset the  Box collider fixture
+    /// - Parameters:
+    ///   - tc: transform oif body
+    ///   - rb: rigid body
+    ///   - pbc: box box
+    static void ResetBoxColliderFixture(const TransformComponent &tc, RigidBodyComponent* rb, const Box2DColliderComponent &pbc);
+    /// This function reset the Circle collider fixture
+    /// - Parameters:
+    ///   - tc: transform oif body
+    ///   - rb: rigid body
+    ///   - pbc: circle box
+    static void ResetCircleColliderFixture(const TransformComponent &tc, RigidBodyComponent* rb, const CircleColliiderComponent &pbc);
+    
+    /// This function add the box collider data to worlds body
+    /// - Parameters:
+    ///   - tc: transform of entity
+    ///   - bc2d: box data
+    ///   - body: body
+    ///   - is_pill: Is Pill Box
+    static void AddBoxColliderData(const TransformComponent& tc, const Box2DColliderComponent& bc2d, const RigidBodyComponent& rb2d,
+                                   bool is_pill = false);
+    /// This function add the circle collider data to worlds body
+    /// - Parameters:
+    ///   - tc: transform of entity
+    ///   - cc2d: circlw data
+    ///   - body: body
+    ///   - is_pill: is Pill Box
+    static void AddCircleColliderData(const TransformComponent& tc, const CircleColliiderComponent& cc2d, const RigidBodyComponent& rb2d,
+                                      bool is_pill = false);
+    
+    /// This function add the circle collider data to worlds body
+    /// - Parameters:
+    ///   - tc: transform of entity
+    ///   - cc2d: circlw data
+    ///   - body: body
+    ///   - is_pill: is Pill Box
+    static void AddPillColliderData(const TransformComponent& tc, const PillBoxColliderComponent& pbc, const RigidBodyComponent& rb2d);
+    
+    /// This function returns the fxture size of body
+    /// - Parameter body: physics body
+    static int32_t FixtureListSize(b2Body* body);
+    
     template<typename... Components>
     /// This function returns the entities with the components
     auto GetEntitesWith() {
@@ -205,39 +256,6 @@ namespace ikan {
 
     /// This function removes the runtime fixture from colliders
     void RemoveRuntimeFixtureToColliders();
-    
-    /// This function reset the ficture in body
-    /// - Parameter body:
-    static void ResetFixture(b2Body* body);
-
-    /// This function add the box collider data to worlds body
-    /// - Parameters:
-    ///   - tc: transform of entity
-    ///   - bc2d: box data
-    ///   - body: body
-    ///   - is_pill: Is Pill Box
-    static void AddBoxColliderData(const TransformComponent& tc, const Box2DColliderComponent& bc2d, const RigidBodyComponent& rb2d,
-                                   bool is_pill = false);
-    /// This function add the circle collider data to worlds body
-    /// - Parameters:
-    ///   - tc: transform of entity
-    ///   - cc2d: circlw data
-    ///   - body: body
-    ///   - is_pill: is Pill Box
-    static void AddCircleColliderData(const TransformComponent& tc, const CircleColliiderComponent& cc2d, const RigidBodyComponent& rb2d,
-                                      bool is_pill = false);
-    
-    /// This function add the circle collider data to worlds body
-    /// - Parameters:
-    ///   - tc: transform of entity
-    ///   - cc2d: circlw data
-    ///   - body: body
-    ///   - is_pill: is Pill Box
-    static void AddPillColliderData(const TransformComponent& tc, const PillBoxColliderComponent& pbc, const RigidBodyComponent& rb2d);
-    
-    /// This function returns the fxture size of body
-    /// - Parameter body: physics body
-    static int32_t FixtureListSize(b2Body* body);
     
     // Member Variables
     // Utils Data

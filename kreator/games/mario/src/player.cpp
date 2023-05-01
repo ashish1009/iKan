@@ -39,6 +39,20 @@ namespace mario {
   }
   
   void PlayerController::Update(Timestep ts) {
+    // If player size is altered then upddate physics body
+    if (reset_fixture_) {
+      const auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
+      Scene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), rbc_, pbc);
+      reset_fixture_ = false;
+    }
+
+    // If Player is powering Up then freez the player for powerup time
+    if (powerup_time_ > 0) {
+      powerup_time_ -= ts;
+      rbc_->SetVelocity({0, 0});
+      return;
+    }
+    
     // Check the player is landed on some A body which is ground
     CheckOnGround();
     
@@ -47,6 +61,10 @@ namespace mario {
     
     // Poll the buttons for Running the player
     Run(ts);
+    
+    // If Hit the powerup block then Powerup the player
+    if (power_up_)
+      PowerUp(ts);
     
     // Add Velocity to player body
     velocity_.x += acceleration_.x * ts * 2.0f;
@@ -94,6 +112,8 @@ namespace mario {
       // Do Nothing for Fire for now
     }
     entity_.GetComponent<TransformComponent>().UpdateScale(Y, height_);
+    
+    reset_fixture_ = true;
   }
   
   void PlayerController::CheckOnGround() {
@@ -225,6 +245,18 @@ namespace mario {
     }
   }
   
+  void PlayerController::PowerUp(Timestep ts) {
+    state_machine_->SetAction(PlayerAction::PowerUp);
+    powerup_time_ = 0.4; // Seconds
+    power_up_ = false;
+
+    if (IsSmall()) {
+      SetState(PlayerState::Big);
+    }
+    else {
+    }
+  }
+  
   void PlayerController::Copy(void* script) {
     if (!script) return;
     PlayerController* player_script = reinterpret_cast<PlayerController*>(script);
@@ -243,6 +275,10 @@ namespace mario {
     jumb_boost_ = player_script->jumb_boost_;
     ground_debounce_ = player_script->ground_debounce_;
     ground_debounce_time_ = player_script->ground_debounce_time_;
+    
+    power_up_ = player_script->power_up_;
+    powerup_time_ = player_script->powerup_time_;
+    reset_fixture_ = player_script->reset_fixture_;
   }
   
   void PlayerController::RenderGui() {

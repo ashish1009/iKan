@@ -499,6 +499,27 @@ namespace ikan {
     }
   }
   
+  void Scene::ResetBoxColliderFixture(const TransformComponent &tc, RigidBodyComponent* rb, const Box2DColliderComponent &pbc) {
+    b2Body* body = (b2Body*)rb->runtime_body;
+    ResetFixture(body);
+    AddBoxColliderData(tc, pbc, *rb);
+    body->ResetMassData();
+  }
+  
+  void Scene::ResetCircleColliderFixture(const TransformComponent &tc, RigidBodyComponent* rb, const CircleColliiderComponent &pbc) {
+    b2Body* body = (b2Body*)rb->runtime_body;
+    ResetFixture(body);
+    AddCircleColliderData(tc, pbc, *rb);
+    body->ResetMassData();
+  }
+  
+  void Scene::ResetPillBoxColliderFixture(const TransformComponent &tc, RigidBodyComponent* rb, const PillBoxColliderComponent &pbc) {
+    b2Body* body = (b2Body*)rb->runtime_body;
+    ResetFixture(body);
+    AddPillColliderData(tc, pbc, *rb);
+    body->ResetMassData();
+  }
+  
   void Scene::RemoveRuntimeFixtureToColliders() {
     // Store the Entity in each box collider
     auto box_view = registry_.view<Box2DColliderComponent>();

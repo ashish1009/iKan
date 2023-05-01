@@ -417,11 +417,10 @@ namespace kreator {
     is_playing_ = is_play;
     
     if (is_playing_) {
-      active_scene_->GetSetting().debug_draw = false;
-      
       Application::Get().MaximizeWindow();
       ResizeData(Application::Get().GetWindowWidth(), Application::Get().GetWindowHeight());
       PlayScene();
+      active_scene_->GetSetting().debug_draw = false;
     }
     else {
       StopScene();
