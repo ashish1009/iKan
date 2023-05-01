@@ -45,6 +45,13 @@ namespace mario {
     return pbc;
   }
 
+  CircleColliiderComponent* MarioPrefab::AddCircleCollider(Entity *entity, float radius, const glm::vec2& offset) {
+    CircleColliiderComponent* ccc = GET_COMPONENT(CircleColliiderComponent);
+    ccc->radius = radius;
+    ccc->offset = offset;
+    return ccc;
+  }
+
   TextComponent* MarioPrefab::AddText(Entity *entity, const std::string &text, const glm::vec4& color) {
   TextComponent* tc = GET_COMPONENT(TextComponent);
     tc->text = text;

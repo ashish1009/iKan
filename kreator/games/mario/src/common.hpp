@@ -31,6 +31,12 @@ namespace mario {
     ///   - entity: entity
     ///   - type: type of body
     static RigidBodyComponent* AddRigidBody(Entity* entity, RigidBodyComponent::RbBodyType type);
+    /// This function add the Circle Collider component if not present else add the required parameter
+    /// - Parameters:
+    ///   - entity: entity
+    ///   - radius: radius of circle
+    ///   - offset: offset of circle
+    static CircleColliiderComponent* AddCircleCollider(Entity* entity, float radius = 0.5f, const glm::vec2& offset = glm::vec2(0.0f));
     /// This function add the Pill Box Collider component if not present else add the required parameter
     /// - Parameters:
     ///   - entity: entity
