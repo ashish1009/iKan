@@ -107,6 +107,9 @@ namespace mario {
       width_ = 1.0f;
       height_ = 2.0f;
       pbc.SetSize({0.5f, height_ / 2.0f});
+      
+      // Add Impulse to push player out of ground while changing size
+      entity_.GetComponent<RigidBodyComponent>().ApplyImpulseToCenter({0, 1.0});
     }
     else if (state_machine_->State() == PlayerState::Fire) {
       // Do Nothing for Fire for now
@@ -252,6 +255,10 @@ namespace mario {
 
     if (IsSmall()) {
       SetState(PlayerState::Big);
+      
+      // Boost player run and jump speed
+      jumb_boost_ *= jump_boost_factor_;
+      walk_speed_ *= jump_boost_factor_;
     }
     else {
     }

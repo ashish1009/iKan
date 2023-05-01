@@ -226,6 +226,11 @@ x& x::operator=(x&& other) { \
     ((b2Body*)runtime_body)->SetAngularVelocity(angular_velocity);
   }
 
+  void RigidBodyComponent::ApplyImpulseToCenter(const glm::vec2 &imp) {
+    if (runtime_body == nullptr)  return;
+    ((b2Body*)runtime_body)->ApplyLinearImpulseToCenter({imp.x, imp.y}, true);
+  }
+  
   void RigidBodyComponent::RenderGui() {
     RbBodyType new_body_type = RbBodyType(PropertyGrid::ComboDrop("Rigid Body Type", { "Static" , "Kinamatic", "Dynamic" }, (uint32_t)type));
     
