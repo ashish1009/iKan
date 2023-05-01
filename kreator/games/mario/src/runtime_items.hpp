@@ -21,12 +21,28 @@ namespace mario {
   public:
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
+    void Copy(void* script) override;
 
   private:
+    static constexpr float speed_ = 8.0f;
     glm::vec2 top_pos_;
-    float speed_ = 8.0f;
+    bool set_position_ = true;
   };
   
+  class ScoreController : public ScriptableEntity {
+  public:
+    ScoreController(int32_t score);
+    void Create(Entity entity) override;
+    void Update(Timestep ts) override;
+    void Copy(void* script) override;
+
+  private:
+    static constexpr float speed_ = 8.0f;
+    glm::vec2 top_pos_;
+    int32_t score_ = 0;
+    bool set_position_ = true;
+  };
+
   class MushroomController : public ScriptableEntity {
   };
   
@@ -38,19 +54,7 @@ namespace mario {
   
   class StarController : public ScriptableEntity {
   };
-  
-  class ScoreController : public ScriptableEntity {
-  public:
-    ScoreController(int32_t score);
-    void Create(Entity entity) override;
-    void Update(Timestep ts) override;
     
-  private:
-    glm::vec2 top_pos_;
-    float speed_ = 8.0f;
-    int32_t score_ = 0;
-  };
-  
   struct ItemData {
     std::string name;
     std::string scrip_name;

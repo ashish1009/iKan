@@ -12,8 +12,11 @@ namespace mario {
   
   void CoinController::Create(Entity entity) {
     entity_ = entity;
-    const auto& tc = entity_.GetComponent<TransformComponent>().Position();
-    top_pos_ = {tc.x, tc.y + 5.0f};
+    if (set_position_) {
+      const auto& tc = entity_.GetComponent<TransformComponent>().Position();
+      top_pos_ = {tc.x, tc.y + 5.0f};
+      set_position_ = false;
+    }
   }
   
   void CoinController::Update(Timestep ts) {
@@ -26,14 +29,25 @@ namespace mario {
       entity_.scene_->DestroyEntity(entity_);
     }
   }
-  
+
+  void CoinController::Copy(void* script) {
+    if (!script) return;
+    CoinController* coin_script = reinterpret_cast<CoinController*>(script);
+    IK_ASSERT(coin_script);
+    set_position_ = coin_script->set_position_;
+    top_pos_ = coin_script->top_pos_;
+  }
+
   ScoreController::ScoreController(int32_t score) : score_(score) { }
   void ScoreController::Create(Entity entity) {
     entity_ = entity;
-    MarioPrefab::AddText(&entity_, std::to_string(score_));
-    
-    const auto& tc = entity_.GetComponent<TransformComponent>().Position();
-    top_pos_ = {tc.x, tc.y + 2.0f};
+    if (set_position_) {
+      MarioPrefab::AddText(&entity_, std::to_string(score_));
+      
+      const auto& tc = entity_.GetComponent<TransformComponent>().Position();
+      top_pos_ = {tc.x, tc.y + 2.0f};
+      set_position_ = false;
+    }
   }
   void ScoreController::Update(Timestep ts) {
     auto& tc = entity_.GetComponent<TransformComponent>();
@@ -43,6 +57,13 @@ namespace mario {
     else {
       entity_.scene_->DestroyEntity(entity_);
     }
+  }
+  void ScoreController::Copy(void* script) {
+    if (!script) return;
+    ScoreController* score_script = reinterpret_cast<ScoreController*>(script);
+    IK_ASSERT(score_script);
+    set_position_ = score_script->set_position_;
+    top_pos_ = score_script->top_pos_;
   }
 
   std::shared_ptr<RuntimeItemData> RuntimeItem::data_;
