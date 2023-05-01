@@ -122,7 +122,7 @@ namespace mario {
     auto& qc = entity_.GetComponent<QuadComponent>();
     qc.sprite.ClearSprites();
     qc.sprite.texture = SpriteManager::GetTexture(SpriteType::Items);
-    qc.sprite.sprite_images = {SpriteManager::GetItemSprite(Items::InactiveBlock)};
+    qc.sprite.sprite_images = SpriteManager::GetItemSprite(Items::InactiveBlock);
         
     active_ = false;
   }

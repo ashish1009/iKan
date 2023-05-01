@@ -19,7 +19,7 @@ namespace mario {
     // Stores the Subtextures of Player for each Action and State Combination
     std::unordered_map<PlayerAction, std::vector<SubTextureRef>> invinc_player_subtextures_map;
     // Stores the Runtime Item Subtextures
-    std::unordered_map<Items, std::shared_ptr<SubTexture>> item_subtextures_map;
+    std::unordered_map<Items, std::vector<SubTextureRef>> item_subtextures_map;
   };
   static std::shared_ptr<SpriteData> data_;
 
@@ -75,12 +75,15 @@ namespace mario {
 
     // Items
     auto& item_sprite = data_->texture_map[SpriteType::Items];
-    data_->item_subtextures_map[Items::Coin] = SubTexture::CreateFromCoords(item_sprite, {0.0f, 14.0f});
-    data_->item_subtextures_map[Items::Mushroom] = SubTexture::CreateFromCoords(item_sprite, {0.0f, 19.0f});
-    data_->item_subtextures_map[Items::Flower] = SubTexture::CreateFromCoords(item_sprite, {0.0f, 18.0f});
-    data_->item_subtextures_map[Items::Fireball] = SubTexture::CreateFromCoords(item_sprite, {7.0f, 10.0f});
-    data_->item_subtextures_map[Items::BigFireball] = SubTexture::CreateFromCoords(item_sprite, {7.0f, 9.0f});
-    data_->item_subtextures_map[Items::InactiveBlock] = SubTexture::CreateFromCoords(item_sprite, {3.0f, 8.0f});
+    data_->item_subtextures_map[Items::Coin].push_back(SubTexture::CreateFromCoords(item_sprite, {0.0f, 14.0f}));
+    data_->item_subtextures_map[Items::Mushroom].push_back(SubTexture::CreateFromCoords(item_sprite, {0.0f, 19.0f}));
+    data_->item_subtextures_map[Items::Flower].push_back(SubTexture::CreateFromCoords(item_sprite, {0.0f, 18.0f}));
+    data_->item_subtextures_map[Items::Flower].push_back(SubTexture::CreateFromCoords(item_sprite, {1.0f, 18.0f}));
+    data_->item_subtextures_map[Items::Flower].push_back(SubTexture::CreateFromCoords(item_sprite, {2.0f, 18.0f}));
+    data_->item_subtextures_map[Items::Flower].push_back(SubTexture::CreateFromCoords(item_sprite, {3.0f, 18.0f}));
+    data_->item_subtextures_map[Items::Fireball].push_back(SubTexture::CreateFromCoords(item_sprite, {7.0f, 10.0f}));
+    data_->item_subtextures_map[Items::BigFireball].push_back(SubTexture::CreateFromCoords(item_sprite, {7.0f, 9.0f}));
+    data_->item_subtextures_map[Items::InactiveBlock].push_back(SubTexture::CreateFromCoords(item_sprite, {3.0f, 8.0f}));
 
     MARIO_LOG("Initialised the Sprite Manager");
   }
@@ -115,7 +118,7 @@ namespace mario {
     return player_map.at(action);
   }
 
-  std::shared_ptr<SubTexture> SpriteManager::GetItemSprite(Items item) {
+  std::vector<SubTextureRef> SpriteManager::GetItemSprite(Items item) {
     IK_ASSERT(data_ or data_->item_subtextures_map.find(item) != data_->item_subtextures_map.end());
     return data_->item_subtextures_map.at(item);
   }
