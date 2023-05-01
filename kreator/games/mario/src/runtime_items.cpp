@@ -83,7 +83,6 @@ namespace mario {
     rbc_->SetGravityScale(0.0f);
     
     CircleColliiderComponent* ccc = MarioPrefab::AddCircleCollider(&entity_);
-    ccc->runtime_fixture = new Entity(entity_, entity_.scene_);
     ccc->physics_mat.friction = 0.0f;
     
     entity_.scene_->AddBodyToPhysicsWorld(entity_, *rbc_);

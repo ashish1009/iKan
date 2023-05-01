@@ -166,16 +166,22 @@ namespace ikan {
     IK_CORE_WARN(LogModule::Scene, "  ID      {0}", entity.GetComponent<IDComponent>().id);
     IK_CORE_WARN(LogModule::Scene, "  Number of entities left in the Scene  {0}", --num_entities_);
    
-    if (type_ == _2D) {
-      // Delete physics data
-      if (physics_2d_world_ and entity.HasComponent<RigidBodyComponent>()) {
-        auto& rb = entity.GetComponent<RigidBodyComponent>();
-        ResetFixture((b2Body*)rb.runtime_body);
-        
-        physics_2d_world_->DestroyBody((b2Body*)rb.runtime_body);
-        rb.runtime_body = nullptr;
-      }
+    // Delete physics data
+    if (physics_2d_world_ and entity.HasComponent<RigidBodyComponent>()) {
+      auto& rb = entity.GetComponent<RigidBodyComponent>();
+      ResetFixture((b2Body*)rb.runtime_body);
       
+      physics_2d_world_->DestroyBody((b2Body*)rb.runtime_body);
+      rb.runtime_body = nullptr;
+    }
+
+    // Destory the Scripts data
+    if (entity.HasComponent<NativeScriptComponent>()) {
+      auto& nsc = entity.GetComponent<NativeScriptComponent>();
+      nsc.script->Destroy();
+    }
+    
+    if (type_ == _2D) {
       if (entity.HasComponent<CircleColliiderComponent>()) {
         auto& cc = entity.GetComponent<CircleColliiderComponent>();
         delete cc.runtime_fixture;
