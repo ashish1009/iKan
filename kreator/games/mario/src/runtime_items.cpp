@@ -74,6 +74,8 @@ namespace mario {
     
     CircleColliiderComponent* ccc = MarioPrefab::AddCircleCollider(&entity_);
     ccc->runtime_fixture = new Entity(entity_, entity_.scene_);
+    
+    entity_.scene_->AddBodyToPhysicsWorld(entity_, *rbc_);
   }
   
   void MushroomController::Update(Timestep ts) {
