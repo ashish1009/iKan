@@ -80,8 +80,9 @@ namespace chess {
     glm::vec2 init_cam_pos_;
     
     Block* hovered_block_ = nullptr;
-    
+    Block* selected_block_ = nullptr;
     std::array<std::shared_ptr<Player>, MaxPlayer> players_;
+    Color turn_ = Color::White;
   };
   
 } // namespace chess

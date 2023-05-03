@@ -61,6 +61,7 @@ namespace chess {
   void Chess::EventHandler(Event &event) {
     EventDispatcher dispatcher(event);
     dispatcher.Dispatch<MouseMovedEvent>(IK_BIND_EVENT_FN(Chess::MouseMoved));
+    dispatcher.Dispatch<MouseButtonPressedEvent>(IK_BIND_EVENT_FN(Chess::MouseClicked));
   }
   
   bool Chess::MouseMoved(MouseMovedEvent &mouse_move_event) {
@@ -75,12 +76,51 @@ namespace chess {
   }
   
   bool Chess::MouseClicked(MouseButtonPressedEvent &mouse_click_event) {
+    if (mouse_click_event.GetMouseButton() != MouseButton::ButtonLeft) return false;
+    if (!hovered_block_) return false;
+    
+    std::shared_ptr<Piece> hovered_piece = hovered_block_->GetPiece();
+    if (!hovered_piece)  return false;
+    
+    if (hovered_piece->GetColor() == turn_) {
+      selected_block_ = hovered_block_;
+    }
+      
     return false;
   }
   
   void Chess::SetViewportSize(uint32_t width, uint32_t height) {
     viewport_width_ = width;
     viewport_height_ = height;
+  }
+  
+  static void PrindBlockDataGui(Block* block) {
+    ImGui::Columns(2);
+    ImGui::SetColumnWidth(0, ImGui::GetWindowContentRegionMax().x / 2);
+    
+    ImGui::Text("Block Row");
+    ImGui::Text("Block Colum");
+    
+    std::shared_ptr<Piece> piece = block->GetPiece();
+    if (piece) {
+      ImGui::Text("Piece Type");
+      ImGui::Text("Piece Color");
+    }
+    else {
+      ImGui::Text("Empty Block");
+    }
+    
+    ImGui::NextColumn();
+    
+    ImGui::Text("%d", block->GetRow());
+    ImGui::Text("%d", block->GetCol());
+    
+    if (piece) {
+      ImGui::Text("%s", GetPieceString(piece->GetPiece()).c_str());
+      ImGui::Text("%s", GetColorString(piece->GetColor()).c_str());
+    }
+    ImGui::Separator();
+    ImGui::Columns(1);
   }
   
   void Chess::RenderGui() {
@@ -91,37 +131,23 @@ namespace chess {
     }
     
     ImGui::Begin("Chess");
+    
+    if (selected_block_) {
+      ImGui::Text("Selected Block");
+      ImGui::Separator();
+      
+      PrindBlockDataGui(selected_block_);
+    }
+    
+    ImGui::Separator();
+
     if (hovered_block_) {
       ImGui::Text("Hovered Block");
       ImGui::Separator();
       
-      ImGui::Columns(2);
-      ImGui::SetColumnWidth(0, ImGui::GetWindowContentRegionMax().x / 2);
-      
-      ImGui::Text("Block Row");
-      ImGui::Text("Block Colum");
-
-      std::shared_ptr<Piece> piece = hovered_block_->GetPiece();
-      if (piece) {
-        ImGui::Text("Piece Type");
-        ImGui::Text("Piece Color");
-      }
-      else {
-        ImGui::Text("Empty Block");
-      }
-
-      ImGui::NextColumn();
-      
-      ImGui::Text("%d", hovered_block_->GetRow());
-      ImGui::Text("%d", hovered_block_->GetCol());
-
-      if (piece) {
-        ImGui::Text("%s", GetPieceString(piece->GetPiece()).c_str());
-        ImGui::Text("%s", GetColorString(piece->GetColor()).c_str());
-      }
-      ImGui::Separator();
-      ImGui::Columns(1);
+      PrindBlockDataGui(hovered_block_);
     }
+
     ImGui::End();
     
     if (!is_playing_) {
