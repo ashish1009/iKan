@@ -9,13 +9,9 @@
 
 namespace chess {
   
-  Block::Block(int32_t row, int32_t col) : row_(row), col_(col) {
-    CHESS_LOG("Creating Block Instance");
-  }
+  Block::Block(int32_t row, int32_t col) : row_(row), col_(col) {}
   
-  Block::~Block() {
-    CHESS_LOG("Destroying Block Instance");
-  }
+  Block::~Block() { }
   
   void Block::SetData(Color color, PieceType piece_type) {
     piece_ = Piece::Create(piece_type, color);

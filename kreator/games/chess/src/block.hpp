@@ -39,7 +39,6 @@ namespace chess {
     
   private:
     std::shared_ptr<Piece> piece_;
-    
     // For Debug
     int32_t row_ = -1, col_ = -1;
   };
