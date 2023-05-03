@@ -18,6 +18,11 @@ namespace chess {
     
     Batch2DRenderer::AddLineData(50);
     Batch2DRenderer::AddQuadData(100);
+    
+    // Default Player
+    for (uint32_t i = 0; i < MaxPlayer; i++) {
+      players_[i] = std::make_shared<Player>(GetColorString(Color(i)), Color(i));
+    }
   }
   
   Chess::~Chess() {
@@ -43,6 +48,7 @@ namespace chess {
     
     RenderBackgroundAndBorder();
     RenderText();
+    RenderPlayerInfo();
         
     if (is_playing_) {
       HighlightHoveredBlock();
@@ -117,6 +123,9 @@ namespace chess {
       ImGui::Columns(1);
     }
     ImGui::End();
+    
+    for (int32_t i = 0; i < MaxPlayer; i++)
+      players_[i]->RenderGui();
   }
   
   void Chess::SetPlaying(bool playing_flag) {
@@ -285,7 +294,19 @@ namespace chess {
         BlockManager::blocks_[row][col]->SetData(color, piece);
       }
     }
+  }
+  
+  void Chess::RenderPlayerInfo() {
+    const auto& cam_data = scene_->GetPrimaryCameraData();
+    if (!cam_data.scene_camera) return;
     
+    static glm::vec2 size = {0.5f, 0.5f};
+    static glm::vec4 color[2] = {{ 1.0, 1.0, 1.0, 1.0}, { 0.0, 0.0, 0.0, 1.0}};
+    TextRenderer::BeginBatch(cam_data.scene_camera->GetProjection() * glm::inverse(cam_data.transform_comp->Transform()));
+    TextRenderer::RenderText(players_[0]->GetName(), { -8, (BlockSize * MaxRows), 0.2 }, size, color[uint32_t(players_[0]->GetColor())]);
+    TextRenderer::RenderText(players_[1]->GetName(), { (BlockSize * MaxCols) + 3, (BlockSize * MaxRows), 0.2 }, size,
+                             color[uint32_t(players_[1]->GetColor())]);
+    TextRenderer::EndBatch();
   }
   
 } // namespace chess

@@ -64,6 +64,8 @@ namespace chess {
     void RenderBackgroundAndBorder();
     /// This function renders the text of game
     void RenderText();
+    /// This function renders the player information
+    void RenderPlayerInfo();
     /// This function highlight the hovered block
     void HighlightHoveredBlock();
     /// This function create
@@ -79,7 +81,7 @@ namespace chess {
     
     Block* hovered_block_ = nullptr;
     
-    std::array<Player, MaxPlayer> players_;
+    std::array<std::shared_ptr<Player>, MaxPlayer> players_;
   };
   
 } // namespace chess
