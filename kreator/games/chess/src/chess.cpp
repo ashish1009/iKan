@@ -119,13 +119,15 @@ namespace chess {
         ImGui::Text("%s", GetPieceString(piece->GetPiece()).c_str());
         ImGui::Text("%s", GetColorString(piece->GetColor()).c_str());
       }
-
+      ImGui::Separator();
       ImGui::Columns(1);
     }
     ImGui::End();
     
-    for (int32_t i = 0; i < MaxPlayer; i++)
-      players_[i]->RenderGui();
+    if (!is_playing_) {
+      for (int32_t i = 0; i < MaxPlayer; i++)
+        players_[i]->RenderGui();
+    }
   }
   
   void Chess::SetPlaying(bool playing_flag) {
