@@ -34,18 +34,25 @@ namespace chess {
     scene_ = scene;
     viewport_ = viewport;
     scene_->GetSetting().use_editor_camera = false;
+    
+    // Set the camera at the center of board in begining
+    if (auto& cam_data = scene_->GetPrimaryCameraData(); cam_data.scene_camera) {
+      cam_data.transform_comp->UpdatePosition({init_cam_pos_.x, init_cam_pos_.y, 0.0f});
+    }
   }
   
   void Chess::Update(Timestep ts) {
     if (!scene_) return;
+        
+    // Update the local camera with scene camera
+    auto& cam_data = scene_->GetPrimaryCameraData();
+    camera_ = cam_data.scene_camera;
+    if (!camera_) return;
     
-    static bool change_camera_pos = true;
-    if (change_camera_pos) {
-      if (auto& cam_data = scene_->GetPrimaryCameraData(); cam_data.scene_camera) {
-        cam_data.transform_comp->UpdatePosition({init_cam_pos_.x, init_cam_pos_.y, 0.0f});
-      }
-    }
+    // Update the view projection matrix
+    view_proj_ = camera_->GetProjection() * glm::inverse(cam_data.transform_comp->Transform());
     
+    // Render Chess Data
     RenderBackgroundAndBorder();
     RenderText();
     RenderPlayerInfo();
@@ -124,9 +131,9 @@ namespace chess {
   }
   
   void Chess::RenderGui() {
-    if (auto& cam_data = scene_->GetPrimaryCameraData(); cam_data.scene_camera) {
+    if (camera_) {
       ImGui::Begin("Zoom");
-      cam_data.scene_camera->ZoomWidget();
+      camera_->ZoomWidget();
       ImGui::End();
     }
     
@@ -204,12 +211,11 @@ namespace chess {
   }
   
   void Chess::RenderChessGrids() {
-    const auto& cam_data = scene_->GetPrimaryCameraData();
-    if (!cam_data.scene_camera) return;
+    if (!camera_) return;
     
     static const glm::vec4 color = { 1.0f, 1.0f, 1.0f, 0.6f};
     static const float z = -0.1f;
-    Batch2DRenderer::BeginBatch(cam_data.scene_camera->GetProjection() * glm::inverse(cam_data.transform_comp->Transform()));
+    Batch2DRenderer::BeginBatch(view_proj_);
     for (int32_t row = 0; row <= MaxRows; row++) {
       Batch2DRenderer::DrawLine({0, row * BlockSize, z}, {MaxCols * BlockSize, row * BlockSize, z}, color);
     }
@@ -220,13 +226,12 @@ namespace chess {
   }
   
   void Chess::RenderBackgroundAndBorder() {
-    const auto& cam_data = scene_->GetPrimaryCameraData();
-    if (!cam_data.scene_camera) return;
+    if (!camera_) return;
     
     static const std::shared_ptr<Texture> bg = Renderer::GetTexture(DM::ClientAsset("textures/background.png"));
     static const std::shared_ptr<Texture> border = Renderer::GetTexture(DM::ClientAsset("textures/border.png"));
     
-    Batch2DRenderer::BeginBatch(cam_data.scene_camera->GetProjection() * glm::inverse(cam_data.transform_comp->Transform()));
+    Batch2DRenderer::BeginBatch(view_proj_);
     
     // Background
     static glm::mat4 bg_transform = Math::GetTransformMatrix({init_cam_pos_.x, init_cam_pos_.y, -0.9}, {0, 0, 0}, {100, 100, 1});
@@ -240,13 +245,12 @@ namespace chess {
   }
   
   void Chess::RenderText() {
-    const auto& cam_data = scene_->GetPrimaryCameraData();
-    if (!cam_data.scene_camera) return;
+    if (!camera_) return;
     
     static glm::vec2 size = {0.3f, 0.3f};
     static glm::vec4 color = { 0.7, 0.7, 0.7, 1};
 
-    TextRenderer::BeginBatch(cam_data.scene_camera->GetProjection() * glm::inverse(cam_data.transform_comp->Transform()));
+    TextRenderer::BeginBatch(view_proj_);
     for (int32_t row = 0;  row < MaxCols; row++) {
       TextRenderer::RenderText(std::to_string(row + 1), { -1, 0.5 + (BlockSize * row), 0.3f }, size, color);
     }
@@ -265,10 +269,9 @@ namespace chess {
       return;
     }
     
-    const auto& cam_data = scene_->GetPrimaryCameraData();
-    if (!cam_data.scene_camera) return;
+    if (!camera_) return;
 
-    Batch2DRenderer::BeginBatch(cam_data.scene_camera->GetProjection() * glm::inverse(cam_data.transform_comp->Transform()));
+    Batch2DRenderer::BeginBatch(view_proj_);
     
     glm::mat4 transform = Math::GetTransformMatrix({pos.x, pos.y, 0.2}, glm::vec3(0.0f), {BlockSize, BlockSize, 1});
     Batch2DRenderer::DrawQuad(transform, hovered);
@@ -325,16 +328,20 @@ namespace chess {
   }
   
   void Chess::RenderPlayerInfo() {
-    const auto& cam_data = scene_->GetPrimaryCameraData();
-    if (!cam_data.scene_camera) return;
+    if (!camera_) return;
     
     static glm::vec2 size = {0.5f, 0.5f};
     static glm::vec4 color[2] = {{ 1.0, 1.0, 1.0, 1.0}, { 0.0, 0.0, 0.0, 1.0}};
-    TextRenderer::BeginBatch(cam_data.scene_camera->GetProjection() * glm::inverse(cam_data.transform_comp->Transform()));
+    
+    TextRenderer::BeginBatch(view_proj_);
     TextRenderer::RenderText(players_[0]->GetName(), { -8, (BlockSize * MaxRows), 0.2 }, size, color[uint32_t(players_[0]->GetColor())]);
     TextRenderer::RenderText(players_[1]->GetName(), { (BlockSize * MaxCols) + 3, (BlockSize * MaxRows), 0.2 }, size,
                              color[uint32_t(players_[1]->GetColor())]);
     TextRenderer::EndBatch();
+    
+    Batch2DRenderer::BeginBatch(view_proj_);
+    Batch2DRenderer::EndBatch();
+    
   }
   
 } // namespace chess

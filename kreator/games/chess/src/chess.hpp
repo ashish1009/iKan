@@ -79,6 +79,9 @@ namespace chess {
     glm::vec2 mouse_pos_;
     glm::vec2 init_cam_pos_;
     
+    SceneCamera* camera_;
+    glm::mat4 view_proj_;
+    
     Block* hovered_block_ = nullptr;
     Block* selected_block_ = nullptr;
     std::array<std::shared_ptr<Player>, MaxPlayer> players_;
