@@ -43,5 +43,12 @@ namespace chess {
     // For Debug
     int32_t row_ = -1, col_ = -1;
   };
+  
+  class Chess;
+  class BlockManager {
+  private:
+    static std::array<std::array<BlockRef, MaxCols>, MaxRows> blocks_;
+    friend class Chess;
+  };
     
 } // namespace chess

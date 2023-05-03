@@ -239,7 +239,7 @@ namespace chess {
 
     
     // Update the Hovered block
-    hovered_block_ = (blocks_[row][col]).get();
+    hovered_block_ = (BlockManager::blocks_[row][col]).get();
   }
   
   void Chess::CreateBlocks() {
@@ -257,7 +257,7 @@ namespace chess {
         IK_ASSERT(row >= 0 and row < MaxRows);
         IK_ASSERT(col >= 0 and col < MaxCols);
         
-        blocks_[row][col] = std::make_shared<Block>(row, col);
+        BlockManager::blocks_[row][col] = std::make_shared<Block>(row, col);
       }
     }
   
@@ -278,7 +278,7 @@ namespace chess {
         Color color = GetColorFromTag(tag_comp.tag);
         PieceType piece = GetPieceFromTag(tag_comp.tag);
 
-        blocks_[row][col]->SetData(color, piece);
+        BlockManager::blocks_[row][col]->SetData(color, piece);
       }
     }
     

@@ -21,4 +21,6 @@ namespace chess {
     piece_ = Piece::Create(piece_type, color);
   }
   
+  std::array<std::array<BlockRef, MaxCols>, MaxRows> BlockManager::blocks_;
+  
 } // namespace chess
