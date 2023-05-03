@@ -331,15 +331,26 @@ namespace chess {
     if (!camera_) return;
     
     static glm::vec2 size = {0.5f, 0.5f};
-    static glm::vec4 color[2] = {{ 1.0, 1.0, 1.0, 1.0}, { 0.0, 0.0, 0.0, 1.0}};
     
+    glm::vec4 turn_color[2];
+    turn_color[uint32_t(Color::Black)] = {0.0, 0.0, 0.0, 1.0};
+    turn_color[uint32_t(Color::White)] = glm::vec4(1.0f);
+
     TextRenderer::BeginBatch(view_proj_);
-    TextRenderer::RenderText(players_[0]->GetName(), { -8, (BlockSize * MaxRows), 0.2 }, size, color[uint32_t(players_[0]->GetColor())]);
-    TextRenderer::RenderText(players_[1]->GetName(), { (BlockSize * MaxCols) + 3, (BlockSize * MaxRows), 0.2 }, size,
-                             color[uint32_t(players_[1]->GetColor())]);
+    TextRenderer::RenderText(players_[0]->GetName(), { -8, (BlockSize * MaxRows), 0.2 }, size, turn_color[uint32_t(players_[0]->GetColor())]);
+    TextRenderer::RenderText(players_[1]->GetName(), { (BlockSize * MaxCols) + 4, (BlockSize * MaxRows), 0.2 }, size,
+                             turn_color[uint32_t(players_[1]->GetColor())]);
     TextRenderer::EndBatch();
     
+    static std::shared_ptr<Texture> turn_texture = Renderer::GetTexture(DM::ClientAsset("textures/turn.png"));
+    
+    float x_pos[2];
+    x_pos[uint32_t(Color::Black)] = -9;
+    x_pos[uint32_t(Color::White)] = (BlockSize * MaxCols) + 3;
+    
     Batch2DRenderer::BeginBatch(view_proj_);
+    glm::mat4 transform = Math::GetTransformMatrix({x_pos[(uint32_t)turn_], (BlockSize * MaxRows) + 0.3, 0.2}, glm::vec3(0.0f), {1, 1, 1});
+    Batch2DRenderer::DrawQuad(transform, turn_texture, turn_color[(uint32_t)turn_]);
     Batch2DRenderer::EndBatch();
     
   }
