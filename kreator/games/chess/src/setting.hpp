@@ -13,9 +13,8 @@ namespace chess {
   
   static constexpr uint16_t MaxRows = 8;
   static constexpr uint16_t MaxCols = 8;
-  
-  // Should be same as Prefab/Piece Height
-  static constexpr uint16_t BlockSize = 2;
+  static constexpr uint16_t BlockSize = 2; // Should be same as Prefab/Piece Height
+  static constexpr uint16_t MaxPlayer = 2;
   
   enum class Color {
     Black, White

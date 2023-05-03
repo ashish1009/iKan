@@ -23,6 +23,7 @@
 		B29016F529F43ED800BB309D /* common.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B29016F329F43ED800BB309D /* common.cpp */; };
 		B29016F829F4401200BB309D /* sprite_manager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B29016F629F4401200BB309D /* sprite_manager.cpp */; };
 		B292C0F329D1D7C400B1E678 /* libikan.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B292C0F229D1D7C400B1E678 /* libikan.a */; };
+		B2BFDAAA2A0273D40044D8F2 /* player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BFDAA82A0273D30044D8F2 /* player.cpp */; };
 		B2E8D44F29E044A5005F5F0C /* libfreetype.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B2E8D44E29E044A5005F5F0C /* libfreetype.6.dylib */; };
 		B2E8D45229E0460C005F5F0C /* libfreetype.6.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2E8D45129E0460C005F5F0C /* libfreetype.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		B2E8D45429E0464A005F5F0C /* libpng16.16.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = B2E8D45329E0464A005F5F0C /* libpng16.16.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
@@ -137,6 +138,8 @@
 		B292BB7129D16F8F00B1E678 /* kreator */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = kreator; sourceTree = BUILT_PRODUCTS_DIR; };
 		B292C0F029D1D58700B1E678 /* prefix_headers.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix_headers.pch; sourceTree = "<group>"; };
 		B292C0F229D1D7C400B1E678 /* libikan.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libikan.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2BFDAA82A0273D30044D8F2 /* player.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = player.cpp; sourceTree = "<group>"; };
+		B2BFDAA92A0273D30044D8F2 /* player.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = player.hpp; sourceTree = "<group>"; };
 		B2DE4BA529F9261800AF8702 /* knight.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = knight.ikanPrefab; sourceTree = "<group>"; };
 		B2DE4BA729F9261800AF8702 /* rook.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = rook.ikanPrefab; sourceTree = "<group>"; };
 		B2DE4BA829F9261800AF8702 /* bishop.ikanPrefab */ = {isa = PBXFileReference; lastKnownFileType = text; path = bishop.ikanPrefab; sourceTree = "<group>"; };
@@ -331,6 +334,8 @@
 				B266841E29F949720083F5BD /* block.hpp */,
 				B2FDC3DA29FA4AC8006D1383 /* piece.cpp */,
 				B2FDC3DB29FA4AC8006D1383 /* piece.hpp */,
+				B2BFDAA82A0273D30044D8F2 /* player.cpp */,
+				B2BFDAA92A0273D30044D8F2 /* player.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -653,6 +658,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2FDC3DC29FA4AC8006D1383 /* piece.cpp in Sources */,
+				B2BFDAAA2A0273D40044D8F2 /* player.cpp in Sources */,
 				B201A34029F285F500D3C1FE /* chess.cpp in Sources */,
 				B201A33E29F285F500D3C1FE /* angry_bird.cpp in Sources */,
 				B2FDC3D229FA4580006D1383 /* setting.cpp in Sources */,

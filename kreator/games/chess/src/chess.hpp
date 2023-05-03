@@ -10,6 +10,7 @@
 #include "game_data.hpp"
 #include "setting.hpp"
 #include "block.hpp"
+#include "player.hpp"
 
 namespace chess {
   
@@ -52,6 +53,9 @@ namespace chess {
     /// This function dispatched in event dispatcher and trigger when mouse move event evoked
     /// - Parameter mouse_move_event: Mouse Move event instacnce
     bool MouseMoved(MouseMovedEvent& mouse_move_event);
+    /// This function dispatched in event dispatcher and trigger when mouse button press event evoked
+    /// - Parameter mouse_click_event: Mouse button press event instacnce
+    bool MouseClicked(MouseButtonPressedEvent& mouse_click_event);
     /// This function returns the position of Block if mouse hovered
     glm::vec2 GetBlockPosition();
     /// This function renders the chess Block Grids
@@ -74,6 +78,8 @@ namespace chess {
     glm::vec2 init_cam_pos_;
     
     Block* hovered_block_ = nullptr;
+    
+    std::array<Player, MaxPlayer> players_;
   };
   
 } // namespace chess

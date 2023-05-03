@@ -68,6 +68,10 @@ namespace chess {
     return false;
   }
   
+  bool Chess::MouseClicked(MouseButtonPressedEvent &mouse_click_event) {
+    return false;
+  }
+  
   void Chess::SetViewportSize(uint32_t width, uint32_t height) {
     viewport_width_ = width;
     viewport_height_ = height;
