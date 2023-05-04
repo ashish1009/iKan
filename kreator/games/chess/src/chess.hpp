@@ -72,6 +72,8 @@ namespace chess {
     void HighlightSelectedBlock();
     /// This function highlight the Possible moves
     void HighlightPossibleMoves();
+    /// This function checks the destination of selected block and moves the block
+    void CheckAndMoveBlock();
     /// This function create
     /// - Note: Block Name should be "block"
     /// - Note: Piece Name should be {color_<piece> where piece : {pawn, king, queen, knight, bishop, rook}}

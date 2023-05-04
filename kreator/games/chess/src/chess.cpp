@@ -97,18 +97,31 @@ namespace chess {
     
     // If Hovered Block is empty then return
     PieceRef hovered_piece = hovered_block_->GetPiece();
-    if (!hovered_piece)  return false;
-    
-    // If selected block is of opponent color then update selected blocl
-    if (hovered_piece->GetColor() == turn_) {
-      selected_block_ = hovered_block_;
-      
-      PieceRef piece = selected_block_->GetPiece();
-      possible_moves_.clear();
-      possible_moves_ = piece->GetPossibleMoves();
+    // If Hovered block have piece then Update selected block and possible moves
+    if (hovered_piece) {
+      // If selected block is of opponent color then update selected block and possible moves
+      if (hovered_piece->GetColor() == turn_) {
+        selected_block_ = hovered_block_;
+        
+        PieceRef piece = selected_block_->GetPiece();
+        possible_moves_.clear();
+        possible_moves_ = piece->GetPossibleMoves();
+      }
+      // If Piece of opponent color then check for destination move if block is selected
+      else {
+        CheckAndMoveBlock();
+      }
     }
-      
+    // If Hovered Block do not have piece then check for destination Move if block is selected
+    else {
+      CheckAndMoveBlock();
+    }
     return false;
+  }
+  
+  void Chess::CheckAndMoveBlock() {
+    if (!selected_block_)
+      return;
   }
   
   void Chess::SetViewportSize(uint32_t width, uint32_t height) {
@@ -304,7 +317,7 @@ namespace chess {
   void Chess::HighlightSelectedBlock() {
     static const std::shared_ptr<Texture> selected_tex = Renderer::GetTexture(DM::ClientAsset("textures/selected.png"));
     
-    if (possible_moves_.size() == 0) return;
+    if (!selected_block_) return;
     
     Batch2DRenderer::BeginBatch(view_proj_);
     float x = (selected_block_->GetCol() * BlockSize) + (BlockSize / 2);
