@@ -10,7 +10,8 @@
 #include "setting.hpp"
 
 #define CONSTRUCT_DESTRUCT(PieceClass) \
-  PieceClass(PieceType piece, Color color) { \
+  PieceClass(PieceType piece, Color color, const Position& position) { \
+position_ = position; \
     piece_ = piece; \
     color_ = color; \
   } \
@@ -33,7 +34,7 @@ namespace chess {
     /// - Parameters:
     ///   - piece: piece type
     ///   - color: color of piece
-    static std::shared_ptr<Piece> Create(PieceType piece, Color color);
+    static std::shared_ptr<Piece> Create(PieceType piece, Color color, const Position& position);
     
     /// This function returns the Piece type
     PieceType GetPiece() const { return piece_; }
@@ -43,6 +44,7 @@ namespace chess {
   protected:
     PieceType piece_;
     Color color_;
+    Position position_;
   };
   
   class King : public Piece {

@@ -9,14 +9,14 @@
 
 namespace chess {
   
-  std::shared_ptr<Piece> Piece::Create(PieceType piece, Color color) {
+  std::shared_ptr<Piece> Piece::Create(PieceType piece, Color color, const Position& position) {
     switch (piece) {
-      case PieceType::King:     return std::make_shared<King>(piece, color);
-      case PieceType::Queen:    return std::make_shared<Queen>(piece, color);
-      case PieceType::Rook:     return std::make_shared<Rook>(piece, color);
-      case PieceType::Bishop:   return std::make_shared<Bishop>(piece, color);
-      case PieceType::Knight:   return std::make_shared<Knight>(piece, color);
-      case PieceType::Pawn:     return std::make_shared<Pawn>(piece, color);
+      case PieceType::King:     return std::make_shared<King>(piece, color, position);
+      case PieceType::Queen:    return std::make_shared<Queen>(piece, color, position);
+      case PieceType::Rook:     return std::make_shared<Rook>(piece, color, position);
+      case PieceType::Bishop:   return std::make_shared<Bishop>(piece, color, position);
+      case PieceType::Knight:   return std::make_shared<Knight>(piece, color, position);
+      case PieceType::Pawn:     return std::make_shared<Pawn>(piece, color, position);
       default: IK_ASSERT(false);
     }
   }

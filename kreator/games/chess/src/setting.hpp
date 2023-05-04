@@ -26,7 +26,7 @@ namespace chess {
   
   struct Position {
     int32_t row, col;
-    Position(int32_t r, int32_t c) : row(r), col(c) {}
+    Position(int32_t r = -1, int32_t c = -1) : row(r), col(c) {}
   };
   
   /// This function returns the color string
