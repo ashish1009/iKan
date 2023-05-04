@@ -48,6 +48,8 @@ namespace chess {
     PieceType GetPiece() const { return piece_; }
     /// This function returns the color of piece
     Color GetColor() const { return color_; }
+    /// This function returns the entity of piece
+    Entity* GetEntity() const { return entity_; }
     
   protected:
     PieceType piece_;

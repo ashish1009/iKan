@@ -10,6 +10,19 @@
 
 namespace chess {
   
+  /// This function searchs the positin from possible moves vector
+  /// - Parameters:
+  ///   - possible_moves: possible move vector
+  ///   - position: postion to be searched
+  static bool LSearch(const PossibleMoves& possible_moves, const Position& position) {
+    // Simple Linear search
+    for (const auto& p : possible_moves) {
+      if (p.row == position.row and p.col == position.col)
+        return true;
+    }
+    return false;
+  }
+  
   Chess::Chess() {
     CHESS_LOG("Creating Chess Game Data ... ");
     IK_ASSERT(BlockSize > 0);
@@ -122,6 +135,12 @@ namespace chess {
   void Chess::CheckAndMoveBlock() {
     if (!selected_block_)
       return;
+    
+    // Check if the destination block is in possible move?
+    Position p = {hovered_block_->GetRow(), hovered_block_->GetCol()};
+    if (!LSearch(possible_moves_, p)) return;
+    
+    IK_INFO("", "{0}", hovered_block_->GetRow());
   }
   
   void Chess::SetViewportSize(uint32_t width, uint32_t height) {
@@ -195,7 +214,7 @@ namespace chess {
     is_playing_ = playing_flag;
     if (is_playing_) {
       CreateBlocks();
-    }
+    } 
   }
   
   void Chess::LoadPrefab(const std::string &path) {
