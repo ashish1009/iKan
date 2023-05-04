@@ -10,11 +10,14 @@
 #include "setting.hpp"
 
 #define CONSTRUCT_DESTRUCT(PieceClass) \
-PieceClass(PieceType piece, Color color) { \
-piece_ = piece; \
-color_ = color; \
-} \
-~PieceClass() = default; \
+  PieceClass(PieceType piece, Color color) { \
+    piece_ = piece; \
+    color_ = color; \
+  } \
+  ~PieceClass() = default;
+
+#define DEFINE_VIRTUAL_APIS() \
+  std::vector<Position> GetPossibleMoves() override;
 
 
 namespace chess {
@@ -22,6 +25,9 @@ namespace chess {
   class Piece {
   public:
     ~Piece() = default;
+    
+    /// This function returns the positions of possible moves of the selected piece
+    virtual std::vector<Position> GetPossibleMoves() = 0;
     
     /// This function creates the instancec of piece based on type and color
     /// - Parameters:
@@ -42,31 +48,37 @@ namespace chess {
   class King : public Piece {
   public:
     CONSTRUCT_DESTRUCT(King);
+    DEFINE_VIRTUAL_APIS();
   };
 
   class Queen : public Piece {
   public:
     CONSTRUCT_DESTRUCT(Queen);
+    DEFINE_VIRTUAL_APIS();
   };
 
   class Rook : public Piece {
   public:
     CONSTRUCT_DESTRUCT(Rook);
+    DEFINE_VIRTUAL_APIS();
   };
 
   class Bishop : public Piece {
   public:
     CONSTRUCT_DESTRUCT(Bishop);
+    DEFINE_VIRTUAL_APIS();
   };
 
   class Knight : public Piece {
   public:
     CONSTRUCT_DESTRUCT(Knight);
+    DEFINE_VIRTUAL_APIS();
   };
 
   class Pawn : public Piece {
   public:
     CONSTRUCT_DESTRUCT(Pawn);
+    DEFINE_VIRTUAL_APIS();
   };
 
 } // namespace chess

@@ -32,6 +32,7 @@ namespace chess {
   
   void Chess::Init(const std::shared_ptr<Scene> scene, Viewport* viewport) {
     CHESS_LOG("Initialising Chess Game Data ... ");
+    
     scene_ = scene;
     viewport_ = viewport;
     scene_->GetSetting().use_editor_camera = false;
@@ -100,6 +101,8 @@ namespace chess {
     if (hovered_piece->GetColor() == turn_) {
       selected_block_ = hovered_block_;
       
+      std::shared_ptr<Piece> piece = selected_block_->GetPiece();
+      std::vector<Position> possible_moves = piece->GetPossibleMoves();
     }
       
     return false;
@@ -180,7 +183,7 @@ namespace chess {
   }
   
   void Chess::LoadPrefab(const std::string &path) {
-    glm::vec2 pos = GetBlockPosition();
+    glm::vec2 pos = GetBlockPositionFromMouse();
     if (pos.x == -1 or pos.y == -1) return;
     
     Entity e = Prefab::Deserialize(path, scene_.get());
@@ -189,7 +192,7 @@ namespace chess {
     tc.UpdatePosition(Y, pos.y);
   }
   
-  glm::vec2 Chess::GetBlockPosition() {
+  glm::vec2 Chess::GetBlockPositionFromMouse() {
     const auto& cam_data = scene_->GetPrimaryCameraData();
     if (!cam_data.scene_camera) return {-1, -1 };
     
@@ -272,7 +275,7 @@ namespace chess {
   void Chess::HighlightHoveredBlock() {
     static const std::shared_ptr<Texture> hovered = Renderer::GetTexture(DM::ClientAsset("textures/hovered.png"));
     
-    glm::vec2 pos = GetBlockPosition();
+    glm::vec2 pos = GetBlockPositionFromMouse();
     if (pos.x == -1 or pos.y == -1) {
       hovered_block_ = nullptr;
       return;
@@ -361,7 +364,6 @@ namespace chess {
     glm::mat4 transform = Math::GetTransformMatrix({x_pos[(uint32_t)turn_], (BlockSize * MaxRows) + 0.3, 0.2}, glm::vec3(0.0f), {1, 1, 1});
     Batch2DRenderer::DrawQuad(transform, turn_texture, turn_color[(uint32_t)turn_]);
     Batch2DRenderer::EndBatch();
-    
   }
   
 } // namespace chess

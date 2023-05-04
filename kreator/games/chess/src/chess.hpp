@@ -57,7 +57,7 @@ namespace chess {
     /// - Parameter mouse_click_event: Mouse button press event instacnce
     bool MouseClicked(MouseButtonPressedEvent& mouse_click_event);
     /// This function returns the position of Block if mouse hovered
-    glm::vec2 GetBlockPosition();
+    glm::vec2 GetBlockPositionFromMouse();
     /// This function renders the chess Block Grids
     void RenderChessGrids();
     /// This function renders the background and border

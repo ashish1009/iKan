@@ -21,4 +21,41 @@ namespace chess {
     }
   }
   
+  /// This function add the possible moves in Straight Up Direction
+  /// - Note: Adds only if possible
+  /// - Parameter result: result reference
+  static void AddUpPossibleMove(std::vector<Position>& result) {
+    
+  }
+  
+  std::vector<Position> King::GetPossibleMoves() {
+    std::vector<Position> result;
+    return result;
+  }
+
+  std::vector<Position> Queen::GetPossibleMoves() {
+    std::vector<Position> result;
+    return result;
+  }
+
+  std::vector<Position> Rook::GetPossibleMoves() {
+    std::vector<Position> result;
+    return result;
+  }
+
+  std::vector<Position> Bishop::GetPossibleMoves() {
+    std::vector<Position> result;
+    return result;
+  }
+
+  std::vector<Position> Knight::GetPossibleMoves() {
+    std::vector<Position> result;
+    return result;
+  }
+
+  std::vector<Position> Pawn::GetPossibleMoves() {
+    std::vector<Position> result;
+    return result;
+  }
+
 } // namespace chess
