@@ -71,35 +71,35 @@ namespace chess {
     }
   }
   
-  std::vector<Position> King::GetPossibleMoves() {
+  const std::vector<Position>& King::GetPossibleMoves() {
     std::vector<Position> result;
     return result;
   }
 
-  std::vector<Position> Queen::GetPossibleMoves() {
+  const std::vector<Position>& Queen::GetPossibleMoves() {
     std::vector<Position> result;
     return result;
   }
 
-  std::vector<Position> Rook::GetPossibleMoves() {
+  const std::vector<Position>& Rook::GetPossibleMoves() {
     std::vector<Position> result;
     return result;
   }
 
-  std::vector<Position> Bishop::GetPossibleMoves() {
+  const std::vector<Position>& Bishop::GetPossibleMoves() {
     std::vector<Position> result;
     return result;
   }
 
-  std::vector<Position> Knight::GetPossibleMoves() {
+  const std::vector<Position>& Knight::GetPossibleMoves() {
     std::vector<Position> result;
     return result;
   }
 
-  std::vector<Position> Pawn::GetPossibleMoves() {
-    std::vector<Position> result;
-    AddUpPossibleMove(result, position_, position_.col + 1, color_, true);
-    return result;
+  const std::vector<Position>& Pawn::GetPossibleMoves() {
+    possible_moves_.clear();
+    AddUpPossibleMove(possible_moves_, position_, position_.col + 1, color_, true);
+    return possible_moves_;
   }
 
 } // namespace chess

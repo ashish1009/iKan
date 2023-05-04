@@ -128,7 +128,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
             endingLineNumber = "37"
-            landmarkName = "AddUpPossibleMove(result, start_pos, end_col, selected_piece_color, is_pawn)"
+            landmarkName = "AddUpPossibleMove(result, start_pos, end_row, selected_piece_color, is_pawn)"
             landmarkType = "9">
             <Locations>
                <Location
