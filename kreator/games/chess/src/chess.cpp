@@ -378,7 +378,7 @@ namespace chess {
         Color color = GetColorFromTag(tag_comp.tag);
         PieceType piece = GetPieceFromTag(tag_comp.tag);
 
-        BlockManager::blocks_[row][col]->SetData(color, piece);
+        BlockManager::blocks_[row][col]->SetData(color, piece, scene_->GetEnitityFromId((int32_t)e));
       }
     }
   }

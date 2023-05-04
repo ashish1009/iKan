@@ -13,14 +13,14 @@ namespace chess {
 #define MaxColVal MaxCols - 1
 #define MaxRowVal MaxRows - 1
 
-  PieceRef Piece::Create(PieceType piece, Color color, const Position& position) {
+  PieceRef Piece::Create(PieceType piece, Color color, const Position& position, Entity* entity) {
     switch (piece) {
-      case PieceType::King:     return std::make_shared<King>(piece, color, position);
-      case PieceType::Queen:    return std::make_shared<Queen>(piece, color, position);
-      case PieceType::Rook:     return std::make_shared<Rook>(piece, color, position);
-      case PieceType::Bishop:   return std::make_shared<Bishop>(piece, color, position);
-      case PieceType::Knight:   return std::make_shared<Knight>(piece, color, position);
-      case PieceType::Pawn:     return std::make_shared<Pawn>(piece, color, position);
+      case PieceType::King:     return std::make_shared<King>(piece, color, position, entity);
+      case PieceType::Queen:    return std::make_shared<Queen>(piece, color, position, entity);
+      case PieceType::Rook:     return std::make_shared<Rook>(piece, color, position, entity);
+      case PieceType::Bishop:   return std::make_shared<Bishop>(piece, color, position, entity);
+      case PieceType::Knight:   return std::make_shared<Knight>(piece, color, position, entity);
+      case PieceType::Pawn:     return std::make_shared<Pawn>(piece, color, position, entity);
       default: IK_ASSERT(false);
     }
   }

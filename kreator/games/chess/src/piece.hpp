@@ -10,22 +10,25 @@
 #include "setting.hpp"
 
 #define CONSTRUCT_DESTRUCT(PieceClass) \
-  PieceClass(PieceType piece, Color color, const Position& position) { \
-position_ = position; \
+  PieceClass(PieceType piece, Color color, const Position& position, Entity* entity) { \
+    position_ = position; \
     piece_ = piece; \
     color_ = color; \
+entity_ = entity; \
   } \
   ~PieceClass() = default;
 
 #define DEFINE_VIRTUAL_APIS() \
   const PossibleMoves& GetPossibleMoves() override;
 
-
-namespace chess {
-  
 #define PieceRef std::shared_ptr<Piece>
 #define PossibleMoves std::vector<Position>
 
+
+namespace chess {
+  
+  using namespace ikan;
+  
   class Piece {
   public:
     ~Piece() = default;
@@ -37,7 +40,9 @@ namespace chess {
     /// - Parameters:
     ///   - piece: piece type
     ///   - color: color of piece
-    static PieceRef Create(PieceType piece, Color color, const Position& position);
+    ///   - position: position of Piece on board
+    ///   - entity_: piece entity
+    static PieceRef Create(PieceType piece, Color color, const Position& position, Entity* entity_);
     
     /// This function returns the Piece type
     PieceType GetPiece() const { return piece_; }
@@ -49,6 +54,7 @@ namespace chess {
     Color color_;
     Position position_;
     PossibleMoves possible_moves_;
+    Entity* entity_;
   };
   
   class King : public Piece {

@@ -13,8 +13,8 @@ namespace chess {
   
   Block::~Block() { }
   
-  void Block::SetData(Color color, PieceType piece_type) {
-    piece_ = Piece::Create(piece_type, color, position_);
+  void Block::SetData(Color color, PieceType piece_type, Entity* entity) {
+    piece_ = Piece::Create(piece_type, color, position_, entity);
   }
   
   std::array<std::array<BlockRef, MaxCols>, MaxRows> BlockManager::blocks_;

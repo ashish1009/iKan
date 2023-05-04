@@ -28,7 +28,8 @@ namespace chess {
     /// - Parameters:
     ///   - color: color of piece
     ///   - piece: type of piece
-    void SetData(Color color, PieceType piece);
+    ///   - entity: entity of piece
+    void SetData(Color color, PieceType piece, Entity* entity);
     
     /// This function returns the row index of block
     int32_t GetRow() const { return position_.row; }
