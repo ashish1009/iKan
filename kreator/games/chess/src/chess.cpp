@@ -301,7 +301,18 @@ namespace chess {
   }
   
   void Chess::HighloghtPossibleMoves() {
-    static const std::shared_ptr<Texture> possible_tex = Renderer::GetTexture(DM::ClientAsset("textures/hovered.png"));
+    static const std::shared_ptr<Texture> possible_tex = Renderer::GetTexture(DM::ClientAsset("textures/possible.png"));
+    
+    if (possible_moves_.size() == 0) return;
+    
+    Batch2DRenderer::BeginBatch(view_proj_);
+    for (auto& pos : possible_moves_) {
+      float x = (pos.col * BlockSize) + (BlockSize / 2);
+      float y = (pos.row * BlockSize) + (BlockSize / 2);
+      glm::mat4 transform = Math::GetTransformMatrix({x, y, 0.2}, glm::vec3(0.0f), {BlockSize, BlockSize, 1});
+      Batch2DRenderer::DrawQuad(transform, possible_tex);
+    }
+    Batch2DRenderer::EndBatch();
   }
   
   void Chess::CreateBlocks() {

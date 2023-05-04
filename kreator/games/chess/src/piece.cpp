@@ -98,7 +98,7 @@ namespace chess {
 
   const PossibleMoves& Pawn::GetPossibleMoves() {
     possible_moves_.clear();
-    AddUpPossibleMove(possible_moves_, position_, position_.col + 1, color_, true);
+    AddUpPossibleMove(possible_moves_, position_, position_.row + 1, color_, true);
     return possible_moves_;
   }
 
