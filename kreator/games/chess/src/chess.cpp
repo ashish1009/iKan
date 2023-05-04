@@ -62,6 +62,7 @@ namespace chess {
     // Hopver the Block if playing
     if (is_playing_) {
       HighlightHoveredBlock();
+      HighloghtPossibleMoves();
     }
     else {
       RenderChessGrids();
@@ -102,9 +103,8 @@ namespace chess {
       selected_block_ = hovered_block_;
       
       PieceRef piece = selected_block_->GetPiece();
-      std::vector<Position> possible_moves = piece->GetPossibleMoves();
-      IK_INFO("", "");
-      
+      possible_moves_.clear();
+      possible_moves_ = piece->GetPossibleMoves();
     }
       
     return false;
@@ -275,7 +275,7 @@ namespace chess {
   }
   
   void Chess::HighlightHoveredBlock() {
-    static const std::shared_ptr<Texture> hovered = Renderer::GetTexture(DM::ClientAsset("textures/hovered.png"));
+    static const std::shared_ptr<Texture> hovered_tex = Renderer::GetTexture(DM::ClientAsset("textures/hovered.png"));
     
     glm::vec2 pos = GetBlockPositionFromMouse();
     if (pos.x == -1 or pos.y == -1) {
@@ -288,7 +288,7 @@ namespace chess {
     Batch2DRenderer::BeginBatch(view_proj_);
     
     glm::mat4 transform = Math::GetTransformMatrix({pos.x, pos.y, 0.2}, glm::vec3(0.0f), {BlockSize, BlockSize, 1});
-    Batch2DRenderer::DrawQuad(transform, hovered);
+    Batch2DRenderer::DrawQuad(transform, hovered_tex);
     
     Batch2DRenderer::EndBatch();
 
@@ -298,6 +298,10 @@ namespace chess {
     
     // Update the Hovered block
     hovered_block_ = (BlockManager::blocks_[row][col]).get();
+  }
+  
+  void Chess::HighloghtPossibleMoves() {
+    static const std::shared_ptr<Texture> possible_tex = Renderer::GetTexture(DM::ClientAsset("textures/hovered.png"));
   }
   
   void Chess::CreateBlocks() {

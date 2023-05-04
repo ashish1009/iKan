@@ -68,6 +68,8 @@ namespace chess {
     void RenderPlayerInfo();
     /// This function highlight the hovered block
     void HighlightHoveredBlock();
+    /// This function highlight the Possible moves
+    void HighloghtPossibleMoves();
     /// This function create
     /// - Note: Block Name should be "block"
     /// - Note: Piece Name should be {color_<piece> where piece : {pawn, king, queen, knight, bishop, rook}}
@@ -86,6 +88,8 @@ namespace chess {
     Block* selected_block_ = nullptr;
     std::array<std::shared_ptr<Player>, MaxPlayer> players_;
     Color turn_ = Color::White;
+    
+    PossibleMoves possible_moves_;
   };
   
 } // namespace chess

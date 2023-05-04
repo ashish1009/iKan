@@ -18,19 +18,20 @@ position_ = position; \
   ~PieceClass() = default;
 
 #define DEFINE_VIRTUAL_APIS() \
-  const std::vector<Position>& GetPossibleMoves() override;
+  const PossibleMoves& GetPossibleMoves() override;
 
 
 namespace chess {
   
 #define PieceRef std::shared_ptr<Piece>
+#define PossibleMoves std::vector<Position>
 
   class Piece {
   public:
     ~Piece() = default;
     
     /// This function returns the positions of possible moves of the selected piece
-    virtual const std::vector<Position>& GetPossibleMoves() = 0;
+    virtual const PossibleMoves& GetPossibleMoves() = 0;
     
     /// This function creates the instancec of piece based on type and color
     /// - Parameters:
@@ -47,7 +48,7 @@ namespace chess {
     PieceType piece_;
     Color color_;
     Position position_;
-    std::vector<Position> possible_moves_;
+    PossibleMoves possible_moves_;
   };
   
   class King : public Piece {

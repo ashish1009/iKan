@@ -33,7 +33,7 @@ namespace chess {
   ///   - end_row: end row position. Ex. Pawn have just 1 step and Rook have all limit
   ///   - selected_piece_color: selected piece color
   ///   - is_pawn: is current piece is pawn
-  static void AddUpPossibleMove(std::vector<Position>& result, const Position& start_pos, int32_t end_row, Color selected_piece_color, bool is_pawn) {
+  static void AddUpPossibleMove(PossibleMoves& result, const Position& start_pos, int32_t end_row, Color selected_piece_color, bool is_pawn) {
     const int32_t col = start_pos.col;
     const int32_t start_row = start_pos.row;
     
@@ -71,32 +71,32 @@ namespace chess {
     }
   }
   
-  const std::vector<Position>& King::GetPossibleMoves() {
-    std::vector<Position> result;
-    return result;
+  const PossibleMoves& King::GetPossibleMoves() {
+    possible_moves_.clear();
+    return possible_moves_;
   }
 
-  const std::vector<Position>& Queen::GetPossibleMoves() {
-    std::vector<Position> result;
-    return result;
+  const PossibleMoves& Queen::GetPossibleMoves() {
+    possible_moves_.clear();
+    return possible_moves_;
   }
 
-  const std::vector<Position>& Rook::GetPossibleMoves() {
-    std::vector<Position> result;
-    return result;
+  const PossibleMoves& Rook::GetPossibleMoves() {
+    possible_moves_.clear();
+    return possible_moves_;
   }
 
-  const std::vector<Position>& Bishop::GetPossibleMoves() {
-    std::vector<Position> result;
-    return result;
+  const PossibleMoves& Bishop::GetPossibleMoves() {
+    possible_moves_.clear();
+    return possible_moves_;
   }
 
-  const std::vector<Position>& Knight::GetPossibleMoves() {
-    std::vector<Position> result;
-    return result;
+  const PossibleMoves& Knight::GetPossibleMoves() {
+    possible_moves_.clear();
+    return possible_moves_;
   }
 
-  const std::vector<Position>& Pawn::GetPossibleMoves() {
+  const PossibleMoves& Pawn::GetPossibleMoves() {
     possible_moves_.clear();
     AddUpPossibleMove(possible_moves_, position_, position_.col + 1, color_, true);
     return possible_moves_;
