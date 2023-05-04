@@ -94,14 +94,14 @@ namespace chess {
     if (!hovered_block_) return false;
     
     // If Hovered Block is empty then return
-    std::shared_ptr<Piece> hovered_piece = hovered_block_->GetPiece();
+    PieceRef hovered_piece = hovered_block_->GetPiece();
     if (!hovered_piece)  return false;
     
     // If selected block is of opponent color then update selected blocl
     if (hovered_piece->GetColor() == turn_) {
       selected_block_ = hovered_block_;
       
-      std::shared_ptr<Piece> piece = selected_block_->GetPiece();
+      PieceRef piece = selected_block_->GetPiece();
       std::vector<Position> possible_moves = piece->GetPossibleMoves();
     }
       
@@ -120,7 +120,7 @@ namespace chess {
     ImGui::Text("Block Row");
     ImGui::Text("Block Colum");
     
-    std::shared_ptr<Piece> piece = block->GetPiece();
+    PieceRef piece = block->GetPiece();
     if (piece) {
       ImGui::Text("Piece Type");
       ImGui::Text("Piece Color");

@@ -35,10 +35,13 @@ namespace chess {
     /// This function returns the column index of block
     int32_t GetCol() const { return position_.col; }
     /// This function returns the Piece on this block
-    std::shared_ptr<Piece> GetPiece() { return piece_; }
+    PieceRef GetPiece() { return piece_; }
+    
+    /// This function checks the Block is empty or not
+    bool IsEmpty() const { return piece_ == nullptr; }
     
   private:
-    std::shared_ptr<Piece> piece_;
+    PieceRef piece_;
     Position position_;
   };
   

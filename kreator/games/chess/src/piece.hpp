@@ -23,6 +23,8 @@ position_ = position; \
 
 namespace chess {
   
+#define PieceRef std::shared_ptr<Piece>
+
   class Piece {
   public:
     ~Piece() = default;
@@ -34,7 +36,7 @@ namespace chess {
     /// - Parameters:
     ///   - piece: piece type
     ///   - color: color of piece
-    static std::shared_ptr<Piece> Create(PieceType piece, Color color, const Position& position);
+    static PieceRef Create(PieceType piece, Color color, const Position& position);
     
     /// This function returns the Piece type
     PieceType GetPiece() const { return piece_; }
