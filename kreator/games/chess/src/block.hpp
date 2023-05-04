@@ -44,6 +44,13 @@ namespace chess {
   
   class Chess;
   class BlockManager {
+  public:
+    /// This function returns the block pointer at row and column
+    /// - Parameters:
+    ///   - row: row numebr
+    ///   - col: column number
+    static BlockRef GetBlock(int32_t row, int32_t col);
+    
   private:
     static std::array<std::array<BlockRef, MaxCols>, MaxRows> blocks_;
     friend class Chess;

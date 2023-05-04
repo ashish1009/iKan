@@ -19,4 +19,9 @@ namespace chess {
   
   std::array<std::array<BlockRef, MaxCols>, MaxRows> BlockManager::blocks_;
   
+  BlockRef BlockManager::GetBlock(int32_t row, int32_t col) {
+    if (row < 0 or col < 0 or row >= MaxRows or col >= MaxCols) return nullptr;
+    return blocks_.at(row).at(col);
+  }
+  
 } // namespace chess
