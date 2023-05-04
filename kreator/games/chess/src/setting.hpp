@@ -24,6 +24,11 @@ namespace chess {
     King, Queen, Rook, Bishop, Knight, Pawn
   };
   
+  struct Position {
+    int32_t row, col;
+    Position(int32_t r, int32_t c) : row(r), col(c) {}
+  };
+  
   /// This function returns the color string
   /// - Parameter color: color enum
   std::string GetColorString(Color color);

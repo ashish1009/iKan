@@ -9,7 +9,7 @@
 
 namespace chess {
   
-  Block::Block(int32_t row, int32_t col) : row_(row), col_(col) {}
+  Block::Block(const Position& position) : position_(position) {}
   
   Block::~Block() { }
   

@@ -14,12 +14,13 @@ namespace chess {
     CHESS_LOG("Creating Chess Game Data ... ");
     IK_ASSERT(BlockSize > 0);
     
-    init_cam_pos_ = {(MaxCols / 2) * BlockSize, (MaxRows / 2) * BlockSize};
-    
     Batch2DRenderer::AddLineData(50);
     Batch2DRenderer::AddQuadData(100);
+
+    // Setting Up the Initial camera position at the center of the board
+    init_cam_pos_ = {(MaxCols / 2) * BlockSize, (MaxRows / 2) * BlockSize};
     
-    // Default Player
+    // Default Player Data
     for (uint32_t i = 0; i < MaxPlayer; i++) {
       players_[i] = std::make_shared<Player>(GetColorString(Color(i)), Color(i));
     }
@@ -56,7 +57,8 @@ namespace chess {
     RenderBackgroundAndBorder();
     RenderText();
     RenderPlayerInfo();
-        
+
+    // Hopver the Block if playing
     if (is_playing_) {
       HighlightHoveredBlock();
     }
@@ -72,6 +74,7 @@ namespace chess {
   }
   
   bool Chess::MouseMoved(MouseMovedEvent &mouse_move_event) {
+    // Update the mouse position. If playing then From window size else from Viewport
     if (RendererLayer::IsPlaying()) {
       mouse_pos_.x = mouse_move_event.GetX();
       mouse_pos_.y = viewport_height_ - mouse_move_event.GetY();
@@ -83,14 +86,20 @@ namespace chess {
   }
   
   bool Chess::MouseClicked(MouseButtonPressedEvent &mouse_click_event) {
+    // If Right Button clicked then return
     if (mouse_click_event.GetMouseButton() != MouseButton::ButtonLeft) return false;
+    
+    // If No Block Hovered then do nothing
     if (!hovered_block_) return false;
     
+    // If Hovered Block is empty then return
     std::shared_ptr<Piece> hovered_piece = hovered_block_->GetPiece();
     if (!hovered_piece)  return false;
     
+    // If selected block is of opponent color then update selected blocl
     if (hovered_piece->GetColor() == turn_) {
       selected_block_ = hovered_block_;
+      
     }
       
     return false;
@@ -146,9 +155,9 @@ namespace chess {
       PrindBlockDataGui(selected_block_);
     }
     
-    ImGui::Separator();
-
     if (hovered_block_) {
+      ImGui::Separator();
+
       ImGui::Text("Hovered Block");
       ImGui::Separator();
       
@@ -301,7 +310,7 @@ namespace chess {
         IK_ASSERT(row >= 0 and row < MaxRows);
         IK_ASSERT(col >= 0 and col < MaxCols);
         
-        BlockManager::blocks_[row][col] = std::make_shared<Block>(row, col);
+        BlockManager::blocks_[row][col] = std::make_shared<Block>(Position(row, col));
       }
     }
   
