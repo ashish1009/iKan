@@ -100,5 +100,69 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4DF045D4-3BCE-48D8-92C0-861A436177F4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kreator/games/chess/src/chess.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "Chess::MouseClicked(mouse_click_event)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7701A1BD-C39D-4BCD-9163-29CA56EC6A98"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kreator/games/chess/src/piece.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "AddUpPossibleMove(result, start_pos, end_col, selected_piece_color, is_pawn)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "7701A1BD-C39D-4BCD-9163-29CA56EC6A98 - f953073771e36e63"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "chess::AddUpPossibleMove(std::__1::vector&lt;chess::Position, std::__1::allocator&lt;chess::Position&gt; &gt;&amp;, chess::Position const&amp;, int, chess::Color, bool)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/kreator/games/chess/src/piece.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "7701A1BD-C39D-4BCD-9163-29CA56EC6A98 - f953073771e36e04"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "chess::AddUpPossibleMove(std::__1::vector&lt;chess::Position, std::__1::allocator&lt;chess::Position&gt; &gt;&amp;, chess::Position const&amp;, int, chess::Color, bool)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/kreator/games/chess/src/piece.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "37"
+                  endingLineNumber = "37"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

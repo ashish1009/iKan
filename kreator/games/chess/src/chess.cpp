@@ -103,6 +103,8 @@ namespace chess {
       
       PieceRef piece = selected_block_->GetPiece();
       std::vector<Position> possible_moves = piece->GetPossibleMoves();
+      IK_INFO("", "");
+      
     }
       
     return false;
