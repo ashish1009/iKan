@@ -54,6 +54,8 @@ namespace chess {
     ///   - row: row numebr
     ///   - col: column number
     static BlockRef GetBlock(int32_t row, int32_t col);
+    /// This funciton clear the blocks
+    static void Clear();
     
   private:
     static std::array<std::array<BlockRef, MaxCols>, MaxRows> blocks_;

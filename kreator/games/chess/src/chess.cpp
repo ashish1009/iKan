@@ -41,6 +41,7 @@ namespace chess {
   
   Chess::~Chess() {
     CHESS_LOG("Destroying Chess Game Data ... ");
+    BlockManager::Clear();
   }
   
   void Chess::Init(const std::shared_ptr<Scene> scene, Viewport* viewport) {
@@ -214,7 +215,13 @@ namespace chess {
     is_playing_ = playing_flag;
     if (is_playing_) {
       CreateBlocks();
-    } 
+    }
+    else {
+      BlockManager::Clear();
+      hovered_block_ = nullptr;
+      selected_block_ = nullptr;
+      possible_moves_.clear();
+    }
   }
   
   void Chess::LoadPrefab(const std::string &path) {
