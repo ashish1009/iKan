@@ -30,8 +30,16 @@ namespace mario {
     if (on_ground_) {
       acceleration_.y = 0;
       velocity_.y = 0;
+      
+      if (going_right_) {
+        velocity_.x = walk_speed_;
+      }
+      else if (!going_right_) {
+        velocity_.x = -walk_speed_;
+      }
     } else {
       acceleration_.y = entity->scene_->Get2DWorldGravity().y * free_fall_factor;
+      velocity_.x = 0.0f;
     }
 
     velocity_.y += acceleration_.y * ts * 2.0f;

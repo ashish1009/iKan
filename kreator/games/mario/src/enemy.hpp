@@ -38,7 +38,8 @@ namespace mario {
     
     static constexpr float free_fall_factor = 1.0f;
     static constexpr glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
-    
+    static constexpr float walk_speed_ = 4.0f;
+
     bool on_ground_ = false;
     bool going_right_ = true;
     
