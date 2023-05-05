@@ -77,6 +77,9 @@ namespace mario {
   
   class FireballController : public ScriptableEntity {
   public:
+    static const uint32_t MaxFireballs = 4;
+    static uint32_t fire_ball_count_;
+
     void Create(Entity entity) override;
   };
   
@@ -111,6 +114,10 @@ namespace mario {
     ///   - pos: Spawn Position
     ///   - args: Arguments required for Item Scrips....
     static void Spawn(Items item, Scene* scene, const glm::vec2& pos, Args&&... args) {
+      if (item == Items::Fireball and FireballController::fire_ball_count_ >= FireballController::MaxFireballs ) {
+        return;
+      }
+
       static std::shared_ptr<Texture> items = SpriteManager::GetTexture(SpriteType::Items);
 
       // Create Runtime Entity

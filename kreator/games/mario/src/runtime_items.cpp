@@ -136,8 +136,11 @@ namespace mario {
     if (destroy_) return;
     destroy_ = PowerupPlayerHitCheck(collided_entity, &entity_, contact);
   }
-  
+    
+  uint32_t FireballController::fire_ball_count_ = 0;
   void FireballController::Create(Entity entity) {
+    fire_ball_count_++;
+
     entity_ = entity;
     entity_.GetComponent<TransformComponent>().UpdateScale({0.5, 0.5, 1.0f});
     
