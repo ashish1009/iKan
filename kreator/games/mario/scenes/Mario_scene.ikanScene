@@ -3108,7 +3108,7 @@ Entities:
     TagComponent:
       Tag: Brick
     TransformComponent:
-      Translation: [2, -3, 0]
+      Translation: [-3, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -3274,3 +3274,157 @@ Entities:
       Restitution Threshold: 0.5
     NativeScriptComponent:
       Script_name_: mario::BlockController
+  - Entity: 17090152234475969729
+    TagComponent:
+      Tag: Goomba
+    TransformComponent:
+      Translation: [5, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/games/mario/assets/textures/enemy.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 30
+      Coords0: [0, 6]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Coords1: [1, 6]
+      Sprite_Size1: [1, 1]
+      Cell_Size1: [16, 16]
+      Num_Coords: 2
+    RigidBodyComponent:
+      Type: 2
+      Is Ground: false
+      Is Sensor: false
+      Fixed Rotation: true
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Gravity Scale: 1
+    CircleColloiderComponent:
+      Offset: [0, 0]
+      Radius: 0.5
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+  - Entity: 12255372127398333864
+    TagComponent:
+      Tag: Brick
+    TransformComponent:
+      Translation: [2, -3, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/games/mario/assets/textures/tile.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [13, 27]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+    RigidBodyComponent:
+      Type: 0
+      Is Ground: true
+      Is Sensor: false
+      Fixed Rotation: false
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Gravity Scale: 1
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
+  - Entity: 11510753235173871619
+    TagComponent:
+      Tag: Brick
+    TransformComponent:
+      Translation: [6, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/games/mario/assets/textures/tile.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [13, 27]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+    RigidBodyComponent:
+      Type: 0
+      Is Ground: true
+      Is Sensor: false
+      Fixed Rotation: false
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Gravity Scale: 1
+    BoxColloiderComponent:
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
+    NativeScriptComponent:
+      Script_name_: mario::BlockController
+  - Entity: 17595938401172693091
+    TagComponent:
+      Tag: Goomba
+    TransformComponent:
+      Translation: [12, -7, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: true
+      Linear_Edge: false
+      Texture_Path: ../../../kreator/games/mario/assets/textures/enemy.png
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 30
+      Coords0: [0, 6]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Coords1: [1, 6]
+      Sprite_Size1: [1, 1]
+      Cell_Size1: [16, 16]
+      Num_Coords: 2
+    RigidBodyComponent:
+      Type: 2
+      Is Ground: false
+      Is Sensor: false
+      Fixed Rotation: true
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Gravity Scale: 1
+    CircleColloiderComponent:
+      Offset: [0, 0]
+      Radius: 0.5
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5

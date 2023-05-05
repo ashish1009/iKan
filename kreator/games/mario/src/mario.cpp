@@ -54,9 +54,15 @@ namespace mario {
     text_data_.Render(std::to_string(0), 1, 0);
     
     Batch2DRenderer::BeginBatch(FixedCamera::projection);
-    static std::vector<SubTextureRef> coin_subtex = SpriteManager::GetItemSprite(Items::Coin);
-    Batch2DRenderer::DrawQuad(Math::GetTransformMatrix({text_data_.col_pos[1] - 10, text_data_.row_pos[1] + 8, 0}, {0, 0, 0}, {25, 25, 1}),
-                              coin_subtex.at(0), {1, 1, 1, 1});
+    static std::vector<SubTextureRef> coin_subtex = SpriteManager::GetItemSprite(Items::AnimatedCoin);
+    static int32_t anim_idx = 0;
+    float speed = 20.0f;
+    if (anim_idx >= speed * coin_subtex.size() or anim_idx < 1)
+      anim_idx = 0;
+    
+    Batch2DRenderer::DrawQuad(Math::GetTransformMatrix({text_data_.col_pos[1] - 10, text_data_.row_pos[1] + 8, 0}, {0, 0, 0}, {22, 22, 1}),
+                              coin_subtex.at(anim_idx / speed), {1, 1, 1, 1});
+    anim_idx++;
     Batch2DRenderer::EndBatch();
     text_data_.Render(" x " + std::to_string(0), 1, 1);
     

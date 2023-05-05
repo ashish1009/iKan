@@ -76,7 +76,14 @@ namespace mario {
     // Items
     auto& item_sprite = data_->texture_map[SpriteType::Items];
     data_->item_subtextures_map[Items::Coin].push_back(SubTexture::CreateFromCoords(item_sprite, {0.0f, 14.0f}));
+    
+    data_->item_subtextures_map[Items::AnimatedCoin].push_back(SubTexture::CreateFromCoords(item_sprite, {0.0f, 13.0f}));
+    data_->item_subtextures_map[Items::AnimatedCoin].push_back(SubTexture::CreateFromCoords(item_sprite, {1.0f, 13.0f}));
+    data_->item_subtextures_map[Items::AnimatedCoin].push_back(SubTexture::CreateFromCoords(item_sprite, {2.0f, 13.0f}));
+    data_->item_subtextures_map[Items::AnimatedCoin].push_back(SubTexture::CreateFromCoords(item_sprite, {3.0f, 13.0f}));
+    
     data_->item_subtextures_map[Items::Mushroom].push_back(SubTexture::CreateFromCoords(item_sprite, {0.0f, 19.0f}));
+    
     data_->item_subtextures_map[Items::Flower].push_back(SubTexture::CreateFromCoords(item_sprite, {0.0f, 18.0f}));
     data_->item_subtextures_map[Items::Flower].push_back(SubTexture::CreateFromCoords(item_sprite, {1.0f, 18.0f}));
     data_->item_subtextures_map[Items::Flower].push_back(SubTexture::CreateFromCoords(item_sprite, {2.0f, 18.0f}));
