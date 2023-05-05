@@ -16,6 +16,8 @@ namespace mario {
   enum class PlayerAction;
   enum class PlayerState;
   enum class Items;
+  enum class EnemyState;
+  enum class EnemyType;
 
   enum class SpriteType {
     Player, Items, Enemy, Tile

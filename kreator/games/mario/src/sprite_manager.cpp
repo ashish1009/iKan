@@ -8,6 +8,7 @@
 #include "sprite_manager.hpp"
 #include "player.hpp"
 #include "runtime_items.hpp"
+#include "enemy.hpp"
 
 namespace mario {
 
@@ -20,6 +21,8 @@ namespace mario {
     std::unordered_map<PlayerAction, std::vector<SubTextureRef>> invinc_player_subtextures_map;
     // Stores the Runtime Item Subtextures
     std::unordered_map<Items, std::vector<SubTextureRef>> item_subtextures_map;
+    // Stores the Enemy Textures based on type and state
+    std::unordered_map<EnemyType, std::unordered_map<EnemyState, std::vector<SubTextureRef>>> enemy_subtextures_map;
   };
   static std::shared_ptr<SpriteData> data_;
 
@@ -31,7 +34,8 @@ namespace mario {
     data_->texture_map[SpriteType::Items] = Renderer::GetTexture(DM::ClientAsset("textures/item.png"), false);
     data_->texture_map[SpriteType::Enemy] = Renderer::GetTexture(DM::ClientAsset("textures/enemy.png"), false);
     data_->texture_map[SpriteType::Tile] = Renderer::GetTexture(DM::ClientAsset("textures/tile.png"), false);
-    
+    data_->texture_map[SpriteType::Enemy] = Renderer::GetTexture(DM::ClientAsset("textures/enemy.png"), false);
+
     // Player
     const auto& player_sprite = GetTexture(SpriteType::Player);
     
@@ -96,6 +100,19 @@ namespace mario {
     
     data_->item_subtextures_map[Items::BigFireball].push_back(SubTexture::CreateFromCoords(item_sprite, {7.0f, 9.0f}));
     data_->item_subtextures_map[Items::InactiveBlock].push_back(SubTexture::CreateFromCoords(item_sprite, {3.0f, 8.0f}));
+
+    // Enemy
+    const auto& enemy_sprite = GetTexture(SpriteType::Enemy);
+    auto& goomba_sprite = data_->enemy_subtextures_map[EnemyType::Goomba];
+    goomba_sprite[EnemyState::Alive].push_back(SubTexture::CreateFromCoords(enemy_sprite, {0.0f, 6.0f}));
+    goomba_sprite[EnemyState::Alive].push_back(SubTexture::CreateFromCoords(enemy_sprite, {1.0f, 6.0f}));
+    goomba_sprite[EnemyState::Dead].push_back(SubTexture::CreateFromCoords(enemy_sprite, {2.0f, 6.0f}));
+    
+    auto& turtle_sprite = data_->enemy_subtextures_map[EnemyType::Turtle];
+    turtle_sprite[EnemyState::Alive].push_back(SubTexture::CreateFromCoords(enemy_sprite, {6.0f, 6.0f}, {1.0f, 2.0f}));
+    turtle_sprite[EnemyState::Alive].push_back(SubTexture::CreateFromCoords(enemy_sprite, {7.0f, 6.0f}, {1.0f, 2.0f}));
+    turtle_sprite[EnemyState::Dying].push_back(SubTexture::CreateFromCoords(enemy_sprite, {10.0f, 6.0f}));
+    turtle_sprite[EnemyState::Dying].push_back(SubTexture::CreateFromCoords(enemy_sprite, {11.0f, 6.0f}));
 
     MARIO_LOG("Initialised the Sprite Manager");
   }

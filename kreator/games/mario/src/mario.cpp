@@ -10,6 +10,7 @@
 #include "player.hpp"
 #include "block_controller.hpp"
 #include "runtime_items.hpp"
+#include "enemy.hpp"
 
 namespace mario {
     
@@ -19,6 +20,7 @@ namespace mario {
     SpriteManager::Init();
     BlockScriptManager::Init();
     RuntimeItem::Init();
+    EnemyScriptManager::Init();
   }
   
   Mario::~Mario() {
@@ -26,6 +28,7 @@ namespace mario {
     SpriteManager::Shutdown();
     BlockScriptManager::Shutdown();
     RuntimeItem::Shutdown();
+    EnemyScriptManager::Shutdown();
   }
   
   void Mario::Init(const std::shared_ptr<Scene> scene, Viewport* viewport) {
