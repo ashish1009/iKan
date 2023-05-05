@@ -1,8 +1,8 @@
-Entity: 16333153041493043698
+Entity: 11943504342414819216
 TagComponent:
-  Tag: PowerBonus
+  Tag: PowerUpBonus
 TransformComponent:
-  Translation: [4, 2, 0]
+  Translation: [3, -3, 0]
   Rotation: [0, 0, 0]
   Scale: [1, 1, 1]
 QuadComponent:
@@ -40,3 +40,5 @@ BoxColloiderComponent:
   Friction: 0.5
   Restitution: 0
   Restitution Threshold: 0.5
+NativeScriptComponent:
+  Script_name_: mario::BlockController

@@ -268,7 +268,9 @@ namespace mario {
   }
   
   void PlayerController::PowerUp(Timestep ts) {
-    state_machine_->SetAction(PlayerAction::PowerUp);
+    if (state_machine_->State() == PlayerState::Small or state_machine_->State() == PlayerState::Big)
+      state_machine_->SetAction(PlayerAction::PowerUp);
+    
     powerup_time_ = 0.4; // Seconds
     power_up_ = false;
 
