@@ -9,14 +9,23 @@
 
 namespace mario {
   
+  using namespace ikan;
+  
   enum class EnemyType {
-    Goomba, Turtle
+    Goomba, Duck
   };
   
   enum class EnemyState {
     Alive, Dying, Dead
   };
   
+  class GoombaController : public ScriptableEntity {
+  };
+
+  class DuckController : public ScriptableEntity {
+    
+  };
+
   class EnemyScriptManager {
   public:
     /// This funciton initialise the Enemy Scripts
