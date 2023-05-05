@@ -19,11 +19,30 @@ namespace mario {
     Alive, Dying, Dead
   };
   
-  class GoombaController : public ScriptableEntity {
+  class EnemyController {
+  public:
+    /// This function initialise the Enemy common data
+    /// - Parameters:
+    ///   - rbc: rigid body of enemy
+    ///   - entity: entity of enemy
+    void Initialize(Entity* entity, RigidBodyComponent* rbc);
+    
+  protected:
+    static constexpr float free_fall_factor = 1.0f;
+    
+    bool going_right_ = true;
+    float height_ = 2.0f;
+    glm::vec2 acceleration_;
+  };
+  
+  class GoombaController : public ScriptableEntity, EnemyController {
+  public:
+    void Create(Entity entity) override;
   };
 
-  class DuckController : public ScriptableEntity {
-    
+  class DuckController : public ScriptableEntity, EnemyController {
+  public:
+    void Create(Entity entity) override;
   };
   
   struct EnemyData {

@@ -9,7 +9,32 @@
 #include "common.hpp"
 
 namespace mario {
+  
+  void EnemyController::Initialize(Entity* entity, RigidBodyComponent* rbc) {
+    // Disbale Gravity on Enemy
+    rbc->SetGravityScale(0.0f);
     
+    // Free fall with scene gravity
+    acceleration_.y = entity->scene_->Get2DWorldGravity().y * free_fall_factor;
+  }
+  
+  void GoombaController::Create(Entity entity) {
+    entity_ = entity;
+    rbc_ = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
+    
+    Initialize(&entity_, rbc_);
+  }
+  
+  void DuckController::Create(Entity entity) {
+    entity_ = entity;
+    rbc_ = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
+    
+    Initialize(&entity_, rbc_);
+    
+    auto& tc = entity_.GetComponent<TransformComponent>();
+    tc.UpdateScale(X, going_right_ ? -1.0f : 1.0f);
+  }
+  
   struct EnemyScriptData {
     std::unordered_map<EnemyType, EnemyData> script_map;
   };
