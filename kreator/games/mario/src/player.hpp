@@ -33,6 +33,9 @@ namespace mario {
     bool IsSmall() const { return state_machine_->State() == PlayerState::Small; }
     /// This function update the powerup flag to true
     void SetPowerup() { power_up_ = true; };
+    /// This function checks is player direction is right
+    bool IsRight() const { return entity_.GetComponent<TransformComponent>().Scale().x > 0; }
+    
     /// This functin checks the entity is player
     /// - Parameter entity: entity
     static bool IsPlayer(Entity* entity);

@@ -152,6 +152,36 @@ namespace mario {
     ccc->physics_mat.friction = 0.0f;
     
     entity_.scene_->AddBodyToPhysicsWorld(entity_, *rbc_);
+    
+    // Get the direction of Fireball with reference of player
+    going_right_ = PlayerController::Get()->IsRight();
+  }
+  
+  void FireballController::Update(Timestep ts) {
+    CheckOnGround();
+
+    if (going_right_) {
+      velocity_.x = fireball_speed_;
+    } else {
+      velocity_.x = -fireball_speed_;
+    }
+
+    if (on_ground_) {
+      acceleration_.y = 15.5f;
+      velocity_.y = 12.5f;
+    } else {
+      acceleration_.y = entity_.scene_->Get2DWorldGravity().y * free_fall_factor;
+    }
+    
+    velocity_.y += acceleration_.y * ts * 2.0f;
+    velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
+    
+    rbc_->SetVelocity(velocity_);
+    rbc_->SetAngularVelocity(0.0f);
+  }
+  
+  void FireballController::CheckOnGround() {
+    on_ground_ = entity_.scene_->CheckOnGround(&entity_, 0.4f, -0.32);
   }
   
   void FireballController::Copy(void *script) {

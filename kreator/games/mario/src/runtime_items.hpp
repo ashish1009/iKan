@@ -81,9 +81,13 @@ namespace mario {
     static uint32_t fire_ball_count_;
 
     void Create(Entity entity) override;
+    void Update(Timestep ts) override;
     void Copy(void* script) override;
 
   private:
+    /// This function checks the player hits the ground rigid body
+    void CheckOnGround();
+
     static constexpr float free_fall_factor = 3.7f;
     static constexpr float fireball_speed_ = 10.0f;
     static constexpr glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
