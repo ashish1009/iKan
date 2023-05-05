@@ -91,8 +91,8 @@ namespace mario {
         break;
       }
       case BlockType::Coin: {
-        RuntimeItem::Spawn(Items::Coin, entity_.scene_, {tc.Position().x, tc.Position().y + 1}, NoScore);
-        RuntimeItem::Spawn(Items::Score, entity_.scene_, {tc.Position().x - 0.5, tc.Position().y + 1}, CoinScore);
+        RuntimeItemManager::Spawn(Items::Coin, entity_.scene_, {tc.Position().x, tc.Position().y + 1}, NoScore);
+        RuntimeItemManager::Spawn(Items::Score, entity_.scene_, {tc.Position().x - 0.5, tc.Position().y + 1}, CoinScore);
 
         count_--;
         if (count_ == 0)
@@ -105,10 +105,10 @@ namespace mario {
       }
       case BlockType::PowerUp : {
         if (pc->IsSmall()) {
-          RuntimeItem::Spawn(Items::Mushroom, entity_.scene_, {tc.Position().x, tc.Position().y + 1.0}, NoScore);
+          RuntimeItemManager::Spawn(Items::Mushroom, entity_.scene_, {tc.Position().x, tc.Position().y + 1.0}, NoScore);
         }
         else {
-          RuntimeItem::Spawn(Items::Flower, entity_.scene_, {tc.Position().x, tc.Position().y + 1.0}, NoScore);
+          RuntimeItemManager::Spawn(Items::Flower, entity_.scene_, {tc.Position().x, tc.Position().y + 1.0}, NoScore);
         }
         SetInactive();
         break;

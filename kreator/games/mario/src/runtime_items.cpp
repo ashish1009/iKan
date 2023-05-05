@@ -234,9 +234,9 @@ namespace mario {
     velocity_ = fire_script->velocity_;
   }
   
-  std::shared_ptr<RuntimeItemData> RuntimeItem::data_;
+  std::shared_ptr<RuntimeItemData> RuntimeItemManager::data_;
   
-  void RuntimeItem::Init() {
+  void RuntimeItemManager::Init() {
     data_ = std::make_shared<RuntimeItemData>();
     
     static auto coin_script_loader = ScriptLoader(mario::CoinController);
@@ -256,7 +256,7 @@ namespace mario {
     MARIO_LOG("Initialised the Runtime Items Manager");
   }
   
-  void RuntimeItem::Shutdown() {
+  void RuntimeItemManager::Shutdown() {
     data_.reset();
     MARIO_LOG("Destroyed the Runtime Items Manager");
   }

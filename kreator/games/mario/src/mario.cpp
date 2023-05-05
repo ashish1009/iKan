@@ -19,16 +19,16 @@ namespace mario {
     Batch2DRenderer::AddQuadData(2000);
     SpriteManager::Init();
     BlockScriptManager::Init();
-    RuntimeItem::Init();
-    EnemyScriptManager::Init();
+    RuntimeItemManager::Init();
+    EnemyManager::Init();
   }
   
   Mario::~Mario() {
     MARIO_LOG("Destroying Mario Game Data ... ");
     SpriteManager::Shutdown();
     BlockScriptManager::Shutdown();
-    RuntimeItem::Shutdown();
-    EnemyScriptManager::Shutdown();
+    RuntimeItemManager::Shutdown();
+    EnemyManager::Shutdown();
   }
   
   void Mario::Init(const std::shared_ptr<Scene> scene, Viewport* viewport) {
@@ -119,7 +119,12 @@ namespace mario {
       if (IsBlock(c.tag)) {
         Entity entity = Entity(e, scene_.get());
         MarioPrefab::AddScript<BlockController>(&entity, "mario::BlockController", BSM::GetLoaderFn(c.tag), BSM::GetType(c.tag), BSM::GetCount(c.tag));
-      } 
+      }
+      else if (EnemyManager::IsEnemy(c.tag)) {
+        Entity entity = Entity(e, scene_.get());
+        EnemyManager::AddScript(&entity, EnemyManager::GetType(c.tag));
+      }
+
     } // For each Tag
     
     MARIO_LOG("Added Script in each Mario Entities");

@@ -3,47 +3,11 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
-  - Entity: 5394811301215640632
-    TagComponent:
-      Tag: Duck
-    TransformComponent:
-      Translation: [2, -6.5, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: true
-      Linear_Edge: false
-      Texture_Path: ../../../kreator/games/mario/assets/textures/enemy.png
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 30
-      Coords0: [7, 6]
-      Sprite_Size0: [1, 2]
-      Cell_Size0: [16, 16]
-      Coords1: [6, 6]
-      Sprite_Size1: [1, 2]
-      Cell_Size1: [16, 16]
-      Num_Coords: 2
-    RigidBodyComponent:
-      Type: 2
-      Is Ground: false
-      Is Sensor: false
-      Fixed Rotation: true
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Gravity Scale: 1
-    PillBoxColliderComponent:
-      Offset: [0, -0.200000003]
-      Width: 0.5
-      Height: 0.800000012
-  - Entity: 11101818735821752361
+  - Entity: 3168429793565662462
     TagComponent:
       Tag: Goomba
     TransformComponent:
-      Translation: [12, -7, 0]
+      Translation: [5, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -78,11 +42,13 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 9405826832789362818
+    NativeScriptComponent:
+      Script_name_: mario::GoombaController
+  - Entity: 3662308425070215591
     TagComponent:
       Tag: Duck
     TransformComponent:
-      Translation: [8, -6.5, 0]
+      Translation: [2.024055, -6.5, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 2, 1]
     QuadComponent:
@@ -114,13 +80,15 @@ Entities:
       Offset: [0, -0.200000003]
       Width: 0.5
       Height: 0.800000012
-  - Entity: 17595938401172693091
+    NativeScriptComponent:
+      Script_name_: mario::DuckController
+  - Entity: 15922037361858494810
     TagComponent:
-      Tag: Goomba
+      Tag: Duck
     TransformComponent:
-      Translation: [10, -7, 0]
+      Translation: [9.02405548, -6.5, 0]
       Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
+      Scale: [1, 2, 1]
     QuadComponent:
       Texture_Use: true
       Sub_Texture_Use: true
@@ -129,11 +97,11 @@ Entities:
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
       Speed: 30
-      Coords0: [0, 6]
-      Sprite_Size0: [1, 1]
+      Coords0: [7, 6]
+      Sprite_Size0: [1, 2]
       Cell_Size0: [16, 16]
-      Coords1: [1, 6]
-      Sprite_Size1: [1, 1]
+      Coords1: [6, 6]
+      Sprite_Size1: [1, 2]
       Cell_Size1: [16, 16]
       Num_Coords: 2
     RigidBodyComponent:
@@ -146,13 +114,12 @@ Entities:
       Angular Velocity: 0
       Linear Damping: 0.899999976
       Gravity Scale: 1
-    CircleColloiderComponent:
-      Offset: [0, 0]
-      Radius: 0.5
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
+    PillBoxColliderComponent:
+      Offset: [0, -0.200000003]
+      Width: 0.5
+      Height: 0.800000012
+    NativeScriptComponent:
+      Script_name_: mario::DuckController
   - Entity: 11510753235173871619
     TagComponent:
       Tag: Brick
@@ -233,7 +200,7 @@ Entities:
     TagComponent:
       Tag: Goomba
     TransformComponent:
-      Translation: [5, -7, 0]
+      Translation: [11, -7, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     QuadComponent:
@@ -268,6 +235,8 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
+    NativeScriptComponent:
+      Script_name_: mario::GoombaController
   - Entity: 6107904072105130388
     TagComponent:
       Tag: MultiCoinBonus

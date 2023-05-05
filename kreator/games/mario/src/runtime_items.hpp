@@ -122,7 +122,7 @@ namespace mario {
     std::unordered_map<Items, ItemData> item_map;
   };
   
-  class RuntimeItem {
+  class RuntimeItemManager {
   public:
     /// This function initialise the runtime item scripts and data
     static void Init();

@@ -106,7 +106,7 @@ namespace mario {
         const auto& tc = entity_.GetComponent<TransformComponent>();
         float fireball_pos_x = (tc.Scale().x > 0) ? tc.Position().x + 1 : tc.Position().x - 1;
         float fireball_pos_y = tc.Position().y + 0.5;
-        RuntimeItem::Spawn(Items::Fireball, entity_.scene_, {fireball_pos_x, fireball_pos_y}, NoScore);
+        RuntimeItemManager::Spawn(Items::Fireball, entity_.scene_, {fireball_pos_x, fireball_pos_y}, NoScore);
       }
 //    }
     
