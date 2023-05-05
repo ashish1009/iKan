@@ -76,6 +76,8 @@ namespace mario {
   };
   
   class FireballController : public ScriptableEntity {
+  public:
+    void Create(Entity entity) override;
   };
   
   class StarController : public ScriptableEntity {

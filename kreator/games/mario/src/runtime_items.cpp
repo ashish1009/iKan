@@ -137,6 +137,20 @@ namespace mario {
     destroy_ = PowerupPlayerHitCheck(collided_entity, &entity_, contact);
   }
   
+  void FireballController::Create(Entity entity) {
+    entity_ = entity;
+    entity_.GetComponent<TransformComponent>().UpdateScale({0.5, 0.5, 1.0f});
+    
+    rbc_ = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
+    rbc_->fixed_rotation = true;
+    rbc_->SetGravityScale(0.0f);
+    
+    CircleColliiderComponent* ccc = MarioPrefab::AddCircleCollider(&entity_);
+    ccc->physics_mat.friction = 0.0f;
+    
+    entity_.scene_->AddBodyToPhysicsWorld(entity_, *rbc_);
+  }
+  
   std::shared_ptr<RuntimeItemData> RuntimeItem::data_;
   
   void RuntimeItem::Init() {
