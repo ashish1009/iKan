@@ -91,7 +91,7 @@ namespace mario {
     void CheckOnGround();
 
     static constexpr float free_fall_factor = 3.7f;
-    static constexpr float fireball_speed_ = 10.0f;
+    static constexpr float fireball_speed_ = 15.0f;
     static constexpr glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
 
     bool inc_counter_ = true;

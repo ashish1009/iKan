@@ -205,6 +205,10 @@ namespace mario {
   }
   
   void FireballController::PreSolve(Entity *collided_entity, b2Contact *contact, const glm::vec2 &contact_normal) {
+    if (PlayerController::IsPlayer(collided_entity)) {
+      contact->SetEnabled(false);
+      return;
+    }
     if (std::abs(contact_normal.x) > 0.5f) {
       destroy_ = true;
     }
