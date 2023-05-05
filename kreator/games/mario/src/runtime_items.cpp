@@ -139,9 +139,8 @@ namespace mario {
     
   uint32_t FireballController::fire_ball_count_ = 0;
   void FireballController::Create(Entity entity) {
-    fire_ball_count_++;
-
     entity_ = entity;
+
     entity_.GetComponent<TransformComponent>().UpdateScale({0.5, 0.5, 1.0f});
     
     rbc_ = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
@@ -151,13 +150,37 @@ namespace mario {
     CircleColliiderComponent* ccc = MarioPrefab::AddCircleCollider(&entity_);
     ccc->physics_mat.friction = 0.0f;
     
-    entity_.scene_->AddBodyToPhysicsWorld(entity_, *rbc_);
-    
     // Get the direction of Fireball with reference of player
     going_right_ = PlayerController::Get()->IsRight();
+
+    if (inc_counter_)  {
+      fire_ball_count_++;
+      inc_counter_ = false;
+
+      entity_.scene_->AddBodyToPhysicsWorld(entity_, *rbc_);
+    }
   }
   
   void FireballController::Update(Timestep ts) {
+    life_time_ -= ts;
+    if (life_time_ <= 0) {
+      destroy_ = true;
+    }
+    
+    if (destroy_) {
+      entity_.GetComponent<QuadComponent>().sprite.sprite_images = SpriteManager::GetItemSprite(Items::BigFireball);
+      entity_.GetComponent<TransformComponent>().UpdateScale({1, 1, 1});
+
+      destroy_time_ -= ts;
+      rbc_->SetVelocity({0, 0});
+
+      if (destroy_time_ <= 0) {
+        entity_.scene_->DestroyEntity(entity_);
+        fire_ball_count_ --;
+      }
+      return;
+    }
+
     CheckOnGround();
 
     if (going_right_) {
@@ -167,7 +190,7 @@ namespace mario {
     }
 
     if (on_ground_) {
-      acceleration_.y = 15.5f;
+      acceleration_.y = 12.5f;
       velocity_.y = 12.5f;
     } else {
       acceleration_.y = entity_.scene_->Get2DWorldGravity().y * free_fall_factor;
@@ -180,8 +203,18 @@ namespace mario {
     rbc_->SetAngularVelocity(0.0f);
   }
   
+  void FireballController::PreSolve(Entity *collided_entity, b2Contact *contact, const glm::vec2 &contact_normal) {
+    if (std::abs(contact_normal.x) > 0.5f) {
+      destroy_ = true;
+    }
+  }
+
   void FireballController::CheckOnGround() {
-    on_ground_ = entity_.scene_->CheckOnGround(&entity_, 0.4f, -0.32);
+    on_ground_ = entity_.scene_->CheckOnGround(&entity_, 0.4f, -0.33);
+  }
+  
+  void FireballController::RenderGui() {
+    ImGui::Text(" On Ground         | %s", on_ground_ ? "True" : "False");
   }
   
   void FireballController::Copy(void *script) {
@@ -189,6 +222,7 @@ namespace mario {
     FireballController* fire_script = reinterpret_cast<FireballController*>(script);
     IK_ASSERT(fire_script);
     
+    inc_counter_ = fire_script->inc_counter_;
     on_ground_ = fire_script->on_ground_;
     going_right_ = fire_script->going_right_;
     destroy_ = fire_script->destroy_;

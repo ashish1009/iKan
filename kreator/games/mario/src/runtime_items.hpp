@@ -82,7 +82,9 @@ namespace mario {
 
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
+    void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& normal) override;
     void Copy(void* script) override;
+    void RenderGui() override;
 
   private:
     /// This function checks the player hits the ground rigid body
@@ -92,12 +94,13 @@ namespace mario {
     static constexpr float fireball_speed_ = 10.0f;
     static constexpr glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
 
+    bool inc_counter_ = true;
     bool destroy_ = false;
     bool on_ground_ = false;
     bool going_right_ = false;
     
     float destroy_time_ = 0.1f;
-    float life_time_ = 2.6f;
+    float life_time_ = 3.6f;
     
     glm::vec2 acceleration_;
     glm::vec2 velocity_;
