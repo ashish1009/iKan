@@ -81,6 +81,22 @@ namespace mario {
     static uint32_t fire_ball_count_;
 
     void Create(Entity entity) override;
+    void Copy(void* script) override;
+
+  private:
+    static constexpr float free_fall_factor = 3.7f;
+    static constexpr float fireball_speed_ = 10.0f;
+    static constexpr glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
+
+    bool destroy_ = false;
+    bool on_ground_ = false;
+    bool going_right_ = false;
+    
+    float destroy_time_ = 0.1f;
+    float life_time_ = 2.6f;
+    
+    glm::vec2 acceleration_;
+    glm::vec2 velocity_;
   };
   
   class StarController : public ScriptableEntity {

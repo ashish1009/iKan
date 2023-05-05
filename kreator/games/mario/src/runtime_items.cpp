@@ -154,6 +154,22 @@ namespace mario {
     entity_.scene_->AddBodyToPhysicsWorld(entity_, *rbc_);
   }
   
+  void FireballController::Copy(void *script) {
+    if (!script) return;
+    FireballController* fire_script = reinterpret_cast<FireballController*>(script);
+    IK_ASSERT(fire_script);
+    
+    on_ground_ = fire_script->on_ground_;
+    going_right_ = fire_script->going_right_;
+    destroy_ = fire_script->destroy_;
+    
+    destroy_time_ = fire_script->destroy_time_;
+    life_time_ = fire_script->life_time_;
+    
+    acceleration_ = fire_script->acceleration_;
+    velocity_ = fire_script->velocity_;
+  }
+  
   std::shared_ptr<RuntimeItemData> RuntimeItem::data_;
   
   void RuntimeItem::Init() {

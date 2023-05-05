@@ -61,9 +61,9 @@ namespace mario {
     // Constants
     static constexpr float free_fall_factor = 2.7f;
     static constexpr float slow_down_force_ = 0.08f;
-    static constexpr glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
     static constexpr float jump_impulse_ = 10.0f;
     static constexpr float jump_boost_factor_ = 1.5f;
+    static constexpr glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
 
     // Member Variables
     bool on_ground_ = false;
