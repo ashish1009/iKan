@@ -150,14 +150,15 @@ namespace mario {
     CircleColliiderComponent* ccc = MarioPrefab::AddCircleCollider(&entity_);
     ccc->physics_mat.friction = 0.0f;
     
-    // Get the direction of Fireball with reference of player
-    going_right_ = PlayerController::Get()->IsRight();
-
     if (inc_counter_)  {
       fire_ball_count_++;
       inc_counter_ = false;
 
+      // Add Body to Physics world
       entity_.scene_->AddBodyToPhysicsWorld(entity_, *rbc_);
+      
+      // Get the direction of Fireball with reference of player
+      going_right_ = PlayerController::Get()->IsRight();
     }
   }
   
