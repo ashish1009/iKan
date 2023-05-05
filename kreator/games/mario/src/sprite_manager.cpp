@@ -81,7 +81,12 @@ namespace mario {
     data_->item_subtextures_map[Items::Flower].push_back(SubTexture::CreateFromCoords(item_sprite, {1.0f, 18.0f}));
     data_->item_subtextures_map[Items::Flower].push_back(SubTexture::CreateFromCoords(item_sprite, {2.0f, 18.0f}));
     data_->item_subtextures_map[Items::Flower].push_back(SubTexture::CreateFromCoords(item_sprite, {3.0f, 18.0f}));
-    data_->item_subtextures_map[Items::Fireball].push_back(SubTexture::CreateFromCoords(item_sprite, {7.0f, 10.0f}));
+    
+    data_->item_subtextures_map[Items::Fireball].push_back(SubTexture::CreateFromCoords(item_sprite, {6.0f, 11.0f}, {0.5f, 0.5f}));
+    data_->item_subtextures_map[Items::Fireball].push_back(SubTexture::CreateFromCoords(item_sprite, {6.5f, 11.0f}, {0.5f, 0.5f}));
+    data_->item_subtextures_map[Items::Fireball].push_back(SubTexture::CreateFromCoords(item_sprite, {6.0f, 11.5f}, {0.5f, 0.5f}));
+    data_->item_subtextures_map[Items::Fireball].push_back(SubTexture::CreateFromCoords(item_sprite, {6.5f, 11.5f}, {0.5f, 0.5f}));
+    
     data_->item_subtextures_map[Items::BigFireball].push_back(SubTexture::CreateFromCoords(item_sprite, {7.0f, 9.0f}));
     data_->item_subtextures_map[Items::InactiveBlock].push_back(SubTexture::CreateFromCoords(item_sprite, {3.0f, 8.0f}));
 

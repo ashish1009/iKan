@@ -40,6 +40,9 @@ namespace mario {
     static PlayerController* Get() { return instance_; }
 
   private:
+    /// This function dispatched in event dispatcher and trigger when Key is pressed
+    /// - Parameter key_event: Key event instacnce
+    bool KeyPressed(KeyPressedEvent& event);
     /// This function wraps the state machine change state, also update the size of plyaer entity based on state
     /// - Parameter new_state: new state
     void SetState(PlayerState new_state);
