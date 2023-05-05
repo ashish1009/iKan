@@ -20,29 +20,46 @@ namespace mario {
   };
   
   class EnemyController {
-  public:
+  protected:
     /// This function initialise the Enemy common data
     /// - Parameters:
     ///   - rbc: rigid body of enemy
     ///   - entity: entity of enemy
     void Initialize(Entity* entity, RigidBodyComponent* rbc);
+    /// This function check the entity on ground
+    /// - Parameter entity: entity of player
+    void CheckOnGround(Entity* entity);
+    /// This function updates the Common data for enemy
+    /// - Parameters:
+    ///   - entity: entity of player
+    ///   - ts: time step
+    ///   - rbc: rigid body pointer
+    void Update(Timestep ts, Entity* entity, RigidBodyComponent* rbc);
     
-  protected:
     static constexpr float free_fall_factor = 1.0f;
+    static constexpr glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
     
+    bool on_ground_ = false;
     bool going_right_ = true;
-    float height_ = 2.0f;
+    
+    float height_ = 1.0f;
+    
     glm::vec2 acceleration_;
+    glm::vec2 velocity_;
   };
   
   class GoombaController : public ScriptableEntity, EnemyController {
   public:
     void Create(Entity entity) override;
+    void Update(Timestep ts) override;
+    void Copy(void* script) override;
   };
 
   class DuckController : public ScriptableEntity, EnemyController {
   public:
     void Create(Entity entity) override;
+    void Update(Timestep ts) override;
+    void Copy(void* script) override;
   };
   
   struct EnemyData {

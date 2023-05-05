@@ -17,12 +17,52 @@ namespace mario {
     // Free fall with scene gravity
     acceleration_.y = entity->scene_->Get2DWorldGravity().y * free_fall_factor;
   }
+  void EnemyController::CheckOnGround(Entity* entity) {
+    static float inner_enemy_width = 0.6f;
+    float y_val = -(height_ / 2);
+    y_val -= 0.02f;
+    
+    on_ground_ = entity->scene_->CheckOnGround(entity, inner_enemy_width, y_val);
+  }
+  void EnemyController::Update(Timestep ts, Entity* entity, RigidBodyComponent* rbc) {
+    CheckOnGround(entity);
+    
+    if (on_ground_) {
+      acceleration_.y = 0;
+      velocity_.y = 0;
+    } else {
+      acceleration_.y = entity->scene_->Get2DWorldGravity().y * free_fall_factor;
+    }
+
+    velocity_.y += acceleration_.y * ts * 2.0f;
+    
+    velocity_.x = std::max(std::min(velocity_.x, terminal_velocity_.x), -terminal_velocity_.x);
+    velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
+    
+    auto& rb = entity->GetComponent<RigidBodyComponent>();
+    rb.SetVelocity(velocity_);
+    rb.SetAngularVelocity(0.0f);
+  }
   
   void GoombaController::Create(Entity entity) {
     entity_ = entity;
     rbc_ = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
     
     Initialize(&entity_, rbc_);
+  }
+  void GoombaController::Update(Timestep ts) {
+    EnemyController::Update(ts, &entity_, rbc_);
+  }
+  void GoombaController::Copy(void *script) {
+    if (!script) return;
+    GoombaController* enemy_script = reinterpret_cast<GoombaController*>(script);
+    IK_ASSERT(enemy_script);
+    
+    going_right_ = enemy_script->going_right_;
+    on_ground_ = enemy_script->on_ground_;
+    
+    acceleration_ = enemy_script->acceleration_;
+    velocity_ = enemy_script->velocity_;
   }
   
   void DuckController::Create(Entity entity) {
@@ -33,8 +73,23 @@ namespace mario {
     
     auto& tc = entity_.GetComponent<TransformComponent>();
     tc.UpdateScale(X, going_right_ ? -1.0f : 1.0f);
+    height_ = 2.0f;
   }
-  
+  void DuckController::Update(Timestep ts) {
+    EnemyController::Update(ts, &entity_, rbc_);
+  }
+  void DuckController::Copy(void *script) {
+    if (!script) return;
+    DuckController* enemy_script = reinterpret_cast<DuckController*>(script);
+    IK_ASSERT(enemy_script);
+    
+    going_right_ = enemy_script->going_right_;
+    on_ground_ = enemy_script->on_ground_;
+    
+    acceleration_ = enemy_script->acceleration_;
+    velocity_ = enemy_script->velocity_;
+  }
+
   struct EnemyScriptData {
     std::unordered_map<EnemyType, EnemyData> script_map;
   };
