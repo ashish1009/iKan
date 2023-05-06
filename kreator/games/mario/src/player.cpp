@@ -179,6 +179,10 @@ namespace mario {
       // Player State is Jumping if player is on Air
       state_machine_->SetAction(PlayerAction::Jump);
     }
+    else if (enemy_bounce_ > 0) {
+      enemy_bounce_--;
+      velocity_.y = ((enemy_bounce_ / 2.2f) * jumb_boost_);
+    }
     else if (!on_ground_) {
       // If Player is in Air and Some jump time left. Then retard the Y Velocity and Make Jump time 0
       if (jump_time_ > 0) {
@@ -300,6 +304,7 @@ namespace mario {
     velocity_ = player_script->velocity_;
     acceleration_ = player_script->acceleration_;
     
+    enemy_bounce_ = player_script->enemy_bounce_;
     jump_time_ = player_script->jump_time_;
     jumb_boost_ = player_script->jumb_boost_;
     ground_debounce_ = player_script->ground_debounce_;

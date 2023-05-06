@@ -33,6 +33,8 @@ namespace mario {
     bool IsSmall() const { return state_machine_->State() == PlayerState::Small; }
     /// This function update the powerup flag to true
     void SetPowerup() { power_up_ = true; };
+    /// This function set the enemy debounce value
+    void SetEnemyBounce() { enemy_bounce_ = 18; }
     /// This function checks is player direction is right
     bool IsRight() const { return entity_.GetComponent<TransformComponent>().Scale().x > 0; }
     
@@ -81,6 +83,7 @@ namespace mario {
     glm::vec2 velocity_;
     
     // Jump data
+    int32_t enemy_bounce_ = 0;
     int32_t jump_time_ = 0;
     float jumb_boost_ = 1.0f;
     float ground_debounce_ = 0.0f; // Seconds

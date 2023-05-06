@@ -7,6 +7,7 @@
 
 #include "enemy.hpp"
 #include "common.hpp"
+#include "player.hpp"
 
 namespace mario {
   
@@ -56,6 +57,14 @@ namespace mario {
       return;
     }
     
+    if (PlayerController::IsPlayer(collided_entity)) {
+      PlayerController* pc = PlayerController::Get();
+      if (contact_normal.y > 0.58f) {
+        pc->SetEnemyBounce();
+        contact->SetEnabled(false);
+      }
+    }
+
     if (std::abs(contact_normal.y) < 0.1f) {
       // Change the direction of turtle. No need for Goomba
       auto& tc = entity->GetComponent<TransformComponent>();

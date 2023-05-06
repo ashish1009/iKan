@@ -3538,7 +3538,7 @@ Entities:
     TagComponent:
       Tag: Mario_Camera
     TransformComponent:
-      Translation: [-8.55255127, 0, 0]
+      Translation: [0.94264698, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
