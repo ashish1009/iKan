@@ -55,7 +55,7 @@ namespace mario {
       MarioPrefab::AddText(&entity_, std::to_string(score_));
       
       const auto& tc = entity_.GetComponent<TransformComponent>().Position();
-      top_pos_ = {tc.x, tc.y + 2.0f};
+      top_pos_ = {tc.x, tc.y + 6.0f};
       set_position_ = false;
     }
   }
@@ -244,14 +244,14 @@ namespace mario {
   void RuntimeItemManager::Init() {
     data_ = std::make_shared<RuntimeItemData>();
     
-    static auto coin_script_loader = ScriptLoader(mario::CoinController);
+    static auto animatied_coin_script_loader = ScriptLoader(mario::CoinController);
     static auto mushroom_script_loader = ScriptLoader(mario::MushroomController);
     static auto flower_script_loader = ScriptLoader(mario::FlowerController);
     static auto fireball_script_loader = ScriptLoader(mario::FireballController);
     static auto star_script_loader = ScriptLoader(mario::FireballController);
     static auto score_script_loader = ScriptLoader(mario::ScoreController, 100); // Default score is 100
 
-    data_->item_map[Items::Coin] = { "Block Coin", "mario::CoinController", coin_script_loader };
+    data_->item_map[Items::AnimatedCoin] = { "Block Coin", "mario::CoinController", animatied_coin_script_loader };
     data_->item_map[Items::Mushroom] = { "Mushroom", "mario::MushroomController", mushroom_script_loader };
     data_->item_map[Items::Flower] = { "Flower", "mario::FlowerController", flower_script_loader };
     data_->item_map[Items::Fireball] = { "Fireball", "mario::FireballController", fireball_script_loader };
