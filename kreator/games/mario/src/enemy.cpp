@@ -51,6 +51,19 @@ namespace mario {
     rb.SetVelocity(velocity_);
     rb.SetAngularVelocity(0.0f);
   }
+  void EnemyController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal, Entity* entity) {
+    if (is_dead_) {
+      return;
+    }
+    
+    if (std::abs(contact_normal.y) < 0.1f) {
+      // Change the direction of turtle. No need for Goomba
+      auto& tc = entity->GetComponent<TransformComponent>();
+      tc.UpdateScale(X, going_right_ ? -1.0f : 1.0f);
+
+      going_right_ = contact_normal.x < 0.0f;
+    }
+  }
   
   void GoombaController::Create(Entity entity) {
     entity_ = entity;
@@ -60,6 +73,9 @@ namespace mario {
   }
   void GoombaController::Update(Timestep ts) {
     EnemyController::Update(ts, &entity_, rbc_);
+  }
+  void GoombaController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
+    EnemyController::PreSolve(collided_entity, contact, contact_normal, &entity_);
   }
   void GoombaController::Copy(void *script) {
     if (!script) return;
@@ -86,11 +102,15 @@ namespace mario {
   void DuckController::Update(Timestep ts) {
     EnemyController::Update(ts, &entity_, rbc_);
   }
+  void DuckController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
+    EnemyController::PreSolve(collided_entity, contact, contact_normal, &entity_);
+  }
   void DuckController::Copy(void *script) {
     if (!script) return;
     DuckController* enemy_script = reinterpret_cast<DuckController*>(script);
     IK_ASSERT(enemy_script);
     
+    is_dead_ = enemy_script->is_dead_;
     going_right_ = enemy_script->going_right_;
     on_ground_ = enemy_script->on_ground_;
     

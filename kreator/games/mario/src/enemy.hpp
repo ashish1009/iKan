@@ -31,15 +31,23 @@ namespace mario {
     void CheckOnGround(Entity* entity);
     /// This function updates the Common data for enemy
     /// - Parameters:
-    ///   - entity: entity of player
+    ///   - entity: entity of enemy
     ///   - ts: time step
     ///   - rbc: rigid body pointer
     void Update(Timestep ts, Entity* entity, RigidBodyComponent* rbc);
-    
+    /// This function solve the collider for enemy
+    /// - Parameters:
+    ///   - collided_entity: collided entity
+    ///   - contact: contact point
+    ///   - contact_normal: contact normal
+    ///   - entity: entity of enemy
+    void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal, Entity* entity);
+
     static constexpr float free_fall_factor = 1.0f;
     static constexpr glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
     static constexpr float walk_speed_ = 4.0f;
 
+    bool is_dead_ = false;
     bool on_ground_ = false;
     bool going_right_ = true;
     
@@ -53,6 +61,7 @@ namespace mario {
   public:
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
+    void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
     void Copy(void* script) override;
   };
 
@@ -60,6 +69,7 @@ namespace mario {
   public:
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
+    void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
     void Copy(void* script) override;
   };
   
