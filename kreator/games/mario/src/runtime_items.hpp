@@ -154,7 +154,8 @@ namespace mario {
         tc.AddPosition(Z, 0.1f);
         tc.UpdateScale({0.3, 0.3, 1.0f});
 
-        MarioPrefab::AddScript<ScoreController>(&run_time_entity, data_->item_map.at(item).scrip_name, data_->item_map.at(item).loader_fun, std::forward<Args>(args)...);
+        MarioPrefab::AddScript<ScoreController>(&run_time_entity, data_->item_map.at(item).scrip_name,
+                                                ScriptLoader(mario::ScoreController, std::forward<Args>(args)...), std::forward<Args>(args)...);
       }
       else {
         MarioPrefab::AddQuad(&run_time_entity, SpriteManager::GetTexture(SpriteType::Items), SpriteManager::GetItemSprite(item));

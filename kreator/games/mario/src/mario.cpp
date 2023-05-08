@@ -49,12 +49,14 @@ namespace mario {
       timer_ += ts;
       time_left_ = MaxTime - (uint32_t)timer_;
     }
+    
+    PlayerController* pc = PlayerController::Get();
 
     // Score and All text
     TextRenderer::BeginBatch(FixedCamera::projection);
     
     text_data_.Render("MARIO", 0, 0);
-    text_data_.Render(std::to_string(0), 1, 0);
+    text_data_.Render(std::to_string(pc->GetScore()), 1, 0);
     
     Batch2DRenderer::BeginBatch(FixedCamera::projection);
     static std::vector<SubTextureRef> coin_subtex = SpriteManager::GetItemSprite(Items::AnimatedCoin);
@@ -67,7 +69,7 @@ namespace mario {
                               coin_subtex.at(anim_idx / speed), {1, 1, 1, 1});
     anim_idx++;
     Batch2DRenderer::EndBatch();
-    text_data_.Render(" x " + std::to_string(0), 1, 1);
+    text_data_.Render(" x " + std::to_string(pc->GetCoins()), 1, 1);
     
     text_data_.Render("WORLD", 0, 2);
     text_data_.Render(std::to_string(world_) + " - " + std::to_string(level_), 1, 2);

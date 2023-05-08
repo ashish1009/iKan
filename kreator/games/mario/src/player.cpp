@@ -14,7 +14,6 @@ namespace mario {
   
   bool PlayerController::IsPlayer(Entity* entity) {
     if (!Entity::IsValid(entity)) return false;
-    
     return (entity->HasComponent<NativeScriptComponent>() and entity->GetComponent<NativeScriptComponent>().script.get() == instance_);
   }
   
@@ -310,6 +309,9 @@ namespace mario {
     jumb_boost_ = player_script->jumb_boost_;
     ground_debounce_ = player_script->ground_debounce_;
     ground_debounce_time_ = player_script->ground_debounce_time_;
+    
+    score_ = player_script->score_;
+    coins_ = player_script->coins_;
     
     power_up_ = player_script->power_up_;
     powerup_time_ = player_script->powerup_time_;

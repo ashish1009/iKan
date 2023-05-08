@@ -19,6 +19,7 @@ namespace mario {
     // Free fall with scene gravity
     acceleration_.y = entity->scene_->Get2DWorldGravity().y * free_fall_factor;
   }
+  
   void EnemyController::CheckOnGround(Entity* entity) {
     static float inner_enemy_width = 0.6f;
     float y_val = -(height_ / 2);
@@ -26,6 +27,7 @@ namespace mario {
     
     on_ground_ = entity->scene_->CheckOnGround(entity, inner_enemy_width, y_val);
   }
+  
   void EnemyController::Update(Timestep ts, Entity* entity, RigidBodyComponent* rbc) {
     // Check on Ground
     CheckOnGround(entity);
@@ -55,6 +57,7 @@ namespace mario {
     rb.SetVelocity(velocity_);
     rb.SetAngularVelocity(0.0f);
   }
+  
   void EnemyController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal, Entity* entity) {
     if (is_dead_) {
       return;

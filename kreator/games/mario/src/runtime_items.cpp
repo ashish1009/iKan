@@ -97,8 +97,13 @@ namespace mario {
       rbc_->SetVelocity({-velocity_.x, velocity_.y});
     }
     
-    if (destroy_)
+    if (destroy_) {
+      const auto& tc = entity_.GetComponent<TransformComponent>();
+      
+      PlayerController::Get()->AddScore(BonusScore);
+      RuntimeItemManager::Spawn(Items::Score, entity_.scene_, {tc.Position().x, tc.Position().y + 1}, BonusScore);
       entity_.scene_->DestroyEntity(entity_);
+    }
   }
   
   void MushroomController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {

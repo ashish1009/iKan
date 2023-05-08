@@ -29,6 +29,17 @@ namespace mario {
     void Copy(void* script) override;
     void EventHandler(Event& event) override;
     
+    /// This function increment the coin count
+    void IncCoin() { coins_++; }
+    /// This function adds the score of plyaer
+    /// - Parameter score: score
+    void AddScore(uint32_t score) { score_ += score; }
+    
+    /// This function returns the score of player
+    uint32_t GetScore() const { return score_; }
+    /// This function returns the coin count of player
+    uint32_t GetCoins() const { return coins_; }
+    
     /// This function returns if player is small
     bool IsSmall() const { return state_machine_->State() == PlayerState::Small; }
     /// This function update the powerup flag to true
@@ -92,6 +103,9 @@ namespace mario {
     bool power_up_ = false;
     float powerup_time_ = 0.0f;
 
+    uint32_t score_ = 0;
+    uint32_t coins_ = 0;
+    
     std::shared_ptr<StateMachine> state_machine_;
     static PlayerController* instance_;
   };
