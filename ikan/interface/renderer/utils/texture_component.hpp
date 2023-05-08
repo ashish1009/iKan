@@ -35,6 +35,16 @@ namespace ikan {
     for(auto& texture : texture_vector) {
       texture_changed = LoadTextureIcon(texture);
     }
+
+    bool new_texture_loaded = false;
+    std::shared_ptr<Texture> t;
+    texture_changed = LoadTextureIcon(t);
+    new_texture_loaded = texture_changed;
+    
+    if (new_texture_loaded) {
+      texture_vector.push_back(t);
+    }
+
     return texture_changed;
   }
   
@@ -119,24 +129,38 @@ namespace ikan {
     ///   - color: color of the texture
     ///   - ui_function: function to render below texture Use
     void RenderGui(glm::vec4& color, UIFunction ui_function) {
-      ImGui::PushID("Animation/Texture");
-      
+      ImGui::PushID("Texture Data");
+
+      // Quad Color
       ImGui::Columns(2);
       ImGui::SetColumnWidth(0, ImGui::GetWindowContentRegionMax().x / 2);
-      
-      // Check box to togle use of texture
-      ImGui::Checkbox("Use Texure", &use);
-      PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
-      ImGui::NextColumn();
-      
       ui_function();
       
+      ImGui::NextColumn();
+      ImGui::Text("Quad Color");
+      
       ImGui::Columns(1);
-      ImGui::PopID();
+
+      // Check box to togle use of texture
+      PropertyGrid::CheckBox("Use Texure", use);
+      PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
       
+      if (use and texture.size() > 0) {
+        if (PropertyGrid::CheckBox("Linear Edge", linear_edge)) {
+          ChangeLinearTexture();
+        }
+        PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+        
+        PropertyGrid::CheckBox("Sprite", use_sub_texture);
+        PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+        
+        PropertyGrid::Float1("Tiling Factor", tiling_factor, nullptr, 1.0f, 1.0f, MIN_FLT, 1000.0f);
+        PropertyGrid::HoveredMsg("Tiling Factor");
+      }
       ImGui::Separator();
-      
-      ImGui::PushID("Texture Data");
+
+      ImGui::Separator();
+
       ImGui::Columns(2);
       ImGui::SetColumnWidth(0, 60);
       
@@ -148,17 +172,6 @@ namespace ikan {
       ImGui::NextColumn();
       
       if (use and texture.size() > 0) {
-        if (ImGui::Checkbox("Linear Edge", &linear_edge)) {
-          ChangeLinearTexture();
-        }
-        PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
-        
-        ImGui::SameLine();
-        ImGui::Checkbox("Sprite", &use_sub_texture);
-        PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
-
-        ImGui::DragFloat("", &tiling_factor, 1.0f, 1.0f, 1000.0f);
-        PropertyGrid::HoveredMsg("Tiling Factor");
         ImGui::Columns(1);
         
         // Selection of type Animation or Sprite
