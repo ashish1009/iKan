@@ -11,14 +11,35 @@
 
 namespace ikan {
   
-  static inline bool LoadTextureIcon(std::shared_ptr<Texture>& texture) {
+  static inline bool LoadTextureIcon(std::shared_ptr<Texture>& texture, bool* is_animation, std::shared_ptr<Texture>& deleted_texture) {
     bool texture_changed = false;
     static std::shared_ptr<Texture> no_texture = Renderer::GetTexture(DM::CoreAsset("textures/default/no_texture.png"));
     size_t tex_id = ((texture) ? texture->GetRendererID() : no_texture->GetRendererID());
     
     // Show the image of texture
-    ImGui::Image((void*)tex_id, ImVec2(40.0f, 40.0f), ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
-    
+    ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
+
+    auto& colors = ImGui::GetStyle().Colors;
+    const auto& button_hovered = colors[ImGuiCol_ButtonHovered];
+
+    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(button_hovered.x, button_hovered.y, button_hovered.z, 1.0f));
+    const auto& button_cctive = colors[ImGuiCol_ButtonActive];
+    ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(button_cctive.x, button_cctive.y, button_cctive.z, 1.0f));
+
+    ImGui::ImageButton((void*)tex_id, ImVec2(40.0f, 40.0f), ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f));
+
+    if (is_animation) {
+      // Right click of mouse option
+      if (ImGui::BeginPopupContextItem()) {
+        // Delete Coord
+        if (ImGui::MenuItem("Delete Texture")) {
+          deleted_texture = texture;
+        }
+        ImGui::EndMenu();
+      }
+    }
+    ImGui::PopStyleColor(3);
+
     // Drop the texture here and load new texture
     PropertyGrid::DropConent([&](const std::string& path)
                              {
@@ -26,25 +47,37 @@ namespace ikan {
       texture = Renderer::GetTexture(path);
       texture_changed = true;
     });
-    PropertyGrid::HoveredMsg("Drop the Texture file in the Image Button to upload the texture");
+    PropertyGrid::HoveredMsg("Drop the Texture file in the Image Button to add the texture in Animation. \n"
+                             "Note: Add the Textures in animation order \n"
+                             "To delete the texture Right click and delete");
     return texture_changed;
   }
   
   static inline bool LoadTextureIconWrapper(std::vector<std::shared_ptr<Texture>>& texture_vector) {
     bool texture_changed = false;
+    bool delete_texture = false;
+    std::shared_ptr<Texture> deleted_texture;
+    
     for(auto& texture : texture_vector) {
-      texture_changed = LoadTextureIcon(texture);
+      texture_changed = LoadTextureIcon(texture, &delete_texture, deleted_texture);
       ImGui::SameLine();
     }
     ImGui::SameLine();
 
     bool new_texture_loaded = false;
     std::shared_ptr<Texture> t;
-    texture_changed = LoadTextureIcon(t);
+    texture_changed = LoadTextureIcon(t, nullptr, deleted_texture);
     new_texture_loaded = texture_changed;
-    
+
     if (new_texture_loaded) {
       texture_vector.push_back(t);
+    }
+    
+    if (deleted_texture) {
+      auto it = std::find(texture_vector.begin(), texture_vector.end(), deleted_texture);
+      if (it != texture_vector.end()) {
+        texture_vector.erase(it);
+      }
     }
 
     return texture_changed;
