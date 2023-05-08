@@ -47,7 +47,6 @@ namespace mario {
     
     static constexpr float free_fall_factor = 1.0f;
     static constexpr glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
-    static constexpr float walk_speed_ = 4.0f;
 
     bool is_dead_ = false;
     bool is_dying_ = false;
@@ -57,6 +56,7 @@ namespace mario {
     
     float height_ = 1.0f;
     
+    float walk_speed_ = 4.0f;
     glm::vec2 acceleration_;
     glm::vec2 velocity_;
   };
@@ -86,8 +86,9 @@ namespace mario {
     /// - Parameter force: force value
     void SetAppliedForce(bool force);
     
+    static constexpr uint32_t time_to_revive_limit_ = 3.0f;
     bool force_applied_ = false;
-    float time_to_revive_ = 2.0f;
+    float time_to_revive_ = time_to_revive_limit_;
   };
   
   struct EnemyData {

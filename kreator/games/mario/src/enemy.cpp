@@ -38,13 +38,11 @@ namespace mario {
       acceleration_.y = 0;
       velocity_.y = 0;
       
-      if (!is_dying_) {
-        if (going_right_) {
-          velocity_.x = walk_speed_;
-        }
-        else if (!going_right_) {
-          velocity_.x = -walk_speed_;
-        }
+      if (going_right_) {
+        velocity_.x = walk_speed_;
+      }
+      else if (!going_right_) {
+        velocity_.x = -walk_speed_;
       }
     } else {
       acceleration_.y = entity->scene_->Get2DWorldGravity().y * free_fall_factor;
@@ -158,6 +156,7 @@ namespace mario {
 
     acceleration_ = enemy_script->acceleration_;
     velocity_ = enemy_script->velocity_;
+    walk_speed_ = enemy_script->walk_speed_;
     
     time_to_kill_ = enemy_script->time_to_kill_;
   }
@@ -207,7 +206,7 @@ namespace mario {
         // Add Impulse to push e out of ground while changing size
         rbc_->ApplyImpulseToCenter({0, 1.0});
 
-        force_applied_ = false;
+        SetAppliedForce(false);
         is_dying_ = false;
         rbc_->reset_fixture_ = true;
       }
@@ -219,10 +218,19 @@ namespace mario {
   void TurtleController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
     EnemyController::PreSolve(collided_entity, contact, contact_normal, &entity_);
     
+    if (is_dying_) {
+      if (PlayerController::IsPlayer(collided_entity)) {
+        if (std::abs(contact_normal.x) > 0.8f and std::abs(contact_normal.y) < 0.4f) {
+          SetAppliedForce(true);
+        }
+      }
+    }
+
     if (stopm_) {
       stopm_ = false;
-      time_to_revive_ = 5.0f;
-
+      time_to_revive_ = time_to_revive_limit_;
+      walk_speed_ = 0.0f;
+      
       height_ = 1.0f;
       entity_.GetComponent<TransformComponent>().UpdateScale(Y, height_);
       
@@ -248,6 +256,13 @@ namespace mario {
   }
   
   void TurtleController::SetAppliedForce(bool force) {
+    force_applied_ = force;
+    if (force) {
+      walk_speed_ = 8.0f;
+    }
+    else {
+      walk_speed_ = 4.0f;
+    }
   }
   
   void TurtleController::Copy(void *script) {
@@ -265,12 +280,16 @@ namespace mario {
 
     acceleration_ = enemy_script->acceleration_;
     velocity_ = enemy_script->velocity_;
+    walk_speed_ = enemy_script->walk_speed_;
     
     time_to_revive_ = enemy_script->time_to_revive_;
     force_applied_ = enemy_script->force_applied_;
   }
   void TurtleController::RenderGui() {
     EnemyController::RenderGui();
+    ImGui::Text(" Force applied     | %s", force_applied_ ? "True" : "False");
+    ImGui::Text(" Time to Revive    | %f", time_to_revive_);
+
   }
 
   struct EnemyScriptData {
