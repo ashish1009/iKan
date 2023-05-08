@@ -47,9 +47,14 @@ namespace ikan {
       texture = Renderer::GetTexture(path);
       texture_changed = true;
     });
-    PropertyGrid::HoveredMsg("Drop the Texture file in the Image Button to add the texture in Animation. \n"
-                             "Note: Add the Textures in animation order \n"
-                             "To delete the texture Right click and delete");
+    std::string hovered_messge = "Drop the Texture file in the Image Button to add the texture in Animation. \n"
+    "Note: Add the Textures in animation order \n"
+    "To delete the texture Right click and delete \n";
+    
+    if (texture)
+      hovered_messge += texture->GetfilePath().c_str();
+    
+    PropertyGrid::HoveredMsg(hovered_messge.c_str());
     return texture_changed;
   }
   
@@ -58,9 +63,25 @@ namespace ikan {
     bool delete_texture = false;
     std::shared_ptr<Texture> deleted_texture;
     
+    float main_width = ImGui::GetWindowContentRegionWidth();
+    static ImVec2 init_pos = ImGui::GetCursorPos();
+
+    int32_t item_idx = 0;
+    int32_t line = 0;
     for(auto& texture : texture_vector) {
+      // Update the cursor for each folder/file based on its position
+      float cursor_x = ImGui::GetCursorPos().x + ((50.0f) * item_idx);
+      float cursor_y = init_pos.y + line * 100;
+      if (cursor_x + 50.0f > main_width) {
+        line++;
+        item_idx = 0;
+        cursor_x = ImGui::GetCursorPos().x + ((50.0f) * item_idx);;
+        cursor_y = init_pos.y + line * 100;
+      }
+      ImGui::SetCursorPos(ImVec2(cursor_x, cursor_y));
+
       texture_changed = LoadTextureIcon(texture, &delete_texture, deleted_texture);
-      ImGui::SameLine();
+      item_idx++;
     }
     ImGui::SameLine();
 

@@ -37,4 +37,4 @@ Entities:
       Coords0: [0, 0]
       Sprite_Size0: [1, 1]
       Cell_Size0: [16, 16]
-      Num_Coords: 1
+      Num_Coords: 0
