@@ -34,7 +34,9 @@ namespace ikan {
     bool texture_changed = false;
     for(auto& texture : texture_vector) {
       texture_changed = LoadTextureIcon(texture);
+      ImGui::SameLine();
     }
+    ImGui::SameLine();
 
     bool new_texture_loaded = false;
     std::shared_ptr<Texture> t;
@@ -166,28 +168,17 @@ namespace ikan {
       }
       ImGui::Separator();
 
-      ImGui::Columns(2);
-      ImGui::SetColumnWidth(0, 60);
-      
       if (LoadTextureIconWrapper(texture)) {
         use_sub_texture = false;
         ClearSprites();
         sprite_images.emplace_back(SubTexture::CreateFromCoords(texture.at(0), {0, 0}));
       }
-      ImGui::NextColumn();
       
-      if (use and texture.size() > 0) {
-        ImGui::Columns(1);
-        
+      if (use and use_sub_texture and texture.size() > 0) {
         // Selection of type Animation or Sprite
         ImGui::Separator();
-        
-        if (use_sub_texture) {
-          SubtextureGui();
-        } // if Sub texture
-      } // If Use Texture
-      
-      ImGui::Columns(1);
+        SubtextureGui();
+      }
       ImGui::PopID();
     }
     
