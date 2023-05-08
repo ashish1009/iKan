@@ -38,6 +38,7 @@ namespace mario {
       acceleration_.y = 0;
       velocity_.y = 0;
       
+      // Change the direction of Velocity
       if (going_right_) {
         velocity_.x = walk_speed_;
       }
@@ -64,10 +65,12 @@ namespace mario {
       return;
     }
     
+    // If hit by bullet then kill the enemy
     if (collided_entity->HasComponent<BulletComponent>()) {
       Die(entity);
     }
     
+    // Check Player hit for stomp
     if (PlayerController::IsPlayer(collided_entity)) {
       PlayerController* pc = PlayerController::Get();
       if (contact_normal.y > 0.58f) {
@@ -77,6 +80,7 @@ namespace mario {
       }
     }
 
+    // Change direction on hitting obstacle
     if (std::abs(contact_normal.y) < 0.1f) {
       // Change the direction of turtle. No need for Goomba
       auto& tc = entity->GetComponent<TransformComponent>();
@@ -135,6 +139,7 @@ namespace mario {
       return;
     }
     
+    // Play Die Animation for Goomba
     if (die_animation_) {
       die_animation_time_ -= ts;
       if (die_animation_time_ > 0.8f) {
@@ -299,7 +304,7 @@ namespace mario {
       qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Turtle, EnemyState::Dying);
 
       rbc_->reset_fixture = true;
-            
+
       // Add Score only of Turtle is alive
       if (!is_dying_) {
         is_dying_ = true;
@@ -315,9 +320,13 @@ namespace mario {
     force_applied_ = force;
     if (force) {
       walk_speed_ = 8.0f;
+      if (!entity_.HasComponent<BulletComponent>())
+        entity_.AddComponent<BulletComponent>();
     }
     else {
       walk_speed_ = 4.0f;
+      if (entity_.HasComponent<BulletComponent>())
+        entity_.RemoveComponent<BulletComponent>();
     }
   }
   
