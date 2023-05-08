@@ -229,6 +229,9 @@ namespace mario {
     if (stopm_) {
       stopm_ = false;
       time_to_revive_ = time_to_revive_limit_;
+      
+      // After Forece apply kindly reset the walk speed to 0
+      SetAppliedForce(false);
       walk_speed_ = 0.0f;
       
       height_ = 1.0f;
@@ -243,7 +246,7 @@ namespace mario {
       qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Turtle, EnemyState::Dying);
 
       rbc_->reset_fixture_ = true;
-      
+            
       // Add Score only of Turtle is alive
       if (!is_dying_) {
         is_dying_ = true;
