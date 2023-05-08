@@ -10,6 +10,7 @@
 #include "mario.hpp"
 #include "chess.hpp"
 #include "angry_bird.hpp"
+#include "commando.hpp"
 
 namespace kreator {
   
@@ -18,6 +19,7 @@ namespace kreator {
       case GameType::Mario: return std::make_unique<mario::Mario>();
       case GameType::Chess: return std::make_unique<chess::Chess>();
       case GameType::AngryBird: return std::make_unique<angry_bird::AngryBird>();
+      case GameType::Commando: return std::make_unique<commando::Commando>();
       case GameType::Editor:
       default:
         return std::make_unique<editor::Editor>();

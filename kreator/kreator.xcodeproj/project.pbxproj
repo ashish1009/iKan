@@ -14,6 +14,7 @@
 		B201A34229F285F500D3C1FE /* editor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A33829F285F500D3C1FE /* editor.cpp */; };
 		B201A34329F285F500D3C1FE /* entry_point.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A33C29F285F500D3C1FE /* entry_point.cpp */; };
 		B201A34429F285F500D3C1FE /* renderer_layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B201A33D29F285F500D3C1FE /* renderer_layer.cpp */; };
+		B205D4C42A0918C700428C57 /* commando.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B205D4C22A0918C700428C57 /* commando.cpp */; };
 		B247160029F6B81B00BA166E /* block_controller.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B24715FE29F6B81B00BA166E /* block_controller.cpp */; };
 		B247160929F6E34700BA166E /* runtime_items.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B247160729F6E34700BA166E /* runtime_items.cpp */; };
 		B266841F29F949720083F5BD /* block.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B266841D29F949720083F5BD /* block.cpp */; };
@@ -117,6 +118,8 @@
 		B201A33B29F285F500D3C1FE /* kreator_application.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = kreator_application.hpp; sourceTree = "<group>"; };
 		B201A33C29F285F500D3C1FE /* entry_point.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = entry_point.cpp; sourceTree = "<group>"; };
 		B201A33D29F285F500D3C1FE /* renderer_layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = renderer_layer.cpp; sourceTree = "<group>"; };
+		B205D4C22A0918C700428C57 /* commando.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = commando.cpp; sourceTree = "<group>"; };
+		B205D4C32A0918C700428C57 /* commando.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = commando.hpp; sourceTree = "<group>"; };
 		B20EFEB129F9125400D6DC84 /* setting.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = setting.hpp; sourceTree = "<group>"; };
 		B228FC7029DB093D00455666 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		B228FC7229DB094700455666 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -186,6 +189,7 @@
 				B201A2DB29F285F500D3C1FE /* game_data.hpp */,
 				B201A30A29F285F500D3C1FE /* mario */,
 				B201A2F529F285F500D3C1FE /* chess */,
+				B205D4BE2A09189E00428C57 /* commando */,
 				B201A2DC29F285F500D3C1FE /* angry_bird */,
 				B201A31529F285F500D3C1FE /* editor */,
 			);
@@ -534,6 +538,39 @@
 			path = prefabs;
 			sourceTree = "<group>";
 		};
+		B205D4BE2A09189E00428C57 /* commando */ = {
+			isa = PBXGroup;
+			children = (
+				B205D4BF2A0918B300428C57 /* src */,
+				B205D4C12A0918BC00428C57 /* scenes */,
+				B205D4C02A0918B700428C57 /* assets */,
+			);
+			path = commando;
+			sourceTree = "<group>";
+		};
+		B205D4BF2A0918B300428C57 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				B205D4C22A0918C700428C57 /* commando.cpp */,
+				B205D4C32A0918C700428C57 /* commando.hpp */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		B205D4C02A0918B700428C57 /* assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = assets;
+			sourceTree = "<group>";
+		};
+		B205D4C12A0918BC00428C57 /* scenes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = scenes;
+			sourceTree = "<group>";
+		};
 		B292BB6829D16F8F00B1E678 = {
 			isa = PBXGroup;
 			children = (
@@ -675,6 +712,7 @@
 				B29016F529F43ED800BB309D /* common.cpp in Sources */,
 				B201A34329F285F500D3C1FE /* entry_point.cpp in Sources */,
 				B28D3A8B29F46EB10022E3DC /* player.cpp in Sources */,
+				B205D4C42A0918C700428C57 /* commando.cpp in Sources */,
 				B201A33F29F285F500D3C1FE /* game_data.cpp in Sources */,
 				B2C121512A0548A9007F5D2A /* enemy.cpp in Sources */,
 				B29016F829F4401200BB309D /* sprite_manager.cpp in Sources */,

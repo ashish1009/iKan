@@ -35,7 +35,7 @@ namespace kreator {
         ImGui::Begin("Kreator", nullptr, ImGuiWindowFlags_NoDecoration | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
         GameType current_type = current_game_type_;
         GameType new_type = GameType(PropertyGrid::ComboDrop("Kreator Game Type",
-                                                             { "Editor" , "Mario", "Chess", "Angry Bird" }, (uint32_t)current_type,
+                                                             { "Editor" , "Mario", "Chess", "Angry Bird", "Commando" }, (uint32_t)current_type,
                                                              3 * ImGui::GetWindowContentRegionMax().x / 5));
         if (new_type != current_game_type_) {
           current_game_type_ = new_type;
@@ -67,6 +67,10 @@ namespace kreator {
         case GameType::AngryBird :
           specification_.window_specification.title = "Ikan Angry Bird";
           specification_.client_asset_path = "../../../kreator/games/angry_bird/assets/";
+          break;
+        case GameType::Commando :
+          specification_.window_specification.title = "Ikan Commando";
+          specification_.client_asset_path = "../../../kreator/games/commando/assets/";
           break;
 
         default:
