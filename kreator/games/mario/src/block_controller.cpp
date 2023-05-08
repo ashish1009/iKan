@@ -92,9 +92,9 @@ namespace mario {
       }
       case BlockType::Coin: {
         RuntimeItemManager::Spawn(Items::AnimatedCoin, entity_.scene_, {tc.Position().x, tc.Position().y + 1}, NoScore);
-        RuntimeItemManager::Spawn(Items::Score, entity_.scene_, {tc.Position().x - 0.5, tc.Position().y + 1}, CoinScore);
+        RuntimeItemManager::Spawn(Items::Score, entity_.scene_, {tc.Position().x - 0.5, tc.Position().y + 1}, score::Coin);
 
-        PlayerController::Get()->AddScore(CoinScore);
+        PlayerController::Get()->AddScore(score::Coin);
         PlayerController::Get()->IncCoin();
         
         count_--;

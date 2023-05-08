@@ -99,8 +99,8 @@ namespace mario {
     
     if (destroy_) {
       const auto& tc = entity_.GetComponent<TransformComponent>();
-      PlayerController::Get()->AddScore(BonusScore);
-      RuntimeItemManager::Spawn(Items::Score, entity_.scene_, {tc.Position().x, tc.Position().y + 1}, BonusScore);
+      PlayerController::Get()->AddScore(score::Bonus);
+      RuntimeItemManager::Spawn(Items::Score, entity_.scene_, {tc.Position().x, tc.Position().y + 1}, score::Bonus);
       entity_.scene_->DestroyEntity(entity_);
     }
   }

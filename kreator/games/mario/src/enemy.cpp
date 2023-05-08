@@ -124,8 +124,8 @@ namespace mario {
       qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Goomba, EnemyState::Dying);
       
       const auto& tc = entity_.GetComponent<TransformComponent>();
-      RuntimeItemManager::Spawn(Items::Score, entity_.scene_, {tc.Position().x, tc.Position().y + 1}, EnemyKillScore);
-      PlayerController::Get()->AddScore(EnemyKillScore);
+      RuntimeItemManager::Spawn(Items::Score, entity_.scene_, {tc.Position().x, tc.Position().y + 1}, score::EnemyKill);
+      PlayerController::Get()->AddScore(score::EnemyKill);
     }
   }
   

@@ -11,15 +11,19 @@
 #define SubTextureRef std::shared_ptr<SubTexture>
 #define MARIO_LOG(...) IK_TRACE("Mario", __VA_ARGS__);
 
+
 namespace mario {
   
   using namespace ikan;
+  
+  static const uint32_t NoScore = 0;
 
-  static constexpr uint32_t NoScore = 0;
-  static constexpr uint32_t CoinScore = 100;
-  static constexpr uint32_t BonusScore = 1000;
-  static constexpr uint32_t EnemyKillScore = 200;
-
+  namespace score {
+    static constexpr uint32_t Coin = 100;
+    static constexpr uint32_t Bonus = 1000;
+    static constexpr uint32_t EnemyKill = 200;
+  }
+  
   class MarioPrefab {
   public:
     /// This function add the quad component if not present else add the required parameter
