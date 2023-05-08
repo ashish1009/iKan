@@ -42,7 +42,9 @@ namespace mario {
     ///   - contact_normal: contact normal
     ///   - entity: entity of enemy
     void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal, Entity* entity);
-
+    /// This function renders the data in Gui
+    void RenderGui();
+    
     static constexpr float free_fall_factor = 1.0f;
     static constexpr glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
     static constexpr float walk_speed_ = 4.0f;
@@ -65,6 +67,7 @@ namespace mario {
     void Update(Timestep ts) override;
     void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
     void Copy(void* script) override;
+    void RenderGui() override;
     
   private:
     float time_to_kill_ = 0.5f;
@@ -76,6 +79,7 @@ namespace mario {
     void Update(Timestep ts) override;
     void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
     void Copy(void* script) override;
+    void RenderGui() override;
     
   private:
     bool force_applied_ = false;
@@ -110,6 +114,5 @@ namespace mario {
     ///   - type: type of enemy
     static NativeScriptComponent* AddScript(Entity* entity, EnemyType type);
   };
-
 
 } // namespace mario

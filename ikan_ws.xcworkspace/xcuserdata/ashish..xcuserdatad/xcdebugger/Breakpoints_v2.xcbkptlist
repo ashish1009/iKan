@@ -18,6 +18,38 @@
             endingLineNumber = "34"
             landmarkName = "EnemyController::Update(ts, entity, rbc)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DEBE15AB-5F23-430E-8053-3F250BE7A063 - 96b8b65c81b4ec46"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "mario::EnemyController::Update(ikan::Timestep, ikan::Entity*, ikan::RigidBodyComponent*)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/kreator/games/mario/src/enemy.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  uuid = "DEBE15AB-5F23-430E-8053-3F250BE7A063 - 96b8b65c81b4eb3b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "mario::EnemyController::Update(ikan::Timestep, ikan::Entity*, ikan::RigidBodyComponent*)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/kreator/games/mario/src/enemy.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -46,9 +78,9 @@
             filePath = "kreator/games/mario/src/enemy.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "DuckController::Update(ts)"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "EnemyController::Update(ts, entity, rbc)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -62,9 +94,9 @@
             filePath = "kreator/games/mario/src/enemy.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "EnemyController::PreSolve(collided_entity, contact, contact_normal, entity)"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "EnemyController::Update(ts, entity, rbc)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -78,9 +110,9 @@
             filePath = "kreator/games/mario/src/enemy.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "EnemyController::PreSolve(collided_entity, contact, contact_normal, entity)"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "EnemyController::Update(ts, entity, rbc)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -94,9 +126,9 @@
             filePath = "kreator/games/mario/src/enemy.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "EnemyController::PreSolve(collided_entity, contact, contact_normal, entity)"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "EnemyController::Update(ts, entity, rbc)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

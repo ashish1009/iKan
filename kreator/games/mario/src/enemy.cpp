@@ -38,11 +38,13 @@ namespace mario {
       acceleration_.y = 0;
       velocity_.y = 0;
       
-      if (going_right_) {
-        velocity_.x = walk_speed_;
-      }
-      else if (!going_right_) {
-        velocity_.x = -walk_speed_;
+      if (!is_dying_) {
+        if (going_right_) {
+          velocity_.x = walk_speed_;
+        }
+        else if (!going_right_) {
+          velocity_.x = -walk_speed_;
+        }
       }
     } else {
       acceleration_.y = entity->scene_->Get2DWorldGravity().y * free_fall_factor;
@@ -80,6 +82,17 @@ namespace mario {
 
       going_right_ = contact_normal.x < 0.0f;
     }
+  }
+  
+  void EnemyController::RenderGui() {
+    ImGui::Text(" On Ground         | %s", on_ground_ ? "True" : "False");
+    ImGui::Text(" Stomp             | %s", stopm_ ? "True" : "False");
+    ImGui::Text(" Is Dead           | %s", is_dead_ ? "True" : "False");
+    ImGui::Text(" Is Dying          | %s", is_dying_ ? "True" : "False");
+    
+    ImGui::Text(" Acceleration      | %f : %f ", acceleration_.x, acceleration_.y);
+    ImGui::Text(" Velocity          | %f : %f ", velocity_.x, velocity_.y);
+    ImGui::Text(" Terminal Velocity | %f : %f ", terminal_velocity_.x, terminal_velocity_.y);
   }
   
   void GoombaController::Create(Entity entity) {
@@ -149,6 +162,10 @@ namespace mario {
     time_to_kill_ = enemy_script->time_to_kill_;
   }
   
+  void GoombaController::RenderGui() {
+    EnemyController::RenderGui();
+  }
+  
   void DuckController::Create(Entity entity) {
     entity_ = entity;
     rbc_ = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
@@ -157,7 +174,9 @@ namespace mario {
     
     auto& tc = entity_.GetComponent<TransformComponent>();
     tc.UpdateScale(X, going_right_ ? -1.0f : 1.0f);
-    height_ = 2.0f;
+    
+    if (!is_dying_)
+      height_ = 2.0f;
   }
   
   void DuckController::Update(Timestep ts) {
@@ -167,6 +186,32 @@ namespace mario {
       rbc_->reset_fixture_ = false;
     }
 
+    if (is_dying_ and !force_applied_) {
+      time_to_revive_ -= ts;
+
+      auto& qc = entity_.GetComponent<QuadComponent>();
+      if (time_to_revive_ > 0.0f and time_to_revive_ <= 1.0f ) {
+        qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Duck, EnemyState::Revive);
+      }
+      else if (time_to_revive_ <= 0.0f) {
+        height_ = 2.0f;
+        entity_.GetComponent<TransformComponent>().UpdateScale(Y, height_);
+
+        auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
+        pbc.height = 0.8f;
+        pbc.offset.y = -0.20f;
+        pbc.RecalculateColliders();
+
+        qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Duck, EnemyState::Alive);
+
+        // Add Impulse to push e out of ground while changing size
+        rbc_->ApplyImpulseToCenter({0, 1.0});
+
+        force_applied_ = false;
+        is_dying_ = false;
+        rbc_->reset_fixture_ = true;
+      }
+    }
     
     EnemyController::Update(ts, &entity_, rbc_);
   }
@@ -189,6 +234,8 @@ namespace mario {
       auto& qc = entity_.GetComponent<QuadComponent>();
       qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Duck, EnemyState::Dying);
 
+      rbc_->reset_fixture_ = true;
+      
       // Add Score only of Duck is alive
       if (!is_dying_) {
         is_dying_ = true;
@@ -218,6 +265,9 @@ namespace mario {
     
     time_to_revive_ = enemy_script->time_to_revive_;
     force_applied_ = enemy_script->force_applied_;
+  }
+  void DuckController::RenderGui() {
+    EnemyController::RenderGui();
   }
 
   struct EnemyScriptData {

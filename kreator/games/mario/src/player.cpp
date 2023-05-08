@@ -128,7 +128,7 @@ namespace mario {
       pbc.SetSize({0.5f, height_ / 2.0f});
       
       // Add Impulse to push player out of ground while changing size
-      entity_.GetComponent<RigidBodyComponent>().ApplyImpulseToCenter({0, 1.0});
+      rbc_->ApplyImpulseToCenter({0, 1.0});
     }
     else if (state_machine_->State() == PlayerState::Fire) {
       // Do Nothing for Fire for now
