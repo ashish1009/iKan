@@ -161,6 +161,10 @@ namespace mario {
         MarioPrefab::AddQuad(&run_time_entity, SpriteManager::GetTexture(SpriteType::Items), SpriteManager::GetItemSprite(item));
         MarioPrefab::AddScript(&run_time_entity, data_->item_map.at(item).scrip_name, data_->item_map.at(item).loader_fun);
       }
+      
+      if (item == Items::Fireball) {
+        run_time_entity.AddComponent<BulletComponent>();
+      }
     }
     
   private:

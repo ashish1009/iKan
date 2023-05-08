@@ -123,7 +123,7 @@ namespace ikan {
     enum class RbBodyType { Static, Kinametic, Dynamic };
     RbBodyType type = RbBodyType::Static;
 
-    bool reset_fixture_ = false;
+    bool reset_fixture = false;
     bool is_ground = false;
     bool fixed_rotation = false;
     bool is_sensor = false;
@@ -140,6 +140,7 @@ namespace ikan {
     void SetVelocity(const glm::vec2& vel);
     void SetAngularVelocity(float ang_vel);
     void ApplyImpulseToCenter(const glm::vec2& imp);
+    void ApplyForceToCenter(const glm::vec2& force);
     void SetType(RbBodyType rb_type);
     
     void Copy(const RigidBodyComponent& other);

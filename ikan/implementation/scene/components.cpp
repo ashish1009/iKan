@@ -189,7 +189,7 @@ x& x::operator=(x&& other) { \
     type = other.type;
     is_ground = other.is_ground;
     is_sensor = other.is_sensor;
-    reset_fixture_ = other.reset_fixture_;
+    reset_fixture = other.reset_fixture;
     fixed_rotation =  other.fixed_rotation;
     velocity =  other.velocity;
     angular_velocity =  other.angular_velocity;
@@ -231,7 +231,11 @@ x& x::operator=(x&& other) { \
     if (runtime_body == nullptr)  return;
     ((b2Body*)runtime_body)->ApplyLinearImpulseToCenter({imp.x, imp.y}, true);
   }
-  
+  void RigidBodyComponent::ApplyForceToCenter(const glm::vec2 &force) {
+    if (runtime_body == nullptr)  return;
+    ((b2Body*)runtime_body)->ApplyForceToCenter({force.x, force.y}, true);
+  }
+
   void RigidBodyComponent::SetType(RbBodyType rb_type) {
     type = rb_type;
     ((b2Body*)runtime_body)->SetType(B2BodyType(type));

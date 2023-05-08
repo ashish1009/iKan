@@ -44,6 +44,9 @@ namespace mario {
     void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal, Entity* entity);
     /// This function renders the data in Gui
     void RenderGui();
+    /// This function dies the enemy
+    /// - Parameter entity: entity of player
+    void Die(Entity* entity);
     
     static constexpr float free_fall_factor = 1.0f;
     static constexpr glm::vec2 terminal_velocity_ = {8.1f, 18.1f};
@@ -53,9 +56,11 @@ namespace mario {
     bool on_ground_ = false;
     bool going_right_ = true;
     bool stopm_ = false;
+    bool die_animation_ = false;
     
     float height_ = 1.0f;
-    
+    float die_animation_time_ = 1.0f;
+
     float walk_speed_ = 4.0f;
     glm::vec2 acceleration_;
     glm::vec2 velocity_;

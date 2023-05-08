@@ -64,6 +64,10 @@ namespace mario {
       return;
     }
     
+    if (collided_entity->HasComponent<BulletComponent>()) {
+      Die(entity);
+    }
+    
     if (PlayerController::IsPlayer(collided_entity)) {
       PlayerController* pc = PlayerController::Get();
       if (contact_normal.y > 0.58f) {
@@ -80,6 +84,18 @@ namespace mario {
 
       going_right_ = contact_normal.x < 0.0f;
     }
+  }
+  
+  void EnemyController::Die(Entity* entity) {
+    auto& tc = entity->GetComponent<TransformComponent>();
+    tc.UpdateScale(Y, tc.Scale().y * -1.0f);
+    
+    auto& rbc = entity->GetComponent<RigidBodyComponent>();
+    rbc.is_sensor = true;
+    rbc.reset_fixture = true;
+    
+    die_animation_ = true;
+    is_dead_ = true;
   }
   
   void EnemyController::RenderGui() {
@@ -102,10 +118,10 @@ namespace mario {
   
   void GoombaController::Update(Timestep ts) {
     // If Fixture need to be reset
-    if (rbc_->reset_fixture_) {
+    if (rbc_->reset_fixture) {
       const auto& cc = entity_.GetComponent<CircleColliiderComponent>();
       Scene::ResetCircleColliderFixture(entity_.GetComponent<TransformComponent>(), rbc_, cc);
-      rbc_->reset_fixture_ = false;
+      rbc_->reset_fixture = false;
     }
     
     // Destory the entity if enemy is dead after stomp
@@ -115,6 +131,21 @@ namespace mario {
       if (time_to_kill_ <= 0) {
         entity_.scene_->DestroyEntity(entity_);
         is_dead_ = true;
+      }
+      return;
+    }
+    
+    if (die_animation_) {
+      die_animation_time_ -= ts;
+      if (die_animation_time_ > 0.8f) {
+        rbc_->ApplyForceToCenter({5.0f, 20.0f});
+      }
+      else if (die_animation_time_ <= 0.8f and die_animation_time_ > 0.0f) {
+        rbc_->ApplyForceToCenter({5.0f, -20.0f});
+      }
+      else if (die_animation_time_ <= 0.0f) {
+        entity_.scene_->DestroyEntity(entity_);
+        die_animation_ = false;
       }
       return;
     }
@@ -130,7 +161,7 @@ namespace mario {
       rbc_->SetVelocity({0, 0});
       rbc_->SetAngularVelocity(0.0f);
       rbc_->is_sensor = true;
-      rbc_->reset_fixture_ = true;
+      rbc_->reset_fixture = true;
       
       auto& qc = entity_.GetComponent<QuadComponent>();
       qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Goomba, EnemyState::Dying);
@@ -151,8 +182,10 @@ namespace mario {
     stopm_ = enemy_script->stopm_;
     going_right_ = enemy_script->going_right_;
     on_ground_ = enemy_script->on_ground_;
+    die_animation_ = enemy_script->die_animation_;
     
     height_ = enemy_script->height_;
+    die_animation_time_ = enemy_script->die_animation_time_;
 
     acceleration_ = enemy_script->acceleration_;
     velocity_ = enemy_script->velocity_;
@@ -179,10 +212,30 @@ namespace mario {
   }
   
   void TurtleController::Update(Timestep ts) {
-    if (rbc_->reset_fixture_) {
+    if (rbc_->reset_fixture) {
       const auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
       Scene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), rbc_, pbc);
-      rbc_->reset_fixture_ = false;
+      rbc_->reset_fixture = false;
+      
+      if (is_dead_) {
+        entity_.GetComponent<TransformComponent>().UpdateScale(Y, 1.0f);
+        entity_.GetComponent<QuadComponent>().sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Turtle, EnemyState::Dying);
+      }
+    }
+    
+    if (die_animation_) {
+      die_animation_time_ -= ts;
+      if (die_animation_time_ > 0.8f) {
+        rbc_->ApplyForceToCenter({5.0f, 50.0f});
+      }
+      else if (die_animation_time_ <= 0.8f and die_animation_time_ > 0.0f) {
+        rbc_->ApplyForceToCenter({5.0f, -50.0f});
+      }
+      else if (die_animation_time_ <= 0.0f) {
+        entity_.scene_->DestroyEntity(entity_);
+        die_animation_ = false;
+      }
+      return;
     }
 
     if (is_dying_ and !force_applied_) {
@@ -208,7 +261,7 @@ namespace mario {
 
         SetAppliedForce(false);
         is_dying_ = false;
-        rbc_->reset_fixture_ = true;
+        rbc_->reset_fixture = true;
       }
     }
     
@@ -245,7 +298,7 @@ namespace mario {
       auto& qc = entity_.GetComponent<QuadComponent>();
       qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Turtle, EnemyState::Dying);
 
-      rbc_->reset_fixture_ = true;
+      rbc_->reset_fixture = true;
             
       // Add Score only of Turtle is alive
       if (!is_dying_) {
@@ -278,8 +331,10 @@ namespace mario {
     stopm_ = enemy_script->stopm_;
     going_right_ = enemy_script->going_right_;
     on_ground_ = enemy_script->on_ground_;
+    die_animation_ = enemy_script->die_animation_;
     
     height_ = enemy_script->height_;
+    die_animation_time_ = enemy_script->die_animation_time_;
 
     acceleration_ = enemy_script->acceleration_;
     velocity_ = enemy_script->velocity_;
