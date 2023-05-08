@@ -64,7 +64,7 @@ namespace ikan {
     std::shared_ptr<Texture> deleted_texture;
     
     float main_width = ImGui::GetWindowContentRegionWidth();
-    static ImVec2 init_pos = ImGui::GetCursorPos();
+    ImVec2 init_pos = ImGui::GetCursorPos();
 
     int32_t item_idx = 0;
     int32_t line = 0;
