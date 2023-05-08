@@ -23,7 +23,7 @@ namespace editor {
     std::string GameName() const override { return "Kreator Editor"; }
     glm::vec4 GetBgColor() const override { return {0.5f, 0.2f, 0.2f, 1.0f}; }
     std::string GetScenePath() const override { return DM::WorkspacePath("/kreator/games/editor/scenes/"); }
-    std::string SavedScene() const override { return GetScenePath() + "first_scene.ikanScene"; };
+    std::string SavedScene() const override { return GetScenePath() + "Editor.ikanScene"; };
     std::string CbpRootDir() const override { return GetScenePath(); };
     Font RegularFontData() const override { return {DM::ClientAsset("fonts/Opensans/Regular.ttf"), 14}; };
     Font BoldFontData() const override { return {DM::ClientAsset("fonts/Opensans/Bold.ttf"), 14}; };

@@ -115,8 +115,14 @@ namespace ikan {
     
     void ClearSprites() { sprite_images.clear(); }
     void ResetAnimIndx() {
-      if (anim_idx >= speed * sprite_images.size() or anim_idx < 1)
-        anim_idx = 0;
+      if (use_sub_texture) {
+        if (anim_idx >= speed * sprite_images.size() or anim_idx < 1)
+          anim_idx = 0;
+      }
+      else {
+        if (anim_idx >= speed * texture.size() or anim_idx < 1)
+          anim_idx = 0;
+      }
     }
     
     SpriteComponent(const std::shared_ptr<Texture>& comp = nullptr, bool use = true);
@@ -140,7 +146,8 @@ namespace ikan {
       ImGui::Text("Quad Color");
       
       ImGui::Columns(1);
-
+      ImGui::Separator();
+      
       // Check box to togle use of texture
       PropertyGrid::CheckBox("Use Texure", use);
       PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
@@ -157,8 +164,6 @@ namespace ikan {
         PropertyGrid::Float1("Tiling Factor", tiling_factor, nullptr, 1.0f, 1.0f, MIN_FLT, 1000.0f);
         PropertyGrid::HoveredMsg("Tiling Factor");
       }
-      ImGui::Separator();
-
       ImGui::Separator();
 
       ImGui::Columns(2);

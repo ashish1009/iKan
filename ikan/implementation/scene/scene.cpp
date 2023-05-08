@@ -334,7 +334,17 @@ namespace ikan {
         }
         // Only Texture
         else {
-          Batch2DRenderer::DrawQuad(transform_comp.Transform(), sprite.texture.at(0), quad_comp.color, sprite.tiling_factor, (uint32_t)quad_entity);
+          // Sprite Animation
+          if (sprite.texture.size() > 1) {
+            sprite.ResetAnimIndx();
+            Batch2DRenderer::DrawQuad(transform_comp.Transform(), sprite.texture[sprite.anim_idx / sprite.speed], quad_comp.color, sprite.tiling_factor,
+                                      (uint32_t)quad_entity);
+            sprite.anim_idx++;
+          }
+          // Sprite No Animation
+          else if (sprite.texture.size() == 1) {
+            Batch2DRenderer::DrawQuad(transform_comp.Transform(), sprite.texture.at(0), quad_comp.color, sprite.tiling_factor, (uint32_t)quad_entity);
+          }
         }
       }
       else {
