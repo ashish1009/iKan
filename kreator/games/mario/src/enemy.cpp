@@ -142,11 +142,11 @@ namespace mario {
     on_ground_ = enemy_script->on_ground_;
     
     height_ = enemy_script->height_;
-    
-    time_to_kill_ = enemy_script->time_to_kill_;
 
     acceleration_ = enemy_script->acceleration_;
     velocity_ = enemy_script->velocity_;
+    
+    time_to_kill_ = enemy_script->time_to_kill_;
   }
   
   void DuckController::Create(Entity entity) {
@@ -161,11 +161,43 @@ namespace mario {
   }
   
   void DuckController::Update(Timestep ts) {
+    if (rbc_->reset_fixture_) {
+      const auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
+      Scene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), rbc_, pbc);
+      rbc_->reset_fixture_ = false;
+    }
+
+    
     EnemyController::Update(ts, &entity_, rbc_);
   }
   
   void DuckController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
     EnemyController::PreSolve(collided_entity, contact, contact_normal, &entity_);
+    
+    if (stopm_) {
+      stopm_ = false;
+      time_to_revive_ = 5.0f;
+
+      height_ = 1.0f;
+      entity_.GetComponent<TransformComponent>().UpdateScale(Y, height_);
+      
+      auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
+      pbc.height = 0.5f;
+      pbc.offset.y = 0.0f;
+      pbc.RecalculateColliders();
+      
+      auto& qc = entity_.GetComponent<QuadComponent>();
+      qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Duck, EnemyState::Dying);
+
+      // Add Score only of Duck is alive
+      if (!is_dying_) {
+        is_dying_ = true;
+
+        const auto& tc = entity_.GetComponent<TransformComponent>();
+        RuntimeItemManager::Spawn(Items::Score, entity_.scene_, {tc.Position().x, tc.Position().y + 1}, score::EnemyKill);
+        PlayerController::Get()->AddScore(score::EnemyKill);
+      }
+    }
   }
   
   void DuckController::Copy(void *script) {
@@ -180,9 +212,12 @@ namespace mario {
     on_ground_ = enemy_script->on_ground_;
     
     height_ = enemy_script->height_;
-    
+
     acceleration_ = enemy_script->acceleration_;
     velocity_ = enemy_script->velocity_;
+    
+    time_to_revive_ = enemy_script->time_to_revive_;
+    force_applied_ = enemy_script->force_applied_;
   }
 
   struct EnemyScriptData {

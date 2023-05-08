@@ -112,7 +112,9 @@ namespace mario {
     duck_sprite[EnemyState::Alive].push_back(SubTexture::CreateFromCoords(enemy_sprite, {6.0f, 6.0f}, {1.0f, 2.0f}));
     duck_sprite[EnemyState::Alive].push_back(SubTexture::CreateFromCoords(enemy_sprite, {7.0f, 6.0f}, {1.0f, 2.0f}));
     duck_sprite[EnemyState::Dying].push_back(SubTexture::CreateFromCoords(enemy_sprite, {10.0f, 6.0f}));
-    duck_sprite[EnemyState::Dying].push_back(SubTexture::CreateFromCoords(enemy_sprite, {11.0f, 6.0f}));
+
+    duck_sprite[EnemyState::Revive].push_back(SubTexture::CreateFromCoords(enemy_sprite, {11.0f, 6.0f}));
+    duck_sprite[EnemyState::Revive].push_back(SubTexture::CreateFromCoords(enemy_sprite, {10.0f, 6.0f}));
 
     MARIO_LOG("Initialised the Sprite Manager");
   }

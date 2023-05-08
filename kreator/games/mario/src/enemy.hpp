@@ -16,7 +16,7 @@ namespace mario {
   };
   
   enum class EnemyState {
-    Alive, Dying, Dead
+    Alive, Dying, Dead, Revive
   };
   
   class EnemyController {
@@ -76,6 +76,10 @@ namespace mario {
     void Update(Timestep ts) override;
     void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
     void Copy(void* script) override;
+    
+  private:
+    bool force_applied_ = false;
+    float time_to_revive_ = 2.5f;
   };
   
   struct EnemyData {
