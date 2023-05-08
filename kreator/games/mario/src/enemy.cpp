@@ -166,7 +166,7 @@ namespace mario {
     EnemyController::RenderGui();
   }
   
-  void DuckController::Create(Entity entity) {
+  void TurtleController::Create(Entity entity) {
     entity_ = entity;
     rbc_ = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
     
@@ -179,7 +179,7 @@ namespace mario {
       height_ = 2.0f;
   }
   
-  void DuckController::Update(Timestep ts) {
+  void TurtleController::Update(Timestep ts) {
     if (rbc_->reset_fixture_) {
       const auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
       Scene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), rbc_, pbc);
@@ -191,7 +191,7 @@ namespace mario {
 
       auto& qc = entity_.GetComponent<QuadComponent>();
       if (time_to_revive_ > 0.0f and time_to_revive_ <= 1.0f ) {
-        qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Duck, EnemyState::Revive);
+        qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Turtle, EnemyState::Revive);
       }
       else if (time_to_revive_ <= 0.0f) {
         height_ = 2.0f;
@@ -202,7 +202,7 @@ namespace mario {
         pbc.offset.y = -0.20f;
         pbc.RecalculateColliders();
 
-        qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Duck, EnemyState::Alive);
+        qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Turtle, EnemyState::Alive);
 
         // Add Impulse to push e out of ground while changing size
         rbc_->ApplyImpulseToCenter({0, 1.0});
@@ -216,7 +216,7 @@ namespace mario {
     EnemyController::Update(ts, &entity_, rbc_);
   }
   
-  void DuckController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
+  void TurtleController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
     EnemyController::PreSolve(collided_entity, contact, contact_normal, &entity_);
     
     if (stopm_) {
@@ -232,11 +232,11 @@ namespace mario {
       pbc.RecalculateColliders();
       
       auto& qc = entity_.GetComponent<QuadComponent>();
-      qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Duck, EnemyState::Dying);
+      qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Turtle, EnemyState::Dying);
 
       rbc_->reset_fixture_ = true;
       
-      // Add Score only of Duck is alive
+      // Add Score only of Turtle is alive
       if (!is_dying_) {
         is_dying_ = true;
 
@@ -247,9 +247,12 @@ namespace mario {
     }
   }
   
-  void DuckController::Copy(void *script) {
+  void TurtleController::SetAppliedForce(bool force) {
+  }
+  
+  void TurtleController::Copy(void *script) {
     if (!script) return;
-    DuckController* enemy_script = reinterpret_cast<DuckController*>(script);
+    TurtleController* enemy_script = reinterpret_cast<TurtleController*>(script);
     IK_ASSERT(enemy_script);
     
     is_dead_ = enemy_script->is_dead_;
@@ -266,7 +269,7 @@ namespace mario {
     time_to_revive_ = enemy_script->time_to_revive_;
     force_applied_ = enemy_script->force_applied_;
   }
-  void DuckController::RenderGui() {
+  void TurtleController::RenderGui() {
     EnemyController::RenderGui();
   }
 
@@ -279,10 +282,10 @@ namespace mario {
     data = std::make_shared<EnemyScriptData>();
     
     static auto goomba_load_fn = ScriptLoader(mario::GoombaController);
-    static auto duck_load_fn = ScriptLoader(mario::DuckController);
+    static auto turtle_load_fn = ScriptLoader(mario::TurtleController);
     
     data->script_map[EnemyType::Goomba] = {EnemyType::Goomba, goomba_load_fn, "mario::GoombaController"};
-    data->script_map[EnemyType::Duck] = {EnemyType::Duck, duck_load_fn, "mario::DuckController"};
+    data->script_map[EnemyType::Turtle] = {EnemyType::Turtle, turtle_load_fn, "mario::TurtleController"};
   }
   void EnemyManager::Shutdown() {
     data.reset();
@@ -300,7 +303,7 @@ namespace mario {
   
   EnemyType EnemyManager::GetType(const std::string& tag) {
     if (tag == "Goomba") return EnemyType::Goomba;
-    if (tag == "Duck") return EnemyType::Duck;
+    if (tag == "Turtle") return EnemyType::Turtle;
     return EnemyType::None;
   }
   
@@ -308,7 +311,7 @@ namespace mario {
     const EnemyData& data = GetData(type);
     switch (type) {
       case EnemyType::Goomba: return MarioPrefab::AddScript<mario::GoombaController>(entity, data.script_name, data.loader_fun);
-      case EnemyType::Duck: return MarioPrefab::AddScript<mario::DuckController>(entity, data.script_name, data.loader_fun);
+      case EnemyType::Turtle: return MarioPrefab::AddScript<mario::TurtleController>(entity, data.script_name, data.loader_fun);
       default: return nullptr;
         break;
     }

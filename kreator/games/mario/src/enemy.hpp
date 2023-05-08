@@ -12,7 +12,7 @@ namespace mario {
   using namespace ikan;
   
   enum class EnemyType {
-    None, Goomba, Duck
+    None, Goomba, Turtle
   };
   
   enum class EnemyState {
@@ -73,7 +73,7 @@ namespace mario {
     float time_to_kill_ = 0.5f;
   };
 
-  class DuckController : public ScriptableEntity, EnemyController {
+  class TurtleController : public ScriptableEntity, EnemyController {
   public:
     void Create(Entity entity) override;
     void Update(Timestep ts) override;
@@ -82,8 +82,12 @@ namespace mario {
     void RenderGui() override;
     
   private:
+    /// This function apply force to Turtle
+    /// - Parameter force: force value
+    void SetAppliedForce(bool force);
+    
     bool force_applied_ = false;
-    float time_to_revive_ = 2.5f;
+    float time_to_revive_ = 2.0f;
   };
   
   struct EnemyData {

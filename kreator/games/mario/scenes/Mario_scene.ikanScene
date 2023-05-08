@@ -478,7 +478,7 @@ Entities:
       Script_name_: mario::GoombaController
   - Entity: 3662308425070215591
     TagComponent:
-      Tag: Duck
+      Tag: Turtle
     TransformComponent:
       Translation: [2.024055, -6.5, 0]
       Rotation: [0, 0, 0]
@@ -513,10 +513,10 @@ Entities:
       Width: 0.5
       Height: 0.800000012
     NativeScriptComponent:
-      Script_name_: mario::DuckController
+      Script_name_: mario::TurtleController
   - Entity: 15922037361858494810
     TagComponent:
-      Tag: Duck
+      Tag: Turtle
     TransformComponent:
       Translation: [9.02405548, -0.5, 0]
       Rotation: [0, 0, 0]
@@ -551,7 +551,7 @@ Entities:
       Width: 0.5
       Height: 0.800000012
     NativeScriptComponent:
-      Script_name_: mario::DuckController
+      Script_name_: mario::TurtleController
   - Entity: 11510753235173871619
     TagComponent:
       Tag: Brick
