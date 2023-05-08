@@ -135,42 +135,47 @@ namespace ikan {
       ImGui::Columns(2);
       ImGui::SetColumnWidth(0, 60);
       
-      if (LoadTextureIcon(texture)) {
-        LoadTexture(texture.at(0));
-      }
-      ImGui::NextColumn();
-      
-      // Check box to togle use of texture
-      ImGui::Checkbox("Use ", &use);
-      PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
-      if (use and texture.size() > 0) {
-        ImGui::SameLine();
-        if (ImGui::Checkbox("Linear Edge", &linear_edge)) {
-          ChangeLinearTexture();
+      if (type == Type::Texture) {
+        if (LoadTextureIcon(texture)) {
+          LoadTexture(texture.at(0));
         }
-        PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+        ImGui::NextColumn();
         
-        ImGui::SameLine();
-        ImGui::Checkbox("Sprite", &use_sub_texture);
+        // Check box to togle use of texture
+        ImGui::Checkbox("Use ", &use);
         PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
-      }
-      ui_function();
-      
-      if (use) {
-        ImGui::SameLine();
-        ImGui::DragFloat("", &tiling_factor, 1.0f, 1.0f, 1000.0f);
-        PropertyGrid::HoveredMsg("Tiling Factor");
+        if (use and texture.size() > 0) {
+          ImGui::SameLine();
+          if (ImGui::Checkbox("Linear Edge", &linear_edge)) {
+            ChangeLinearTexture();
+          }
+          PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+          
+          ImGui::SameLine();
+          ImGui::Checkbox("Sprite", &use_sub_texture);
+          PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+        }
+        ui_function();
+        
+        if (use) {
+          ImGui::SameLine();
+          ImGui::DragFloat("", &tiling_factor, 1.0f, 1.0f, 1000.0f);
+          PropertyGrid::HoveredMsg("Tiling Factor");
+          ImGui::Columns(1);
+          
+          // Selection of type Animation or Sprite
+          ImGui::Separator();
+          
+          if (use_sub_texture) {
+            SubtextureGui();
+          } // if Sub texture
+        } // If Use Texture
+        
         ImGui::Columns(1);
+      }
+      else {
         
-        // Selection of type Animation or Sprite
-        ImGui::Separator();
-        
-        if (use_sub_texture and type == Type::Texture) {
-          SubtextureGui();
-        } // if Sub texture
-      } // If Use Texture
-      
-      ImGui::Columns(1);
+      }
     }
     
   private:

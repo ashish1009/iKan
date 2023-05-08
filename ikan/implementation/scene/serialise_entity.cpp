@@ -224,7 +224,7 @@ namespace ikan {
         out << YAML::Key << "Num_Texture_Path" << YAML::Value << i;
       }
       else {
-        out << YAML::Key << "Texture_Path" << YAML::Value << "";
+        out << YAML::Key << "Num_Texture_Path" << YAML::Value << 0;
       }
       out << YAML::Key << "Texture_TilingFactor" << YAML::Value << qc.sprite.tiling_factor;
       out << YAML::Key << "Color" << YAML::Value << qc.color;
@@ -260,7 +260,7 @@ namespace ikan {
         out << YAML::Key << "Num_Texture_Path" << YAML::Value << i;
       }
       else {
-        out << YAML::Key << "Texture_Path" << YAML::Value << "";
+        out << YAML::Key << "Num_Texture_Path" << YAML::Value << 0;
       }
       
       out << YAML::Key << "Texture_TilingFactor" << YAML::Value << cc.texture_comp.tiling_factor;
