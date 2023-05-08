@@ -215,8 +215,13 @@ namespace ikan {
       out << YAML::Key << "Sub_Texture_Use" << YAML::Value << qc.sprite.use_sub_texture;
       out << YAML::Key << "Linear_Edge" << YAML::Value << qc.sprite.linear_edge;
       
-      if (qc.sprite.texture) {
-        out << YAML::Key << "Texture_Path" << YAML::Value << qc.sprite.texture->GetfilePath();
+      if (qc.sprite.texture.size() > 0) {
+        int32_t i = 0;
+        for (;i < (int32_t)qc.sprite.texture.size(); i++) {
+          std::string tag = "Texture_Path_" + std::to_string(i);
+          out << YAML::Key << tag << YAML::Value << qc.sprite.texture.at(i)->GetfilePath();
+        }
+        out << YAML::Key << "Num_Texture_Path" << YAML::Value << i;
       }
       else {
         out << YAML::Key << "Texture_Path" << YAML::Value << "";
@@ -246,10 +251,17 @@ namespace ikan {
       auto& cc = entity.GetComponent<CircleComponent>();
       out << YAML::Key << "Texture_Use" << YAML::Value << cc.texture_comp.use;
       
-      if (cc.texture_comp.texture)
-        out << YAML::Key << "Texture_Path" << YAML::Value << cc.texture_comp.texture->GetfilePath();
-      else
+      if (cc.texture_comp.texture.size() > 0) {
+        int32_t i = 0;
+        for (;i < (int32_t)cc.texture_comp.texture.size(); i++) {
+          std::string tag = "Texture_Path_" + std::to_string(i);
+          out << YAML::Key << tag << YAML::Value << cc.texture_comp.texture.at(i)->GetfilePath();
+        }
+        out << YAML::Key << "Num_Texture_Path" << YAML::Value << i;
+      }
+      else {
         out << YAML::Key << "Texture_Path" << YAML::Value << "";
+      }
       
       out << YAML::Key << "Texture_TilingFactor" << YAML::Value << cc.texture_comp.tiling_factor;
       out << YAML::Key << "Color" << YAML::Value << cc.color;
@@ -395,11 +407,15 @@ namespace ikan {
       qc.sprite.use_sub_texture = quad_component["Sub_Texture_Use"].as<bool>();
       qc.sprite.linear_edge = quad_component["Linear_Edge"].as<bool>();
       
-      std::string texture_path = quad_component["Texture_Path"].as<std::string>();
-      if (texture_path != "") {
-        qc.sprite.texture = Renderer::GetTexture(texture_path, qc.sprite.linear_edge);        
+      int32_t num_tex = quad_component["Num_Texture_Path"].as<int32_t>();
+      if (num_tex > 0) {
+        for (int32_t i = 0; i < num_tex; i++) {
+          std::string texture_path = quad_component["Texture_Path_" + std::to_string(i)].as<std::string>();
+          if (texture_path != "") {
+            qc.sprite.texture.push_back(Renderer::GetTexture(texture_path, qc.sprite.linear_edge));
+          }
+        }
       }
-      
       qc.sprite.tiling_factor = quad_component["Texture_TilingFactor"].as<float>();
       qc.color = quad_component["Color"].as<glm::vec4>();
       
@@ -410,14 +426,16 @@ namespace ikan {
         auto coord = quad_component["Coords" + std::to_string(i)].as<glm::vec2>();
         auto sprite_size = quad_component["Sprite_Size" + std::to_string(i)].as<glm::vec2>();
         auto cell_size = quad_component["Cell_Size" + std::to_string(i)].as<glm::vec2>();
-        qc.sprite.sprite_images.push_back(SubTexture::CreateFromCoords(qc.sprite.texture, coord, sprite_size, cell_size));
+        qc.sprite.sprite_images.push_back(SubTexture::CreateFromCoords(qc.sprite.texture.at(0), coord, sprite_size, cell_size));
       }
       
       IK_CORE_TRACE(LogModule::EntitySerializer, "    Quad Component");
       IK_CORE_TRACE(LogModule::EntitySerializer, "      Texture");
       IK_CORE_TRACE(LogModule::EntitySerializer, "        Use             | {0}", qc.sprite.use);
-      if (qc.sprite.texture)
-        IK_CORE_TRACE(LogModule::EntitySerializer, "        Path            | {0}", qc.sprite.texture->GetfilePath());
+      if (qc.sprite.texture.size()) {
+        for (auto& t : qc.sprite.texture)
+          IK_CORE_TRACE(LogModule::EntitySerializer, "        Path            | {0}", t->GetfilePath());
+      }
       else
         IK_CORE_TRACE(LogModule::EntitySerializer, "        No Texture      ");
       IK_CORE_TRACE(LogModule::EntitySerializer, "        Tiling Factor   | {0}", qc.sprite.tiling_factor);
@@ -433,8 +451,15 @@ namespace ikan {
       cc.texture_comp.use = circle_component["Texture_Use"].as<bool>();
       
       std::string texture_path = circle_component["Texture_Path"].as<std::string>();
-      if (texture_path != "")
-        cc.texture_comp.texture = Renderer::GetTexture(texture_path);
+      int32_t num_tex = quad_component["Num_Texture_Path"].as<int32_t>();
+      if (num_tex > 0) {
+        for (int32_t i = 0; i < num_tex; i++) {
+          std::string texture_path = quad_component["Texture_Path_" + std::to_string(i)].as<std::string>();
+          if (texture_path != "") {
+            cc.texture_comp.texture.push_back(Renderer::GetTexture(texture_path));
+          }
+        }
+      }
       
       cc.texture_comp.tiling_factor = circle_component["Texture_TilingFactor"].as<float>();
       
@@ -445,8 +470,10 @@ namespace ikan {
       IK_CORE_TRACE(LogModule::EntitySerializer, "    Circle Component");
       IK_CORE_TRACE(LogModule::EntitySerializer, "      Texture");
       IK_CORE_TRACE(LogModule::EntitySerializer, "        Use             | {0}", cc.texture_comp.use);
-      if (cc.texture_comp.texture)
-        IK_CORE_TRACE(LogModule::EntitySerializer, "        Path            | {0}", cc.texture_comp.texture->GetfilePath());
+      if (cc.texture_comp.texture.size()) {
+        for (auto& t : cc.texture_comp.texture)
+          IK_CORE_TRACE(LogModule::EntitySerializer, "        Path            | {0}", t->GetfilePath());
+      }
       else
         IK_CORE_TRACE(LogModule::EntitySerializer, "        No Texture      ");
       IK_CORE_TRACE(LogModule::EntitySerializer, "        Tiling Factor   | {0}", cc.texture_comp.tiling_factor);

@@ -9,19 +9,31 @@
 
 namespace ikan {
   
-  TextureComponent::TextureComponent(const std::shared_ptr<Texture>& comp, bool use) : use(use), texture(comp) { }
+  TextureComponent::TextureComponent(const std::shared_ptr<Texture>& comp, bool use) : use(use) {
+    texture.push_back(comp);
+  }
   TextureComponent::TextureComponent(const TextureComponent& other) : use(other.use), tiling_factor(other.tiling_factor) {
-    if (other.texture) texture = Renderer::GetTexture(other.texture->GetfilePath());
+    if (other.texture.size() > 0){
+      for (auto& t : other.texture)
+        texture.push_back(Renderer::GetTexture(t->GetfilePath()));
+    }
     IK_CORE_INFO(LogModule::Texture, "Copying TextureComponent");
   }
   
   TextureComponent::TextureComponent(TextureComponent&& other) : use(other.use), tiling_factor(other.tiling_factor) {
-    if (other.texture) texture = Renderer::GetTexture(other.texture->GetfilePath());
+    if (other.texture.size() > 0){
+      for (auto& t : other.texture)
+        texture.push_back(Renderer::GetTexture(t->GetfilePath()));
+    }
     IK_CORE_INFO(LogModule::Texture, "Moving TextureComponent");
   }
   
   TextureComponent& TextureComponent::operator=(const TextureComponent& other) {
-    if (other.texture) texture = Renderer::GetTexture(other.texture->GetfilePath());
+    if (other.texture.size() > 0){
+      for (auto& t : other.texture)
+        texture.push_back(Renderer::GetTexture(t->GetfilePath()));
+    }
+
     use = other.use;
     tiling_factor = other.tiling_factor;
     IK_CORE_INFO(LogModule::Texture, "Copying TextureComponent (=operator)");
@@ -29,7 +41,11 @@ namespace ikan {
   }
   
   TextureComponent& TextureComponent::operator=(TextureComponent&& other) {
-    if (other.texture) texture = Renderer::GetTexture(other.texture->GetfilePath());
+    if (other.texture.size() > 0){
+      for (auto& t : other.texture)
+        texture.push_back(Renderer::GetTexture(t->GetfilePath()));
+    }
+
     use = other.use;
     tiling_factor = other.tiling_factor;
     IK_CORE_INFO(LogModule::Texture, "Moving TextureComponent (=operator)");
@@ -39,8 +55,14 @@ namespace ikan {
   SpriteComponent::SpriteComponent(const std::shared_ptr<Texture>& tex, bool use_tex) {
     IK_CORE_TRACE(LogModule::Texture, "Creating SpriteComponent");
     use = use_tex;
-    texture = tex;
-    if (texture) sprite_images.emplace_back(SubTexture::CreateFromCoords(texture, {0.0f, 0.0f}));
+    ClearTextures();
+    
+    if (tex) {
+      texture.push_back(tex);
+    }
+    
+    if (texture.size() > 0)
+      sprite_images.emplace_back(SubTexture::CreateFromCoords(texture.at(0), {0.0f, 0.0f}));
   }
   
   SpriteComponent::~SpriteComponent() {
@@ -95,11 +117,13 @@ namespace ikan {
   }
   
   void SpriteComponent::LoadTexture(const SpriteComponent& other) {
-    texture = nullptr;
+    ClearTextures();
     ClearSprites();
     
-    if (other.texture) {
-      texture = Renderer::GetTexture(other.texture->GetfilePath(), other.linear_edge);
+    if (other.texture.size() > 0) {
+      for(auto& t : other.texture) {
+        texture.push_back(Renderer::GetTexture(t->GetfilePath(), other.linear_edge));
+      }
       for (const auto& sprite : other.sprite_images) {
         sprite_images.emplace_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
                                                                 sprite->GetSpriteSize(), sprite->GetCellSize()));
@@ -108,18 +132,21 @@ namespace ikan {
   }
   
   void SpriteComponent::ChangeLinearTexture() {
-    // Need to copy so not using reference as texture will deleted
-    const std::string tex_path = texture->GetfilePath();
-    
-    texture.reset();
-    texture = Renderer::GetTexture(tex_path, linear_edge);
-    
-    for (auto& sprite : sprite_images) {
-      const glm::vec2 coords = sprite->GetCoords();
-      const glm::vec2 sprite_size = sprite->GetSpriteSize();
-      const glm::vec2 cell_size = sprite->GetCellSize();
-
-      sprite = SubTexture::CreateFromCoords(texture, coords, sprite_size, cell_size);
+    for (auto& t : texture) {
+      // Need to copy so not using reference as texture will deleted
+      const std::string tex_path = t->GetfilePath();
+      
+      t.reset();
+      t = Renderer::GetTexture(tex_path, linear_edge);
+    }
+    if (texture.size() > 0) {
+      for (auto& sprite : sprite_images) {
+        const glm::vec2 coords = sprite->GetCoords();
+        const glm::vec2 sprite_size = sprite->GetSpriteSize();
+        const glm::vec2 cell_size = sprite->GetCellSize();
+        
+        sprite = SubTexture::CreateFromCoords(texture.at(0), coords, sprite_size, cell_size);
+      }
     }
   }
   
@@ -159,15 +186,15 @@ namespace ikan {
     
     if (PropertyGrid::Float2("Coords", coords, nullptr, 0.1f, 0.0f, 0.0f, MAX_FLT, 100)) {
       sub_texture->GetSpriteImage().reset();
-      sub_texture = SubTexture::CreateFromCoords(texture, coords, sprite_size, cell_size);
+      sub_texture = SubTexture::CreateFromCoords(texture.at(0), coords, sprite_size, cell_size);
     }
     if (PropertyGrid::Float2("Sprite Size", sprite_size, nullptr, 1.0f, 1.0f, 0.0f, MAX_FLT, 100.0f)) {
       sub_texture->GetSpriteImage().reset();
-      sub_texture = SubTexture::CreateFromCoords(texture, coords, sprite_size, cell_size);
+      sub_texture = SubTexture::CreateFromCoords(texture.at(0), coords, sprite_size, cell_size);
     }
     if (PropertyGrid::Float2("Cell Size", cell_size, nullptr, 8.0f, 16.0f, 0.0f, MAX_FLT, 100.0f)) {
       sub_texture->GetSpriteImage().reset();
-      sub_texture = SubTexture::CreateFromCoords(texture, coords, sprite_size, cell_size);
+      sub_texture = SubTexture::CreateFromCoords(texture.at(0), coords, sprite_size, cell_size);
     }
     ImGui::Separator();
     
@@ -225,7 +252,7 @@ namespace ikan {
           coords.y = (((region_y + region_fixed_y)) / (cell_size.y * size_ratio)) - sprite_size.y;
           
           sub_texture->GetSpriteImage().reset();
-          sub_texture = SubTexture::CreateFromCoords(texture, coords, sprite_size, cell_size);
+          sub_texture = SubTexture::CreateFromCoords(texture.at(0), coords, sprite_size, cell_size);
         }
         
         ImGui::EndTooltip();
@@ -264,7 +291,7 @@ namespace ikan {
         }
       }
       if (add)
-        sprite_images.push_back(SubTexture::CreateFromCoords(texture, coords, sprite_size, cell_size));
+        sprite_images.push_back(SubTexture::CreateFromCoords(texture.at(0), coords, sprite_size, cell_size));
     }
     
     static bool delete_sprite = false;

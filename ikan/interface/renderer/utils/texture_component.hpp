@@ -11,23 +11,25 @@
 
 namespace ikan {
   
-  static inline bool LoadTextureIcon(std::shared_ptr<Texture>& texture) {
+  static inline bool LoadTextureIcon(std::vector<std::shared_ptr<Texture>>& texture_vector) {
     bool texture_changed = false;
     
-    static std::shared_ptr<Texture> no_texture = Renderer::GetTexture(DM::CoreAsset("textures/default/no_texture.png"));
-    size_t tex_id = ((texture) ? texture->GetRendererID() : no_texture->GetRendererID());
-    
-    // Show the image of texture
-    ImGui::Image((void*)tex_id, ImVec2(40.0f, 40.0f), ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
-    
-    // Drop the texture here and load new texture
-    PropertyGrid::DropConent([&](const std::string& path)
-                             {
-      texture.reset();
-      texture = Renderer::GetTexture(path);
-      texture_changed = true;
-    });
-    PropertyGrid::HoveredMsg("Drop the Texture file in the Image Button to upload the texture");
+    for(auto& texture : texture_vector) {
+      static std::shared_ptr<Texture> no_texture = Renderer::GetTexture(DM::CoreAsset("textures/default/no_texture.png"));
+      size_t tex_id = ((texture) ? texture->GetRendererID() : no_texture->GetRendererID());
+      
+      // Show the image of texture
+      ImGui::Image((void*)tex_id, ImVec2(40.0f, 40.0f), ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
+      
+      // Drop the texture here and load new texture
+      PropertyGrid::DropConent([&](const std::string& path)
+                               {
+        texture.reset();
+        texture = Renderer::GetTexture(path);
+        texture_changed = true;
+      });
+      PropertyGrid::HoveredMsg("Drop the Texture file in the Image Button to upload the texture");
+    }
     return texture_changed;
   }
   
@@ -35,8 +37,14 @@ namespace ikan {
   struct TextureComponent {
     bool use = false;
     float tiling_factor = 1.0f;
-    std::shared_ptr<Texture> texture = nullptr;
+    std::vector<std::shared_ptr<Texture>> texture;
     
+    // Animation Sprite Data
+    int32_t speed = 15;
+    int32_t anim_idx = 0; // No need to copy or save in scene. always starts from 0
+
+    void ClearTextures() { texture.clear(); }
+
     TextureComponent(const std::shared_ptr<Texture>& tex = nullptr, bool use = true);
     DEFINE_COPY_MOVE_CONSTRUCTORS(TextureComponent)
     
@@ -72,7 +80,7 @@ namespace ikan {
       
       // Check box to togle use of texture
       ImGui::Checkbox("Use ", &use);
-      if (use and texture) {
+      if (use and texture.size() > 0) {
         ImGui::DragFloat("", &tiling_factor, 1.0f, 1.0f, 1000.0f);
         PropertyGrid::HoveredMsg("Tiling Factor");
       }
@@ -88,9 +96,6 @@ namespace ikan {
     bool linear_edge = true;
     bool use_sub_texture = false;
     
-    // Animation Sprite Data
-    int32_t speed = 15;
-    int32_t anim_idx = 0; // No need to copy or save in scene. always starts from 0
     std::vector<std::shared_ptr<SubTexture>> sprite_images;
     
     void ClearSprites() { sprite_images.clear(); }
@@ -131,14 +136,14 @@ namespace ikan {
       ImGui::SetColumnWidth(0, 60);
       
       if (LoadTextureIcon(texture)) {
-        LoadTexture(texture);
+        LoadTexture(texture.at(0));
       }
       ImGui::NextColumn();
       
       // Check box to togle use of texture
       ImGui::Checkbox("Use ", &use);
       PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
-      if (use and texture) {
+      if (use and texture.size() > 0) {
         ImGui::SameLine();
         if (ImGui::Checkbox("Linear Edge", &linear_edge)) {
           ChangeLinearTexture();

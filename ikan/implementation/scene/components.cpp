@@ -160,10 +160,14 @@ x& x::operator=(x&& other) { \
     color = other.color;
     thickness = other.thickness;
     fade = other.fade;
-    if (other.texture_comp.texture) {
+    if (other.texture_comp.texture.size() > 0) {
       texture_comp.use = other.texture_comp.use;
       texture_comp.tiling_factor = other.texture_comp.tiling_factor;
-      texture_comp.texture = Renderer::GetTexture(other.texture_comp.texture->GetfilePath());
+      texture_comp.ClearTextures();
+      
+      for(auto& tex : other.texture_comp.texture) {
+        texture_comp.texture.push_back(Renderer::GetTexture(tex->GetfilePath()));
+      }
     }
   }
 

@@ -301,8 +301,8 @@ namespace ikan {
     // For all circle entity
     for (const auto& circle_entity : circle_view) {
       const auto& [transform_component, circle_component] = circle_view.get<TransformComponent, CircleComponent>(circle_entity);
-      if (circle_component.texture_comp.use and circle_component.texture_comp.texture) {
-        Batch2DRenderer::DrawCircle(transform_component.Transform(), circle_component.texture_comp.texture, circle_component.color,
+      if (circle_component.texture_comp.use and circle_component.texture_comp.texture.size() > 0) {
+        Batch2DRenderer::DrawCircle(transform_component.Transform(), circle_component.texture_comp.texture.at(0), circle_component.color,
                                     circle_component.texture_comp.tiling_factor, circle_component.thickness, circle_component.fade, (uint32_t)circle_entity);
         
       } else {
@@ -317,7 +317,7 @@ namespace ikan {
       const auto& [transform_comp, quad_comp] = quad_view.get<TransformComponent, QuadComponent>(quad_entity);
       auto& sprite = quad_comp.sprite;
       
-      if (sprite.use and sprite.texture) {
+      if (sprite.use and sprite.texture.size() > 0) {
         // Sprite
         if (sprite.use_sub_texture) {
           // Sprite Animation
@@ -334,7 +334,7 @@ namespace ikan {
         }
         // Only Texture
         else {
-          Batch2DRenderer::DrawQuad(transform_comp.Transform(), sprite.texture, quad_comp.color, sprite.tiling_factor, (uint32_t)quad_entity);
+          Batch2DRenderer::DrawQuad(transform_comp.Transform(), sprite.texture.at(0), quad_comp.color, sprite.tiling_factor, (uint32_t)quad_entity);
         }
       }
       else {

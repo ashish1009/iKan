@@ -18,8 +18,8 @@ namespace mario {
     qc->sprite.use_sub_texture = true;
     qc->sprite.linear_edge = false;
     
-    qc->sprite.texture.reset();
-    qc->sprite.texture = tex;
+    qc->sprite.ClearTextures();
+    qc->sprite.texture.push_back(tex);
     
     qc->sprite.ClearSprites();
     for (const auto& sprite : sprites) {

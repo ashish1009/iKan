@@ -124,7 +124,8 @@ namespace mario {
   void BlockController::SetInactive() {
     auto& qc = entity_.GetComponent<QuadComponent>();
     qc.sprite.ClearSprites();
-    qc.sprite.texture = SpriteManager::GetTexture(SpriteType::Items);
+    qc.sprite.ClearTextures();
+    qc.sprite.texture.push_back(SpriteManager::GetTexture(SpriteType::Items));
     qc.sprite.sprite_images = SpriteManager::GetItemSprite(Items::InactiveBlock);
         
     active_ = false;
