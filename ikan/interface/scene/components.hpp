@@ -123,7 +123,6 @@ namespace ikan {
     enum class RbBodyType { Static, Kinametic, Dynamic };
     RbBodyType type = RbBodyType::Static;
 
-    bool reset_fixture = false;
     bool is_ground = false;
     bool fixed_rotation = false;
     bool is_sensor = false;

@@ -57,6 +57,7 @@ namespace mario {
     bool going_right_ = true;
     bool stopm_ = false;
     bool die_animation_ = false;
+    bool reset_fixture_ = false;
     
     float height_ = 1.0f;
     float die_animation_time_ = 1.0f;

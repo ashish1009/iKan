@@ -41,10 +41,10 @@ namespace mario {
   
   void PlayerController::Update(Timestep ts) {
     // If player size is altered then upddate physics body
-    if (rbc_->reset_fixture) {
+    if (reset_fixture_) {
       const auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
       Scene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), rbc_, pbc);
-      rbc_->reset_fixture = false;
+      reset_fixture_ = false;
     }
 
     // If Player is powering Up then freez the player for powerup time
@@ -135,7 +135,7 @@ namespace mario {
     }
     entity_.GetComponent<TransformComponent>().UpdateScale(Y, height_);
     
-    rbc_->reset_fixture = true;
+    reset_fixture_ = true;
   }
   
   void PlayerController::CheckOnGround() {
@@ -296,6 +296,7 @@ namespace mario {
     IK_ASSERT(player_script);
     
     on_ground_ = player_script->on_ground_;
+    reset_fixture_ = player_script->reset_fixture_;
     
     width_ = player_script->width_;
     height_ = player_script->height_;
