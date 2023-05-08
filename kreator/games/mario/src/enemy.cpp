@@ -98,11 +98,12 @@ namespace mario {
     }
     
     // Destory the entity if enemy is dead after stomp
-    if (is_dead_) {
+    if (is_dying_) {
       time_to_kill_ -= ts;
       rbc_->SetVelocity({0., 0});
       if (time_to_kill_ <= 0) {
         entity_.scene_->DestroyEntity(entity_);
+        is_dead_ = true;
       }
       return;
     }
@@ -113,7 +114,7 @@ namespace mario {
   void GoombaController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
     EnemyController::PreSolve(collided_entity, contact, contact_normal, &entity_);
     if (stopm_) {
-      is_dead_ = true;
+      is_dying_ = true;
       
       rbc_->SetVelocity({0, 0});
       rbc_->SetAngularVelocity(0.0f);
@@ -135,6 +136,7 @@ namespace mario {
     IK_ASSERT(enemy_script);
     
     is_dead_ = enemy_script->is_dead_;
+    is_dying_ = enemy_script->is_dying_;
     stopm_ = enemy_script->stopm_;
     going_right_ = enemy_script->going_right_;
     on_ground_ = enemy_script->on_ground_;
@@ -172,6 +174,7 @@ namespace mario {
     IK_ASSERT(enemy_script);
     
     is_dead_ = enemy_script->is_dead_;
+    is_dying_ = enemy_script->is_dying_;
     stopm_ = enemy_script->stopm_;
     going_right_ = enemy_script->going_right_;
     on_ground_ = enemy_script->on_ground_;

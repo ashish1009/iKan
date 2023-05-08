@@ -48,6 +48,7 @@ namespace mario {
     static constexpr float walk_speed_ = 4.0f;
 
     bool is_dead_ = false;
+    bool is_dying_ = false;
     bool on_ground_ = false;
     bool going_right_ = true;
     bool stopm_ = false;
