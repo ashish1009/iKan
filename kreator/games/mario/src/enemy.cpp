@@ -115,23 +115,24 @@ namespace mario {
   
   void GoombaController::Create(Entity entity) {
     entity_ = entity;
-    rbc_ = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
-    
-    Initialize(&entity_, rbc_);
+    RigidBodyComponent* rbc = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
+    Initialize(&entity_, rbc);
   }
   
   void GoombaController::Update(Timestep ts) {
+    auto& rbc = GetComponent<RigidBodyComponent>();
+
     // If Fixture need to be reset
     if (reset_fixture_) {
       const auto& cc = entity_.GetComponent<CircleColliiderComponent>();
-      Scene::ResetCircleColliderFixture(entity_.GetComponent<TransformComponent>(), rbc_, cc);
+      Scene::ResetCircleColliderFixture(entity_.GetComponent<TransformComponent>(), &rbc, cc);
       reset_fixture_ = false;
     }
     
     // Destory the entity if enemy is dead after stomp
     if (is_dying_) {
       time_to_kill_ -= ts;
-      rbc_->SetVelocity({0., 0});
+      rbc.SetVelocity({0., 0});
       if (time_to_kill_ <= 0) {
         entity_.scene_->DestroyEntity(entity_);
         is_dead_ = true;
@@ -143,10 +144,10 @@ namespace mario {
     if (die_animation_) {
       die_animation_time_ -= ts;
       if (die_animation_time_ > 0.8f) {
-        rbc_->ApplyForceToCenter({5.0f, 20.0f});
+        rbc.ApplyForceToCenter({5.0f, 20.0f});
       }
       else if (die_animation_time_ <= 0.8f and die_animation_time_ > 0.0f) {
-        rbc_->ApplyForceToCenter({5.0f, -20.0f});
+        rbc.ApplyForceToCenter({5.0f, -20.0f});
       }
       else if (die_animation_time_ <= 0.0f) {
         entity_.scene_->DestroyEntity(entity_);
@@ -155,7 +156,7 @@ namespace mario {
       return;
     }
     
-    EnemyController::Update(ts, &entity_, rbc_);
+    EnemyController::Update(ts, &entity_, &rbc);
   }
   
   void GoombaController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
@@ -163,9 +164,10 @@ namespace mario {
     if (stopm_) {
       is_dying_ = true;
       
-      rbc_->SetVelocity({0, 0});
-      rbc_->SetAngularVelocity(0.0f);
-      rbc_->is_sensor = true;
+      auto& rbc = GetComponent<RigidBodyComponent>();
+      rbc.SetVelocity({0, 0});
+      rbc.SetAngularVelocity(0.0f);
+      rbc.is_sensor = true;
       reset_fixture_ = true;
       
       auto& qc = entity_.GetComponent<QuadComponent>();
@@ -206,9 +208,9 @@ namespace mario {
   
   void TurtleController::Create(Entity entity) {
     entity_ = entity;
-    rbc_ = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
+    RigidBodyComponent* rbc = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
     
-    Initialize(&entity_, rbc_);
+    Initialize(&entity_, rbc);
     
     auto& tc = entity_.GetComponent<TransformComponent>();
     tc.UpdateScale(X, going_right_ ? -1.0f : 1.0f);
@@ -218,9 +220,10 @@ namespace mario {
   }
   
   void TurtleController::Update(Timestep ts) {
+    auto& rbc = GetComponent<RigidBodyComponent>();
     if (reset_fixture_) {
       const auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
-      Scene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), rbc_, pbc);
+      Scene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), &rbc, pbc);
       reset_fixture_ = false;
       
       if (is_dead_) {
@@ -232,10 +235,10 @@ namespace mario {
     if (die_animation_) {
       die_animation_time_ -= ts;
       if (die_animation_time_ > 0.8f) {
-        rbc_->ApplyForceToCenter({5.0f, 50.0f});
+        rbc.ApplyForceToCenter({5.0f, 50.0f});
       }
       else if (die_animation_time_ <= 0.8f and die_animation_time_ > 0.0f) {
-        rbc_->ApplyForceToCenter({5.0f, -50.0f});
+        rbc.ApplyForceToCenter({5.0f, -50.0f});
       }
       else if (die_animation_time_ <= 0.0f) {
         entity_.scene_->DestroyEntity(entity_);
@@ -263,7 +266,7 @@ namespace mario {
         qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Turtle, EnemyState::Alive);
 
         // Add Impulse to push e out of ground while changing size
-        rbc_->ApplyImpulseToCenter({0, 1.0});
+        rbc.ApplyImpulseToCenter({0, 1.0});
 
         SetAppliedForce(false);
         is_dying_ = false;
@@ -271,7 +274,7 @@ namespace mario {
       }
     }
     
-    EnemyController::Update(ts, &entity_, rbc_);
+    EnemyController::Update(ts, &entity_, &rbc);
   }
   
   void TurtleController::PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {

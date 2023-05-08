@@ -30,9 +30,9 @@ namespace mario {
     start_pos_ = glm::vec2(entity_.GetComponent<TransformComponent>().Position());
     end_pos_ = start_pos_ + glm::vec2(0.0f, 0.3f);
     
-    rbc_ = &(GetComponent<RigidBodyComponent>());
-    rbc_->SetGravityScale(0.0f);
-    rbc_->fixed_rotation = true;
+    auto& rbc = GetComponent<RigidBodyComponent>();
+    rbc.SetGravityScale(0.0f);
+    rbc.fixed_rotation = true;
 
     MARIO_LOG("Creating Mario Block Controller");
   }
@@ -41,8 +41,9 @@ namespace mario {
     // Animation speed
     static constexpr float speed = 4.0f;
     
+    auto& rbc = GetComponent<RigidBodyComponent>();
     if (change_body_type_) {
-      rbc_->SetType(ikan::RigidBodyComponent::RbBodyType::Kinametic);
+      rbc.SetType(ikan::RigidBodyComponent::RbBodyType::Kinametic);
       animation_ = true;
       change_body_type_ = false;
     }
@@ -52,7 +53,7 @@ namespace mario {
       if (going_up_) {
         // Lift the block Up
         if (tc.Position().y < end_pos_.y) {
-          rbc_->SetVelocity({0, speed});
+          rbc.SetVelocity({0, speed});
         }
         // Send the block down
         else {
@@ -62,12 +63,12 @@ namespace mario {
       else {
         // Move block to back to original Position
         if (tc.Position().y > start_pos_.y) {
-          rbc_->SetVelocity({0, -speed});
+          rbc.SetVelocity({0, -speed});
         }
         // In case some margin left then Reset the Block Position to original
         else {
-          rbc_->SetVelocity({0, 0});
-          rbc_->SetType(ikan::RigidBodyComponent::RbBodyType::Static);
+          rbc.SetVelocity({0, 0});
+          rbc.SetType(ikan::RigidBodyComponent::RbBodyType::Static);
           tc.UpdatePosition(Y, start_pos_.y);
           going_up_ = true;
           animation_ = false;

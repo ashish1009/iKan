@@ -70,7 +70,6 @@ namespace ikan {
   protected:
     Entity entity_;
     Scene* scene_;
-    RigidBodyComponent* rbc_;
     friend class Scene;
   };
   

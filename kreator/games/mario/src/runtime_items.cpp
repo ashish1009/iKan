@@ -78,23 +78,24 @@ namespace mario {
 
   void MushroomController::Create(Entity entity) {
     entity_ = entity;
-    rbc_ = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
-    rbc_->fixed_rotation = true;
-    rbc_->SetGravityScale(0.0f);
+    RigidBodyComponent* rbc = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
+    rbc->fixed_rotation = true;
+    rbc->SetGravityScale(0.0f);
     
     CircleColliiderComponent* ccc = MarioPrefab::AddCircleCollider(&entity_);
     ccc->physics_mat.friction = 0.0f;
     
-    entity_.scene_->AddBodyToPhysicsWorld(entity_, *rbc_);
+    entity_.scene_->AddBodyToPhysicsWorld(entity_, *rbc);
     velocity_.y = entity_.scene_->Get2DWorldGravity().y * free_fall_factor;
   }
   
   void MushroomController::Update(Timestep ts) {
-    if (going_right_ and std::abs(rbc_->velocity.x) < max_speed_) {
-      rbc_->SetVelocity(velocity_);
+    auto& rbc = GetComponent<RigidBodyComponent>();
+    if (going_right_ and std::abs(rbc.velocity.x) < max_speed_) {
+      rbc.SetVelocity(velocity_);
     }
-    else if (!going_right_ and std::abs(rbc_->velocity.x) < max_speed_) {
-      rbc_->SetVelocity({-velocity_.x, velocity_.y});
+    else if (!going_right_ and std::abs(rbc.velocity.x) < max_speed_) {
+      rbc.SetVelocity({-velocity_.x, velocity_.y});
     }
     
     if (destroy_) {
@@ -124,12 +125,12 @@ namespace mario {
   void FlowerController::Create(Entity entity) {
     entity_ = entity;
 
-    rbc_ = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
-    rbc_->is_sensor = true;
-    rbc_->SetGravityScale(0.0f);
+    RigidBodyComponent* rbc = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
+    rbc->is_sensor = true;
+    rbc->SetGravityScale(0.0f);
 
     MarioPrefab::AddCircleCollider(&entity_);
-    entity_.scene_->AddBodyToPhysicsWorld(entity_, *rbc_);
+    entity_.scene_->AddBodyToPhysicsWorld(entity_, *rbc);
   }
   
   void FlowerController::Update(Timestep ts) {
@@ -151,9 +152,9 @@ namespace mario {
 
     entity_.GetComponent<TransformComponent>().UpdateScale({0.5, 0.5, 1.0f});
     
-    rbc_ = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
-    rbc_->fixed_rotation = true;
-    rbc_->SetGravityScale(0.0f);
+    RigidBodyComponent* rbc = MarioPrefab::AddRigidBody(&entity_, RigidBodyComponent::RbBodyType::Dynamic);
+    rbc->fixed_rotation = true;
+    rbc->SetGravityScale(0.0f);
     
     CircleColliiderComponent* ccc = MarioPrefab::AddCircleCollider(&entity_);
     ccc->physics_mat.friction = 0.0f;
@@ -163,7 +164,7 @@ namespace mario {
       inc_counter_ = false;
 
       // Add Body to Physics world
-      entity_.scene_->AddBodyToPhysicsWorld(entity_, *rbc_);
+      entity_.scene_->AddBodyToPhysicsWorld(entity_, *rbc);
       
       // Get the direction of Fireball with reference of player
       going_right_ = PlayerController::Get()->IsRight();
@@ -181,7 +182,8 @@ namespace mario {
       entity_.GetComponent<TransformComponent>().UpdateScale({1, 1, 1});
 
       destroy_time_ -= ts;
-      rbc_->SetVelocity({0, 0});
+      auto& rbc = GetComponent<RigidBodyComponent>();
+      rbc.SetVelocity({0, 0});
 
       if (destroy_time_ <= 0) {
         entity_.scene_->DestroyEntity(entity_);
@@ -208,8 +210,9 @@ namespace mario {
     velocity_.y += acceleration_.y * ts * 2.0f;
     velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
     
-    rbc_->SetVelocity(velocity_);
-    rbc_->SetAngularVelocity(0.0f);
+    auto& rbc = GetComponent<RigidBodyComponent>();
+    rbc.SetVelocity(velocity_);
+    rbc.SetAngularVelocity(0.0f);
   }
   
   void FireballController::PreSolve(Entity *collided_entity, b2Contact *contact, const glm::vec2 &contact_normal) {

@@ -29,9 +29,9 @@ namespace mario {
   void PlayerController::Create(Entity entity) {
     entity_ = entity;
     
-    rbc_ = &(GetComponent<RigidBodyComponent>());
-    rbc_->SetGravityScale(0.0f);
-    rbc_->fixed_rotation = true;
+    auto& rbc = GetComponent<RigidBodyComponent>();
+    rbc.SetGravityScale(0.0f);
+    rbc.fixed_rotation = true;
     
     state_machine_ = std::make_shared<StateMachine>(&entity_);
     
@@ -40,17 +40,19 @@ namespace mario {
   }
   
   void PlayerController::Update(Timestep ts) {
+    auto& rbc = GetComponent<RigidBodyComponent>();
+
     // If player size is altered then upddate physics body
     if (reset_fixture_) {
       const auto& pbc = entity_.GetComponent<PillBoxColliderComponent>();
-      Scene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), rbc_, pbc);
+      Scene::ResetPillBoxColliderFixture(entity_.GetComponent<TransformComponent>(), &rbc, pbc);
       reset_fixture_ = false;
     }
 
     // If Player is powering Up then freez the player for powerup time
     if (powerup_time_ > 0) {
       powerup_time_ -= ts;
-      rbc_->SetVelocity({0, 0});
+      rbc.SetVelocity({0, 0});
       return;
     }
     
@@ -74,8 +76,8 @@ namespace mario {
     velocity_.x = std::max(std::min(velocity_.x, terminal_velocity_.x), -terminal_velocity_.x);
     velocity_.y = std::max(std::min(velocity_.y, terminal_velocity_.y), -terminal_velocity_.y);
     
-    rbc_->SetVelocity(velocity_);
-    rbc_->SetAngularVelocity(0.0f);
+    rbc.SetVelocity(velocity_);
+    rbc.SetAngularVelocity(0.0f);
   }
   
   void PlayerController::BeginCollision(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) {
@@ -128,7 +130,8 @@ namespace mario {
       pbc.SetSize({0.5f, height_ / 2.0f});
       
       // Add Impulse to push player out of ground while changing size
-      rbc_->ApplyImpulseToCenter({0, 1.0});
+      auto& rbc = GetComponent<RigidBodyComponent>();
+      rbc.ApplyImpulseToCenter({0, 1.0});
     }
     else if (state_machine_->State() == PlayerState::Fire) {
       // Do Nothing for Fire for now
