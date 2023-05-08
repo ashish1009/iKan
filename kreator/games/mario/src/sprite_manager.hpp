@@ -38,6 +38,11 @@ namespace mario {
     ///   - state: player state
     ///   - action: player action
     static const std::vector<SubTextureRef>& GetPlayerSprite(PlayerState state, PlayerAction action, PlayerAction prev_action);
+    /// This function returns the subtexture of enemy based on state and type
+    /// - Parameters:
+    ///   - type: type of enemy
+    ///   - state: state of enemy
+    static const std::vector<SubTextureRef>& GetEnemySprite(EnemyType type, EnemyState state);
     /// This Function returns the Runtime Item Subtexture
     /// - Parameter type: Item Type
     static std::vector<SubTextureRef> GetItemSprite(Items type);

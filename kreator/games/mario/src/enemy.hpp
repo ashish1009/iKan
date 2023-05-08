@@ -50,6 +50,8 @@ namespace mario {
     bool is_dead_ = false;
     bool on_ground_ = false;
     bool going_right_ = true;
+    bool stopm_ = false;
+    bool reset_fixture_ = false;
     
     float height_ = 1.0f;
     
@@ -63,6 +65,9 @@ namespace mario {
     void Update(Timestep ts) override;
     void PreSolve(Entity* collided_entity, b2Contact* contact, const glm::vec2& contact_normal) override;
     void Copy(void* script) override;
+    
+  private:
+    float time_to_kill_ = 0.5f;
   };
 
   class DuckController : public ScriptableEntity, EnemyController {
