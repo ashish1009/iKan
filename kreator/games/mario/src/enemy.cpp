@@ -87,10 +87,10 @@ namespace mario {
   
   void GoombaController::Update(Timestep ts) {
     // If Fixture need to be reset
-    if (reset_fixture_) {
+    if (rbc_->reset_fixture_) {
       const auto& cc = entity_.GetComponent<CircleColliiderComponent>();
       Scene::ResetCircleColliderFixture(entity_.GetComponent<TransformComponent>(), rbc_, cc);
-      reset_fixture_ = false;
+      rbc_->reset_fixture_ = false;
     }
     
     // Destory the entity if enemy is dead after stomp
@@ -114,7 +114,7 @@ namespace mario {
       rbc_->SetVelocity({0, 0});
       rbc_->SetAngularVelocity(0.0f);
       rbc_->is_sensor = true;
-      reset_fixture_ = true;
+      rbc_->reset_fixture_ = true;
       
       auto& qc = entity_.GetComponent<QuadComponent>();
       qc.sprite.sprite_images = SpriteManager::GetEnemySprite(EnemyType::Goomba, EnemyState::Dying);
@@ -130,7 +130,6 @@ namespace mario {
     stopm_ = enemy_script->stopm_;
     going_right_ = enemy_script->going_right_;
     on_ground_ = enemy_script->on_ground_;
-    reset_fixture_ = enemy_script->reset_fixture_;
     
     height_ = enemy_script->height_;
     
@@ -168,7 +167,6 @@ namespace mario {
     stopm_ = enemy_script->stopm_;
     going_right_ = enemy_script->going_right_;
     on_ground_ = enemy_script->on_ground_;
-    reset_fixture_ = enemy_script->reset_fixture_;
     
     height_ = enemy_script->height_;
     

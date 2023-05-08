@@ -72,7 +72,6 @@ namespace mario {
 
     // Member Variables
     bool on_ground_ = false;
-    bool reset_fixture_ = false;
 
     // Size of player
     float width_ = 1.0f, height_ = 1.0f;

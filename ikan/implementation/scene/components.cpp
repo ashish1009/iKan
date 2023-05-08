@@ -189,6 +189,7 @@ x& x::operator=(x&& other) { \
     type = other.type;
     is_ground = other.is_ground;
     is_sensor = other.is_sensor;
+    reset_fixture_ = other.reset_fixture_;
     fixed_rotation =  other.fixed_rotation;
     velocity =  other.velocity;
     angular_velocity =  other.angular_velocity;
