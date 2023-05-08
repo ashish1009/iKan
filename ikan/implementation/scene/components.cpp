@@ -488,5 +488,8 @@ x& x::operator=(x&& other) { \
   void BulletComponent::Copy(const BulletComponent& other) {
     is_bullet = other.is_bullet;
   }
+  void BulletComponent::RenderGui() {
+    PropertyGrid::CheckBox("Bullet", is_bullet);
+  }
   
 } // namespace ikan

@@ -208,6 +208,7 @@ namespace ikan {
       DrawComponent<CircleColliiderComponent>("Circle Collider", *selected_entity_, [](auto& ccc) { ccc.RenderGui(); });
       DrawComponent<PillBoxColliderComponent>("Pill Box Collider", *selected_entity_, [](auto& pbc) { pbc.RenderGui(); });
       DrawComponent<NativeScriptComponent>("Native Script", *selected_entity_, [](auto& nsc) { nsc.RenderGui(); });
+      DrawComponent<BulletComponent>("Bullet", *selected_entity_, [](auto& bc) { bc.RenderGui(); });
     }
 
     ImGui::PopID();
@@ -297,6 +298,8 @@ namespace ikan {
     AddComponentMenu<RigidBodyComponent>("Rigid Body", !HAS_COMPONENT(RigidBodyComponent));
     ImGui::Separator();
     AddComponentMenu<NativeScriptComponent>("Native Script", !HAS_COMPONENT(NativeScriptComponent), "ikan::ScriptableEntity");
+    ImGui::Separator();
+    AddComponentMenu<BulletComponent>("Bullet", !HAS_COMPONENT(BulletComponent));
   }
   
   void ScenePanelManager::SetSelectedEntity(Entity* entity) {

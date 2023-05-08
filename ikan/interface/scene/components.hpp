@@ -260,6 +260,7 @@ namespace ikan {
   struct BulletComponent {
     bool is_bullet = true;
     void Copy(const BulletComponent& other);
+    void RenderGui();
     BulletComponent();
     ~BulletComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(BulletComponent);
@@ -271,7 +272,7 @@ namespace ikan {
   
 #define ALL_COPY_COMPONENTS TransformComponent, CameraComponent, QuadComponent, CircleComponent, \
 RigidBodyComponent, Box2DColliderComponent, CircleColliiderComponent, PillBoxColliderComponent, NativeScriptComponent, \
-TextComponent
+TextComponent, BulletComponent
 
   // Stores all the components present in Engine
   using AllComponents =
