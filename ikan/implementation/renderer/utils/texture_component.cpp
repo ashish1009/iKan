@@ -76,7 +76,7 @@ namespace ikan {
     use_sub_texture = other.use_sub_texture;
     speed = other.speed;
     anim_idx = other.anim_idx;
-    LoadTexture(other);
+    LoadSprite(other.texture, other.sprite_images, linear_edge);
     
     IK_CORE_TRACE(LogModule::Texture, "Copying SpriteComponent");
   }
@@ -87,7 +87,7 @@ namespace ikan {
     use_sub_texture = other.use_sub_texture;
     speed = other.speed;
     anim_idx = other.anim_idx;
-    LoadTexture(other);
+    LoadSprite(other.texture, other.sprite_images, linear_edge);
         
     IK_CORE_TRACE(LogModule::Texture, "Moving SpriteComponent");
   }
@@ -98,7 +98,7 @@ namespace ikan {
     speed = other.speed;
     linear_edge = other.linear_edge;
     anim_idx = other.anim_idx;
-    LoadTexture(other);
+    LoadSprite(other.texture, other.sprite_images, linear_edge);
     
     IK_CORE_TRACE(LogModule::Texture, "Copying SpriteComponent (=operator)");
     return *this;
@@ -110,21 +110,22 @@ namespace ikan {
     linear_edge = other.linear_edge;
     speed = other.speed;
     anim_idx = other.anim_idx;
-    LoadTexture(other);
+    LoadSprite(other.texture, other.sprite_images, linear_edge);
     
     IK_CORE_TRACE(LogModule::Texture, "Moving SpriteComponent (=operator)");
     return *this;
   }
   
-  void SpriteComponent::LoadTexture(const SpriteComponent& other) {
+  void SpriteComponent::LoadSprite(const std::vector<std::shared_ptr<Texture>>& textures,
+                                   const std::vector<std::shared_ptr<SubTexture>>& sprites, bool linear_edge) {
     ClearTextures();
     ClearSprites();
     
-    if (other.texture.size() > 0) {
-      for(auto& t : other.texture) {
-        texture.push_back(Renderer::GetTexture(t->GetfilePath(), other.linear_edge));
+    if (textures.size() > 0) {
+      for(auto& t : textures) {
+        texture.push_back(Renderer::GetTexture(t->GetfilePath(), linear_edge));
       }
-      for (const auto& sprite : other.sprite_images) {
+      for (const auto& sprite : sprites) {
         sprite_images.emplace_back(SubTexture::CreateFromCoords(sprite->GetSpriteImage(), sprite->GetCoords(),
                                                                 sprite->GetSpriteSize(), sprite->GetCellSize()));
       }

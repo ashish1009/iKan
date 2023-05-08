@@ -11,24 +11,29 @@
 
 namespace ikan {
   
-  static inline bool LoadTextureIcon(std::vector<std::shared_ptr<Texture>>& texture_vector) {
+  static inline bool LoadTextureIcon(std::shared_ptr<Texture> texture) {
     bool texture_changed = false;
+    static std::shared_ptr<Texture> no_texture = Renderer::GetTexture(DM::CoreAsset("textures/default/no_texture.png"));
+    size_t tex_id = ((texture) ? texture->GetRendererID() : no_texture->GetRendererID());
     
+    // Show the image of texture
+    ImGui::Image((void*)tex_id, ImVec2(40.0f, 40.0f), ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
+    
+    // Drop the texture here and load new texture
+    PropertyGrid::DropConent([&](const std::string& path)
+                             {
+      texture.reset();
+      texture = Renderer::GetTexture(path);
+      texture_changed = true;
+    });
+    PropertyGrid::HoveredMsg("Drop the Texture file in the Image Button to upload the texture");
+    return texture_changed;
+  }
+  
+  static inline bool LoadTextureIconWrapper(std::vector<std::shared_ptr<Texture>>& texture_vector) {
+    bool texture_changed = false;
     for(auto& texture : texture_vector) {
-      static std::shared_ptr<Texture> no_texture = Renderer::GetTexture(DM::CoreAsset("textures/default/no_texture.png"));
-      size_t tex_id = ((texture) ? texture->GetRendererID() : no_texture->GetRendererID());
-      
-      // Show the image of texture
-      ImGui::Image((void*)tex_id, ImVec2(40.0f, 40.0f), ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f), ImVec4(1.0f, 1.0f, 1.0f, 1.0f), ImVec4(1.0f, 1.0f, 1.0f, 0.5f));
-      
-      // Drop the texture here and load new texture
-      PropertyGrid::DropConent([&](const std::string& path)
-                               {
-        texture.reset();
-        texture = Renderer::GetTexture(path);
-        texture_changed = true;
-      });
-      PropertyGrid::HoveredMsg("Drop the Texture file in the Image Button to upload the texture");
+      texture_changed = LoadTextureIcon(texture);
     }
     return texture_changed;
   }
@@ -75,7 +80,7 @@ namespace ikan {
       ImGui::Columns(2);
       ImGui::SetColumnWidth(0, 60);
       
-      LoadTextureIcon(texture);
+      LoadTextureIconWrapper(texture);
       ImGui::NextColumn();
       
       // Check box to togle use of texture
@@ -136,8 +141,8 @@ namespace ikan {
       ImGui::SetColumnWidth(0, 60);
       
       if (type == Type::Texture) {
-        if (LoadTextureIcon(texture)) {
-          LoadTexture(texture.at(0));
+        if (LoadTextureIconWrapper(texture)) {
+          LoadSprite(texture, sprite_images, linear_edge);
         }
         ImGui::NextColumn();
         
@@ -180,8 +185,11 @@ namespace ikan {
     
   private:
     /// This function loads the textrue and sprite again
-    /// - Parameter other: component
-    void LoadTexture(const SpriteComponent& other);
+    /// - Parameters:
+    ///   - textures: Texture vecote
+    ///   - linear_edge: linear edge filter
+    void LoadSprite(const std::vector<std::shared_ptr<Texture>>& textures,
+                    const std::vector<std::shared_ptr<SubTexture>>& sprites, bool linear_edge);
     /// This function changes the linear flag of texture
     void ChangeLinearTexture();
 
