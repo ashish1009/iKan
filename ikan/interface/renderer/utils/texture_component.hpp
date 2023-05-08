@@ -46,6 +46,24 @@ namespace ikan {
     ///   - color: color of the texture
     ///   - ui_function: function to render below texture Use
     void RenderGui(glm::vec4& color, UIFunction ui_function) {
+      enum class Type { Texture = 0, Animation = 1 };
+      
+      static Type type = Type::Texture;
+      ImGui::PushID("Animation/Texture");
+      
+      ImGui::Columns(2);
+      ImGui::SetColumnWidth(0, ImGui::GetWindowContentRegionMax().x / 2);
+      
+      ImGui::RadioButton("Single Texture", ((int32_t*)(&type)), (int32_t)Type::Texture);
+      ImGui::NextColumn();
+      
+      ImGui::RadioButton("Animation", ((int32_t*)(&type)), (int32_t)Type::Animation);
+      
+      ImGui::Columns(1);
+      ImGui::PopID();
+      
+      ImGui::Separator();
+
       ImGui::Columns(2);
       ImGui::SetColumnWidth(0, 60);
       
@@ -91,6 +109,24 @@ namespace ikan {
     ///   - color: color of the texture
     ///   - ui_function: function to render below texture Use
     void RenderGui(glm::vec4& color, UIFunction ui_function) {
+      enum class Type { Texture = 0, Animation = 1 };
+
+      static Type type = Type::Texture;
+      ImGui::PushID("Animation/Texture");
+      
+      ImGui::Columns(2);
+      ImGui::SetColumnWidth(0, ImGui::GetWindowContentRegionMax().x / 2);
+      
+      ImGui::RadioButton("Single Texture", ((int32_t*)(&type)), (int32_t)Type::Texture);
+      ImGui::NextColumn();
+      
+      ImGui::RadioButton("Animation", ((int32_t*)(&type)), (int32_t)Type::Animation);
+      
+      ImGui::Columns(1);
+      ImGui::PopID();
+      
+      ImGui::Separator();
+
       ImGui::Columns(2);
       ImGui::SetColumnWidth(0, 60);
       
@@ -124,7 +160,7 @@ namespace ikan {
         // Selection of type Animation or Sprite
         ImGui::Separator();
         
-        if (use_sub_texture) {
+        if (use_sub_texture and type == Type::Texture) {
           SubtextureGui();
         } // if Sub texture
       } // If Use Texture
