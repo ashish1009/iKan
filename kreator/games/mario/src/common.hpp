@@ -15,9 +15,10 @@ namespace mario {
   
   using namespace ikan;
 
-  static const uint32_t NoScore = 0;
-  static const uint32_t CoinScore = 100;
-  static const uint32_t BonusScore = 1000;
+  static constexpr uint32_t NoScore = 0;
+  static constexpr uint32_t CoinScore = 100;
+  static constexpr uint32_t BonusScore = 1000;
+  static constexpr uint32_t EnemyKillScore = 200;
 
   class MarioPrefab {
   public:
