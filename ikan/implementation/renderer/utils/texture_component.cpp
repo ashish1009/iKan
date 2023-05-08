@@ -297,13 +297,7 @@ namespace ikan {
     
     static bool delete_sprite = false;
     auto delete_it = sprite_images.begin();
-    if (open) {
-      float speed_drag = (float)speed;
-      float min_speed = sprite_images.size();
-      if (PropertyGrid::Float1("Speed", speed_drag, nullptr, 1.0f, min_speed, min_speed, MAX_FLT, 100.0f))
-        speed = (int32_t)speed_drag;
-      ImGui::Separator();
-      
+    if (open) {      
       PropertyGrid::Float2("Add Coord", coords, nullptr, 0.1f, 0.0f, 0.0f, MAX_FLT, 100.0f);
       PropertyGrid::Float2("Sprite Size", sprite_size, nullptr, 1.0f, 1.0f, 0.0f, MAX_FLT, 100.0f);
       PropertyGrid::Float2("Cell Size", cell_size, nullptr, 8.0f, 16.0f, 0.0f, MAX_FLT, 100.0f);

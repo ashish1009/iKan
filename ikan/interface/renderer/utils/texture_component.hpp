@@ -71,38 +71,17 @@ namespace ikan {
     ///   - color: color of the texture
     ///   - ui_function: function to render below texture Use
     void RenderGui(glm::vec4& color, UIFunction ui_function) {
-      enum class Type { Texture = 0, Animation = 1 };
-      
-      static Type type = Type::Texture;
-      ImGui::PushID("Animation/Texture");
-      
-      ImGui::Columns(2);
-      ImGui::SetColumnWidth(0, ImGui::GetWindowContentRegionMax().x / 2);
-      
-      ImGui::RadioButton("Single Texture", ((int32_t*)(&type)), (int32_t)Type::Texture);
-      ImGui::NextColumn();
-      
-      ImGui::RadioButton("Animation", ((int32_t*)(&type)), (int32_t)Type::Animation);
-      
-      ImGui::Columns(1);
-      ImGui::PopID();
-      
-      ImGui::Separator();
-
-      ImGui::Columns(2);
-      ImGui::SetColumnWidth(0, 60);
-      
-      LoadTextureIconWrapper(texture);
-      ImGui::NextColumn();
-      
       // Check box to togle use of texture
-      ImGui::Checkbox("Use ", &use);
+      PropertyGrid::CheckBox("Use Texure", use);
+      PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+      
       if (use and texture.size() > 0) {
-        ImGui::DragFloat("", &tiling_factor, 1.0f, 1.0f, 1000.0f);
+        PropertyGrid::Float1("Tiling Factor", tiling_factor, nullptr, 1.0f, 1.0f, MIN_FLT, 1000.0f);
         PropertyGrid::HoveredMsg("Tiling Factor");
       }
-      ui_function();
-      ImGui::Columns(1);
+      ImGui::Separator();
+      
+      LoadTextureIconWrapper(texture);
     }
   };
   
@@ -165,6 +144,23 @@ namespace ikan {
         
         PropertyGrid::Float1("Tiling Factor", tiling_factor, nullptr, 1.0f, 1.0f, MIN_FLT, 1000.0f);
         PropertyGrid::HoveredMsg("Tiling Factor");
+        
+        bool show_animation_speed = false;
+        if (use_sub_texture) {
+          if (sprite_images.size() > 1)
+            show_animation_speed = true;
+        }
+        else {
+          if (texture.size() > 1)
+            show_animation_speed = true;
+        }
+        if (show_animation_speed) {
+          ImGui::Separator();
+          float speed_drag = (float)speed;
+          float min_speed = (use_sub_texture) ? sprite_images.size() : texture.size();
+          if (PropertyGrid::Float1("Animation Speed", speed_drag, nullptr, 1.0f, min_speed, min_speed, MAX_FLT, ImGui::GetWindowContentRegionMax().x / 2))
+            speed = (int32_t)speed_drag;
+        }
       }
       ImGui::Separator();
 
