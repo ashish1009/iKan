@@ -56,7 +56,15 @@ namespace mario {
     TextRenderer::BeginBatch(FixedCamera::projection);
     
     text_data_.Render("MARIO", 0, 0);
-    text_data_.Render(std::to_string(pc->GetScore()), 1, 0);
+    
+    // Get the score
+    static constexpr uint32_t score_string_limit = 6;
+    std::string score = "";
+    std::string player_score = std::to_string(pc->GetScore());
+    uint32_t num_zero_add = score_string_limit - (uint32_t)player_score.size();
+    score = std::string(num_zero_add, '0') + player_score;
+
+    text_data_.Render(score, 1, 0);
     
     Batch2DRenderer::BeginBatch(FixedCamera::projection);
     static std::vector<SubTextureRef> coin_subtex = SpriteManager::GetItemSprite(Items::AnimatedCoin);
@@ -69,7 +77,15 @@ namespace mario {
                               coin_subtex.at(anim_idx / speed), {1, 1, 1, 1});
     anim_idx++;
     Batch2DRenderer::EndBatch();
-    text_data_.Render(" x " + std::to_string(pc->GetCoins()), 1, 1);
+    
+    // Get the coins
+    static constexpr uint32_t coin_string_limit = 2;
+    std::string coins = "";
+    std::string player_coins = std::to_string(pc->GetCoins());
+    num_zero_add = coin_string_limit - (uint32_t)player_coins.size();
+    coins = std::string(num_zero_add, '0') + player_coins;
+
+    text_data_.Render(" x " + coins, 1, 1);
     
     text_data_.Render("WORLD", 0, 2);
     text_data_.Render(std::to_string(world_) + " - " + std::to_string(level_), 1, 2);
