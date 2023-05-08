@@ -256,6 +256,14 @@ namespace ikan {
     ~TextComponent();
     DEFINE_COPY_MOVE_CONSTRUCTORS(TextComponent);
   };
+  
+  struct BulletComponent {
+    bool is_bullet = true;
+    void Copy(const BulletComponent& other);
+    BulletComponent();
+    ~BulletComponent();
+    DEFINE_COPY_MOVE_CONSTRUCTORS(BulletComponent);
+  };
 
   template<typename... Component>
   struct ComponentGroup {

@@ -49,7 +49,7 @@ namespace mario {
     void SetViewportSize(uint32_t width, uint32_t height) override;
 
     std::string GameName() const override { return "IKAN Mario"; }
-    glm::vec4 GetBgColor() const override { return {0.2, 0.4, 0.6, 1.0f}; }
+    glm::vec4 GetBgColor() const override { return {0.329, 0.756, 0.960, 1.0f}; }
     std::string GetScenePath() const override { return DM::WorkspacePath("/kreator/games/mario/scenes/"); }
     std::string SavedScene() const override { return GetScenePath() + "Mario_scene.ikanScene"; };
     std::string CbpRootDir() const override { return GetScenePath(); };

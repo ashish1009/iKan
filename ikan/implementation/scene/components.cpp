@@ -479,4 +479,14 @@ x& x::operator=(x&& other) { \
     ImGui::Separator();
   }
   
+  // -------------------------------------------------------------------------
+  // BulletComponent Component
+  // -------------------------------------------------------------------------
+  BulletComponent::BulletComponent() { COMP_LOG("Creating Bullet Component"); }
+  BulletComponent::~BulletComponent() { COMP_LOG("Destroying Bullet Component"); }
+  COMP_COPY_MOVE_CONSTRUCTORS(BulletComponent);
+  void BulletComponent::Copy(const BulletComponent& other) {
+    is_bullet = other.is_bullet;
+  }
+  
 } // namespace ikan
