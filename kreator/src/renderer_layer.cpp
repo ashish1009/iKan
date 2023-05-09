@@ -213,7 +213,6 @@ namespace kreator {
       ImguiAPI::StartDcocking();
 
       ShowMenu();
-      ImGui::ShowDemoWindow();
       
       if (active_scene_) {
         active_scene_->RenderGui();
@@ -804,7 +803,7 @@ namespace kreator {
   
   void RendererLayer::DebugCameraController(Timestep ts) {
     auto& cd = active_scene_->GetPrimaryCameraData();
-    if (cd.scene_camera) {
+    if (cd.scene_camera and cd.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Orthographic) {
       auto& cam = cd.scene_camera;
       auto& tc = cd.transform_comp;
       
@@ -816,8 +815,9 @@ namespace kreator {
         if (Input::IsKeyPressed(Key::W)) tc->AddPosition(Y, cam->GetZoom() * ts);
         if (Input::IsKeyPressed(Key::S)) tc->AddPosition(Y, -(cam->GetZoom() * ts));
         
-        if (Input::IsKeyPressed(Key::Q)) cam->SetOrthographicSize(cam->GetOrthographicSize() + 1.0f);
-        if (Input::IsKeyPressed(Key::E)) cam->SetOrthographicSize(cam->GetOrthographicSize() - 1.0f);
+        float speed = (std::abs(cam->GetZoom()) > 20.0f) ? 1.0f : 0.1f;
+        if (Input::IsKeyPressed(Key::Q)) cam->SetOrthographicSize(cam->GetOrthographicSize() + speed);
+        if (Input::IsKeyPressed(Key::E)) cam->SetOrthographicSize(cam->GetOrthographicSize() - speed);
       }
     }
   }
