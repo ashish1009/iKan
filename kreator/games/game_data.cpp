@@ -42,4 +42,29 @@ namespace kreator {
     }
   }
   
+  void GameData::AddQuadFromTexture(const std::string& path) {
+    const auto& cam_data = scene_->GetPrimaryCameraData();
+    if (!cam_data.scene_camera) return;
+    
+    if (cam_data.scene_camera->GetProjectionType() == SceneCamera::ProjectionType::Orthographic) {
+      float zoom = viewport_->height / cam_data.scene_camera->GetZoom();
+      float x_pos = (((viewport_->mouse_pos_x - (float)viewport_->width / 2) / zoom) + cam_data.position.x);
+      float y_pos = (((viewport_->mouse_pos_y - (float)viewport_->height / 2) / zoom) + cam_data.position.y);
+      
+      std::string name = StringUtils::GetNameFromFilePath(path);
+      Entity e = scene_->CreateEntity(name);
+      auto& tc = e.GetComponent<TransformComponent>();
+      tc.UpdatePosition(X, x_pos);
+      tc.UpdatePosition(Y, y_pos);
+      
+      auto& qc = e.AddComponent<QuadComponent>();
+      qc.sprite.texture.push_back(Renderer::GetTexture(path));
+    }
+  }
+  
+  void GameData::Init(const std::shared_ptr<Scene> scene, Viewport* viewport) {
+    scene_ = scene;
+    viewport_ = viewport;
+  }
+  
 } // namespace kreator

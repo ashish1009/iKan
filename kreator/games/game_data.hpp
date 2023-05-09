@@ -24,13 +24,17 @@ namespace kreator {
     /// - Parameter path: file path of prefab
     /// - Note: Not Interface
     virtual void LoadPrefab(const std::string& path);
+    /// This function load thw quad by droping the texture file on scene
+    /// - Parameter path: file path of texture
+    /// - Note: Not Interface
+    virtual void AddQuadFromTexture(const std::string& path);
     
     /// Initilize your game data here. This function triggers when scene in Open, Play or Edit in game
     /// - Note: Whenever Renderer Layer change the Scene pointer this function calls
     /// - Parameters:
     ///   - scene: This is the reference of created scene
     ///   - viewport: Viewport Data const reference
-    virtual void Init(const std::shared_ptr<Scene> scene, Viewport* viewport) = 0;
+    virtual void Init(const std::shared_ptr<Scene> scene, Viewport* viewport);
     /// This funcion calls each frame in renderer Pass. Update or debug render your game.
     /// - Parameter ts: tiem step of frames
     virtual void Update(Timestep ts) = 0;

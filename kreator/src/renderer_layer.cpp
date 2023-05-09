@@ -261,11 +261,15 @@ namespace kreator {
     if (active_scene_->IsEditing()) {
       PropertyGrid::DropConent([this](const std::string& path)
                                {
-        if (StringUtils::GetExtensionFromFilePath(path) == saved_scene_extension_) {
+        std::string extension = StringUtils::GetExtensionFromFilePath(path);
+        if (extension == saved_scene_extension_) {
           OpenScene(path);
         }
-        else if (StringUtils::GetExtensionFromFilePath(path) == prefab_extenstion_) {
+        else if (extension == prefab_extenstion_) {
           game_data_->LoadPrefab(path);
+        }
+        else if (extension == ".png") {
+          game_data_->AddQuadFromTexture(path);
         }
         else {
           IK_WARN(game_data_->GameName(), "Invalid file for Scene {0}", path.c_str());
