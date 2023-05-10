@@ -30,6 +30,10 @@ namespace ikan {
     ///  - Important: Return value should not be discarded.
     ///  - Important: This function cost too much in CPU
     [[nodiscard]] static glm::mat4 GetTransformMatrix(const glm::vec3& position, const glm::vec3& rotation, const glm::vec3& scale);
+    
+    /// This function conerts the Cartisian point to Isometric
+    /// - Parameter cartisian: cartisian point
+    [[nodiscard]] static glm::vec2 GetIsometricFromCartesian(const glm::vec2& cartisian);
 
     MAKE_PURE_STATIC(Math);
   };

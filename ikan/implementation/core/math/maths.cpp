@@ -63,4 +63,8 @@ namespace ikan {
     return glm::translate(glm::mat4(1.0f), position) * rotation * glm::scale(glm::mat4(1.0f), scale);
   }
   
+  glm::vec2 Math::GetIsometricFromCartesian(const glm::vec2 &cartisian) {
+    return {cartisian.x - cartisian.y, (cartisian.x + cartisian.y) / 2};
+  }
+  
 } // namespace ikan
