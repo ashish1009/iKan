@@ -172,6 +172,7 @@ namespace ikan {
       StartBatch();
     }
     void StartBatch() {
+      StartCommonBatch();
       vertex_buffer_ptr = vertex_buffer_base_ptr;
     }
 
@@ -527,8 +528,11 @@ namespace ikan {
       if (texture_index == 0.0f) {
         // If number of slots increases max then start new batch
         if (quad_data_->texture_slot_index >= MaxTextureSlotsInShader) {
+#if 0
           BATCH_INFO("Starts the new batch as number of texture slot ({0}) increases in the previous batch", quad_data_->texture_slot_index);
-          NextBatch();
+#endif
+          EndBatch();
+          quad_data_->StartBatch();
         }
         
         // Loading the current texture in the first free slot slot
