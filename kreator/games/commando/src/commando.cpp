@@ -61,23 +61,27 @@ namespace commando {
       if(!entity) continue;
       
       auto& tc = entity->GetComponent<TransformComponent>();
+      glm::vec2 iso_step;
       switch (direction) {
         case Down:
-          tc.AddPosition(Y, -0.25f);
-          tc.UpdatePosition(Z, tc.Position().z + 0.001);
+          iso_step = Math::GetIsometricFromCartesian({0, -0.5});
+          tc.AddPosition(Z, 0.001);
           break;
         case Up:
-          tc.AddPosition(Y, 0.25f);
-          tc.UpdatePosition(Z, tc.Position().z - 0.001);
+          iso_step = Math::GetIsometricFromCartesian({0, 0.5});
+          tc.AddPosition(Z, -0.001);
           break;
         case Right:
-          tc.AddPosition(X, 0.5f);
+          iso_step = Math::GetIsometricFromCartesian({0.5, 0});
           break;
         case Left:
-          tc.AddPosition(X, -0.5f);
+          iso_step = Math::GetIsometricFromCartesian({-0.5, 0});
           break;
         default: break;
       }
+      
+      tc.AddPosition(X, iso_step.x);
+      tc.AddPosition(Y, iso_step.y);
     }
   }
 
