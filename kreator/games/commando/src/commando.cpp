@@ -27,11 +27,13 @@ namespace commando {
       y_pos += 0.5f; // Adding 0.5 offset as camera starts from 0
 
       x_pos = std::floor(x_pos);
-      y_pos = std::floor(y_pos);
+      y_pos = std::floor(y_pos + 0.5f);
 
       std::string name = StringUtils::GetNameFromFilePath(path);
       Entity e = scene_->CreateEntity(name);
       auto& tc = e.GetComponent<TransformComponent>();
+      tc.UpdateScale(Y, 2);
+      
       tc.UpdatePosition(X, x_pos);
       tc.UpdatePosition(Y, y_pos);
       
@@ -40,4 +42,8 @@ namespace commando {
     }
   }
   
-}
+  void Commando::Update(Timestep ts) {
+
+  }
+  
+} // namespace commando

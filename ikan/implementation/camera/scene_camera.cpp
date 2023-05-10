@@ -267,9 +267,8 @@ namespace ikan {
     }
   }
   
-  void SceneCamera::RenderGrids(uint32_t max_lines, const glm::vec4& line_color,
-                                const glm::mat4& camera_transform, const glm::vec3 camera_pos) {
-    if (projection_type_ != ProjectionType::Orthographic or !grid_2d_) {
+  void SceneCamera::RenderGrids(uint32_t max_lines, const glm::mat4& camera_transform, const glm::vec3 camera_pos) {
+    if (projection_type_ != ProjectionType::Orthographic) {
       return;
     }
     
@@ -300,14 +299,18 @@ namespace ikan {
       glm::vec3 car_end_2 = {0.5 + i + camera_pos.x, line_by_2 + camera_pos.y, 0};
       
       if (isometric_) {
-        car_start_1 = glm::vec3(Math::GetIsometricFromCartesian(car_start_1), car_start_1.z);
-        car_end_1 = glm::vec3(Math::GetIsometricFromCartesian(car_end_1), car_end_1.z);
-        car_start_2 = glm::vec3(Math::GetIsometricFromCartesian(car_start_2), car_start_2.z);
-        car_end_2 = glm::vec3(Math::GetIsometricFromCartesian(car_end_2), car_end_2.z);
+        glm::vec3 iso_start_1 = glm::vec3(Math::GetIsometricFromCartesian(car_start_1), car_start_1.z);
+        glm::vec3 iso_end_1 = glm::vec3(Math::GetIsometricFromCartesian(car_end_1), car_end_1.z);
+        glm::vec3 iso_start_2 = glm::vec3(Math::GetIsometricFromCartesian(car_start_2), car_start_2.z);
+        glm::vec3 iso_end_2 = glm::vec3(Math::GetIsometricFromCartesian(car_end_2), car_end_2.z);
+        
+        Batch2DRenderer::DrawLine(iso_start_1, iso_end_1, {0.3, 0.3, 0.3, 1});
+        Batch2DRenderer::DrawLine(iso_start_2, iso_end_2, {0.3, 0.3, 0.3, 1});
       }
-      
-      Batch2DRenderer::DrawLine(car_start_1, car_end_1, line_color);
-      Batch2DRenderer::DrawLine(car_start_2, car_end_2, line_color);
+      else {
+        Batch2DRenderer::DrawLine(car_start_1, car_end_1, {0.35, 0.35, 0.35, 1.0});
+        Batch2DRenderer::DrawLine(car_start_2, car_end_2, {0.35, 0.35, 0.35, 1.0});
+      }
     }
     Batch2DRenderer::EndBatch();
   }

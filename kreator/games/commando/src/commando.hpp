@@ -19,7 +19,7 @@ namespace commando {
     void AddQuadFromTexture(const std::string& path) override;
     
     void Init(const std::shared_ptr<Scene> scene, Viewport* viewport) override;
-    void Update(Timestep ts) override {}
+    void Update(Timestep ts) override;
     void SetViewportSize(uint32_t width, uint32_t height) override {}
     
     std::string GameName() const override { return "IKAN Commando"; }
@@ -34,6 +34,9 @@ namespace commando {
       return {
         GetScenePath(),
         DM::ClientAsset("textures"),
+        DM::ClientAsset("textures/Isometric"),
+        DM::ClientAsset("textures/Characters"),
+        DM::ClientAsset("textures/Angle"),
         DM::ClientAsset("prefabs"),
       };
     };

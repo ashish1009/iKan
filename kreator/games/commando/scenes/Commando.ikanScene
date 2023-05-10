@@ -3,22 +3,6 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
-  - Entity: 15754694657769108558
-    TagComponent:
-      Tag: Empty Entity
-    TransformComponent:
-      Translation: [0, 0, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Num_Texture_Path: 0
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
   - Entity: 12162912870741790542
     TagComponent:
       Tag: Camera
@@ -36,3 +20,20 @@ Entities:
       Far: 1
       Grid: true
       Isometric: false
+  - Entity: 968503210942560235
+    TagComponent:
+      Tag: stone_W
+    TransformComponent:
+      Translation: [0, 1, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Stones/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
