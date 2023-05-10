@@ -504,13 +504,12 @@ namespace kreator {
     ImGui::PushID("Save File");
 
     static std::string file_name = "";
-    const auto& relative_path = (std::filesystem::relative(CBP::GetCurrentDir(), CBP::GetRootDir())).string();
-    std::string hint = "Scene will be saved at " + CBP::GetCurrentDir().string();
+    std::string hint = "Scene will be saved at " + game_data_->GetScenePath();
     bool modified = PropertyGrid::TextBox(file_name, "Scene Name", 2, 100.0f, hint.c_str());
     PropertyGrid::HoveredMsg(hint.c_str());
     
     if (modified) {
-      std::string file_path = CBP::GetCurrentDir().string() + "/" + file_name + ".ikanScene";
+      std::string file_path = game_data_->GetScenePath() + "/" + file_name + ".ikanScene";
       IK_TRACE(game_data_->GameName(), "Saving Scene at {0}", file_path.c_str());
       if (!file_path.empty()) {
         active_scene_->SetFilePath(file_path);
