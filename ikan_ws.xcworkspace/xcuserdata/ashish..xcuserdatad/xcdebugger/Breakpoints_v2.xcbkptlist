@@ -20,5 +20,149 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "810829BA-7406-4D0C-BD00-D18633C8D641"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "Flush()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8788BD3C-8437-423A-AB29-C078D04A4A00"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "532"
+            endingLineNumber = "532"
+            landmarkName = "Batch2DRenderer::DrawTextureQuad(transform, texture, texture_coords, tiling_factor, tint_color, object_id)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "8788BD3C-8437-423A-AB29-C078D04A4A00 - 5346a560e6a80885"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ikan::Batch2DRenderer::DrawTextureQuad(glm::mat&lt;4, 4, float, (glm::qualifier)0&gt; const&amp;, std::__1::shared_ptr&lt;ikan::Texture&gt; const&amp;, glm::vec&lt;2, float, (glm::qualifier)0&gt; const*, float, glm::vec&lt;4, float, (glm::qualifier)0&gt; const&amp;, int)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "530"
+                  endingLineNumber = "530"
+                  offsetFromSymbolStart = "404">
+               </Location>
+               <Location
+                  uuid = "8788BD3C-8437-423A-AB29-C078D04A4A00 - 5346a560e6a80885"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ikan::Batch2DRenderer::DrawTextureQuad(glm::mat&lt;4, 4, float, (glm::qualifier)0&gt; const&amp;, std::__1::shared_ptr&lt;ikan::Texture&gt; const&amp;, glm::vec&lt;2, float, (glm::qualifier)0&gt; const*, float, glm::vec&lt;4, float, (glm::qualifier)0&gt; const&amp;, int)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "530"
+                  endingLineNumber = "530"
+                  offsetFromSymbolStart = "408">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "425C0E93-BC8C-40B7-8973-3ACDB2E10FC8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "528"
+            endingLineNumber = "528"
+            landmarkName = "Batch2DRenderer::DrawTextureQuad(transform, texture, texture_coords, tiling_factor, tint_color, object_id)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E1AEA233-4404-4ED3-9320-144A6D69ED81"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "530"
+            endingLineNumber = "530"
+            landmarkName = "Batch2DRenderer::DrawTextureQuad(transform, texture, texture_coords, tiling_factor, tint_color, object_id)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5E142BBA-464C-477A-AA23-9C1F78CA6E54"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "534"
+            endingLineNumber = "534"
+            landmarkName = "Batch2DRenderer::DrawTextureQuad(transform, texture, texture_coords, tiling_factor, tint_color, object_id)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5E142BBA-464C-477A-AA23-9C1F78CA6E54 - 5346a560e6a808e2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ikan::Batch2DRenderer::DrawTextureQuad(glm::mat&lt;4, 4, float, (glm::qualifier)0&gt; const&amp;, std::__1::shared_ptr&lt;ikan::Texture&gt; const&amp;, glm::vec&lt;2, float, (glm::qualifier)0&gt; const*, float, glm::vec&lt;4, float, (glm::qualifier)0&gt; const&amp;, int)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "531"
+                  endingLineNumber = "531"
+                  offsetFromSymbolStart = "440">
+               </Location>
+               <Location
+                  uuid = "5E142BBA-464C-477A-AA23-9C1F78CA6E54 - 5346a560e6a808c3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ikan::Batch2DRenderer::DrawTextureQuad(glm::mat&lt;4, 4, float, (glm::qualifier)0&gt; const&amp;, std::__1::shared_ptr&lt;ikan::Texture&gt; const&amp;, glm::vec&lt;2, float, (glm::qualifier)0&gt; const*, float, glm::vec&lt;4, float, (glm::qualifier)0&gt; const&amp;, int)"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/ikan/implementation/renderer/utils/batch_2d_renderer.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "532"
+                  endingLineNumber = "532"
+                  offsetFromSymbolStart = "440">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
