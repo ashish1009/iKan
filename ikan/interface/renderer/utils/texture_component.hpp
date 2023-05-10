@@ -42,6 +42,9 @@ namespace ikan {
       
       ImGui::Columns(1);
       ImGui::Separator();
+      
+      // Render All texture Component Data
+      RenderGuiWork();
     }
     
   protected:
@@ -89,8 +92,6 @@ namespace ikan {
     ///   - color: color of the texture
     ///   - ui_function: function to render below texture Use
     void RenderGui(glm::vec4& color, UIFunction ui_function) {
-      ImGui::PushID("Texture Data");
-
       // Quad Color
       ImGui::Columns(2);
       ImGui::SetColumnWidth(0, ImGui::GetWindowContentRegionMax().x / 2);
@@ -101,6 +102,9 @@ namespace ikan {
       
       ImGui::Columns(1);
       ImGui::Separator();
+      
+      // Render All texture Component Data
+      RenderGuiWork();
     }
     
   private:

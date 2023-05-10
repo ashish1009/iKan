@@ -445,6 +445,8 @@ namespace ikan {
   }
 
   void SpriteComponent::RenderGuiWork() {
+    ImGui::PushID("Texture Data");
+
     // Check box to togle use of texture
     PropertyGrid::CheckBox("Use Texure", use);
     PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
