@@ -242,6 +242,9 @@ namespace ikan {
       ZoomWidget();
       ImGui::Separator();
       PropertyGrid::CheckBox("Grids", grid_2d_);
+      if (grid_2d_) {
+        PropertyGrid::CheckBox("Isometric ", isometric_);
+      }
     } else {
       IK_ASSERT(false, "Invalid Projection Type");
     }
@@ -266,7 +269,7 @@ namespace ikan {
   
   void SceneCamera::RenderGrids(uint32_t max_lines, const glm::vec4& line_color,
                                 const glm::mat4& camera_transform, const glm::vec3 camera_pos) {
-    if (projection_type_ != ProjectionType::Orthographic) {
+    if (projection_type_ != ProjectionType::Orthographic or !grid_2d_) {
       return;
     }
     
@@ -288,13 +291,24 @@ namespace ikan {
       return;
     
     Batch2DRenderer::BeginBatch(projection_matrix_ * glm::inverse(camera_transform));
-    for (int32_t i = (int32_t)(-line_by_2); i < (int32_t)line_by_2; i++) {
-      if (grid_2d_) {
-        Batch2DRenderer::DrawLine({-line_by_2 + camera_pos.x, 0.5 + i + camera_pos.y, 0}, {line_by_2 + camera_pos.x, 0.5 + i + camera_pos.y, 0}, line_color);
-        Batch2DRenderer::DrawLine({0.5 + i + camera_pos.x, -line_by_2 + camera_pos.y, 0}, {0.5 + i + camera_pos.x, line_by_2 + camera_pos.y, 0}, line_color);
-      }
-    }
     
+    for (int32_t i = (int32_t)(-line_by_2); i < (int32_t)line_by_2; i++) {
+      glm::vec3 car_start_1 = {-line_by_2 + camera_pos.x, 0.5 + i + camera_pos.y, 0};
+      glm::vec3 car_end_1 = {line_by_2 + camera_pos.x, 0.5 + i + camera_pos.y, 0};
+      
+      glm::vec3 car_start_2 = {0.5 + i + camera_pos.x, -line_by_2 + camera_pos.y, 0};
+      glm::vec3 car_end_2 = {0.5 + i + camera_pos.x, line_by_2 + camera_pos.y, 0};
+      
+      if (isometric_) {
+        car_start_1 = glm::vec3(Math::GetIsometricFromCartesian(car_start_1), car_start_1.z);
+        car_end_1 = glm::vec3(Math::GetIsometricFromCartesian(car_end_1), car_end_1.z);
+        car_start_2 = glm::vec3(Math::GetIsometricFromCartesian(car_start_2), car_start_2.z);
+        car_end_2 = glm::vec3(Math::GetIsometricFromCartesian(car_end_2), car_end_2.z);
+      }
+      
+      Batch2DRenderer::DrawLine(car_start_1, car_end_1, line_color);
+      Batch2DRenderer::DrawLine(car_start_2, car_end_2, line_color);
+    }
     Batch2DRenderer::EndBatch();
   }
   

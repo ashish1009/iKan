@@ -201,6 +201,7 @@ namespace ikan {
       out << YAML::Key << "Near" << YAML::Value << camera->GetNear();
       out << YAML::Key << "Far" << YAML::Value << camera->GetFar();
       out << YAML::Key << "Grid" << YAML::Value << camera->grid_2d_;
+      out << YAML::Key << "Isometric" << YAML::Value << camera->isometric_;
 
       out << YAML::EndMap; // CameraComponent
     }
@@ -375,7 +376,8 @@ namespace ikan {
       auto far = camera_component["Far"].as<float>();
 
       cc.camera->grid_2d_ = camera_component["Grid"].as<bool>();
-
+      cc.camera->isometric_ = camera_component["Isometric"].as<bool>();
+      
       if ((SceneCamera::ProjectionType)type == SceneCamera::ProjectionType::Orthographic)
         cc.camera->SetOrthographic(size, near, far);
       else if ((SceneCamera::ProjectionType)type == SceneCamera::ProjectionType::Perspective)

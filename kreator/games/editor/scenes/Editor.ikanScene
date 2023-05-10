@@ -3,6 +3,22 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
+  - Entity: 5521264744073774357
+    TagComponent:
+      Tag: Quad
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Num_Texture_Path: 0
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
   - Entity: 2760403011930639740
     TagComponent:
       Tag: Camera
@@ -19,22 +35,4 @@ Entities:
       Near: -1
       Far: 1
       Grid: true
-  - Entity: 5521264744073774357
-    TagComponent:
-      Tag: Quad
-    TransformComponent:
-      Translation: [0, 0, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Num_Texture_Path: 0
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Coords0: [0, 0]
-      Sprite_Size0: [1, 1]
-      Cell_Size0: [16, 16]
-      Num_Coords: 0
+      Isometric: false

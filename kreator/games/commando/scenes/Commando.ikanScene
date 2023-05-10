@@ -35,3 +35,4 @@ Entities:
       Near: -1
       Far: 1
       Grid: true
+      Isometric: false

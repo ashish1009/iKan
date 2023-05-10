@@ -94,6 +94,7 @@ namespace ikan {
     // Debug data
     // No need to make private
     bool grid_2d_ = true;
+    bool isometric_ = false;
 
   private:
     // Member functions
