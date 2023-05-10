@@ -16,11 +16,9 @@ namespace commando {
   
   class Commando : public GameData {
   public:
-    void Init(const std::shared_ptr<Scene> scene, Viewport* viewport) override {
-      scene_ = scene;
-      viewport_ = viewport;
-    };
+    void AddQuadFromTexture(const std::string& path) override;
     
+    void Init(const std::shared_ptr<Scene> scene, Viewport* viewport) override;
     void Update(Timestep ts) override {}
     void SetViewportSize(uint32_t width, uint32_t height) override {}
     
