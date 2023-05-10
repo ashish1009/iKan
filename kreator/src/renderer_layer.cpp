@@ -167,10 +167,10 @@ namespace kreator {
         case Key::Backspace:  DeleteSelectedEntities();     break;
         case Key::Escape:     ClearSelectedEntities();      break;
           
-        case Key::Left:       MoveEntities(Left);   break;
-        case Key::Right:      MoveEntities(Right);  break;
-        case Key::Up:         MoveEntities(Up);     break;
-        case Key::Down:       MoveEntities(Down);   break;
+        case Key::Left:       game_data_->MoveEntities(GameData::Direction::Left, selected_entities_);   break;
+        case Key::Right:      game_data_->MoveEntities(GameData::Direction::Right, selected_entities_);  break;
+        case Key::Up:         game_data_->MoveEntities(GameData::Direction::Up, selected_entities_);     break;
+        case Key::Down:       game_data_->MoveEntities(GameData::Direction::Down, selected_entities_);   break;
           
         default: break;
       } // switch (e.GetKeyCode())
@@ -655,21 +655,6 @@ namespace kreator {
     HighlightSelectedEntities(true);
   }
   
-  void RendererLayer::MoveEntities(Direction direction) {
-    for (auto& [entt, entity] : selected_entities_) {
-      if(!entity) continue;
-      
-      auto& tc = entity->GetComponent<TransformComponent>();
-      switch (direction) {
-        case Down:      tc.AddPosition(Y, - game_data_->MoveSpeedY());     break;
-        case Up:        tc.AddPosition(Y, game_data_->MoveSpeedY());       break;
-        case Right:     tc.AddPosition(X, game_data_->MoveSpeedX());       break;
-        case Left:      tc.AddPosition(X, - game_data_->MoveSpeedX());     break;
-        default: break;
-      }
-    }
-  }
-
   void RendererLayer::OverlayRender() {
     if (setting_.show_collider.flag) {
       RenderColliders();

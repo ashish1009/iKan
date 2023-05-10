@@ -72,8 +72,6 @@ namespace kreator {
     static bool IsPlaying(){ return is_playing_; }
     
   private:
-    enum Direction {Left, Right, Up, Down};
-
     /// This function renders the scene data
     void RenderScene(Timestep ts);
     /// This function render the viewport captured in framebuffer
@@ -145,9 +143,6 @@ namespace kreator {
     void DeleteSelectedEntities();
     /// This function Duplicate the selected entities
     void DuplicateSelectedEntities();
-    /// This function moves the selected entities
-    /// - Parameter direction: Direction of movement
-    void MoveEntities(Direction direction);
     /// This funciton Render the imguizmo
     void OnImguizmoUpdate();
     

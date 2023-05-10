@@ -15,8 +15,25 @@ Entities:
       Primary: true
       ProjectionType: 1
       PerspectiveFOV: 1.30899692
-      OrthographicSize: 15.0000191
+      OrthographicSize: 16.4000244
       Near: -1
       Far: 1
       Grid: true
-      Isometric: true
+      Isometric: false
+  - Entity: 10350981530877337993
+    TagComponent:
+      Tag: stone_W
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Stones/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0

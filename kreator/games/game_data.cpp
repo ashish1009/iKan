@@ -66,5 +66,20 @@ namespace kreator {
     scene_ = scene;
     viewport_ = viewport;
   }
-  
+
+  void GameData::MoveEntities(Direction direction, const std::unordered_map<entt::entity, Entity*>& selected_entities) {
+    for (auto& [entt, entity] : selected_entities) {
+      if(!entity) continue;
+      
+      auto& tc = entity->GetComponent<TransformComponent>();
+      switch (direction) {
+        case Down:      tc.AddPosition(Y, -1.0f);     break;
+        case Up:        tc.AddPosition(Y, 1.0f);       break;
+        case Right:     tc.AddPosition(X, 1.0f);       break;
+        case Left:      tc.AddPosition(X, -1.0f);     break;
+        default: break;
+      }
+    }
+  }
+
 } // namespace kreator

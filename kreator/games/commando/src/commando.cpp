@@ -9,7 +9,16 @@
 
 namespace commando {
   
+  Commando::Commando() {
+    Batch2DRenderer::AddQuadData(2000);
+  }
+  
+  Commando::~Commando() {
+  }
+  
   void Commando::Init(const std::shared_ptr<Scene> scene, Viewport* viewport) {
+    Batch2DRenderer::AddQuadData(2000);
+
     scene_ = scene;
     viewport_ = viewport;
   };
@@ -27,7 +36,7 @@ namespace commando {
       y_pos += 0.5f; // Adding 0.5 offset as camera starts from 0
 
       x_pos = std::floor(x_pos);
-      y_pos = std::floor(y_pos + 0.5f);
+      y_pos = std::floor(y_pos);
 
       std::string name = StringUtils::GetNameFromFilePath(path);
       Entity e = scene_->CreateEntity(name);
@@ -35,7 +44,7 @@ namespace commando {
       tc.UpdateScale(Y, 2);
       
       tc.UpdatePosition(X, x_pos);
-      tc.UpdatePosition(Y, y_pos);
+      tc.UpdatePosition(Y, y_pos + 0.5f);
       
       auto& qc = e.AddComponent<QuadComponent>();
       qc.sprite.texture.push_back(Renderer::GetTexture(path));
@@ -45,5 +54,30 @@ namespace commando {
   void Commando::Update(Timestep ts) {
 
   }
-  
+
+  void Commando::MoveEntities(Direction direction, const std::unordered_map<entt::entity, Entity*>& selected_entities) {
+    for (auto& [entt, entity] : selected_entities) {
+      if(!entity) continue;
+      
+      auto& tc = entity->GetComponent<TransformComponent>();
+      switch (direction) {
+        case Down:
+          tc.AddPosition(Y, -0.25f);
+          break;
+        case Up:
+          tc.AddPosition(Y, 0.25f);
+          tc.UpdatePosition(Z, tc.Position().z - 0.001);
+          break;
+        case Right:
+          tc.AddPosition(X, 0.5f);
+          tc.UpdatePosition(Z, tc.Position().z + 0.001);
+          break;
+        case Left:
+          tc.AddPosition(X, -0.5f);
+          break;
+        default: break;
+      }
+    }
+  }
+
 } // namespace commando

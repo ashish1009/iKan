@@ -18,6 +18,8 @@ namespace kreator {
   /// Game Data Interface
   class GameData {
   public:
+    enum Direction {Left, Right, Up, Down};
+
     virtual ~GameData() = default;
     
     /// This function load the prefab on Droping the item
@@ -28,7 +30,10 @@ namespace kreator {
     /// - Parameter path: file path of texture
     /// - Note: Not Interface
     virtual void AddQuadFromTexture(const std::string& path);
-    
+    /// This function moves the selected entites
+    /// - Parameter direction: direction
+    virtual void MoveEntities(Direction direction, const std::unordered_map<entt::entity, Entity*>& selected_entities);
+
     /// Initilize your game data here. This function triggers when scene in Open, Play or Edit in game
     /// - Note: Whenever Renderer Layer change the Scene pointer this function calls
     /// - Parameters:
@@ -50,10 +55,6 @@ namespace kreator {
     /// This function renders the Gui for Game
     virtual void RenderGui() {}
     
-    /// This function returns the move entity speed at x direction
-    virtual float MoveSpeedX() const { return 1.0f; }
-    /// This function returns the move entity speed at y direction
-    virtual float MoveSpeedY() const { return 1.0f; }
     /// This function returns name of your game
     virtual std::string GameName() const = 0;
     /// This function return your viewport background color
@@ -78,7 +79,7 @@ namespace kreator {
     virtual void SetPlaying(bool playing_flag) { is_playing_ = playing_flag; }
     /// this function returns is game playing
     virtual bool IsPlaying() { return is_playing_; }
-    
+
   protected:
     bool is_playing_ = false;
     std::shared_ptr<Scene> scene_;

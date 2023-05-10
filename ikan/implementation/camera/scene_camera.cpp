@@ -268,7 +268,7 @@ namespace ikan {
   }
   
   void SceneCamera::RenderGrids(uint32_t max_lines, const glm::mat4& camera_transform, const glm::vec3 camera_pos) {
-    if (projection_type_ != ProjectionType::Orthographic) {
+    if (projection_type_ != ProjectionType::Orthographic or !grid_2d_) {
       return;
     }
     
