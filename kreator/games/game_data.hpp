@@ -50,6 +50,10 @@ namespace kreator {
     /// This function renders the Gui for Game
     virtual void RenderGui() {}
     
+    /// This function returns the move entity speed at x direction
+    virtual float MoveSpeedX() const { return 1.0f; }
+    /// This function returns the move entity speed at y direction
+    virtual float MoveSpeedY() const { return 1.0f; }
     /// This function returns name of your game
     virtual std::string GameName() const = 0;
     /// This function return your viewport background color

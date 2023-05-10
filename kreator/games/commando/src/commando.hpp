@@ -22,6 +22,9 @@ namespace commando {
     void Update(Timestep ts) override;
     void SetViewportSize(uint32_t width, uint32_t height) override {}
     
+    float MoveSpeedX() const override { return 0.5f; }
+    float MoveSpeedY() const override { return 0.25f; }
+
     std::string GameName() const override { return "IKAN Commando"; }
     glm::vec4 GetBgColor() const override { return {0.5f, 0.2f, 0.2f, 1.0f}; }
     std::string GetScenePath() const override { return DM::WorkspacePath("/kreator/games/commando/scenes/"); }

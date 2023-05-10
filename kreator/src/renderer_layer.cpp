@@ -662,10 +662,10 @@ namespace kreator {
       
       auto& tc = entity->GetComponent<TransformComponent>();
       switch (direction) {
-        case Down:      tc.AddPosition(Y, - 1.0f);     break;
-        case Up:        tc.AddPosition(Y, 1.0f);       break;
-        case Right:     tc.AddPosition(X, 1.0f);       break;
-        case Left:      tc.AddPosition(X, - 1.0f);     break;
+        case Down:      tc.AddPosition(Y, - game_data_->MoveSpeedY());     break;
+        case Up:        tc.AddPosition(Y, game_data_->MoveSpeedY());       break;
+        case Right:     tc.AddPosition(X, game_data_->MoveSpeedX());       break;
+        case Left:      tc.AddPosition(X, - game_data_->MoveSpeedX());     break;
         default: break;
       }
     }
