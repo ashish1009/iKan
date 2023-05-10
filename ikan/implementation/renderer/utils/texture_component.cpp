@@ -145,6 +145,20 @@ namespace ikan {
     return texture_changed;
   }
   
+  void TextureComponent::RenderGuiWork() {
+    // Check box to togle use of texture
+    PropertyGrid::CheckBox("Use Texure", use);
+    PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+    
+    if (use and texture.size() > 0) {
+      PropertyGrid::Float1("Tiling Factor", tiling_factor, nullptr, 1.0f, 1.0f, MIN_FLT, 1000.0f);
+      PropertyGrid::HoveredMsg("Tiling Factor");
+    }
+    ImGui::Separator();
+    
+    LoadTextureIconWrapper(texture);
+  }
+  
   SpriteComponent::SpriteComponent(const std::shared_ptr<Texture>& tex, bool use_tex) {
     IK_CORE_TRACE(LogModule::Texture, "Creating SpriteComponent");
     use = use_tex;
@@ -268,7 +282,7 @@ namespace ikan {
       SpriteGui();
     }
     else if (type == Type::Animation) {
-      AnimationGui();
+      SpriteAnimationGui();
     }
   }
   
@@ -355,7 +369,7 @@ namespace ikan {
     } // if Sprite Image Open
   }
   
-  void SpriteComponent::AnimationGui() {
+  void SpriteComponent::SpriteAnimationGui() {
     const ImGuiTreeNodeFlags tree_node_flags = ImGuiTreeNodeFlags_SpanAvailWidth | ImGuiTreeNodeFlags_AllowItemOverlap |
     ImGuiTreeNodeFlags_DefaultOpen | ImGuiTreeNodeFlags_FramePadding;
     
@@ -428,6 +442,59 @@ namespace ikan {
       sprite_images.erase(delete_it);
       delete_sprite = false;
     }
+  }
+
+  void SpriteComponent::RenderGuiWork() {
+    // Check box to togle use of texture
+    PropertyGrid::CheckBox("Use Texure", use);
+    PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+    
+    if (use and texture.size() > 0) {
+      if (PropertyGrid::CheckBox("Linear Edge", linear_edge)) {
+        ChangeLinearTexture();
+      }
+      PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+      
+      PropertyGrid::CheckBox("Sprite", use_sub_texture);
+      PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
+      
+      PropertyGrid::Float1("Tiling Factor", tiling_factor, nullptr, 1.0f, 1.0f, MIN_FLT, 1000.0f);
+      PropertyGrid::HoveredMsg("Tiling Factor");
+      
+      // Texture ANimation Data
+      bool show_animation_speed = false;
+      if (use_sub_texture) {
+        if (sprite_images.size() > 1)
+          show_animation_speed = true;
+      }
+      else {
+        if (texture.size() > 1)
+          show_animation_speed = true;
+      }
+      if (show_animation_speed) {
+        ImGui::Separator();
+        float speed_drag = (float)speed;
+        float min_speed = (use_sub_texture) ? sprite_images.size() : texture.size();
+        if (PropertyGrid::Float1("Animation Speed", speed_drag, nullptr, 1.0f, min_speed, min_speed, MAX_FLT, ImGui::GetWindowContentRegionMax().x / 2))
+          speed = (int32_t)speed_drag;
+      }
+    }
+    ImGui::Separator();
+    
+    // Render the Texture Vector Icon to load Texture from File
+    if (LoadTextureIconWrapper(texture)) {
+      use_sub_texture = false;
+      ClearSprites();
+      sprite_images.emplace_back(SubTexture::CreateFromCoords(texture.at(0), {0, 0}));
+    }
+    
+    // Render Sub texture Data
+    if (use and use_sub_texture and texture.size() > 0) {
+      // Selection of type Animation or Sprite
+      ImGui::Separator();
+      SubtextureGui();
+    }
+    ImGui::PopID();
   }
   
 } // namespace ikan

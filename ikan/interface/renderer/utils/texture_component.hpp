@@ -42,22 +42,19 @@ namespace ikan {
       
       ImGui::Columns(1);
       ImGui::Separator();
-
-      // Check box to togle use of texture
-      PropertyGrid::CheckBox("Use Texure", use);
-      PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
-      
-      if (use and texture.size() > 0) {
-        PropertyGrid::Float1("Tiling Factor", tiling_factor, nullptr, 1.0f, 1.0f, MIN_FLT, 1000.0f);
-        PropertyGrid::HoveredMsg("Tiling Factor");
-      }
-      ImGui::Separator();
-      
-      LoadTextureIconWrapper(texture);
     }
     
   protected:
+    /// This function renders the GUI data Other then Function UI
+    void RenderGuiWork();
+    /// This function renders the GUI for loading Texture (Single Texture)
+    /// - Parameters:
+    ///   - texture: texture referrence
+    ///   - is_animation: is texture anumated (already have multiple texture)
+    ///   - deleted_texture: deleted texture reference
     bool LoadTextureIcon(std::shared_ptr<Texture>& texture, bool* is_animation, std::shared_ptr<Texture>& deleted_texture);
+    /// This wraps the Load texture vector in component
+    /// - Parameter texture_vector: tecture vector
     bool LoadTextureIconWrapper(std::vector<std::shared_ptr<Texture>>& texture_vector);
   };
   
@@ -104,57 +101,11 @@ namespace ikan {
       
       ImGui::Columns(1);
       ImGui::Separator();
-      
-      // Check box to togle use of texture
-      PropertyGrid::CheckBox("Use Texure", use);
-      PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
-      
-      if (use and texture.size() > 0) {
-        if (PropertyGrid::CheckBox("Linear Edge", linear_edge)) {
-          ChangeLinearTexture();
-        }
-        PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
-        
-        PropertyGrid::CheckBox("Sprite", use_sub_texture);
-        PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
-        
-        PropertyGrid::Float1("Tiling Factor", tiling_factor, nullptr, 1.0f, 1.0f, MIN_FLT, 1000.0f);
-        PropertyGrid::HoveredMsg("Tiling Factor");
-        
-        bool show_animation_speed = false;
-        if (use_sub_texture) {
-          if (sprite_images.size() > 1)
-            show_animation_speed = true;
-        }
-        else {
-          if (texture.size() > 1)
-            show_animation_speed = true;
-        }
-        if (show_animation_speed) {
-          ImGui::Separator();
-          float speed_drag = (float)speed;
-          float min_speed = (use_sub_texture) ? sprite_images.size() : texture.size();
-          if (PropertyGrid::Float1("Animation Speed", speed_drag, nullptr, 1.0f, min_speed, min_speed, MAX_FLT, ImGui::GetWindowContentRegionMax().x / 2))
-            speed = (int32_t)speed_drag;
-        }
-      }
-      ImGui::Separator();
-
-      if (LoadTextureIconWrapper(texture)) {
-        use_sub_texture = false;
-        ClearSprites();
-        sprite_images.emplace_back(SubTexture::CreateFromCoords(texture.at(0), {0, 0}));
-      }
-      
-      if (use and use_sub_texture and texture.size() > 0) {
-        // Selection of type Animation or Sprite
-        ImGui::Separator();
-        SubtextureGui();
-      }
-      ImGui::PopID();
     }
     
   private:
+    /// This function renders the GUI data Other then Function UI
+    void RenderGuiWork();
     /// This function loads the textrue and sprite again
     /// - Parameters:
     ///   - textures: Texture vecote
@@ -169,7 +120,7 @@ namespace ikan {
     /// This function Renders Sprite Gui
     void SpriteGui();
     /// This function Renders Animatiom Gui
-    void AnimationGui();
+    void SpriteAnimationGui();
   };
   
 } // namespace ikan
