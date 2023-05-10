@@ -11,99 +11,6 @@
 
 namespace ikan {
   
-  static inline bool LoadTextureIcon(std::shared_ptr<Texture>& texture, bool* is_animation, std::shared_ptr<Texture>& deleted_texture) {
-    bool texture_changed = false;
-    static std::shared_ptr<Texture> no_texture = Renderer::GetTexture(DM::CoreAsset("textures/default/no_texture.png"));
-    size_t tex_id = ((texture) ? texture->GetRendererID() : no_texture->GetRendererID());
-    
-    // Show the image of texture
-    ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0, 0, 0, 0));
-
-    auto& colors = ImGui::GetStyle().Colors;
-    const auto& button_hovered = colors[ImGuiCol_ButtonHovered];
-
-    ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(button_hovered.x, button_hovered.y, button_hovered.z, 1.0f));
-    const auto& button_cctive = colors[ImGuiCol_ButtonActive];
-    ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(button_cctive.x, button_cctive.y, button_cctive.z, 1.0f));
-
-    ImGui::ImageButton((void*)tex_id, ImVec2(40.0f, 40.0f), ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f));
-
-    if (is_animation) {
-      // Right click of mouse option
-      if (ImGui::BeginPopupContextItem()) {
-        // Delete Coord
-        if (ImGui::MenuItem("Delete Texture")) {
-          deleted_texture = texture;
-        }
-        ImGui::EndMenu();
-      }
-    }
-    ImGui::PopStyleColor(3);
-
-    // Drop the texture here and load new texture
-    PropertyGrid::DropConent([&](const std::string& path)
-                             {
-      texture.reset();
-      texture = Renderer::GetTexture(path);
-      texture_changed = true;
-    });
-    std::string hovered_messge = "Drop the Texture file in the Image Button to add the texture in Animation. \n"
-    "Note: Add the Textures in animation order \n"
-    "To delete the texture Right click and delete \n";
-    
-    if (texture)
-      hovered_messge += texture->GetfilePath().c_str();
-    
-    PropertyGrid::HoveredMsg(hovered_messge.c_str());
-    return texture_changed;
-  }
-  
-  static inline bool LoadTextureIconWrapper(std::vector<std::shared_ptr<Texture>>& texture_vector) {
-    bool texture_changed = false;
-    bool delete_texture = false;
-    std::shared_ptr<Texture> deleted_texture;
-    
-    float main_width = ImGui::GetWindowContentRegionWidth();
-    ImVec2 init_pos = ImGui::GetCursorPos();
-
-    int32_t item_idx = 0;
-    int32_t line = 0;
-    for(auto& texture : texture_vector) {
-      // Update the cursor for each folder/file based on its position
-      float cursor_x = ImGui::GetCursorPos().x + ((50.0f) * item_idx);
-      float cursor_y = init_pos.y + line * 100;
-      if (cursor_x + 50.0f > main_width) {
-        line++;
-        item_idx = 0;
-        cursor_x = ImGui::GetCursorPos().x + ((50.0f) * item_idx);;
-        cursor_y = init_pos.y + line * 100;
-      }
-      ImGui::SetCursorPos(ImVec2(cursor_x, cursor_y));
-
-      texture_changed = LoadTextureIcon(texture, &delete_texture, deleted_texture);
-      item_idx++;
-    }
-    ImGui::SameLine();
-
-    bool new_texture_loaded = false;
-    std::shared_ptr<Texture> t;
-    texture_changed = LoadTextureIcon(t, nullptr, deleted_texture);
-    new_texture_loaded = texture_changed;
-
-    if (new_texture_loaded) {
-      texture_vector.push_back(t);
-    }
-    
-    if (deleted_texture) {
-      auto it = std::find(texture_vector.begin(), texture_vector.end(), deleted_texture);
-      if (it != texture_vector.end()) {
-        texture_vector.erase(it);
-      }
-    }
-
-    return texture_changed;
-  }
-  
   /// This structure holds the texture component with use flag
   struct TextureComponent {
     bool use = false;
@@ -125,6 +32,17 @@ namespace ikan {
     ///   - color: color of the texture
     ///   - ui_function: function to render below texture Use
     void RenderGui(glm::vec4& color, UIFunction ui_function) {
+      // Quad Color
+      ImGui::Columns(2);
+      ImGui::SetColumnWidth(0, ImGui::GetWindowContentRegionMax().x / 2);
+      ui_function();
+      
+      ImGui::NextColumn();
+      ImGui::Text("Quad Color");
+      
+      ImGui::Columns(1);
+      ImGui::Separator();
+
       // Check box to togle use of texture
       PropertyGrid::CheckBox("Use Texure", use);
       PropertyGrid::HoveredMsg("Enable to Render the Sprite out the Texture");
@@ -137,6 +55,10 @@ namespace ikan {
       
       LoadTextureIconWrapper(texture);
     }
+    
+  protected:
+    bool LoadTextureIcon(std::shared_ptr<Texture>& texture, bool* is_animation, std::shared_ptr<Texture>& deleted_texture);
+    bool LoadTextureIconWrapper(std::vector<std::shared_ptr<Texture>>& texture_vector);
   };
   
   /// This structure holds the property of sprite component (Sub Texture)
