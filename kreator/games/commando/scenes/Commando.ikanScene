@@ -3,164 +3,1286 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
-  - Entity: 3670570008285146755
-    TagComponent:
-      Tag: planksHole_N
-    TransformComponent:
-      Translation: [0.5, 1.75, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Plank/planksHole_E.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 11027072329257388496
-    TagComponent:
-      Tag: planksHole_N
-    TransformComponent:
-      Translation: [1, 1.5, 0.00100000005]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Plank/planksBroken_E.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 6104188772910790676
-    TagComponent:
-      Tag: barrels_E
-    TransformComponent:
-      Translation: [0.5, 1.25, -0.00499999989]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Barrel/barrels_E.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 3443393335915845937
-    TagComponent:
-      Tag: barrelsStacked_S
-    TransformComponent:
-      Translation: [1, 1, -0.00499999989]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Barrel/barrelsStacked_S.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 8402956210772625704
-    TagComponent:
-      Tag: woodenPile_E
-    TransformComponent:
-      Translation: [0.5, -0.5, 0.00200000009]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Pile/woodenPile_E.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 8796121716544165725
-    TagComponent:
-      Tag: stoneColumnWood_E
-    TransformComponent:
-      Translation: [1, -0.75, 0.00300000003]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Columns/stoneColumnWood_E.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 13232895860085806486
-    TagComponent:
-      Tag: tableRoundChairs_N
-    TransformComponent:
-      Translation: [2.5, 0, -4.74974504e-11]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/TableChair/tableRoundChairs_N.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 11558434956318903022
-    TagComponent:
-      Tag: tableChairsBroken_N
-    TransformComponent:
-      Translation: [0.5, 0, 4.74974504e-11]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/TableChair/tableChairsBroken_N.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 16509160429487528733
-    TagComponent:
-      Tag: tableShortChairs_N
-    TransformComponent:
-      Translation: [-0.5, 0.5, -0.00200000009]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/TableChair/tableShortChairs_N.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 14852359344327479186
+  - Entity: 5376974472609777402
     TagComponent:
       Tag: stoneTile_W
     TransformComponent:
-      Translation: [2.5, 0, -0.895000041]
+      Translation: [-0.5, 3, -0.906999886]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 7835733838079021173
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0, 2.75, -0.905999899]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 14298629411295456758
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0.5, 2.5, -0.904999912]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 1427435702732615035
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1, 2.25, -0.903999925]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 2272857655682542311
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1.5, 2, -0.902999938]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 18412165203539394100
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [2, 1.75, -0.90199995]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 17275250881567258413
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [2.5, 1.5, -0.900999963]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 7332440942118009601
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [3, 1.25, -0.899999976]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 5006008259119872763
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [3.5, 1, -0.898999989]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 6393060472063088943
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [4, 0.75, -0.898000002]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 568126188965827296
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [4.5, 0.5, -0.897000015]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 5089889404678023579
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [5, 0.25, -0.896000028]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 18123387229543822478
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [5.5, 0, -0.895000041]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 7706324797917582623
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [5, -0.25, -0.894000053]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 14358308242979704191
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [4.5, 0, -0.895000041]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 9357034347594274410
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [4, 0.25, -0.896000028]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 8995860922166670080
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [3.5, 0.5, -0.897000015]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 2488394500219752890
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [3, 0.75, -0.898000002]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 4783224840177948243
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [2.5, 1, -0.898999989]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 14862788985034903491
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [2, 1.25, -0.899999976]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 6392278799565754563
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1.5, 1.5, -0.900999963]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 9697621837666656212
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1, 1.75, -0.90199995]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 6315883081210721379
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0.5, 2, -0.902999938]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 6633635502998416368
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0, 2.25, -0.903999925]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 8921560447444049664
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-0.5, 2.5, -0.904999912]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 4049507295350204189
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-1, 2.75, -0.905999899]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 7567550546505360671
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-1.5, 3, -0.906999886]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 5836893765175009723
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-2, 2.75, -0.905999899]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 13322367407028865897
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-2.5, 2.5, -0.904999912]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 1825065802391080583
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-3, 2.25, -0.903999925]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 5928319865232672116
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-3.5, 2, -0.902999938]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 6926836225483082947
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-4, 1.75, -0.90199995]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 5953208645945127116
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-4.5, 1.5, -0.900999963]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 7899782479189801038
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-5, 1.25, -0.899999976]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 16735370527065563997
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-4.5, 1, -0.898999989]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 3685581201431053552
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-4, 0.75, -0.898000002]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 4357951519134979943
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-3.5, 0.5, -0.897000015]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 8993915993129010223
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-3, 0.25, -0.896000028]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 12878346732680766725
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-2.5, 0, -0.895000041]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 9678044863383323084
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-2, -0.25, -0.894000053]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 11392948357315149173
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-1.5, -0.5, -0.893000066]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 194730091938744820
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-1, -0.75, -0.892000079]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 2372189387440705262
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-0.5, -1, -0.891000092]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 15006869294573982866
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0, -1.25, -0.890000105]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 3353881996484636115
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0.5, -1.5, -0.889000118]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 12481008945452507668
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1, -1.75, -0.888000131]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 1072185620952209265
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1.5, -2, -0.887000144]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 14634220751797536519
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [2, -1.75, -0.888000131]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 12168871484943219173
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [2.5, -1.5, -0.889000118]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 6000674976197557396
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [3, -1.25, -0.890000105]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 11755119529348168285
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [3.5, -1, -0.891000092]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 17795614022937797004
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [4, -0.75, -0.892000079]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 11397338910299870832
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [4.5, -0.5, -0.893000066]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 13729999886729151385
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [4, -0.25, -0.894000053]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 13122204089999611710
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [3.5, -0.5, -0.893000066]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 15116000825018450775
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [3, -0.75, -0.892000079]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 1911819456534705110
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [2.5, -1, -0.891000092]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 1673278654761174640
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [2, -1.25, -0.890000105]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 4030201695472395167
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1.5, -1.5, -0.889000118]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 10126925405900018486
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1, -1.25, -0.890000105]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 11953061826838545781
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0.5, -1, -0.891000092]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 7078725127374790796
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0, -0.75, -0.892000079]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 8628185413773833303
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-0.5, -0.5, -0.893000066]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 16904812107410930710
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-1, -0.25, -0.894000053]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 9429835200065073041
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-1.5, 0, -0.895000041]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 17258917126874520547
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-2, 0.25, -0.896000028]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 17930431510579942788
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-2.5, 0.5, -0.897000015]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 11481454935667662184
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-3, 0.75, -0.898000002]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 3314340946802961864
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-3.5, 1, -0.898999989]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 1244028570039214659
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-4, 1.25, -0.899999976]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 2842236547697008888
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-3.5, 1.5, -0.900999963]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 18283502652174984121
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-3, 1.75, -0.90199995]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 9397051881071096797
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-2.5, 2, -0.902999938]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 5304267777665733062
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-2, 2.25, -0.903999925]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 15038282855475813969
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-1.5, 2.5, -0.904999912]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 260379522096155656
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-1, 2.25, -0.903999925]
       Rotation: [0, 0, 0]
       Scale: [1, 2, 1]
     QuadComponent:
@@ -173,11 +1295,11 @@ Entities:
       Color: [1, 1, 1, 1]
       Speed: 15
       Num_Coords: 0
-  - Entity: 14982818095145860729
+  - Entity: 538569136726753647
     TagComponent:
       Tag: stoneTile_W
     TransformComponent:
-      Translation: [2, -0.25, -0.894000053]
+      Translation: [-1.5, 2, -0.902999938]
       Rotation: [0, 0, 0]
       Scale: [1, 2, 1]
     QuadComponent:
@@ -190,11 +1312,11 @@ Entities:
       Color: [1, 1, 1, 1]
       Speed: 15
       Num_Coords: 0
-  - Entity: 17959137519605921779
+  - Entity: 5048963578861482458
     TagComponent:
       Tag: stoneTile_W
     TransformComponent:
-      Translation: [1.5, -0.5, -0.893000066]
+      Translation: [-2, 1.75, -0.90199995]
       Rotation: [0, 0, 0]
       Scale: [1, 2, 1]
     QuadComponent:
@@ -207,11 +1329,11 @@ Entities:
       Color: [1, 1, 1, 1]
       Speed: 15
       Num_Coords: 0
-  - Entity: 10147122263421571470
+  - Entity: 17651620048723847949
     TagComponent:
       Tag: stoneTile_W
     TransformComponent:
-      Translation: [3.5, 0, -0.895000041]
+      Translation: [-2.5, 1.5, -0.900999963]
       Rotation: [0, 0, 0]
       Scale: [1, 2, 1]
     QuadComponent:
@@ -224,11 +1346,11 @@ Entities:
       Color: [1, 1, 1, 1]
       Speed: 15
       Num_Coords: 0
-  - Entity: 12449421321508298451
+  - Entity: 15162332979778320510
     TagComponent:
       Tag: stoneTile_W
     TransformComponent:
-      Translation: [0.5, -0.5, -0.893000066]
+      Translation: [-3, 1.25, -0.899999976]
       Rotation: [0, 0, 0]
       Scale: [1, 2, 1]
     QuadComponent:
@@ -241,432 +1363,7 @@ Entities:
       Color: [1, 1, 1, 1]
       Speed: 15
       Num_Coords: 0
-  - Entity: 16172161341242925006
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [1, -0.25, -0.894000053]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 2609086889516643124
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [1.5, 0, -0.895000041]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 2534694204256305960
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [2, 0.25, -0.896000028]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 4752033984326990472
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [2.5, 0.5, -0.897000015]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 11711054559076251274
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [2, 0.75, -0.898000002]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 8111281269622608469
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [0.5, 0, -0.895000041]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 13009133837983426899
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [1, 0.25, -0.896000028]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stoneUneven_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 16312566262514394822
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [1.5, 0.5, -0.897000015]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 9023636357665857408
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [3, 0.25, -0.896000028]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 7930128653709320676
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [1.5, 1, -0.898999989]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 4485131087774144411
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [1, 0.75, -0.898000002]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 4319998358113186298
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [0.5, 0.5, -0.897000015]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 17144961332049778479
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [0, 0.25, -0.896000028]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 5872377982844257519
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [0, -0.25, -0.894000053]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stoneMissingTiles_E.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 12925017758778044406
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [-1, 0.25, -0.896000028]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 6216744995398481185
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [0, 0.75, -0.898000002]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 12992631533378226673
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [0.5, 1, -0.898999989]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 4171160445647452520
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [0.5, 1.5, -0.900999963]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 6496601080296681903
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [0, 1.25, -0.899999976]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 6190538532846438995
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [0, 1.75, -0.90199995]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 13658695386368049645
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [-0.5, 2, -0.902999938]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 14116044685337815577
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [-1, 1.75, -0.90199995]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 7491200878508430095
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [-0.5, 1.5, -0.900999963]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 6807638980628010120
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [-1, 1.25, -0.899999976]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 1333591290038338302
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [-1.5, 1.5, -0.900999963]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 9220506672822097901
+  - Entity: 780405968149954072
     TagComponent:
       Tag: stoneTile_W
     TransformComponent:
@@ -683,351 +1380,11 @@ Entities:
       Color: [1, 1, 1, 1]
       Speed: 15
       Num_Coords: 0
-  - Entity: 5131609041116557813
+  - Entity: 7893623526634810602
     TagComponent:
       Tag: stoneTile_W
     TransformComponent:
-      Translation: [-2, 1.25, -0.899999976]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 15422066393962024640
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [-1.5, 1, -0.898999989]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 1892932591633109082
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [-2, 0.75, -0.898000002]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 1819708907892919075
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [-1.5, 0.5, -0.897000015]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 7918396208028051933
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [-1, 0.75, -0.898000002]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 18342507439000334955
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [-0.5, 0, -0.895000041]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 17326128636434879659
-    TagComponent:
-      Tag: woodenSupportsBlock_S
-    TransformComponent:
-      Translation: [0.5, 1.25, -0.00499999989]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Support/woodenSupportsBlock_S.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 618723153579894934
-    TagComponent:
-      Tag: stoneWallBroken_E
-    TransformComponent:
-      Translation: [-1, 1, -0.00400000019]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Wall/stoneWallBroken_E.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 159563838481753076
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [-0.5, 0.5, -0.897000015]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 5341748435920729519
-    TagComponent:
-      Tag: woodenSupportsBlock_S
-    TransformComponent:
-      Translation: [1, 1, -0.00399999972]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Support/woodenSupportsBlock_S.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 16360430337942919948
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [-0.5, 1, -0.898999989]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stoneTile_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 12162912870741790542
-    TagComponent:
-      Tag: Camera
-    TransformComponent:
-      Translation: [0, 0.231475949, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    CameraComponent:
-      FixedAspectRatio: false
-      Primary: true
-      ProjectionType: 1
-      PerspectiveFOV: 1.30899692
-      OrthographicSize: 4.09999657
-      Near: -1
-      Far: 1
-      Grid: true
-      Isometric: false
-  - Entity: 7681611260153144090
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [1, 1.25, -0.899999976]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 18380993096770988753
-    TagComponent:
-      Tag: stoneWallArchway_E
-    TransformComponent:
-      Translation: [-0.5, 1.25, -0.00499999989]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Wall/stoneWallArchway_E.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 9797253252574895488
-    TagComponent:
-      Tag: stoneWallCorner_E
-    TransformComponent:
-      Translation: [-1.5, 0.75, -0.00300000003]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Wall/stoneWallCorner_E.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 13427832580170495859
-    TagComponent:
-      Tag: stoneWallStructure_E
-    TransformComponent:
-      Translation: [0, 1.5, -0.00600000005]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Wall/stoneWallStructure_E.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 13374092312687277407
-    TagComponent:
-      Tag: tableShortChairs_N
-    TransformComponent:
-      Translation: [0, 0.25, -0.00100000005]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/TableChair/tableShortChairs_N.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 10271563084542184672
-    TagComponent:
-      Tag: stoneWallRoundWindow_N
-    TransformComponent:
-      Translation: [-1, 0.5, -0.00200000009]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Wall/stoneWallRoundWindow_N.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 755795476468950765
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [1, -0.75, -0.892000079]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 10540906959097729334
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [1.5, -1, -0.891000092]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 15
-      Num_Coords: 0
-  - Entity: 11167604563176847640
-    TagComponent:
-      Tag: stoneTile_W
-    TransformComponent:
-      Translation: [2, -0.75, -0.892000079]
+      Translation: [3, -0.25, -0.894000053]
       Rotation: [0, 0, 0]
       Scale: [1, 2, 1]
     QuadComponent:
@@ -1057,11 +1414,11 @@ Entities:
       Color: [1, 1, 1, 1]
       Speed: 15
       Num_Coords: 0
-  - Entity: 7893623526634810602
+  - Entity: 11167604563176847640
     TagComponent:
       Tag: stoneTile_W
     TransformComponent:
-      Translation: [3, -0.25, -0.894000053]
+      Translation: [2, -0.75, -0.892000079]
       Rotation: [0, 0, 0]
       Scale: [1, 2, 1]
     QuadComponent:
@@ -1069,6 +1426,1026 @@ Entities:
       Sub_Texture_Use: false
       Linear_Edge: true
       Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 10540906959097729334
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1.5, -1, -0.891000092]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 755795476468950765
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1, -0.75, -0.892000079]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 10271563084542184672
+    TagComponent:
+      Tag: stoneWallRoundWindow_N
+    TransformComponent:
+      Translation: [-1, 0.5, -0.00200000009]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Wall/stoneWallRoundWindow_N.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 13374092312687277407
+    TagComponent:
+      Tag: tableShortChairs_N
+    TransformComponent:
+      Translation: [0, 0.25, -0.00100000005]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/TableChair/tableShortChairs_N.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 13427832580170495859
+    TagComponent:
+      Tag: stoneWallStructure_E
+    TransformComponent:
+      Translation: [0, 1.5, -0.00600000005]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Wall/stoneWallStructure_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 9797253252574895488
+    TagComponent:
+      Tag: stoneWallCorner_E
+    TransformComponent:
+      Translation: [-1.5, 0.75, -0.00300000003]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Wall/stoneWallCorner_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 18380993096770988753
+    TagComponent:
+      Tag: stoneWallArchway_E
+    TransformComponent:
+      Translation: [-0.5, 1.25, -0.00499999989]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Wall/stoneWallArchway_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 7681611260153144090
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1, 1.25, -0.899999976]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 12162912870741790542
+    TagComponent:
+      Tag: Camera
+    TransformComponent:
+      Translation: [0, 0.231475949, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 1.30899692
+      OrthographicSize: 7.29999352
+      Near: -1
+      Far: 1
+      Grid: true
+      Isometric: false
+  - Entity: 16360430337942919948
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-0.5, 1, -0.898999989]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stoneTile_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 5341748435920729519
+    TagComponent:
+      Tag: woodenSupportsBlock_S
+    TransformComponent:
+      Translation: [1, 1, -0.00399999972]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Support/woodenSupportsBlock_S.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 159563838481753076
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-0.5, 0.5, -0.897000015]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 618723153579894934
+    TagComponent:
+      Tag: stoneWallBroken_E
+    TransformComponent:
+      Translation: [-1, 1, -0.00400000019]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Wall/stoneWallBroken_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 17326128636434879659
+    TagComponent:
+      Tag: woodenSupportsBlock_S
+    TransformComponent:
+      Translation: [0.5, 1.25, -0.00499999989]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Support/woodenSupportsBlock_S.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 18342507439000334955
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-0.5, 0, -0.895000041]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 7918396208028051933
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-1, 0.75, -0.898000002]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 1819708907892919075
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-1.5, 0.5, -0.897000015]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 1892932591633109082
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-2, 0.75, -0.898000002]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 15422066393962024640
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-1.5, 1, -0.898999989]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 5131609041116557813
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-2, 1.25, -0.899999976]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 9220506672822097901
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-1, 3.25, -0.907999873]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Dirt/dirt_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 1333591290038338302
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-1.5, 1.5, -0.900999963]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 6807638980628010120
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-1, 1.25, -0.899999976]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 7491200878508430095
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-0.5, 1.5, -0.900999963]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 14116044685337815577
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-1, 1.75, -0.90199995]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 13658695386368049645
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-0.5, 2, -0.902999938]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 6190538532846438995
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0, 1.75, -0.90199995]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 6496601080296681903
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0, 1.25, -0.899999976]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 4171160445647452520
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0.5, 1.5, -0.900999963]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 12992631533378226673
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0.5, 1, -0.898999989]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 6216744995398481185
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0, 0.75, -0.898000002]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 12925017758778044406
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [-1, 0.25, -0.896000028]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 5872377982844257519
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0, -0.25, -0.894000053]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stoneMissingTiles_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 17144961332049778479
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0, 0.25, -0.896000028]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 4319998358113186298
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0.5, 0.5, -0.897000015]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 4485131087774144411
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1, 0.75, -0.898000002]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 7930128653709320676
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1.5, 1, -0.898999989]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 9023636357665857408
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [3, 0.25, -0.896000028]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 16312566262514394822
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1.5, 0.5, -0.897000015]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 13009133837983426899
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1, 0.25, -0.896000028]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stoneUneven_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 8111281269622608469
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0.5, 0, -0.895000041]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 11711054559076251274
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [2, 0.75, -0.898000002]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 4752033984326990472
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [2.5, 0.5, -0.897000015]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 2534694204256305960
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [2, 0.25, -0.896000028]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 2609086889516643124
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1.5, 0, -0.895000041]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 16172161341242925006
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1, -0.25, -0.894000053]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 12449421321508298451
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [0.5, -0.5, -0.893000066]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 10147122263421571470
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [3.5, 0, -0.895000041]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 17959137519605921779
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [1.5, -0.5, -0.893000066]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 14982818095145860729
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [2, -0.25, -0.894000053]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 14852359344327479186
+    TagComponent:
+      Tag: stoneTile_W
+    TransformComponent:
+      Translation: [2.5, 0, -0.895000041]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Base/stone_W.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 16509160429487528733
+    TagComponent:
+      Tag: tableShortChairs_N
+    TransformComponent:
+      Translation: [-0.5, 0.5, -0.00200000009]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/TableChair/tableShortChairs_N.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 11558434956318903022
+    TagComponent:
+      Tag: tableChairsBroken_N
+    TransformComponent:
+      Translation: [0.5, 0, 4.74974504e-11]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/TableChair/tableChairsBroken_N.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 13232895860085806486
+    TagComponent:
+      Tag: tableRoundChairs_N
+    TransformComponent:
+      Translation: [2.5, 0, -4.74974504e-11]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/TableChair/tableRoundChairs_N.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 8796121716544165725
+    TagComponent:
+      Tag: stoneColumnWood_E
+    TransformComponent:
+      Translation: [1, -0.75, 0.00300000003]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Columns/stoneColumnWood_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 8402956210772625704
+    TagComponent:
+      Tag: woodenPile_E
+    TransformComponent:
+      Translation: [0.5, -0.5, 0.00200000009]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Pile/woodenPile_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 3443393335915845937
+    TagComponent:
+      Tag: barrelsStacked_S
+    TransformComponent:
+      Translation: [1, 1, -0.00499999989]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Barrel/barrelsStacked_S.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 6104188772910790676
+    TagComponent:
+      Tag: barrels_E
+    TransformComponent:
+      Translation: [0.5, 1.25, -0.00499999989]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Barrel/barrels_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 11027072329257388496
+    TagComponent:
+      Tag: planksHole_N
+    TransformComponent:
+      Translation: [1, 1.5, 0.00100000005]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Plank/planksBroken_E.png
+      Num_Texture_Path: 1
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Num_Coords: 0
+  - Entity: 3670570008285146755
+    TagComponent:
+      Tag: planksHole_N
+    TransformComponent:
+      Translation: [0.5, 1.75, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 2, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Isometric/Plank/planksHole_E.png
       Num_Texture_Path: 1
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]

@@ -73,9 +73,11 @@ namespace commando {
           break;
         case Right:
           iso_step = Math::GetIsometricFromCartesian({0.5, 0});
+          tc.AddPosition(Z, -0.001);
           break;
         case Left:
           iso_step = Math::GetIsometricFromCartesian({-0.5, 0});
+          tc.AddPosition(Z, 0.001);
           break;
         default: break;
       }
