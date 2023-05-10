@@ -63,6 +63,7 @@ namespace commando {
       switch (direction) {
         case Down:
           tc.AddPosition(Y, -0.25f);
+          tc.UpdatePosition(Z, tc.Position().z + 0.001);
           break;
         case Up:
           tc.AddPosition(Y, 0.25f);
@@ -70,7 +71,6 @@ namespace commando {
           break;
         case Right:
           tc.AddPosition(X, 0.5f);
-          tc.UpdatePosition(Z, tc.Position().z + 0.001);
           break;
         case Left:
           tc.AddPosition(X, -0.5f);

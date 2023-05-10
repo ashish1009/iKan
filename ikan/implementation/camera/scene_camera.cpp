@@ -292,11 +292,11 @@ namespace ikan {
     Batch2DRenderer::BeginBatch(projection_matrix_ * glm::inverse(camera_transform));
     
     for (int32_t i = (int32_t)(-line_by_2); i < (int32_t)line_by_2; i++) {
-      glm::vec3 car_start_1 = {-line_by_2 + camera_pos.x, 0.5 + i + camera_pos.y, 0};
-      glm::vec3 car_end_1 = {line_by_2 + camera_pos.x, 0.5 + i + camera_pos.y, 0};
+      glm::vec3 car_start_1 = {-line_by_2 + camera_pos.x, 0.5 + i + camera_pos.y, -0.999};
+      glm::vec3 car_end_1 = {line_by_2 + camera_pos.x, 0.5 + i + camera_pos.y, -0.999};
       
-      glm::vec3 car_start_2 = {0.5 + i + camera_pos.x, -line_by_2 + camera_pos.y, 0};
-      glm::vec3 car_end_2 = {0.5 + i + camera_pos.x, line_by_2 + camera_pos.y, 0};
+      glm::vec3 car_start_2 = {0.5 + i + camera_pos.x, -line_by_2 + camera_pos.y, -0.999};
+      glm::vec3 car_end_2 = {0.5 + i + camera_pos.x, line_by_2 + camera_pos.y, -0.999};
       
       if (isometric_) {
         glm::vec3 iso_start_1 = glm::vec3(Math::GetIsometricFromCartesian(car_start_1), car_start_1.z);
