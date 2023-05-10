@@ -153,8 +153,10 @@ namespace ikan {
         
         ImGui::SameLine();
         std::string id = std::string("##") + std::to_string(i);
-        if (ImGui::DragFloat(id.c_str(), values[i], delta, min_value, max_value, "%.2f"))
+        if (ImGui::DragFloat(id.c_str(), values[i], delta, min_value, max_value, "%.2f")) {
           modified = true;
+        }
+        PropertyGrid::HoveredMsg(std::to_string(*(values[i])).c_str());
         
         if (i < buttons.size() - 1)
           ImGui::SameLine();

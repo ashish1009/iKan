@@ -30,7 +30,7 @@ namespace commando {
     glm::vec4 GetBgColor() const override { return {0.5f, 0.2f, 0.2f, 1.0f}; }
     std::string GetScenePath() const override { return DM::WorkspacePath("/kreator/games/commando/scenes/"); }
     std::string SavedScene() const override { return GetScenePath() + "Commando.ikanScene"; };
-    std::string CbpRootDir() const override { return GetScenePath(); };
+    std::string CbpRootDir() const override { return DM::ClientAsset("textures/Isometric"); };
     Font RegularFontData() const override { return {DM::ClientAsset("fonts/Opensans/Regular.ttf"), 14}; };
     Font BoldFontData() const override { return {DM::ClientAsset("fonts/Opensans/Bold.ttf"), 14}; };
     std::vector<std::filesystem::path> FavDirecotries() const override { return { DM::WorkspacePath("/kreator") }; };
