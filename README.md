@@ -53,9 +53,13 @@ ${PROJECT_DIR}/../ikan/vendors/freetype/lib
 ## Outputs
 ### Editor
 ![](/kreator/games/outpus/mario_editor.png)
+![](/kreator/games/outpus/commando_editor.png)
 
 ### Mario
 ![](/kreator/games/outpus/mario.png)
+
+### Commando
+![](/kreator/games/outpus/commando.png)
 
 ### Chess
 ![](/kreator/games/outpus/chess.png)
