@@ -44,7 +44,7 @@ namespace commando {
       tc.UpdateScale(Y, 2);
       
       tc.UpdatePosition(X, x_pos);
-      tc.UpdatePosition(Y, y_pos + 0.5f);
+      tc.UpdatePosition(Y, y_pos + 0.75f);
       tc.UpdatePosition(Z, -1 * ((tc.Position().y / 0.25) * 0.001f));
       
       auto& qc = e.AddComponent<QuadComponent>();

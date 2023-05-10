@@ -27,7 +27,7 @@ namespace commando {
     void SetViewportSize(uint32_t width, uint32_t height) override {}
     
     std::string GameName() const override { return "IKAN Commando"; }
-    glm::vec4 GetBgColor() const override { return {0.278f, 0.262f, 0.196f, 1.0f}; }
+    glm::vec4 GetBgColor() const override { return {0.392f, 0.353f, 0.274f, 1.0f}; }
     std::string GetScenePath() const override { return DM::WorkspacePath("/kreator/games/commando/scenes/"); }
     std::string SavedScene() const override { return GetScenePath() + "Commando.ikanScene"; };
     std::string CbpRootDir() const override { return DM::ClientAsset("textures/Isometric"); };
