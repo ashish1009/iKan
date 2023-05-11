@@ -569,10 +569,12 @@ namespace ikan {
   void Scene::AddBoxColliderData(const TransformComponent& tc, const Box2DColliderComponent& bc2d, const RigidBodyComponent& rb2d, bool is_pill) {
     b2Body* body = (b2Body*)rb2d.runtime_body;
     b2PolygonShape polygon_shape;
-    if (is_pill)
+    if (is_pill) {
       polygon_shape.SetAsBox(bc2d.size.x, bc2d.size.y, {bc2d.offset.x, bc2d.offset.y}, 0);
-    else
-      polygon_shape.SetAsBox(bc2d.size.x * tc.Scale().x, bc2d.size.y * tc.Scale().y, {bc2d.offset.x, bc2d.offset.y}, 0);
+    }
+    else {
+      polygon_shape.SetAsBox(bc2d.size.x * tc.Scale().x, bc2d.size.y * tc.Scale().y, {bc2d.offset.x, bc2d.offset.y}, bc2d.angle);
+    }
     
     b2FixtureDef fixture_def;
     fixture_def.shape = & polygon_shape;

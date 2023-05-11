@@ -3,6 +3,76 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
+  - Entity: 4388891667870374812
+    TagComponent:
+      Tag: Enemy
+    TransformComponent:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Characters/Enemy/Death/Tuscan_Death_70000.png
+      Texture_Path_1: ../../../kreator/games/commando/assets/textures/Characters/Enemy/Death/Tuscan_Death_70001.png
+      Texture_Path_2: ../../../kreator/games/commando/assets/textures/Characters/Enemy/Death/Tuscan_Death_70002.png
+      Texture_Path_3: ../../../kreator/games/commando/assets/textures/Characters/Enemy/Death/Tuscan_Death_70003.png
+      Texture_Path_4: ../../../kreator/games/commando/assets/textures/Characters/Enemy/Death/Tuscan_Death_70004.png
+      Texture_Path_5: ../../../kreator/games/commando/assets/textures/Characters/Enemy/Death/Tuscan_Death_70005.png
+      Texture_Path_6: ../../../kreator/games/commando/assets/textures/Characters/Enemy/Death/Tuscan_Death_70006.png
+      Texture_Path_7: ../../../kreator/games/commando/assets/textures/Characters/Enemy/Death/Tuscan_Death_70007.png
+      Texture_Path_8: ../../../kreator/games/commando/assets/textures/Characters/Enemy/Death/Tuscan_Death_70008.png
+      Texture_Path_9: ../../../kreator/games/commando/assets/textures/Characters/Enemy/Death/Tuscan_Death_70009.png
+      Texture_Path_10: ../../../kreator/games/commando/assets/textures/Characters/Enemy/Death/Tuscan_Death_70010.png
+      Texture_Path_11: ../../../kreator/games/commando/assets/textures/Characters/Enemy/Death/Tuscan_Death_70011.png
+      Texture_Path_12: ../../../kreator/games/commando/assets/textures/Characters/Enemy/Death/Tuscan_Death_70012.png
+      Texture_Path_13: ../../../kreator/games/commando/assets/textures/Characters/Enemy/Death/Tuscan_Death_70013.png
+      Texture_Path_14: ../../../kreator/games/commando/assets/textures/Characters/Enemy/Death/Tuscan_Death_70014.png
+      Texture_Path_15: ../../../kreator/games/commando/assets/textures/Characters/Enemy/Death/Tuscan_Death_70015.png
+      Num_Texture_Path: 16
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
+  - Entity: 7115215618675405761
+    TagComponent:
+      Tag: Player
+    TransformComponent:
+      Translation: [-0.5, -1.75, 0.00700000022]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    QuadComponent:
+      Texture_Use: true
+      Sub_Texture_Use: false
+      Linear_Edge: true
+      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Characters/Archer/_attack/Archer_Fire_30000.png
+      Texture_Path_1: ../../../kreator/games/commando/assets/textures/Characters/Archer/_attack/Archer_Fire_30001.png
+      Texture_Path_2: ../../../kreator/games/commando/assets/textures/Characters/Archer/_attack/Archer_Fire_30002.png
+      Texture_Path_3: ../../../kreator/games/commando/assets/textures/Characters/Archer/_attack/Archer_Fire_30003.png
+      Texture_Path_4: ../../../kreator/games/commando/assets/textures/Characters/Archer/_attack/Archer_Fire_30004.png
+      Texture_Path_5: ../../../kreator/games/commando/assets/textures/Characters/Archer/_attack/Archer_Fire_30005.png
+      Texture_Path_6: ../../../kreator/games/commando/assets/textures/Characters/Archer/_attack/Archer_Fire_30006.png
+      Texture_Path_7: ../../../kreator/games/commando/assets/textures/Characters/Archer/_attack/Archer_Fire_30007.png
+      Texture_Path_8: ../../../kreator/games/commando/assets/textures/Characters/Archer/_attack/Archer_Fire_30008.png
+      Texture_Path_9: ../../../kreator/games/commando/assets/textures/Characters/Archer/_attack/Archer_Fire_30009.png
+      Texture_Path_10: ../../../kreator/games/commando/assets/textures/Characters/Archer/_attack/Archer_Fire_30010.png
+      Texture_Path_11: ../../../kreator/games/commando/assets/textures/Characters/Archer/_attack/Archer_Fire_30011.png
+      Texture_Path_12: ../../../kreator/games/commando/assets/textures/Characters/Archer/_attack/Archer_Fire_30012.png
+      Texture_Path_13: ../../../kreator/games/commando/assets/textures/Characters/Archer/_attack/Archer_Fire_30013.png
+      Texture_Path_14: ../../../kreator/games/commando/assets/textures/Characters/Archer/_attack/Archer_Fire_30014.png
+      Texture_Path_15: ../../../kreator/games/commando/assets/textures/Characters/Archer/_attack/Archer_Fire_30015.png
+      Num_Texture_Path: 16
+      Texture_TilingFactor: 1
+      Color: [1, 1, 1, 1]
+      Speed: 15
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
   - Entity: 6847563264587681370
     TagComponent:
       Tag: tableRoundChairs_S
@@ -3457,24 +3527,6 @@ Entities:
       Color: [1, 1, 1, 1]
       Speed: 15
       Num_Coords: 0
-    RigidBodyComponent:
-      Type: 0
-      Is Ground: false
-      Is Sensor: false
-      Fixed Rotation: false
-      Linear Velocity: [0, 0]
-      Angular Damping: 0.800000012
-      Angular Velocity: 0
-      Linear Damping: 0.899999976
-      Gravity Scale: 1
-    BoxColloiderComponent:
-      Offset: [0, 0]
-      Size: [0.5, 0.5]
-      Angle: 0
-      Density: 1
-      Friction: 0.5
-      Restitution: 0
-      Restitution Threshold: 0.5
   - Entity: 11844175676674427925
     TagComponent:
       Tag: stoneTile_W
