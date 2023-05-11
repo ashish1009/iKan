@@ -3,30 +3,13 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
-  - Entity: 6917932943222655054
-    TagComponent:
-      Tag: Camera
-    TransformComponent:
-      Translation: [0, -0.258026838, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    CameraComponent:
-      FixedAspectRatio: false
-      Primary: true
-      ProjectionType: 1
-      PerspectiveFOV: 1.30899692
-      OrthographicSize: 0.599998116
-      Near: -1
-      Far: 1
-      Grid: true
-      Isometric: false
   - Entity: 18231820158639941571
     TagComponent:
       Tag: Quad
     TransformComponent:
       Translation: [0, 0, 0]
       Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
+      Scale: [1, 2, 1]
     QuadComponent:
       Texture_Use: true
       Sub_Texture_Use: false
@@ -51,10 +34,28 @@ Entities:
       Linear Damping: 0.899999976
       Gravity Scale: 1
     BoxColloiderComponent:
-      Offset: [0, -0.354000002]
-      Size: [0.5, 0.140000001]
-      Angle: -0.244346097
+      Offset: [0, 0]
+      Size: [0.5, 0.5]
+      Angle: 0
+      Isometric: true
       Density: 1
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
+  - Entity: 6917932943222655054
+    TagComponent:
+      Tag: Camera
+    TransformComponent:
+      Translation: [0, -0.258026838, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 1.30899692
+      OrthographicSize: 5.29999542
+      Near: -1
+      Far: 1
+      Grid: true
+      Isometric: false

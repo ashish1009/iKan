@@ -212,6 +212,7 @@ namespace kreator {
     else {
       ImguiAPI::StartDcocking();
 
+      ImGui::ShowDemoWindow();
       ShowMenu();
       
       if (active_scene_) {

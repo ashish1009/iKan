@@ -30,10 +30,10 @@ Entities:
       Linear Damping: 0.899999976
       Gravity Scale: 1
     BoxColloiderComponent:
-      Offset: [0, 0]
+      Offset: [2.8480165, 0.146256834]
       Size: [0.5, 0.5]
       Angle: 0
-      Isometric: false
+      Isometric: true
       Density: 1
       Friction: 0.5
       Restitution: 0

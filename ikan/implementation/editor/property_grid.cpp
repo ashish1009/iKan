@@ -171,6 +171,73 @@ namespace ikan {
     return modified;
   }
   
+  bool PropertyGrid::SliderFloat1(const char* label, float& value, float reset_value, float min_value, float max_value, float column_width) {
+    return SliderFloatImpl({"X"}, label, {&value}, reset_value, min_value, max_value, column_width);
+  }
+  bool PropertyGrid::SliderFloat2(const char* label, glm::vec2& value, float reset_value, float min_value, float max_value, float column_width) {
+    return SliderFloatImpl({"X", "Y"}, label, {&value.x, &value.y}, reset_value, min_value, max_value, column_width);
+  }
+  bool PropertyGrid::SliderFloat3(const char* label, glm::vec3& value, float reset_value, float min_value, float max_value, float column_width) {
+    return SliderFloatImpl({"X", "Y", "Z"}, label, {&value.x, &value.y, &value.z}, reset_value, min_value, max_value, column_width);
+  }
+  bool PropertyGrid::SliderFloatImpl(const std::vector<std::string>& buttons, const char* label, const std::vector<float*>& values,
+                                     float reset_value, float min_value, float max_value, float column_width) {
+    bool modified = false;
+    ImGuiIO& io   = ImGui::GetIO();
+    auto bold_font = io.Fonts->Fonts[0];
+    
+    ImGui::PushID(label);
+    ImGui::Columns(2);
+    
+    ImGui::PushItemWidth(-1);
+    ImGui::SetColumnWidth(0, column_width);
+    
+    // this flag is to check we need to have slider float or not
+    bool prop_flag;
+
+    ImGui::Text(label);
+    prop_flag = true;
+
+    ImGui::PopItemWidth();
+    
+    if (prop_flag) {
+      ImGui::NextColumn();
+      ImGui::PushItemWidth(-1);
+      
+      float lineHeight = GImGui->Font->FontSize + GImGui->Style.FramePadding.y * 2.0f;
+      ImVec2 button_size = { lineHeight + 3.0f, lineHeight };
+      
+      ImGui::PushMultiItemsWidths((uint32_t)buttons.size(), ImGui::CalcItemWidth() - (lineHeight * buttons.size()));
+      ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2{ 0, 0 });
+      
+      for (int32_t i = 0; i < buttons.size(); i++) {
+        ImGui::PushFont(bold_font);
+        if (ImGui::Button((const char*)&buttons[i], button_size)) {
+          *(values[i]) = reset_value;
+          modified = true;
+        }
+        ImGui::PopFont();
+        
+        ImGui::SameLine();
+        std::string id = std::string("##") + std::to_string(i);
+        if (ImGui::SliderFloat(id.c_str(), values[i], min_value, max_value, "%.2f")) {
+          modified = true;
+        }
+        PropertyGrid::HoveredMsg(std::to_string(*(values[i])).c_str());
+        
+        if (i < buttons.size() - 1)
+          ImGui::SameLine();
+      }
+      ImGui::PopItemWidth();
+      ImGui::PopStyleVar();
+    }
+    
+    ImGui::Columns(1);
+    ImGui::PopID();
+    
+    return modified;
+  }
+  
   bool PropertyGrid::Search(char* value, const char* hint, const glm::vec2& size) {
     bool modified = false;
     ImGui::PushID("Search");
