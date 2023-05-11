@@ -686,8 +686,26 @@ namespace kreator {
     for (auto entity : box_view) {
       auto [tc, bcc] = box_view.get<TransformComponent, Box2DColliderComponent>(entity);
       glm::vec3 p = tc.Position() + glm::vec3(bcc.offset, 0.001f);
-      glm::vec3 s = tc.Scale() * glm::vec3((bcc.size * 2.0f), 1.0f); // We need diameter
-      Batch2DRenderer::DrawRect(Math::GetTransformMatrix(p, {tc.Rotation().x, tc.Rotation().y, bcc.angle}, s), collider_color);
+      if (bcc.isometric) {
+        const glm::vec2& s = tc.Scale();
+        
+        float size_x_factor[4] = {-(s.x * bcc.size.x), -(s.x * bcc.size.x), (s.x * bcc.size.x), (s.x * bcc.size.x)};
+        float size_y_factor[4] = {-(s.y * bcc.size.y), (s.y * bcc.size.y), -(s.y * bcc.size.y), (s.y * bcc.size.y)};
+        
+        glm::vec2 iso_p[4];
+        for (int32_t i = 0 ; i < 4; i++) {
+          iso_p[i] = Math::GetIsometricFromCartesian({0 + size_x_factor[i], 0 + size_y_factor[i]});
+        }
+        
+        Batch2DRenderer::DrawLine({p.x + iso_p[0].x, p.y + iso_p[0].y, 0.01}, {p.x + iso_p[1].x, p.y + iso_p[1].y, 0.01}, collider_color);
+        Batch2DRenderer::DrawLine({p.x + iso_p[1].x, p.y + iso_p[1].y, 0.01}, {p.x + iso_p[3].x, p.y + iso_p[3].y, 0.01}, collider_color);
+        Batch2DRenderer::DrawLine({p.x + iso_p[3].x, p.y + iso_p[3].y, 0.01}, {p.x + iso_p[2].x, p.y + iso_p[2].y, 0.01}, collider_color);
+        Batch2DRenderer::DrawLine({p.x + iso_p[2].x, p.y + iso_p[2].y, 0.01}, {p.x + iso_p[0].x, p.y + iso_p[0].y, 0.01}, collider_color);
+      }
+      else {
+        glm::vec3 s = tc.Scale() * glm::vec3((bcc.size * 2.0f), 1.0f); // We need diameter
+        Batch2DRenderer::DrawRect(Math::GetTransformMatrix(p, {tc.Rotation().x, tc.Rotation().y, bcc.angle}, s), collider_color);
+      }
     }
   
     // Circle Collider

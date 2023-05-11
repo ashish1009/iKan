@@ -301,6 +301,7 @@ x& x::operator=(x&& other) { \
   Box2DColliderComponent::~Box2DColliderComponent() { COMP_LOG("Destroying Box Collider Component"); }
   COMP_COPY_MOVE_CONSTRUCTORS(Box2DColliderComponent);
   void Box2DColliderComponent::Copy(const Box2DColliderComponent &other) {
+    isometric = other.isometric;
     physics_mat = other.physics_mat;
     offset = other.offset;
     size = other.size;
@@ -309,12 +310,17 @@ x& x::operator=(x&& other) { \
   }
   
   void Box2DColliderComponent::RenderGui() {
+    PropertyGrid::CheckBox("Isometric", isometric);
+    ImGui::Separator();
+    
     PropertyGrid::Float2("Offset", offset);
     PropertyGrid::Float2("Size", size);
 
-    float rotation_in_degree = glm::degrees(angle);
-    if (PropertyGrid::Float1("Rotation", rotation_in_degree, nullptr, 0.25f, 0.0f, MIN_FLT, MAX_FLT)) {
-      angle = glm::radians(rotation_in_degree);
+    if (!isometric) {
+      float rotation_in_degree = glm::degrees(angle);
+      if (PropertyGrid::Float1("Rotation", rotation_in_degree, nullptr, 0.25f, 0.0f, MIN_FLT, MAX_FLT)) {
+        angle = glm::radians(rotation_in_degree);
+      }
     }
     
     ImGui::Separator();

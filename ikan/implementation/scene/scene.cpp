@@ -580,10 +580,29 @@ namespace ikan {
   void Scene::AddBoxColliderData(const TransformComponent& tc, const Box2DColliderComponent& bc2d, const RigidBodyComponent& rb2d, bool is_pill) {
     b2Body* body = (b2Body*)rb2d.runtime_body;
     b2PolygonShape polygon_shape;
-    if (is_pill)
+    if (is_pill) {
       polygon_shape.SetAsBox(bc2d.size.x, bc2d.size.y, {bc2d.offset.x, bc2d.offset.y}, 0);
-    else
-      polygon_shape.SetAsBox(bc2d.size.x * tc.Scale().x, bc2d.size.y * tc.Scale().y, {bc2d.offset.x, bc2d.offset.y}, bc2d.angle);
+    }
+    else {
+      const glm::vec2& s = tc.Scale();
+      if (bc2d.isometric) {
+        float size_x_factor[4] = {-(s.x * bc2d.size.x), -(s.x * bc2d.size.x), (s.x * bc2d.size.x), (s.x * bc2d.size.x)};
+        float size_y_factor[4] = {-(s.y * bc2d.size.y), (s.y * bc2d.size.y), -(s.y * bc2d.size.y), (s.y * bc2d.size.y)};
+        
+        b2Vec2 points[4];
+        for (int32_t i = 0 ; i < 4; i++) {
+          glm::vec2 iso_p = Math::GetIsometricFromCartesian({0 + size_x_factor[i], 0 + size_y_factor[i]});
+          iso_p.x += bc2d.offset.x;
+          iso_p.y += bc2d.offset.y;
+          points[i] = {iso_p.x, iso_p.y};
+        }
+        
+        polygon_shape.Set(points, 4);
+      }
+      else {
+        polygon_shape.SetAsBox(bc2d.size.x * s.x, bc2d.size.y * s.y, {bc2d.offset.x, bc2d.offset.y}, bc2d.angle);
+      }
+    }
     
     b2FixtureDef fixture_def;
     fixture_def.shape = & polygon_shape;

@@ -3,26 +3,6 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
-  - Entity: 14882435626342367036
-    TagComponent:
-      Tag: Player
-    TransformComponent:
-      Translation: [1, -1.25, 0.00499999989]
-      Rotation: [0, 0, 0]
-      Scale: [1, 2, 1]
-    QuadComponent:
-      Texture_Use: true
-      Sub_Texture_Use: false
-      Linear_Edge: true
-      Texture_Path_0: ../../../kreator/games/commando/assets/textures/Characters/north/Pickup0.png
-      Num_Texture_Path: 1
-      Texture_TilingFactor: 1
-      Color: [1, 1, 1, 1]
-      Speed: 10
-      Coords0: [0, 0]
-      Sprite_Size0: [1, 1]
-      Cell_Size0: [16, 16]
-      Num_Coords: 1
   - Entity: 17147612239461060411
     TagComponent:
       Tag: stoneTile_W

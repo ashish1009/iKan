@@ -3,4 +3,129 @@
    uuid = "758B2BD6-64BA-4FD5-ADCC-71C87147510D"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            uuid = "3FCD146B-EFD5-4FDE-87A9-B9F8C4A974AB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = ""
+            moduleName = "">
+            <Locations>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0BB8A141-9B9A-41C9-890B-B4115D715DCC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kreator/src/renderer_layer.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "700"
+            endingLineNumber = "700"
+            landmarkName = "RendererLayer::RenderColliders()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0BB8A141-9B9A-41C9-890B-B4115D715DCC - a7b13b8d6891110d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "kreator::RendererLayer::RenderColliders()"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/kreator/src/renderer_layer.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "701"
+                  endingLineNumber = "701"
+                  offsetFromSymbolStart = "752">
+               </Location>
+               <Location
+                  uuid = "0BB8A141-9B9A-41C9-890B-B4115D715DCC - a7b13b8d68910eee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "kreator::RendererLayer::RenderColliders()"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/kreator/src/renderer_layer.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "702"
+                  endingLineNumber = "702"
+                  offsetFromSymbolStart = "732">
+               </Location>
+               <Location
+                  uuid = "0BB8A141-9B9A-41C9-890B-B4115D715DCC - a7b13b8d6891110d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "kreator::RendererLayer::RenderColliders()"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/kreator/src/renderer_layer.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "701"
+                  endingLineNumber = "701"
+                  offsetFromSymbolStart = "824">
+               </Location>
+               <Location
+                  uuid = "0BB8A141-9B9A-41C9-890B-B4115D715DCC - a7b13b8d68910eee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "kreator::RendererLayer::RenderColliders()"
+                  moduleName = "kreator"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ashish./iKan_storage/Github/Projects/ikan/kreator/src/renderer_layer.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "702"
+                  endingLineNumber = "702"
+                  offsetFromSymbolStart = "804">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1F75AC63-1B49-457B-A207-802C88B66253"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kreator/src/renderer_layer.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "696"
+            endingLineNumber = "696"
+            landmarkName = "RendererLayer::RenderColliders()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DFD828E0-0564-4604-8A83-7B8DED2089E0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "kreator/src/renderer_layer.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "699"
+            endingLineNumber = "699"
+            landmarkName = "RendererLayer::RenderColliders()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
