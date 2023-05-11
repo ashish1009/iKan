@@ -302,7 +302,6 @@ x& x::operator=(x&& other) { \
   COMP_COPY_MOVE_CONSTRUCTORS(Box2DColliderComponent);
   void Box2DColliderComponent::Copy(const Box2DColliderComponent &other) {
     physics_mat = other.physics_mat;
-    angle = other.angle;
     offset = other.offset;
     size = other.size;
     runtime_fixture = other.runtime_fixture;
@@ -312,11 +311,6 @@ x& x::operator=(x&& other) { \
     PropertyGrid::Float2("Offset", offset);
     PropertyGrid::Float2("Size", size);
     
-    float rotation_in_degree = glm::degrees(angle);
-    if (PropertyGrid::Float1("Angle", rotation_in_degree, nullptr, 0.25f, 0.0f, MIN_FLT, MAX_FLT)) {
-      angle = glm::radians(rotation_in_degree);
-    }
-
     ImGui::Separator();
     physics_mat.RenderGui();
     ImGui::Separator();

@@ -103,8 +103,7 @@ namespace ikan {
   void EntitySerialiser::SerializeBoxCollider(YAML::Emitter& out, const Box2DColliderComponent& bcc, std::string identifier) {
     out << YAML::Key << "Offset" + identifier << YAML::Value << bcc.offset;
     out << YAML::Key << "Size" + identifier << YAML::Value << bcc.size;
-    out << YAML::Key << "Angle" + identifier << YAML::Value << bcc.angle;
-
+    
     out << YAML::Key << "Density" + identifier << YAML::Value << bcc.physics_mat.density;
     out << YAML::Key << "Friction" + identifier << YAML::Value << bcc.physics_mat.friction;
     out << YAML::Key << "Restitution" + identifier << YAML::Value << bcc.physics_mat.restitution;
@@ -114,8 +113,7 @@ namespace ikan {
   void EntitySerialiser::DeserializeBoxCollider(Box2DColliderComponent& bcc, const YAML::Node& box_colloider_component, std::string identifier) {
     bcc.offset = box_colloider_component["Offset" + identifier].as<glm::vec2>();
     bcc.size = box_colloider_component["Size" + identifier].as<glm::vec2>();
-    bcc.angle = box_colloider_component["Angle" + identifier].as<float>();
-
+    
     bcc.physics_mat.density = box_colloider_component["Density" + identifier].as<float>();
     bcc.physics_mat.friction = box_colloider_component["Friction" + identifier].as<float>();
     bcc.physics_mat.restitution = box_colloider_component["Restitution" + identifier].as<float>();
