@@ -433,6 +433,9 @@ namespace kreator {
 
   void RendererLayer::PlayScene() {
     bool reset_physcs = false;
+    
+    setting_.show_collider.flag = false;
+    
     if (start_from_begin_) {
       active_scene_ = Scene::Copy(editor_scene_);
       reset_physcs = true;
@@ -454,6 +457,8 @@ namespace kreator {
   }
 
   void RendererLayer::StopScene() {
+    setting_.show_collider.flag = true;
+    
     active_scene_ = editor_scene_;
     spm_->SetSceneContext(active_scene_.get());
 
