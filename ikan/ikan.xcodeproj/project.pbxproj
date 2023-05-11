@@ -66,6 +66,8 @@
 		B29C831A29DEB1BC0061D182 /* renderer_buffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B29C831829DEB1BC0061D182 /* renderer_buffer.hpp */; };
 		B29C832029DEB7140061D182 /* open_gl_renderer_buffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B29C831E29DEB7140061D182 /* open_gl_renderer_buffer.cpp */; };
 		B29C832129DEB7140061D182 /* open_gl_renderer_buffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B29C831F29DEB7140061D182 /* open_gl_renderer_buffer.hpp */; };
+		B2A25BC22A0CC8AD00A56CE0 /* debug_draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2A25BC02A0CC8AD00A56CE0 /* debug_draw.cpp */; };
+		B2A25BC32A0CC8AD00A56CE0 /* debug_draw.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2A25BC12A0CC8AD00A56CE0 /* debug_draw.hpp */; };
 		B2BEC76129DD6802008D3DCB /* libimgui.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B228FC9229DB133100455666 /* libimgui.a */; };
 		B2BEC78A29DD7C50008D3DCB /* core_application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B2BEC78829DD7C50008D3DCB /* core_application.cpp */; };
 		B2BEC78B29DD7C50008D3DCB /* core_application.hpp in Headers */ = {isa = PBXBuildFile; fileRef = B2BEC78929DD7C50008D3DCB /* core_application.hpp */; };
@@ -233,6 +235,8 @@
 		B29C831829DEB1BC0061D182 /* renderer_buffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = renderer_buffer.hpp; sourceTree = "<group>"; };
 		B29C831E29DEB7140061D182 /* open_gl_renderer_buffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = open_gl_renderer_buffer.cpp; sourceTree = "<group>"; };
 		B29C831F29DEB7140061D182 /* open_gl_renderer_buffer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = open_gl_renderer_buffer.hpp; sourceTree = "<group>"; };
+		B2A25BC02A0CC8AD00A56CE0 /* debug_draw.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = debug_draw.cpp; sourceTree = "<group>"; };
+		B2A25BC12A0CC8AD00A56CE0 /* debug_draw.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = debug_draw.hpp; sourceTree = "<group>"; };
 		B2BEC77E29DD7590008D3DCB /* directory_manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = directory_manager.h; sourceTree = "<group>"; };
 		B2BEC78829DD7C50008D3DCB /* core_application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = core_application.cpp; sourceTree = "<group>"; };
 		B2BEC78929DD7C50008D3DCB /* core_application.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = core_application.hpp; sourceTree = "<group>"; };
@@ -434,6 +438,7 @@
 			children = (
 				B29016E429F3FFDD00BB309D /* ray_cast.hpp */,
 				B29016F029F4030900BB309D /* contact_listener.hpp */,
+				B2A25BC12A0CC8AD00A56CE0 /* debug_draw.hpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -443,6 +448,7 @@
 			children = (
 				B29016E329F3FFDD00BB309D /* ray_cast.cpp */,
 				B29016EF29F4030900BB309D /* contact_listener.cpp */,
+				B2A25BC02A0CC8AD00A56CE0 /* debug_draw.cpp */,
 			);
 			path = physics;
 			sourceTree = "<group>";
@@ -848,6 +854,7 @@
 				B2E7141429E43C3C008C8CB1 /* core_entity.hpp in Headers */,
 				B228FC6F29DB071300455666 /* graphics_context.hpp in Headers */,
 				B29016F229F4030900BB309D /* contact_listener.hpp in Headers */,
+				B2A25BC32A0CC8AD00A56CE0 /* debug_draw.hpp in Headers */,
 				B281E86F29DFE1630038A9EE /* editor_camera.hpp in Headers */,
 				B29C832129DEB7140061D182 /* open_gl_renderer_buffer.hpp in Headers */,
 				B292C0EA29D1D1BC00B1E678 /* prefix_headers.pch in Headers */,
@@ -1002,6 +1009,7 @@
 				B228FC6829DB070500455666 /* open_gl_graphics_context.cpp in Sources */,
 				B2F70CEE29DEEC46003163BA /* open_gl_shader.cpp in Sources */,
 				B2BEC7CA29DDACAD008D3DCB /* batch_2d_renderer.cpp in Sources */,
+				B2A25BC22A0CC8AD00A56CE0 /* debug_draw.cpp in Sources */,
 				B281E86E29DFE1630038A9EE /* editor_camera.cpp in Sources */,
 				B2D856D129E7ECC400602232 /* uuid.cpp in Sources */,
 				B2F70CDB29DEE5B6003163BA /* open_gl_shader_uniforms.cpp in Sources */,

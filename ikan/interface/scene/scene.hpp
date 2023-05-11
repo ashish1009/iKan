@@ -12,6 +12,7 @@
 
 #include "physics/contact_listener.hpp"
 #include "physics/ray_cast.hpp"
+#include "physics/debug_draw.hpp"
 #include "core/utils/time_step.h"
 #include "core/events/event.h"
 #include "camera/editor_camera.hpp"
@@ -280,6 +281,7 @@ namespace ikan {
     // Physics
     std::shared_ptr<b2World> physics_2d_world_;
     std::shared_ptr<b2ContactListener> contact_listner_2d_;
+    std::shared_ptr<b2Draw> debug_draw_;
 
     friend class SceneSerializer;
     friend class ScenePanelManager;

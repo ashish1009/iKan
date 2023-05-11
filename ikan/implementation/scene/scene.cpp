@@ -352,6 +352,12 @@ namespace ikan {
       }
     } // For each Quad Entity
     
+    if (setting_.debug_draw) {
+      if (physics_2d_world_) {
+        physics_2d_world_->DebugDraw();
+      }
+    }
+    
     Batch2DRenderer::EndBatch();
   }
   
@@ -429,8 +435,13 @@ namespace ikan {
   void Scene::RuntimeStart() {
     if (type_ == _2D) {
       physics_2d_world_ = std::make_shared<b2World>(b2Vec2(0.0f, -9.8f));
+      
       contact_listner_2d_ = std::make_shared<ContactListner2D>();
       physics_2d_world_->SetContactListener(contact_listner_2d_.get());
+      
+      debug_draw_ = std::make_shared<DebugDraw>();
+      debug_draw_->AppendFlags(DebugDraw::e_shapeBit);
+      physics_2d_world_->SetDebugDraw(debug_draw_.get());
       
       auto view = registry_.view<RigidBodyComponent>();
       for (auto e : view) {
