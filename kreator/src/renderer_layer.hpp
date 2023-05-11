@@ -31,7 +31,7 @@ namespace kreator {
     };
 
     struct Setting {
-      SettingWrapper show_collider{"Show Colliders", true};
+//      SettingWrapper show_collider{"Show Colliders", true};
       SettingWrapper content_browser_panel{"Content Browser Panel", true};
       SettingWrapper viewport_data{"Viewport Data", true};
       SettingWrapper frame_rate{"Frame Rate", true};

@@ -94,11 +94,11 @@ namespace kreator {
 
       if (active_scene_->GetType() == Scene::Type::_2D and active_scene_->IsEditing()) {
         SelectEntities();
+        OverlayRender();
       }
 
       // TODO: Move this inside Edit mode later
       DebugCameraController(ts);
-      OverlayRender();
       
       viewport_.UpdateHoveredEntity(spm_->GetSelectedEntity(), active_scene_.get());
       viewport_.framebuffer->Unbind();
@@ -433,9 +433,7 @@ namespace kreator {
 
   void RendererLayer::PlayScene() {
     bool reset_physcs = false;
-    
-    setting_.show_collider.flag = false;
-    
+        
     if (start_from_begin_) {
       active_scene_ = Scene::Copy(editor_scene_);
       reset_physcs = true;
@@ -457,8 +455,6 @@ namespace kreator {
   }
 
   void RendererLayer::StopScene() {
-    setting_.show_collider.flag = true;
-    
     active_scene_ = editor_scene_;
     spm_->SetSceneContext(active_scene_.get());
 
@@ -661,7 +657,7 @@ namespace kreator {
   }
   
   void RendererLayer::OverlayRender() {
-    if (setting_.show_collider.flag) {
+    if (active_scene_->GetSetting().debug_draw) {
       RenderColliders();
     }
   }
