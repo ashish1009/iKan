@@ -310,11 +310,14 @@ x& x::operator=(x&& other) { \
   }
   
   void Box2DColliderComponent::RenderGui() {
-    PropertyGrid::CheckBox("Isometric", isometric);
+    if (PropertyGrid::CheckBox("Isometric", isometric)) {
+      offset.y = -0.75f;
+      size = {0.25f, 0.125f};
+    }
     ImGui::Separator();
     
-    PropertyGrid::Float2("Offset", offset);
-    PropertyGrid::Float2("Size", size);
+    PropertyGrid::Float2("Offset", offset, nullptr, 0.01);
+    PropertyGrid::Float2("Size", size, nullptr, 0.01);
 
     if (!isometric) {
       float rotation_in_degree = glm::degrees(angle);

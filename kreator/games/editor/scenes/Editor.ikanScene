@@ -3,22 +3,43 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
+  - Entity: 2760403011930639740
+    TagComponent:
+      Tag: Camera
+    TransformComponent:
+      Translation: [0.0531346165, -1.70357883, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 1.30899692
+      OrthographicSize: 0.599998116
+      Near: -1
+      Far: 1
+      Grid: true
+      Isometric: false
   - Entity: 5577772911524059111
     TagComponent:
       Tag: Quad
     TransformComponent:
       Translation: [0, -1, 0]
       Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
+      Scale: [1, 2, 1]
     QuadComponent:
       Texture_Use: true
       Sub_Texture_Use: false
       Linear_Edge: true
-      Num_Texture_Path: 0
+      Texture_Path_0: ../../..//kreator/games/editor/scenes/stone_E.png
+      Num_Texture_Path: 1
       Texture_TilingFactor: 1
       Color: [1, 1, 1, 1]
       Speed: 15
-      Num_Coords: 0
+      Coords0: [0, 0]
+      Sprite_Size0: [1, 1]
+      Cell_Size0: [16, 16]
+      Num_Coords: 1
     RigidBodyComponent:
       Type: 0
       Is Ground: false
@@ -30,28 +51,11 @@ Entities:
       Linear Damping: 0.899999976
       Gravity Scale: 1
     BoxColloiderComponent:
-      Offset: [2.8480165, 0.146256834]
-      Size: [0.5, 0.5]
+      Offset: [0, -0.75]
+      Size: [0.25, 0.125]
       Angle: 0
       Isometric: true
       Density: 1
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
-  - Entity: 2760403011930639740
-    TagComponent:
-      Tag: Camera
-    TransformComponent:
-      Translation: [0, 0, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    CameraComponent:
-      FixedAspectRatio: false
-      Primary: true
-      ProjectionType: 1
-      PerspectiveFOV: 1.30899692
-      OrthographicSize: 10
-      Near: -1
-      Far: 1
-      Grid: true
-      Isometric: false
