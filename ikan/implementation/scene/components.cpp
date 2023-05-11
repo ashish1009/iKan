@@ -304,12 +304,18 @@ x& x::operator=(x&& other) { \
     physics_mat = other.physics_mat;
     offset = other.offset;
     size = other.size;
+    angle = other.angle;
     runtime_fixture = other.runtime_fixture;
   }
   
   void Box2DColliderComponent::RenderGui() {
     PropertyGrid::Float2("Offset", offset);
     PropertyGrid::Float2("Size", size);
+
+    float rotation_in_degree = glm::degrees(angle);
+    if (PropertyGrid::Float1("Rotation", rotation_in_degree, nullptr, 0.25f, 0.0f, MIN_FLT, MAX_FLT)) {
+      angle = glm::radians(rotation_in_degree);
+    }
     
     ImGui::Separator();
     physics_mat.RenderGui();

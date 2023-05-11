@@ -687,7 +687,7 @@ namespace kreator {
       auto [tc, bcc] = box_view.get<TransformComponent, Box2DColliderComponent>(entity);
       glm::vec3 p = tc.Position() + glm::vec3(bcc.offset, 0.001f);
       glm::vec3 s = tc.Scale() * glm::vec3((bcc.size * 2.0f), 1.0f); // We need diameter
-      Batch2DRenderer::DrawRect(Math::GetTransformMatrix(p, tc.Rotation(), s), collider_color);
+      Batch2DRenderer::DrawRect(Math::GetTransformMatrix(p, {tc.Rotation().x, tc.Rotation().y, bcc.angle}, s), collider_color);
     }
   
     // Circle Collider
