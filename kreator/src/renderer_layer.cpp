@@ -190,8 +190,9 @@ namespace kreator {
   
   bool RendererLayer::MouseButtonPressed(MouseButtonPressedEvent& e) {
     if (e.GetMouseButton() == MouseButton::ButtonLeft) {
-      if (viewport_.IsMouseInsideViewport())
+      if (viewport_.IsMouseInsideViewport()) {
         spm_->SetSelectedEntity(viewport_.hovered_entity_);
+      }
     }
     return false;
   }
@@ -212,7 +213,6 @@ namespace kreator {
     else {
       ImguiAPI::StartDcocking();
 
-      ImGui::ShowDemoWindow();
       ShowMenu();
       
       if (active_scene_) {
@@ -546,6 +546,14 @@ namespace kreator {
   }
   
   void RendererLayer::SelectEntities() {
+    if (spm_->GetSelectedEntity() != nullptr) {
+      ClearSelectedEntities();
+      selected_entities_[(entt::entity)(spm_->GetSelectedEntity())->entity_handle_] = spm_->GetSelectedEntity();
+      HighlightSelectedEntities(true);
+      
+      return;
+    }
+    
     if (!viewport_.IsMouseInsideViewport()) {
       ClearSelectedEntities();
       return;
@@ -632,9 +640,11 @@ namespace kreator {
   
   void RendererLayer::HighlightSelectedEntities(bool enable) {
     for (auto& [entt, entity] : selected_entities_) {
-      if(!entity) continue;
-      auto& qc = entity->GetComponent<QuadComponent>();
-      (enable) ? qc.color.a -=0.2f : qc.color.a +=0.2f;
+      if (!entity) continue;
+      if (entity->HasComponent<QuadComponent>()) {
+        auto& qc = entity->GetComponent<QuadComponent>();
+        (enable) ? qc.color.a -=0.2f : qc.color.a +=0.2f;
+      }
     }
   }
   
