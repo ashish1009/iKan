@@ -26,6 +26,8 @@ namespace commando {
     auto tag_view = scene_->GetEntitesWith<QuadComponent>();
     for (auto entity : tag_view) {
       Entity e = Entity(entity, scene_.get());
+      if (e.HasComponent<Box2DColliderComponent>())
+        e.GetComponent<Box2DColliderComponent>().use_isometric_controller = true;
     }
 #endif
   };

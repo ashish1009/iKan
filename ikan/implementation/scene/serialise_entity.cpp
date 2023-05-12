@@ -105,6 +105,7 @@ namespace ikan {
     out << YAML::Key << "Size" + identifier << YAML::Value << bcc.size;
     out << YAML::Key << "Angle" + identifier << YAML::Value << bcc.angle;
     out << YAML::Key << "Isometric" + identifier << YAML::Value << bcc.isometric;
+    out << YAML::Key << "UseIsometric" + identifier << YAML::Value << bcc.use_isometric_controller;
 
     out << YAML::Key << "Density" + identifier << YAML::Value << bcc.physics_mat.density;
     out << YAML::Key << "Friction" + identifier << YAML::Value << bcc.physics_mat.friction;
@@ -117,6 +118,7 @@ namespace ikan {
     bcc.size = box_colloider_component["Size" + identifier].as<glm::vec2>();
     bcc.angle = box_colloider_component["Angle" + identifier].as<float>();
     bcc.isometric = box_colloider_component["Isometric" + identifier].as<bool>();
+    bcc.use_isometric_controller = box_colloider_component["UseIsometric" + identifier].as<bool>();
 
     bcc.physics_mat.density = box_colloider_component["Density" + identifier].as<float>();
     bcc.physics_mat.friction = box_colloider_component["Friction" + identifier].as<float>();
