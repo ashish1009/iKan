@@ -3,27 +3,11 @@ Scene_type: 0
 Setting_editor_camera: true
 Setting_use_editor_camera: false
 Entities:
-  - Entity: 2760403011930639740
-    TagComponent:
-      Tag: Camera
-    TransformComponent:
-      Translation: [0.0531346165, -1.70357883, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1, 1, 1]
-    CameraComponent:
-      FixedAspectRatio: false
-      Primary: true
-      ProjectionType: 1
-      PerspectiveFOV: 1.30899692
-      OrthographicSize: 0.599998116
-      Near: -1
-      Far: 1
-      Grid: true
-      Isometric: false
   - Entity: 5577772911524059111
     TagComponent:
       Tag: Quad
     TransformComponent:
+      Isometric: false
       Translation: [0, -1, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 2, 1]
@@ -59,3 +43,21 @@ Entities:
       Friction: 0.5
       Restitution: 0
       Restitution Threshold: 0.5
+  - Entity: 2760403011930639740
+    TagComponent:
+      Tag: Camera
+    TransformComponent:
+      Isometric: false
+      Translation: [0.0531346165, -1.70357883, 0]
+      Rotation: [0, 0, 0]
+      Scale: [1, 1, 1]
+    CameraComponent:
+      FixedAspectRatio: false
+      Primary: true
+      ProjectionType: 1
+      PerspectiveFOV: 1.30899692
+      OrthographicSize: 0.599998116
+      Near: -1
+      Far: 1
+      Grid: true
+      Isometric: false

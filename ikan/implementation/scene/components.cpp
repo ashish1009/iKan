@@ -73,6 +73,7 @@ x& x::operator=(x&& other) { \
   COMP_COPY_MOVE_CONSTRUCTORS(TransformComponent);
   
   void TransformComponent::Copy(const TransformComponent &other) {
+    is_isometric = other.is_isometric;
     position = other.Position();
     scale = other.Scale();
     rotation = other.Rotation();
@@ -81,16 +82,35 @@ x& x::operator=(x&& other) { \
   }
   
   void TransformComponent::RenderGui() {
-    if (PropertyGrid::Float3("Position", position, nullptr, 0.25f, 0.0f, MIN_FLT, MAX_FLT, 80.0f)) {
-      transform = Math::GetTransformMatrix(position, rotation, scale);
+    PropertyGrid::CheckBox("Isometric", is_isometric);
+    ImGui::Separator();
+
+    if (is_isometric) {
+      glm::vec3 p = position;
+      bool changed = PropertyGrid::Float3("Position", p, nullptr, 0.1f, 0.0f, MIN_FLT, MAX_FLT, 80.0f);
+      glm::vec3 diff = p - position;
+      glm::vec2 iso_d = Math::GetIsometricFromCartesian(glm::vec2(diff));
+      position.x += iso_d.x;
+      position.y += iso_d.y;
+      position.z = p.z;
+      
+      if (changed) {
+        transform = Math::GetTransformMatrix(position, rotation, scale);
+      }
     }
+    else {
+      if (PropertyGrid::Float3("Position", position, nullptr, 0.1f, 0.0f, MIN_FLT, MAX_FLT, 80.0f)) {
+        transform = Math::GetTransformMatrix(position, rotation, scale);
+      }
+    }
+
     glm::vec3 rotation_in_degree = glm::degrees(rotation);
-    if (PropertyGrid::Float3("Rotation", rotation_in_degree, nullptr, 0.25f, 0.0f, MIN_FLT, MAX_FLT, 80.0f)) {
+    if (PropertyGrid::Float3("Rotation", rotation_in_degree, nullptr, 0.1f, 0.0f, MIN_FLT, MAX_FLT, 80.0f)) {
       rotation = glm::radians(rotation_in_degree);
       transform = Math::GetTransformMatrix(position, rotation, scale);
     }
     
-    if (PropertyGrid::Float3("Scale", scale, nullptr, 0.25f, 1.0f, MIN_FLT, MAX_FLT, 80.0f)) {
+    if (PropertyGrid::Float3("Scale", scale, nullptr, 0.1f, 1.0f, MIN_FLT, MAX_FLT, 80.0f)) {
       transform = Math::GetTransformMatrix(position, rotation, scale);
     }
     ImGui::Separator();

@@ -52,6 +52,7 @@ namespace ikan {
   };
   
   struct TransformComponent {
+    bool is_isometric = false;
     const glm::mat4& Transform() const { return transform; }
     const glm::vec3& Position() const { return position; }
     const glm::vec3& Rotation() const { return rotation; }

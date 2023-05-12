@@ -181,6 +181,7 @@ namespace ikan {
       out << YAML::BeginMap; // TransformComponent
       
       auto& tc = entity.GetComponent<TransformComponent>();
+      out << YAML::Key << "Isometric" << YAML::Value << tc.is_isometric;
       out << YAML::Key << "Translation" << YAML::Value << tc.Position();
       out << YAML::Key << "Rotation" << YAML::Value << tc.Rotation();
       out << YAML::Key << "Scale" << YAML::Value << tc.Scale();
@@ -355,6 +356,7 @@ namespace ikan {
     if (transform_component) {
       // Entities always have transforms
       auto& tc = deserialized_entity.GetComponent<TransformComponent>();
+      tc.is_isometric = transform_component["Isometric"].as<bool>();
       tc.UpdatePosition(transform_component["Translation"].as<glm::vec3>());
       tc.UpdateRotation(transform_component["Rotation"].as<glm::vec3>());
       tc.UpdateScale(transform_component["Scale"].as<glm::vec3>());
