@@ -315,8 +315,23 @@ x& x::operator=(x&& other) { \
       size = {0.25f, 0.125f};
     }
     ImGui::Separator();
-    
-    PropertyGrid::Float2("Offset", offset, nullptr, 0.01);
+
+    if (isometric) {
+      PropertyGrid::CheckBox("Isometric Controller", use_isometric_controller);
+      PropertyGrid::HoveredMsg("Only Drag the slider do not enter any value");
+      ImGui::Separator();
+    }
+    if (use_isometric_controller) {
+      glm::vec2 o = offset;
+      PropertyGrid::Float2("Offset", o, nullptr, 0.01);
+      glm::vec2 diff = o - offset;
+      glm::vec2 iso_d = Math::GetIsometricFromCartesian(diff);
+      
+      offset += diff;
+    }
+    else {
+      PropertyGrid::Float2("Offset", offset, nullptr, 0.01);
+    }
     PropertyGrid::Float2("Size", size, nullptr, 0.01);
 
     if (!isometric) {
