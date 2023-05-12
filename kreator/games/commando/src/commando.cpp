@@ -22,12 +22,20 @@ namespace commando {
     scene_ = scene;
     viewport_ = viewport;
     
-#if 0
+#if 1
     auto tag_view = scene_->GetEntitesWith<QuadComponent>();
     for (auto entity : tag_view) {
       Entity e = Entity(entity, scene_.get());
-      if (e.HasComponent<Box2DColliderComponent>())
-        e.GetComponent<Box2DColliderComponent>().use_isometric_controller = true;
+      auto& t = e.GetComponent<TagComponent>().tag;
+      if (t.find("woodenSupportsBlock") != std::string::npos) {
+        if (e.HasComponent<Box2DColliderComponent>()) {
+          e.RemoveComponent<Box2DColliderComponent>();
+          e.RemoveComponent<RigidBodyComponent>();
+//          auto& b = e.GetComponent<Box2DColliderComponent>();
+//          b.size = {0.2, 0.1};
+//          b.offset = {0.0, -0.65};
+        }
+      }
     }
 #endif
   };

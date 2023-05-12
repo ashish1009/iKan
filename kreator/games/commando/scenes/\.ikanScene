@@ -888,8 +888,8 @@ Entities:
       Linear Damping: 0.899999976
       Gravity Scale: 1
     BoxColloiderComponent:
-      Offset: [0.0299999993, -0.72400403]
-      Size: [0.0700000003, 0.0399999991]
+      Offset: [-0.189999998, -0.850000024]
+      Size: [0.0700000003, 0.119999997]
       Angle: 0
       Isometric: true
       UseIsometric: true
@@ -2541,8 +2541,8 @@ Entities:
       Linear Damping: 0.899999976
       Gravity Scale: 1
     BoxColloiderComponent:
-      Offset: [0.0299999993, -0.748250067]
-      Size: [0.0700000003, 0.0399999991]
+      Offset: [-0.189999998, -0.850000024]
+      Size: [0.0700000003, 0.119999997]
       Angle: 0
       Isometric: true
       UseIsometric: true
@@ -2979,7 +2979,7 @@ Entities:
       Linear Damping: 0.899999976
       Gravity Scale: 1
     BoxColloiderComponent:
-      Offset: [-0.239999995, -0.674999952]
+      Offset: [-0.189999998, -0.649999976]
       Size: [0.25, 0.0399999991]
       Angle: 0
       Isometric: true
@@ -3073,8 +3073,8 @@ Entities:
       Linear Damping: 0.899999976
       Gravity Scale: 1
     BoxColloiderComponent:
-      Offset: [-0.379999995, -0.744999886]
-      Size: [0.0700000003, 0.0299999993]
+      Offset: [-0.189999998, -0.649999976]
+      Size: [0.25, 0.0399999991]
       Angle: 0
       Isometric: true
       UseIsometric: true
@@ -3664,6 +3664,26 @@ Entities:
       Color: [1, 1, 1, 1]
       Speed: 15
       Num_Coords: 0
+    RigidBodyComponent:
+      Type: 0
+      Is Ground: false
+      Is Sensor: false
+      Fixed Rotation: false
+      Linear Velocity: [0, 0]
+      Angular Damping: 0.800000012
+      Angular Velocity: 0
+      Linear Damping: 0.899999976
+      Gravity Scale: 1
+    BoxColloiderComponent:
+      Offset: [-0.189999998, -0.649999976]
+      Size: [0.25, 0.0399999991]
+      Angle: 0
+      Isometric: true
+      UseIsometric: true
+      Density: 1
+      Friction: 0.5
+      Restitution: 0
+      Restitution Threshold: 0.5
   - Entity: 13398292137445213594
     TagComponent:
       Tag: stone_W
@@ -4131,8 +4151,8 @@ Entities:
       Linear Damping: 0.899999976
       Gravity Scale: 1
     BoxColloiderComponent:
-      Offset: [0.00350037217, -0.706749976]
-      Size: [0.0799999982, 0.0299999993]
+      Offset: [-0.189999998, -0.649999976]
+      Size: [0.25, 0.0399999991]
       Angle: 0
       Isometric: true
       UseIsometric: true
@@ -4169,8 +4189,8 @@ Entities:
       Linear Damping: 0.899999976
       Gravity Scale: 1
     BoxColloiderComponent:
-      Offset: [0.0325145647, -0.653249502]
-      Size: [0.200000003, 0.100000001]
+      Offset: [-0.189999998, -0.649999976]
+      Size: [0.25, 0.0399999991]
       Angle: 0
       Isometric: true
       UseIsometric: true
@@ -4183,7 +4203,7 @@ Entities:
       Tag: barrelsStacked_S
     TransformComponent:
       Isometric: true
-      Translation: [1, 0.99999994, -0.00499999989]
+      Translation: [1, 1, -0.00499999989]
       Rotation: [0, 0, 0]
       Scale: [1, 2, 1]
     QuadComponent:
@@ -4207,8 +4227,8 @@ Entities:
       Linear Damping: 0.899999976
       Gravity Scale: 1
     BoxColloiderComponent:
-      Offset: [-0.00999999978, -0.656998158]
-      Size: [0.189999998, 0.119999997]
+      Offset: [0.200000003, -0.660000026]
+      Size: [0.0700000003, 0.119999997]
       Angle: 0
       Isometric: true
       UseIsometric: true
@@ -4221,7 +4241,7 @@ Entities:
       Tag: barrels_E
     TransformComponent:
       Isometric: true
-      Translation: [0.5, 1.24999976, -0.00499999989]
+      Translation: [0.5, 1.25, -0.00499999989]
       Rotation: [0, 0, 0]
       Scale: [1, 2, 1]
     QuadComponent:
@@ -4245,8 +4265,8 @@ Entities:
       Linear Damping: 0.899999976
       Gravity Scale: 1
     BoxColloiderComponent:
-      Offset: [-0.0339845568, -0.618007839]
-      Size: [0.25, 0.119999997]
+      Offset: [-0.189999998, -0.649999976]
+      Size: [0.25, 0.0399999991]
       Angle: 0
       Isometric: true
       UseIsometric: true
@@ -4319,8 +4339,8 @@ Entities:
       Linear Damping: 0.899999976
       Gravity Scale: 1
     BoxColloiderComponent:
-      Offset: [0.0599999987, -0.60382992]
-      Size: [0.340000004, 0.0700000003]
+      Offset: [0.200000003, -0.660000026]
+      Size: [0.0700000003, 0.119999997]
       Angle: 0
       Isometric: true
       UseIsometric: true
