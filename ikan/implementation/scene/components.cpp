@@ -328,12 +328,8 @@ x& x::operator=(x&& other) { \
     angle = other.angle;
     runtime_fixture = other.runtime_fixture;
   }
-  
   void Box2DColliderComponent::RenderGui() {
-    if (PropertyGrid::CheckBox("Isometric", isometric)) {
-      offset.y = -0.75f;
-      size = {0.25f, 0.125f};
-    }
+    PropertyGrid::CheckBox("Isometric", isometric);
     ImGui::Separator();
 
     if (isometric) {

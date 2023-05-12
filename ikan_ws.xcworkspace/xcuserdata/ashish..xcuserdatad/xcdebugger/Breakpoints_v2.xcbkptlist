@@ -27,8 +27,8 @@
             filePath = "kreator/src/renderer_layer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "711"
-            endingLineNumber = "711"
+            startingLineNumber = "703"
+            endingLineNumber = "703"
             landmarkName = "RendererLayer::RenderColliders()"
             landmarkType = "7">
             <Locations>
@@ -105,8 +105,8 @@
             filePath = "kreator/src/renderer_layer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "707"
-            endingLineNumber = "707"
+            startingLineNumber = "699"
+            endingLineNumber = "699"
             landmarkName = "RendererLayer::RenderColliders()"
             landmarkType = "7">
          </BreakpointContent>
@@ -121,8 +121,8 @@
             filePath = "kreator/src/renderer_layer.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "710"
-            endingLineNumber = "710"
+            startingLineNumber = "702"
+            endingLineNumber = "702"
             landmarkName = "RendererLayer::RenderColliders()"
             landmarkType = "7">
          </BreakpointContent>
@@ -137,8 +137,8 @@
             filePath = "ikan/implementation/scene/components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "361"
-            endingLineNumber = "361"
+            startingLineNumber = "357"
+            endingLineNumber = "357"
             landmarkName = "Box2DColliderComponent::RenderGui()"
             landmarkType = "7">
          </BreakpointContent>
@@ -153,8 +153,8 @@
             filePath = "ikan/implementation/scene/components.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "355"
-            endingLineNumber = "355"
+            startingLineNumber = "351"
+            endingLineNumber = "351"
             landmarkName = "Box2DColliderComponent::RenderGui()"
             landmarkType = "7">
          </BreakpointContent>

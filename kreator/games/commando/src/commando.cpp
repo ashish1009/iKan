@@ -21,6 +21,13 @@ namespace commando {
 
     scene_ = scene;
     viewport_ = viewport;
+    
+#if 0
+    auto tag_view = scene_->GetEntitesWith<QuadComponent>();
+    for (auto entity : tag_view) {
+      Entity e = Entity(entity, scene_.get());
+    }
+#endif
   };
 
   void Commando::AddQuadFromTexture(const std::string& path) {
